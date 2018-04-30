@@ -1,0 +1,370 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.DialogContext
+    name: DialogContext
+    fullName: DialogContext<C>
+    children:
+      - botbuilder-dialogs.DialogContext.activeDialog
+      - botbuilder-dialogs.DialogContext.begin
+      - botbuilder-dialogs.DialogContext.context
+      - botbuilder-dialogs.DialogContext.continue
+      - botbuilder-dialogs.DialogContext.constructor
+      - botbuilder-dialogs.DialogContext.dialogs
+      - botbuilder-dialogs.DialogContext.end
+      - botbuilder-dialogs.DialogContext.endAll
+      - botbuilder-dialogs.DialogContext.prompt
+      - botbuilder-dialogs.DialogContext.replace
+      - botbuilder-dialogs.DialogContext.stack
+    langs:
+      - typeScript
+    type: class
+    summary: ':package: **botbuilder-dialogs**'
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.DialogContext.activeDialog
+    name: activeDialog
+    fullName: activeDialog
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Returns the cached instance of the active dialog on the top of the stack
+      or `undefined` if the stack is empty.
+    syntax:
+      content: DialogInstance | undefined activeDialog
+      return:
+        type:
+          - botbuilder-dialogs.DialogInstance | undefined
+  - uid: botbuilder-dialogs.DialogContext.begin
+    name: begin
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      Pushes a new dialog onto the dialog stack.
+      **Example usage:**
+
+      ```JavaScript
+      const dc = dialogs.createContext(context, stack);
+      await dc.begin('greeting', user);
+      ```
+    syntax:
+      content: 'function begin(dialogId: string, dialogArgs?: any)'
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: ID of the dialog to start.
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) additional argument(s) to pass to the dialog being
+            started.
+          optional: true
+      return:
+        type:
+          - Promise<any>
+  - uid: botbuilder-dialogs.DialogContext.context
+    name: context
+    fullName: context
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Context for the current turn of conversation with the user.
+    syntax:
+      content: 'public context: C'
+      return:
+        type:
+          - C
+  - uid: botbuilder-dialogs.DialogContext.continue
+    name: continue
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >
+      Continues execution of the active dialog, if there is one, by passing the
+      context object to
+
+      its `Dialog.continue()` method. You can check `context.responded` after
+      the call completes
+
+      to determine if a dialog was run and a reply was sent to the user.
+
+      **Example usage:**
+
+
+      ```JavaScript
+
+      const dc = dialogs.createContext(context, dialogStack);
+
+      return dc.continue().then(() => {
+           if (!context.responded) {
+               await dc.begin('fallback');
+           }
+      });
+
+      ```
+    syntax:
+      content: function continue()
+      parameters: []
+      return:
+        type:
+          - Promise<any>
+  - uid: botbuilder-dialogs.DialogContext.constructor
+    name: DialogContext
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new DialogContext instance.
+    syntax:
+      content: >-
+        new DialogContext(dialogs: DialogSet<C>, context: C, state: object,
+        onCompleted?: (result: any) => void)
+      parameters:
+        - id: dialogs
+          type:
+            - botbuilder-dialogs.DialogSet<C>
+          description: Parent dialog set.
+        - id: context
+          type:
+            - C
+          description: Context for the current turn of conversation with the user.
+        - id: state
+          type:
+            - object
+          description: State object being used to persist the dialog stack.
+        - id: onCompleted
+          type:
+            - '(result: any) => void'
+          description: >-
+            (Optional) handler to call when the the last dialog on the stack
+            completes.
+          optional: true
+  - uid: botbuilder-dialogs.DialogContext.dialogs
+    name: dialogs
+    fullName: dialogs
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Parent dialog set.
+    syntax:
+      content: 'public dialogs: DialogSet<C>'
+      return:
+        type:
+          - botbuilder-dialogs.DialogSet<C>
+  - uid: botbuilder-dialogs.DialogContext.end
+    name: end
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Ends a dialog by popping it off the stack and returns an optional result
+      to the dialogs
+
+      parent. The parent dialog is the dialog the started the on being ended via
+      a call to
+
+      either [begin()](#begin) or [prompt()](#prompt).
+
+      The parent dialog will have its `Dialog.resume()` method invoked with any
+      returned
+
+      result. If the parent dialog hasn't implemented a `resume()` method then
+      it will be
+
+      automatically ended as well and the result passed to its parent. If there
+      are no more
+
+      parent dialogs on the stack then processing of the turn will end.
+
+
+      **Example usage:**
+
+
+      ```JavaScript
+
+      dialogs.add('showUptime', [
+           function (dc) {
+               const elapsed = new Date().getTime() - started;
+               dc.batch.reply(`I've been running for ${elapsed / 1000} seconds.`);
+               await dc.end(elapsed);
+           }
+      ]);
+
+      const started = new Date().getTime();
+
+      ```
+    syntax:
+      content: 'function end(result?: any)'
+      parameters:
+        - id: result
+          type:
+            - any
+          description: >
+            (Optional) result to pass to the parent dialogs `Dialog.resume()`
+            method.
+          optional: true
+      return:
+        type:
+          - Promise<any>
+  - uid: botbuilder-dialogs.DialogContext.endAll
+    name: endAll
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >
+      Deletes any existing dialog stack thus cancelling all dialogs on the
+      stack.
+
+      **Example usage:**
+
+
+      ```JavaScript
+
+      await dc.endAll().begin('bookFlightTask');
+
+      ```
+    syntax:
+      content: function endAll()
+      parameters: []
+      return:
+        type:
+          - this
+  - uid: botbuilder-dialogs.DialogContext.prompt
+    name: prompt
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Helper function to simplify formatting the options for calling a prompt
+      dialog. This helper will
+
+      construct a `PromptOptions` structure and then call [begin(context,
+      dialogId, options)](#begin).
+
+      **Example usage:**
+
+
+      ```JavaScript
+
+      await dc.prompt('confirmPrompt', `Are you sure you'd like to quit?`);
+
+      ```
+    syntax:
+      content: >-
+        function prompt<O>(dialogId: string, prompt: string | Partial<Activity>,
+        choicesOrOptions?: O | string | Choice[], options?: O)
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: ID of the prompt to start.
+        - id: prompt
+          type:
+            - string | Partial<Activity>
+          description: Initial prompt to send the user.
+        - id: choicesOrOptions
+          type:
+            - 'O | string | Choice[]'
+          description: >-
+            (Optional) array of choices to prompt the user for or additional
+            prompt options.
+          optional: true
+        - id: options
+          type:
+            - O
+          description: |
+            (Optional) additional prompt options.
+          optional: true
+      return:
+        type:
+          - Promise<any>
+  - uid: botbuilder-dialogs.DialogContext.replace
+    name: replace
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Ends the active dialog and starts a new dialog in its place. This is
+      particularly useful
+
+      for creating loops or redirecting to another dialog.
+
+      **Example usage:**
+
+
+      ```JavaScript
+
+      dialogs.add('loop', [
+           function (dc, args) {
+               dc.instance.state = args;
+               await dc.begin(args.dialogId);
+           },
+           function (dc) {
+               const args = dc.instance.state;
+               return dc.replace('loop', args);
+           }
+      ]);
+
+      ```
+    syntax:
+      content: 'function replace(dialogId: string, dialogArgs?: any)'
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: ID of the new dialog to start.
+        - id: dialogArgs
+          type:
+            - any
+          description: |
+            (Optional) additional argument(s) to pass to the new dialog.
+          optional: true
+      return:
+        type:
+          - Promise<any>
+  - uid: botbuilder-dialogs.DialogContext.stack
+    name: stack
+    fullName: stack
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Current dialog stack.
+    syntax:
+      content: 'public stack: DialogInstance[]'
+      return:
+        type:
+          - 'botbuilder-dialogs.DialogInstance[]'
+references:
+  - uid: botbuilder-dialogs.DialogSet<C>
+    spec.typeScript:
+      - name: DialogSet
+        fullName: DialogSet
+        uid: botbuilder-dialogs.DialogSet
+      - name: <C>
+        fullName: <C>
+  - uid: 'botbuilder-dialogs.DialogInstance[]'
+    spec.typeScript:
+      - name: DialogInstance
+        fullName: DialogInstance
+        uid: botbuilder-dialogs.DialogInstance
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder-dialogs.DialogInstance | undefined
+    spec.typeScript:
+      - name: DialogInstance
+        fullName: DialogInstance
+        uid: botbuilder-dialogs.DialogInstance
+      - name: ' | undefined'
+        fullName: ' | undefined'

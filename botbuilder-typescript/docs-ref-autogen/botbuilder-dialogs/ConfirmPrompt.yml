@@ -1,0 +1,176 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.ConfirmPrompt
+    name: ConfirmPrompt
+    fullName: ConfirmPrompt<C>
+    children:
+      - botbuilder-dialogs.ConfirmPrompt.choiceOptions
+      - botbuilder-dialogs.ConfirmPrompt.constructor
+      - botbuilder-dialogs.ConfirmPrompt.style
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      :package: **botbuilder-dialogs**
+
+      Prompts a user to confirm something with a yes/no response. By default the
+      prompt will return
+
+      to the calling dialog a `boolean` representing the users selection.
+
+
+      ### Prompt Usage
+
+
+      When used with your bots `DialogSet` you can simply add a new instance of
+      the prompt as a named
+
+      dialog using `DialogSet.add()`. You can then start the prompt from a
+      waterfall step using either
+
+      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
+      prompted to answer a
+
+      `yes/no` or `true/false` question and the users response will be passed as
+      an argument to the
+
+      callers next waterfall step:
+
+
+      ```JavaScript
+
+      const { DialogSet, ConfirmPrompt } = require('botbuilder-dialogs');
+
+
+      const dialogs = new DialogSet();
+
+
+      dialogs.add('confirmPrompt', new ConfirmPrompt());
+
+
+      dialogs.add('confirmCancel', [
+           async function (dc) {
+               await dc.prompt('confirmPrompt', `This will cancel your order. Are you sure?`);
+           },
+           async function (dc, cancel) {
+               if (cancel) {
+                   await dc.context.sendActivity(`Order cancelled.`);
+               }
+               await dc.end();
+           }
+      ]);
+
+      ```
+
+
+      If the users response to the prompt fails to be recognized they will be
+      automatically re-prompted
+
+      to try again. By default the original prompt is re-sent to the user but
+      you can provide an
+
+      alternate prompt to send by passing in additional options:
+
+
+      ```JavaScript
+
+      await dc.prompt('confirmPrompt', `This will cancel your order. Are you
+      sure?`, { retryPrompt: `Please answer "yes" or "no".` });
+
+      ```
+
+
+      The prompts retry logic can also be completely customized by passing the
+      prompts constructor a
+
+      custom validator:
+
+
+      ```JavaScript
+
+      dialogs.add('confirmPrompt', new ConfirmPrompt(async (context, value) => {
+         if (typeof confirmed != 'boolean') {
+            await context.sendActivity(`Please answer "yes" or "no".`);
+         }
+         return confirmed;
+      }));
+
+      ```
+    extends:
+      name: botbuilder-dialogs.Prompt<C>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ConfirmPrompt.choiceOptions
+    name: choiceOptions
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sets additional options passed to the `ChoiceFactory` and used to tweak
+      the style of choices
+
+      rendered to the user.
+    syntax:
+      content: 'function choiceOptions(options: ChoiceFactoryOptions)'
+      parameters:
+        - id: options
+          type:
+            - ChoiceFactoryOptions
+          description: |
+            Additional options to set. Defaults to `{ includeNumbers: false }`
+      return:
+        type:
+          - this
+  - uid: botbuilder-dialogs.ConfirmPrompt.constructor
+    name: ConfirmPrompt
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new `ConfirmPrompt` instance.
+    syntax:
+      content: >-
+        new ConfirmPrompt(validator?: PromptValidator<boolean, O>,
+        defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - 'PromptValidator<boolean, O>'
+          description: >-
+            (Optional) validator that will be called each time the user responds
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `dc.context.activity.locale` not
+            specified. Defaults to a value of `en-us`.
+          optional: true
+  - uid: botbuilder-dialogs.ConfirmPrompt.style
+    name: style
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Sets the style of the yes/no choices rendered to the user when prompting.
+    syntax:
+      content: 'function style(listStyle: ListStyle)'
+      parameters:
+        - id: listStyle
+          type:
+            - ListStyle
+          description: |
+            Type of list to render to to user. Defaults to `ListStyle.auto`.
+      return:
+        type:
+          - this
+references:
+  - uid: botbuilder-dialogs.Prompt<C>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder-dialogs.Prompt
+      - name: <C>
+        fullName: <C>

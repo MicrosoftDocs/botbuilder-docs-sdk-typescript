@@ -1,0 +1,238 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts.ConfirmPrompt
+    name: ConfirmPrompt
+    fullName: ConfirmPrompt<O>
+    children:
+      - botbuilder-prompts.ConfirmPrompt.choiceOptions
+      - botbuilder-prompts.ConfirmPrompt.choices
+      - botbuilder-prompts.ConfirmPrompt.prompt
+      - botbuilder-prompts.ConfirmPrompt.recognize
+      - botbuilder-prompts.ConfirmPrompt.style
+    langs:
+      - typeScript
+    type: interface
+    summary: >-
+      :package: **botbuilder-prompts**
+
+      Prompts the user to answer a yes/no question.
+
+
+      The [prompt()](#prompt) method will attempt to send a set of buttons
+      yes/no buttons for the
+
+      user to click. By default, the text of the titles for these buttons will
+      always be in English
+
+      but you can easily add support for other languages using the prompts
+      [choices](#choices)
+
+      property.
+
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      const { createConfirmPrompt } = require('botbuilder-prompts');
+
+
+      const confirmPrompt = createConfirmPrompt();
+
+      ```
+    package: botbuilder-prompts
+  - uid: botbuilder-prompts.ConfirmPrompt.choiceOptions
+    name: choiceOptions
+    fullName: choiceOptions
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Additional options used to configure the output of the `ChoiceFactory`.
+      Defaults to
+
+      `{ includeNumbers: false }`.
+    syntax:
+      content: 'choiceOptions: ChoiceFactoryOptions'
+      return:
+        type:
+          - ChoiceFactoryOptions
+  - uid: botbuilder-prompts.ConfirmPrompt.choices
+    name: choices
+    fullName: choices
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >
+      Allows for the localization of the confirm prompts yes/no choices to other
+      locales besides
+
+      english. The key of each entry is the languages locale code and should be
+      lower cased. A
+
+      default fallback set of choices can be specified using a key of '*'.
+
+      The default choices are configured to be `{ '*': ['yes', 'no'] }`.
+
+
+      **Example usage:**
+
+
+      ```JavaScript
+
+      const confirmPrompt = createConfirmPrompt();
+
+
+      // Configure yes/no choices for english and spanish (default)
+
+      confirmPrompt.choices['*'] = ['sí', 'no'];
+
+      confirmPrompt.choices['es'] = ['sí', 'no'];
+
+      confirmPrompt.choices['en-us'] = ['yes', 'no'];
+
+      ```
+    syntax:
+      content: 'choices: ConfirmChoices'
+      return:
+        type:
+          - botbuilder-prompts.ConfirmChoices
+  - uid: botbuilder-prompts.ConfirmPrompt.prompt
+    name: prompt
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sends a formated prompt to the user.
+
+      By default, this will attempt to send the user yes & no choices as buttons
+      using
+
+      `ChoiceFactory.forChannel()`. If the channel doesn't support buttons it
+      will fallback to
+
+      appending ` (yes or no)` to the prompt. You can override this behavior
+      using the prompts
+
+      [style](#style) property.
+
+
+      Further tweaks can be made to the rendering of the yes/no choices using
+      the
+
+      [choiceOptions](#choiceoptions) property.
+
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      await confirmPrompt.prompt(context, `This will cancel your order. Are you
+      sure?`);
+
+      ```
+    syntax:
+      content: >-
+        function prompt(context: TurnContext, prompt: string |
+        Partial<Activity>, speak?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: prompt
+          type:
+            - string | Partial<Activity>
+          description: Text or activity to send as the prompt.
+        - id: speak
+          type:
+            - string
+          description: >
+            (Optional) SSML that should be spoken for prompt. The prompts
+            `inputHint` will be automatically set to `expectingInput`.
+          optional: true
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-prompts.ConfirmPrompt.recognize
+    name: recognize
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Recognizes and validates the users reply. The result of the call will
+      either be the
+
+      recognized value or `undefined`.
+
+      The recognize() method will not automatically re-prompt the user so either
+      the caller or the
+
+      prompts custom validator will need to implement re-prompting logic.
+
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      const confirmed = await confirmPrompt.recognize(context);
+
+      if (typeof confirmed == 'boolean') {
+         if (confirmed) {
+            // User said yes
+         } else {
+            // User said no
+         }
+      }
+
+      ```
+    syntax:
+      content: 'function recognize(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for the current turn of conversation.
+      return:
+        type:
+          - Promise<O | undefined>
+  - uid: botbuilder-prompts.ConfirmPrompt.style
+    name: style
+    fullName: style
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Style of choices sent to user when [prompt()](#prompt) is called. Defaults
+      to
+
+      `ListStyle.auto`.
+    syntax:
+      content: 'style: ListStyle'
+      return:
+        type:
+          - botbuilder-prompts.ListStyle
+references:
+  - uid: 'botbuilder-prompts.PromptValidator<FoundChoice, O>'
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-prompts.PromptValidator
+      - name: '<FoundChoice, O>'
+        fullName: '<FoundChoice, O>'
+  - uid: botbuilder-prompts.ChoicePrompt<O>
+    spec.typeScript:
+      - name: ChoicePrompt
+        fullName: ChoicePrompt
+        uid: botbuilder-prompts.ChoicePrompt
+      - name: <O>
+        fullName: <O>

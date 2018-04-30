@@ -1,0 +1,185 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts.ChoicePrompt
+    name: ChoicePrompt
+    fullName: ChoicePrompt<O>
+    children:
+      - botbuilder-prompts.ChoicePrompt.choiceOptions
+      - botbuilder-prompts.ChoicePrompt.prompt
+      - botbuilder-prompts.ChoicePrompt.recognize
+      - botbuilder-prompts.ChoicePrompt.recognizerOptions
+      - botbuilder-prompts.ChoicePrompt.style
+    langs:
+      - typeScript
+    type: interface
+    summary: |-
+      :package: **botbuilder-prompts**
+      Prompts the user to select from a list of choices.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createChoicePrompt } = require('botbuilder-prompts');
+
+      const choicePrompt = createChoicePrompt();
+      ```
+    package: botbuilder-prompts
+  - uid: botbuilder-prompts.ChoicePrompt.choiceOptions
+    name: choiceOptions
+    fullName: choiceOptions
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Additional options used to configure the output of the choice factory.
+    syntax:
+      content: 'choiceOptions: ChoiceFactoryOptions'
+      return:
+        type:
+          - ChoiceFactoryOptions
+  - uid: botbuilder-prompts.ChoicePrompt.prompt
+    name: prompt
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sends a formated prompt to the user.
+
+      By default, this will attempt to send the provided list of choices as
+      buttons using
+
+      `ChoiceFactory.forChannel()`. It may fallback to sending the choices as a
+      text based list
+
+      for any number of reasons. You can set the prompts [style](#style)
+      property to force the use
+
+      of a particular rendering style.
+
+
+      Further tweaks can be made to the rendering of choices using the
+
+      [choiceOptions](#choiceoptions) property.
+
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      await colorPrompt.prompt(context, ['red', 'green', 'blue'], `Pick a
+      color.`);
+
+      ```
+    syntax:
+      content: >-
+        function prompt(context: TurnContext, choices: string | Choice[],
+        prompt?: string | Partial<Activity>, speak?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: choices
+          type:
+            - 'string | Choice[]'
+          description: >-
+            Array of choices that should be prompted for. This may be different
+            then the choices passed to [recognize()](#recognize).
+        - id: prompt
+          type:
+            - string | Partial<Activity>
+          description: (Optional) Text or activity to send as the prompt.
+          optional: true
+        - id: speak
+          type:
+            - string
+          description: >
+            (Optional) SSML that should be spoken for prompt. The prompts
+            `inputHint` will be automatically set to `expectingInput`.
+          optional: true
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-prompts.ChoicePrompt.recognize
+    name: recognize
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Recognizes and validates the users reply. The result of the call will
+      either be the
+
+      recognized value or `undefined`.
+
+      The recognize() method will not automatically re-prompt the user so either
+      the caller or the
+
+      prompts custom validator will need to implement re-prompting logic.
+
+
+      The search options for the underlying choice recognizer can be tweaked
+      using the prompts
+
+      [recognizerOptions](#recognizeroptions) property.
+
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      const choice = await colorPrompt.recognize(context, ['red', 'green',
+      'blue']);
+
+      if (choice) {
+         const color = choice.value;
+      }
+
+      ```
+    syntax:
+      content: 'function recognize(context: TurnContext, choices: string | Choice[])'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: choices
+          type:
+            - 'string | Choice[]'
+          description: >
+            Array of choices that should be recognized against. This may be
+            different then the choices passed to [prompt()](#prompt).
+      return:
+        type:
+          - Promise<O | undefined>
+  - uid: botbuilder-prompts.ChoicePrompt.recognizerOptions
+    name: recognizerOptions
+    fullName: recognizerOptions
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Additional options used to configure the choice recognizer.
+    syntax:
+      content: 'recognizerOptions: FindChoicesOptions'
+      return:
+        type:
+          - FindChoicesOptions
+  - uid: botbuilder-prompts.ChoicePrompt.style
+    name: style
+    fullName: style
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: |-
+      Style of choices sent to user when [prompt()](#prompt) is called. Defaults
+      to `ListStyle.auto`.
+    syntax:
+      content: 'style: ListStyle'
+      return:
+        type:
+          - botbuilder-prompts.ListStyle

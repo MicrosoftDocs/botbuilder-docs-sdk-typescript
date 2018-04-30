@@ -1,0 +1,138 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-azure.AzureBlobTranscriptStore
+    name: AzureBlobTranscriptStore
+    fullName: AzureBlobTranscriptStore
+    children:
+      - botbuilder-azure.AzureBlobTranscriptStore.constructor
+      - botbuilder-azure.AzureBlobTranscriptStore.deleteTranscript
+      - botbuilder-azure.AzureBlobTranscriptStore.getTranscriptActivities
+      - botbuilder-azure.AzureBlobTranscriptStore.listTranscripts
+      - botbuilder-azure.AzureBlobTranscriptStore.logActivity
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      The blob transcript store stores transcripts in an Azure Blob container
+      where each activity is stored as json blob in structure of
+
+      container/{channelId]/{conversationId}/{Timestamp.ticks}-{activity.id}.json
+    package: botbuilder-azure
+  - uid: botbuilder-azure.AzureBlobTranscriptStore.constructor
+    name: AzureBlobTranscriptStore
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates an instance of AzureBlobTranscriptStore
+    syntax:
+      content: 'new AzureBlobTranscriptStore(settings: BlobStorageSettings)'
+      parameters:
+        - id: settings
+          type:
+            - botbuilder-azure.BlobStorageSettings
+          description: |
+            Settings for configuring an instance of BlobStorage
+  - uid: botbuilder-azure.AzureBlobTranscriptStore.deleteTranscript
+    name: deleteTranscript
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Delete a specific conversation and all of it's activities.
+    syntax:
+      content: 'function deleteTranscript(channelId: string, conversationId: string)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: Channel Id where conversation took place.
+        - id: conversationId
+          type:
+            - string
+          description: |
+            Id of the conversation to delete.
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-azure.AzureBlobTranscriptStore.getTranscriptActivities
+    name: getTranscriptActivities
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Get activities for a conversation (Aka the transcript)
+    syntax:
+      content: >-
+        function getTranscriptActivities(channelId: string, conversationId:
+        string, continuationToken?: string, startDate?: Date)
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: Channel Id.
+        - id: conversationId
+          type:
+            - string
+          description: Conversation Id.
+        - id: continuationToken
+          type:
+            - string
+          description: Continuatuation token to page through results.
+          optional: true
+        - id: startDate
+          type:
+            - Date
+          description: |
+            Earliest time to include.
+          optional: true
+      return:
+        type:
+          - Promise<PagedResult<Activity>>
+  - uid: botbuilder-azure.AzureBlobTranscriptStore.listTranscripts
+    name: listTranscripts
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: List conversations in the channelId.
+    syntax:
+      content: 'function listTranscripts(channelId: string, continuationToken?: string)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: Channel Id.
+        - id: continuationToken
+          type:
+            - string
+          description: |
+            Continuatuation token to page through results.
+          optional: true
+      return:
+        type:
+          - Promise<PagedResult<Transcript>>
+  - uid: botbuilder-azure.AzureBlobTranscriptStore.logActivity
+    name: logActivity
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Log an activity to the transcript.
+    syntax:
+      content: 'function logActivity(activity: Activity)'
+      parameters:
+        - id: activity
+          type:
+            - Activity
+          description: |
+            Activity being logged.
+      return:
+        type:
+          - void | Promise<void>
+references:
+  - uid: botbuilder-azure.BlobStorageSettings
+    spec.typeScript:
+      - name: BlobStorageSettings
+        fullName: BlobStorageSettings
+        uid: botbuilder-azure.BlobStorageSettings

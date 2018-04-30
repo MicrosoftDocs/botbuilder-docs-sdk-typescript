@@ -1,0 +1,175 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.ChoicePrompt
+    name: ChoicePrompt
+    fullName: ChoicePrompt<C>
+    children:
+      - botbuilder-dialogs.ChoicePrompt.choiceOptions
+      - botbuilder-dialogs.ChoicePrompt.constructor
+      - botbuilder-dialogs.ChoicePrompt.recognizerOptions
+      - botbuilder-dialogs.ChoicePrompt.style
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      :package: **botbuilder-dialogs**
+
+      Prompts a user to confirm something with a yes/no response. By default the
+      prompt will return
+
+      to the calling dialog a `boolean` representing the users selection.
+
+
+      ### Prompt Usage
+
+
+      When used with your bots `DialogSet` you can simply add a new instance of
+      the prompt as a named
+
+      dialog using `DialogSet.add()`. You can then start the prompt from a
+      waterfall step using either
+
+      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
+      prompted to select a choice
+
+      from a list and their choice will be passed as an argument to the callers
+      next waterfall step:
+
+
+      ```JavaScript
+
+      const { DialogSet, ChoicePrompt } = require('botbuilder-dialogs');
+
+
+      const dialogs = new DialogSet();
+
+
+      dialogs.add('choicePrompt', new ChoicePrompt());
+
+
+      dialogs.add('colorPrompt', [
+           async function (dc) {
+               await dc.prompt('choicePrompt', `Select a color`, ['red', 'green', 'blue']);
+           },
+           async function (dc, choice) {
+               const color = choice.value;
+               await dc.context.sendActivity(`I like ${color} too!`);
+               await dc.end();
+           }
+      ]);
+
+      ```
+
+
+      If the users response to the prompt fails to be recognized they will be
+      automatically re-prompted
+
+      to try again. By default the original prompt is re-sent to the user but
+      you can provide an
+
+      alternate prompt to send by passing in additional options:
+
+
+      ```JavaScript
+
+      await dc.prompt('choicePrompt', `Select a color`, ['red', 'green',
+      'blue'], { retryPrompt: `I didn't catch that. Select a color from the
+      list.` });
+
+      ```
+    extends:
+      name: botbuilder-dialogs.Prompt<C>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ChoicePrompt.choiceOptions
+    name: choiceOptions
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sets additional options passed to the `ChoiceFactory` and used to tweak
+      the style of choices
+
+      rendered to the user.
+    syntax:
+      content: 'function choiceOptions(options: ChoiceFactoryOptions)'
+      parameters:
+        - id: options
+          type:
+            - ChoiceFactoryOptions
+          description: |
+            Additional options to set.
+      return:
+        type:
+          - this
+  - uid: botbuilder-dialogs.ChoicePrompt.constructor
+    name: ChoicePrompt
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new `ChoicePrompt` instance.
+    syntax:
+      content: >-
+        new ChoicePrompt(validator?: PromptValidator<FoundChoice, O>,
+        defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - 'PromptValidator<FoundChoice, O>'
+          description: >-
+            (Optional) validator that will be called each time the user responds
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `dc.context.activity.locale` not
+            specified. Defaults to a value of `en-us`.
+          optional: true
+  - uid: botbuilder-dialogs.ChoicePrompt.recognizerOptions
+    name: recognizerOptions
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Sets additional options passed to the `recognizeChoices()` function.
+    syntax:
+      content: 'function recognizerOptions(options: FindChoicesOptions)'
+      parameters:
+        - id: options
+          type:
+            - FindChoicesOptions
+          description: |
+            Additional options to set.
+      return:
+        type:
+          - this
+  - uid: botbuilder-dialogs.ChoicePrompt.style
+    name: style
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Sets the style of the choice list rendered to the user when prompting.
+    syntax:
+      content: 'function style(listStyle: ListStyle)'
+      parameters:
+        - id: listStyle
+          type:
+            - ListStyle
+          description: |
+            Type of list to render to to user. Defaults to `ListStyle.auto`.
+      return:
+        type:
+          - this
+references:
+  - uid: botbuilder-dialogs.Prompt<C>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder-dialogs.Prompt
+      - name: <C>
+        fullName: <C>

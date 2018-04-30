@@ -1,0 +1,100 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts.AttachmentPrompt
+    name: AttachmentPrompt
+    fullName: AttachmentPrompt<O>
+    children:
+      - botbuilder-prompts.AttachmentPrompt.prompt
+      - botbuilder-prompts.AttachmentPrompt.recognize
+    langs:
+      - typeScript
+    type: interface
+    summary: |-
+      :package: **botbuilder-prompts**
+      Prompts the user to upload one or more attachments.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createAttachmentPrompt } = require('botbuilder-prompts');
+
+      const imagePrompt = createAttachmentPrompt();
+      ```
+    package: botbuilder-prompts
+  - uid: botbuilder-prompts.AttachmentPrompt.prompt
+    name: prompt
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      Sends a formated prompt to the user.
+      **Usage Example:**
+
+      ```JavaScript
+      await imagePrompt.prompt(context, `Upload an image(s).`);
+      ```
+    syntax:
+      content: >-
+        function prompt(context: TurnContext, prompt: string |
+        Partial<Activity>, speak?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: prompt
+          type:
+            - string | Partial<Activity>
+          description: Text or activity to send as the prompt.
+        - id: speak
+          type:
+            - string
+          description: >
+            (Optional) SSML that should be spoken for prompt. The prompts
+            `inputHint` will be automatically set to `expectingInput`.
+          optional: true
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-prompts.AttachmentPrompt.recognize
+    name: recognize
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Recognizes and validates the users reply. The result of the call will
+      either be the
+
+      recognized value or `undefined`.
+
+      The recognize() method will not automatically re-prompt the user so either
+      the caller or the
+
+      prompts custom validator will need to implement re-prompting logic.
+
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      const images = await imagePrompt.recognize(context);
+
+      if (images) {
+         // Process images
+      }
+
+      ```
+    syntax:
+      content: 'function recognize(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for the current turn of conversation.
+      return:
+        type:
+          - Promise<O | undefined>

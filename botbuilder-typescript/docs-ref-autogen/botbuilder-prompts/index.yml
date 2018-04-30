@@ -1,0 +1,435 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts
+    name: botbuilder-prompts
+    summary: ''
+    children:
+      - botbuilder-prompts.AttachmentPrompt
+      - botbuilder-prompts.ListStyle
+      - botbuilder-prompts.ChoicePrompt
+      - botbuilder-prompts.ConfirmChoices
+      - botbuilder-prompts.ConfirmPrompt
+      - botbuilder-prompts.DatetimePrompt
+      - botbuilder-prompts.FoundDatetime
+      - botbuilder-prompts.NumberPrompt
+      - botbuilder-prompts.OAuthPrompt
+      - botbuilder-prompts.OAuthPromptSettings
+      - botbuilder-prompts.TextPrompt
+      - botbuilder-prompts.PromptValidator
+      - botbuilder-prompts.createAttachmentPrompt
+      - botbuilder-prompts.createChoicePrompt
+      - botbuilder-prompts.createConfirmPrompt
+      - botbuilder-prompts.createDatetimePrompt
+      - botbuilder-prompts.sendPrompt
+      - botbuilder-prompts.createNumberPrompt
+      - botbuilder-prompts.createOAuthPrompt
+      - botbuilder-prompts.isTokenResponseEvent
+      - botbuilder-prompts.createTextPrompt
+    type: package
+    langs:
+      - typeScript
+  - uid: botbuilder-prompts.createAttachmentPrompt
+    name: createAttachmentPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: |-
+      :package: **botbuilder-prompts**
+      Creates a new prompt that asks the user to upload one or more attachments.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createAttachmentPrompt } = require('botbuilder-prompts');
+
+      const imagePrompt = createAttachmentPrompt(async (context, values) => {
+         if (values && values.length > 0) {
+            for (let i = 0; i < values.length; i++) {
+               if (!values[i].contentType.startsWith('image')) {
+                  await imagePrompt.prompt(context, `Only images are accepted.`);
+                  return undefined;
+               }
+            }
+         } else {
+            await imagePrompt.prompt(context, `Please upload at least one image.`);
+         }
+         return values;
+      });
+      ```
+    syntax:
+      content: >-
+        function createAttachmentPrompt<O>(validator?:
+        PromptValidator<Attachment[], O>)
+      parameters:
+        - id: validator
+          type:
+            - 'botbuilder-prompts.PromptValidator<Attachment[], O>'
+          description: >
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.AttachmentPrompt<O>
+  - uid: botbuilder-prompts.createChoicePrompt
+    name: createChoicePrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: |-
+      :package: **botbuilder-prompts**
+      Creates a new prompt that asks the user to select from a list of choices.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createChoicePrompt } = require('botbuilder-prompts');
+
+      const colorPrompt = createChoicePrompt(async (context, found) => {
+         if (!found) {
+            await colorPrompt.prompt(context, ['red', 'green', 'blue'], `Please choose a color from the list or say "cancel".`);
+         }
+         return found;
+      });
+      ```
+    syntax:
+      content: >-
+        function createChoicePrompt<O>(validator?: PromptValidator<FoundChoice,
+        O>, defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - 'botbuilder-prompts.PromptValidator<FoundChoice, O>'
+          description: >-
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `context.activity.locale` not specified.
+            Defaults to a value of `en-us`.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.ChoicePrompt<O>
+  - uid: botbuilder-prompts.createConfirmPrompt
+    name: createConfirmPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: |-
+      :package: **botbuilder-prompts**
+      Creates a new prompt that asks the user to answer a yes/no question.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createConfirmPrompt } = require('botbuilder-prompts');
+
+      const confirmPrompt = createConfirmPrompt(async (context, confirmed) => {
+         if (typeof confirmed != 'boolean') {
+            await confirmPrompt.prompt(context, `Please answer "yes" or "no".`);
+         }
+         return confirmed;
+      });
+      ```
+    syntax:
+      content: >-
+        function createConfirmPrompt<O>(validator?: PromptValidator<O>,
+        defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - botbuilder-prompts.PromptValidator<O>
+          description: >-
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `context.activity.locale` is not
+            specified. Defaults to a value of `en-us`.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.ConfirmPrompt<O>
+  - uid: botbuilder-prompts.createDatetimePrompt
+    name: createDatetimePrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: |-
+      :package: **botbuilder-prompts**
+      Creates a new prompt that asks the user to reply with a date or time.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createDatetimePrompt } = require('botbuilder-prompts');
+
+      const timePrompt = createDatetimePrompt(async (context, values) => {
+         try {
+            if (!Array.isArray(values) || values.length < 0) { throw new Error('missing time') }
+            if (values[0].type !== 'datetime') { throw new Error('unsupported type') }
+            const value = new Date(values[0].value);
+            if (value.getTime() < new Date().getTime()) { throw new Error('in the past') }
+            return value;
+         } catch (err) {
+            await timePrompt.prompt(context, `Answer with a time in the future like "tomorrow at 9am" or say "cancel".`);
+            return undefined;
+         }
+      });
+      ```
+    syntax:
+      content: >-
+        function createDatetimePrompt<O>(validator?:
+        PromptValidator<FoundDatetime[], O>, defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - >-
+              botbuilder-prompts.PromptValidator<botbuilder-prompts.FoundDatetime[],
+              O>
+          description: >-
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `context.activity.locale` not specified.
+            Defaults to a value of `en-us`.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.DatetimePrompt<O>
+  - uid: botbuilder-prompts.sendPrompt
+    name: sendPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        function sendPrompt(context: TurnContext, prompt: string |
+        Partial<Activity>, speak?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: prompt
+          type:
+            - string | Partial<Activity>
+          description: ''
+        - id: speak
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-prompts.createNumberPrompt
+    name: createNumberPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: |-
+      :package: **botbuilder-prompts**
+      Creates a new prompt that asks the user to reply with a number.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createNumberPrompt } = require('botbuilder-prompts');
+
+      const agePrompt = createNumberPrompt(async (context, value) => {
+         if (typeof value == 'number') {
+            if (value >= 1 && value < 111) {
+               // Return age rounded down to nearest whole number.
+               return Math.floor(value);
+            }
+         }
+         await agePrompt.prompt(context, `Please enter a number between 1 and 110 or say "cancel".`);
+         return undefined;
+      });
+      ```
+    syntax:
+      content: >-
+        function createNumberPrompt<O>(validator?: PromptValidator<number, O>,
+        defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - 'botbuilder-prompts.PromptValidator<number, O>'
+          description: >-
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `context.activity.locale` not specified.
+            Defaults to a value of `en-us`.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.NumberPrompt<O>
+  - uid: botbuilder-prompts.createOAuthPrompt
+    name: createOAuthPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      :package: **botbuilder-prompts**
+
+      Creates a new prompt that asks the user to sign in using the Bot
+      Frameworks Single Sign On (SSO)
+
+      service.
+
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      async function ensureLogin(context, state, botLogic) {
+         const now = new Date().getTime();
+         if (state.token && now < (new Date(state.token.expiration).getTime() - 60000)) {
+            return botLogic(context);
+         } else {
+            const loginPrompt = createOAuthPrompt({
+                connectionName: 'GitConnection',
+                title: 'Login To GitHub'
+            });
+            const token = await state.loginActive ? loginPrompt.recognize(context) : loginPrompt.getUserToken(context);
+            if (token) {
+                state.loginActive = false;
+                state.token = token;
+                return botLogic(context);
+            } else if (context.activity.type === 'message') {
+                if (!state.loginActive) {
+                    state.loginActive = true;
+                    state.loginStart = now;
+                    await loginPrompt.prompt(context);
+                } else if (now >= (state.loginStart + (5 * 60 * 1000))) {
+                    state.loginActive = false;
+                    await context.sendActivity(`We're having a problem logging you in. Please try again later.`);
+                }
+            }
+         }
+      }
+
+      ```
+    syntax:
+      content: >-
+        function createOAuthPrompt<O>(settings: OAuthPromptSettings, validator?:
+        PromptValidator<TokenResponse, O>)
+      parameters:
+        - id: settings
+          type:
+            - botbuilder-prompts.OAuthPromptSettings
+          description: Configuration settings for the OAuthPrompt.
+        - id: validator
+          type:
+            - 'botbuilder-prompts.PromptValidator<TokenResponse, O>'
+          description: >
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.OAuthPrompt<O>
+  - uid: botbuilder-prompts.isTokenResponseEvent
+    name: isTokenResponseEvent
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function isTokenResponseEvent(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+      return:
+        type:
+          - boolean
+  - uid: botbuilder-prompts.createTextPrompt
+    name: createTextPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: |-
+      :package: **botbuilder-prompts**
+      Creates a new prompt that asks the user to enter some text.
+
+      **Usage Example:**
+
+      ```JavaScript
+      const { createTextPrompt } = require('botbuilder-prompts');
+
+      const namePrompt = createTextPrompt(async (context, value) => {
+         if (value && value.length >= 3) {
+            return value;
+         }
+         await namePrompt.prompt(context, `Your entry must be at least 3 characters in length.`);
+         return undefined;
+      });
+      ```
+    syntax:
+      content: 'function createTextPrompt<O>(validator?: PromptValidator<string, O>)'
+      parameters:
+        - id: validator
+          type:
+            - 'botbuilder-prompts.PromptValidator<string, O>'
+          description: >
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.TextPrompt<O>
+references:
+  - uid: botbuilder-prompts.AttachmentPrompt
+    name: AttachmentPrompt
+  - uid: botbuilder-prompts.ListStyle
+    name: ListStyle
+  - uid: botbuilder-prompts.ChoicePrompt
+    name: ChoicePrompt
+  - uid: botbuilder-prompts.ConfirmChoices
+    name: ConfirmChoices
+  - uid: botbuilder-prompts.ConfirmPrompt
+    name: ConfirmPrompt
+  - uid: botbuilder-prompts.DatetimePrompt
+    name: DatetimePrompt
+  - uid: botbuilder-prompts.FoundDatetime
+    name: FoundDatetime
+  - uid: botbuilder-prompts.NumberPrompt
+    name: NumberPrompt
+  - uid: botbuilder-prompts.OAuthPrompt
+    name: OAuthPrompt
+  - uid: botbuilder-prompts.OAuthPromptSettings
+    name: OAuthPromptSettings
+  - uid: botbuilder-prompts.TextPrompt
+    name: TextPrompt
+  - uid: botbuilder-prompts.PromptValidator
+    name: PromptValidator

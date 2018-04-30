@@ -1,0 +1,122 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.NumberPrompt
+    name: NumberPrompt
+    fullName: NumberPrompt<C>
+    children:
+      - botbuilder-dialogs.NumberPrompt.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      :package: **botbuilder-dialogs**
+
+      Prompts a user to enter a number. By default the prompt will return to the
+      calling dialog
+
+      a `number` representing the users input.
+
+
+      ### Prompt Usage
+
+
+      When used with your bots `DialogSet` you can simply add a new instance of
+      the prompt as a named
+
+      dialog using `DialogSet.add()`. You can then start the prompt from a
+      waterfall step using either
+
+      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
+      prompted to reply with a
+
+      number which will be passed as an argument to the callers next waterfall
+      step:
+
+
+      ```JavaScript
+
+      const { DialogSet, NumberPrompt } = require('botbuilder-dialogs');
+
+
+      const dialogs = new DialogSet();
+
+
+      dialogs.add('agePrompt', new NumberPrompt());
+
+
+      dialogs.add('askAge', [
+           async function (dc) {
+               await dc.prompt('agePrompt', `How old are you?`);
+           },
+           async function (dc, age) {
+               if (age < 40) {
+                   await dc.context.sendActivity(`So young :)`);
+               } else {
+                   await dc.context.sendActivity(`I hear ${age} is the new ${age - 10} :)`);
+               }
+               await dc.end();
+           }
+      ]);
+
+      ```
+
+
+      The prompt can be configured with a custom validator to perform additional
+      checks like ensuring
+
+      that the user responds with a valid age and that only whole numbers are
+      returned:
+
+
+      ```JavaScript
+
+      dialogs.add('agePrompt', new NumberPrompt(async (context, value) => {
+         if (typeof value == 'number') {
+            if (value >= 1 && value < 111) {
+               // Return age rounded down to nearest whole number.
+               return Math.floor(value);
+            }
+         }
+         await context.sendActivity(`Please enter a number between 1 and 110 or say "cancel".`);
+         return undefined;
+      }));
+
+      ```
+    extends:
+      name: botbuilder-dialogs.Prompt<C>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.NumberPrompt.constructor
+    name: NumberPrompt
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new `NumberPrompt` instance.
+    syntax:
+      content: >-
+        new NumberPrompt(validator?: PromptValidator<number, O>, defaultLocale?:
+        string)
+      parameters:
+        - id: validator
+          type:
+            - 'PromptValidator<number, O>'
+          description: >-
+            (Optional) validator that will be called each time the user responds
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `dc.context.activity.locale` not
+            specified. Defaults to a value of `en-us`.
+          optional: true
+references:
+  - uid: botbuilder-dialogs.Prompt<C>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder-dialogs.Prompt
+      - name: <C>
+        fullName: <C>

@@ -1,0 +1,165 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-ai.LuisRecognizer
+    name: LuisRecognizer
+    fullName: LuisRecognizer
+    children:
+      - botbuilder-ai.LuisRecognizer.get
+      - botbuilder-ai.LuisRecognizer.constructor
+      - botbuilder-ai.LuisRecognizer.onTurn
+      - botbuilder-ai.LuisRecognizer.recognize
+      - botbuilder-ai.LuisRecognizer.topIntent
+    langs:
+      - typeScript
+    type: class
+    summary: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.LuisRecognizer.get
+    name: get
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns the results cached from a previous call to
+      [recognize()](#recognize) for the current
+
+      turn with the user.  This will return `undefined` if recognize() hasn't
+      been called for the
+
+      current turn.
+    syntax:
+      content: 'function get(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for the current turn of conversation with the use.
+      return:
+        type:
+          - botbuilder-ai.LuisRecognizerResult | undefined
+  - uid: botbuilder-ai.LuisRecognizer.constructor
+    name: LuisRecognizer
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new LuisRecognizer instance.
+    syntax:
+      content: 'new LuisRecognizer(settings: LuisRecognizerSettings)'
+      parameters:
+        - id: settings
+          type:
+            - botbuilder-ai.LuisRecognizerSettings
+          description: |
+            Settings used to configure the instance.
+  - uid: botbuilder-ai.LuisRecognizer.onTurn
+    name: onTurn
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: next
+          type:
+            - () => Promise<void>
+          description: ''
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-ai.LuisRecognizer.recognize
+    name: recognize
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Calls LUIS to recognize intents and entities in a users utterance. The
+      results of the call
+
+      will be cached to the context object for the turn and future calls to
+      recognize() for the
+
+      same context object will result in the cached value being returned. This
+      behavior can be
+
+      overridden using the `force` parameter.
+    syntax:
+      content: 'function recognize(context: TurnContext, force?: boolean)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation with the use.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) flag that if `true` will force the call to LUIS even if a
+            cached result exists. Defaults to a value of `false`.
+          optional: true
+      return:
+        type:
+          - Promise<botbuilder-ai.LuisRecognizerResult>
+  - uid: botbuilder-ai.LuisRecognizer.topIntent
+    name: topIntent
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns the name of the top scoring intent from a set of LUIS results.
+    syntax:
+      content: >-
+        static function topIntent(results: LuisRecognizerResult | undefined,
+        defaultIntent: string, minScore: number)
+      parameters:
+        - id: results
+          type:
+            - botbuilder-ai.LuisRecognizerResult | undefined
+          description: Result set to be searched.
+        - id: defaultIntent
+          type:
+            - string
+          description: >-
+            (Optional) intent name to return should a top intent be found.
+            Defaults to a value of `None`.
+        - id: minScore
+          type:
+            - number
+          description: >
+            (Optional) minimum score needed for an intent to be considered as a
+            top intent. If all intents in the set are below this threshold then
+            the `defaultIntent` will be returned.  Defaults to a value of `0.0`.
+      return:
+        type:
+          - string
+references:
+  - uid: botbuilder-ai.LuisRecognizerSettings
+    spec.typeScript:
+      - name: LuisRecognizerSettings
+        fullName: LuisRecognizerSettings
+        uid: botbuilder-ai.LuisRecognizerSettings
+  - uid: botbuilder-ai.LuisRecognizerResult | undefined
+    spec.typeScript:
+      - name: LuisRecognizerResult
+        fullName: LuisRecognizerResult
+        uid: botbuilder-ai.LuisRecognizerResult
+      - name: ' | undefined'
+        fullName: ' | undefined'
+  - uid: Promise<botbuilder-ai.LuisRecognizerResult>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: LuisRecognizerResult
+        fullName: LuisRecognizerResult
+        uid: botbuilder-ai.LuisRecognizerResult
+      - name: '>'
+        fullName: '>'

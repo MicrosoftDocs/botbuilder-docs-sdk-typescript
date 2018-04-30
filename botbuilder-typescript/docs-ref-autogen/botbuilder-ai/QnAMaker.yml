@@ -1,0 +1,125 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-ai.QnAMaker
+    name: QnAMaker
+    fullName: QnAMaker
+    children:
+      - botbuilder-ai.QnAMaker.answer
+      - botbuilder-ai.QnAMaker.generateAnswer
+      - botbuilder-ai.QnAMaker.onTurn
+      - botbuilder-ai.QnAMaker.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMaker.answer
+    name: answer
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Calls [generateAnswer()](#generateanswer) and sends the answer as a
+      message ot the user.
+
+      Returns a value of `true` if an answer was found and sent. If multiple
+      answers are
+
+      returned the first one will be delivered.
+    syntax:
+      content: 'function answer(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for the current turn of conversation with the use.
+      return:
+        type:
+          - Promise<boolean>
+  - uid: botbuilder-ai.QnAMaker.generateAnswer
+    name: generateAnswer
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Calls the QnA Maker service to generate answer(s) for a question. The
+      returned answers will
+
+      be sorted by score with the top scoring answer returned first.
+    syntax:
+      content: >-
+        function generateAnswer(question: string | undefined, top?: number,
+        scoreThreshold?: number)
+      parameters:
+        - id: question
+          type:
+            - string | undefined
+          description: The question to answer.
+        - id: top
+          type:
+            - number
+          description: (Optional) number of answers to return. Defaults to a value of `1`.
+          optional: true
+        - id: scoreThreshold
+          type:
+            - number
+          description: >
+            (Optional) minimum answer score needed to be considered a match to
+            questions. Defaults to a value of `0.001`.
+          optional: true
+      return:
+        type:
+          - 'Promise<botbuilder-ai.QnAMakerResult[]>'
+  - uid: botbuilder-ai.QnAMaker.onTurn
+    name: onTurn
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: next
+          type:
+            - () => Promise<void>
+          description: ''
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-ai.QnAMaker.constructor
+    name: QnAMaker
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'new QnAMaker(settings: QnAMakerSettings)'
+      parameters:
+        - id: settings
+          type:
+            - botbuilder-ai.QnAMakerSettings
+          description: ''
+references:
+  - uid: botbuilder-ai.QnAMakerSettings
+    spec.typeScript:
+      - name: QnAMakerSettings
+        fullName: QnAMakerSettings
+        uid: botbuilder-ai.QnAMakerSettings
+  - uid: 'Promise<botbuilder-ai.QnAMakerResult[]>'
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: QnAMakerResult
+        fullName: QnAMakerResult
+        uid: botbuilder-ai.QnAMakerResult
+      - name: '[]>'
+        fullName: '[]>'
