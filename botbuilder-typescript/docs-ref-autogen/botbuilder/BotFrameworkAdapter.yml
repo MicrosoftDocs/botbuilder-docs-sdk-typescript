@@ -9,9 +9,11 @@ items:
       - botbuilder.BotFrameworkAdapter.createConversation
       - botbuilder.BotFrameworkAdapter.deleteActivity
       - botbuilder.BotFrameworkAdapter.deleteConversationMember
+      - botbuilder.BotFrameworkAdapter.emulateOAuthCards
       - botbuilder.BotFrameworkAdapter.getActivityMembers
       - botbuilder.BotFrameworkAdapter.getConversationMembers
       - botbuilder.BotFrameworkAdapter.getConversations
+      - botbuilder.BotFrameworkAdapter.getSignInLink
       - botbuilder.BotFrameworkAdapter.getUserToken
       - botbuilder.BotFrameworkAdapter.processActivity
       - botbuilder.BotFrameworkAdapter.sendActivities
@@ -259,6 +261,34 @@ items:
       return:
         type:
           - Promise<void>
+  - uid: botbuilder.BotFrameworkAdapter.emulateOAuthCards
+    name: emulateOAuthCards
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Tells the token service to emulate the sending of OAuthCards for a
+      channel.
+    syntax:
+      content: >-
+        function emulateOAuthCards(contextOrServiceUrl: TurnContext | string,
+        emulate: boolean)
+      parameters:
+        - id: contextOrServiceUrl
+          type:
+            - TurnContext | string
+          description: >-
+            The URL of the channel server to query or a TurnContext.  This can
+            be retrieved from `context.activity.serviceUrl`.
+        - id: emulate
+          type:
+            - boolean
+          description: |
+            If `true` the token service will emulate the sending of OAuthCards.
+      return:
+        type:
+          - Promise<void>
   - uid: botbuilder.BotFrameworkAdapter.getActivityMembers
     name: getActivityMembers
     children: []
@@ -317,15 +347,15 @@ items:
       that can be used to fetch the next page of results from the server.
     syntax:
       content: >-
-        function getConversations(serviceUrl: string, continuationToken?:
-        string)
+        function getConversations(contextOrServiceUrl: TurnContext | string,
+        continuationToken?: string)
       parameters:
-        - id: serviceUrl
+        - id: contextOrServiceUrl
           type:
-            - string
+            - TurnContext | string
           description: >-
-            The URL of the channel server to query.  This can be retrieved from
-            `context.activity.serviceUrl`.
+            The URL of the channel server to query or a TurnContext.  This can
+            be retrieved from `context.activity.serviceUrl`.
         - id: continuationToken
           type:
             - string
@@ -337,13 +367,37 @@ items:
       return:
         type:
           - Promise<ConversationsResult>
+  - uid: botbuilder.BotFrameworkAdapter.getSignInLink
+    name: getSignInLink
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Gets a signin link from the token server that can be sent as part of a
+      SigninCard.
+    syntax:
+      content: 'function getSignInLink(context: TurnContext, connectionName: string)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+      return:
+        type:
+          - Promise<string>
   - uid: botbuilder.BotFrameworkAdapter.getUserToken
     name: getUserToken
     children: []
     type: method
     langs:
       - typeScript
-    summary: Attempts to retrieve the token for a user that's in a logging flow.
+    summary: Attempts to retrieve the token for a user that's in a signin flow.
     syntax:
       content: >-
         function getUserToken(context: TurnContext, connectionName: string,
@@ -521,7 +575,8 @@ items:
         - id: connectionName
           type:
             - string
-          description: Name of the auth connection to use.
+          description: |
+            Name of the auth connection to use.
       return:
         type:
           - Promise<void>
