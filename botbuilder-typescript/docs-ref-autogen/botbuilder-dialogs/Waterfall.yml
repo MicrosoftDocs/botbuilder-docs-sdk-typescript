@@ -1,0 +1,208 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.Waterfall
+    name: Waterfall
+    fullName: Waterfall<C>
+    children:
+      - botbuilder-dialogs.Waterfall.dialogBegin
+      - botbuilder-dialogs.Waterfall.dialogContinue
+      - botbuilder-dialogs.Waterfall.dialogResume
+      - botbuilder-dialogs.Waterfall.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: >
+      :package: **botbuilder-dialogs**
+
+      Dialog optimized for prompting a user with a series of questions.
+      Waterfalls accept a stack of
+
+      functions which will be executed in sequence. Each waterfall step can ask
+      a question of the user
+
+      and the users response will be passed as an argument to the next waterfall
+      step.
+
+
+      For simple text questions you can send the user a message and then process
+      their answer in the
+
+      next step:
+
+
+      ```JS
+       dialogs.add('namePrompt', [
+           async function (dc) {
+               dc.instance.state = { first: '', last: '', full: '' };
+               await dc.context.sendActivity(`What's your first name?`);
+           },
+           async function (dc, firstName) {
+               dc.instance.state.first = firstName;
+               await dc.context.sendActivity(`Great ${firstName}! What's your last name?`);
+           },
+           async function (dc, lastName) {
+               const name = dc.instance.state;
+               name.last = lastName;
+               name.full = name.first + ' ' + name.last;
+               await dc.end(name);
+           }
+       ]);
+      ```
+
+
+      For more complex sequences you can call other dialogs from within a step
+      and the result returned
+
+      by the dialog will be passed to the next step:
+
+
+      ```JS
+       dialogs.add('survey', [
+           async function (dc) {
+               dc.instance.state = { name: undefined, languages: '', years: 0 };
+               await dc.begin('namePrompt');
+           },
+           async function (dc, name) {
+               dc.instance.state.name = name;
+               await dc.context.sendActivity(`Ok ${name.full}... What programming languages do you know?`);
+           },
+           async function (dc, languages) {
+               dc.instance.state.languages = languages;
+               await dc.prompt('yearsPrompt', `Great. So how many years have you been programming?`);
+           },
+           async function (dc, years) {
+               dc.instance.state.years = years;
+               await dc.context.sendActivity(`Thank you for taking our survey.`);
+               await dc.end(dc.instance.state);
+           }
+       ]);
+
+       dialogs.add('yearsPrompt', new NumberPrompt(async (dc, value) => {
+           if (value === undefined || value < 0 || value > 110) {
+               await dc.context.sendActivity(`Enter a number from 0 to 110.`);
+           } else {
+               return value;
+           }
+       }));
+      ```
+
+
+      The example builds on the previous `namePrompt` sample and shows how you
+      can call another dialog
+
+      which will ask its own sequence of questions. The dialogs library provides
+      a built-in set of
+
+      prompt classes which can be used to recognize things like dates and
+      numbers in the users response.
+
+
+      You should generally call `dc.end()` or `dc.replace()` from your last
+      waterfall step but if you fail
+
+      to do that the dialog will be automatically ended for you on the users
+      next reply.  The users
+
+      response will be passed to the calling dialogs next waterfall step if
+      there is one.
+    extends:
+      name: botbuilder-dialogs.Dialog<C>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.Waterfall.dialogBegin
+    name: dialogBegin
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function dialogBegin(dc: DialogContext<C>, args?: any)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext<C>
+          description: ''
+        - id: args
+          type:
+            - any
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promiseable<any>
+  - uid: botbuilder-dialogs.Waterfall.dialogContinue
+    name: dialogContinue
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function dialogContinue(dc: DialogContext<C>)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext<C>
+          description: ''
+      return:
+        type:
+          - Promise<any>
+  - uid: botbuilder-dialogs.Waterfall.dialogResume
+    name: dialogResume
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function dialogResume(dc: DialogContext<C>, result?: any)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext<C>
+          description: ''
+        - id: result
+          type:
+            - any
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promiseable<any>
+  - uid: botbuilder-dialogs.Waterfall.constructor
+    name: Waterfall
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new waterfall dialog containing the given array of steps.
+    syntax:
+      content: 'new Waterfall(steps: WaterfallStep<C>[])'
+      parameters:
+        - id: steps
+          type:
+            - 'botbuilder-dialogs.WaterfallStep<C>[]'
+          description: |
+            Array of waterfall steps.
+references:
+  - uid: botbuilder-dialogs.Dialog<C>
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-dialogs.Dialog
+      - name: <C>
+        fullName: <C>
+  - uid: 'botbuilder-dialogs.WaterfallStep<C>[]'
+    spec.typeScript:
+      - name: WaterfallStep
+        fullName: WaterfallStep
+        uid: botbuilder-dialogs.WaterfallStep
+      - name: '<C>[]'
+        fullName: '<C>[]'
+  - uid: botbuilder-dialogs.DialogContext<C>
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
+      - name: <C>
+        fullName: <C>

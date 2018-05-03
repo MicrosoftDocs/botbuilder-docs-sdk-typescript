@@ -1,0 +1,134 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-azure.TableStorage
+    name: TableStorage
+    fullName: TableStorage
+    children:
+      - botbuilder-azure.TableStorage.delete
+      - botbuilder-azure.TableStorage.deleteTable
+      - botbuilder-azure.TableStorage.ensureTable
+      - botbuilder-azure.TableStorage.read
+      - botbuilder-azure.TableStorage.constructor
+      - botbuilder-azure.TableStorage.write
+    langs:
+      - typeScript
+    type: class
+    summary: >
+      Middleware that implements an Azure Table based storage provider for a
+      bot.
+
+      **Usage Example**
+
+
+      ```javascript
+
+      const BotBuilderAzure = require('botbuilder-azure');
+
+      const storage = new BotBuilderAzure.TableStorage({
+          storageAccountOrConnectionString: 'UseDevelopmentStorage=true',
+          tableName: 'mybotstate'
+        });
+
+      // Add state middleware
+
+      const state = new BotStateManager(storage);
+
+      adapter.use(state);
+
+      ```
+    package: botbuilder-azure
+  - uid: botbuilder-azure.TableStorage.delete
+    name: delete
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Removes store items from storage
+    syntax:
+      content: 'function delete(keys: string[])'
+      parameters:
+        - id: keys
+          type:
+            - 'string[]'
+          description: |
+            Array of item keys to remove from the store.
+      return:
+        type:
+          - Promise<void>
+  - uid: botbuilder-azure.TableStorage.deleteTable
+    name: deleteTable
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Delete backing table (mostly used for unit testing.)
+    syntax:
+      content: function deleteTable()
+      parameters: []
+      return:
+        type:
+          - Promise<boolean>
+  - uid: botbuilder-azure.TableStorage.ensureTable
+    name: ensureTable
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Ensure the table is created.
+    syntax:
+      content: function ensureTable()
+      parameters: []
+      return:
+        type:
+          - Promise<TableResult>
+  - uid: botbuilder-azure.TableStorage.read
+    name: read
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Loads store items from storage
+    syntax:
+      content: 'function read(keys: string[])'
+      parameters:
+        - id: keys
+          type:
+            - 'string[]'
+          description: |
+            Array of item keys to read from the store.
+      return:
+        type:
+          - Promise<StoreItems>
+  - uid: botbuilder-azure.TableStorage.constructor
+    name: TableStorage
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the storage provider.
+    syntax:
+      content: 'new TableStorage(settings: TableStorageSettings)'
+      parameters:
+        - id: settings
+          type:
+            - botbuilder-azure.TableStorageSettings
+          description: |
+            (Optional) Setting to configure the provider.
+  - uid: botbuilder-azure.TableStorage.write
+    name: write
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Saves store items to storage.
+    syntax:
+      content: 'function write(changes: StoreItems)'
+      parameters:
+        - id: changes
+          type:
+            - StoreItems
+          description: |
+            Map of items to write to storage.
+      return:
+        type:
+          - Promise<void>

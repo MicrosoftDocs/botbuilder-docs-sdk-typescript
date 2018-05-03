@@ -1,0 +1,105 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.TextPrompt
+    name: TextPrompt
+    fullName: TextPrompt<C>
+    children:
+      - botbuilder-dialogs.TextPrompt.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      :package: **botbuilder-dialogs**
+
+      Prompts a user to enter some text. By default the prompt will return to
+      the calling
+
+      dialog a `string` representing the users reply.
+
+
+      ### Prompt Usage
+
+
+      When used with your bots `DialogSet` you can simply add a new instance of
+      the prompt as a named
+
+      dialog using `DialogSet.add()`. You can then start the prompt from a
+      waterfall step using either
+
+      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
+      prompted with a question
+
+      and the response will be passed as an argument to the callers next
+      waterfall step:
+
+
+      ```JavaScript
+
+      const { DialogSet, TextPrompt } = require('botbuilder-dialogs');
+
+
+      const dialogs = new DialogSet();
+
+
+      dialogs.add('namePrompt', new TextPrompt());
+
+
+      dialogs.add('askName', [
+           async function (dc) {
+               await dc.prompt('namePrompt', `What's your name?`);
+           },
+           async function (dc, name) {
+               await dc.context.sendActivity(`Hi ${name}!`);
+               await dc.end();
+           }
+      ]);
+
+      ```
+
+      The prompt can be configured with a custom validator to perform additional
+      checks like ensuring
+
+      that the user responds with a valid age and that only whole numbers are
+      returned:
+
+
+      ```JavaScript
+
+      dialogs.add('namePrompt', new TextPrompt(async (context, value) => {
+         if (value && value.length >= 3) {
+            return value;
+         }
+         await context.sendActivity(`Your entry must be at least 3 characters in length.`);
+         return undefined;
+      }));
+
+      ```
+    extends:
+      name: botbuilder-dialogs.Prompt<C>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.TextPrompt.constructor
+    name: TextPrompt
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new `TextPrompt` instance.
+    syntax:
+      content: 'new TextPrompt(validator?: PromptValidator<string, O>)'
+      parameters:
+        - id: validator
+          type:
+            - 'PromptValidator<string, O>'
+          description: >
+            (Optional) validator that will be called each time the user responds
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
+          optional: true
+references:
+  - uid: botbuilder-dialogs.Prompt<C>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder-dialogs.Prompt
+      - name: <C>
+        fullName: <C>

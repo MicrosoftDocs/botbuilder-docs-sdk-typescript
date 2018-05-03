@@ -1,0 +1,130 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.AttachmentPrompt
+    name: AttachmentPrompt
+    fullName: AttachmentPrompt<C>
+    children:
+      - botbuilder-dialogs.AttachmentPrompt.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      :package: **botbuilder-dialogs**
+
+      Prompts a user to upload attachments like images. By default the prompt
+      will return to the
+
+      calling dialog a `Attachment[]` but this can be overridden using a custom
+      `PromptValidator`.
+
+
+      ### Prompt Usage
+
+
+      When used with your bots `DialogSet` you can simply add a new instance of
+      the prompt as a named
+
+      dialog using `DialogSet.add()`. You can then start the prompt from a
+      waterfall step using either
+
+      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
+      prompted to upload one or
+
+      more attachments which will be passed as an argument to the callers next
+      waterfall step:
+
+
+      ```JavaScript
+
+      const { DialogSet, AttachmentPrompt } = require('botbuilder-dialogs');
+
+
+      const dialogs = new DialogSet();
+
+
+      dialogs.add('attachmentPrompt', new AttachmentPrompt());
+
+
+      dialogs.add('uploadImage', [
+           async function (dc) {
+               await dc.prompt('attachmentPrompt', `Send me image(s)`);
+           },
+           async function (dc, attachments) {
+               await dc.context.sendActivity(`Processing ${attachments.length} images.`);
+               await dc.end();
+           }
+      ]);
+
+      ```
+
+
+      If the users response to the prompt fails to be recognized they will be
+      automatically re-prompted
+
+      to try again. By default the original prompt is re-sent to the user but
+      you can provide an
+
+      alternate prompt to send by passing in additional options:
+
+
+      ```JavaScript
+
+      await dc.prompt('attachmentPrompt', `Send me image(s)`, { retryPrompt: `I
+      didn't get anything. Send me an image.` });
+
+      ```
+
+
+      The prompts retry logic can also be completely customized by passing the
+      prompts constructor a
+
+      custom validator:
+
+
+      ```JavaScript
+
+      dialogs.add('imagePrompt', new AttachmentPrompt(async (context, values) =>
+      {
+         if (values && values.length > 0) {
+            for (let i = 0; i < values.length; i++) {
+               if (!values[i].contentType.startsWith('image')) {
+                  await context.sendActivity(`Only images are accepted.`);
+                  return undefined;
+               }
+            }
+         } else {
+            await context.sendActivity(`Please upload at least one image.`);
+         }
+         return values;
+      }));
+
+      ```
+    extends:
+      name: botbuilder-dialogs.Prompt<C>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.AttachmentPrompt.constructor
+    name: AttachmentPrompt
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new `AttachmentPrompt` instance.
+    syntax:
+      content: 'new AttachmentPrompt(validator?: PromptValidator<Attachment[], O>)'
+      parameters:
+        - id: validator
+          type:
+            - 'PromptValidator<Attachment[], O>'
+          description: >
+            (Optional) validator that will be called each time the user responds
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
+          optional: true
+references:
+  - uid: botbuilder-dialogs.Prompt<C>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder-dialogs.Prompt
+      - name: <C>
+        fullName: <C>

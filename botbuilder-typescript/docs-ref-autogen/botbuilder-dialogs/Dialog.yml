@@ -1,0 +1,247 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.Dialog
+    name: Dialog
+    fullName: Dialog<C>
+    children:
+      - botbuilder-dialogs.Dialog.begin
+      - botbuilder-dialogs.Dialog.continue
+      - botbuilder-dialogs.Dialog.dialogBegin
+      - botbuilder-dialogs.Dialog.dialogContinue
+      - botbuilder-dialogs.Dialog.dialogResume
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      :package: **botbuilder-dialogs**
+
+      Base class for all dialogs.
+
+
+      The `Control` and `CompositeControl` classes are very similar in that they
+      both add `begin()`
+
+      and `continue()` methods which simplify consuming the dialog from a
+      non-dialog based bot. The
+
+      primary difference between the two classes is that the `CompositeControl`
+      class is designed to
+
+      bridge one `DialogSet` to another where the `Control` class assumes that
+      the derived dialog can
+
+      be used in complete isolation without the need for any other supporting
+      dialogs.
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.Dialog.begin
+    name: begin
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Starts the dialog. Depending on the dialog, its possible for the dialog to
+      finish
+
+      immediately so it's advised to check the completion object returned by
+      `begin()` and ensure
+
+      that the dialog is still active before continuing.
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      const state = {};
+
+      const completion = await dialog.begin(context, state);
+
+      if (completion.isCompleted) {
+          const value = completion.result;
+      }
+
+      ```
+    syntax:
+      content: 'function begin(context: C, state: object, options?: O)'
+      parameters:
+        - id: context
+          type:
+            - C
+          description: Context for the current turn of the conversation with the user.
+        - id: state
+          type:
+            - object
+          description: >-
+            A state object that the dialog will use to persist its current
+            state. This should be an empty object which the dialog will
+            populate. The bot should persist this with its other conversation
+            state for as long as the dialog is still active.
+        - id: options
+          type:
+            - O
+          description: |
+            (Optional) additional options supported by the dialog.
+          optional: true
+      return:
+        type:
+          - Promise<botbuilder-dialogs.DialogCompletion<R>>
+  - uid: botbuilder-dialogs.Dialog.continue
+    name: continue
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Passes a users reply to the dialog for further processing. The bot should
+      keep calling
+
+      `continue()` for future turns until the dialog returns a completion object
+      with
+
+      `isCompleted == true`. To cancel or interrupt the prompt simply delete the
+      `state` object
+
+      being persisted.
+
+      **Usage Example:**
+
+
+      ```JavaScript
+
+      const completion = await dialog.continue(context, state);
+
+      if (completion.isCompleted) {
+          const value = completion.result;
+      }
+
+      ```
+    syntax:
+      content: 'function continue(context: C, state: object)'
+      parameters:
+        - id: context
+          type:
+            - C
+          description: Context for the current turn of the conversation with the user.
+        - id: state
+          type:
+            - object
+          description: >
+            A state object that was previously initialized by a call to
+            [begin()](#begin).
+      return:
+        type:
+          - Promise<botbuilder-dialogs.DialogCompletion<R>>
+  - uid: botbuilder-dialogs.Dialog.dialogBegin
+    name: dialogBegin
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Method called when a new dialog has been pushed onto the stack and is
+      being activated.
+    syntax:
+      content: 'function dialogBegin(dc: DialogContext<C>, dialogArgs?: any)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext<C>
+          description: The dialog context for the current turn of conversation.
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) arguments that were passed to the dialog during `begin()`
+            call that started the instance.
+          optional: true
+      return:
+        type:
+          - Promiseable<any>
+  - uid: botbuilder-dialogs.Dialog.dialogContinue
+    name: dialogContinue
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      (Optional) method called when an instance of the dialog is the active
+      dialog and the user
+
+      replies with a new activity. The dialog will generally continue to receive
+      the users replies
+
+      until it calls `DialogContext.end()`, `DialogContext.begin()`, or
+      `DialogContext.prompt()`.
+
+      If this method is NOT implemented then the dialog will be automatically
+      ended when the user
+
+      replies.
+    syntax:
+      content: 'function dialogContinue(dc: DialogContext<C>)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext<C>
+          description: |
+            The dialog context for the current turn of conversation.
+      return:
+        type:
+          - Promiseable<any>
+  - uid: botbuilder-dialogs.Dialog.dialogResume
+    name: dialogResume
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      (Optional) method called when an instance of the dialog is being returned
+      to from another
+
+      dialog that was started by the current instance using
+      `DialogContext.begin()` or
+
+      `DialogContext.prompt()`.
+
+      If this method is NOT implemented then the dialog will be automatically
+      ended with a call
+
+      to `DialogContext.end()`. Any result passed from the called dialog will be
+      passed to the
+
+      active dialogs parent.
+    syntax:
+      content: 'function dialogResume(dc: DialogContext<C>, result?: any)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext<C>
+          description: The dialog context for the current turn of conversation.
+        - id: result
+          type:
+            - any
+          description: >
+            (Optional) value returned from the dialog that was called. The type
+            of the value returned is dependant on the dialog that was called.
+          optional: true
+      return:
+        type:
+          - Promiseable<any>
+references:
+  - uid: Promise<botbuilder-dialogs.DialogCompletion<R>>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: DialogCompletion
+        fullName: DialogCompletion
+        uid: botbuilder-dialogs.DialogCompletion
+      - name: <R>>
+        fullName: <R>>
+  - uid: botbuilder-dialogs.DialogContext<C>
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
+      - name: <C>
+        fullName: <C>
