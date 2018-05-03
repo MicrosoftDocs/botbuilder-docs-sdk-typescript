@@ -22,30 +22,23 @@ items:
     langs:
       - typeScript
     type: class
-    summary: >
-      :package: **botbuilder**
-
+    summary: >-
       ActivityAdapter class needed to communicate with a Bot Framework channel
       or the Emulator.
-
-
-      **Usage Example**
-
+    extends:
+      name: BotAdapter
+    package: botbuilder
+    remarks: |-
+      The following example shows the typical adapter setup:
 
       ```JavaScript
-
       const { BotFrameworkAdapter } = require('botbuilder');
-
 
       const adapter = new BotFrameworkAdapter({
          appId: process.env.MICROSOFT_APP_ID,
          appPassword: process.env.MICROSOFT_APP_PASSWORD
       });
-
       ```
-    extends:
-      name: BotAdapter
-    package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.constructor
     name: BotFrameworkAdapter
     children: []
@@ -79,44 +72,6 @@ items:
       user are enabled by this
 
       method.
-
-      The processing steps for this method are very similar to
-      [processActivity()](#processactivity)
-
-      in that a `TurnContext` will be created which is then routed through the
-      adapters middleware
-
-      before calling the passed in logic handler. The key difference being that
-      since an activity
-
-      wasn't actually received it has to be created.  The created activity will
-      have its address
-
-      related fields populated but will have a `context.activity.type ===
-      undefined`.
-
-
-      **Usage Example**
-
-
-      ```JavaScript
-
-      server.post('/api/notifyUser', async (req, res) => {
-         // Lookup previously saved conversation reference
-         const reference = await findReference(req.body.refId);
-
-         // Proactively notify the user
-         if (reference) {
-            await adapter.continueConversation(reference, async (context) => {
-               await context.sendActivity(req.body.message);
-            });
-            res.send(200);
-         } else {
-            res.send(404);
-         }
-      });
-
-      ```
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
@@ -138,18 +93,7 @@ items:
       return:
         type:
           - Promise<void>
-  - uid: botbuilder.BotFrameworkAdapter.createConversation
-    name: createConversation
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Starts a new conversation with a user. This is typically used to Direct
-      Message (DM) a member
-
-      of a group.
-
+    remarks: >-
       The processing steps for this method are very similar to
       [processActivity()](#processactivity)
 
@@ -166,23 +110,35 @@ items:
       undefined`.
 
 
-      **Usage Example**
-
-
       ```JavaScript
 
-      // Get group members conversation reference
+      server.post('/api/notifyUser', async (req, res) => {
+         // Lookup previously saved conversation reference
+         const reference = await findReference(req.body.refId);
 
-      const reference = TurnContext.getConversationReference(context.activity);
-
-
-      // Start a new conversation with the user
-
-      await adapter.createConversation(reference, async (ctx) => {
-         await ctx.sendActivity(`Hi (in private)`);
+         // Proactively notify the user
+         if (reference) {
+            await adapter.continueConversation(reference, async (context) => {
+               await context.sendActivity(req.body.message);
+            });
+            res.send(200);
+         } else {
+            res.send(404);
+         }
       });
 
       ```
+  - uid: botbuilder.BotFrameworkAdapter.createConversation
+    name: createConversation
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Starts a new conversation with a user. This is typically used to Direct
+      Message (DM) a member
+
+      of a group.
     syntax:
       content: >-
         function createConversation(reference: Partial<ConversationReference>,
@@ -204,6 +160,37 @@ items:
       return:
         type:
           - Promise<void>
+    remarks: >-
+      The processing steps for this method are very similar to
+      [processActivity()](#processactivity)
+
+      in that a `TurnContext` will be created which is then routed through the
+      adapters middleware
+
+      before calling the passed in logic handler. The key difference being that
+      since an activity
+
+      wasn't actually received it has to be created.  The created activity will
+      have its address
+
+      related fields populated but will have a `context.activity.type ===
+      undefined`.
+
+
+      ```JavaScript
+
+      // Get group members conversation reference
+
+      const reference = TurnContext.getConversationReference(context.activity);
+
+
+      // Start a new conversation with the user
+
+      await adapter.createConversation(reference, async (ctx) => {
+         await ctx.sendActivity(`Hi (in private)`);
+      });
+
+      ```
   - uid: botbuilder.BotFrameworkAdapter.deleteActivity
     name: deleteActivity
     children: []
@@ -215,11 +202,6 @@ items:
       noted that not all
 
       channels support this feature.
-
-      Calling `TurnContext.deleteActivity()` is the preferred way of deleting
-      activities as that
-
-      will ensure that any interested middleware has been notified.
     syntax:
       content: >-
         function deleteActivity(context: TurnContext, reference:
@@ -237,6 +219,11 @@ items:
       return:
         type:
           - Promise<void>
+    remarks: >-
+      Calling `TurnContext.deleteActivity()` is the preferred way of deleting
+      activities as that
+
+      will ensure that any interested middleware has been notified.
   - uid: botbuilder.BotFrameworkAdapter.deleteConversationMember
     name: deleteConversationMember
     children: []
@@ -434,7 +421,30 @@ items:
       "Reactive Messaging"
 
       flow.
-
+    syntax:
+      content: >-
+        function processActivity(req: WebRequest, res: WebResponse, logic:
+        (context: TurnContext) => Promiseable<any>)
+      parameters:
+        - id: req
+          type:
+            - botbuilder.WebRequest
+          description: An Express or Restify style Request object.
+        - id: res
+          type:
+            - botbuilder.WebResponse
+          description: An Express or Restify style Response object.
+        - id: logic
+          type:
+            - '(context: TurnContext) => Promiseable<any>'
+          description: >
+            A function handler that will be called to perform the bots logic
+            after the received activity has been pre-processed by the adapter
+            and routed through any middleware for processing.
+      return:
+        type:
+          - Promise<void>
+    remarks: >-
       The following steps will be taken to process the activity:
 
 
@@ -467,9 +477,6 @@ items:
         `revoked()` and any future calls to the context will result in a `TypeError: Cannot perform
         'set' on a proxy that has been revoked` being thrown.
 
-      **Usage Example**
-
-
       ```JavaScript
 
       server.post('/api/messages', (req, res) => {
@@ -483,29 +490,6 @@ items:
       });
 
       ```
-    syntax:
-      content: >-
-        function processActivity(req: WebRequest, res: WebResponse, logic:
-        (context: TurnContext) => Promiseable<any>)
-      parameters:
-        - id: req
-          type:
-            - botbuilder.WebRequest
-          description: An Express or Restify style Request object.
-        - id: res
-          type:
-            - botbuilder.WebResponse
-          description: An Express or Restify style Response object.
-        - id: logic
-          type:
-            - '(context: TurnContext) => Promiseable<any>'
-          description: >
-            A function handler that will be called to perform the bots logic
-            after the received activity has been pre-processed by the adapter
-            and routed through any middleware for processing.
-      return:
-        type:
-          - Promise<void>
   - uid: botbuilder.BotFrameworkAdapter.sendActivities
     name: sendActivities
     children: []
@@ -521,7 +505,24 @@ items:
 
       sent activity. For `message` activities this will contain the ID of the
       delivered message.
-
+    syntax:
+      content: >-
+        function sendActivities(context: TurnContext, activities:
+        Partial<Activity>[])
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: activities
+          type:
+            - 'Partial<Activity>[]'
+          description: |
+            List of activities to send.
+      return:
+        type:
+          - 'Promise<ResourceResponse[]>'
+    remarks: >-
       Calling `TurnContext.sendActivities()` or `TurnContext.sendActivity()` is
       the preferred way of
 
@@ -541,23 +542,6 @@ items:
       signals from being
 
       logged.
-    syntax:
-      content: >-
-        function sendActivities(context: TurnContext, activities:
-        Partial<Activity>[])
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: Context for the current turn of conversation with the user.
-        - id: activities
-          type:
-            - 'Partial<Activity>[]'
-          description: |
-            List of activities to send.
-      return:
-        type:
-          - 'Promise<ResourceResponse[]>'
   - uid: botbuilder.BotFrameworkAdapter.signOutUser
     name: signOutUser
     children: []
@@ -591,11 +575,6 @@ items:
       noted that not all
 
       channels support this feature.
-
-      Calling `TurnContext.updateActivity()` is the preferred way of updating
-      activities as that
-
-      will ensure that any interested middleware has been notified.
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
@@ -613,6 +592,11 @@ items:
       return:
         type:
           - Promise<void>
+    remarks: >-
+      Calling `TurnContext.updateActivity()` is the preferred way of updating
+      activities as that
+
+      will ensure that any interested middleware has been notified.
 references:
   - uid: Partial<botbuilder.BotFrameworkAdapterSettings>
     spec.typeScript:

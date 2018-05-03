@@ -13,11 +13,13 @@ items:
     langs:
       - typeScript
     type: class
-    summary: |
-      :package: **botbuilder**
-      Lets a user communicate with a bot from a console window.
+    summary: Lets a user communicate with a bot from a console window.
+    extends:
+      name: BotAdapter
+    package: botbuilder
+    remarks: |-
+      The following example shows the typical adapter setup:
 
-      **Usage Example**
 
       ```JavaScript
       const { ConsoleAdapter } = require('botbuilder');
@@ -27,9 +29,6 @@ items:
          await context.sendActivity(`Hello World`);
       });
       ```
-    extends:
-      name: BotAdapter
-    package: botbuilder
   - uid: botbuilder.ConsoleAdapter.constructor
     name: ConsoleAdapter
     children: []
@@ -53,40 +52,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      Lets a bot proactively message the user.
-
-      The processing steps for this method are very similar to
-      [listen()](#listen)
-
-      in that a `TurnContext` will be created which is then routed through the
-      adapters middleware
-
-      before calling the passed in logic handler. The key difference being that
-      since an activity
-
-      wasn't actually received it has to be created.  The created activity will
-      have its address
-
-      related fields populated but will have a `context.activity.type ===
-      undefined`.
-
-
-      **Usage Example**
-
-
-      ```JavaScript
-
-      function delayedNotify(context, message, delay) {
-         const reference = TurnContext.getConversationReference(context.activity);
-         setTimeout(() => {
-            adapter.continueConversation(reference, async (ctx) => {
-               await ctx.sendActivity(message);
-            });
-         }, delay);
-      }
-
-      ```
+    summary: Lets a bot proactively message the user.
     syntax:
       content: >-
         function continueConversation(reference: ConversationReference, logic:
@@ -108,6 +74,35 @@ items:
       return:
         type:
           - Promise<void>
+    remarks: >-
+      The processing steps for this method are very similar to
+      [listen()](#listen)
+
+      in that a `TurnContext` will be created which is then routed through the
+      adapters middleware
+
+      before calling the passed in logic handler. The key difference being that
+      since an activity
+
+      wasn't actually received it has to be created.  The created activity will
+      have its address
+
+      related fields populated but will have a `context.activity.type ===
+      undefined`.
+
+
+      ```JavaScript
+
+      function delayedNotify(context, message, delay) {
+         const reference = TurnContext.getConversationReference(context.activity);
+         setTimeout(() => {
+            adapter.continueConversation(reference, async (ctx) => {
+               await ctx.sendActivity(message);
+            });
+         }, delay);
+      }
+
+      ```
   - uid: botbuilder.ConsoleAdapter.deleteActivity
     name: deleteActivity
     children: []
@@ -146,7 +141,19 @@ items:
       used to stop the
 
       bot listening and therefore end the process.
-
+    syntax:
+      content: 'function listen(logic: (context: TurnContext) => Promiseable<void>)'
+      parameters:
+        - id: logic
+          type:
+            - '(context: TurnContext) => Promiseable<void>'
+          description: >
+            Function which will be called each time a message is input by the
+            user.
+      return:
+        type:
+          - Function
+    remarks: >-
       Upon receiving input from the console the flow is as follows:
 
 
@@ -165,9 +172,6 @@ items:
       will result in a
         `TypeError` being thrown.
 
-      **Usage Example**
-
-
       ```JavaScript
 
       const closeFn = adapter.listen(async (context) => {
@@ -181,34 +185,13 @@ items:
       });
 
       ```
-    syntax:
-      content: 'function listen(logic: (context: TurnContext) => Promiseable<void>)'
-      parameters:
-        - id: logic
-          type:
-            - '(context: TurnContext) => Promiseable<void>'
-          description: >
-            Function which will be called each time a message is input by the
-            user.
-      return:
-        type:
-          - Function
   - uid: botbuilder.ConsoleAdapter.sendActivities
     name: sendActivities
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      Logs a set of activities to the console.
-
-      Calling `TurnContext.sendActivities()` or `TurnContext.sendActivity()` is
-      the preferred way of
-
-      sending activities as that will ensure that outgoing activities have been
-      properly addressed
-
-      and that any interested middleware has been notified.
+    summary: Logs a set of activities to the console.
     syntax:
       content: >-
         function sendActivities(context: TurnContext, activities:
@@ -226,6 +209,14 @@ items:
       return:
         type:
           - 'Promise<ResourceResponse[]>'
+    remarks: >-
+      Calling `TurnContext.sendActivities()` or `TurnContext.sendActivity()` is
+      the preferred way of
+
+      sending activities as that will ensure that outgoing activities have been
+      properly addressed
+
+      and that any interested middleware has been notified.
   - uid: botbuilder.ConsoleAdapter.updateActivity
     name: updateActivity
     children: []
