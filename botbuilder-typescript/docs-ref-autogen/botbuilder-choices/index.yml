@@ -1,0 +1,443 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-choices
+    name: botbuilder-choices
+    summary: ''
+    children:
+      - botbuilder-choices.ChoiceFactory
+      - botbuilder-choices.ChoiceFactoryOptions
+      - botbuilder-choices.Choice
+      - botbuilder-choices.FindChoicesOptions
+      - botbuilder-choices.FoundChoice
+      - botbuilder-choices.FindValuesOptions
+      - botbuilder-choices.FoundValue
+      - botbuilder-choices.SortedValue
+      - botbuilder-choices.ModelResult
+      - botbuilder-choices.Token
+      - botbuilder-choices.TokenizerFunction
+      - botbuilder-choices.getChannelId
+      - botbuilder-choices.hasMessageFeed
+      - botbuilder-choices.maxActionTitleLength
+      - botbuilder-choices.supportsCardActions
+      - botbuilder-choices.supportsSuggestedActions
+      - botbuilder-choices.findChoices
+      - botbuilder-choices.findValues
+      - botbuilder-choices.recognizeChoices
+      - botbuilder-choices.defaultTokenizer
+      - botbuilder-choices.isBetween
+      - botbuilder-choices.isBreakingChar
+    type: package
+    langs:
+      - typeScript
+  - uid: botbuilder-choices.getChannelId
+    name: getChannelId
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function getChannelId(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+      return:
+        type:
+          - string
+  - uid: botbuilder-choices.hasMessageFeed
+    name: hasMessageFeed
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function hasMessageFeed(channelId: string)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: ''
+      return:
+        type:
+          - boolean
+  - uid: botbuilder-choices.maxActionTitleLength
+    name: maxActionTitleLength
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function maxActionTitleLength(channelId: string)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: ''
+      return:
+        type:
+          - number
+  - uid: botbuilder-choices.supportsCardActions
+    name: supportsCardActions
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function supportsCardActions(channelId: string, buttonCnt: number)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: ''
+        - id: buttonCnt
+          type:
+            - number
+          description: ''
+      return:
+        type:
+          - boolean
+  - uid: botbuilder-choices.supportsSuggestedActions
+    name: supportsSuggestedActions
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function supportsSuggestedActions(channelId: string, buttonCnt: number)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: ''
+        - id: buttonCnt
+          type:
+            - number
+          description: ''
+      return:
+        type:
+          - boolean
+  - uid: botbuilder-choices.findChoices
+    name: findChoices
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      :package: **botbuilder-choices**
+
+      Mid-level search function for recognizing a choice in an utterance. This
+      function is layered
+
+      above `findValues()` and simply determines all of the synonyms that should
+      be searched for
+
+      before calling `findValues()` to perform the actual search. The
+      `recognizeChoices()` function is
+
+      layered above this function and adds the ability to select a choice by
+      index or ordinal position
+
+      in the list. Calling this particular function is useful when you don't
+      want the index and ordinal
+
+      position recognition done by `recognizeChoices()`.
+
+
+      **Usage Example**
+
+
+      ```JavaScript
+
+      const { findChoices } = require('botbuilder-choices');
+
+
+      const choices = ['red', 'green', 'blue'];
+
+      const utterance = context.activity.text;
+
+      const results = findChoices(utterance, choices);
+
+      if (results.length == 1) {
+          await context.sendActivity(`I like ${results[0].resolution.value} too!`);
+      } else if (results.length > 1) {
+          const ambiguous = results.map((r) => r.resolution.value);
+          await context.sendActivity(ChoiceFactory.forChannel(context, ambiguous, `Which one?`));
+      } else {
+          await context.sendActivity(ChoiceFactory.forChannel(context, choices, `I didn't get that... Which color?`));
+      }
+
+      ```
+    syntax:
+      content: >-
+        function findChoices(utterance: string, choices: string | Choice[],
+        options?: FindChoicesOptions)
+      parameters:
+        - id: utterance
+          type:
+            - string
+          description: >-
+            The text or user utterance to search over. For an incoming 'message'
+            activity you can simply use `context.activity.text`.
+        - id: choices
+          type:
+            - 'Choice!@[]'
+          description: List of choices to search over.
+        - id: options
+          type:
+            - botbuilder-choices.FindChoicesOptions
+          description: |
+            (Optional) options used to tweak the search that's performed.
+          optional: true
+      return:
+        type:
+          - 'botbuilder-choices.ModelResult<botbuilder-choices.FoundChoice>[]'
+  - uid: botbuilder-choices.findValues
+    name: findValues
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      :package: **botbuilder-choices**
+
+      INTERNAL: Low-level function that searches for a set of values within an
+      utterance. Higher level
+
+      functions like `findChoices()` and `recognizeChoices()` are layered above
+      this function.  In most
+
+      cases its easier to just call one of the higher level functions instead
+      but this function contains
+
+      the fuzzy search algorithm that drives choice recognition.
+    syntax:
+      content: >-
+        function findValues(utterance: string, values: SortedValue[], options?:
+        FindValuesOptions)
+      parameters:
+        - id: utterance
+          type:
+            - string
+          description: The text or user utterance to search over.
+        - id: values
+          type:
+            - 'botbuilder-choices.SortedValue[]'
+          description: List of values to search over.
+        - id: options
+          type:
+            - botbuilder-choices.FindValuesOptions
+          description: |
+            (Optional) options used to tweak the search that's performed.
+          optional: true
+      return:
+        type:
+          - 'botbuilder-choices.ModelResult<botbuilder-choices.FoundValue>[]'
+  - uid: botbuilder-choices.recognizeChoices
+    name: recognizeChoices
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      :package: **botbuilder-choices**
+
+      High level function for recognizing a choice in a users utterance. This is
+      layered above the
+
+      `findChoices()` function and adds logic to let the user specify their
+      choice by index (they can
+
+      say "one" to pick `choice[0]`) or ordinal position (they can say "the
+      second one" to pick
+
+      `choice[1]`.) The users utterance is recognized in the following order:
+
+
+      - By name using `findChoices()`.
+
+      - By 1's based ordinal position.
+
+      - By 1's based index position.
+
+
+      **Usage Example**
+
+
+      ```JavaScript
+
+      const { recognizeChoices } = require('botbuilder-choices');
+
+
+      const choices = ['red', 'green', 'blue'];
+
+      const utterance = context.activity.text;
+
+      const results = recognizeChoices(utterance, choices);
+
+      if (results.length == 1) {
+          await context.sendActivity(`I like ${results[0].resolution.value} too!`);
+      } else if (results.length > 1) {
+          const ambiguous = results.map((r) => r.resolution.value);
+          await context.sendActivity(ChoiceFactory.forChannel(context, ambiguous, `Which one?`));
+      } else {
+          await context.sendActivity(ChoiceFactory.forChannel(context, choices, `I didn't get that... Which color?`));
+      }
+
+      ```
+    syntax:
+      content: >-
+        function recognizeChoices(utterance: string, choices: string | Choice[],
+        options?: FindChoicesOptions)
+      parameters:
+        - id: utterance
+          type:
+            - string
+          description: >-
+            The text or user utterance to search over. For an incoming 'message'
+            activity you can simply use `context.activity.text`.
+        - id: choices
+          type:
+            - 'Choice!@[]'
+          description: List of choices to search over.
+        - id: options
+          type:
+            - botbuilder-choices.FindChoicesOptions
+          description: |
+            (Optional) options used to tweak the search that's performed.
+          optional: true
+      return:
+        type:
+          - 'botbuilder-choices.ModelResult<botbuilder-choices.FoundChoice>[]'
+  - uid: botbuilder-choices.defaultTokenizer
+    name: defaultTokenizer
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >
+      :package: **botbuilder-choices**
+
+      Simple tokenizer that breaks on spaces and punctuation. The only
+      normalization done is to
+
+      lowercase the tokens. Developers can wrap this tokenizer with their own
+      function to perform
+
+      additional normalization like
+      [stemming](https://github.com/words/stemmer).
+
+
+      **Usage Example**
+
+
+      ```JavaScript
+
+      const { recognizeChoices, defaultTokenizer } =
+      require('botbuilder-choices');
+
+      const stemmer = require('stemmer');
+
+
+      function customTokenizer(text, locale) {
+          const tokens = defaultTokenizer(text, locale);
+          tokens.forEach((t) => {
+              t.normalized = stemmer(t.normalized);
+          });
+          return tokens;
+      }
+
+
+      const choices = ['red', 'green', 'blue'];
+
+      const utterance = context.activity.text;
+
+      const results = recognizeChoices(utterance, choices, { tokenizer:
+      customTokenizer });
+
+      ```
+    syntax:
+      content: 'function defaultTokenizer(text: string, locale?: string)'
+      parameters:
+        - id: text
+          type:
+            - string
+          description: ''
+        - id: locale
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - 'botbuilder-choices.Token[]'
+  - uid: botbuilder-choices.isBetween
+    name: isBetween
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function isBetween(value: number, from: number, to: number)'
+      parameters:
+        - id: value
+          type:
+            - number
+          description: ''
+        - id: from
+          type:
+            - number
+          description: ''
+        - id: to
+          type:
+            - number
+          description: ''
+      return:
+        type:
+          - boolean
+  - uid: botbuilder-choices.isBreakingChar
+    name: isBreakingChar
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function isBreakingChar(codePoint: number)'
+      parameters:
+        - id: codePoint
+          type:
+            - number
+          description: ''
+      return:
+        type:
+          - boolean
+references:
+  - uid: botbuilder-choices.ChoiceFactory
+    name: ChoiceFactory
+  - uid: botbuilder-choices.ChoiceFactoryOptions
+    name: ChoiceFactoryOptions
+  - uid: botbuilder-choices.Choice
+    name: Choice
+  - uid: botbuilder-choices.FindChoicesOptions
+    name: FindChoicesOptions
+  - uid: botbuilder-choices.FoundChoice
+    name: FoundChoice
+  - uid: botbuilder-choices.FindValuesOptions
+    name: FindValuesOptions
+  - uid: botbuilder-choices.FoundValue
+    name: FoundValue
+  - uid: botbuilder-choices.SortedValue
+    name: SortedValue
+  - uid: botbuilder-choices.ModelResult
+    name: ModelResult
+  - uid: botbuilder-choices.Token
+    name: Token
+  - uid: botbuilder-choices.TokenizerFunction
+    name: TokenizerFunction
