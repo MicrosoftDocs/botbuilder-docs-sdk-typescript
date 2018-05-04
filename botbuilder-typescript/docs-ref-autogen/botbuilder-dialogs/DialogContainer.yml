@@ -11,19 +11,22 @@ items:
       - typeScript
     type: class
     summary: >-
-      :package: **botbuilder-dialogs**
-
       The `DialogContainer` class lets you break your bots logic up into
       components that can be added
 
-      as a dialog to other dialog sets within your bots project. They can even
-      be exported and used
+      as a dialog to other dialog sets within your bots project or exported and
+      used in other bot
 
-      in other bot projects, allowing for the creation of libraries of reusable
-      dialog components.
+      projects.
+    extends:
+      name: botbuilder-dialogs.Dialog<C>
+    package: botbuilder-dialogs
+    remarks: >-
+      `DialogContainers` allow for the creation of libraries of reusable dialog
+      components.
 
 
-      ### Component Creation
+      #### Component Creation
 
 
       To create a reusable dialog component you'll want to define a new class
@@ -99,7 +102,7 @@ items:
       stack to the callers dialog stack.
 
 
-      ### Component Usage
+      #### Component Usage
 
 
       On the consumption side the dialog we created can be used by a bot in much
@@ -142,9 +145,6 @@ items:
       ]);
 
       ```
-    extends:
-      name: botbuilder-dialogs.Dialog<C>
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogContainer.dialogBegin
     name: dialogBegin
     children: []

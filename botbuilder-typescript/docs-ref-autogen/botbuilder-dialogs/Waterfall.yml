@@ -11,17 +11,18 @@ items:
     langs:
       - typeScript
     type: class
-    summary: >
-      :package: **botbuilder-dialogs**
+    summary: Dialog optimized for prompting a user with a series of questions.
+    extends:
+      name: botbuilder-dialogs.Dialog<C>
+    package: botbuilder-dialogs
+    remarks: >-
+      Waterfalls accept a stack of functions which will be executed in sequence.
+      Each waterfall step
 
-      Dialog optimized for prompting a user with a series of questions.
-      Waterfalls accept a stack of
+      can ask a question of the user and the users response will be passed as an
+      argument to the next
 
-      functions which will be executed in sequence. Each waterfall step can ask
-      a question of the user
-
-      and the users response will be passed as an argument to the next waterfall
-      step.
+      waterfall step.
 
 
       For simple text questions you can send the user a message and then process
@@ -30,21 +31,21 @@ items:
       next step:
 
 
-      ```JS
+      ```JavaScript
        dialogs.add('namePrompt', [
            async function (dc) {
-               dc.instance.state = { first: '', last: '', full: '' };
+               dc.activeDialog.state.profile = { first: '', last: '', full: '' };
                await dc.context.sendActivity(`What's your first name?`);
            },
            async function (dc, firstName) {
-               dc.instance.state.first = firstName;
+               dc.activeDialog.state.profile.first = firstName;
                await dc.context.sendActivity(`Great ${firstName}! What's your last name?`);
            },
            async function (dc, lastName) {
-               const name = dc.instance.state;
-               name.last = lastName;
-               name.full = name.first + ' ' + name.last;
-               await dc.end(name);
+               const profile = dc.activeDialog.state.profile;
+               profile.last = lastName;
+               profile.full = profile.first + ' ' + profile.last;
+               await dc.end(profile);
            }
        ]);
       ```
@@ -56,24 +57,24 @@ items:
       by the dialog will be passed to the next step:
 
 
-      ```JS
+      ```JavaScript
        dialogs.add('survey', [
            async function (dc) {
-               dc.instance.state = { name: undefined, languages: '', years: 0 };
+               dc.activeDialog.state.survey = { name: undefined, languages: '', years: 0 };
                await dc.begin('namePrompt');
            },
            async function (dc, name) {
-               dc.instance.state.name = name;
+               dc.activeDialog.state.survey.name = name;
                await dc.context.sendActivity(`Ok ${name.full}... What programming languages do you know?`);
            },
            async function (dc, languages) {
-               dc.instance.state.languages = languages;
+               dc.activeDialog.state.survey.languages = languages;
                await dc.prompt('yearsPrompt', `Great. So how many years have you been programming?`);
            },
            async function (dc, years) {
-               dc.instance.state.years = years;
+               dc.activeDialog.state.survey.years = years;
                await dc.context.sendActivity(`Thank you for taking our survey.`);
-               await dc.end(dc.instance.state);
+               await dc.end(dc.activeDialog.survey);
            }
        ]);
 
@@ -105,9 +106,6 @@ items:
 
       response will be passed to the calling dialogs next waterfall step if
       there is one.
-    extends:
-      name: botbuilder-dialogs.Dialog<C>
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Waterfall.dialogBegin
     name: dialogBegin
     children: []

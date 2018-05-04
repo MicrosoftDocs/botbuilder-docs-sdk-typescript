@@ -14,7 +14,7 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Settings used to configure an instance of `LanguageTranslator`.
     package: botbuilder-ai
   - uid: botbuilder-ai.TranslatorSettings.getUserLanguage
     name: getUserLanguage
@@ -23,7 +23,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      (Optional) handler that will be called to get the users preferred language
+      for the current
+
+      turn.
     optional: true
     syntax:
       content: 'getUserLanguage?: (context: TurnContext) => string'
@@ -37,7 +41,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Native languages the bot understands.
     syntax:
       content: 'nativeLanguages: string[]'
       return:
@@ -50,7 +54,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: (Optional) list of patterns that should NOT be translated.
     optional: true
     syntax:
       content: 'noTranslatePatterns?: function'
@@ -64,7 +68,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      (Optional) handler that will be called to determine if the user would like
+      to change their
+
+      preferred language.
     optional: true
     syntax:
       content: 'setUserLanguage?: (context: TurnContext) => Promise<boolean>'
@@ -78,13 +86,16 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      (Optional) if `true` outgoing activities will be translated into the users
+      preferred language.
     optional: true
     syntax:
       content: 'translateBackToUserLanguage?: boolean'
       return:
         type:
           - boolean
+    remarks: Defaults to `false`.
   - uid: botbuilder-ai.TranslatorSettings.translatorKey
     name: translatorKey
     fullName: translatorKey
@@ -92,7 +103,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The API key assigned by the Text Translator Cognitive Service.
     syntax:
       content: 'translatorKey: string'
       return:
@@ -105,7 +116,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: (Optional) list of replacement words.
     optional: true
     syntax:
       content: 'wordDictionary?: function'

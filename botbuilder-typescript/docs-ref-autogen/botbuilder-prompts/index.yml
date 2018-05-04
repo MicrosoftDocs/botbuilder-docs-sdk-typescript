@@ -20,11 +20,8 @@ items:
       - botbuilder-prompts.createChoicePrompt
       - botbuilder-prompts.createConfirmPrompt
       - botbuilder-prompts.createDatetimePrompt
-      - botbuilder-prompts.sendPrompt
       - botbuilder-prompts.createNumberPrompt
       - botbuilder-prompts.createOAuthPrompt
-      - botbuilder-prompts.isTeamsVerificationInvoke
-      - botbuilder-prompts.isTokenResponseEvent
       - botbuilder-prompts.createTextPrompt
     type: package
     langs:
@@ -35,29 +32,7 @@ items:
     type: function
     langs:
       - typeScript
-    summary: |-
-      :package: **botbuilder-prompts**
-      Creates a new prompt that asks the user to upload one or more attachments.
-
-      **Usage Example:**
-
-      ```JavaScript
-      const { createAttachmentPrompt } = require('botbuilder-prompts');
-
-      const imagePrompt = createAttachmentPrompt(async (context, values) => {
-         if (values && values.length > 0) {
-            for (let i = 0; i < values.length; i++) {
-               if (!values[i].contentType.startsWith('image')) {
-                  await imagePrompt.prompt(context, `Only images are accepted.`);
-                  return undefined;
-               }
-            }
-         } else {
-            await imagePrompt.prompt(context, `Please upload at least one image.`);
-         }
-         return values;
-      });
-      ```
+    summary: Creates a new prompt that asks the user to upload one or more attachments.
     syntax:
       content: >-
         function createAttachmentPrompt<O>(validator?:
@@ -73,28 +48,40 @@ items:
       return:
         type:
           - botbuilder-prompts.AttachmentPrompt<O>
+    remarks: >-
+      This example shows creating a prompt with a custom validator that ensures
+      an image attachment has
+
+      been uploaded by the user:
+
+
+      ```JavaScript
+
+      const { createAttachmentPrompt } = require('botbuilder-prompts');
+
+
+      const imagePrompt = createAttachmentPrompt(async (context, values) => {
+         if (values && values.length > 0) {
+            for (let i = 0; i < values.length; i++) {
+               if (!values[i].contentType.startsWith('image')) {
+                  await imagePrompt.prompt(context, `Only images are accepted.`);
+                  return undefined;
+               }
+            }
+         } else {
+            await imagePrompt.prompt(context, `Please upload at least one image.`);
+         }
+         return values;
+      });
+
+      ```
   - uid: botbuilder-prompts.createChoicePrompt
     name: createChoicePrompt
     children: []
     type: function
     langs:
       - typeScript
-    summary: |-
-      :package: **botbuilder-prompts**
-      Creates a new prompt that asks the user to select from a list of choices.
-
-      **Usage Example:**
-
-      ```JavaScript
-      const { createChoicePrompt } = require('botbuilder-prompts');
-
-      const colorPrompt = createChoicePrompt(async (context, found) => {
-         if (!found) {
-            await colorPrompt.prompt(context, ['red', 'green', 'blue'], `Please choose a color from the list or say "cancel".`);
-         }
-         return found;
-      });
-      ```
+    summary: Creates a new prompt that asks the user to select from a list of choices.
     syntax:
       content: >-
         function createChoicePrompt<O>(validator?: PromptValidator<FoundChoice,
@@ -117,28 +104,33 @@ items:
       return:
         type:
           - botbuilder-prompts.ChoicePrompt<O>
+    remarks: >-
+      This example shows creating a choice prompt with a custom validator that
+      re-prompts using
+
+      different prompt text if the users utterance doesn't match a choice:
+
+
+      ```JavaScript
+
+      const { createChoicePrompt } = require('botbuilder-prompts');
+
+
+      const colorPrompt = createChoicePrompt(async (context, found) => {
+         if (!found) {
+            await colorPrompt.prompt(context, ['red', 'green', 'blue'], `Please choose a color from the list or say "cancel".`);
+         }
+         return found;
+      });
+
+      ```
   - uid: botbuilder-prompts.createConfirmPrompt
     name: createConfirmPrompt
     children: []
     type: function
     langs:
       - typeScript
-    summary: |-
-      :package: **botbuilder-prompts**
-      Creates a new prompt that asks the user to answer a yes/no question.
-
-      **Usage Example:**
-
-      ```JavaScript
-      const { createConfirmPrompt } = require('botbuilder-prompts');
-
-      const confirmPrompt = createConfirmPrompt(async (context, confirmed) => {
-         if (typeof confirmed != 'boolean') {
-            await confirmPrompt.prompt(context, `Please answer "yes" or "no".`);
-         }
-         return confirmed;
-      });
-      ```
+    summary: Creates a new prompt that asks the user to answer a yes/no question.
     syntax:
       content: >-
         function createConfirmPrompt<O>(validator?: PromptValidator<O>,
@@ -161,34 +153,33 @@ items:
       return:
         type:
           - botbuilder-prompts.ConfirmPrompt<O>
+    remarks: >-
+      This example shows creating a confirm prompt with a custom validator that
+      will re-prompt with
+
+      alternate prompt text should the utterance not be recognized:
+
+
+      ```JavaScript
+
+      const { createConfirmPrompt } = require('botbuilder-prompts');
+
+
+      const confirmPrompt = createConfirmPrompt(async (context, confirmed) => {
+         if (typeof confirmed != 'boolean') {
+            await confirmPrompt.prompt(context, `Please answer "yes" or "no".`);
+         }
+         return confirmed;
+      });
+
+      ```
   - uid: botbuilder-prompts.createDatetimePrompt
     name: createDatetimePrompt
     children: []
     type: function
     langs:
       - typeScript
-    summary: |-
-      :package: **botbuilder-prompts**
-      Creates a new prompt that asks the user to reply with a date or time.
-
-      **Usage Example:**
-
-      ```JavaScript
-      const { createDatetimePrompt } = require('botbuilder-prompts');
-
-      const timePrompt = createDatetimePrompt(async (context, values) => {
-         try {
-            if (!Array.isArray(values) || values.length < 0) { throw new Error('missing time') }
-            if (values[0].type !== 'datetime') { throw new Error('unsupported type') }
-            const value = new Date(values[0].value);
-            if (value.getTime() < new Date().getTime()) { throw new Error('in the past') }
-            return value;
-         } catch (err) {
-            await timePrompt.prompt(context, `Answer with a time in the future like "tomorrow at 9am" or say "cancel".`);
-            return undefined;
-         }
-      });
-      ```
+    summary: Creates a new prompt that asks the user to reply with a date or time.
     syntax:
       content: >-
         function createDatetimePrompt<O>(validator?:
@@ -213,60 +204,39 @@ items:
       return:
         type:
           - botbuilder-prompts.DatetimePrompt<O>
-  - uid: botbuilder-prompts.sendPrompt
-    name: sendPrompt
-    children: []
-    type: function
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: >-
-        function sendPrompt(context: TurnContext, prompt: string |
-        Partial<Activity>, speak?: string)
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: ''
-        - id: prompt
-          type:
-            - string | Partial<Activity>
-          description: ''
-        - id: speak
-          type:
-            - string
-          description: ''
-          optional: true
-      return:
-        type:
-          - Promise<void>
+    remarks: >-
+      This example shows creating a datetime prompt with a custom validator that
+      constrains the users
+
+      answer to a time thats in the future:
+
+
+      ```JavaScript
+
+      const { createDatetimePrompt } = require('botbuilder-prompts');
+
+
+      const timePrompt = createDatetimePrompt(async (context, values) => {
+         try {
+            if (!Array.isArray(values) || values.length < 0) { throw new Error('missing time') }
+            if (values[0].type !== 'datetime') { throw new Error('unsupported type') }
+            const value = new Date(values[0].value);
+            if (value.getTime() < new Date().getTime()) { throw new Error('in the past') }
+            return value;
+         } catch (err) {
+            await timePrompt.prompt(context, `Answer with a time in the future like "tomorrow at 9am" or say "cancel".`);
+            return undefined;
+         }
+      });
+
+      ```
   - uid: botbuilder-prompts.createNumberPrompt
     name: createNumberPrompt
     children: []
     type: function
     langs:
       - typeScript
-    summary: |-
-      :package: **botbuilder-prompts**
-      Creates a new prompt that asks the user to reply with a number.
-
-      **Usage Example:**
-
-      ```JavaScript
-      const { createNumberPrompt } = require('botbuilder-prompts');
-
-      const agePrompt = createNumberPrompt(async (context, value) => {
-         if (typeof value == 'number') {
-            if (value >= 1 && value < 111) {
-               // Return age rounded down to nearest whole number.
-               return Math.floor(value);
-            }
-         }
-         await agePrompt.prompt(context, `Please enter a number between 1 and 110 or say "cancel".`);
-         return undefined;
-      });
-      ```
+    summary: Creates a new prompt that asks the user to reply with a number.
     syntax:
       content: >-
         function createNumberPrompt<O>(validator?: PromptValidator<number, O>,
@@ -289,6 +259,30 @@ items:
       return:
         type:
           - botbuilder-prompts.NumberPrompt<O>
+    remarks: >-
+      This example creates a number prompt with a custom validator that
+      constrains the users answer to
+
+      a range of numbers and then rounds off any fractional replies:
+
+
+      ```JavaScript
+
+      const { createNumberPrompt } = require('botbuilder-prompts');
+
+
+      const agePrompt = createNumberPrompt(async (context, value) => {
+         if (typeof value == 'number') {
+            if (value >= 1 && value < 111) {
+               // Return age rounded down to nearest whole number.
+               return Math.floor(value);
+            }
+         }
+         await agePrompt.prompt(context, `Please enter a number between 1 and 110 or say "cancel".`);
+         return undefined;
+      });
+
+      ```
   - uid: botbuilder-prompts.createOAuthPrompt
     name: createOAuthPrompt
     children: []
@@ -296,47 +290,10 @@ items:
     langs:
       - typeScript
     summary: >-
-      :package: **botbuilder-prompts**
-
       Creates a new prompt that asks the user to sign in using the Bot
       Frameworks Single Sign On (SSO)
 
       service.
-
-
-      **Usage Example:**
-
-
-      ```JavaScript
-
-      async function ensureLogin(context, state, botLogic) {
-         const now = new Date().getTime();
-         if (state.token && now < (new Date(state.token.expiration).getTime() - 60000)) {
-            return botLogic(context);
-         } else {
-            const loginPrompt = createOAuthPrompt({
-                connectionName: 'GitConnection',
-                title: 'Login To GitHub'
-            });
-            const token = await state.loginActive ? loginPrompt.recognize(context) : loginPrompt.getUserToken(context);
-            if (token) {
-                state.loginActive = false;
-                state.token = token;
-                return botLogic(context);
-            } else if (context.activity.type === 'message') {
-                if (!state.loginActive) {
-                    state.loginActive = true;
-                    state.loginStart = now;
-                    await loginPrompt.prompt(context);
-                } else if (now >= (state.loginStart + (5 * 60 * 1000))) {
-                    state.loginActive = false;
-                    await context.sendActivity(`We're having a problem logging you in. Please try again later.`);
-                }
-            }
-         }
-      }
-
-      ```
     syntax:
       content: >-
         function createOAuthPrompt<O>(settings: OAuthPromptSettings, validator?:
@@ -356,63 +313,24 @@ items:
       return:
         type:
           - botbuilder-prompts.OAuthPrompt<O>
-  - uid: botbuilder-prompts.isTeamsVerificationInvoke
-    name: isTeamsVerificationInvoke
-    children: []
-    type: function
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function isTeamsVerificationInvoke(context: TurnContext)'
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: ''
-      return:
-        type:
-          - boolean
-  - uid: botbuilder-prompts.isTokenResponseEvent
-    name: isTokenResponseEvent
-    children: []
-    type: function
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function isTokenResponseEvent(context: TurnContext)'
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: ''
-      return:
-        type:
-          - boolean
+    remarks: |-
+      This example shows creating an OAuth prompt:
+
+      ```JavaScript
+      const { createOAuthPrompt } = require('botbuilder-prompts');
+
+      const loginPrompt = createOAuthPrompt({
+         connectionName: 'GitConnection',
+         title: 'Login To GitHub'
+      });
+      ```
   - uid: botbuilder-prompts.createTextPrompt
     name: createTextPrompt
     children: []
     type: function
     langs:
       - typeScript
-    summary: |-
-      :package: **botbuilder-prompts**
-      Creates a new prompt that asks the user to enter some text.
-
-      **Usage Example:**
-
-      ```JavaScript
-      const { createTextPrompt } = require('botbuilder-prompts');
-
-      const namePrompt = createTextPrompt(async (context, value) => {
-         if (value && value.length >= 3) {
-            return value;
-         }
-         await namePrompt.prompt(context, `Your entry must be at least 3 characters in length.`);
-         return undefined;
-      });
-      ```
+    summary: Creates a new prompt that asks the user to enter some text.
     syntax:
       content: 'function createTextPrompt<O>(validator?: PromptValidator<string, O>)'
       parameters:
@@ -426,6 +344,27 @@ items:
       return:
         type:
           - botbuilder-prompts.TextPrompt<O>
+    remarks: >-
+      This example shows creating a text prompt with a custom validator that
+      ensures the length of
+
+      the users answer matches some minimum length requirement:
+
+
+      ```JavaScript
+
+      const { createTextPrompt } = require('botbuilder-prompts');
+
+
+      const namePrompt = createTextPrompt(async (context, value) => {
+         if (value && value.length >= 3) {
+            return value;
+         }
+         await namePrompt.prompt(context, `Your entry must be at least 3 characters in length.`);
+         return undefined;
+      });
+
+      ```
 references:
   - uid: botbuilder-prompts.AttachmentPrompt
     name: AttachmentPrompt

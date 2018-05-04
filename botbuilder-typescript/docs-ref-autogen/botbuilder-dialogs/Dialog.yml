@@ -12,26 +12,7 @@ items:
     langs:
       - typeScript
     type: class
-    summary: >-
-      :package: **botbuilder-dialogs**
-
-      Base class for all dialogs.
-
-
-      The `Control` and `CompositeControl` classes are very similar in that they
-      both add `begin()`
-
-      and `continue()` methods which simplify consuming the dialog from a
-      non-dialog based bot. The
-
-      primary difference between the two classes is that the `CompositeControl`
-      class is designed to
-
-      bridge one `DialogSet` to another where the `Control` class assumes that
-      the derived dialog can
-
-      be used in complete isolation without the need for any other supporting
-      dialogs.
+    summary: Base class for all dialogs.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.begin
     name: begin
@@ -40,28 +21,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      Starts the dialog. Depending on the dialog, its possible for the dialog to
-      finish
-
-      immediately so it's advised to check the completion object returned by
-      `begin()` and ensure
-
-      that the dialog is still active before continuing.
-
-      **Usage Example:**
-
-
-      ```JavaScript
-
-      const state = {};
-
-      const completion = await dialog.begin(context, state);
-
-      if (completion.isCompleted) {
-          const value = completion.result;
-      }
-
-      ```
+      Starts the dialog when its called in isolation from a bot that isn't
+      dialog based.
     syntax:
       content: 'function begin(context: C, state: object, options?: O)'
       parameters:
@@ -86,36 +47,46 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogCompletion<R>>
-  - uid: botbuilder-dialogs.Dialog.continue
-    name: continue
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Passes a users reply to the dialog for further processing. The bot should
-      keep calling
+    remarks: >-
+      The bot is responsible for maintaining the sticky-ness of the dialog. To
+      do that it should
 
-      `continue()` for future turns until the dialog returns a completion object
-      with
+      persist the state object it passed into the dialog as part of its overall
+      state when the
 
-      `isCompleted == true`. To cancel or interrupt the prompt simply delete the
-      `state` object
+      turn completes. When the user replies it then needs to pass the persisted
+      state object into
 
-      being persisted.
+      a call to the dialogs [continue()](#continue) method.
 
-      **Usage Example:**
+
+      Depending on the dialog, its possible for the dialog to finish immediately
+      so it's advised
+
+      to check the completion object returned by `begin()` and ensure that the
+      dialog is still
+
+      active before continuing.
 
 
       ```JavaScript
 
-      const completion = await dialog.continue(context, state);
+      const state = {};
+
+      const completion = await dialog.begin(context, state);
 
       if (completion.isCompleted) {
           const value = completion.result;
       }
 
       ```
+  - uid: botbuilder-dialogs.Dialog.continue
+    name: continue
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Passes a users reply to a dialog thats being used in isolation.
     syntax:
       content: 'function continue(context: C, state: object)'
       parameters:
@@ -132,6 +103,25 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogCompletion<R>>
+    remarks: >-
+      The bot should keep calling `continue()` for future turns until the dialog
+      returns a
+
+      completion object with `isCompleted == true`. To cancel or interrupt the
+      prompt simply
+
+      delete the `state` object being persisted.
+
+
+      ```JavaScript
+
+      const completion = await dialog.continue(context, state);
+
+      if (completion.isCompleted) {
+          const value = completion.result;
+      }
+
+      ```
   - uid: botbuilder-dialogs.Dialog.dialogBegin
     name: dialogBegin
     children: []

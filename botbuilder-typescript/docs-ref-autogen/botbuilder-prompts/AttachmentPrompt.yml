@@ -9,31 +9,23 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: |-
-      :package: **botbuilder-prompts**
-      Prompts the user to upload one or more attachments.
-
-      **Usage Example:**
+    summary: Prompts the user to upload one or more attachments.
+    package: botbuilder-prompts
+    remarks: |-
+      This example shows how to create a new attachment prompt:
 
       ```JavaScript
       const { createAttachmentPrompt } = require('botbuilder-prompts');
 
       const imagePrompt = createAttachmentPrompt();
       ```
-    package: botbuilder-prompts
   - uid: botbuilder-prompts.AttachmentPrompt.prompt
     name: prompt
     children: []
     type: method
     langs:
       - typeScript
-    summary: |-
-      Sends a formated prompt to the user.
-      **Usage Example:**
-
-      ```JavaScript
-      await imagePrompt.prompt(context, `Upload an image(s).`);
-      ```
+    summary: Sends a formated prompt to the user.
     syntax:
       content: >-
         function prompt(context: TurnContext, prompt: string |
@@ -57,36 +49,19 @@ items:
       return:
         type:
           - Promise<void>
+    remarks: |-
+      This example shows how to send a prompt to the user:
+
+      ```JavaScript
+      await imagePrompt.prompt(context, `Upload an image(s).`);
+      ```
   - uid: botbuilder-prompts.AttachmentPrompt.recognize
     name: recognize
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      Recognizes and validates the users reply. The result of the call will
-      either be the
-
-      recognized value or `undefined`.
-
-      The recognize() method will not automatically re-prompt the user so either
-      the caller or the
-
-      prompts custom validator will need to implement re-prompting logic.
-
-
-      **Usage Example:**
-
-
-      ```JavaScript
-
-      const images = await imagePrompt.recognize(context);
-
-      if (images) {
-         // Process images
-      }
-
-      ```
+    summary: Recognizes and validates the users reply.
     syntax:
       content: 'function recognize(context: TurnContext)'
       parameters:
@@ -98,3 +73,22 @@ items:
       return:
         type:
           - Promise<O | undefined>
+    remarks: >-
+      The result of the call will either be the recognized value or `undefined`.
+
+
+      The recognize() method will not automatically re-prompt the user so either
+      the caller or the
+
+      prompts custom validator will need to implement re-prompting logic.
+
+
+      ```JavaScript
+
+      const images = await imagePrompt.recognize(context);
+
+      if (images) {
+         // Process images
+      }
+
+      ```
