@@ -12,19 +12,21 @@ items:
       - typeScript
     type: class
     summary: >-
-      :package: **botbuilder-dialogs**
-
       Creates a new prompt that asks the user to sign in using the Bot
       Frameworks Single Sign On (SSO)
 
-      service. The prompt will attempt to retrieve the users current token and
-      if the user isn't
+      service.
+    extends:
+      name: botbuilder-dialogs.Dialog<C>
+    package: botbuilder-dialogs
+    remarks: >-
+      The prompt will attempt to retrieve the users current token and if the
+      user isn't signed in, it
 
-      signed in, it will send them an `OAuthCard` containing a button they can
-      press to signin.
+      will send them an `OAuthCard` containing a button they can press to
+      signin. Depending on the
 
-      Depending on the channel, the user will be sent through one of two
-      possible signin flows:
+      channel, the user will be sent through one of two possible signin flows:
 
 
       - The automatic signin flow where once the user signs in and the SSO
@@ -50,7 +52,26 @@ items:
       be waiting on.
 
 
-      ### Prompt Usage
+      > [!NOTE]
+
+      > You should avoid persisting the access token with your bots other state.
+      The Bot Frameworks
+
+      > SSO service will securely store the token on your behalf. If you store
+      it in your bots state
+
+      > it could expire or be revoked in between turns.
+
+      >
+
+      > When calling the prompt from within a waterfall step you should use the
+      token within the step
+
+      > following the prompt and then let the token go out of scope at the end
+      of your function.
+
+
+      #### Prompt Usage
 
 
       When used with your bots `DialogSet` you can simply add a new instance of
@@ -96,9 +117,6 @@ items:
       ]);
 
       ```
-    extends:
-      name: botbuilder-dialogs.Dialog<C>
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.dialogBegin
     name: dialogBegin
     children: []
@@ -167,17 +185,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |-
-      Signs the user out of the service.
-      **Usage Example:**
-
-      ```JavaScript
-      const prompt = new OAuthPrompt({
-         connectionName: 'GitConnection',
-         title: 'Login To GitHub'
-      });
-      await prompt.signOutUser(context);
-      ```
+    summary: Signs the user out of the service.
     syntax:
       content: 'function signOutUser(context: TurnContext)'
       parameters:
@@ -189,6 +197,21 @@ items:
       return:
         type:
           - Promise<void>
+    remarks: >-
+      This example shows creating an instance of the prompt and then signing out
+      the user.
+
+
+      ```JavaScript
+
+      const prompt = new OAuthPrompt({
+         connectionName: 'GitConnection',
+         title: 'Login To GitHub'
+      });
+
+      await prompt.signOutUser(context);
+
+      ```
 references:
   - uid: botbuilder-dialogs.Dialog<C>
     spec.typeScript:

@@ -1,0 +1,122 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core-extensions.UserState
+    name: UserState
+    fullName: UserState<T>
+    children:
+      - botbuilder-core-extensions.UserState.getStorageKey
+      - botbuilder-core-extensions.UserState.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: Reads and writes user state for your bot to storage.
+    extends:
+      name: botbuilder-core-extensions.BotState<T>
+    package: botbuilder-core-extensions
+    remarks: >-
+      Each user your bot communicates with will have its own isolated storage
+      object that can be used
+
+      to persist information about the user across all of the conversation you
+      have with that user.
+
+
+      Since the `UserState` class derives from `BotState` it can be used as
+      middleware to automatically
+
+      read and write the bots user state for each turn. And it also means it can
+      be passed to a
+
+      `BotStateSet` middleware instance to be managed in parallel with other
+      state providers.
+
+
+      ```JavaScript
+
+      const { UserState, MemoryStorage } = require('botbuilder');
+
+
+      const userState = new UserState(new MemoryStorage());
+
+      adapter.use(userState);
+
+
+      server.post('/api/messages', (req, res) => {
+         adapter.processActivity(req, res, async (context) => {
+            // Get loaded user state
+            const user = userState.get(context);
+
+            // ... route activity ...
+
+         });
+      });
+
+      ```
+  - uid: botbuilder-core-extensions.UserState.getStorageKey
+    name: getStorageKey
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns the storage key for the current user state.
+    syntax:
+      content: 'function getStorageKey(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - string | undefined
+  - uid: botbuilder-core-extensions.UserState.constructor
+    name: UserState
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new UserState instance.
+    syntax:
+      content: 'new UserState(storage: Storage, namespace: string)'
+      parameters:
+        - id: storage
+          type:
+            - botbuilder-core-extensions.Storage
+          description: Storage provider to persist user state to.
+        - id: namespace
+          type:
+            - string
+          description: >
+            (Optional) namespace to append to storage keys. Defaults to an empty
+            string.
+references:
+  - uid: botbuilder-core-extensions.TranscriptLogger
+    spec.typeScript:
+      - name: TranscriptLogger
+        fullName: TranscriptLogger
+        uid: botbuilder-core-extensions.TranscriptLogger
+  - uid: Promise<botbuilder-core-extensions.PagedResult<Activity>>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: PagedResult
+        fullName: PagedResult
+        uid: botbuilder-core-extensions.PagedResult
+      - name: <Activity>>
+        fullName: <Activity>>
+  - uid: >-
+      Promise<botbuilder-core-extensions.PagedResult<botbuilder-core-extensions.Transcript>>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: PagedResult
+        fullName: PagedResult
+        uid: botbuilder-core-extensions.PagedResult
+      - name: <
+        fullName: <
+      - name: Transcript
+        fullName: Transcript
+        uid: botbuilder-core-extensions.Transcript
+      - name: '>>'
+        fullName: '>>'

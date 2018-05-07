@@ -11,22 +11,22 @@ items:
     langs:
       - typeScript
     type: class
-    summary: >-
-      Middleware that implements a CosmosDB based storage provider for a bot.
-
-      The ConnectionPolicy delegate can be used to further customize the
-      connection to CosmosDB (Connection mode, retry options, timeouts).
-
-      More information at
-      http://azure.github.io/azure-documentdb-node/global.html#ConnectionPolicy
+    summary: Middleware that implements a CosmosDB based storage provider for a bot.
     package: botbuilder-azure
+    remarks: >-
+      The `connectionPolicyConfigurator` handler can be used to further
+      customize the connection to
+
+      CosmosDB (Connection mode, retry options, timeouts). More information at
+
+      http://azure.github.io/azure-documentdb-node/global.html#ConnectionPolicy
   - uid: botbuilder-azure.CosmosDbStorage.constructor
     name: CosmosDbStorage
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: Creates a new instance of the storage provider.
+    summary: Creates a new ConsmosDbStorage instance.
     syntax:
       content: >-
         new CosmosDbStorage(settings: CosmosDbStorageSettings,
@@ -49,15 +49,14 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Removes store items from storage
+    summary: ''
     syntax:
       content: 'function delete(keys: string[])'
       parameters:
         - id: keys
           type:
             - 'string[]'
-          description: |
-            Array of item keys to remove from the store.
+          description: ''
       return:
         type:
           - Promise<void>
@@ -67,15 +66,14 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Loads store items from storage
+    summary: ''
     syntax:
       content: 'function read(keys: string[])'
       parameters:
         - id: keys
           type:
             - 'string[]'
-          description: |
-            Array of item keys to read from the store.
+          description: ''
       return:
         type:
           - Promise<StoreItems>
@@ -85,15 +83,20 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Saves store items to storage.
+    summary: ''
     syntax:
       content: 'function write(changes: StoreItems)'
       parameters:
         - id: changes
           type:
             - StoreItems
-          description: |
-            Map of items to write to storage.
+          description: ''
       return:
         type:
           - Promise<void>
+references:
+  - uid: botbuilder-azure.CosmosDbStorageSettings
+    spec.typeScript:
+      - name: CosmosDbStorageSettings
+        fullName: CosmosDbStorageSettings
+        uid: botbuilder-azure.CosmosDbStorageSettings

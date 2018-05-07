@@ -1,0 +1,133 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core-extensions
+    name: botbuilder-core-extensions
+    summary: ''
+    children:
+      - botbuilder-core-extensions.BotState
+      - botbuilder-core-extensions.CachedBotState
+      - botbuilder-core-extensions.BotStateSet
+      - botbuilder-core-extensions.BrowserLocalStorage
+      - botbuilder-core-extensions.BrowserSessionStorage
+      - botbuilder-core-extensions.CardFactory
+      - botbuilder-core-extensions.ConversationState
+      - botbuilder-core-extensions.FileTranscriptStore
+      - botbuilder-core-extensions.MemoryStorage
+      - botbuilder-core-extensions.MemoryTranscriptStore
+      - botbuilder-core-extensions.MessageFactory
+      - botbuilder-core-extensions.RecognizerResult
+      - botbuilder-core-extensions.Storage
+      - botbuilder-core-extensions.StoreItem
+      - botbuilder-core-extensions.StoreItems
+      - botbuilder-core-extensions.StorageKeyFactory
+      - botbuilder-core-extensions.TestAdapter
+      - botbuilder-core-extensions.TestFlow
+      - botbuilder-core-extensions.TestActivityInspector
+      - botbuilder-core-extensions.ConsoleTranscriptLogger
+      - botbuilder-core-extensions.PagedResult
+      - botbuilder-core-extensions.Transcript
+      - botbuilder-core-extensions.TranscriptLoggerMiddleware
+      - botbuilder-core-extensions.TranscriptLogger
+      - botbuilder-core-extensions.TranscriptStore
+      - botbuilder-core-extensions.UserState
+      - botbuilder-core-extensions.calculateChangeHash
+    type: package
+    langs:
+      - typeScript
+  - uid: botbuilder-core-extensions.calculateChangeHash
+    name: calculateChangeHash
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: Utility function to calculate a change hash for a `StoreItem`.
+    syntax:
+      content: 'function calculateChangeHash(item: StoreItem)'
+      parameters:
+        - id: item
+          type:
+            - botbuilder-core-extensions.StoreItem
+          description: |
+            Item to calculate the change hash for.
+      return:
+        type:
+          - string
+    remarks: >-
+      This example calculates a change hash for an object that's been read in
+      and then only writes it
+
+      back out if it's been modified:
+
+
+      ```JavaScript
+
+      // Calculate state objects initial hash
+
+      const hash = calculateChangeHash(state);
+
+
+      // Process the received activity
+
+      await processActivity(context, state);
+
+
+      // Save state if changed
+
+      if (calculateChangeHash(state) !== hash) {
+         await storage.write({ 'botState': state });
+      }
+
+      ```
+references:
+  - uid: botbuilder-core-extensions.BotState
+    name: BotState
+  - uid: botbuilder-core-extensions.CachedBotState
+    name: CachedBotState
+  - uid: botbuilder-core-extensions.BotStateSet
+    name: BotStateSet
+  - uid: botbuilder-core-extensions.BrowserLocalStorage
+    name: BrowserLocalStorage
+  - uid: botbuilder-core-extensions.BrowserSessionStorage
+    name: BrowserSessionStorage
+  - uid: botbuilder-core-extensions.CardFactory
+    name: CardFactory
+  - uid: botbuilder-core-extensions.ConversationState
+    name: ConversationState
+  - uid: botbuilder-core-extensions.FileTranscriptStore
+    name: FileTranscriptStore
+  - uid: botbuilder-core-extensions.MemoryStorage
+    name: MemoryStorage
+  - uid: botbuilder-core-extensions.MemoryTranscriptStore
+    name: MemoryTranscriptStore
+  - uid: botbuilder-core-extensions.MessageFactory
+    name: MessageFactory
+  - uid: botbuilder-core-extensions.RecognizerResult
+    name: RecognizerResult
+  - uid: botbuilder-core-extensions.Storage
+    name: Storage
+  - uid: botbuilder-core-extensions.StoreItem
+    name: StoreItem
+  - uid: botbuilder-core-extensions.StoreItems
+    name: StoreItems
+  - uid: botbuilder-core-extensions.StorageKeyFactory
+    name: StorageKeyFactory
+  - uid: botbuilder-core-extensions.TestAdapter
+    name: TestAdapter
+  - uid: botbuilder-core-extensions.TestFlow
+    name: TestFlow
+  - uid: botbuilder-core-extensions.TestActivityInspector
+    name: TestActivityInspector
+  - uid: botbuilder-core-extensions.ConsoleTranscriptLogger
+    name: ConsoleTranscriptLogger
+  - uid: botbuilder-core-extensions.PagedResult
+    name: PagedResult
+  - uid: botbuilder-core-extensions.Transcript
+    name: Transcript
+  - uid: botbuilder-core-extensions.TranscriptLoggerMiddleware
+    name: TranscriptLoggerMiddleware
+  - uid: botbuilder-core-extensions.TranscriptLogger
+    name: TranscriptLogger
+  - uid: botbuilder-core-extensions.TranscriptStore
+    name: TranscriptStore
+  - uid: botbuilder-core-extensions.UserState
+    name: UserState

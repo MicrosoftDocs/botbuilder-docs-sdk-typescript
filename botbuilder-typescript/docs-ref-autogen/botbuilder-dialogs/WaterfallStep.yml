@@ -7,40 +7,51 @@ items:
     langs:
       - typeScript
     type: class
-    summary: |
-      :package: **botbuilder-dialogs**
+    summary: >+
       Function signature of a waterfall step.
 
-      **Example usage:**
+      ```TypeScript
+
+      type WaterfallStep<C extends TurnContext> = (dc: DialogContext<C>, args?:
+      any, next?: SkipStepFunction) => Promiseable<any>;
+
+      ```
+
+    package: botbuilder-dialogs
+    remarks: >-
+      This example shows a simple waterfall that prompts a user to enter the
+      fields needed to set an alarm:
+
 
       ```JavaScript
+
       dialogs.add('addAlarm', [
-           function (context, alarm, next) {
-               dialogs.getInstance(context).state = Object.assign({}, alarm);
+           async function (dc, alarm, next) {
+               dc.activeDialog.state.alarm = alarm || {};
                if (!alarm.title) {
-                   return dialogs.prompt(context, 'titlePrompt', `What would you like to call your alarm?`);
+                   await dc.prompt('titlePrompt', `What would you like to call your alarm?`);
                } else {
-                   return next(alarm.title);
+                   await next(alarm.title);
                }
            },
-           function (context, title, next) {
-               const alarm = dialogs.getInstance(context).state;
+           async function (dc, title, next) {
+               const alarm = dc.activeDialog.state.alarm;
                alarm.title = title;
                if (!alarm.time) {
-                   return dialogs.prompt(context, 'timePrompt', `What time would you like to set it for?`);
+                   await dc.prompt('timePrompt', `What time would you like to set it for?`);
                } else {
-                   return next(alarm.time);
+                   await next(alarm.time);
                }
            },
-           function (context, time) {
-               const alarm = dialogs.getInstance(context).state;
+           async function (dc, time) {
+               const alarm = dc.activeDialog.state.alarm;
                alarm.time = time;
 
                // ... set alarm ...
 
-               context.reply(`Alarm set.`);
-               return dialogs.end(context);
+               await dc.context.sendActivity(`Alarm set.`);
+               await dc.end();
            }
       ]);
+
       ```
-    package: botbuilder-dialogs
