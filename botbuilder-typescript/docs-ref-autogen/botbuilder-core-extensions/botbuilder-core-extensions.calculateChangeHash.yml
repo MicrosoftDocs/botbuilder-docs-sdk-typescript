@@ -1,0 +1,52 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core-extensions.calculateChangeHash
+    name: calculateChangeHash
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: Utility function to calculate a change hash for a `StoreItem`.
+    syntax:
+      content: 'function calculateChangeHash(item: StoreItem)'
+      parameters:
+        - id: item
+          type:
+            - botbuilder-core-extensions.StoreItem
+          description: |
+            Item to calculate the change hash for.
+      return:
+        type:
+          - string
+    remarks: >-
+      This example calculates a change hash for an object that's been read in
+      and then only writes it
+
+      back out if it's been modified:
+
+
+      ```JavaScript
+
+      // Calculate state objects initial hash
+
+      const hash = calculateChangeHash(state);
+
+
+      // Process the received activity
+
+      await processActivity(context, state);
+
+
+      // Save state if changed
+
+      if (calculateChangeHash(state) !== hash) {
+         await storage.write({ 'botState': state });
+      }
+
+      ```
+references:
+  - uid: botbuilder-core-extensions.StoreItem
+    spec.typeScript:
+      - name: StoreItem
+        fullName: StoreItem
+        uid: botbuilder-core-extensions.StoreItem

@@ -1,0 +1,66 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts.createChoicePrompt
+    name: createChoicePrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: Creates a new prompt that asks the user to select from a list of choices.
+    syntax:
+      content: >-
+        function createChoicePrompt<O>(validator?: PromptValidator<FoundChoice,
+        O>, defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - 'botbuilder-prompts.PromptValidator<FoundChoice, O>'
+          description: >-
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `context.activity.locale` not specified.
+            Defaults to a value of `en-us`.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.ChoicePrompt<O>
+    remarks: >-
+      This example shows creating a choice prompt with a custom validator that
+      re-prompts using
+
+      different prompt text if the users utterance doesn't match a choice:
+
+
+      ```JavaScript
+
+      const { createChoicePrompt } = require('botbuilder-prompts');
+
+
+      const colorPrompt = createChoicePrompt(async (context, found) => {
+         if (!found) {
+            await colorPrompt.prompt(context, ['red', 'green', 'blue'], `Please choose a color from the list or say "cancel".`);
+         }
+         return found;
+      });
+
+      ```
+references:
+  - uid: 'botbuilder-prompts.PromptValidator<FoundChoice, O>'
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-prompts.PromptValidator
+      - name: '<FoundChoice, O>'
+        fullName: '<FoundChoice, O>'
+  - uid: botbuilder-prompts.ChoicePrompt<O>
+    spec.typeScript:
+      - name: ChoicePrompt
+        fullName: ChoicePrompt
+        uid: botbuilder-prompts.ChoicePrompt
+      - name: <O>
+        fullName: <O>

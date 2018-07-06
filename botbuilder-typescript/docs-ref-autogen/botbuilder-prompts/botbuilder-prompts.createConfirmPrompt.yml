@@ -1,0 +1,66 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts.createConfirmPrompt
+    name: createConfirmPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: Creates a new prompt that asks the user to answer a yes/no question.
+    syntax:
+      content: >-
+        function createConfirmPrompt<O>(validator?: PromptValidator<O>,
+        defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - botbuilder-prompts.PromptValidator<O>
+          description: >-
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `context.activity.locale` is not
+            specified. Defaults to a value of `en-us`.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.ConfirmPrompt<O>
+    remarks: >-
+      This example shows creating a confirm prompt with a custom validator that
+      will re-prompt with
+
+      alternate prompt text should the utterance not be recognized:
+
+
+      ```JavaScript
+
+      const { createConfirmPrompt } = require('botbuilder-prompts');
+
+
+      const confirmPrompt = createConfirmPrompt(async (context, confirmed) => {
+         if (typeof confirmed != 'boolean') {
+            await confirmPrompt.prompt(context, `Please answer "yes" or "no".`);
+         }
+         return confirmed;
+      });
+
+      ```
+references:
+  - uid: botbuilder-prompts.PromptValidator<O>
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-prompts.PromptValidator
+      - name: <O>
+        fullName: <O>
+  - uid: botbuilder-prompts.ConfirmPrompt<O>
+    spec.typeScript:
+      - name: ConfirmPrompt
+        fullName: ConfirmPrompt
+        uid: botbuilder-prompts.ConfirmPrompt
+      - name: <O>
+        fullName: <O>
