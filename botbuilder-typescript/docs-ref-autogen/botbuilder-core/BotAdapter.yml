@@ -42,6 +42,7 @@ items:
       return:
         type:
           - Promise<void>
+    package: botbuilder-core
   - uid: botbuilder-core.BotAdapter.deleteActivity
     name: deleteActivity
     children: []
@@ -66,6 +67,7 @@ items:
       return:
         type:
           - Promise<void>
+    package: botbuilder-core
   - uid: botbuilder-core.BotAdapter.sendActivities
     name: sendActivities
     children: []
@@ -94,6 +96,7 @@ items:
       return:
         type:
           - 'Promise<ResourceResponse[]>'
+    package: botbuilder-core
   - uid: botbuilder-core.BotAdapter.updateActivity
     name: updateActivity
     children: []
@@ -119,6 +122,7 @@ items:
       return:
         type:
           - Promise<void>
+    package: botbuilder-core
   - uid: botbuilder-core.BotAdapter.use
     name: use
     children: []
@@ -133,15 +137,35 @@ items:
       parameters:
         - id: middleware
           type:
-            - 'Middleware!@[]'
+            - >-
+              (context: TurnContext, next: () => Promise<void>) =>
+              Promiseable<void> | botbuilder-core.Middleware[]
           description: |
             One or more middleware handlers(s) to register.
       return:
         type:
           - this
+    package: botbuilder-core
 references:
   - uid: botbuilder-core.TurnContext
+    name: TurnContext
     spec.typeScript:
       - name: TurnContext
         fullName: TurnContext
         uid: botbuilder-core.TurnContext
+  - uid: >-
+      (context: TurnContext, next: () => Promise<void>) => Promiseable<void> |
+      botbuilder-core.Middleware[]
+    name: 'Middleware[]'
+    spec.typeScript:
+      - name: >-
+          (context: TurnContext, next: () => Promise<void>) => Promiseable<void>
+          | 
+        fullName: >-
+          (context: TurnContext, next: () => Promise<void>) => Promiseable<void>
+          | 
+      - name: Middleware
+        fullName: Middleware
+        uid: botbuilder-core.Middleware
+      - name: '[]'
+        fullName: '[]'

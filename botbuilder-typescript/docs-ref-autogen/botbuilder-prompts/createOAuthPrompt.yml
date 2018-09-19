@@ -1,0 +1,67 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts.createOAuthPrompt
+    name: createOAuthPrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      Creates a new prompt that asks the user to sign in using the Bot
+      Frameworks Single Sign On (SSO)
+
+      service.
+    syntax:
+      content: >-
+        function createOAuthPrompt<O>(settings: OAuthPromptSettings, validator?:
+        PromptValidator<TokenResponse, O>)
+      parameters:
+        - id: settings
+          type:
+            - botbuilder-prompts.OAuthPromptSettings
+          description: Configuration settings for the OAuthPrompt.
+        - id: validator
+          type:
+            - 'botbuilder-prompts.PromptValidator<TokenResponse, O>'
+          description: >
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.OAuthPrompt<O>
+    package: botbuilder-prompts
+    remarks: |-
+      This example shows creating an OAuth prompt:
+
+      ```JavaScript
+      const { createOAuthPrompt } = require('botbuilder-prompts');
+
+      const loginPrompt = createOAuthPrompt({
+         connectionName: 'GitConnection',
+         title: 'Login To GitHub'
+      });
+      ```
+references:
+  - uid: botbuilder-prompts.OAuthPromptSettings
+    name: OAuthPromptSettings
+    spec.typeScript:
+      - name: OAuthPromptSettings
+        fullName: OAuthPromptSettings
+        uid: botbuilder-prompts.OAuthPromptSettings
+  - uid: 'botbuilder-prompts.PromptValidator<TokenResponse, O>'
+    name: 'PromptValidator<TokenResponse, O>'
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-prompts.PromptValidator
+      - name: '<TokenResponse, O>'
+        fullName: '<TokenResponse, O>'
+  - uid: botbuilder-prompts.OAuthPrompt<O>
+    name: OAuthPrompt<O>
+    spec.typeScript:
+      - name: OAuthPrompt
+        fullName: OAuthPrompt
+        uid: botbuilder-prompts.OAuthPrompt
+      - name: <O>
+        fullName: <O>

@@ -30,7 +30,8 @@ items:
     syntax:
       content: >-
         new CosmosDbStorage(settings: CosmosDbStorageSettings,
-        connectionPolicyConfigurator: (policy: ConnectionPolicy) => void)
+        connectionPolicyConfigurator: (policy: DocumentBase.ConnectionPolicy) =>
+        void)
       parameters:
         - id: settings
           type:
@@ -38,11 +39,12 @@ items:
           description: Setting to configure the provider.
         - id: connectionPolicyConfigurator
           type:
-            - '(policy: ConnectionPolicy) => void'
+            - '(policy: DocumentBase.ConnectionPolicy) => void'
           description: >
             (Optional) An optional delegate that accepts a ConnectionPolicy for
             customizing policies. More information at
             http://azure.github.io/azure-documentdb-node/global.html#ConnectionPolicy
+    package: botbuilder-azure
   - uid: botbuilder-azure.CosmosDbStorage.delete
     name: delete
     children: []
@@ -60,6 +62,7 @@ items:
       return:
         type:
           - Promise<void>
+    package: botbuilder-azure
   - uid: botbuilder-azure.CosmosDbStorage.read
     name: read
     children: []
@@ -77,6 +80,7 @@ items:
       return:
         type:
           - Promise<StoreItems>
+    package: botbuilder-azure
   - uid: botbuilder-azure.CosmosDbStorage.write
     name: write
     children: []
@@ -94,8 +98,10 @@ items:
       return:
         type:
           - Promise<void>
+    package: botbuilder-azure
 references:
   - uid: botbuilder-azure.CosmosDbStorageSettings
+    name: CosmosDbStorageSettings
     spec.typeScript:
       - name: CosmosDbStorageSettings
         fullName: CosmosDbStorageSettings

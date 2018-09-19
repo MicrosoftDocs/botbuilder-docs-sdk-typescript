@@ -1,0 +1,82 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-prompts.createDatetimePrompt
+    name: createDatetimePrompt
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: Creates a new prompt that asks the user to reply with a date or time.
+    syntax:
+      content: >-
+        function createDatetimePrompt<O>(validator?:
+        PromptValidator<FoundDatetime[], O>, defaultLocale?: string)
+      parameters:
+        - id: validator
+          type:
+            - >-
+              botbuilder-prompts.PromptValidator<botbuilder-prompts.FoundDatetime[],
+              O>
+          description: >-
+            (Optional) validator for providing additional validation logic or
+            customizing the prompt sent to the user when invalid.
+          optional: true
+        - id: defaultLocale
+          type:
+            - string
+          description: >
+            (Optional) locale to use if `context.activity.locale` not specified.
+            Defaults to a value of `en-us`.
+          optional: true
+      return:
+        type:
+          - botbuilder-prompts.DatetimePrompt<O>
+    package: botbuilder-prompts
+    remarks: >-
+      This example shows creating a datetime prompt with a custom validator that
+      constrains the users
+
+      answer to a time thats in the future:
+
+
+      ```JavaScript
+
+      const { createDatetimePrompt } = require('botbuilder-prompts');
+
+
+      const timePrompt = createDatetimePrompt(async (context, values) => {
+         try {
+            if (!Array.isArray(values) || values.length < 0) { throw new Error('missing time') }
+            if (values[0].type !== 'datetime') { throw new Error('unsupported type') }
+            const value = new Date(values[0].value);
+            if (value.getTime() < new Date().getTime()) { throw new Error('in the past') }
+            return value;
+         } catch (err) {
+            await timePrompt.prompt(context, `Answer with a time in the future like "tomorrow at 9am" or say "cancel".`);
+            return undefined;
+         }
+      });
+
+      ```
+references:
+  - uid: 'botbuilder-prompts.PromptValidator<botbuilder-prompts.FoundDatetime[], O>'
+    name: 'FoundDatetime[], O>'
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-prompts.PromptValidator
+      - name: <
+        fullName: <
+      - name: FoundDatetime
+        fullName: FoundDatetime
+        uid: botbuilder-prompts.FoundDatetime
+      - name: '[], O>'
+        fullName: '[], O>'
+  - uid: botbuilder-prompts.DatetimePrompt<O>
+    name: DatetimePrompt<O>
+    spec.typeScript:
+      - name: DatetimePrompt
+        fullName: DatetimePrompt
+        uid: botbuilder-prompts.DatetimePrompt
+      - name: <O>
+        fullName: <O>
