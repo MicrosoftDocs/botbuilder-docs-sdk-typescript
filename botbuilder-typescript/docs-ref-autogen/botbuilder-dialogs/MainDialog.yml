@@ -1,0 +1,98 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.MainDialog
+    name: MainDialog
+    fullName: MainDialog<O>
+    children:
+      - botbuilder-dialogs.MainDialog.constructor
+      - botbuilder-dialogs.MainDialog.run
+    langs:
+      - typeScript
+    type: class
+    summary: Base class for a bots main dialog.
+    extends:
+      name: botbuilder-dialogs.ComponentDialog
+    package: botbuilder-dialogs
+    remarks: >-
+      This class extends `ComponentDialog` and adds a `run()` method to simplify
+      dispatching an
+
+      incoming activity to the bots dialog system. Developers should extend this
+      class and then add
+
+      all of their bots child dialogs using the `addDialog()` method.
+  - uid: botbuilder-dialogs.MainDialog.constructor
+    name: MainDialog
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new MainDialog instance.
+    syntax:
+      content: >-
+        new MainDialog(dialogState: StatePropertyAccessor<DialogState>,
+        dialogId: string)
+      parameters:
+        - id: dialogState
+          type:
+            - StatePropertyAccessor<botbuilder-dialogs.DialogState>
+          description: State property used to persist the bots dialog stack.
+        - id: dialogId
+          type:
+            - string
+          description: >
+            (Optional) id to assign to the main dialog on the stack. Defaults to
+            a value of 'main'.
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.MainDialog.run
+    name: run
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Processes an incoming activity.
+    syntax:
+      content: 'function run(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Turn context containing the activity that was received.
+      return:
+        type:
+          - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+    remarks: >-
+      The activity will simply be dispatched to the main dialog for processing.
+      If current dialog
+
+      stack doesn't contain a main dialog, a new instance of the main dialog
+      will be started.
+references:
+  - uid: botbuilder-dialogs.ComponentDialog
+    name: ComponentDialog
+    spec.typeScript:
+      - name: ComponentDialog
+        fullName: ComponentDialog
+        uid: botbuilder-dialogs.ComponentDialog
+  - uid: StatePropertyAccessor<botbuilder-dialogs.DialogState>
+    name: DialogState>
+    spec.typeScript:
+      - name: StatePropertyAccessor<
+        fullName: StatePropertyAccessor<
+      - name: DialogState
+        fullName: DialogState
+        uid: botbuilder-dialogs.DialogState
+      - name: '>'
+        fullName: '>'
+  - uid: Promise<botbuilder-dialogs.DialogTurnResult>
+    name: DialogTurnResult>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
+      - name: '>'
+        fullName: '>'

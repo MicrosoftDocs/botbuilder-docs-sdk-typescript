@@ -1,0 +1,277 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.BotState
+    name: BotState
+    fullName: BotState
+    children:
+      - botbuilder-core.BotState.constructor
+      - botbuilder-core.BotState.clear
+      - botbuilder-core.BotState.createProperty
+      - botbuilder-core.BotState.get
+      - botbuilder-core.BotState.load
+      - botbuilder-core.BotState.properties
+      - botbuilder-core.BotState.saveChanges
+    langs:
+      - typeScript
+    type: class
+    summary: Reads and writes state for your bot to storage.
+    package: botbuilder-core
+    remarks: >-
+      The state object will be automatically cached on the context object for
+      the lifetime of the turn
+
+      and will only be written to storage if it has been modified.
+
+
+      When a `BotState` instance is used as middleware its state object will be
+      automatically read in
+
+      before your bots logic runs and then intelligently written back out upon
+      completion of your bots
+
+      logic. Multiple instances can be read and written in parallel using the
+      `BotStateSet` middleware.
+
+
+      ```JavaScript
+
+      const { BotState, MemoryStorage } = require('botbuilder');
+
+
+      const storage = new MemoryStorage();
+
+      const botState = new BotState(storage, (context) => 'botState');
+
+      adapter.use(botState);
+
+
+      server.post('/api/messages', (req, res) => {
+         adapter.processActivity(req, res, async (context) => {
+            // Track up time
+            const state = await botState.get(context);
+            if (!('startTime' in state)) { state.startTime = new Date().getTime() }
+            state.upTime = new Date().getTime() - state.stateTime;
+
+            // ... route activity ...
+
+         });
+      });
+
+      ```
+  - uid: botbuilder-core.BotState.constructor
+    name: BotState
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new BotState instance.
+    syntax:
+      content: 'new BotState(storage: Storage, storageKey: StorageKeyFactory)'
+      parameters:
+        - id: storage
+          type:
+            - botbuilder-core.Storage
+          description: Storage provider to persist the state object to.
+        - id: storageKey
+          type:
+            - botbuilder-core.StorageKeyFactory
+          description: >
+            Function called anytime the storage key for a given turn needs to be
+            calculated.
+    package: botbuilder-core
+  - uid: botbuilder-core.BotState.clear
+    name: clear
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Clears the current state object for a turn.
+    syntax:
+      content: 'function clear(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+    package: botbuilder-core
+    remarks: |-
+      This example shows how to clear a state object:
+
+      ```JavaScript
+      botState.clear(context);
+      ```
+  - uid: botbuilder-core.BotState.createProperty
+    name: createProperty
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Create property accessor for a property which is managed by BotState class
+    syntax:
+      content: 'function createProperty<T>(name: string)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: |
+            property name
+      return:
+        type:
+          - botbuilder-core.StatePropertyAccessor<T>
+    package: botbuilder-core
+  - uid: botbuilder-core.BotState.get
+    name: get
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a cached state object or undefined if not cached.
+    syntax:
+      content: 'function get(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - any | undefined
+    package: botbuilder-core
+    remarks: >-
+      This example shows how to synchronously get an already loaded and cached
+      state object:
+
+
+      ```JavaScript
+
+      const state = await botState.get(context);
+
+      ```
+  - uid: botbuilder-core.BotState.load
+    name: load
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Reads in and caches the current state object for a turn.
+    syntax:
+      content: 'function load(context: TurnContext, force: boolean)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) If `true` the cache will be bypassed and the state will
+            always be read in directly from storage. Defaults to `false`.
+      return:
+        type:
+          - Promise<any>
+    package: botbuilder-core
+    remarks: >-
+      Subsequent reads will return the cached object unless the `force` flag is
+      passed in which
+
+      will force the state object to be re-read.
+
+
+      ```JavaScript
+
+      const state = await botState.load(context);
+
+      ```
+  - uid: botbuilder-core.BotState.properties
+    name: properties
+    fullName: properties
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'public properties: Map<string, StatePropertyAccessor> = new Map()'
+      return:
+        type:
+          - 'Map<string, botbuilder-core.StatePropertyAccessor>'
+    package: botbuilder-core
+  - uid: botbuilder-core.BotState.saveChanges
+    name: saveChanges
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Saves the cached state object if it's been changed.
+    syntax:
+      content: 'function saveChanges(context: TurnContext, force: boolean)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) if `true` the state will always be written out regardless
+            of its change state. Defaults to `false`.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+    remarks: >-
+      If the `force` flag is passed in the cached state object will be saved
+      regardless of
+
+      whether its been changed or not and if no object has been cached, an empty
+      object will be
+
+      created and then saved.
+
+
+      ```JavaScript
+
+      await botState.saveChanges(context);
+
+      ```
+references:
+  - uid: botbuilder-core.Storage
+    name: Storage
+    spec.typeScript:
+      - name: Storage
+        fullName: Storage
+        uid: botbuilder-core.Storage
+  - uid: botbuilder-core.StorageKeyFactory
+    name: StorageKeyFactory
+    spec.typeScript:
+      - name: StorageKeyFactory
+        fullName: StorageKeyFactory
+        uid: botbuilder-core.StorageKeyFactory
+  - uid: 'Map<string, botbuilder-core.StatePropertyAccessor>'
+    name: StatePropertyAccessor>
+    spec.typeScript:
+      - name: 'Map<string, '
+        fullName: 'Map<string, '
+      - name: StatePropertyAccessor
+        fullName: StatePropertyAccessor
+        uid: botbuilder-core.StatePropertyAccessor
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext
+  - uid: botbuilder-core.StatePropertyAccessor<T>
+    name: StatePropertyAccessor<T>
+    spec.typeScript:
+      - name: StatePropertyAccessor
+        fullName: StatePropertyAccessor
+        uid: botbuilder-core.StatePropertyAccessor
+      - name: <T>
+        fullName: <T>

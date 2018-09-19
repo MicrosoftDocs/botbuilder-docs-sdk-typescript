@@ -6,25 +6,11 @@ items:
     children:
       - botbuilder-ai.QnAMaker.answer
       - botbuilder-ai.QnAMaker.generateAnswer
-      - botbuilder-ai.QnAMaker.onTurn
       - botbuilder-ai.QnAMaker.constructor
     langs:
       - typeScript
     type: class
-    summary: >-
-      Manages querying an individual QnA Maker knowledge base for answers. Can
-      be added as middleware
-
-      to automatically query the knowledge base anytime a messaged is received
-      from the user. When
-
-      used as middleware the component can be configured to either query the
-      knowledge base before the
-
-      bots logic runs or after the bots logic is run, as a fallback in the event
-      the bot doesn't answer
-
-      the user.
+    summary: Manages querying an individual QnA Maker knowledge base for answers.
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMaker.answer
     name: answer
@@ -34,7 +20,7 @@ items:
       - typeScript
     summary: >-
       Calls [generateAnswer()](#generateanswer) and sends the answer as a
-      message ot the user.
+      message to the user.
     syntax:
       content: 'function answer(context: TurnContext)'
       parameters:
@@ -42,7 +28,7 @@ items:
           type:
             - TurnContext
           description: |
-            Context for the current turn of conversation with the use.
+            Context for the current turn of conversation with the user.
       return:
         type:
           - Promise<boolean>
@@ -87,28 +73,6 @@ items:
     remarks: >-
       The returned answers will be sorted by score with the top scoring answer
       returned first.
-  - uid: botbuilder-ai.QnAMaker.onTurn
-    name: onTurn
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: ''
-        - id: next
-          type:
-            - () => Promise<void>
-          description: ''
-      return:
-        type:
-          - Promise<void>
-    package: botbuilder-ai
   - uid: botbuilder-ai.QnAMaker.constructor
     name: QnAMaker
     children: []

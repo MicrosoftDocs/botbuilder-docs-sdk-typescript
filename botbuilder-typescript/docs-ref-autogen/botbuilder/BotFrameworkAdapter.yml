@@ -10,6 +10,7 @@ items:
       - botbuilder.BotFrameworkAdapter.deleteActivity
       - botbuilder.BotFrameworkAdapter.deleteConversationMember
       - botbuilder.BotFrameworkAdapter.emulateOAuthCards
+      - botbuilder.BotFrameworkAdapter.getAadTokens
       - botbuilder.BotFrameworkAdapter.getActivityMembers
       - botbuilder.BotFrameworkAdapter.getConversationMembers
       - botbuilder.BotFrameworkAdapter.getConversations
@@ -23,8 +24,8 @@ items:
       - typeScript
     type: class
     summary: >-
-      ActivityAdapter class needed to communicate with a Bot Framework channel
-      or the Emulator.
+      BotAdapter class needed to communicate with a Bot Framework channel or the
+      Emulator.
     extends:
       name: BotAdapter
     package: botbuilder
@@ -76,7 +77,7 @@ items:
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promiseable<void>)
+        logic: (context: TurnContext) => Promise<void>)
       parameters:
         - id: reference
           type:
@@ -87,7 +88,7 @@ items:
             `TurnContext.getConversationReference(context.activity)`.
         - id: logic
           type:
-            - '(context: TurnContext) => Promiseable<void>'
+            - '(context: TurnContext) => Promise<void>'
           description: >
             A function handler that will be called to perform the bots logic
             after the the adapters middleware has been run.
@@ -144,7 +145,7 @@ items:
     syntax:
       content: >-
         function createConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promiseable<void>)
+        logic: (context: TurnContext) => Promise<void>)
       parameters:
         - id: reference
           type:
@@ -155,7 +156,7 @@ items:
             `TurnContext.getConversationReference(context.activity)`.
         - id: logic
           type:
-            - '(context: TurnContext) => Promiseable<void>'
+            - '(context: TurnContext) => Promise<void>'
           description: >
             A function handler that will be called to perform the bots logic
             after the the adapters middleware has been run.
@@ -281,6 +282,35 @@ items:
       return:
         type:
           - Promise<void>
+    package: botbuilder
+  - uid: botbuilder.BotFrameworkAdapter.getAadTokens
+    name: getAadTokens
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Signs the user out with the token server.
+    syntax:
+      content: >-
+        function getAadTokens(context: TurnContext, connectionName: string,
+        resourceUrls: string[])
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+        - id: resourceUrls
+          type:
+            - 'string[]'
+          description: ''
+      return:
+        type:
+          - Promise<TokenResponseMap>
     package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.getActivityMembers
     name: getActivityMembers
@@ -435,7 +465,7 @@ items:
     syntax:
       content: >-
         function processActivity(req: WebRequest, res: WebResponse, logic:
-        (context: TurnContext) => Promiseable<any>)
+        (context: TurnContext) => Promise<any>)
       parameters:
         - id: req
           type:
@@ -447,7 +477,7 @@ items:
           description: An Express or Restify style Response object.
         - id: logic
           type:
-            - '(context: TurnContext) => Promiseable<any>'
+            - '(context: TurnContext) => Promise<any>'
           description: >
             A function handler that will be called to perform the bots logic
             after the received activity has been pre-processed by the adapter

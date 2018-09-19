@@ -1,0 +1,290 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.OAuthPrompt
+    name: OAuthPrompt
+    fullName: OAuthPrompt<O>
+    children:
+      - botbuilder-dialogs.OAuthPrompt.beginDialog
+      - botbuilder-dialogs.OAuthPrompt.continueDialog
+      - botbuilder-dialogs.OAuthPrompt.getUserToken
+      - botbuilder-dialogs.OAuthPrompt.constructor
+      - botbuilder-dialogs.OAuthPrompt.signOutUser
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Creates a new prompt that asks the user to sign in using the Bot
+      Frameworks Single Sign On (SSO)
+
+      service.
+    extends:
+      name: botbuilder-dialogs.Dialog
+    package: botbuilder-dialogs
+    remarks: >-
+      The prompt will attempt to retrieve the users current token and if the
+      user isn't signed in, it
+
+      will send them an `OAuthCard` containing a button they can press to
+      signin. Depending on the
+
+      channel, the user will be sent through one of two possible signin flows:
+
+
+      - The automatic signin flow where once the user signs in and the SSO
+      service will forward the bot
+
+      the users access token using either an `event` or `invoke` activity.
+
+      - The "magic code" flow where where once the user signs in they will be
+      prompted by the SSO
+
+      service to send the bot a six digit code confirming their identity. This
+      code will be sent as a
+
+      standard `message` activity.
+
+
+      Both flows are automatically supported by the `OAuthPrompt` and the only
+      thing you need to be
+
+      careful of is that you don't block the `event` and `invoke` activities
+      that the prompt might
+
+      be waiting on.
+
+
+      > [!NOTE]
+
+      > You should avoid persisting the access token with your bots other state.
+      The Bot Frameworks
+
+      > SSO service will securely store the token on your behalf. If you store
+      it in your bots state
+
+      > it could expire or be revoked in between turns.
+
+      >
+
+      > When calling the prompt from within a waterfall step you should use the
+      token within the step
+
+      > following the prompt and then let the token go out of scope at the end
+      of your function.
+
+
+      #### Prompt Usage
+
+
+      When used with your bots `DialogSet` you can simply add a new instance of
+      the prompt as a named
+
+      dialog using `DialogSet.add()`. You can then start the prompt from a
+      waterfall step using either
+
+      `DialogContext.beginDialog()` or `DialogContext.prompt()`. The user will
+      be prompted to signin as
+
+      needed and their access token will be passed as an argument to the callers
+      next waterfall step:
+
+
+      ```JavaScript
+
+      const { DialogSet, OAuthPrompt } = require('botbuilder-dialogs');
+
+
+      const dialogs = new DialogSet();
+
+
+      dialogs.add('loginPrompt', new OAuthPrompt({
+         connectionName: 'GitConnection',
+         title: 'Login To GitHub',
+         timeout: 300000   // User has 5 minutes to login
+      }));
+
+
+      dialogs.add('taskNeedingLogin', [
+           async function (dc) {
+               await dc.beginDialog('loginPrompt');
+           },
+           async function (dc, token) {
+               if (token) {
+                   // Continue with task needing access token
+               } else {
+                   await dc.context.sendActivity(`Sorry... We couldn't log you in. Try again later.`);
+                   await dc.endDialog();
+               }
+           }
+      ]);
+
+      ```
+  - uid: botbuilder-dialogs.OAuthPrompt.beginDialog
+    name: beginDialog
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function beginDialog(dc: DialogContext, options?: PromptOptions)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: ''
+        - id: options
+          type:
+            - botbuilder-dialogs.PromptOptions
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.continueDialog
+    name: continueDialog
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function continueDialog(dc: DialogContext)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: ''
+      return:
+        type:
+          - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.getUserToken
+    name: getUserToken
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function getUserToken(context: TurnContext, code?: string)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: code
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<TokenResponse | undefined>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.constructor
+    name: OAuthPrompt
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new `OAuthPrompt` instance.
+    syntax:
+      content: >-
+        new OAuthPrompt(dialogId: string, settings: OAuthPromptSettings,
+        validator?: PromptValidator<TokenResponse>)
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: Unique ID of the dialog within its parent `DialogSet`.
+        - id: settings
+          type:
+            - botbuilder-dialogs.OAuthPromptSettings
+          description: Settings used to configure the prompt.
+        - id: validator
+          type:
+            - botbuilder-dialogs.PromptValidator<TokenResponse>
+          description: >
+            (Optional) validator that will be called each time the user responds
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
+          optional: true
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.signOutUser
+    name: signOutUser
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Signs the user out of the service.
+    syntax:
+      content: 'function signOutUser(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            a TurnContext representing latest activity
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-dialogs
+    remarks: >-
+      This example shows creating an instance of the prompt and then signing out
+      the user.
+
+
+      ```JavaScript
+
+      const prompt = new OAuthPrompt({
+         connectionName: 'GitConnection',
+         title: 'Login To GitHub'
+      });
+
+      await prompt.signOutUser(context);
+
+      ```
+references:
+  - uid: botbuilder-dialogs.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-dialogs.Dialog
+  - uid: botbuilder-dialogs.OAuthPromptSettings
+    name: OAuthPromptSettings
+    spec.typeScript:
+      - name: OAuthPromptSettings
+        fullName: OAuthPromptSettings
+        uid: botbuilder-dialogs.OAuthPromptSettings
+  - uid: botbuilder-dialogs.PromptValidator<TokenResponse>
+    name: PromptValidator<TokenResponse>
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-dialogs.PromptValidator
+      - name: <TokenResponse>
+        fullName: <TokenResponse>
+  - uid: botbuilder-dialogs.DialogContext
+    name: DialogContext
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
+  - uid: botbuilder-dialogs.PromptOptions
+    name: PromptOptions
+    spec.typeScript:
+      - name: PromptOptions
+        fullName: PromptOptions
+        uid: botbuilder-dialogs.PromptOptions
+  - uid: Promise<botbuilder-dialogs.DialogTurnResult>
+    name: DialogTurnResult>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
+      - name: '>'
+        fullName: '>'
