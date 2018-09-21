@@ -2,11 +2,11 @@
 items:
   - uid: botbuilder-dialogs.DialogSet
     name: DialogSet
-    fullName: DialogSet<C>
+    fullName: DialogSet
     children:
       - botbuilder-dialogs.DialogSet.add
-      - botbuilder-dialogs.DialogSet.add_1
       - botbuilder-dialogs.DialogSet.createContext
+      - botbuilder-dialogs.DialogSet.constructor
       - botbuilder-dialogs.DialogSet.find
     langs:
       - typeScript
@@ -40,36 +40,44 @@ items:
 
       ```JavaScript
 
-      const { DialogSet, TextPrompt } = require('botbuilder-dialogs');
+      const { DialogSet, TextPrompt, WaterfallDialog, UserState, MemoryStorage }
+      = require('botbuilder-dialogs');
 
+
+      const memoryStorage = new MemoryStorage();
+
+      const userState = new UserState(memoryStorage);
 
       const dialogs = new DialogSet();
 
+      const userProfile = userState.createProperty('profile');
 
-      dialogs.add('fillProfile', [
-          async function (dc, options) {
-              dc.activeDialog.state.profile = {};
-              await dc.prompt('textPrompt', `What's your name?`);
+
+      dialogs.add(new WaterfallDialog('fillProfile', [
+          async (step) => {
+              step.values.profile = {};
+              return await step.prompt('textPrompt', `What's your name?`);
           },
-          async function (dc, name) {
-              dc.activeDialog.state.profile.name = name;
-              await dc.prompt('textPrompt', `What's your phone number?`);
+          async (step) => {
+              step.values.profile.name = step.result;
+              return await step.prompt('textPrompt', `What's your phone number?`);
           },
-          async function (dc, phone) {
-              dc.activeDialog.state.profile.phone = phone;
+          async (step) => {
+              step.values.profile.phone = step.result;
 
               // Save completed profile to user state
-              const user = userState.get(context);
-              user.profile = dc.activeDialog.state.profile;
+              const user = await userProfile.get(step.context);
+              user.profile = step.values.profile;
+              await userProfile.set(step.context, user);
 
               // Notify user and end
-              await dc.context.sendActivity(`Your profile was updated.`);
-              await dc.end();
+              await step.context.sendActivity(`Your profile was updated.`);
+              return await step.endDialog();
           }
-      ]);
+      ]));
 
 
-      dialogs.add('textPrompt', new TextPrompt());
+      dialogs.add(new TextPrompt('textPrompt'));
 
       ```
 
@@ -122,15 +130,15 @@ items:
 
       server.post('/api/messages', (req, res) => {
           adapter.processActivity(req, res, async (context) => {
-              // Get conversation state and create DialogContext object
-              const conversation = conversationState.get(context);
-              const dc = dialogs.createContext(context, conversation);
+              // Create DialogContext object
+              const dc = await dialogs.createContext(context);
 
               // Continue execution if there's an "active" dialog
-              await dc.continue();
+              await dc.continueDialog();
+
               if (!context.responded && context.activity.type === ActivityType.Message) {
                   // No active dialogs so start 'fillProfile' dialog
-                  await dc.begin('fillProfile');
+                  await dc.beginDialog('fillProfile');
               }
           });
       });
@@ -150,8 +158,8 @@ items:
       The code first retrieves the bots conversation state and then creates a
       `DialogContext` for
 
-      managing the dialog stack. It then calls `dc.continue()` which will route
-      the request to the
+      managing the dialog stack. It then calls `dc.continueDialog()` which will
+      route the request to the
 
       "active" dialog if there is one. The active dialog is the dialog on the
       top of the stack.
@@ -169,7 +177,7 @@ items:
       if nothing has responded and we've received a `message` activity we'll
       start the 'fillProfile'
 
-      by calling `dc.begin()`.
+      by calling `dc.beginDialog()`.
 
 
       #### Detecting Interruptions
@@ -200,36 +208,34 @@ items:
 
       server.post('/api/messages', (req, res) => {
           adapter.processActivity(req, res, async (context) => {
-              // Get conversation state and create DialogContext object
-              const conversation = conversationState.get(context);
-              const dc = dialogs.createContext(context, conversation);
+              // Create DialogContext object
+              const dc = await dialogs.createContext(context);
 
               // Check for any interruptions
               const isMessage = context.activity.type === ActivityType.Message;
               if (isMessage) {
                   const utterance = context.activity.text.trim().toLowerCase();
                   if (utterance.startsWith('edit profile')) {
-                      await dc.endAll().begin('fillProfile');
-                      return;
+                      return await dc.cancelAlDialogs().beginDialog('fillProfile');
                   } else if (utterance.startsWith('cancel')) {
                       if (dc.activeDialog) {
-                          dc.endAll();
-                          await context.sendActivity(`Task canceled`);
+                          await dc.cancelAllDialogs();
+                          return await context.sendActivity(`Task canceled`);
                       } else {
-                          await context.sendActivity(`Nothing to cancel`);
+                          return await context.sendActivity(`Nothing to cancel`);
                       }
-                      return;
                   }
               }
 
               // Continue execution if there's an "active" dialog
-              await dc.continue();
+              await dc.continueDialog();
+
               if (!context.responded && isMessage) {
                   // Greet user and fill in profile if missing
-                  const user = userState.get(context);
+                  const user = await userState.get(context);
                   if (!user.profile) {
                       await context.sendActivity(`Hello... Lets fill out your profile to get started.`);
-                      await dc.begin('fillProfile');
+                      await dc.beginDialog('fillProfile');
                   } else {
                       await context.sendActivity(`I'm sorry I didn't understand. Try saying "edit profile".`);
                   }
@@ -261,22 +267,15 @@ items:
       - typeScript
     summary: Adds a new dialog to the set and returns the added dialog.
     syntax:
-      content: 'function add(dialogId: string, dialogOrSteps: Dialog<C>)'
+      content: 'function add<T>(dialog: T)'
       parameters:
-        - id: dialogId
+        - id: dialog
           type:
-            - string
-          description: Unique ID of the dialog within the set.
-        - id: dialogOrSteps
-          type:
-            - botbuilder-dialogs.Dialog<C>
-          description: >
-            Either a new dialog or an array of waterfall steps to execute. If
-            waterfall steps are passed in they will automatically be passed into
-            an new instance of a `Waterfall` class.
+            - T
+          description: The dialog being added.
       return:
         type:
-          - botbuilder-dialogs.Dialog<C>
+          - botbuilder-dialogs.DialogSet
     package: botbuilder-dialogs
     remarks: >-
       This example adds a waterfall dialog the greets the user with "Hello
@@ -285,49 +284,12 @@ items:
 
       ```JavaScript
 
-      dialogs.add('greeting', [
-           async function (dc) {
-               await dc.context.sendActivity(`Hello world!`);
-               await dc.end();
+      dialogs.add(new Waterfall('greeting', [
+           async function (step) {
+               await step.context.sendActivity(`Hello world!`);
+               await step.endDialog();
            }
-      ]);
-
-      ```
-  - uid: botbuilder-dialogs.DialogSet.add_1
-    name: add
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Adds a new dialog to the set and returns the added dialog.
-    syntax:
-      content: 'function add(dialogId: string, dialogOrSteps: WaterfallStep<C>[])'
-      parameters:
-        - id: dialogId
-          type:
-            - string
-          description: ''
-        - id: dialogOrSteps
-          type:
-            - 'botbuilder-dialogs.WaterfallStep<C>[]'
-          description: ''
-      return:
-        type:
-          - botbuilder-dialogs.Waterfall<C>
-    package: botbuilder-dialogs
-    remarks: >-
-      This example adds a waterfall dialog the greets the user with "Hello
-      World!":
-
-
-      ```JavaScript
-
-      dialogs.add('greeting', [
-           async function (dc) {
-               await dc.context.sendActivity(`Hello world!`);
-               await dc.end();
-           }
-      ]);
+      ]));
 
       ```
   - uid: botbuilder-dialogs.DialogSet.createContext
@@ -336,21 +298,47 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Creates a dialog context which can be used to work with the dialogs in the
+      set.
     syntax:
-      content: 'function createContext(context: C, state: object)'
+      content: 'function createContext(context: TurnContext)'
       parameters:
         - id: context
           type:
-            - C
-          description: ''
-        - id: state
-          type:
-            - object
-          description: ''
+            - TurnContext
+          description: |
+            Context for the current turn of conversation with the user.
       return:
         type:
-          - botbuilder-dialogs.DialogContext<C>
+          - Promise<botbuilder-dialogs.DialogContext>
+    package: botbuilder-dialogs
+    remarks: >-
+      This example loads in the bots conversation state and then creates a
+      DialogContext bound to
+
+      that state.
+
+
+      ```JavaScript
+
+      const dc = await dialogs.createContext(context);
+
+      ```
+  - uid: botbuilder-dialogs.DialogSet.constructor
+    name: DialogSet
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'new DialogSet(dialogState: StatePropertyAccessor<DialogState>)'
+      parameters:
+        - id: dialogState
+          type:
+            - StatePropertyAccessor<botbuilder-dialogs.DialogState>
+          description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogSet.find
     name: find
@@ -360,7 +348,7 @@ items:
       - typeScript
     summary: 'Finds a dialog that was previously added to the set using [add()](#add).'
     syntax:
-      content: 'function find<T>(dialogId: string)'
+      content: 'function find(dialogId: string)'
       parameters:
         - id: dialogId
           type:
@@ -369,44 +357,46 @@ items:
             ID of the dialog/prompt to lookup.
       return:
         type:
-          - T | undefined
+          - botbuilder-dialogs.Dialog | undefined
     package: botbuilder-dialogs
     remarks: |-
-      This example finds a a dialog named "greeting":
+      This example finds a dialog named "greeting":
 
       ```JavaScript
       const dialog = dialogs.find('greeting');
       ```
 references:
-  - uid: botbuilder-dialogs.Dialog<C>
-    name: Dialog<C>
+  - uid: StatePropertyAccessor<botbuilder-dialogs.DialogState>
+    name: DialogState>
+    spec.typeScript:
+      - name: StatePropertyAccessor<
+        fullName: StatePropertyAccessor<
+      - name: DialogState
+        fullName: DialogState
+        uid: botbuilder-dialogs.DialogState
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder-dialogs.DialogSet
+    name: DialogSet
+    spec.typeScript:
+      - name: DialogSet
+        fullName: DialogSet
+        uid: botbuilder-dialogs.DialogSet
+  - uid: Promise<botbuilder-dialogs.DialogContext>
+    name: DialogContext>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder-dialogs.Dialog | undefined
+    name: Dialog | undefined
     spec.typeScript:
       - name: Dialog
         fullName: Dialog
         uid: botbuilder-dialogs.Dialog
-      - name: <C>
-        fullName: <C>
-  - uid: 'botbuilder-dialogs.WaterfallStep<C>[]'
-    name: 'WaterfallStep<C>[]'
-    spec.typeScript:
-      - name: WaterfallStep
-        fullName: WaterfallStep
-        uid: botbuilder-dialogs.WaterfallStep
-      - name: '<C>[]'
-        fullName: '<C>[]'
-  - uid: botbuilder-dialogs.Waterfall<C>
-    name: Waterfall<C>
-    spec.typeScript:
-      - name: Waterfall
-        fullName: Waterfall
-        uid: botbuilder-dialogs.Waterfall
-      - name: <C>
-        fullName: <C>
-  - uid: botbuilder-dialogs.DialogContext<C>
-    name: DialogContext<C>
-    spec.typeScript:
-      - name: DialogContext
-        fullName: DialogContext
-        uid: botbuilder-dialogs.DialogContext
-      - name: <C>
-        fullName: <C>
+      - name: ' | undefined'
+        fullName: ' | undefined'

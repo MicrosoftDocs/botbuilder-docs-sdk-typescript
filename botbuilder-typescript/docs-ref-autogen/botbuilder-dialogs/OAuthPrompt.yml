@@ -2,10 +2,11 @@
 items:
   - uid: botbuilder-dialogs.OAuthPrompt
     name: OAuthPrompt
-    fullName: OAuthPrompt<C>
+    fullName: OAuthPrompt<O>
     children:
-      - botbuilder-dialogs.OAuthPrompt.dialogBegin
-      - botbuilder-dialogs.OAuthPrompt.dialogContinue
+      - botbuilder-dialogs.OAuthPrompt.beginDialog
+      - botbuilder-dialogs.OAuthPrompt.continueDialog
+      - botbuilder-dialogs.OAuthPrompt.getUserToken
       - botbuilder-dialogs.OAuthPrompt.constructor
       - botbuilder-dialogs.OAuthPrompt.signOutUser
     langs:
@@ -17,7 +18,7 @@ items:
 
       service.
     extends:
-      name: botbuilder-dialogs.Dialog<C>
+      name: botbuilder-dialogs.Dialog
     package: botbuilder-dialogs
     remarks: >-
       The prompt will attempt to retrieve the users current token and if the
@@ -80,8 +81,8 @@ items:
       dialog using `DialogSet.add()`. You can then start the prompt from a
       waterfall step using either
 
-      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
-      prompted to signin as
+      `DialogContext.beginDialog()` or `DialogContext.prompt()`. The user will
+      be prompted to signin as
 
       needed and their access token will be passed as an argument to the callers
       next waterfall step:
@@ -104,58 +105,82 @@ items:
 
       dialogs.add('taskNeedingLogin', [
            async function (dc) {
-               await dc.begin('loginPrompt');
+               await dc.beginDialog('loginPrompt');
            },
            async function (dc, token) {
                if (token) {
                    // Continue with task needing access token
                } else {
                    await dc.context.sendActivity(`Sorry... We couldn't log you in. Try again later.`);
-                   await dc.end();
+                   await dc.endDialog();
                }
            }
       ]);
 
       ```
-  - uid: botbuilder-dialogs.OAuthPrompt.dialogBegin
-    name: dialogBegin
+  - uid: botbuilder-dialogs.OAuthPrompt.beginDialog
+    name: beginDialog
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function dialogBegin(dc: DialogContext<C>, options: PromptOptions)'
+      content: 'function beginDialog(dc: DialogContext, options?: PromptOptions)'
       parameters:
         - id: dc
           type:
-            - botbuilder-dialogs.DialogContext<C>
+            - botbuilder-dialogs.DialogContext
           description: ''
         - id: options
           type:
             - botbuilder-dialogs.PromptOptions
           description: ''
+          optional: true
       return:
         type:
-          - Promise<any>
+          - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.OAuthPrompt.dialogContinue
-    name: dialogContinue
+  - uid: botbuilder-dialogs.OAuthPrompt.continueDialog
+    name: continueDialog
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function dialogContinue(dc: DialogContext<C>)'
+      content: 'function continueDialog(dc: DialogContext)'
       parameters:
         - id: dc
           type:
-            - botbuilder-dialogs.DialogContext<C>
+            - botbuilder-dialogs.DialogContext
           description: ''
       return:
         type:
-          - Promise<any>
+          - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.getUserToken
+    name: getUserToken
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function getUserToken(context: TurnContext, code?: string)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: code
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<TokenResponse | undefined>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.constructor
     name: OAuthPrompt
@@ -166,16 +191,20 @@ items:
     summary: Creates a new `OAuthPrompt` instance.
     syntax:
       content: >-
-        new OAuthPrompt(settings: OAuthPromptSettingsWithTimeout, validator?:
-        prompts.PromptValidator<any, any>)
+        new OAuthPrompt(dialogId: string, settings: OAuthPromptSettings,
+        validator?: PromptValidator<TokenResponse>)
       parameters:
+        - id: dialogId
+          type:
+            - string
+          description: Unique ID of the dialog within its parent `DialogSet`.
         - id: settings
           type:
-            - botbuilder-dialogs.OAuthPromptSettingsWithTimeout
+            - botbuilder-dialogs.OAuthPromptSettings
           description: Settings used to configure the prompt.
         - id: validator
           type:
-            - 'prompts.PromptValidator<any, any>'
+            - botbuilder-dialogs.PromptValidator<TokenResponse>
           description: >
             (Optional) validator that will be called each time the user responds
             to the prompt. If the validator replies with a message no additional
@@ -195,8 +224,8 @@ items:
         - id: context
           type:
             - TurnContext
-          description: |+
-
+          description: |
+            a TurnContext representing latest activity
       return:
         type:
           - Promise<void>
@@ -217,31 +246,45 @@ items:
 
       ```
 references:
-  - uid: botbuilder-dialogs.Dialog<C>
-    name: Dialog<C>
+  - uid: botbuilder-dialogs.Dialog
+    name: Dialog
     spec.typeScript:
       - name: Dialog
         fullName: Dialog
         uid: botbuilder-dialogs.Dialog
-      - name: <C>
-        fullName: <C>
-  - uid: botbuilder-dialogs.OAuthPromptSettingsWithTimeout
-    name: OAuthPromptSettingsWithTimeout
+  - uid: botbuilder-dialogs.OAuthPromptSettings
+    name: OAuthPromptSettings
     spec.typeScript:
-      - name: OAuthPromptSettingsWithTimeout
-        fullName: OAuthPromptSettingsWithTimeout
-        uid: botbuilder-dialogs.OAuthPromptSettingsWithTimeout
-  - uid: botbuilder-dialogs.DialogContext<C>
-    name: DialogContext<C>
+      - name: OAuthPromptSettings
+        fullName: OAuthPromptSettings
+        uid: botbuilder-dialogs.OAuthPromptSettings
+  - uid: botbuilder-dialogs.PromptValidator<TokenResponse>
+    name: PromptValidator<TokenResponse>
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-dialogs.PromptValidator
+      - name: <TokenResponse>
+        fullName: <TokenResponse>
+  - uid: botbuilder-dialogs.DialogContext
+    name: DialogContext
     spec.typeScript:
       - name: DialogContext
         fullName: DialogContext
         uid: botbuilder-dialogs.DialogContext
-      - name: <C>
-        fullName: <C>
   - uid: botbuilder-dialogs.PromptOptions
     name: PromptOptions
     spec.typeScript:
       - name: PromptOptions
         fullName: PromptOptions
         uid: botbuilder-dialogs.PromptOptions
+  - uid: Promise<botbuilder-dialogs.DialogTurnResult>
+    name: DialogTurnResult>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
+      - name: '>'
+        fullName: '>'

@@ -1,0 +1,85 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botframework-connector.EmulatorValidation
+    name: EmulatorValidation
+    fullName: EmulatorValidation
+    children:
+      - botframework-connector.EmulatorValidation.authenticateEmulatorToken
+      - botframework-connector.EmulatorValidation.isTokenFromEmulator
+    langs:
+      - typeScript
+    type: module
+    summary: Validates and Examines JWT tokens from the Bot Framework Emulator
+    package: botframework-connector
+  - uid: botframework-connector.EmulatorValidation.authenticateEmulatorToken
+    name: authenticateEmulatorToken
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      Validate the incoming Auth Header as a token sent from the Bot Framework
+      Emulator.
+
+      A token issued by the Bot Framework will FAIL this check. Only Emulator
+      tokens will pass.
+    syntax:
+      content: >-
+        function authenticateEmulatorToken(authHeader: string, credentials:
+        ICredentialProvider, channelId: string)
+      parameters:
+        - id: authHeader
+          type:
+            - string
+          description: 'The raw HTTP header in the format: "Bearer [longString]"'
+        - id: credentials
+          type:
+            - botframework-connector.ICredentialProvider
+          description: 'The user defined set of valid credentials, such as the AppId.'
+        - id: channelId
+          type:
+            - string
+          description: ''
+      return:
+        type:
+          - Promise<botframework-connector.ClaimsIdentity>
+    package: botframework-connector
+  - uid: botframework-connector.EmulatorValidation.isTokenFromEmulator
+    name: isTokenFromEmulator
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: Determines if a given Auth header is from the Bot Framework Emulator
+    syntax:
+      content: 'function isTokenFromEmulator(authHeader: string)'
+      parameters:
+        - id: authHeader
+          type:
+            - string
+          description: 'Bearer Token, in the "Bearer [Long String]" Format.'
+      return:
+        type:
+          - boolean
+    package: botframework-connector
+references:
+  - uid: botframework-connector.ICredentialProvider
+    name: ICredentialProvider
+    spec.typeScript:
+      - name: ICredentialProvider
+        fullName: ICredentialProvider
+        uid: botframework-connector.ICredentialProvider
+  - uid: Promise<botframework-connector.ClaimsIdentity>
+    name: ClaimsIdentity>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: ClaimsIdentity
+        fullName: ClaimsIdentity
+        uid: botframework-connector.ClaimsIdentity
+      - name: '>'
+        fullName: '>'
+  - uid: botframework-connector.EmulatorValidation.authenticateEmulatorToken
+    name: authenticateEmulatorToken
+  - uid: botframework-connector.EmulatorValidation.isTokenFromEmulator
+    name: isTokenFromEmulator

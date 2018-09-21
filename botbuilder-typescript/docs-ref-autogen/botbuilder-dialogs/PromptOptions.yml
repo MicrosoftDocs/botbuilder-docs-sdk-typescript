@@ -4,14 +4,29 @@ items:
     name: PromptOptions
     fullName: PromptOptions
     children:
+      - botbuilder-dialogs.PromptOptions.choices
       - botbuilder-dialogs.PromptOptions.prompt
       - botbuilder-dialogs.PromptOptions.retryPrompt
-      - botbuilder-dialogs.PromptOptions.retrySpeak
-      - botbuilder-dialogs.PromptOptions.speak
+      - botbuilder-dialogs.PromptOptions.validations
     langs:
       - typeScript
     type: interface
     summary: Basic configuration options supported by all prompts.
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.PromptOptions.choices
+    name: choices
+    fullName: choices
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: (Optional) List of choices associated with the prompt.
+    optional: true
+    syntax:
+      content: 'choices?: string | Choice[]'
+      return:
+        type:
+          - 'string | botbuilder-dialogs.Choice[]'
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.PromptOptions.prompt
     name: prompt
@@ -43,33 +58,31 @@ items:
         type:
           - string | Partial<Activity>
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.PromptOptions.retrySpeak
-    name: retrySpeak
-    fullName: retrySpeak
+  - uid: botbuilder-dialogs.PromptOptions.validations
+    name: validations
+    fullName: validations
     children: []
     langs:
       - typeScript
     type: property
-    summary: (Optional) Retry SSML to send the user.
+    summary: >-
+      (Optional) Additional validation rules to pass the prompts validator
+      routine.
     optional: true
     syntax:
-      content: 'retrySpeak?: string'
+      content: 'validations?: object'
       return:
         type:
-          - string
+          - object
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.PromptOptions.speak
-    name: speak
-    fullName: speak
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: (Optional) Initial SSML to send the user.
-    optional: true
-    syntax:
-      content: 'speak?: string'
-      return:
-        type:
-          - string
-    package: botbuilder-dialogs
+references:
+  - uid: 'string | botbuilder-dialogs.Choice[]'
+    name: 'Choice[]'
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: Choice
+        fullName: Choice
+        uid: botbuilder-dialogs.Choice
+      - name: '[]'
+        fullName: '[]'
