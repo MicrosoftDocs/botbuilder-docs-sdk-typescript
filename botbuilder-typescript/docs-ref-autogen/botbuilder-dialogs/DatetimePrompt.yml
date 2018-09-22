@@ -1,80 +1,25 @@
 ### YamlMime:UniversalReference
 items:
-  - uid: botbuilder-dialogs.DatetimePrompt
-    name: DatetimePrompt
-    fullName: DatetimePrompt<C>
+  - uid: botbuilder-dialogs.DateTimePrompt
+    name: DateTimePrompt
+    fullName: DateTimePrompt<O>
     children:
-      - botbuilder-dialogs.DatetimePrompt.constructor
+      - botbuilder-dialogs.DateTimePrompt.constructor
+      - botbuilder-dialogs.DateTimePrompt.defaultLocale
     langs:
       - typeScript
     type: class
     summary: Prompts a user to enter a datetime expression.
     extends:
-      name: botbuilder-dialogs.Prompt<C>
+      name: 'botbuilder-dialogs.Prompt<botbuilder-dialogs.DateTimeResolution[]>'
     package: botbuilder-dialogs
     remarks: >-
       By default the prompt will return to the calling dialog a
       `FoundDatetime[]` but this can be
 
       overridden using a custom `PromptValidator`.
-
-
-      #### Prompt Usage
-
-
-      When used with your bots `DialogSet` you can simply add a new instance of
-      the prompt as a named
-
-      dialog using `DialogSet.add()`. You can then start the prompt from a
-      waterfall step using either
-
-      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
-      prompted to reply with a
-
-      date and/or time. The recognized date/time will be passed as an argument
-      to the callers next
-
-      waterfall step:
-
-
-      ```JavaScript
-
-      const { DialogSet, DatetimePrompt } = require('botbuilder-dialogs');
-
-
-      const dialogs = new DialogSet();
-
-
-      dialogs.add('datetimePrompt', new DatetimePrompt(AlarmTimeValidator));
-
-
-      dialogs.add('setAlarmTime', [
-           async function (dc) {
-               await dc.prompt('datetimePrompt', `What time should I set your alarm for?`);
-           },
-           async function (dc, time) {
-               await dc.context.sendActivity(`Alarm time set`);
-               await dc.end();
-           }
-      ]);
-
-
-      async function AlarmTimeValidator(context, values) {
-          try {
-              if (!Array.isArray(values) || values.length < 0) { throw new Error('missing time') }
-              if (values[0].type !== 'datetime') { throw new Error('unsupported type') }
-              const value = new Date(values[0].value);
-              if (value.getTime() < new Date().getTime()) { throw new Error('in the past') }
-              return value;
-          } catch (err) {
-              await context.sendActivity(`Answer with a time in the future like "tomorrow at 9am" or say "cancel".`);
-              return undefined;
-          }
-      }
-
-      ```
-  - uid: botbuilder-dialogs.DatetimePrompt.constructor
-    name: DatetimePrompt
+  - uid: botbuilder-dialogs.DateTimePrompt.constructor
+    name: DateTimePrompt
     children: []
     type: constructor
     langs:
@@ -82,12 +27,17 @@ items:
     summary: Creates a new `DatetimePrompt` instance.
     syntax:
       content: >-
-        new DatetimePrompt(validator?: PromptValidator<FoundDatetime[], O>,
-        defaultLocale?: string)
+        new DateTimePrompt(dialogId: string, validator?:
+        PromptValidator<DateTimeResolution[]>, defaultLocale?: string)
       parameters:
+        - id: dialogId
+          type:
+            - string
+          description: Unique ID of the dialog within its parent `DialogSet`.
         - id: validator
           type:
-            - 'PromptValidator<FoundDatetime[], O>'
+            - >-
+              botbuilder-dialogs.PromptValidator<botbuilder-dialogs.DateTimeResolution[]>
           description: >-
             (Optional) validator that will be called each time the user responds
             to the prompt. If the validator replies with a message no additional
@@ -101,12 +51,45 @@ items:
             specified. Defaults to a value of `en-us`.
           optional: true
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.DateTimePrompt.defaultLocale
+    name: defaultLocale
+    fullName: defaultLocale
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'public defaultLocale: string | undefined'
+      return:
+        type:
+          - string | undefined
+    package: botbuilder-dialogs
 references:
-  - uid: botbuilder-dialogs.Prompt<C>
-    name: Prompt<C>
+  - uid: 'botbuilder-dialogs.Prompt<botbuilder-dialogs.DateTimeResolution[]>'
+    name: 'DateTimeResolution[]>'
     spec.typeScript:
       - name: Prompt
         fullName: Prompt
         uid: botbuilder-dialogs.Prompt
-      - name: <C>
-        fullName: <C>
+      - name: <
+        fullName: <
+      - name: DateTimeResolution
+        fullName: DateTimeResolution
+        uid: botbuilder-dialogs.DateTimeResolution
+      - name: '[]>'
+        fullName: '[]>'
+  - uid: >-
+      botbuilder-dialogs.PromptValidator<botbuilder-dialogs.DateTimeResolution[]>
+    name: 'DateTimeResolution[]>'
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-dialogs.PromptValidator
+      - name: <
+        fullName: <
+      - name: DateTimeResolution
+        fullName: DateTimeResolution
+        uid: botbuilder-dialogs.DateTimeResolution
+      - name: '[]>'
+        fullName: '[]>'

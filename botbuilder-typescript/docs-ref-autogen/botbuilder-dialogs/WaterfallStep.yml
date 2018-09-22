@@ -2,56 +2,18 @@
 items:
   - uid: botbuilder-dialogs.WaterfallStep
     name: WaterfallStep
-    fullName: WaterfallStep<C>
+    fullName: WaterfallStep<O>
     children: []
     langs:
       - typeScript
     type: class
-    summary: >+
+    summary: |
       Function signature of a waterfall step.
-
-      ```TypeScript
-
-      type WaterfallStep<C extends TurnContext> = (dc: DialogContext<C>, args?:
-      any, next?: SkipStepFunction) => Promiseable<any>;
-
-      ```
-
     package: botbuilder-dialogs
     remarks: >-
-      This example shows a simple waterfall that prompts a user to enter the
-      fields needed to set an alarm:
+      ```TypeScript
 
-
-      ```JavaScript
-
-      dialogs.add('addAlarm', [
-           async function (dc, alarm, next) {
-               dc.activeDialog.state.alarm = alarm || {};
-               if (!alarm.title) {
-                   await dc.prompt('titlePrompt', `What would you like to call your alarm?`);
-               } else {
-                   await next(alarm.title);
-               }
-           },
-           async function (dc, title, next) {
-               const alarm = dc.activeDialog.state.alarm;
-               alarm.title = title;
-               if (!alarm.time) {
-                   await dc.prompt('timePrompt', `What time would you like to set it for?`);
-               } else {
-                   await next(alarm.time);
-               }
-           },
-           async function (dc, time) {
-               const alarm = dc.activeDialog.state.alarm;
-               alarm.time = time;
-
-               // ... set alarm ...
-
-               await dc.context.sendActivity(`Alarm set.`);
-               await dc.end();
-           }
-      ]);
+      type WaterfallStep = (step: WaterfallStepContext<O>) =>
+      Promise<DialogTurnResult>;
 
       ```

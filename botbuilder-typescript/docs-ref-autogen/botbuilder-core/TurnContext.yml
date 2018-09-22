@@ -15,9 +15,9 @@ items:
       - botbuilder-core.TurnContext.responded
       - botbuilder-core.TurnContext.sendActivities
       - botbuilder-core.TurnContext.sendActivity
-      - botbuilder-core.TurnContext.services
       - botbuilder-core.TurnContext.constructor_1
       - botbuilder-core.TurnContext.constructor
+      - botbuilder-core.TurnContext.turnState
       - botbuilder-core.TurnContext.updateActivity
     langs:
       - typeScript
@@ -474,46 +474,6 @@ items:
       await context.sendActivity(`Hello World`);
 
       ```
-  - uid: botbuilder-core.TurnContext.services
-    name: services
-    fullName: services
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Map of services and other values cached for the lifetime of the turn.
-    syntax:
-      content: 'Map<any, any> services'
-      return:
-        type:
-          - 'Map<any, any>'
-    package: botbuilder-core
-    remarks: >-
-      Middleware, other components, and services will typically use this to
-      cache information
-
-      that could be asked for by a bot multiple times during a turn. The bots
-      logic is free to
-
-      use this to pass information between its own components.
-
-
-      ```JavaScript
-
-      const cart = await loadUsersShoppingCart(context);
-
-      context.services.set('cart', cart);
-
-      ```
-
-
-      > [!TIP]
-
-      > For middleware and third party components, consider using a `Symbol()`
-      for your cache key
-
-      > to avoid potential naming collisions with the bots caching and other
-      components.
   - uid: botbuilder-core.TurnContext.constructor_1
     name: TurnContext
     children: []
@@ -551,6 +511,46 @@ items:
           description: |
             Request being processed.
     package: botbuilder-core
+  - uid: botbuilder-core.TurnContext.turnState
+    name: turnState
+    fullName: turnState
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Map of services and other values cached for the lifetime of the turn.
+    syntax:
+      content: 'Map<any, any> turnState'
+      return:
+        type:
+          - 'Map<any, any>'
+    package: botbuilder-core
+    remarks: >-
+      Middleware, other components, and services will typically use this to
+      cache information
+
+      that could be asked for by a bot multiple times during a turn. The bots
+      logic is free to
+
+      use this to pass information between its own components.
+
+
+      ```JavaScript
+
+      const cart = await loadUsersShoppingCart(context);
+
+      context.turnState.set('cart', cart);
+
+      ```
+
+
+      > [!TIP]
+
+      > For middleware and third party components, consider using a `Symbol()`
+      for your cache key
+
+      > to avoid potential naming collisions with the bots caching and other
+      components.
   - uid: botbuilder-core.TurnContext.updateActivity
     name: updateActivity
     children: []

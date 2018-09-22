@@ -2,10 +2,11 @@
 items:
   - uid: botbuilder-dialogs.ChoicePrompt
     name: ChoicePrompt
-    fullName: ChoicePrompt<C>
+    fullName: ChoicePrompt<O>
     children:
       - botbuilder-dialogs.ChoicePrompt.choiceOptions
       - botbuilder-dialogs.ChoicePrompt.constructor
+      - botbuilder-dialogs.ChoicePrompt.defaultLocale
       - botbuilder-dialogs.ChoicePrompt.recognizerOptions
       - botbuilder-dialogs.ChoicePrompt.style
     langs:
@@ -13,94 +14,30 @@ items:
     type: class
     summary: Prompts a user to confirm something with a yes/no response.
     extends:
-      name: botbuilder-dialogs.Prompt<C>
+      name: botbuilder-dialogs.Prompt<botbuilder-dialogs.FoundChoice>
     package: botbuilder-dialogs
     remarks: >-
       By default the prompt will return to the calling dialog a `boolean`
       representing the users
 
       selection.
-
-
-      #### Prompt Usage
-
-
-      When used with your bots `DialogSet` you can simply add a new instance of
-      the prompt as a named
-
-      dialog using `DialogSet.add()`. You can then start the prompt from a
-      waterfall step using either
-
-      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
-      prompted to select a choice
-
-      from a list and their choice will be passed as an argument to the callers
-      next waterfall step:
-
-
-      ```JavaScript
-
-      const { DialogSet, ChoicePrompt } = require('botbuilder-dialogs');
-
-
-      const dialogs = new DialogSet();
-
-
-      dialogs.add('choicePrompt', new ChoicePrompt());
-
-
-      dialogs.add('colorPrompt', [
-           async function (dc) {
-               await dc.prompt('choicePrompt', `Select a color`, ['red', 'green', 'blue']);
-           },
-           async function (dc, choice) {
-               const color = choice.value;
-               await dc.context.sendActivity(`I like ${color} too!`);
-               await dc.end();
-           }
-      ]);
-
-      ```
-
-
-      If the users response to the prompt fails to be recognized they will be
-      automatically re-prompted
-
-      to try again. By default the original prompt is re-sent to the user but
-      you can provide an
-
-      alternate prompt to send by passing in additional options:
-
-
-      ```JavaScript
-
-      await dc.prompt('choicePrompt', `Select a color`, ['red', 'green',
-      'blue'], { retryPrompt: `I didn't catch that. Select a color from the
-      list.` });
-
-      ```
   - uid: botbuilder-dialogs.ChoicePrompt.choiceOptions
     name: choiceOptions
+    fullName: choiceOptions
     children: []
-    type: method
     langs:
       - typeScript
+    type: property
     summary: >-
-      Sets additional options passed to the `ChoiceFactory` and used to tweak
-      the style of choices
+      Gets or sets additional options passed to the `ChoiceFactory` and used to
+      tweak the style of
 
-      rendered to the user.
+      choices rendered to the user.
     syntax:
-      content: 'function choiceOptions(options: ChoiceFactoryOptions)'
-      parameters:
-        - id: options
-          type:
-            - ChoiceFactoryOptions
-          description: |
-            Additional options to set.
+      content: 'public choiceOptions: ChoiceFactoryOptions | undefined'
       return:
         type:
-          - this
+          - botbuilder-dialogs.ChoiceFactoryOptions | undefined
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.constructor
     name: ChoicePrompt
@@ -111,12 +48,16 @@ items:
     summary: Creates a new `ChoicePrompt` instance.
     syntax:
       content: >-
-        new ChoicePrompt(validator?: PromptValidator<FoundChoice, O>,
-        defaultLocale?: string)
+        new ChoicePrompt(dialogId: string, validator?:
+        PromptValidator<FoundChoice>, defaultLocale?: string)
       parameters:
+        - id: dialogId
+          type:
+            - string
+          description: Unique ID of the dialog within its parent `DialogSet`.
         - id: validator
           type:
-            - 'PromptValidator<FoundChoice, O>'
+            - botbuilder-dialogs.PromptValidator<botbuilder-dialogs.FoundChoice>
           description: >-
             (Optional) validator that will be called each time the user responds
             to the prompt. If the validator replies with a message no additional
@@ -130,50 +71,99 @@ items:
             specified. Defaults to a value of `en-us`.
           optional: true
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.recognizerOptions
-    name: recognizerOptions
+  - uid: botbuilder-dialogs.ChoicePrompt.defaultLocale
+    name: defaultLocale
+    fullName: defaultLocale
     children: []
-    type: method
     langs:
       - typeScript
-    summary: Sets additional options passed to the `recognizeChoices()` function.
+    type: property
+    summary: ''
     syntax:
-      content: 'function recognizerOptions(options: FindChoicesOptions)'
-      parameters:
-        - id: options
-          type:
-            - FindChoicesOptions
-          description: |
-            Additional options to set.
+      content: 'public defaultLocale: string | undefined'
       return:
         type:
-          - this
+          - string | undefined
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ChoicePrompt.recognizerOptions
+    name: recognizerOptions
+    fullName: recognizerOptions
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets or sets additional options passed to the `recognizeChoices()`
+      function.
+    syntax:
+      content: 'public recognizerOptions: FindChoicesOptions | undefined'
+      return:
+        type:
+          - botbuilder-dialogs.FindChoicesOptions | undefined
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.style
     name: style
+    fullName: style
     children: []
-    type: method
     langs:
       - typeScript
-    summary: Sets the style of the choice list rendered to the user when prompting.
+    type: property
+    summary: >-
+      Gets or sets the style of the choice list rendered to the user when
+      prompting.
     syntax:
-      content: 'function style(listStyle: ListStyle)'
-      parameters:
-        - id: listStyle
-          type:
-            - ListStyle
-          description: |
-            Type of list to render to to user. Defaults to `ListStyle.auto`.
+      content: 'public style: ListStyle'
       return:
         type:
-          - this
+          - botbuilder-dialogs.ListStyle
     package: botbuilder-dialogs
+    remarks: Defaults to `ListStyle.auto`.
 references:
-  - uid: botbuilder-dialogs.Prompt<C>
-    name: Prompt<C>
+  - uid: botbuilder-dialogs.Prompt<botbuilder-dialogs.FoundChoice>
+    name: FoundChoice>
     spec.typeScript:
       - name: Prompt
         fullName: Prompt
         uid: botbuilder-dialogs.Prompt
-      - name: <C>
-        fullName: <C>
+      - name: <
+        fullName: <
+      - name: FoundChoice
+        fullName: FoundChoice
+        uid: botbuilder-dialogs.FoundChoice
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder-dialogs.PromptValidator<botbuilder-dialogs.FoundChoice>
+    name: FoundChoice>
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-dialogs.PromptValidator
+      - name: <
+        fullName: <
+      - name: FoundChoice
+        fullName: FoundChoice
+        uid: botbuilder-dialogs.FoundChoice
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder-dialogs.ChoiceFactoryOptions | undefined
+    name: ChoiceFactoryOptions | undefined
+    spec.typeScript:
+      - name: ChoiceFactoryOptions
+        fullName: ChoiceFactoryOptions
+        uid: botbuilder-dialogs.ChoiceFactoryOptions
+      - name: ' | undefined'
+        fullName: ' | undefined'
+  - uid: botbuilder-dialogs.FindChoicesOptions | undefined
+    name: FindChoicesOptions | undefined
+    spec.typeScript:
+      - name: FindChoicesOptions
+        fullName: FindChoicesOptions
+        uid: botbuilder-dialogs.FindChoicesOptions
+      - name: ' | undefined'
+        fullName: ' | undefined'
+  - uid: botbuilder-dialogs.ListStyle
+    name: ListStyle
+    spec.typeScript:
+      - name: ListStyle
+        fullName: ListStyle
+        uid: botbuilder-dialogs.ListStyle

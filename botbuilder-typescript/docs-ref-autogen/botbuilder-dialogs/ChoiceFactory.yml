@@ -1,0 +1,332 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.ChoiceFactory
+    name: ChoiceFactory
+    fullName: ChoiceFactory
+    children:
+      - botbuilder-dialogs.ChoiceFactory.forChannel
+      - botbuilder-dialogs.ChoiceFactory.inline
+      - botbuilder-dialogs.ChoiceFactory.list
+      - botbuilder-dialogs.ChoiceFactory.suggestedAction
+      - botbuilder-dialogs.ChoiceFactory.toChoices
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      A set of utility functions to assist with the formatting a 'message'
+      activity containing a list
+
+      of choices.
+    package: botbuilder-dialogs
+    remarks: >-
+      This example shows creating a message containing a list of choices that
+      has been conditionally
+
+      formatted based on the capabilities of the underlying channel:
+
+
+      ```JavaScript
+
+      const { ChoiceFactory } = require('botbuilder-choices');
+
+
+      const message = ChoiceFactory.forChannel(context, ['red', 'green',
+      'blue'], `Pick a color.`);
+
+      await context.sendActivity(message);
+
+      ```
+  - uid: botbuilder-dialogs.ChoiceFactory.forChannel
+    name: forChannel
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns a 'message' activity containing a list of choices that has been
+      automatically
+
+      formatted based on the capabilities of a given channel.
+    syntax:
+      content: >-
+        static function forChannel(channelOrContext: string | TurnContext,
+        choices: string | Choice[], text?: string, speak?: string, options?:
+        ChoiceFactoryOptions)
+      parameters:
+        - id: channelOrContext
+          type:
+            - string | TurnContext
+          description: Channel ID or context object for the current turn of conversation.
+        - id: choices
+          type:
+            - 'string | botbuilder-dialogs.Choice[]'
+          description: List of choices to render.
+        - id: text
+          type:
+            - string
+          description: (Optional) text of the message.
+          optional: true
+        - id: speak
+          type:
+            - string
+          description: (Optional) SSML to speak for the message.
+          optional: true
+        - id: options
+          type:
+            - botbuilder-dialogs.ChoiceFactoryOptions
+          description: |
+            (Optional) formatting options to use when rendering as a list.
+          optional: true
+      return:
+        type:
+          - Partial<Activity>
+    package: botbuilder-dialogs
+    remarks: >-
+      The algorithm prefers to format the supplied list of choices as suggested
+      actions but can
+
+      decide to use a text based list if suggested actions aren't natively
+      supported by the
+
+      channel, there are too many choices for the channel to display, or the
+      title of any choice
+
+      is too long.
+
+
+      If the algorithm decides to use a list it will use an inline list if there
+      are 3 or less
+
+      choices and all have short titles. Otherwise, a numbered list is used.
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.forChannel(context, [
+         { value: 'red', action: { type: 'imBack', title: 'The Red Pill', value: 'red pill' } },
+         { value: 'blue', action: { type: 'imBack', title: 'The Blue Pill', value: 'blue pill' } },
+      ], `Which do you choose?`);
+
+      await context.sendActivity(message);
+
+      ```
+  - uid: botbuilder-dialogs.ChoiceFactory.inline
+    name: inline
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns a 'message' activity containing a list of choices that has been
+      formatted as an
+
+      inline list.
+    syntax:
+      content: >-
+        static function inline(choices: string | Choice[], text?: string,
+        speak?: string, options?: ChoiceFactoryOptions)
+      parameters:
+        - id: choices
+          type:
+            - 'string | botbuilder-dialogs.Choice[]'
+          description: List of choices to render.
+        - id: text
+          type:
+            - string
+          description: (Optional) text of the message.
+          optional: true
+        - id: speak
+          type:
+            - string
+          description: (Optional) SSML to speak for the message.
+          optional: true
+        - id: options
+          type:
+            - botbuilder-dialogs.ChoiceFactoryOptions
+          description: |
+            (Optional) formatting options to tweak rendering of list.
+          optional: true
+      return:
+        type:
+          - Partial<Activity>
+    package: botbuilder-dialogs
+    remarks: >-
+      This example generates a message text of "Pick a color: (1. red, 2. green,
+      or 3. blue)":
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.inline(['red', 'green', 'blue'], `Pick a
+      color:`);
+
+      await context.sendActivity(message);
+
+      ```
+  - uid: botbuilder-dialogs.ChoiceFactory.list
+    name: list
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns a 'message' activity containing a list of choices that has been
+      formatted as an
+
+      numbered or bulleted list.
+    syntax:
+      content: >-
+        static function list(choices: string | Choice[], text?: string, speak?:
+        string, options?: ChoiceFactoryOptions)
+      parameters:
+        - id: choices
+          type:
+            - 'string | botbuilder-dialogs.Choice[]'
+          description: List of choices to render.
+        - id: text
+          type:
+            - string
+          description: (Optional) text of the message.
+          optional: true
+        - id: speak
+          type:
+            - string
+          description: (Optional) SSML to speak for the message.
+          optional: true
+        - id: options
+          type:
+            - botbuilder-dialogs.ChoiceFactoryOptions
+          description: |
+            (Optional) formatting options to tweak rendering of list.
+          optional: true
+      return:
+        type:
+          - Partial<Activity>
+    package: botbuilder-dialogs
+    remarks: >-
+      This example generates a message with the choices presented as a numbered
+      list:
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.list(['red', 'green', 'blue'], `Pick a
+      color:`);
+
+      await context.sendActivity(message);
+
+      ```
+  - uid: botbuilder-dialogs.ChoiceFactory.suggestedAction
+    name: suggestedAction
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns a 'message' activity containing a list of choices that have been
+      added as suggested
+
+      actions.
+    syntax:
+      content: >-
+        static function suggestedAction(choices: string | Choice[], text?:
+        string, speak?: string)
+      parameters:
+        - id: choices
+          type:
+            - 'string | botbuilder-dialogs.Choice[]'
+          description: List of choices to add.
+        - id: text
+          type:
+            - string
+          description: (Optional) text of the message.
+          optional: true
+        - id: speak
+          type:
+            - string
+          description: |
+            (Optional) SSML to speak for the message.
+          optional: true
+      return:
+        type:
+          - Partial<Activity>
+    package: botbuilder-dialogs
+    remarks: >-
+      This example generates a message with the choices presented as suggested
+      action buttons:
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.suggestedAction(['red', 'green', 'blue'],
+      `Pick a color:`);
+
+      await context.sendActivity(message);
+
+      ```
+  - uid: botbuilder-dialogs.ChoiceFactory.toChoices
+    name: toChoices
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Takes a mixed list of `string` and `Choice` based choices and returns them
+      as a `Choice[]`.
+    syntax:
+      content: 'static function toChoices(choices: string | Choice[] | undefined)'
+      parameters:
+        - id: choices
+          type:
+            - 'string | botbuilder-dialogs.Choice[] | undefined'
+          description: |
+            List of choices to add.
+      return:
+        type:
+          - 'botbuilder-dialogs.Choice[]'
+    package: botbuilder-dialogs
+    remarks: >-
+      This example converts a simple array of string based choices to a properly
+      formated `Choice[]`.
+
+
+      ```JavaScript
+
+      const choices = ChoiceFactory.toChoices(['red', 'green', 'blue']);
+
+      ```
+references:
+  - uid: 'string | botbuilder-dialogs.Choice[]'
+    name: 'Choice[]'
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: Choice
+        fullName: Choice
+        uid: botbuilder-dialogs.Choice
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder-dialogs.ChoiceFactoryOptions
+    name: ChoiceFactoryOptions
+    spec.typeScript:
+      - name: ChoiceFactoryOptions
+        fullName: ChoiceFactoryOptions
+        uid: botbuilder-dialogs.ChoiceFactoryOptions
+  - uid: 'string | botbuilder-dialogs.Choice[] | undefined'
+    name: 'Choice[] | undefined'
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: Choice
+        fullName: Choice
+        uid: botbuilder-dialogs.Choice
+      - name: '[] | undefined'
+        fullName: '[] | undefined'
+  - uid: 'botbuilder-dialogs.Choice[]'
+    name: 'Choice[]'
+    spec.typeScript:
+      - name: Choice
+        fullName: Choice
+        uid: botbuilder-dialogs.Choice
+      - name: '[]'
+        fullName: '[]'

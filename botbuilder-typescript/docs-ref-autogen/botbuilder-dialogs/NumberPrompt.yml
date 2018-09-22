@@ -2,86 +2,34 @@
 items:
   - uid: botbuilder-dialogs.NumberPrompt
     name: NumberPrompt
-    fullName: NumberPrompt<C>
+    fullName: NumberPrompt<O>
     children:
+      - botbuilder-dialogs.NumberPrompt.defaultLocale
       - botbuilder-dialogs.NumberPrompt.constructor
     langs:
       - typeScript
     type: class
     summary: Prompts a user to enter a number.
     extends:
-      name: botbuilder-dialogs.Prompt<C>
+      name: botbuilder-dialogs.Prompt<number>
     package: botbuilder-dialogs
     remarks: >-
       By default the prompt will return to the calling dialog a `number`
       representing the users input.
-
-
-      #### Prompt Usage
-
-
-      When used with your bots `DialogSet` you can simply add a new instance of
-      the prompt as a named
-
-      dialog using `DialogSet.add()`. You can then start the prompt from a
-      waterfall step using either
-
-      `DialogContext.begin()` or `DialogContext.prompt()`. The user will be
-      prompted to reply with a
-
-      number which will be passed as an argument to the callers next waterfall
-      step:
-
-
-      ```JavaScript
-
-      const { DialogSet, NumberPrompt } = require('botbuilder-dialogs');
-
-
-      const dialogs = new DialogSet();
-
-
-      dialogs.add('agePrompt', new NumberPrompt());
-
-
-      dialogs.add('askAge', [
-           async function (dc) {
-               await dc.prompt('agePrompt', `How old are you?`);
-           },
-           async function (dc, age) {
-               if (age < 40) {
-                   await dc.context.sendActivity(`So young :)`);
-               } else {
-                   await dc.context.sendActivity(`I hear ${age} is the new ${age - 10} :)`);
-               }
-               await dc.end();
-           }
-      ]);
-
-      ```
-
-
-      The prompt can be configured with a custom validator to perform additional
-      checks like ensuring
-
-      that the user responds with a valid age and that only whole numbers are
-      returned:
-
-
-      ```JavaScript
-
-      dialogs.add('agePrompt', new NumberPrompt(async (context, value) => {
-         if (typeof value == 'number') {
-            if (value >= 1 && value < 111) {
-               // Return age rounded down to nearest whole number.
-               return Math.floor(value);
-            }
-         }
-         await context.sendActivity(`Please enter a number between 1 and 110 or say "cancel".`);
-         return undefined;
-      }));
-
-      ```
+  - uid: botbuilder-dialogs.NumberPrompt.defaultLocale
+    name: defaultLocale
+    fullName: defaultLocale
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'public defaultLocale: string | undefined'
+      return:
+        type:
+          - string | undefined
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.NumberPrompt.constructor
     name: NumberPrompt
     children: []
@@ -91,12 +39,16 @@ items:
     summary: Creates a new `NumberPrompt` instance.
     syntax:
       content: >-
-        new NumberPrompt(validator?: PromptValidator<number, O>, defaultLocale?:
-        string)
+        new NumberPrompt(dialogId: string, validator?: PromptValidator<number>,
+        defaultLocale?: string)
       parameters:
+        - id: dialogId
+          type:
+            - string
+          description: Unique ID of the dialog within its parent `DialogSet`.
         - id: validator
           type:
-            - 'PromptValidator<number, O>'
+            - botbuilder-dialogs.PromptValidator<number>
           description: >-
             (Optional) validator that will be called each time the user responds
             to the prompt. If the validator replies with a message no additional
@@ -111,11 +63,19 @@ items:
           optional: true
     package: botbuilder-dialogs
 references:
-  - uid: botbuilder-dialogs.Prompt<C>
-    name: Prompt<C>
+  - uid: botbuilder-dialogs.Prompt<number>
+    name: Prompt<number>
     spec.typeScript:
       - name: Prompt
         fullName: Prompt
         uid: botbuilder-dialogs.Prompt
-      - name: <C>
-        fullName: <C>
+      - name: <number>
+        fullName: <number>
+  - uid: botbuilder-dialogs.PromptValidator<number>
+    name: PromptValidator<number>
+    spec.typeScript:
+      - name: PromptValidator
+        fullName: PromptValidator
+        uid: botbuilder-dialogs.PromptValidator
+      - name: <number>
+        fullName: <number>
