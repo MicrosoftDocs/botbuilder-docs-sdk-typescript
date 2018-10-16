@@ -16,13 +16,35 @@ items:
       The file transcript store stores transcripts in file system with each
       activity as a file.
     package: botbuilder
+    remarks: >-
+      This class provides an interface to log all incoming and outgoing
+      activities to the filesystem.
+
+      It implements the features necessary to work alongside the
+      TranscriptLoggerMiddleware plugin.
+
+      When used in concert, your bot will automatically log all conversations.
+
+
+      Below is the boilerplate code needed to use this in your app:
+
+      ```javascript
+
+      const { FileTranscriptStore, TranscriptLoggerMiddleware } =
+      require('botbuilder');
+
+
+      adapter.use(new TranscriptLoggerMiddleware(new
+      FileTranscriptStore(__dirname + '/transcripts/')));
+
+      ```
   - uid: botbuilder.FileTranscriptStore.deleteTranscript
     name: deleteTranscript
     children: []
     type: method
     langs:
       - typeScript
-    summary: Delete a specific conversation and all of it's activities.
+    summary: Delete a conversation and all of it's activities.
     syntax:
       content: 'function deleteTranscript(channelId: string, conversationId: string)'
       parameters:
@@ -45,7 +67,7 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: Creates an instance of FileTranscriptStore
+    summary: Creates an instance of FileTranscriptStore.
     syntax:
       content: 'new FileTranscriptStore(folder: string)'
       parameters:
@@ -61,7 +83,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Get activities for a conversation (Aka the transcript)
+    summary: >-
+      Get all activities associated with a conversation id (aka get the
+      transcript).
     syntax:
       content: >-
         function getTranscriptActivities(channelId: string, conversationId:
@@ -78,13 +102,13 @@ items:
         - id: continuationToken
           type:
             - string
-          description: Continuatuation token to page through results.
+          description: (Optional) Continuation token to page through results.
           optional: true
         - id: startDate
           type:
             - Date
           description: |
-            Earliest time to include.
+            (Optional) Earliest time to include.
           optional: true
       return:
         type:
@@ -96,7 +120,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: List conversations in the channelId.
+    summary: List all the logged conversations for a given channelId.
     syntax:
       content: 'function listTranscripts(channelId: string, continuationToken?: string)'
       parameters:
@@ -108,7 +132,7 @@ items:
           type:
             - string
           description: |
-            Continuatuation token to page through results.
+            (Optional) Continuation token to page through results.
           optional: true
       return:
         type:

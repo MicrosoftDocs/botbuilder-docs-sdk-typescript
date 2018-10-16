@@ -10,11 +10,16 @@ items:
     langs:
       - typeScript
     type: class
-    summary: >-
-      Component used to recognize intents in a user utterance using a configured
-      LUIS model.
+    summary: Recognize intents in a user utterance using a configured LUIS model.
     package: botbuilder-ai
     remarks: >-
+      This class is used to recognize intents and extract entities from incoming
+      messages.
+
+      See this class in action [in this sample
+      application](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/12.nlp-with-luis).
+
+
       This component can be used within your bots logic by calling
       [recognize()](#recognize).
   - uid: botbuilder-ai.LuisRecognizer.constructor
@@ -32,17 +37,24 @@ items:
         - id: application
           type:
             - botbuilder-ai.LuisApplication
-          description: LUIS application to use.
+          description: >-
+            An object conforming to the [LuisApplication](#luisapplication)
+            definition.
         - id: options
           type:
             - botbuilder-ai.LuisPredictionOptions
-          description: |
-            Options used to control predictions.
+          description: >-
+            (Optional) options object used to control predictions. Should
+            conform to the [LuisPrectionOptions](#luispredictionoptions)
+            definition.
           optional: true
         - id: includeApiResults
           type:
             - boolean
-          description: ''
+          description: >
+            (Optional) flag that if set to `true` will force the inclusion of
+            LUIS Api call in results returned by [recognize()](#recognize).
+            Defaults to a value of `false`.
           optional: true
     package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.recognize
@@ -65,10 +77,38 @@ items:
           - Promise<RecognizerResult>
     package: botbuilder-ai
     remarks: >-
+      Returns a [RecognizerResult](../botbuilder-core/recognizerresult)
+      containing any intents and entities recognized by LUIS.
+
+
       In addition to returning the results from LUIS, [recognize()](#recognize)
       will also
 
       emit a trace activity that contains the LUIS results.
+
+
+      Here is an example of recognize being used within a bot's turn handler: to
+      interpret an incoming message:
+
+
+      ```javascript
+
+      async onTurn(context) {
+          if (turnContext.activity.type === ActivityTypes.Message) {
+              const results = await luisRecognizer.recognize(turnContext);
+              const topIntent = LuisRecognizer.topIntent(results);
+              switch (topIntent) {
+                  case 'MyIntent':
+                      // ... handle intent ...
+                      break;
+                  case 'None':
+                      // ... handle intent ...
+                      break;
+              }
+          }
+      }
+
+      ```
   - uid: botbuilder-ai.LuisRecognizer.topIntent
     name: topIntent
     children: []
