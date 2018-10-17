@@ -209,7 +209,10 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Test a list of activities.
+    summary: |-
+      Test a list of activities.
+      Each activity with the "bot" role will be processed with assertReply()
+      Every other activity will be processed as a user message with send()
     syntax:
       content: >-
         function testActivities(activities: Partial<Activity>[], description?:
@@ -237,11 +240,6 @@ items:
         type:
           - botbuilder-core.TestFlow
     package: botbuilder-core
-    remarks: >-
-      Each activity with the "bot" role will be processed with assertReply() and
-      every other
-
-      activity will be processed as a user message with send().
   - uid: botbuilder-core.TestAdapter.constructor
     name: TestAdapter
     children: []

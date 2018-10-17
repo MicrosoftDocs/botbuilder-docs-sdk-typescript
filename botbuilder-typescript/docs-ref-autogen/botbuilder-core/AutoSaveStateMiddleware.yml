@@ -12,22 +12,12 @@ items:
       - typeScript
     type: class
     summary: >-
-      Middleware that will automatically save any state changes at the end of
-      the turn.
+      Middleware that will call `read()` and `write()` in parallel on multiple
+      `BotState`
+
+      instances.
     package: botbuilder-core
     remarks: >-
-      The `AutoSaveStateMiddleware` class should be added towards the top of
-      your bot's middleware
-
-      stack, before any other components that use state.  Any `BotState` plugins
-      passed to the
-
-      constructor will have their `BotState.saveChanges()` method called upon
-      successful completion
-
-      of the turn.
-
-
       This example shows boilerplate code for reading and writing conversation
       and user state within
 
@@ -36,7 +26,7 @@ items:
 
       ```JavaScript
 
-      const { AutoSaveStateMiddleware, ConversationState, UserState,
+      const {AutoSaveStateMiddleware, ConversationState, UserState,
       MemoryStorage } = require('botbuilder');
 
 
@@ -50,14 +40,13 @@ items:
 
 
       server.post('/api/messages', (req, res) => {
-         adapter.processActivity(req, res, async (turnContext) => {
+         adapter.processActivity(req, res, async (context) => {
             // Get state
-            const convo = await conversationState.load(turnContext);
-            const user = await userState.load(turnContext);
+            const convo = conversationState.get(context);
+            const user = userState.get(context);
 
             // ... route activity ...
-            // ...make changes to state objects...
-            // ... no need to call userState.saveChanges() or conversationState.saveChanges() anymore!
+
          });
       });
 
@@ -68,7 +57,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Adds additional `BotState` plugins to be saved.
+    summary: Registers `BotState` plugins with the set.
     syntax:
       content: 'function add(botStates: BotState[])'
       parameters:
@@ -76,7 +65,7 @@ items:
           type:
             - 'botbuilder-core.BotState[]'
           description: |
-            One or more BotState plugins to add.
+            One or more BotState plugins to register.
       return:
         type:
           - this
@@ -94,9 +83,8 @@ items:
         - id: botStates
           type:
             - 'botbuilder-core.BotState[]'
-          description: >
-            One or more BotState plugins to automatically save at the end of the
-            turn.
+          description: |
+            Zero or more BotState plugins to register.
     package: botbuilder-core
   - uid: botbuilder-core.AutoSaveStateMiddleware.botStateSet
     name: botStateSet
@@ -105,7 +93,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Set of `BotState` plugins being automatically saved.
+    summary: ''
     syntax:
       content: 'public botStateSet: BotStateSet'
       return:

@@ -24,18 +24,15 @@ items:
       card:
 
 
-      ```javascript
+      ```JavaScript
 
-      const { MessageFactory, CardFactory } = require('botbuilder');
-
-
-      const card = CardFactory.heroCard(
-           'White T-Shirt',
-           ['https://example.com/whiteShirt.jpg'],
-           ['buy']
+      const message = MessageFactory.attachment(
+          CardFactory.heroCard(
+              'White T-Shirt',
+              ['https://example.com/whiteShirt.jpg'],
+              ['buy']
+           )
       );
-
-      const message = MessageFactory.attachment(card);
 
       await context.sendActivity(message);
 
@@ -77,7 +74,7 @@ items:
           - Partial<Activity>
     package: botbuilder-core
     remarks: |-
-      This example shows creating a message with a hero card attachment:
+      This example shows sending a message with a hero card attachment:
 
       ```JavaScript
       const message = MessageFactory.attachment(
@@ -87,6 +84,7 @@ items:
               ['buy']
            )
       );
+      await context.sendActivity(message);
       ```
   - uid: botbuilder-core.MessageFactory.carousel
     name: carousel
@@ -127,7 +125,7 @@ items:
           - Partial<Activity>
     package: botbuilder-core
     remarks: |-
-      This example shows creating a message with a carousel of hero cards:
+      This example shows sending a message with a carousel of hero cards:
 
       ```JavaScript
       const message = MessageFactory.carousel([
@@ -135,6 +133,7 @@ items:
          CardFactory.heroCard('title2', ['imageUrl2'], ['button2']),
          CardFactory.heroCard('title3', ['imageUrl3'], ['button3'])
       ]);
+      await context.sendActivity(message);
       ```
   - uid: botbuilder-core.MessageFactory.contentUrl
     name: contentUrl
@@ -191,6 +190,8 @@ items:
       MessageFactory.contentUrl('https://example.com/hawaii.jpg', 'image/jpeg',
       'Hawaii Trip', 'A photo from our family vacation.');
 
+      await context.sendActivity(message);
+
       ```
   - uid: botbuilder-core.MessageFactory.list
     name: list
@@ -229,7 +230,7 @@ items:
           - Partial<Activity>
     package: botbuilder-core
     remarks: |-
-      This example shows creating a message with a list of hero cards:
+      This example shows sending a message with a list of hero cards:
 
       ```JavaScript
       const message = MessageFactory.list([
@@ -237,6 +238,7 @@ items:
          CardFactory.heroCard('title2', ['imageUrl2'], ['button2']),
          CardFactory.heroCard('title3', ['imageUrl3'], ['button3'])
       ]);
+      await context.sendActivity(message);
       ```
   - uid: botbuilder-core.MessageFactory.suggestedActions
     name: suggestedActions
@@ -279,13 +281,15 @@ items:
           - Partial<Activity>
     package: botbuilder-core
     remarks: >-
-      This example shows creating a message with suggested actions:
+      This example shows sending a message with suggested actions:
 
 
       ```JavaScript
 
       const message = MessageFactory.suggestedActions(['red', 'green', 'blue'],
       `Choose a color`);
+
+      await context.sendActivity(message);
 
       ```
   - uid: botbuilder-core.MessageFactory.text
@@ -324,4 +328,5 @@ items:
 
       ```JavaScript
       const message = MessageFactory.text('Greetings from example message');
+      await context.sendActivity(message);
       ```

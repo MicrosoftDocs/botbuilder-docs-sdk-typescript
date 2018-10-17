@@ -14,24 +14,50 @@ items:
     langs:
       - typeScript
     type: class
-    summary: Base class for the frameworks state persistance scopes.
+    summary: Reads and writes state for your bot to storage.
     package: botbuilder-core
     remarks: >-
-      This class will read and write state, to a provided storage provider, for
-      each turn of
+      The state object will be automatically cached on the context object for
+      the lifetime of the turn
 
-      conversation with a user. Derived classes, like `ConversationState` and
-      `UserState`, provide a
-
-      `StorageKeyFactory` which is used to determine the key used to persist a
-      given storage object.
+      and will only be written to storage if it has been modified.
 
 
-      The state object thats loaded will be automatically cached on the context
-      object for the
+      When a `BotState` instance is used as middleware its state object will be
+      automatically read in
 
-      lifetime of the turn and will only be written to storage if it has been
-      modified.
+      before your bots logic runs and then intelligently written back out upon
+      completion of your bots
+
+      logic. Multiple instances can be read and written in parallel using the
+      `BotStateSet` middleware.
+
+
+      ```JavaScript
+
+      const { BotState, MemoryStorage } = require('botbuilder');
+
+
+      const storage = new MemoryStorage();
+
+      const botState = new BotState(storage, (context) => 'botState');
+
+      adapter.use(botState);
+
+
+      server.post('/api/messages', (req, res) => {
+         adapter.processActivity(req, res, async (context) => {
+            // Track up time
+            const state = await botState.get(context);
+            if (!('startTime' in state)) { state.startTime = new Date().getTime() }
+            state.upTime = new Date().getTime() - state.stateTime;
+
+            // ... route activity ...
+
+         });
+      });
+
+      ```
   - uid: botbuilder-core.BotState.constructor
     name: BotState
     children: []
@@ -69,19 +95,11 @@ items:
           description: |
             Context for current turn of conversation with the user.
     package: botbuilder-core
-    remarks: >-
-      The cleared state object will not be persisted until
-      [saveChanges()](#savechanges) has
-
-      been called.
-
+    remarks: |-
+      This example shows how to clear a state object:
 
       ```JavaScript
-
-      await botState.clear(context);
-
-      await botState.saveChanges(context);
-
+      botState.clear(context);
       ```
   - uid: botbuilder-core.BotState.createProperty
     name: createProperty
@@ -89,11 +107,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      Creates a new property accessor for reading and writing an individual
-      property to the bot
-
-      states storage object.
+    summary: Create property accessor for a property which is managed by BotState class
     syntax:
       content: 'function createProperty<T>(name: string)'
       parameters:
@@ -101,7 +115,7 @@ items:
           type:
             - string
           description: |
-            Name of the property to add. Must be unique within the set.
+            property name
       return:
         type:
           - botbuilder-core.StatePropertyAccessor<T>
@@ -132,7 +146,7 @@ items:
 
       ```JavaScript
 
-      const state = botState.get(context);
+      const state = await botState.get(context);
 
       ```
   - uid: botbuilder-core.BotState.load
@@ -141,7 +155,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Reads in and caches the backing state object for a turn.
+    summary: Reads in and caches the current state object for a turn.
     syntax:
       content: 'function load(context: TurnContext, force: boolean)'
       parameters:
@@ -166,10 +180,6 @@ items:
       will force the state object to be re-read.
 
 
-      This method is automatically called on first access of any of created
-      property accessors.
-
-
       ```JavaScript
 
       const state = await botState.load(context);
@@ -182,9 +192,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: >-
-      Collection of state property accessors added through
-      [createProperty()](#createproperty).
+    summary: ''
     syntax:
       content: 'public properties: Map<string, StatePropertyAccessor> = new Map()'
       return:

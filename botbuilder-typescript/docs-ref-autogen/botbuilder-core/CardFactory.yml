@@ -34,24 +34,13 @@ items:
       passed as input to a `MessageFactory` method.
 
 
-      The following example shows sending a message containing a single hero
-      card:
-
-
       ```javascript
-
-      const { MessageFactory, CardFactory } = require('botbuilder');
-
 
       const card = CardFactory.heroCard(
            'White T-Shirt',
            ['https://example.com/whiteShirt.jpg'],
            ['buy']
       );
-
-      const message = MessageFactory.attachment(card);
-
-      await context.sendActivity(message);
 
       ```
   - uid: botbuilder-core.CardFactory.actions
@@ -60,7 +49,12 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Returns a properly formatted array of actions.
+    summary: >-
+      Returns a properly formatted array of actions. Supports converting strings
+      to `messageBack`
+
+      actions (note: using 'imBack' for now as 'messageBack' doesn't work
+      properly in emulator.)
     syntax:
       content: 'static function actions(actions: string | CardAction[] | undefined)'
       parameters:
@@ -74,18 +68,17 @@ items:
         type:
           - 'CardAction[]'
     package: botbuilder-core
-    remarks: >-
-      Supports converting strings to `messageBack` actions (note: using 'imBack'
-      for now as
-
-      'messageBack' doesn't work properly in emulator.)
   - uid: botbuilder-core.CardFactory.adaptiveCard
     name: adaptiveCard
     children: []
     type: method
     langs:
       - typeScript
-    summary: Returns an attachment for an adaptive card.
+    summary: >-
+      Returns an attachment for an adaptive card. The attachment will contain
+      the card and the
+
+      appropriate `contentType`.
     syntax:
       content: 'static function adaptiveCard(card: any)'
       parameters:
@@ -367,9 +360,7 @@ items:
       - typeScript
     summary: >-
       Returns an attachment for an OAuth card used by the Bot Frameworks Single
-      Sign On (SSO)
-
-      service.
+      Sign On (SSO) service.
     syntax:
       content: >-
         static function oauthCard(connectionName: string, title: string, text?:
@@ -399,7 +390,11 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Returns an attachment for a receipt card.
+    summary: >-
+      Returns an attachment for a receipt card. The attachment will contain the
+      card and the
+
+      appropriate `contentType`.
     syntax:
       content: 'static function receiptCard(card: ReceiptCard)'
       parameters:
@@ -418,7 +413,11 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Returns an attachment for a signin card.
+    summary: >-
+      Returns an attachment for a signin card. For channels that don't natively
+      support signin
+
+      cards an alternative message will be rendered.
     syntax:
       content: 'static function signinCard(title: string, url: string, text?: string)'
       parameters:
@@ -440,18 +439,23 @@ items:
         type:
           - Attachment
     package: botbuilder-core
-    remarks: >-
-      For channels that don't natively support signin cards an alternative
-      message will be
-
-      rendered.
   - uid: botbuilder-core.CardFactory.thumbnailCard
     name: thumbnailCard
     children: []
     type: method
     langs:
       - typeScript
-    summary: Returns an attachment for a thumbnail card.
+    summary: >-
+      Returns an attachment for a thumbnail card. Thumbnail cards are similar to
+      [hero cards](#herocard)
+
+      but instead of a full width image, they're typically rendered with a
+      smaller thumbnail version of
+
+      the image on either side and the text will be rendered in column next to
+      the image. Any buttons
+
+      will typically show up under the card.
     syntax:
       content: >-
         static function thumbnailCard(title: string, images?: string |
@@ -482,24 +486,23 @@ items:
         type:
           - Attachment
     package: botbuilder-core
-    remarks: >-
-      Thumbnail cards are similar to [hero cards](#herocard) but instead of a
-      full width image,
-
-      they're typically rendered with a smaller thumbnail version of the image
-      on either side
-
-      and the text will be rendered in column next to the image. Any buttons
-      will typically
-
-      show up under the card.
   - uid: botbuilder-core.CardFactory.thumbnailCard_1
     name: thumbnailCard
     children: []
     type: method
     langs:
       - typeScript
-    summary: Returns an attachment for a thumbnail card.
+    summary: >-
+      Returns an attachment for a thumbnail card. Thumbnail cards are similar to
+      [hero cards](#herocard)
+
+      but instead of a full width image, they're typically rendered with a
+      smaller thumbnail version of
+
+      the image on either side and the text will be rendered in column next to
+      the image. Any buttons
+
+      will typically show up under the card.
     syntax:
       content: >-
         static function thumbnailCard(title: string, text: string, images?:
@@ -533,17 +536,6 @@ items:
         type:
           - Attachment
     package: botbuilder-core
-    remarks: >-
-      Thumbnail cards are similar to [hero cards](#herocard) but instead of a
-      full width image,
-
-      they're typically rendered with a smaller thumbnail version of the image
-      on either side
-
-      and the text will be rendered in column next to the image. Any buttons
-      will typically
-
-      show up under the card.
   - uid: botbuilder-core.CardFactory.videoCard
     name: videoCard
     children: []

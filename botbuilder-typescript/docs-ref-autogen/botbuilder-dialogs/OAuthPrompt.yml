@@ -90,42 +90,32 @@ items:
 
       ```JavaScript
 
-      const { ConversationState, MemoryStorage } = require('botbuilder');
-
-      const { DialogSet, OAuthPrompt, WaterfallDialog } =
-      require('botbuilder-dialogs');
+      const { DialogSet, OAuthPrompt } = require('botbuilder-dialogs');
 
 
-      const convoState = new ConversationState(new MemoryStorage());
-
-      const dialogState = convoState.createProperty('dialogState');
-
-      const dialogs = new DialogSet(dialogState);
+      const dialogs = new DialogSet();
 
 
-      dialogs.add(new OAuthPrompt('loginPrompt', {
+      dialogs.add('loginPrompt', new OAuthPrompt({
          connectionName: 'GitConnection',
          title: 'Login To GitHub',
          timeout: 300000   // User has 5 minutes to login
       }));
 
 
-      dialogs.add(new WaterfallDialog('taskNeedingLogin', [
-           async (step) => {
-               return await step.beginDialog('loginPrompt');
+      dialogs.add('taskNeedingLogin', [
+           async function (dc) {
+               await dc.beginDialog('loginPrompt');
            },
-           async (step) => {
-               const token = step.result;
+           async function (dc, token) {
                if (token) {
-
-                   // ... continue with task needing access token ...
-
+                   // Continue with task needing access token
                } else {
-                   await step.context.sendActivity(`Sorry... We couldn't log you in. Try again later.`);
-                   return await step.endDialog();
+                   await dc.context.sendActivity(`Sorry... We couldn't log you in. Try again later.`);
+                   await dc.endDialog();
                }
            }
-      ]));
+      ]);
 
       ```
   - uid: botbuilder-dialogs.OAuthPrompt.beginDialog
@@ -175,19 +165,18 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Attempts to retrieve the stored token for the current user.
+    summary: ''
     syntax:
       content: 'function getUserToken(context: TurnContext, code?: string)'
       parameters:
         - id: context
           type:
             - TurnContext
-          description: Context reference the user that's being looked up.
+          description: ''
         - id: code
           type:
             - string
-          description: |
-            (Optional) login code received from the user.
+          description: ''
           optional: true
       return:
         type:
@@ -199,7 +188,7 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: Creates a new OAuthPrompt instance.
+    summary: Creates a new `OAuthPrompt` instance.
     syntax:
       content: >-
         new OAuthPrompt(dialogId: string, settings: OAuthPromptSettings,
@@ -208,9 +197,7 @@ items:
         - id: dialogId
           type:
             - string
-          description: >-
-            Unique ID of the dialog within its parent `DialogSet` or
-            `ComponentDialog`.
+          description: Unique ID of the dialog within its parent `DialogSet`.
         - id: settings
           type:
             - botbuilder-dialogs.OAuthPromptSettings
@@ -220,7 +207,8 @@ items:
             - botbuilder-dialogs.PromptValidator<TokenResponse>
           description: >
             (Optional) validator that will be called each time the user responds
-            to the prompt.
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
           optional: true
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.signOutUser
@@ -237,7 +225,7 @@ items:
           type:
             - TurnContext
           description: |
-            Context referencing the user that's being signed out.
+            a TurnContext representing latest activity
       return:
         type:
           - Promise<void>

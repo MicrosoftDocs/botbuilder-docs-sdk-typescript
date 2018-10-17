@@ -41,8 +41,8 @@ items:
       - typeScript
     type: property
     summary: >-
-      Returns the persisted instance of the active dialog on the top of the
-      stack or `undefined` if
+      Returns the cached instance of the active dialog on the top of the stack
+      or `undefined` if
 
       the stack is empty.
     syntax:
@@ -52,13 +52,29 @@ items:
           - botbuilder-dialogs.DialogInstance | undefined
     package: botbuilder-dialogs
     remarks: >-
-      Dialogs can use this to persist custom state in between conversation
-      turns:
+      Within a dialog or waterfall step this can be used to access the active
+      dialogs state object:
 
 
       ```JavaScript
 
-      dc.activeDialog.state = { someFlag: true };
+      dc.activeDialog.state.profile = {};
+
+      ```
+
+
+      Within the bots routing logic this can be used to determine if there's an
+      active dialog on
+
+      the stack:
+
+
+      ```JavaScript
+
+      if (!dc.activeDialog) {
+          await dc.context.sendActivity(`No dialog is active`);
+          return;
+      }
 
       ```
   - uid: botbuilder-dialogs.DialogContext.beginDialog
@@ -87,32 +103,22 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      If there's already an active dialog on the stack, that dialog will be
-      paused until the new
-
-      dialog calls [endDialog()](#enddialog).
+      This example starts a 'greeting' dialog and passes it the current user
+      object:
 
 
       ```JavaScript
 
-      return await dc.beginDialog('greeting', { name: user.name });
+      await dc.beginDialog('greeting', user);
 
       ```
-
-
-      The `DialogTurnResult.status` returned can be:
-
-      - `DialogTurnStatus.active` if the dialog started was a multi-turn dialog.
-
-      - `DialogTurnStatus.completed` if the dialog started was a single-turn
-      dialog.
   - uid: botbuilder-dialogs.DialogContext.cancelAllDialogs
     name: cancelAllDialogs
     children: []
     type: method
     langs:
       - typeScript
-    summary: Cancels any dialogs on the stack resulting in an empty stack.
+    summary: Cancels all dialogs on the stack resulting in an empty stack.
     syntax:
       content: function cancelAllDialogs()
       parameters: []
@@ -120,27 +126,6 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
-    remarks: >-
-      The dialogs being cancelled will have their `Dialog.endDialog()` method
-      called before being
-
-      removed from the stack.
-
-
-      ```JavaScript
-
-      await dc.cancelAllDialogs();
-
-      return await dc.beginDialog('bookFlight');
-
-      ```
-
-
-      The `DialogTurnResult.status` returned can be:
-
-      - `DialogTurnStatus.cancelled` if one or more dialogs were cancelled.
-
-      - `DialogTurnStatus.empty` if the stack was empty.
   - uid: botbuilder-dialogs.DialogContext.context
     name: context
     fullName: context
@@ -161,7 +146,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: 'Continues execution of the active multi-turn dialog, if there is one.'
+    summary: 'Continues execution of the active dialog, if there is one.'
     syntax:
       content: function continueDialog()
       parameters: []
@@ -173,30 +158,35 @@ items:
       The stack will be inspected and the active dialog will be retrieved using
       `DialogSet.find()`.
 
-      The dialog will then have its `Dialog.continueDialog()` method called.
+      The dialog will then have its optional `continueDialog()` method executed.
+      You can check
+
+      `context.responded` after the call completes to determine if a dialog was
+      run and a reply
+
+      was sent to the user.
+
+
+      > [!NOTE]
+
+      > If the active dialog fails to implement `continueDialog()` the
+      [end()](#end) method will
+
+      > be automatically called. This is done as a safety mechanism to avoid
+      users getting trapped
+
+      > within a dialog.
 
 
       ```JavaScript
 
-      const result = await dc.continueDialog();
+      await dc.continueDialog();
 
-      if (result.status == DialogTurnStatus.empty && dc.context.activity.type ==
-      ActivityTypes.message) {
-          // Send fallback message
+      if (!context.responded) {
           await dc.context.sendActivity(`I'm sorry. I didn't understand.`);
       }
 
       ```
-
-
-      The `DialogTurnResult.status` returned can be:
-
-      - `DialogTurnStatus.active` if there's still one or more dialogs on the
-      stack.
-
-      - `DialogTurnStatus.completed` if the last dialog on the stack just ended.
-
-      - `DialogTurnStatus.empty` if the stack was empty.
   - uid: botbuilder-dialogs.DialogContext.constructor
     name: DialogContext
     children: []
@@ -266,31 +256,19 @@ items:
       The parent dialog is the dialog the started the one being ended via a call
       to either
 
-      [beginDialog()](#begindialog) or [prompt()](#prompt). The parent dialog
-      will have its
-
-      `Dialog.resumeDialog()` method called with any returned `result`. If there
-      is no parent
-
-      dialog then turn will end and the result will be passed to the bot via
-
-      `DialogTurnResult.result`.
+      [begin()](#begin) or [prompt()](#prompt).
 
 
-      ```JavaScript
+      The parent dialog will have its `resumeDialog()` method invoked with any
+      returned result.
 
-      return await dc.endDialog();
+      If the parent dialog hasn't implemented resumeDialog() then it will be
+      popped off the stack
 
-      ```
+      as well and any result will be passed it its parent. If there are no more
+      parent dialogs on
 
-
-      The `DialogTurnResult.status` returned can be:
-
-      - `DialogTurnStatus.active` the parent dialog was resumed and is still
-      active.
-
-      - `DialogTurnStatus.completed` the parent dialog completed or there was no
-      parent dialog to resume.
+      the stack then processing of the turn will end.
   - uid: botbuilder-dialogs.DialogContext.prompt
     name: prompt
     children: []
@@ -298,8 +276,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      Helper function to simplify formatting the options for calling a `Prompt`
-      based dialog.
+      Helper function to simplify formatting the options for calling a prompt
+      dialog.
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
@@ -320,17 +298,16 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      This is a lightweight wrapper abound [beginDialog()](#begindialog). It
-      fills in a
+      This is a lightweight wrapper abound [begin()](#begin). It fills in a
+      `PromptOptions`
 
-      `PromptOptions` structure and then passes it through to
-      `dc.beginDialog(dialogId, options)`.
+      structure and then passes it through to `dc.beginDialog(dialogId,
+      options)`.
 
 
       ```JavaScript
 
-      return await dc.prompt('confirmPrompt', `Are you sure you'd like to
-      quit?`);
+      await dc.prompt('confirmPrompt', `Are you sure you'd like to quit?`);
 
       ```
   - uid: botbuilder-dialogs.DialogContext.replaceDialog
@@ -358,41 +335,8 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      This method is conceptually equivalent to calling
-      [endDialog()](#enddialog) and then
-
-      immediately calling [beginDialog()](#begindialog). The difference is that
-      the parent
-
-      dialog is not resumed or otherwise notified that the dialog it started has
-      been replaced.
-
-
       This method is particularly useful for creating conversational loops
       within your bot:
-
-
-      ```JavaScript
-
-      this.addDialog(new WaterfallDialog('randomNumber', [
-          async (step) => {
-              const { min, max } = step.options;
-              const num = min + Math.floor((max - min) * Math.random());
-              return await step.prompt('continuePrompt', `Here's a number between ${min} and ${max}: ${num}. Should I pick another one?`);
-          },
-          async (step) {
-              if (step.result) {
-                  return await step.replaceDialog(this.id, step.options);
-              } else {
-                  return await step.endDialog();
-              }
-          }
-      ]));
-
-
-      this.addDialog(new ConfirmPrompt('continuePrompt'));
-
-      ```
   - uid: botbuilder-dialogs.DialogContext.repromptDialog
     name: repromptDialog
     children: []
@@ -409,12 +353,12 @@ items:
         type:
           - Promise<void>
     package: botbuilder-dialogs
-    remarks: |-
-      The active dialogs `Dialog.repromptDialog()` method will be called.
+    remarks: >-
+      The `Dialog.repromptDialog()` method is optional for dialogs so if there's
+      no active dialog
 
-      ```JavaScript
-      await dc.repromptDialog();
-      ```
+      or the active dialog doesn't support re-prompting, this method will
+      effectively be a no-op.
   - uid: botbuilder-dialogs.DialogContext.stack
     name: stack
     fullName: stack

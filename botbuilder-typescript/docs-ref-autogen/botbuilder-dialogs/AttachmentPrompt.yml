@@ -12,7 +12,11 @@ items:
     extends:
       name: 'botbuilder-dialogs.Prompt<Attachment[]>'
     package: botbuilder-dialogs
-    remarks: 'By default the prompt will return to the calling dialog an `Attachment[]`.'
+    remarks: >-
+      By default the prompt will return to the calling dialog an `Attachment[]`
+      but this can be
+
+      overridden using a custom `PromptValidator`.
   - uid: botbuilder-dialogs.AttachmentPrompt.constructor
     name: AttachmentPrompt
     children: []
@@ -28,15 +32,14 @@ items:
         - id: dialogId
           type:
             - string
-          description: >-
-            Unique ID of the dialog within its parent `DialogSet` or
-            `ComponentDialog`.
+          description: Unique ID of the dialog within its parent `DialogSet`.
         - id: validator
           type:
             - 'botbuilder-dialogs.PromptValidator<Attachment[]>'
           description: >
             (Optional) validator that will be called each time the user responds
-            to the prompt.
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
           optional: true
     package: botbuilder-dialogs
 references:

@@ -23,7 +23,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: The prompts default locale that should be recognized.
+    summary: ''
     syntax:
       content: 'public defaultLocale: string | undefined'
       return:
@@ -36,7 +36,7 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: Creates a new NumberPrompt instance.
+    summary: Creates a new `NumberPrompt` instance.
     syntax:
       content: >-
         new NumberPrompt(dialogId: string, validator?: PromptValidator<number>,
@@ -45,21 +45,20 @@ items:
         - id: dialogId
           type:
             - string
-          description: >-
-            Unique ID of the dialog within its parent `DialogSet` or
-            `ComponentDialog`.
+          description: Unique ID of the dialog within its parent `DialogSet`.
         - id: validator
           type:
             - botbuilder-dialogs.PromptValidator<number>
           description: >-
             (Optional) validator that will be called each time the user responds
-            to the prompt.
+            to the prompt. If the validator replies with a message no additional
+            retry prompt will be sent.
           optional: true
         - id: defaultLocale
           type:
             - string
           description: >
-            (Optional) locale to use if `TurnContext.activity.locale` is not
+            (Optional) locale to use if `dc.context.activity.locale` not
             specified. Defaults to a value of `en-us`.
           optional: true
     package: botbuilder-dialogs
