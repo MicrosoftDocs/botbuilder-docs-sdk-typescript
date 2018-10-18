@@ -12,15 +12,15 @@ items:
     langs:
       - typeScript
     type: class
-    summary: Prompts a user to confirm something with a yes/no response.
+    summary: Prompts a user to select from a list of choices.
     extends:
       name: botbuilder-dialogs.Prompt<botbuilder-dialogs.FoundChoice>
     package: botbuilder-dialogs
     remarks: >-
-      By default the prompt will return to the calling dialog a `boolean`
-      representing the users
+      By default the prompt will return to the calling dialog a `FoundChoice`
+      object containing the
 
-      selection.
+      choice that was selected.
   - uid: botbuilder-dialogs.ChoicePrompt.choiceOptions
     name: choiceOptions
     fullName: choiceOptions
@@ -29,10 +29,10 @@ items:
       - typeScript
     type: property
     summary: >-
-      Gets or sets additional options passed to the `ChoiceFactory` and used to
-      tweak the style of
+      Additional options passed to the `ChoiceFactory` and used to tweak the
+      style of choices
 
-      choices rendered to the user.
+      rendered to the user.
     syntax:
       content: 'public choiceOptions: ChoiceFactoryOptions | undefined'
       return:
@@ -78,7 +78,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The prompts default locale that should be recognized.
     syntax:
       content: 'public defaultLocale: string | undefined'
       return:
@@ -92,9 +92,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: >-
-      Gets or sets additional options passed to the `recognizeChoices()`
-      function.
+    summary: Additional options passed to the underlying `recognizeChoices()` function.
     syntax:
       content: 'public recognizerOptions: FindChoicesOptions | undefined'
       return:
@@ -108,9 +106,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: >-
-      Gets or sets the style of the choice list rendered to the user when
-      prompting.
+    summary: Style of the "yes" and "no" choices rendered to the user when prompting.
     syntax:
       content: 'public style: ListStyle'
       return:

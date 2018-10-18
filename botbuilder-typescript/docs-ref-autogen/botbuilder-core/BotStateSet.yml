@@ -13,52 +13,18 @@ items:
       - typeScript
     type: class
     summary: >-
-      Middleware that will call `read()` and `write()` in parallel on multiple
-      `BotState`
+      A collection of `BotState` plugins that should be loaded or saved in
+      parallel as a single unit.
 
-      instances.
+      See `AutoSaveStateMiddleware` for an implementation of this class.
     package: botbuilder-core
-    remarks: >-
-      This example shows boilerplate code for reading and writing conversation
-      and user state within
-
-      a bot:
-
-
-      ```JavaScript
-
-      const {AutoSaveStateMiddleware, ConversationState, UserState,
-      MemoryStorage } = require('botbuilder');
-
-
-      const storage = new MemoryStorage();
-
-      const conversationState = new ConversationState(storage);
-
-      const userState = new UserState(storage);
-
-      adapter.use(new AutoSaveStateMiddleware(conversationState, userState));
-
-
-      server.post('/api/messages', (req, res) => {
-         adapter.processActivity(req, res, async (context) => {
-            // Get state
-            const convo = await conversationState.get(context);
-            const user = await userState.get(context);
-
-            // ... route activity ...
-
-         });
-      });
-
-      ```
   - uid: botbuilder-core.BotStateSet.add
     name: add
     children: []
     type: method
     langs:
       - typeScript
-    summary: Registers `BotState` plugins with the set.
+    summary: Registers One or more `BotState` plugins with the set.
     syntax:
       content: 'function add(botStates: BotState[])'
       parameters:
@@ -78,7 +44,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Array of the sets `BotState` plugins.
     syntax:
       content: 'public botStates: BotState[] = []'
       return:
@@ -91,7 +57,7 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: Creates a new AutoSaveStateiMiddleware instance.
+    summary: Creates a new BotStateSet instance.
     syntax:
       content: 'new BotStateSet(botStates: BotState[])'
       parameters:
@@ -99,7 +65,7 @@ items:
           type:
             - 'botbuilder-core.BotState[]'
           description: |
-            Zero or more BotState plugins to register.
+            One or more BotState plugins to register.
     package: botbuilder-core
   - uid: botbuilder-core.BotStateSet.loadAll
     name: loadAll
