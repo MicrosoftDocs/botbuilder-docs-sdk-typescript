@@ -1,0 +1,188 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.BotAdapter
+    name: BotAdapter
+    fullName: BotAdapter
+    children:
+      - botbuilder-core.BotAdapter.continueConversation
+      - botbuilder-core.BotAdapter.deleteActivity
+      - botbuilder-core.BotAdapter.onTurnError
+      - botbuilder-core.BotAdapter.sendActivities
+      - botbuilder-core.BotAdapter.updateActivity
+      - botbuilder-core.BotAdapter.use
+    langs:
+      - typeScript
+    type: class
+    summary: Abstract base class for all adapter plugins.
+    package: botbuilder-core
+    remarks: >-
+      Adapters manage the communication between the bot and a user over a
+      specific channel, or set
+
+      of channels.
+  - uid: botbuilder-core.BotAdapter.continueConversation
+    name: >-
+      continueConversation(Partial<ConversationReference>, (revocableContext:
+      TurnContext) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Proactively continues an existing conversation.
+    syntax:
+      content: >-
+        function continueConversation(reference: Partial<ConversationReference>,
+        logic: (revocableContext: TurnContext) => Promise<void>)
+      parameters:
+        - id: reference
+          type:
+            - Partial<ConversationReference>
+          description: Conversation reference for the conversation being continued.
+        - id: logic
+          type:
+            - '(revocableContext: TurnContext) => Promise<void>'
+          description: |
+            Function to execute for performing the bots logic.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+  - uid: botbuilder-core.BotAdapter.deleteActivity
+    name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Deletes an existing activity.
+    syntax:
+      content: >-
+        function deleteActivity(context: TurnContext, reference:
+        Partial<ConversationReference>)
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: reference
+          type:
+            - Partial<ConversationReference>
+          description: |
+            Conversation reference of the activity being deleted.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+  - uid: botbuilder-core.BotAdapter.onTurnError
+    name: onTurnError
+    fullName: onTurnError
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets/sets a error handler that will be called anytime an uncaught
+      exception is raised during
+
+      a turn.
+    syntax:
+      content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
+      return:
+        type:
+          - '(context: TurnContext, error: Error) => Promise<void>'
+    package: botbuilder-core
+  - uid: botbuilder-core.BotAdapter.sendActivities
+    name: 'sendActivities(TurnContext, Partial<Activity>[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Sends a set of activities to the user.
+    syntax:
+      content: >-
+        function sendActivities(context: TurnContext, activities:
+        Partial<Activity>[])
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: activities
+          type:
+            - 'Partial<Activity>[]'
+          description: |
+            Set of activities being sent.
+      return:
+        type:
+          - 'Promise<ResourceResponse[]>'
+    package: botbuilder-core
+    remarks: An array of responses from the server will be returned.
+  - uid: botbuilder-core.BotAdapter.updateActivity
+    name: 'updateActivity(TurnContext, Partial<Activity>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Replaces an existing activity.
+    syntax:
+      content: >-
+        function updateActivity(context: TurnContext, activity:
+        Partial<Activity>)
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: activity
+          type:
+            - Partial<Activity>
+          description: >
+            New replacement activity. The activity should already have it's ID
+            information populated.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+  - uid: botbuilder-core.BotAdapter.use
+    name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers middleware handlers(s) with the adapter.
+    syntax:
+      content: >-
+        function use(middleware: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middleware
+          type:
+            - >-
+              (context: TurnContext, next: () => Promise<void>) => Promise<void>
+              | botbuilder-core.Middleware[]
+          description: |
+            One or more middleware handlers(s) to register.
+      return:
+        type:
+          - this
+    package: botbuilder-core
+references:
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext
+  - uid: >-
+      (context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      botbuilder-core.Middleware[]
+    name: 'Middleware[]'
+    spec.typeScript:
+      - name: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+        fullName: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+      - name: Middleware
+        fullName: Middleware
+        uid: botbuilder-core.Middleware
+      - name: '[]'
+        fullName: '[]'

@@ -1,0 +1,110 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs.Choice
+    name: Choice
+    fullName: Choice
+    children:
+      - botbuilder-dialogs.Choice.action
+      - botbuilder-dialogs.Choice.synonyms
+      - botbuilder-dialogs.Choice.value
+    langs:
+      - typeScript
+    type: interface
+    summary: >-
+      An instance of a choice that can be used to render a choice to a user or
+      recognize something a
+
+      user picked.
+    package: botbuilder-dialogs
+    remarks: >-
+      The [value](#value) will be rendered to a user unless an [action](#action)
+      is provided in which
+
+      case the actions `title` will be rendered to the user.
+
+
+      At recognition time the `value` will always be what gets returned by
+      `findChoices()` and
+
+      `recognizeChoices()`. By default, the users utterance will be compared
+      against all of the
+
+      strings provided in the choice. You can disable using the `value` and/or
+      `action.title` during
+
+      recognition using the `FindChoicesOptions` structure.
+
+
+      ```JavaScript
+
+      const choice = {
+          value: 'red',
+          action: {
+              type: 'imBack',
+              title: 'The Red Pill',
+              value: 'red pill'
+          },
+          synonyms: ['crimson', 'scarlet', 'ruby', 'cherry']
+      };
+
+      ```
+  - uid: botbuilder-dialogs.Choice.action
+    name: action
+    fullName: action
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      (Optional) action to use when rendering the choice as a suggested action.
+      This **MUST**
+
+      be a complete action containing `type`, `title`, and `value` fields. If
+      not specified an
+
+      `imBack` action will be generated based on the choices [value](#value)
+      field.
+    optional: true
+    syntax:
+      content: 'action?: CardAction'
+      return:
+        type:
+          - CardAction
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.Choice.synonyms
+    name: synonyms
+    fullName: synonyms
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      (Optional) list of synonyms to recognize in addition to the
+      [value](#value) and
+
+      [action](#action) fields.
+    optional: true
+    syntax:
+      content: 'synonyms?: string[]'
+      return:
+        type:
+          - 'string[]'
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.Choice.value
+    name: value
+    fullName: value
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Value to return when recognized by `findChoices()`. Will also be used to
+      render choices
+
+      to the user if no [action](#action) is provided.
+    syntax:
+      content: 'value: string'
+      return:
+        type:
+          - string
+    package: botbuilder-dialogs

@@ -1,0 +1,160 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.MiddlewareSet
+    name: MiddlewareSet
+    fullName: MiddlewareSet
+    children:
+      - botbuilder-core.MiddlewareSet.constructor
+      - botbuilder-core.MiddlewareSet.onTurn
+      - botbuilder-core.MiddlewareSet.run
+      - botbuilder-core.MiddlewareSet.use
+    langs:
+      - typeScript
+    type: class
+    summary: A set of `Middleware` plugins.
+    package: botbuilder-core
+    remarks: >-
+      The set itself is middleware so you can easily package up a set of
+      middleware that can be composed
+
+      into an adapter with a single `adapter.use(mySet)` call or even into
+      another middleware set using
+
+      `set.use(mySet)`.
+
+
+      ```JavaScript
+
+      const { MiddlewareSet } = require('botbuilder');
+
+
+      const set = new MiddlewareSet();
+
+      set.use(async (context, next) => {
+         console.log(`Leading Edge`);
+         await next();
+         console.log(`Trailing Edge`);
+      });
+
+      ```
+  - uid: botbuilder-core.MiddlewareSet.constructor
+    name: >-
+      MiddlewareSet((context: TurnContext, next: () => Promise<void>) =>
+      Promise<void> | Middleware[])
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new MiddlewareSet instance.
+    syntax:
+      content: >-
+        new MiddlewareSet(middleware: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middleware
+          type:
+            - >-
+              (context: TurnContext, next: () => Promise<void>) => Promise<void>
+              | botbuilder-core.Middleware[]
+          description: |
+            One or more middleware handlers(s) to register.
+    package: botbuilder-core
+  - uid: botbuilder-core.MiddlewareSet.onTurn
+    name: 'onTurn(TurnContext, () => Promise<void>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: ''
+        - id: next
+          type:
+            - () => Promise<void>
+          description: ''
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+  - uid: botbuilder-core.MiddlewareSet.run
+    name: 'run(TurnContext, () => Promise<void>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Executes a set of middleware in series.
+    syntax:
+      content: 'function run(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: next
+          type:
+            - () => Promise<void>
+          description: |
+            Function to invoke at the end of the middleware chain.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+  - uid: botbuilder-core.MiddlewareSet.use
+    name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers middleware handlers(s) with the set.
+    syntax:
+      content: >-
+        function use(middleware: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middleware
+          type:
+            - >-
+              (context: TurnContext, next: () => Promise<void>) => Promise<void>
+              | botbuilder-core.Middleware[]
+          description: |
+            One or more middleware handlers(s) to register.
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: |-
+      This example adds a new piece of middleware to a set:
+
+      ```JavaScript
+      set.use(async (context, next) => {
+         console.log(`Leading Edge`);
+         await next();
+         console.log(`Trailing Edge`);
+      });
+      ```
+references:
+  - uid: >-
+      (context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      botbuilder-core.Middleware[]
+    name: 'Middleware[]'
+    spec.typeScript:
+      - name: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+        fullName: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+      - name: Middleware
+        fullName: Middleware
+        uid: botbuilder-core.Middleware
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext

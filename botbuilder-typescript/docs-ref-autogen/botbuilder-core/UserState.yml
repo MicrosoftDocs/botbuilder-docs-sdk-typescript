@@ -1,0 +1,91 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.UserState
+    name: UserState
+    fullName: UserState
+    children:
+      - botbuilder-core.UserState.getStorageKey
+      - botbuilder-core.UserState.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: Reads and writes user state for your bot to storage.
+    extends:
+      name: botbuilder-core.BotState
+    package: botbuilder-core
+    remarks: >-
+      Each user your bot communicates with will have its own isolated storage
+      object that can be used
+
+      to persist information about the user across all of the conversation you
+      have with that user.
+
+
+      ```JavaScript
+
+      const { UserState, MemoryStorage } = require('botbuilder');
+
+
+      const userState = new UserState(new MemoryStorage());
+
+      ```
+  - uid: botbuilder-core.UserState.getStorageKey
+    name: getStorageKey(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns the storage key for the current user state.
+    syntax:
+      content: 'function getStorageKey(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - string | undefined
+    package: botbuilder-core
+  - uid: botbuilder-core.UserState.constructor
+    name: 'UserState(Storage, string)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new UserState instance.
+    syntax:
+      content: 'new UserState(storage: Storage, namespace?: string)'
+      parameters:
+        - id: storage
+          type:
+            - botbuilder-core.Storage
+          description: Storage provider to persist user state to.
+        - id: namespace
+          type:
+            - string
+          description: >
+            (Optional) namespace to append to storage keys. Defaults to an empty
+            string.
+          optional: true
+    package: botbuilder-core
+references:
+  - uid: botbuilder-core.BotState
+    name: BotState
+    spec.typeScript:
+      - name: BotState
+        fullName: BotState
+        uid: botbuilder-core.BotState
+  - uid: botbuilder-core.Storage
+    name: Storage
+    spec.typeScript:
+      - name: Storage
+        fullName: Storage
+        uid: botbuilder-core.Storage
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext
