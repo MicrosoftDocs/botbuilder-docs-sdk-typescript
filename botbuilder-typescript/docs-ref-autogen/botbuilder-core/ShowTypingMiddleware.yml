@@ -29,7 +29,7 @@ items:
       will continue to be sent until your bot sends another message back to the
       user
   - uid: botbuilder-core.ShowTypingMiddleware.onTurn
-    name: onTurn
+    name: 'onTurn(TurnContext, () => Promise<void>)'
     children: []
     type: method
     langs:
@@ -52,14 +52,14 @@ items:
           - Promise<void>
     package: botbuilder-core
   - uid: botbuilder-core.ShowTypingMiddleware.constructor
-    name: ShowTypingMiddleware
+    name: 'ShowTypingMiddleware(number, number)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: Create the SendTypingIndicator middleware
     syntax:
-      content: 'new ShowTypingMiddleware(delay: number, period: number)'
+      content: 'new ShowTypingMiddleware(delay?: number, period?: number)'
       parameters:
         - id: delay
           type:
@@ -67,12 +67,14 @@ items:
           description: >-
             Number of milliseconds to wait before sending the first typing
             indicator.
+          optional: true
         - id: period
           type:
             - number
           description: >
             Number of milliseconds to wait before sending each following
             indicator.
+          optional: true
     package: botbuilder-core
 references:
   - uid: botbuilder-core.TurnContext

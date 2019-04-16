@@ -4,9 +4,14 @@ items:
     name: TestAdapter
     fullName: TestAdapter
     children:
+      - botbuilder-core.TestAdapter.addUserToken
       - botbuilder-core.TestAdapter.continueConversation
       - botbuilder-core.TestAdapter.deletedActivities
+      - botbuilder-core.TestAdapter.getAadTokens
+      - botbuilder-core.TestAdapter.getSignInLink
+      - botbuilder-core.TestAdapter.getUserToken
       - botbuilder-core.TestAdapter.send
+      - botbuilder-core.TestAdapter.signOutUser
       - botbuilder-core.TestAdapter.template
       - botbuilder-core.TestAdapter.test
       - botbuilder-core.TestAdapter.testActivities
@@ -41,8 +46,45 @@ items:
       adapter.test(`hi`, `Hello World`)
              .then(() => done());
       ```
+  - uid: botbuilder-core.TestAdapter.addUserToken
+    name: 'addUserToken(string, string, string, string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Adds a fake user token so it can later be retrieved.
+    syntax:
+      content: >-
+        function addUserToken(connectionName: string, channelId: string, userId:
+        string, token: string, magicCode?: string)
+      parameters:
+        - id: connectionName
+          type:
+            - string
+          description: The connection name.
+        - id: channelId
+          type:
+            - string
+          description: The channel id.
+        - id: userId
+          type:
+            - string
+          description: The user id.
+        - id: token
+          type:
+            - string
+          description: The token to store.
+        - id: magicCode
+          type:
+            - string
+          description: |
+            (Optional) The optional magic code to associate with this token.
+          optional: true
+    package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.continueConversation
-    name: continueConversation
+    name: >-
+      continueConversation(Partial<ConversationReference>, (revocableContext:
+      TurnContext) => Promise<void>)
     children: []
     type: method
     langs:
@@ -82,7 +124,7 @@ items:
 
       turn completes.
     syntax:
-      content: 'public deletedActivities: Partial<ConversationReference>[] = []'
+      content: 'deletedActivities: Partial<ConversationReference>[]'
       return:
         type:
           - 'Partial<ConversationReference>[]'
@@ -97,8 +139,92 @@ items:
          done();
       });
       ```
+  - uid: botbuilder-core.TestAdapter.getAadTokens
+    name: 'getAadTokens(TurnContext, string, string[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Signs the user out with the token server.
+    syntax:
+      content: >-
+        function getAadTokens(context: TurnContext, connectionName: string,
+        resourceUrls: string[])
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+        - id: resourceUrls
+          type:
+            - 'string[]'
+          description: ''
+      return:
+        type:
+          - 'Promise<[key: string]: TokenResponse>'
+    package: botbuilder-core
+  - uid: botbuilder-core.TestAdapter.getSignInLink
+    name: 'getSignInLink(TurnContext, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Gets a signin link from the token server that can be sent as part of a
+      SigninCard.
+    syntax:
+      content: 'function getSignInLink(context: TurnContext, connectionName: string)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+      return:
+        type:
+          - Promise<string>
+    package: botbuilder-core
+  - uid: botbuilder-core.TestAdapter.getUserToken
+    name: 'getUserToken(TurnContext, string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Retrieves the OAuth token for a user that is in a sign-in flow.
+    syntax:
+      content: >-
+        function getUserToken(context: TurnContext, connectionName: string,
+        magicCode?: string)
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: Name of the auth connection to use.
+        - id: magicCode
+          type:
+            - string
+          description: |
+            (Optional) Optional user entered code to validate.
+          optional: true
+      return:
+        type:
+          - Promise<TokenResponse>
+    package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.send
-    name: send
+    name: send(string | Partial<Activity>)
     children: []
     type: method
     langs:
@@ -132,6 +258,29 @@ items:
              .assertReply('Hello World')
              .then(() => done());
       ```
+  - uid: botbuilder-core.TestAdapter.signOutUser
+    name: 'signOutUser(TurnContext, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Signs the user out with the token server.
+    syntax:
+      content: 'function signOutUser(context: TurnContext, connectionName: string)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.template
     name: template
     fullName: template
@@ -143,13 +292,15 @@ items:
       `Activity` template that will be merged with all activities sent to the
       logic under test.
     syntax:
-      content: 'public template: Partial<Activity>'
+      content: 'template: Partial<Activity>'
       return:
         type:
           - Partial<Activity>
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.test
-    name: test
+    name: >-
+      test(string | Partial<Activity>, string | Partial<Activity> | (activity:
+      Partial<Activity>, description?: string) => void, string, number)
     children: []
     type: method
     langs:
@@ -204,7 +355,7 @@ items:
              .then(() => done());
       ```
   - uid: botbuilder-core.TestAdapter.testActivities
-    name: testActivities
+    name: 'testActivities(Partial<Activity>[], string, number)'
     children: []
     type: method
     langs:
@@ -243,7 +394,9 @@ items:
 
       activity will be processed as a user message with send().
   - uid: botbuilder-core.TestAdapter.constructor
-    name: TestAdapter
+    name: >-
+      TestAdapter((context: TurnContext) => Promise<void>, Partial<Activity>,
+      boolean)
     children: []
     type: constructor
     langs:
@@ -284,7 +437,7 @@ items:
 
       turn completes.
     syntax:
-      content: 'public updatedActivities: Partial<Activity>[] = []'
+      content: 'updatedActivities: Partial<Activity>[]'
       return:
         type:
           - 'Partial<Activity>[]'
@@ -306,6 +459,12 @@ references:
       - name: BotAdapter
         fullName: BotAdapter
         uid: botbuilder-core.BotAdapter
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext
   - uid: botbuilder-core.TestFlow
     name: TestFlow
     spec.typeScript:

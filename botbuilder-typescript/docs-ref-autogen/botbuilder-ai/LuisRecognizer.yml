@@ -4,6 +4,7 @@ items:
     name: LuisRecognizer
     fullName: LuisRecognizer
     children:
+      - botbuilder-ai.LuisRecognizer.constructor_1
       - botbuilder-ai.LuisRecognizer.constructor
       - botbuilder-ai.LuisRecognizer.recognize
       - botbuilder-ai.LuisRecognizer.topIntent
@@ -22,8 +23,8 @@ items:
 
       This component can be used within your bots logic by calling
       [recognize()](#recognize).
-  - uid: botbuilder-ai.LuisRecognizer.constructor
-    name: LuisRecognizer
+  - uid: botbuilder-ai.LuisRecognizer.constructor_1
+    name: 'LuisRecognizer(LuisApplication, LuisPredictionOptions, boolean)'
     children: []
     type: constructor
     langs:
@@ -39,7 +40,44 @@ items:
             - botbuilder-ai.LuisApplication
           description: >-
             An object conforming to the [LuisApplication](#luisapplication)
+            definition or a string representing a LUIS application endpoint,
+            usually retrieved from https://luis.ai.
+        - id: options
+          type:
+            - botbuilder-ai.LuisPredictionOptions
+          description: >-
+            (Optional) options object used to control predictions. Should
+            conform to the [LuisPrectionOptions](#luispredictionoptions)
             definition.
+          optional: true
+        - id: includeApiResults
+          type:
+            - boolean
+          description: >
+            (Optional) flag that if set to `true` will force the inclusion of
+            LUIS Api call in results returned by [recognize()](#recognize).
+            Defaults to a value of `false`.
+          optional: true
+    package: botbuilder-ai
+  - uid: botbuilder-ai.LuisRecognizer.constructor
+    name: 'LuisRecognizer(string, LuisPredictionOptions, boolean)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new LuisRecognizer instance.
+    syntax:
+      content: >-
+        new LuisRecognizer(application: string, options?: LuisPredictionOptions,
+        includeApiResults?: boolean)
+      parameters:
+        - id: application
+          type:
+            - string
+          description: >-
+            An object conforming to the [LuisApplication](#luisapplication)
+            definition or a string representing a LUIS application endpoint,
+            usually retrieved from https://luis.ai.
         - id: options
           type:
             - botbuilder-ai.LuisPredictionOptions
@@ -58,7 +96,7 @@ items:
           optional: true
     package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.recognize
-    name: recognize
+    name: recognize(TurnContext)
     children: []
     type: method
     langs:
@@ -110,7 +148,7 @@ items:
 
       ```
   - uid: botbuilder-ai.LuisRecognizer.topIntent
-    name: topIntent
+    name: 'topIntent(RecognizerResult | undefined, string, number)'
     children: []
     type: method
     langs:
@@ -119,7 +157,7 @@ items:
     syntax:
       content: >-
         static function topIntent(results: RecognizerResult | undefined,
-        defaultIntent: string, minScore: number)
+        defaultIntent?: string, minScore?: number)
       parameters:
         - id: results
           type:
@@ -131,6 +169,7 @@ items:
           description: >-
             (Optional) intent name to return should a top intent be found.
             Defaults to a value of `None`.
+          optional: true
         - id: minScore
           type:
             - number
@@ -138,20 +177,21 @@ items:
             (Optional) minimum score needed for an intent to be considered as a
             top intent. If all intents in the set are below this threshold then
             the `defaultIntent` will be returned.  Defaults to a value of `0.0`.
+          optional: true
       return:
         type:
           - string
     package: botbuilder-ai
 references:
-  - uid: botbuilder-ai.LuisApplication
-    name: LuisApplication
-    spec.typeScript:
-      - name: LuisApplication
-        fullName: LuisApplication
-        uid: botbuilder-ai.LuisApplication
   - uid: botbuilder-ai.LuisPredictionOptions
     name: LuisPredictionOptions
     spec.typeScript:
       - name: LuisPredictionOptions
         fullName: LuisPredictionOptions
         uid: botbuilder-ai.LuisPredictionOptions
+  - uid: botbuilder-ai.LuisApplication
+    name: LuisApplication
+    spec.typeScript:
+      - name: LuisApplication
+        fullName: LuisApplication
+        uid: botbuilder-ai.LuisApplication

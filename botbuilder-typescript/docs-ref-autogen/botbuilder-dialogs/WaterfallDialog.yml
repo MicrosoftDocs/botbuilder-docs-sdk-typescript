@@ -7,6 +7,7 @@ items:
       - botbuilder-dialogs.WaterfallDialog.addStep
       - botbuilder-dialogs.WaterfallDialog.beginDialog
       - botbuilder-dialogs.WaterfallDialog.continueDialog
+      - botbuilder-dialogs.WaterfallDialog.endDialog
       - botbuilder-dialogs.WaterfallDialog.resumeDialog
       - botbuilder-dialogs.WaterfallDialog.constructor
     langs:
@@ -73,7 +74,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.WaterfallDialog.addStep
-    name: addStep
+    name: addStep(WaterfallStep<O>)
     children: []
     type: method
     langs:
@@ -145,7 +146,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.WaterfallDialog.beginDialog
-    name: beginDialog
+    name: 'beginDialog(DialogContext, O)'
     children: []
     type: method
     langs:
@@ -168,7 +169,7 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.continueDialog
-    name: continueDialog
+    name: continueDialog(DialogContext)
     children: []
     type: method
     langs:
@@ -185,8 +186,37 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.WaterfallDialog.endDialog
+    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when the dialog is ending.
+    syntax:
+      content: >-
+        function endDialog(context: TurnContext, instance: DialogInstance,
+        reason: DialogReason)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: instance
+          type:
+            - botbuilder-dialogs.DialogInstance
+          description: The instance of the current dialog.
+        - id: reason
+          type:
+            - botbuilder-dialogs.DialogReason
+          description: |
+            The reason the dialog is ending.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.resumeDialog
-    name: resumeDialog
+    name: 'resumeDialog(DialogContext, DialogReason, any)'
     children: []
     type: method
     langs:
@@ -215,7 +245,7 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.constructor
-    name: WaterfallDialog
+    name: 'WaterfallDialog(string, WaterfallStep<O>[])'
     children: []
     type: constructor
     langs:
@@ -281,6 +311,12 @@ references:
         uid: botbuilder-dialogs.DialogTurnResult
       - name: '>'
         fullName: '>'
+  - uid: botbuilder-dialogs.DialogInstance
+    name: DialogInstance
+    spec.typeScript:
+      - name: DialogInstance
+        fullName: DialogInstance
+        uid: botbuilder-dialogs.DialogInstance
   - uid: botbuilder-dialogs.DialogReason
     name: DialogReason
     spec.typeScript:

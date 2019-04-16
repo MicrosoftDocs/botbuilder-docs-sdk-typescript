@@ -5,6 +5,7 @@ items:
     fullName: ChoiceFactory
     children:
       - botbuilder-dialogs.ChoiceFactory.forChannel
+      - botbuilder-dialogs.ChoiceFactory.heroCard
       - botbuilder-dialogs.ChoiceFactory.inline
       - botbuilder-dialogs.ChoiceFactory.list
       - botbuilder-dialogs.ChoiceFactory.suggestedAction
@@ -37,7 +38,9 @@ items:
 
       ```
   - uid: botbuilder-dialogs.ChoiceFactory.forChannel
-    name: forChannel
+    name: >-
+      forChannel(string | TurnContext, string | Choice[], string, string,
+      ChoiceFactoryOptions)
     children: []
     type: method
     langs:
@@ -110,8 +113,39 @@ items:
       await context.sendActivity(message);
 
       ```
+  - uid: botbuilder-dialogs.ChoiceFactory.heroCard
+    name: 'heroCard(Choice[], string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        static function heroCard(choices?: Choice[], text?: string, speak?:
+        string)
+      parameters:
+        - id: choices
+          type:
+            - 'botbuilder-dialogs.Choice[]'
+          description: ''
+          optional: true
+        - id: text
+          type:
+            - string
+          description: ''
+          optional: true
+        - id: speak
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - Activity
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoiceFactory.inline
-    name: inline
+    name: 'inline(string | Choice[], string, string, ChoiceFactoryOptions)'
     children: []
     type: method
     langs:
@@ -164,7 +198,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.ChoiceFactory.list
-    name: list
+    name: 'list(string | Choice[], string, string, ChoiceFactoryOptions)'
     children: []
     type: method
     langs:
@@ -217,7 +251,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.ChoiceFactory.suggestedAction
-    name: suggestedAction
+    name: 'suggestedAction(string | Choice[], string, string)'
     children: []
     type: method
     langs:
@@ -265,7 +299,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.ChoiceFactory.toChoices
-    name: toChoices
+    name: 'toChoices(string | Choice[] | undefined)'
     children: []
     type: method
     langs:
@@ -318,6 +352,14 @@ references:
       - name: ChoiceFactoryOptions
         fullName: ChoiceFactoryOptions
         uid: botbuilder-dialogs.ChoiceFactoryOptions
+  - uid: 'botbuilder-dialogs.Choice[]'
+    name: 'Choice[]'
+    spec.typeScript:
+      - name: Choice
+        fullName: Choice
+        uid: botbuilder-dialogs.Choice
+      - name: '[]'
+        fullName: '[]'
   - uid: 'string | botbuilder-dialogs.Choice[] | undefined'
     name: 'Choice[] | undefined'
     spec.typeScript:
@@ -328,11 +370,3 @@ references:
         uid: botbuilder-dialogs.Choice
       - name: '[] | undefined'
         fullName: '[] | undefined'
-  - uid: 'botbuilder-dialogs.Choice[]'
-    name: 'Choice[]'
-    spec.typeScript:
-      - name: Choice
-        fullName: Choice
-        uid: botbuilder-dialogs.Choice
-      - name: '[]'
-        fullName: '[]'

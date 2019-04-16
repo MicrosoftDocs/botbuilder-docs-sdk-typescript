@@ -1,0 +1,361 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.ActivityHandler
+    name: ActivityHandler
+    fullName: ActivityHandler
+    children:
+      - botbuilder-core.ActivityHandler.onConversationUpdate
+      - botbuilder-core.ActivityHandler.onDialog
+      - botbuilder-core.ActivityHandler.onEvent
+      - botbuilder-core.ActivityHandler.onMembersAdded
+      - botbuilder-core.ActivityHandler.onMembersRemoved
+      - botbuilder-core.ActivityHandler.onMessage
+      - botbuilder-core.ActivityHandler.onTokenResponseEvent
+      - botbuilder-core.ActivityHandler.onTurn
+      - botbuilder-core.ActivityHandler.onUnrecognizedActivityType
+      - botbuilder-core.ActivityHandler.run
+    langs:
+      - typeScript
+    type: class
+    summary: Event-emitting base class bots.
+    package: botbuilder-core
+    remarks: >-
+      This provides an extensible base class for handling incoming
+
+      activities in an event-driven way.  Developers may bind one or
+
+      more handlers for each type of event.
+
+
+      To bind a handler to an event, use the `on<Event>()` method, for example:
+
+
+      ```Javascript
+
+      bot.onMessage(async (context, next) => {
+
+      // do something
+
+      // then `await next()` to continue processing
+
+      await next();
+
+      });
+
+      ```
+
+
+      A series of events will be emitted while the activity is being processed.
+
+      Handlers can stop the propagation of the event by omitting a call to
+      `next()`.
+
+
+      * Turn - emitted for every activity
+
+      * Type-specific - an event, based on activity.type
+
+      * Sub-type - any specialized events, based on activity content
+
+      * Dialog - the final event, used for processing Dialog actions
+
+
+      A simple implementation:
+
+      ```Javascript
+
+      const bot = new ActivityHandler();
+
+       server.post('/api/messages', (req, res) => {
+           adapter.processActivity(req, res, async (context) => {
+               // Route to main dialog.
+               await bot.run(context);
+           });
+      });
+
+
+      bot.onMessage(async (context, next) => {
+           // do stuff
+           await context.sendActivity(`Echo: ${ context.activity.text }`);
+           // proceed with further processing
+           await next();
+      });
+
+      ```
+  - uid: botbuilder-core.ActivityHandler.onConversationUpdate
+    name: onConversationUpdate(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Receives all ConversationUpdate activities, regardless of whether members
+      were added or removed
+    syntax:
+      content: 'function onConversationUpdate(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: >-
+      Conversation update activities describe a change in a conversation's
+      members, description, existence, or otherwise.
+  - uid: botbuilder-core.ActivityHandler.onDialog
+    name: onDialog(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      onDialog fires at the end of the event emission process, and should be
+      used to handle Dialog activity.
+    syntax:
+      content: 'function onDialog(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: |-
+      Sample code:
+      ```javascript
+      bot.onDialog(async (context, next) => {
+           if (context.activity.type === ActivityTypes.Message) {
+               const dialogContext = await dialogSet.createContext(context);
+               const results = await dialogContext.continueDialog();
+               await conversationState.saveChanges(context);
+           }
+
+           await next();
+      });
+      ```
+  - uid: botbuilder-core.ActivityHandler.onEvent
+    name: onEvent(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Receives all Event activities.
+    syntax:
+      content: 'function onEvent(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: >-
+      Event activities communicate programmatic information from a client or
+      channel to a bot.
+
+      The meaning of an event activity is defined by the `name` field.
+  - uid: botbuilder-core.ActivityHandler.onMembersAdded
+    name: onMembersAdded(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Receives only ConversationUpdate activities representing members being
+      added.
+    syntax:
+      content: 'function onMembersAdded(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: context.activity.membersAdded will include at least one entry.
+  - uid: botbuilder-core.ActivityHandler.onMembersRemoved
+    name: onMembersRemoved(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Receives only ConversationUpdate activities representing members being
+      removed.
+    syntax:
+      content: 'function onMembersRemoved(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: context.activity.membersRemoved will include at least one entry.
+  - uid: botbuilder-core.ActivityHandler.onMessage
+    name: onMessage(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Receives all incoming Message activities
+    syntax:
+      content: 'function onMessage(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: >-
+      Message activities represent content intended to be shown within a
+      conversational interface.
+
+      Message activities may contain text, speech, interactive cards, and binary
+      or unknown attachments.
+
+      Note that while most messages do contain text, this field is not always
+      present!
+  - uid: botbuilder-core.ActivityHandler.onTokenResponseEvent
+    name: onTokenResponseEvent(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Receives event activities of type 'tokens/response'
+    syntax:
+      content: 'function onTokenResponseEvent(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: These events occur during the oauth flow
+  - uid: botbuilder-core.ActivityHandler.onTurn
+    name: onTurn(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Bind a handler to the Turn event that is fired for every incoming
+      activity, regardless of type
+    syntax:
+      content: 'function onTurn(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+  - uid: botbuilder-core.ActivityHandler.onUnrecognizedActivityType
+    name: onUnrecognizedActivityType(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      UnrecognizedActivityType will fire if an activity is received with a type
+      that has not previously been defined.
+    syntax:
+      content: 'function onUnrecognizedActivityType(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: >-
+      Some channels or custom adapters may create Actitivies with different,
+      "unofficial" types.
+
+      These events will be passed through as UnrecognizedActivityType events.
+
+      Check `context.activity.type` for the type value.
+  - uid: botbuilder-core.ActivityHandler.run
+    name: run(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      `run()` is the main "activity handler" function used to ingest activities
+      into the event emission process.
+    syntax:
+      content: 'function run(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: >
+            TurnContext A TurnContext representing an incoming Activity from an
+            Adapter
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+    remarks: |-
+      Sample code:
+      ```javascript
+       server.post('/api/messages', (req, res) => {
+           adapter.processActivity(req, res, async (context) => {
+               // Route to main dialog.
+               await bot.run(context);
+           });
+      });
+      ```
+references:
+  - uid: botbuilder-core.BotHandler
+    name: BotHandler
+    spec.typeScript:
+      - name: BotHandler
+        fullName: BotHandler
+        uid: botbuilder-core.BotHandler
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext

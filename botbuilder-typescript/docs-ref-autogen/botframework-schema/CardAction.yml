@@ -4,6 +4,7 @@ items:
     name: CardAction
     fullName: CardAction
     children:
+      - botframework-schema.CardAction.channelData
       - botframework-schema.CardAction.displayText
       - botframework-schema.CardAction.image
       - botframework-schema.CardAction.text
@@ -13,7 +14,22 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: A clickable action
+    package: botframework-schema
+  - uid: botframework-schema.CardAction.channelData
+    name: channelData
+    fullName: channelData
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Channel-specific data associated with this action
+    optional: true
+    syntax:
+      content: 'channelData?: any'
+      return:
+        type:
+          - any
     package: botframework-schema
   - uid: botframework-schema.CardAction.displayText
     name: displayText
@@ -22,7 +38,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: (Optional) text to display in the chat feed if the button is clicked
     optional: true
     syntax:
       content: 'displayText?: string'
@@ -37,7 +53,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: 'Image URL which will appear on the button, next to text label'
     optional: true
     syntax:
       content: 'image?: string'
@@ -52,7 +68,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Text for this action
     optional: true
     syntax:
       content: 'text?: string'
@@ -67,7 +83,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Text description which appears on the button
     syntax:
       content: 'title: string'
       return:
@@ -81,7 +97,14 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      The type of action implemented by this button. Possible values include:
+      'openUrl', 'imBack',
+
+      'postBack', 'playAudio', 'playVideo', 'showImage', 'downloadFile',
+      'signin', 'call',
+
+      'payment', 'messageBack'
     syntax:
       content: 'type: ActionTypes | string'
       return:
@@ -95,7 +118,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Supplementary parameter for action. Content of this property depends on
+      the ActionType
     syntax:
       content: 'value: any'
       return:

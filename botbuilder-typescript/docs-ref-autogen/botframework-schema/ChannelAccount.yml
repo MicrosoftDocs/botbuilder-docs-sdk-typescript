@@ -4,13 +4,29 @@ items:
     name: ChannelAccount
     fullName: ChannelAccount
     children:
+      - botframework-schema.ChannelAccount.aadObjectId
       - botframework-schema.ChannelAccount.id
       - botframework-schema.ChannelAccount.name
       - botframework-schema.ChannelAccount.role
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Channel account information needed to route a message
+    package: botframework-schema
+  - uid: botframework-schema.ChannelAccount.aadObjectId
+    name: aadObjectId
+    fullName: aadObjectId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: This account's object ID within Azure Active Directory (AAD)
+    optional: true
+    syntax:
+      content: 'aadObjectId?: string'
+      return:
+        type:
+          - string
     package: botframework-schema
   - uid: botframework-schema.ChannelAccount.id
     name: id
@@ -19,7 +35,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Channel id for the user or bot on this channel (Example: joe@smith.com, or
+      @joesmith or
+
+      123456)
     syntax:
       content: 'id: string'
       return:
@@ -33,7 +53,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Display friendly name
     syntax:
       content: 'name: string'
       return:
@@ -47,9 +67,14 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Role of the entity behind the account (Example: User, Bot, etc.). Possible
+      values include:
+
+      'user', 'bot'
+    optional: true
     syntax:
-      content: 'role: RoleTypes | string'
+      content: 'role?: RoleTypes | string'
       return:
         type:
           - botframework-schema.RoleTypes | string

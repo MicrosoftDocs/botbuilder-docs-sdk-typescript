@@ -9,14 +9,15 @@ items:
       - botbuilder-core.TurnContext.applyConversationReference
       - botbuilder-core.TurnContext.deleteActivity
       - botbuilder-core.TurnContext.getConversationReference
+      - botbuilder-core.TurnContext.getReplyConversationReference
       - botbuilder-core.TurnContext.onDeleteActivity
       - botbuilder-core.TurnContext.onSendActivities
       - botbuilder-core.TurnContext.onUpdateActivity
       - botbuilder-core.TurnContext.responded
       - botbuilder-core.TurnContext.sendActivities
       - botbuilder-core.TurnContext.sendActivity
-      - botbuilder-core.TurnContext.constructor_1
       - botbuilder-core.TurnContext.constructor
+      - botbuilder-core.TurnContext.constructor_1
       - botbuilder-core.TurnContext.turnState
       - botbuilder-core.TurnContext.updateActivity
     langs:
@@ -40,7 +41,7 @@ items:
     type: property
     summary: The received activity.
     syntax:
-      content: Activity activity
+      content: 'activity: Activity'
       return:
         type:
           - Activity
@@ -64,7 +65,7 @@ items:
     type: property
     summary: The adapter for this context.
     syntax:
-      content: BotAdapter adapter
+      content: 'adapter: BotAdapter'
       return:
         type:
           - botbuilder-core.BotAdapter
@@ -94,7 +95,9 @@ items:
 
       ```
   - uid: botbuilder-core.TurnContext.applyConversationReference
-    name: applyConversationReference
+    name: >-
+      applyConversationReference(Partial<Activity>,
+      Partial<ConversationReference>, boolean)
     children: []
     type: method
     langs:
@@ -105,7 +108,7 @@ items:
     syntax:
       content: >-
         static function applyConversationReference(activity: Partial<Activity>,
-        reference: Partial<ConversationReference>, isIncoming: boolean)
+        reference: Partial<ConversationReference>, isIncoming?: boolean)
       parameters:
         - id: activity
           type:
@@ -122,6 +125,7 @@ items:
             (Optional) flag indicating whether the activity is an incoming or
             outgoing activity. Defaults to `false` indicating the activity is
             outgoing.
+          optional: true
       return:
         type:
           - Partial<Activity>
@@ -146,7 +150,7 @@ items:
 
       ```
   - uid: botbuilder-core.TurnContext.deleteActivity
-    name: deleteActivity
+    name: deleteActivity(string | Partial<ConversationReference>)
     children: []
     type: method
     langs:
@@ -187,7 +191,7 @@ items:
 
       ```
   - uid: botbuilder-core.TurnContext.getConversationReference
-    name: getConversationReference
+    name: getConversationReference(Partial<Activity>)
     children: []
     type: method
     langs:
@@ -217,8 +221,49 @@ items:
       const reference = TurnContext.getConversationReference(context.request);
 
       ```
+  - uid: botbuilder-core.TurnContext.getReplyConversationReference
+    name: 'getReplyConversationReference(Partial<Activity>, ResourceResponse)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Create a ConversationReference based on an outgoing Activity's
+      ResourceResponse
+    syntax:
+      content: >-
+        static function getReplyConversationReference(activity:
+        Partial<Activity>, reply: ResourceResponse)
+      parameters:
+        - id: activity
+          type:
+            - Partial<Activity>
+          description: Activity from which to pull Conversation info
+        - id: reply
+          type:
+            - ResourceResponse
+          description: |
+            ResourceResponse returned from sendActivity
+      return:
+        type:
+          - Partial<ConversationReference>
+    package: botbuilder-core
+    remarks: >-
+      This method can be used to create a ConversationReference that can be
+      stored
+
+      and used later to delete or update the activity.
+
+      ```javascript
+
+      var reply = await context.sendActivity('Hi');
+
+      var reference =
+      TurnContext.getReplyConversationReference(context.activity, reply);
+
+      ```
   - uid: botbuilder-core.TurnContext.onDeleteActivity
-    name: onDeleteActivity
+    name: onDeleteActivity(DeleteActivityHandler)
     children: []
     type: method
     langs:
@@ -244,7 +289,7 @@ items:
       This example shows how to listen for and logs deleted activities.
 
       ```JavaScript
-      context.onDeleteActivities(await (ctx, reference, next) => {
+      context.onDeleteActivity(async (ctx, reference, next) => {
          // Delete activity
          await next();
 
@@ -253,7 +298,7 @@ items:
       });
       ```
   - uid: botbuilder-core.TurnContext.onSendActivities
-    name: onSendActivities
+    name: onSendActivities(SendActivitiesHandler)
     children: []
     type: method
     langs:
@@ -282,7 +327,7 @@ items:
 
       ```JavaScript
 
-      context.onSendActivities(await (ctx, activities, next) => {
+      context.onSendActivities(async (ctx, activities, next) => {
          // Deliver activities
          await next();
 
@@ -292,7 +337,7 @@ items:
 
       ```
   - uid: botbuilder-core.TurnContext.onUpdateActivity
-    name: onUpdateActivity
+    name: onUpdateActivity(UpdateActivityHandler)
     children: []
     type: method
     langs:
@@ -318,7 +363,7 @@ items:
       This example shows how to listen for and logs updated activities.
 
       ```JavaScript
-      context.onUpdateActivities(await (ctx, activity, next) => {
+      context.onUpdateActivity(async (ctx, activity, next) => {
          // Replace activity
          await next();
 
@@ -337,7 +382,7 @@ items:
       If `true` at least one response has been sent for the current turn of
       conversation.
     syntax:
-      content: boolean responded
+      content: 'responded: boolean'
       return:
         type:
           - boolean
@@ -357,7 +402,7 @@ items:
 
       ```
   - uid: botbuilder-core.TurnContext.sendActivities
-    name: sendActivities
+    name: 'sendActivities(Partial<Activity>[])'
     children: []
     type: method
     langs:
@@ -400,7 +445,7 @@ items:
 
       ```
   - uid: botbuilder-core.TurnContext.sendActivity
-    name: sendActivity
+    name: 'sendActivity(string | Partial<Activity>, string, string)'
     children: []
     type: method
     langs:
@@ -443,23 +488,8 @@ items:
       await context.sendActivity(`Hello World`);
 
       ```
-  - uid: botbuilder-core.TurnContext.constructor_1
-    name: TurnContext
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: Creates a new TurnContext instance.
-    syntax:
-      content: 'new TurnContext(adapterOrContext: TurnContext)'
-      parameters:
-        - id: adapterOrContext
-          type:
-            - botbuilder-core.TurnContext
-          description: Adapter that constructed the context or a context object to clone.
-    package: botbuilder-core
   - uid: botbuilder-core.TurnContext.constructor
-    name: TurnContext
+    name: 'TurnContext(BotAdapter, Partial<Activity>)'
     children: []
     type: constructor
     langs:
@@ -480,6 +510,21 @@ items:
           description: |
             Request being processed.
     package: botbuilder-core
+  - uid: botbuilder-core.TurnContext.constructor_1
+    name: TurnContext(TurnContext)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new TurnContext instance.
+    syntax:
+      content: 'new TurnContext(adapterOrContext: TurnContext)'
+      parameters:
+        - id: adapterOrContext
+          type:
+            - botbuilder-core.TurnContext
+          description: Adapter that constructed the context or a context object to clone.
+    package: botbuilder-core
   - uid: botbuilder-core.TurnContext.turnState
     name: turnState
     fullName: turnState
@@ -489,7 +534,7 @@ items:
     type: property
     summary: Map of services and other values cached for the lifetime of the turn.
     syntax:
-      content: 'Map<any, any> turnState'
+      content: 'turnState: Map<any, any>'
       return:
         type:
           - 'Map<any, any>'
@@ -521,7 +566,7 @@ items:
       > to avoid potential naming collisions with the bots caching and other
       components.
   - uid: botbuilder-core.TurnContext.updateActivity
-    name: updateActivity
+    name: updateActivity(Partial<Activity>)
     children: []
     type: method
     langs:

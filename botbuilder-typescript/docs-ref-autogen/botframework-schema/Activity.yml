@@ -20,8 +20,10 @@ items:
       - botframework-schema.Activity.importance
       - botframework-schema.Activity.inputHint
       - botframework-schema.Activity.label
+      - botframework-schema.Activity.listenFor
       - botframework-schema.Activity.locale
       - botframework-schema.Activity.localTimestamp
+      - botframework-schema.Activity.localTimezone
       - botframework-schema.Activity.membersAdded
       - botframework-schema.Activity.membersRemoved
       - botframework-schema.Activity.name
@@ -30,6 +32,7 @@ items:
       - botframework-schema.Activity.recipient
       - botframework-schema.Activity.relatesTo
       - botframework-schema.Activity.replyToId
+      - botframework-schema.Activity.semanticAction
       - botframework-schema.Activity.serviceUrl
       - botframework-schema.Activity.speak
       - botframework-schema.Activity.suggestedActions
@@ -45,7 +48,9 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: >-
+      An Activity is the basic communication type for the Bot Framework 3.0
+      protocol.
     package: botframework-schema
   - uid: botframework-schema.Activity.action
     name: action
@@ -54,7 +59,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Indicates whether the recipient of a contactRelationUpdate was added or
+      removed from the
+
+      sender's contact list.
     optional: true
     syntax:
       content: 'action?: string'
@@ -69,7 +78,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      The layout hint for multiple attachments. Default: list. Possible values
+      include: 'list',
+
+      'carousel'
     optional: true
     syntax:
       content: 'attachmentLayout?: AttachmentLayoutTypes | string'
@@ -84,7 +97,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Attachments
     optional: true
     syntax:
       content: 'attachments?: Attachment[]'
@@ -99,7 +112,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Contains channel-specific content.
     optional: true
     syntax:
       content: 'channelData?: any'
@@ -114,7 +127,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Contains an ID that uniquely identifies the channel. Set by the channel.
     syntax:
       content: 'channelId: string'
       return:
@@ -128,7 +141,14 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      The a code for endOfConversation activities that indicates why the
+      conversation ended.
+
+      Possible values include: 'unknown', 'completedSuccessfully',
+      'userCancelled', 'botTimedOut',
+
+      'botIssuedInvalidMessage', 'channelFailed'
     optional: true
     syntax:
       content: 'code?: EndOfConversationCodes | string'
@@ -143,7 +163,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Identifies the conversation to which the activity belongs.
     syntax:
       content: 'conversation: ConversationAccount'
       return:
@@ -157,13 +177,18 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      A delivery hint to signal to the recipient alternate delivery paths for
+      the activity.
+
+      The default delivery mode is "default". Possible values include: 'normal',
+      'notification'
     optional: true
     syntax:
-      content: 'deliveryMode?: string'
+      content: 'deliveryMode?: DeliveryModes | string'
       return:
         type:
-          - string
+          - botframework-schema.DeliveryModes | string
     package: botframework-schema
   - uid: botframework-schema.Activity.entities
     name: entities
@@ -172,7 +197,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Represents the entities that were mentioned in the message.
     optional: true
     syntax:
       content: 'entities?: Entity[]'
@@ -187,7 +212,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      The time at which the activity should be considered to be "expired" and
+      should not be
+
+      presented to the recipient.
     optional: true
     syntax:
       content: 'expiration?: Date'
@@ -202,7 +231,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Identifies the sender of the message.
     syntax:
       content: 'from: ChannelAccount'
       return:
@@ -216,7 +245,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Indicates whether the prior history of the channel is disclosed.
     optional: true
     syntax:
       content: 'historyDisclosed?: boolean'
@@ -231,7 +260,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Contains an ID that uniquely identifies the activity on the channel.
     optional: true
     syntax:
       content: 'id?: string'
@@ -246,13 +275,15 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      The importance of the activity. Possible values include: 'low', 'normal',
+      'high'
     optional: true
     syntax:
-      content: 'importance?: string'
+      content: 'importance?: ActivityImportance | string'
       return:
         type:
-          - string
+          - botframework-schema.ActivityImportance | string
     package: botframework-schema
   - uid: botframework-schema.Activity.inputHint
     name: inputHint
@@ -261,7 +292,13 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Indicates whether your bot is accepting,
+
+      expecting, or ignoring user input after the message is delivered to the
+      client. Possible
+
+      values include: 'acceptingInput', 'ignoringInput', 'expectingInput'
     optional: true
     syntax:
       content: 'inputHint?: InputHints | string'
@@ -276,12 +313,28 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: A descriptive label for the activity.
     syntax:
       content: 'label: string'
       return:
         type:
           - string
+    package: botframework-schema
+  - uid: botframework-schema.Activity.listenFor
+    name: listenFor
+    fullName: listenFor
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      List of phrases and references that speech and language priming systems
+      should listen for
+    syntax:
+      content: 'listenFor: string[]'
+      return:
+        type:
+          - 'string[]'
     package: botframework-schema
   - uid: botframework-schema.Activity.locale
     name: locale
@@ -290,7 +343,18 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      A locale name for the contents of the text field.
+
+      The locale name is a combination of an ISO 639 two- or three-letter
+      culture code associated
+
+      with a language
+
+      and an ISO 3166 two-letter subculture code associated with a country or
+      region.
+
+      The locale name can also correspond to a valid BCP-47 language tag.
     optional: true
     syntax:
       content: 'locale?: string'
@@ -305,13 +369,39 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Contains the date and time that the message was sent, in local time,
+      expressed in ISO-8601
+
+      format.
+
+      For example, 2016-09-23T13:07:49.4714686-07:00.
     optional: true
     syntax:
       content: 'localTimestamp?: Date'
       return:
         type:
           - Date
+    package: botframework-schema
+  - uid: botframework-schema.Activity.localTimezone
+    name: localTimezone
+    fullName: localTimezone
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Contains the name of the timezone in which the message, in local time,
+      expressed in IANA Time
+
+      Zone database format.
+
+      For example, America/Los_Angeles.
+    syntax:
+      content: 'localTimezone: string'
+      return:
+        type:
+          - string
     package: botframework-schema
   - uid: botframework-schema.Activity.membersAdded
     name: membersAdded
@@ -320,7 +410,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The collection of members added to the conversation.
     optional: true
     syntax:
       content: 'membersAdded?: ChannelAccount[]'
@@ -335,7 +425,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The collection of members removed from the conversation.
     optional: true
     syntax:
       content: 'membersRemoved?: ChannelAccount[]'
@@ -350,7 +440,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The name of the operation associated with an invoke or event activity.
     optional: true
     syntax:
       content: 'name?: string'
@@ -365,7 +455,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The collection of reactions added to the conversation.
     optional: true
     syntax:
       content: 'reactionsAdded?: MessageReaction[]'
@@ -380,7 +470,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The collection of reactions removed from the conversation.
     optional: true
     syntax:
       content: 'reactionsRemoved?: MessageReaction[]'
@@ -395,7 +485,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Identifies the recipient of the message.
     syntax:
       content: 'recipient: ChannelAccount'
       return:
@@ -409,7 +499,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: A reference to another conversation or activity.
     optional: true
     syntax:
       content: 'relatesTo?: ConversationReference'
@@ -424,13 +514,27 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Contains the ID of the message to which this message is a reply.
     optional: true
     syntax:
       content: 'replyToId?: string'
       return:
         type:
           - string
+    package: botframework-schema
+  - uid: botframework-schema.Activity.semanticAction
+    name: semanticAction
+    fullName: semanticAction
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: An optional programmatic action accompanying this request
+    syntax:
+      content: 'semanticAction: SemanticAction'
+      return:
+        type:
+          - botframework-schema.SemanticAction
     package: botframework-schema
   - uid: botframework-schema.Activity.serviceUrl
     name: serviceUrl
@@ -439,7 +543,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Contains the URL that specifies the channel's service endpoint. Set by the
+      channel.
     syntax:
       content: 'serviceUrl: string'
       return:
@@ -453,7 +559,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The text to speak.
     optional: true
     syntax:
       content: 'speak?: string'
@@ -468,7 +574,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The suggested actions for the activity.
     optional: true
     syntax:
       content: 'suggestedActions?: SuggestedActions'
@@ -483,7 +589,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The text to display if the channel cannot render cards.
     optional: true
     syntax:
       content: 'summary?: string'
@@ -498,7 +604,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The text content of the message.
     syntax:
       content: 'text: string'
       return:
@@ -512,7 +618,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Format of text fields Default:markdown. Possible values include:
+      'markdown', 'plain', 'xml'
     optional: true
     syntax:
       content: 'textFormat?: TextFormatTypes | string'
@@ -527,7 +635,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      The collection of text fragments to highlight when the activity contains a
+      ReplyToId value.
     optional: true
     syntax:
       content: 'textHighlights?: TextHighlight[]'
@@ -542,7 +652,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Contains the date and time that the message was sent, in UTC, expressed in
+      ISO-8601 format.
     optional: true
     syntax:
       content: 'timestamp?: Date'
@@ -557,7 +669,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The updated topic name of the conversation.
     optional: true
     syntax:
       content: 'topicName?: string'
@@ -572,7 +684,17 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Contains the activity type. Possible values include: 'message',
+      'contactRelationUpdate',
+
+      'conversationUpdate', 'typing', 'endOfConversation', 'event', 'invoke',
+      'deleteUserData',
+
+      'messageUpdate', 'messageDelete', 'installationUpdate', 'messageReaction',
+      'suggestion',
+
+      'trace', 'handoff'
     syntax:
       content: 'type: ActivityTypes | string'
       return:
@@ -586,7 +708,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: A value that is associated with the activity.
     optional: true
     syntax:
       content: 'value?: any'
@@ -601,7 +723,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The type of the activity's value object.
     syntax:
       content: 'valueType: string'
       return:
@@ -639,6 +761,14 @@ references:
       - name: ConversationAccount
         fullName: ConversationAccount
         uid: botframework-schema.ConversationAccount
+  - uid: botframework-schema.DeliveryModes | string
+    name: DeliveryModes | string
+    spec.typeScript:
+      - name: DeliveryModes
+        fullName: DeliveryModes
+        uid: botframework-schema.DeliveryModes
+      - name: ' | string'
+        fullName: ' | string'
   - uid: 'botframework-schema.Entity[]'
     name: 'Entity[]'
     spec.typeScript:
@@ -653,6 +783,14 @@ references:
       - name: ChannelAccount
         fullName: ChannelAccount
         uid: botframework-schema.ChannelAccount
+  - uid: botframework-schema.ActivityImportance | string
+    name: ActivityImportance | string
+    spec.typeScript:
+      - name: ActivityImportance
+        fullName: ActivityImportance
+        uid: botframework-schema.ActivityImportance
+      - name: ' | string'
+        fullName: ' | string'
   - uid: botframework-schema.InputHints | string
     name: InputHints | string
     spec.typeScript:
@@ -683,6 +821,12 @@ references:
       - name: ConversationReference
         fullName: ConversationReference
         uid: botframework-schema.ConversationReference
+  - uid: botframework-schema.SemanticAction
+    name: SemanticAction
+    spec.typeScript:
+      - name: SemanticAction
+        fullName: SemanticAction
+        uid: botframework-schema.SemanticAction
   - uid: botframework-schema.SuggestedActions
     name: SuggestedActions
     spec.typeScript:

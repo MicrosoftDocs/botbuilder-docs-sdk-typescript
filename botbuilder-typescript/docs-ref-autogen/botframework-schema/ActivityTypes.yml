@@ -9,16 +9,16 @@ items:
       - botframework-schema.ActivityTypes.DeleteUserData
       - botframework-schema.ActivityTypes.EndOfConversation
       - botframework-schema.ActivityTypes.Event
+      - botframework-schema.ActivityTypes.Handoff
       - botframework-schema.ActivityTypes.InstallationUpdate
-      - botframework-schema.ActivityTypes.Invoke
       - botframework-schema.ActivityTypes.ConversationUpdate
+      - botframework-schema.ActivityTypes.Message
       - botframework-schema.ActivityTypes.MessageDelete
       - botframework-schema.ActivityTypes.MessageReaction
       - botframework-schema.ActivityTypes.MessageUpdate
-      - botframework-schema.ActivityTypes.Ping
       - botframework-schema.ActivityTypes.Suggestion
       - botframework-schema.ActivityTypes.Trace
-      - botframework-schema.ActivityTypes.Message
+      - botframework-schema.ActivityTypes.Invoke
     langs:
       - typeScript
     type: enum
@@ -26,23 +26,12 @@ items:
       Defines values for ActivityTypes.
 
       Possible values include: 'message', 'contactRelationUpdate',
+      'conversationUpdate', 'typing',
 
-      'conversationUpdate', 'typing', 'ping', 'endOfConversation', 'event',
+      'endOfConversation', 'event', 'invoke', 'deleteUserData', 'messageUpdate',
+      'messageDelete',
 
-      'invoke', 'deleteUserData', 'messageUpdate', 'messageDelete',
-
-      'installationUpdate', 'messageReaction', 'suggestion', 'trace'
-
-      There could be more values for this enum apart from the ones defined
-      here.If
-
-      you want to set a value that is not from the known values then you can do
-
-      the following:
-
-      let param: ActivityTypes =
-
-      <ActivityTypes>"someUnknownValueThatWillStillBeValid";
+      'installationUpdate', 'messageReaction', 'suggestion', 'trace', 'handoff'
     package: botframework-schema
   - uid: botframework-schema.ActivityTypes.ContactRelationUpdate
     name: ContactRelationUpdate
@@ -89,6 +78,15 @@ items:
     type: field
     numericValue: null
     package: botframework-schema
+  - uid: botframework-schema.ActivityTypes.Handoff
+    name: Handoff
+    children: []
+    langs:
+      - typeScript
+    summary: ''
+    type: field
+    numericValue: null
+    package: botframework-schema
   - uid: botframework-schema.ActivityTypes.InstallationUpdate
     name: InstallationUpdate
     children: []
@@ -98,8 +96,8 @@ items:
     type: field
     numericValue: null
     package: botframework-schema
-  - uid: botframework-schema.ActivityTypes.Invoke
-    name: Invoke
+  - uid: botframework-schema.ActivityTypes.ConversationUpdate
+    name: ConversationUpdate
     children: []
     langs:
       - typeScript
@@ -107,8 +105,8 @@ items:
     type: field
     numericValue: null
     package: botframework-schema
-  - uid: botframework-schema.ActivityTypes.ConversationUpdate
-    name: ConversationUpdate
+  - uid: botframework-schema.ActivityTypes.Message
+    name: Message
     children: []
     langs:
       - typeScript
@@ -143,15 +141,6 @@ items:
     type: field
     numericValue: null
     package: botframework-schema
-  - uid: botframework-schema.ActivityTypes.Ping
-    name: Ping
-    children: []
-    langs:
-      - typeScript
-    summary: ''
-    type: field
-    numericValue: null
-    package: botframework-schema
   - uid: botframework-schema.ActivityTypes.Suggestion
     name: Suggestion
     children: []
@@ -170,8 +159,8 @@ items:
     type: field
     numericValue: null
     package: botframework-schema
-  - uid: botframework-schema.ActivityTypes.Message
-    name: Message
+  - uid: botframework-schema.ActivityTypes.Invoke
+    name: Invoke
     children: []
     langs:
       - typeScript

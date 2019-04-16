@@ -58,7 +58,7 @@ items:
 
       ```
   - uid: botbuilder.BotFrameworkAdapter.constructor
-    name: BotFrameworkAdapter
+    name: BotFrameworkAdapter(Partial<BotFrameworkAdapterSettings>)
     children: []
     type: constructor
     langs:
@@ -86,7 +86,9 @@ items:
        }
       ```
   - uid: botbuilder.BotFrameworkAdapter.continueConversation
-    name: continueConversation
+    name: >-
+      continueConversation(Partial<ConversationReference>, (context:
+      TurnContext) => Promise<void>)
     children: []
     type: method
     langs:
@@ -167,7 +169,9 @@ items:
 
       ```
   - uid: botbuilder.BotFrameworkAdapter.createConversation
-    name: createConversation
+    name: >-
+      createConversation(Partial<ConversationReference>, (context: TurnContext)
+      => Promise<void>)
     children: []
     type: method
     langs:
@@ -180,7 +184,7 @@ items:
     syntax:
       content: >-
         function createConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promise<void>)
+        logic?: (context: TurnContext) => Promise<void>)
       parameters:
         - id: reference
           type:
@@ -194,6 +198,7 @@ items:
           description: >
             A function handler that will be called to perform the bot's logic
             after the the adapters middleware has been run.
+          optional: true
       return:
         type:
           - Promise<void>
@@ -253,7 +258,7 @@ items:
 
       ```
   - uid: botbuilder.BotFrameworkAdapter.deleteActivity
-    name: deleteActivity
+    name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     children: []
     type: method
     langs:
@@ -289,7 +294,7 @@ items:
       > Note: Not all chat channels support this method. Calling it on an
       unsupported channel may result in an error.
   - uid: botbuilder.BotFrameworkAdapter.deleteConversationMember
-    name: deleteConversationMember
+    name: 'deleteConversationMember(TurnContext, string)'
     children: []
     type: method
     langs:
@@ -318,7 +323,7 @@ items:
 
       Note that this method does not apply to all channels.
   - uid: botbuilder.BotFrameworkAdapter.emulateOAuthCards
-    name: emulateOAuthCards
+    name: 'emulateOAuthCards(TurnContext | string, boolean)'
     children: []
     type: method
     langs:
@@ -334,20 +339,18 @@ items:
         - id: contextOrServiceUrl
           type:
             - TurnContext | string
-          description: >-
-            The URL of the channel server to query or a TurnContext.  This can
-            be retrieved from `context.activity.serviceUrl`.
+          description: The URL of the emulator.
         - id: emulate
           type:
             - boolean
           description: |
-            If `true` the token service will emulate the sending of OAuthCards.
+            If `true` the emulator will emulate the sending of OAuthCards.
       return:
         type:
           - Promise<void>
     package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.getAadTokens
-    name: getAadTokens
+    name: 'getAadTokens(TurnContext, string, string[])'
     children: []
     type: method
     langs:
@@ -373,10 +376,10 @@ items:
           description: ''
       return:
         type:
-          - Promise<TokenResponseMap>
+          - 'Promise<[key: string]: TokenResponse>'
     package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.getActivityMembers
-    name: getActivityMembers
+    name: 'getActivityMembers(TurnContext, string)'
     children: []
     type: method
     langs:
@@ -410,7 +413,7 @@ items:
 
       directly involved in the activity, not all members of the conversation.
   - uid: botbuilder.BotFrameworkAdapter.getConversationMembers
-    name: getConversationMembers
+    name: getConversationMembers(TurnContext)
     children: []
     type: method
     langs:
@@ -442,7 +445,7 @@ items:
       members of the conversation, not just those directly involved in the
       activity.
   - uid: botbuilder.BotFrameworkAdapter.getConversations
-    name: getConversations
+    name: 'getConversations(TurnContext | string, string)'
     children: []
     type: method
     langs:
@@ -479,7 +482,7 @@ items:
 
       that can be used to fetch the next page of results from the server.
   - uid: botbuilder.BotFrameworkAdapter.getSignInLink
-    name: getSignInLink
+    name: 'getSignInLink(TurnContext, string)'
     children: []
     type: method
     langs:
@@ -504,7 +507,7 @@ items:
           - Promise<string>
     package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.getUserToken
-    name: getUserToken
+    name: 'getUserToken(TurnContext, string, string)'
     children: []
     type: method
     langs:
@@ -534,7 +537,9 @@ items:
           - Promise<TokenResponse>
     package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.processActivity
-    name: processActivity
+    name: >-
+      processActivity(WebRequest, WebResponse, (context: TurnContext) =>
+      Promise<any>)
     children: []
     type: method
     langs:
@@ -640,7 +645,7 @@ items:
 
       ```
   - uid: botbuilder.BotFrameworkAdapter.sendActivities
-    name: sendActivities
+    name: 'sendActivities(TurnContext, Partial<Activity>[])'
     children: []
     type: method
     langs:
@@ -692,7 +697,7 @@ items:
 
       handling by middleware.
   - uid: botbuilder.BotFrameworkAdapter.signOutUser
-    name: signOutUser
+    name: 'signOutUser(TurnContext, string)'
     children: []
     type: method
     langs:
@@ -715,7 +720,7 @@ items:
           - Promise<void>
     package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.updateActivity
-    name: updateActivity
+    name: 'updateActivity(TurnContext, Partial<Activity>)'
     children: []
     type: method
     langs:

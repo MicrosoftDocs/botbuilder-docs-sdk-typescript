@@ -12,7 +12,10 @@ items:
       - botbuilder-dialogs.DialogContext.constructor
       - botbuilder-dialogs.DialogContext.dialogs
       - botbuilder-dialogs.DialogContext.endDialog
+      - botbuilder-dialogs.DialogContext.findDialog
+      - botbuilder-dialogs.DialogContext.parent
       - botbuilder-dialogs.DialogContext.prompt
+      - botbuilder-dialogs.DialogContext.prompt_1
       - botbuilder-dialogs.DialogContext.replaceDialog
       - botbuilder-dialogs.DialogContext.repromptDialog
       - botbuilder-dialogs.DialogContext.stack
@@ -46,7 +49,7 @@ items:
 
       the stack is empty.
     syntax:
-      content: DialogInstance | undefined activeDialog
+      content: 'activeDialog: DialogInstance | undefined'
       return:
         type:
           - botbuilder-dialogs.DialogInstance | undefined
@@ -62,7 +65,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.DialogContext.beginDialog
-    name: beginDialog
+    name: 'beginDialog(string, object)'
     children: []
     type: method
     langs:
@@ -107,7 +110,7 @@ items:
       - `DialogTurnStatus.completed` if the dialog started was a single-turn
       dialog.
   - uid: botbuilder-dialogs.DialogContext.cancelAllDialogs
-    name: cancelAllDialogs
+    name: cancelAllDialogs()
     children: []
     type: method
     langs:
@@ -150,13 +153,13 @@ items:
     type: property
     summary: Context for the current turn of conversation.
     syntax:
-      content: 'public context: TurnContext'
+      content: 'context: TurnContext'
       return:
         type:
           - TurnContext
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogContext.continueDialog
-    name: continueDialog
+    name: continueDialog()
     children: []
     type: method
     langs:
@@ -198,7 +201,7 @@ items:
 
       - `DialogTurnStatus.empty` if the stack was empty.
   - uid: botbuilder-dialogs.DialogContext.constructor
-    name: DialogContext
+    name: 'DialogContext(DialogSet, TurnContext, DialogState)'
     children: []
     type: constructor
     langs:
@@ -232,13 +235,13 @@ items:
     type: property
     summary: Set of dialogs that can be called from this context.
     syntax:
-      content: 'public dialogs: DialogSet'
+      content: 'dialogs: DialogSet'
       return:
         type:
           - botbuilder-dialogs.DialogSet
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogContext.endDialog
-    name: endDialog
+    name: endDialog(any)
     children: []
     type: method
     langs:
@@ -291,8 +294,47 @@ items:
 
       - `DialogTurnStatus.completed` the parent dialog completed or there was no
       parent dialog to resume.
+  - uid: botbuilder-dialogs.DialogContext.findDialog
+    name: findDialog(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Searches for a dialog with a given ID.
+    syntax:
+      content: 'function findDialog(dialogId: string)'
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: |
+            ID of the dialog to search for.
+      return:
+        type:
+          - botbuilder-dialogs.Dialog | undefined
+    package: botbuilder-dialogs
+    remarks: >-
+      If the dialog cannot be found within the current `DialogSet`, the parent
+      `DialogContext`
+
+      will be searched if there is one.
+  - uid: botbuilder-dialogs.DialogContext.parent
+    name: parent
+    fullName: parent
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The parent DialogContext if any.
+    syntax:
+      content: 'parent: DialogContext | undefined'
+      return:
+        type:
+          - botbuilder-dialogs.DialogContext | undefined
+    package: botbuilder-dialogs
+    remarks: This will be used when searching for dialogs to start.
   - uid: botbuilder-dialogs.DialogContext.prompt
-    name: prompt
+    name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
     children: []
     type: method
     langs:
@@ -314,7 +356,53 @@ items:
             - string | Partial<Activity> | botbuilder-dialogs.PromptOptions
           description: >-
             Initial prompt to send the user or a set of options to configure the
-            prompt with..
+            prompt with.
+      return:
+        type:
+          - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+    remarks: >-
+      This is a lightweight wrapper abound [beginDialog()](#begindialog). It
+      fills in a
+
+      `PromptOptions` structure and then passes it through to
+      `dc.beginDialog(dialogId, options)`.
+
+
+      ```JavaScript
+
+      return await dc.prompt('confirmPrompt', `Are you sure you'd like to
+      quit?`);
+
+      ```
+  - uid: botbuilder-dialogs.DialogContext.prompt_1
+    name: >-
+      prompt(string, string | Partial<Activity> | PromptOptions, string |
+      Choice[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Helper function to simplify formatting the options for calling a `Prompt`
+      based dialog.
+    syntax:
+      content: >-
+        function prompt(dialogId: string, promptOrOptions: string |
+        Partial<Activity> | PromptOptions, choices: string | Choice[])
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: ''
+        - id: promptOrOptions
+          type:
+            - string | Partial<Activity> | botbuilder-dialogs.PromptOptions
+          description: ''
+        - id: choices
+          type:
+            - 'string | botbuilder-dialogs.Choice[]'
+          description: ''
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
@@ -334,7 +422,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.DialogContext.replaceDialog
-    name: replaceDialog
+    name: 'replaceDialog(string, object)'
     children: []
     type: method
     langs:
@@ -394,7 +482,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.DialogContext.repromptDialog
-    name: repromptDialog
+    name: repromptDialog()
     children: []
     type: method
     langs:
@@ -424,7 +512,7 @@ items:
     type: property
     summary: Current dialog stack.
     syntax:
-      content: 'public stack: DialogInstance[]'
+      content: 'stack: DialogInstance[]'
       return:
         type:
           - 'botbuilder-dialogs.DialogInstance[]'
@@ -442,14 +530,6 @@ references:
       - name: DialogState
         fullName: DialogState
         uid: botbuilder-dialogs.DialogState
-  - uid: 'botbuilder-dialogs.DialogInstance[]'
-    name: 'DialogInstance[]'
-    spec.typeScript:
-      - name: DialogInstance
-        fullName: DialogInstance
-        uid: botbuilder-dialogs.DialogInstance
-      - name: '[]'
-        fullName: '[]'
   - uid: botbuilder-dialogs.DialogInstance | undefined
     name: DialogInstance | undefined
     spec.typeScript:
@@ -458,6 +538,22 @@ references:
         uid: botbuilder-dialogs.DialogInstance
       - name: ' | undefined'
         fullName: ' | undefined'
+  - uid: botbuilder-dialogs.DialogContext | undefined
+    name: DialogContext | undefined
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
+      - name: ' | undefined'
+        fullName: ' | undefined'
+  - uid: 'botbuilder-dialogs.DialogInstance[]'
+    name: 'DialogInstance[]'
+    spec.typeScript:
+      - name: DialogInstance
+        fullName: DialogInstance
+        uid: botbuilder-dialogs.DialogInstance
+      - name: '[]'
+        fullName: '[]'
   - uid: Promise<botbuilder-dialogs.DialogTurnResult>
     name: DialogTurnResult>
     spec.typeScript:
@@ -468,6 +564,14 @@ references:
         uid: botbuilder-dialogs.DialogTurnResult
       - name: '>'
         fullName: '>'
+  - uid: botbuilder-dialogs.Dialog | undefined
+    name: Dialog | undefined
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-dialogs.Dialog
+      - name: ' | undefined'
+        fullName: ' | undefined'
   - uid: string | Partial<Activity> | botbuilder-dialogs.PromptOptions
     name: PromptOptions
     spec.typeScript:
@@ -476,3 +580,13 @@ references:
       - name: PromptOptions
         fullName: PromptOptions
         uid: botbuilder-dialogs.PromptOptions
+  - uid: 'string | botbuilder-dialogs.Choice[]'
+    name: 'Choice[]'
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: Choice
+        fullName: Choice
+        uid: botbuilder-dialogs.Choice
+      - name: '[]'
+        fullName: '[]'

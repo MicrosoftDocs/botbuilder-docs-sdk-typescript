@@ -6,6 +6,7 @@ items:
     children:
       - botbuilder-core.StatePropertyAccessor.delete
       - botbuilder-core.StatePropertyAccessor.get
+      - botbuilder-core.StatePropertyAccessor.get_1
       - botbuilder-core.StatePropertyAccessor.set
     langs:
       - typeScript
@@ -17,7 +18,7 @@ items:
       management system.
     package: botbuilder-core
   - uid: botbuilder-core.StatePropertyAccessor.delete
-    name: delete
+    name: delete(TurnContext)
     children: []
     type: method
     langs:
@@ -46,26 +47,19 @@ items:
 
       ```
   - uid: botbuilder-core.StatePropertyAccessor.get
-    name: get
+    name: get(TurnContext)
     children: []
     type: method
     langs:
       - typeScript
     summary: Reads a persisted property from its backing storage object.
     syntax:
-      content: 'function get(context: TurnContext, defaultValue?: T)'
+      content: 'function get(context: TurnContext)'
       parameters:
         - id: context
           type:
             - botbuilder-core.TurnContext
           description: Context for the current turn of conversation with the user.
-        - id: defaultValue
-          type:
-            - T
-          description: >
-            (Optional) default value to copy to the backing storage object if
-            the property isn't found.
-          optional: true
       return:
         type:
           - Promise<T | undefined>
@@ -90,8 +84,50 @@ items:
       const value = await myProperty.get(context, { count: 0 });
 
       ```
+  - uid: botbuilder-core.StatePropertyAccessor.get_1
+    name: 'get(TurnContext, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Reads a persisted property from its backing storage object.
+    syntax:
+      content: 'function get(context: TurnContext, defaultValue: T)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: ''
+        - id: defaultValue
+          type:
+            - T
+          description: ''
+      return:
+        type:
+          - Promise<T>
+    package: botbuilder-core
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      If the property does not currently exist on the storage object and a
+      `defaultValue` has been
+
+      specified, a clone of the `defaultValue` SHOULD be copied to the storage
+      object. If a
+
+      `defaultValue` has not been specified then a value of `undefined` SHOULD
+      be returned.
+
+
+      ```JavaScript
+
+      const value = await myProperty.get(context, { count: 0 });
+
+      ```
   - uid: botbuilder-core.StatePropertyAccessor.set
-    name: set
+    name: 'set(TurnContext, T)'
     children: []
     type: method
     langs:

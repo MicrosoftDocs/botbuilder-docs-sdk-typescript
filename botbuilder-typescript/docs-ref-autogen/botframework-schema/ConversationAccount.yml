@@ -4,15 +4,32 @@ items:
     name: ConversationAccount
     fullName: ConversationAccount
     children:
+      - botframework-schema.ConversationAccount.aadObjectId
       - botframework-schema.ConversationAccount.conversationType
       - botframework-schema.ConversationAccount.id
       - botframework-schema.ConversationAccount.isGroup
       - botframework-schema.ConversationAccount.name
       - botframework-schema.ConversationAccount.role
+      - botframework-schema.ConversationAccount.tenantId
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Channel account information for a conversation
+    package: botframework-schema
+  - uid: botframework-schema.ConversationAccount.aadObjectId
+    name: aadObjectId
+    fullName: aadObjectId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: This account's object ID within Azure Active Directory (AAD)
+    optional: true
+    syntax:
+      content: 'aadObjectId?: string'
+      return:
+        type:
+          - string
     package: botframework-schema
   - uid: botframework-schema.ConversationAccount.conversationType
     name: conversationType
@@ -21,7 +38,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Indicates the type of the conversation in channels that distinguish
+      between conversation types
     syntax:
       content: 'conversationType: string'
       return:
@@ -35,7 +54,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Channel id for the user or bot on this channel (Example: joe@smith.com, or
+      @joesmith or
+
+      123456)
     syntax:
       content: 'id: string'
       return:
@@ -49,7 +72,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Indicates whether the conversation contains more than two participants at
+      the time the
+
+      activity was generated
     syntax:
       content: 'isGroup: boolean'
       return:
@@ -63,7 +90,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Display friendly name
     syntax:
       content: 'name: string'
       return:
@@ -77,12 +104,31 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Role of the entity behind the account (Example: User, Bot, etc.). Possible
+      values include:
+
+      'user', 'bot'
+    optional: true
     syntax:
-      content: 'role: RoleTypes'
+      content: 'role?: RoleTypes'
       return:
         type:
           - botframework-schema.RoleTypes
+    package: botframework-schema
+  - uid: botframework-schema.ConversationAccount.tenantId
+    name: tenantId
+    fullName: tenantId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: This conversation's tenant ID
+    syntax:
+      content: 'tenantId: string'
+      return:
+        type:
+          - string
     package: botframework-schema
 references:
   - uid: botframework-schema.RoleTypes

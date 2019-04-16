@@ -8,6 +8,7 @@ items:
       - botbuilder-dialogs.DialogSet.createContext
       - botbuilder-dialogs.DialogSet.constructor
       - botbuilder-dialogs.DialogSet.find
+      - botbuilder-dialogs.DialogSet.telemetryClient
     langs:
       - typeScript
     type: class
@@ -87,7 +88,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.DialogSet.add
-    name: add
+    name: add(T)
     children: []
     type: method
     langs:
@@ -99,8 +100,11 @@ items:
         - id: dialog
           type:
             - T
-          description: |
+          description: >
             The dialog or prompt to add.
+
+            If a telemetryClient is present on the dialog set, it will be added
+            to each dialog.
       return:
         type:
           - this
@@ -109,7 +113,7 @@ items:
       The `Dialog.id` of all dialogs or prompts added to the set need to be
       unique within the set.
   - uid: botbuilder-dialogs.DialogSet.createContext
-    name: createContext
+    name: createContext(TurnContext)
     children: []
     type: method
     langs:
@@ -130,7 +134,7 @@ items:
           - Promise<botbuilder-dialogs.DialogContext>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogSet.constructor
-    name: DialogSet
+    name: DialogSet(StatePropertyAccessor<DialogState>)
     children: []
     type: constructor
     langs:
@@ -162,7 +166,7 @@ items:
 
       ```
   - uid: botbuilder-dialogs.DialogSet.find
-    name: find
+    name: find(string)
     children: []
     type: method
     langs:
@@ -186,6 +190,24 @@ items:
       ```JavaScript
       const dialog = dialogs.find('greeting');
       ```
+  - uid: botbuilder-dialogs.DialogSet.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Set the telemetry client for this dialog set and apply it to all current
+      dialogs.
+
+      Future dialogs added to the set will also inherit this client.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+    package: botbuilder-dialogs
 references:
   - uid: StatePropertyAccessor<botbuilder-dialogs.DialogState>
     name: DialogState>

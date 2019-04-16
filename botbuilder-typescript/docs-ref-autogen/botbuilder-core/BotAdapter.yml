@@ -21,7 +21,9 @@ items:
 
       of channels.
   - uid: botbuilder-core.BotAdapter.continueConversation
-    name: continueConversation
+    name: >-
+      continueConversation(Partial<ConversationReference>, (revocableContext:
+      TurnContext) => Promise<void>)
     children: []
     type: method
     langs:
@@ -46,7 +48,7 @@ items:
           - Promise<void>
     package: botbuilder-core
   - uid: botbuilder-core.BotAdapter.deleteActivity
-    name: deleteActivity
+    name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     children: []
     type: method
     langs:
@@ -83,13 +85,13 @@ items:
 
       a turn.
     syntax:
-      content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
+      content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
       return:
         type:
           - '(context: TurnContext, error: Error) => Promise<void>'
     package: botbuilder-core
   - uid: botbuilder-core.BotAdapter.sendActivities
-    name: sendActivities
+    name: 'sendActivities(TurnContext, Partial<Activity>[])'
     children: []
     type: method
     langs:
@@ -115,7 +117,7 @@ items:
     package: botbuilder-core
     remarks: An array of responses from the server will be returned.
   - uid: botbuilder-core.BotAdapter.updateActivity
-    name: updateActivity
+    name: 'updateActivity(TurnContext, Partial<Activity>)'
     children: []
     type: method
     langs:
@@ -141,7 +143,9 @@ items:
           - Promise<void>
     package: botbuilder-core
   - uid: botbuilder-core.BotAdapter.use
-    name: use
+    name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
     children: []
     type: method
     langs:

@@ -7,6 +7,7 @@ items:
       - botbuilder-core.BotState.constructor
       - botbuilder-core.BotState.clear
       - botbuilder-core.BotState.createProperty
+      - botbuilder-core.BotState.delete
       - botbuilder-core.BotState.get
       - botbuilder-core.BotState.load
       - botbuilder-core.BotState.properties
@@ -33,7 +34,7 @@ items:
       lifetime of the turn and will only be written to storage if it has been
       modified.
   - uid: botbuilder-core.BotState.constructor
-    name: BotState
+    name: 'BotState(Storage, StorageKeyFactory)'
     children: []
     type: constructor
     langs:
@@ -54,7 +55,7 @@ items:
             calculated.
     package: botbuilder-core
   - uid: botbuilder-core.BotState.clear
-    name: clear
+    name: clear(TurnContext)
     children: []
     type: method
     langs:
@@ -68,6 +69,9 @@ items:
             - botbuilder-core.TurnContext
           description: |
             Context for current turn of conversation with the user.
+      return:
+        type:
+          - Promise<void>
     package: botbuilder-core
     remarks: >-
       The cleared state object will not be persisted until
@@ -84,7 +88,7 @@ items:
 
       ```
   - uid: botbuilder-core.BotState.createProperty
-    name: createProperty
+    name: createProperty(string)
     children: []
     type: method
     langs:
@@ -106,8 +110,39 @@ items:
         type:
           - botbuilder-core.StatePropertyAccessor<T>
     package: botbuilder-core
+  - uid: botbuilder-core.BotState.delete
+    name: delete(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Delete the backing state object for the current turn.
+    syntax:
+      content: 'function delete(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+    remarks: >-
+      The state object will be removed from storage if it exists.  If the state
+      object has been
+
+      read in and cached, the cache will be cleared.
+
+
+      ```JavaScript
+
+      await botState.delete(context);
+
+      ```
   - uid: botbuilder-core.BotState.get
-    name: get
+    name: get(TurnContext)
     children: []
     type: method
     langs:
@@ -136,14 +171,14 @@ items:
 
       ```
   - uid: botbuilder-core.BotState.load
-    name: load
+    name: 'load(TurnContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Reads in and caches the backing state object for a turn.
     syntax:
-      content: 'function load(context: TurnContext, force: boolean)'
+      content: 'function load(context: TurnContext, force?: boolean)'
       parameters:
         - id: context
           type:
@@ -155,6 +190,7 @@ items:
           description: >
             (Optional) If `true` the cache will be bypassed and the state will
             always be read in directly from storage. Defaults to `false`.
+          optional: true
       return:
         type:
           - Promise<any>
@@ -186,20 +222,20 @@ items:
       Collection of state property accessors added through
       [createProperty()](#createproperty).
     syntax:
-      content: 'public properties: Map<string, StatePropertyAccessor> = new Map()'
+      content: 'properties: Map<string, StatePropertyAccessor>'
       return:
         type:
           - 'Map<string, botbuilder-core.StatePropertyAccessor>'
     package: botbuilder-core
   - uid: botbuilder-core.BotState.saveChanges
-    name: saveChanges
+    name: 'saveChanges(TurnContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Saves the cached state object if it's been changed.
     syntax:
-      content: 'function saveChanges(context: TurnContext, force: boolean)'
+      content: 'function saveChanges(context: TurnContext, force?: boolean)'
       parameters:
         - id: context
           type:
@@ -211,6 +247,7 @@ items:
           description: >
             (Optional) if `true` the state will always be written out regardless
             of its change state. Defaults to `false`.
+          optional: true
       return:
         type:
           - Promise<void>
