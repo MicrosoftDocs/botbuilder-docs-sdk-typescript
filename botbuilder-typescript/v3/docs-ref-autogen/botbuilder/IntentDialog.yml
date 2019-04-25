@@ -1,0 +1,322 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.IntentDialog
+    name: IntentDialog
+    fullName: IntentDialog
+    children:
+      - botbuilder.IntentDialog.constructor
+      - botbuilder.IntentDialog.matches
+      - botbuilder.IntentDialog.matchesAny
+      - botbuilder.IntentDialog.onBegin
+      - botbuilder.IntentDialog.onDefault
+      - botbuilder.IntentDialog.recognizer
+      - botbuilder.IntentDialog.replyReceived
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Identifies a users intent and optionally extracts entities from a users
+      utterance.
+    extends:
+      name: botbuilder.Dialog
+    package: botbuilder
+  - uid: botbuilder.IntentDialog.constructor
+    name: IntentDialog(IIntentDialogOptions)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Constructs a new instance of an IntentDialog.
+    syntax:
+      content: 'new IntentDialog(options?: IIntentDialogOptions)'
+      parameters:
+        - id: options
+          type:
+            - botbuilder.IIntentDialogOptions
+          description: |
+            (Optional) options used to initialize the dialog.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.IntentDialog.matches
+    name: >-
+      matches(RegExp | string, string | IDialogWaterfallStep[] |
+      IDialogWaterfallStep, any)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Invokes a handler when a given intent is detected in the users utterance.
+
+      > __NOTE:__ The full details of the match, including the list of intents &
+      entities detected, will be passed to the
+      [args](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizerresult)
+      of the first waterfall step or dialog that's started.
+    syntax:
+      content: >-
+        function matches(intent: RegExp | string, dialogId: string |
+        IDialogWaterfallStep[] | IDialogWaterfallStep, dialogArgs?: any)
+      parameters:
+        - id: intent
+          type:
+            - RegExp | string
+          description: >-
+
+            * __intent:__ _{RegExp}_ - A regular expression that will be
+            evaluated to detect the users intent.
+
+            * __intent:__ _{string}_ - A named intent returned by an
+            [IIntentRecognizer](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizer)
+            plugin that will be used to match the users intent.
+        - id: dialogId
+          type:
+            - >-
+              string | botbuilder.IDialogWaterfallStep[] |
+              botbuilder.IDialogWaterfallStep
+          description: >-
+
+            * __dialogId:__ _{string} - The ID of a dialog to begin when the
+            intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep[]}_ - Waterfall of steps to
+            execute when the intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep}_ - Single step waterfall to
+            execute when the intent is matched. Calling a built-in prompt or
+            starting a new dialog will result in the current dialog ending upon
+            completion of the child prompt/dialog.
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) arguments to pass the dialog that started when `dialogId`
+            is a _{string}_.
+          optional: true
+      return:
+        type:
+          - botbuilder.IntentDialog
+    package: botbuilder
+  - uid: botbuilder.IntentDialog.matchesAny
+    name: >-
+      matchesAny(RegExp[] | string[], string | IDialogWaterfallStep[] |
+      IDialogWaterfallStep, any)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Invokes a handler when any of the given intents are detected in the users
+      utterance.
+
+      > __NOTE:__ The full details of the match, including the list of intents &
+      entities detected, will be passed to the
+      [args](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizerresult)
+      of the first waterfall step or dialog that's started.
+    syntax:
+      content: >-
+        function matchesAny(intent: RegExp[] | string[], dialogId: string |
+        IDialogWaterfallStep[] | IDialogWaterfallStep, dialogArgs?: any)
+      parameters:
+        - id: intent
+          type:
+            - 'RegExp[] | string[]'
+          description: >-
+
+            * __intent:__ _{RegExp[]}_ - Array of regular expressions that will
+            be evaluated to detect the users intent.
+
+            * __intent:__ _{string[]}_ - Array of named intents returned by an
+            [IIntentRecognizer](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizer)
+            plugin that will be used to match the users intent.
+        - id: dialogId
+          type:
+            - >-
+              string | botbuilder.IDialogWaterfallStep[] |
+              botbuilder.IDialogWaterfallStep
+          description: >-
+
+            * __dialogId:__ _{string} - The ID of a dialog to begin when the
+            intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep[]}_ - Waterfall of steps to
+            execute when the intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep}_ - Single step waterfall to
+            execute when the intent is matched. Calling a built-in prompt or
+            starting a new dialog will result in the current dialog ending upon
+            completion of the child prompt/dialog.
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) arguments to pass the dialog that started when `dialogId`
+            is a _{string}_.
+          optional: true
+      return:
+        type:
+          - botbuilder.IntentDialog
+    package: botbuilder
+  - uid: botbuilder.IntentDialog.onBegin
+    name: 'onBegin((session: Session, args: any, next: () => void) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called when the dialog is first loaded after a call to
+      [session.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#begindialog).
+      This gives the bot an opportunity to process arguments passed to the
+      dialog.  Handlers should always call the `next()` function to continue
+      execution of the dialogs main logic.
+    syntax:
+      content: >-
+        function onBegin(handler: (session: Session, args: any, next: () =>
+        void) => void)
+      parameters:
+        - id: handler
+          type:
+            - '(session: Session, args: any, next: () => void) => void'
+          description: Function to invoke when the dialog begins.
+      return:
+        type:
+          - botbuilder.IntentDialog
+    package: botbuilder
+  - uid: botbuilder.IntentDialog.onDefault
+    name: 'onDefault(string | IDialogWaterfallStep[] | IDialogWaterfallStep, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      The default handler to invoke when there are no handlers that match the
+      users intent.
+
+      > __NOTE:__ The full details of the recognition attempt, including the
+      list of intents & entities detected, will be passed to the
+      [args](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizerresult)
+      of the first waterfall step or dialog that's started.
+    syntax:
+      content: >-
+        function onDefault(dialogId: string | IDialogWaterfallStep[] |
+        IDialogWaterfallStep, dialogArgs?: any)
+      parameters:
+        - id: dialogId
+          type:
+            - >-
+              string | botbuilder.IDialogWaterfallStep[] |
+              botbuilder.IDialogWaterfallStep
+          description: >-
+
+            * __dialogId:__ _{string} - The ID of a dialog to begin.
+
+            * __dialogId:__ _{IDialogWaterfallStep[]}_ - Waterfall of steps to
+            execute.
+
+            * __dialogId:__ _{IDialogWaterfallStep}_ - Single step waterfall to
+            execute. Calling a built-in prompt or starting a new dialog will
+            result in the current dialog ending upon completion of the child
+            prompt/dialog.
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) arguments to pass the dialog that started when `dialogId`
+            is a _{string}_.
+          optional: true
+      return:
+        type:
+          - botbuilder.IntentDialog
+    package: botbuilder
+  - uid: botbuilder.IntentDialog.recognizer
+    name: recognizer(IIntentRecognizer)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Adds a new recognizer plugin to the intent dialog.
+    syntax:
+      content: 'function recognizer(plugin: IIntentRecognizer)'
+      parameters:
+        - id: plugin
+          type:
+            - botbuilder.IIntentRecognizer
+          description: |
+            The recognizer to add.
+      return:
+        type:
+          - botbuilder.IntentDialog
+    package: botbuilder
+  - uid: botbuilder.IntentDialog.replyReceived
+    name: 'replyReceived(Session, IRecognizeResult)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Processes messages received from the user. Called by the dialog system.
+    syntax:
+      content: >-
+        function replyReceived(session: Session, recognizeResult?:
+        IRecognizeResult)
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: recognizeResult
+          type:
+            - botbuilder.IRecognizeResult
+          description: ''
+          optional: true
+    package: botbuilder
+references:
+  - uid: botbuilder.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder.Dialog
+  - uid: botbuilder.IIntentDialogOptions
+    name: IIntentDialogOptions
+    spec.typeScript:
+      - name: IIntentDialogOptions
+        fullName: IIntentDialogOptions
+        uid: botbuilder.IIntentDialogOptions
+  - uid: >-
+      string | botbuilder.IDialogWaterfallStep[] |
+      botbuilder.IDialogWaterfallStep
+    name: IDialogWaterfallStep
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: '[] | '
+        fullName: '[] | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+  - uid: botbuilder.IntentDialog
+    name: IntentDialog
+    spec.typeScript:
+      - name: IntentDialog
+        fullName: IntentDialog
+        uid: botbuilder.IntentDialog
+  - uid: botbuilder.IIntentRecognizer
+    name: IIntentRecognizer
+    spec.typeScript:
+      - name: IIntentRecognizer
+        fullName: IIntentRecognizer
+        uid: botbuilder.IIntentRecognizer
+  - uid: botbuilder.Session
+    name: Session
+    spec.typeScript:
+      - name: Session
+        fullName: Session
+        uid: botbuilder.Session
+  - uid: botbuilder.IRecognizeResult
+    name: IRecognizeResult
+    spec.typeScript:
+      - name: IRecognizeResult
+        fullName: IRecognizeResult
+        uid: botbuilder.IRecognizeResult

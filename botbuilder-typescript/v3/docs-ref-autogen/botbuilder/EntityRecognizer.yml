@@ -1,0 +1,323 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.EntityRecognizer
+    name: EntityRecognizer
+    fullName: EntityRecognizer
+    children:
+      - botbuilder.EntityRecognizer.expandChoices
+      - botbuilder.EntityRecognizer.findAllEntities
+      - botbuilder.EntityRecognizer.findAllMatches
+      - botbuilder.EntityRecognizer.findBestMatch
+      - botbuilder.EntityRecognizer.findEntity
+      - botbuilder.EntityRecognizer.parseBoolean
+      - botbuilder.EntityRecognizer.parseNumber
+      - botbuilder.EntityRecognizer.parseTime
+      - botbuilder.EntityRecognizer.recognizeTime
+      - botbuilder.EntityRecognizer.resolveTime
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Utility class used to parse & resolve common entities like datetimes
+      received from LUIS.
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.expandChoices
+    name: 'expandChoices(string | Object | string[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Converts a set of choices into an expanded array.
+    syntax:
+      content: 'static function expandChoices(choices: string | Object | string[])'
+      parameters:
+        - id: choices
+          type:
+            - 'string | Object | string[]'
+          description: >
+
+            * __choices:__ _{string}_ - Pipe ('|') delimited list of values.
+
+            * __choices:__ _{Object}_ - Object used to generate the list of
+            choices. The objects field names will be used to build the list of
+            choices.
+
+            * __choices:__ _{string[]}_ - Array of strings. This will just be
+            echoed back as the output.
+      return:
+        type:
+          - 'string[]'
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.findAllEntities
+    name: 'findAllEntities(IEntity[], string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Finds all occurrences of a specific entity type within a set.
+    syntax:
+      content: 'static function findAllEntities(entities: IEntity[], type: string)'
+      parameters:
+        - id: entities
+          type:
+            - 'botbuilder.IEntity[]'
+          description: Set of entities to search over.
+        - id: type
+          type:
+            - string
+          description: |
+            Type of entity to find.
+      return:
+        type:
+          - 'botbuilder.IEntity[]'
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.findAllMatches
+    name: 'findAllMatches(string | Object | string[], string, number)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Finds all possible matches for a users utterance given a list of choices.
+    syntax:
+      content: >-
+        static function findAllMatches(choices: string | Object | string[],
+        utterance: string, threshold?: number)
+      parameters:
+        - id: choices
+          type:
+            - 'string | Object | string[]'
+          description: >-
+
+            * __choices:__ _{string}_ - Pipe ('|') delimited list of values to
+            compare against the users utterance.
+
+            * __choices:__ _{Object}_ - Object used to generate the list of
+            choices. The objects field names will be used to build the list of
+            choices.
+
+            * __choices:__ _{string[]}_ - Array of strings to compare against
+            the users utterance.
+        - id: utterance
+          type:
+            - string
+          description: Text utterance to parse.
+        - id: threshold
+          type:
+            - number
+          description: >
+            (Optional) minimum score needed for a match to be considered. The
+            default value is 0.6.
+          optional: true
+      return:
+        type:
+          - 'botbuilder.IFindMatchResult[]'
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.findBestMatch
+    name: 'findBestMatch(string | Object | string[], string, number)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Finds the best match for a users utterance given a list of choices.
+    syntax:
+      content: >-
+        static function findBestMatch(choices: string | Object | string[],
+        utterance: string, threshold?: number)
+      parameters:
+        - id: choices
+          type:
+            - 'string | Object | string[]'
+          description: >-
+
+            * __choices:__ _{string}_ - Pipe ('|') delimited list of values to
+            compare against the users utterance.
+
+            * __choices:__ _{Object}_ - Object used to generate the list of
+            choices. The objects field names will be used to build the list of
+            choices.
+
+            * __choices:__ _{string[]}_ - Array of strings to compare against
+            the users utterance.
+        - id: utterance
+          type:
+            - string
+          description: Text utterance to parse.
+        - id: threshold
+          type:
+            - number
+          description: >
+            (Optional) minimum score needed for a match to be considered. The
+            default value is 0.6.
+          optional: true
+      return:
+        type:
+          - botbuilder.IFindMatchResult
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.findEntity
+    name: 'findEntity(IEntity[], string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Searches for the first occurance of a specific entity type within a set.
+    syntax:
+      content: 'static function findEntity(entities: IEntity[], type: string)'
+      parameters:
+        - id: entities
+          type:
+            - 'botbuilder.IEntity[]'
+          description: Set of entities to search over.
+        - id: type
+          type:
+            - string
+          description: |
+            Type of entity to find.
+      return:
+        type:
+          - botbuilder.IEntity
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.parseBoolean
+    name: parseBoolean(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Parses a boolean from a users utterance.
+    syntax:
+      content: 'static function parseBoolean(value: string)'
+      parameters:
+        - id: value
+          type:
+            - string
+          description: Text utterance to parse.
+      return:
+        type:
+          - boolean
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.parseNumber
+    name: 'parseNumber(string | IEntity[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Parses a number from either a users text utterance or a set of entities.
+    syntax:
+      content: 'static function parseNumber(value: string | IEntity[])'
+      parameters:
+        - id: value
+          type:
+            - 'string | botbuilder.IEntity[]'
+          description: |-
+
+            * __value:__ _{string}_ - Text utterance to parse.
+            * __value:__ _{IEntity[]}_ - Set of entities to resolve.
+      return:
+        type:
+          - number
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.parseTime
+    name: 'parseTime(string | IEntity[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Parses a date from either a users text utterance or a set of entities.
+    syntax:
+      content: 'static function parseTime(value: string | IEntity[])'
+      parameters:
+        - id: value
+          type:
+            - 'string | botbuilder.IEntity[]'
+          description: >-
+
+            * __value:__ _{string}_ - Text utterance to parse. The utterance is
+            parsed using the [Chrono](http://wanasit.github.io/pages/chrono/)
+            library.
+
+            * __value:__ _{IEntity[]}_ - Set of entities to resolve.
+      return:
+        type:
+          - Date
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.recognizeTime
+    name: 'recognizeTime(string, Date)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Recognizes a time from a users utterance. The utterance is parsed using
+      the [Chrono](http://wanasit.github.io/pages/chrono/) library.
+    syntax:
+      content: 'static function recognizeTime(utterance: string, refDate?: Date)'
+      parameters:
+        - id: utterance
+          type:
+            - string
+          description: Text utterance to parse.
+        - id: refDate
+          type:
+            - Date
+          description: (Optional) reference date used to calculate the final date.
+          optional: true
+      return:
+        type:
+          - botbuilder.IEntity
+    package: botbuilder
+  - uid: botbuilder.EntityRecognizer.resolveTime
+    name: 'resolveTime(IEntity[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Calculates a Date from a set of datetime entities.
+    syntax:
+      content: 'static function resolveTime(entities: IEntity[])'
+      parameters:
+        - id: entities
+          type:
+            - 'botbuilder.IEntity[]'
+          description: List of entities to extract date from.
+      return:
+        type:
+          - Date
+    package: botbuilder
+references:
+  - uid: 'botbuilder.IEntity[]'
+    name: 'IEntity[]'
+    spec.typeScript:
+      - name: IEntity
+        fullName: IEntity
+        uid: botbuilder.IEntity
+      - name: '[]'
+        fullName: '[]'
+  - uid: 'botbuilder.IFindMatchResult[]'
+    name: 'IFindMatchResult[]'
+    spec.typeScript:
+      - name: IFindMatchResult
+        fullName: IFindMatchResult
+        uid: botbuilder.IFindMatchResult
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.IFindMatchResult
+    name: IFindMatchResult
+    spec.typeScript:
+      - name: IFindMatchResult
+        fullName: IFindMatchResult
+        uid: botbuilder.IFindMatchResult
+  - uid: botbuilder.IEntity
+    name: IEntity
+    spec.typeScript:
+      - name: IEntity
+        fullName: IEntity
+        uid: botbuilder.IEntity
+  - uid: 'string | botbuilder.IEntity[]'
+    name: 'IEntity[]'
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: IEntity
+        fullName: IEntity
+        uid: botbuilder.IEntity
+      - name: '[]'
+        fullName: '[]'

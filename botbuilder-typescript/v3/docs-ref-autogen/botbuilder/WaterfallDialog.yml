@@ -1,0 +1,173 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.WaterfallDialog
+    name: WaterfallDialog
+    fullName: WaterfallDialog
+    children:
+      - botbuilder.WaterfallDialog.createHandler
+      - botbuilder.WaterfallDialog.onBeforeStep
+      - botbuilder.WaterfallDialog.replyReceived
+      - botbuilder.WaterfallDialog.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: Allows for the creation of custom dialogs that are based on a waterfall.
+    extends:
+      name: botbuilder.Dialog
+    package: botbuilder
+  - uid: botbuilder.WaterfallDialog.createHandler
+    name: 'createHandler(IDialogWaterfallStep[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Creates a function that can drive a waterfall. Everytime the function is
+      called it will drive
+
+      the waterfall forward by invoking the next step of the waterfall. The
+      function uses
+
+      `session.dialogData` to hold the waterfalls current step.
+
+      To drive the waterfall forward, the `args` param passed to the handler
+      should have
+
+      `args.resumed = builder.ResumeReason.completed`. Once the end of the
+      waterfall is reached
+
+      it will automatically call `session.endDialogWithResult(args)` returning
+      the passed in args.
+
+      If the `args` param is missing the `resumed` field the waterfall will
+      simply start over
+
+      calling the first step.
+    syntax:
+      content: 'static function createHandler(steps: IDialogWaterfallStep[])'
+      parameters:
+        - id: steps
+          type:
+            - 'botbuilder.IDialogWaterfallStep[]'
+          description: |
+            Waterfall steps to execute.
+      return:
+        type:
+          - '(session: Session, args?: any) => void'
+    package: botbuilder
+  - uid: botbuilder.WaterfallDialog.onBeforeStep
+    name: >-
+      onBeforeStep((session: Session, step: number, args: any, next: (step:
+      number, args: any) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a handler that will be called before every step of the
+      waterfall. The handlers
+
+      `next()` function will execute either the next handler in the chain or the
+      waterfall step
+
+      itself.  This handler lets a developer skip steps and process the args
+      being passed to
+
+      the next step.
+
+      Multiple handlers may be registered and the handler being registered will
+      be executed before
+
+      any other handlers in the chain.
+    syntax:
+      content: >-
+        function onBeforeStep(handler: (session: Session, step: number, args:
+        any, next: (step: number, args: any) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (session: Session, step: number, args: any, next: (step: number,
+              args: any) => void) => void
+          description: |
+            Function to invoke in-between each waterfall step.
+      return:
+        type:
+          - botbuilder.WaterfallDialog
+    package: botbuilder
+  - uid: botbuilder.WaterfallDialog.replyReceived
+    name: replyReceived(Session)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Processes messages received from the user. Called by the dialog system.
+    syntax:
+      content: 'function replyReceived(session: Session)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: |
+            Session object for the current conversation.
+    package: botbuilder
+  - uid: botbuilder.WaterfallDialog.constructor
+    name: 'WaterfallDialog(IDialogWaterfallStep | IDialogWaterfallStep[])'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new waterfall dialog.
+    syntax:
+      content: >-
+        new WaterfallDialog(steps: IDialogWaterfallStep |
+        IDialogWaterfallStep[])
+      parameters:
+        - id: steps
+          type:
+            - >-
+              botbuilder.IDialogWaterfallStep |
+              botbuilder.IDialogWaterfallStep[]
+          description: |
+            Sequence of function(s) that should be called in order.
+    package: botbuilder
+references:
+  - uid: botbuilder.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder.Dialog
+  - uid: 'botbuilder.IDialogWaterfallStep | botbuilder.IDialogWaterfallStep[]'
+    name: 'IDialogWaterfallStep[]'
+    spec.typeScript:
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: ' | '
+        fullName: ' | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.WaterfallDialog
+    name: WaterfallDialog
+    spec.typeScript:
+      - name: WaterfallDialog
+        fullName: WaterfallDialog
+        uid: botbuilder.WaterfallDialog
+  - uid: botbuilder.Session
+    name: Session
+    spec.typeScript:
+      - name: Session
+        fullName: Session
+        uid: botbuilder.Session
+  - uid: 'botbuilder.IDialogWaterfallStep[]'
+    name: 'IDialogWaterfallStep[]'
+    spec.typeScript:
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: '[]'
+        fullName: '[]'

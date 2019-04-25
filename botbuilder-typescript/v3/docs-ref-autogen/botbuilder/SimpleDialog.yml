@@ -1,0 +1,79 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.SimpleDialog
+    name: SimpleDialog
+    fullName: SimpleDialog
+    children:
+      - botbuilder.SimpleDialog.replyReceived
+      - botbuilder.SimpleDialog.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Allows for the creation of custom dialogs that are based on a simple
+      closure. This is useful for
+
+      cases where you want a dynamic conversation flow or you have a situation
+      that just doesn’t map
+
+      very well to using a waterfall.  The things to keep in mind:
+
+      * Your dialogs closure is can get called in two different contexts that
+      you potentially need to
+        test for. It will get called as expected when the user send your dialog a message but if you
+        call another prompt or dialog from your closure it will get called a second time with the
+        results from the prompt/dialog. You can typically test for this second case by checking for the
+        existant of an `args.resumed` property. It's important to avoid getting yourself into an
+        infinite loop which can be easy to do.
+      * Unlike a waterfall your dialog will not automatically end. It will
+      remain the active dialog
+        until you call [session.endDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#enddialog).
+    extends:
+      name: botbuilder.Dialog
+    package: botbuilder
+  - uid: botbuilder.SimpleDialog.replyReceived
+    name: replyReceived(Session)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Processes messages received from the user. Called by the dialog system.
+    syntax:
+      content: 'function replyReceived(session: Session)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: |
+            Session object for the current conversation.
+    package: botbuilder
+  - uid: botbuilder.SimpleDialog.constructor
+    name: 'SimpleDialog((session: Session, args?: any | IDialogResult<any>) => void)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new custom dialog based on a simple closure.
+    syntax:
+      content: >-
+        new SimpleDialog(handler: (session: Session, args?: any |
+        IDialogResult<any>) => void)
+      parameters:
+        - id: handler
+          type:
+            - '(session: Session, args?: any | IDialogResult<any>) => void'
+          description: The function closure for your dialog.
+    package: botbuilder
+references:
+  - uid: botbuilder.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder.Dialog
+  - uid: botbuilder.Session
+    name: Session
+    spec.typeScript:
+      - name: Session
+        fullName: Session
+        uid: botbuilder.Session

@@ -1,0 +1,633 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.UniversalBot
+    name: UniversalBot
+    fullName: UniversalBot
+    children:
+      - botbuilder.UniversalBot.beginDialog
+      - botbuilder.UniversalBot.clone
+      - botbuilder.UniversalBot.connector
+      - botbuilder.UniversalBot.get
+      - botbuilder.UniversalBot.isInConversation
+      - botbuilder.UniversalBot.loadSession
+      - botbuilder.UniversalBot.on
+      - botbuilder.UniversalBot.onDisambiguateRoute
+      - botbuilder.UniversalBot.receive
+      - botbuilder.UniversalBot.send
+      - botbuilder.UniversalBot.set
+      - botbuilder.UniversalBot.constructor_2
+      - botbuilder.UniversalBot.constructor
+      - botbuilder.UniversalBot.constructor_1
+      - botbuilder.UniversalBot.use
+    langs:
+      - typeScript
+    type: class
+    summary: Manages your bots conversations with users across multiple channels.
+    extends:
+      name: botbuilder.Library
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.beginDialog
+    name: 'beginDialog(IAddress, string, any, (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Proactively starts a new dialog with the user. Any current conversation
+      between the bot and user will be replaced with a new dialog stack.
+    syntax:
+      content: >-
+        function beginDialog(address: IAddress, dialogId: string, dialogArgs?:
+        any, done?: (err: Error) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: >-
+            Address of the user to start a new conversation with. This should be
+            saved during a previous conversation with the user. Any existing
+            conversation or dialog will be immediately terminated.
+        - id: dialogId
+          type:
+            - string
+          description: ID of the dialog to begin.
+        - id: dialogArgs
+          type:
+            - any
+          description: (Optional) arguments to pass to dialog.
+          optional: true
+        - id: done
+          type:
+            - '(err: Error) => void'
+          description: |
+            (Optional) function to invoke once the operation is completed.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.clone
+    name: 'clone(UniversalBot, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a clone of an existing bot.
+    syntax:
+      content: 'function clone(copyTo?: UniversalBot, newName?: string)'
+      parameters:
+        - id: copyTo
+          type:
+            - botbuilder.UniversalBot
+          description: >-
+            (Optional) instance to copy the current object to. If missing a new
+            instance will be created.
+          optional: true
+        - id: newName
+          type:
+            - string
+          description: >
+            (Optional) if specified the returned copy will be renamed to a new
+            name.
+          optional: true
+      return:
+        type:
+          - botbuilder.UniversalBot
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.connector
+    name: 'connector(string, IConnector)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers or returns a connector for a specific channel.
+    syntax:
+      content: 'function connector(channelId: string, connector?: IConnector)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: >-
+            Unique ID of the channel. Use a channelId of '*' to reference the
+            default connector.
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >
+            (Optional) connector to register. If ommited the connector for
+            __channelId__ will be returned.
+          optional: true
+      return:
+        type:
+          - botbuilder.IConnector
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.get
+    name: get(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns the current value of a setting.
+    syntax:
+      content: 'function get(name: string)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: >
+            Name of the property to return. Valid names are properties on
+            [IUniversalBotSettings](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html).
+      return:
+        type:
+          - any
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.isInConversation
+    name: 'isInConversation(IAddress, (err: Error, lastAccess: Date) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns information about when the last turn between the user and a bot
+      occured. This can be called
+
+      before [beginDialog](#begindialog) to determine if the user is currently
+      in a conversation with the
+
+      bot.
+    syntax:
+      content: >-
+        function isInConversation(address: IAddress, callback: (err: Error,
+        lastAccess: Date) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: >-
+            Address of the user to lookup. This should be saved during a
+            previous conversation with the user.
+        - id: callback
+          type:
+            - '(err: Error, lastAccess: Date) => void'
+          description: |
+            Function to invoke with the results of the query.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.loadSession
+    name: 'loadSession(IAddress, (err: Error, session: Session) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Loads a session object for an arbitrary address.
+    syntax:
+      content: >-
+        function loadSession(address: IAddress, callback: (err: Error, session:
+        Session) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: >-
+            Address of the user/session to load. This should be saved during a
+            previous conversation with the user.
+        - id: callback
+          type:
+            - '(err: Error, session: Session) => void'
+          description: |
+            Function to invoke with the loaded session.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.on
+    name: 'on(string, (data: any) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >
+      Registers an event listener. The bot will emit its own events as it
+      processes incoming and outgoing messages. It will also forward activity
+      related events emitted from the connector, giving you one place to listen
+      for all activity from your bot. The flow of events from the bot is as
+      follows:
+
+      #### Message Received
+
+      When the bot receives a new message it will emit the following events in
+      order:
+
+
+      > lookupUser -> receive -> incoming -> getStorageData -> routing
+
+
+      Any [receive
+      middleware](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imiddlewaremap#receive)
+      that's been installed will be executed between the 'receive' and
+      'incoming' events. After the 'routing' event is emitted any
+
+      [botbuilder
+      middleware](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imiddlewaremap#botbuilder)
+      will be executed prior to dispatching the message to the bots active
+      dialog.
+
+
+      #### Connector Activity Received
+
+      Connectors can emit activity events to signal things like a user is typing
+      or that they friended a bot. These activities get routed through
+      middleware like messages but they are not routed through the bots dialog
+      system.  They are only ever emitted as events.
+
+
+      The flow of connector events is:
+
+
+      > lookupUser -> receive -> (activity)
+
+
+      #### Message sent
+
+      Bots can send multiple messages so the session will batch up all outgoing
+      message and then save the bots current state before delivering the sent
+      messages.  You'll see a single 'saveStorageData' event emitted and then
+      for every outgoing message in the batch you'll see the following
+
+      sequence of events:
+
+
+      > send -> outgoing
+
+
+      Any [send
+      middleware](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imiddlewaremap#send)
+      that's been installed will be executed between the 'send' and 'outgoing'
+      events.
+    syntax:
+      content: 'function on(event: string, listener: (data: any) => void)'
+      parameters:
+        - id: event
+          type:
+            - string
+          description: >
+            Name of the event. Bot and connector specific event types:
+
+            #### Bot Events
+
+            - __error:__ An error occured. Passed a JavaScript `Error` object.
+
+            - __lookupUser:__ The user is for an address is about to be looked
+            up. Passed an
+            [IAddress](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html)
+            object.
+
+            - __receive:__ An incoming message has been received. Passed an
+            [IEvent](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ievent.html)
+            object.
+
+            - __incoming:__ An incoming message has been received and processed
+            by middleware. Passed an
+            [IMessage](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html)
+            object.
+
+            - __routing:__ An incoming message has been bound to a session and
+            is about to be routed through any session middleware and then
+            dispatched to the active dialog for processing. Passed a
+            [Session](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html)
+            object.
+
+            - __send:__ An outgoing message is about to be sent to middleware
+            for processing. Passed an
+            [IMessage](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html)
+            object.
+
+            - __outgoing:__ An outgoing message has just been sent through
+            middleware and is about to be delivered to the users chat client.
+
+            - __getStorageData:__ The sessions persisted state data is being
+            loaded from storage. Passed an
+            [IBotStorageContext](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ibotstoragecontext.html)
+            object.
+
+            - __saveStorageData:__ The sessions persisted state data is being
+            written to storage. Passed an
+            [IBotStorageContext](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ibotstoragecontext.html)
+            object.
+
+
+            #### ChatConnector Events
+
+            - __conversationUpdate:__ Your bot was added to a conversation or
+            other conversation metadata changed. Passed an
+            [IConversationUpdate](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iconversationupdate.html)
+            object.
+
+            - __contactRelationUpdate:__ The bot was added to or removed from a
+            user's contact list. Passed an
+            [IContactRelationUpdate](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.icontactrelationupdate.html)
+            object.
+
+            - __typing:__ The user or bot on the other end of the conversation
+            is typing. Passed an
+            [IEvent](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ievent.html)
+            object.
+        - id: listener
+          type:
+            - '(data: any) => void'
+          description: Function to invoke.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.onDisambiguateRoute
+    name: onDisambiguateRoute(IDisambiguateRouteHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Replaces the bots default route disambiguation logic with a custom
+      implementation.
+    syntax:
+      content: 'function onDisambiguateRoute(handler: IDisambiguateRouteHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder.IDisambiguateRouteHandler
+          description: >
+            Function that will be invoked with the candidate routes to dispatch
+            an incoming message to.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.receive
+    name: 'receive(IEvent | IEvent[], (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called when a new event is received. This can be called manually to mimic
+      the bot receiving a message from the user.
+    syntax:
+      content: 'function receive(events: IEvent | IEvent[], done?: (err: Error) => void)'
+      parameters:
+        - id: events
+          type:
+            - 'botbuilder.IEvent | botbuilder.IEvent[]'
+          description: Event or (array of events) received.
+        - id: done
+          type:
+            - '(err: Error) => void'
+          description: |
+            (Optional) function to invoke once the operation is completed.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.send
+    name: >-
+      send(IIsMessage | IMessage | IMessage[], (err: Error, addresses?:
+      IAddress[]) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sends a message to the user without disrupting the current conversations
+      dialog stack.
+    syntax:
+      content: >-
+        function send(messages: IIsMessage | IMessage | IMessage[], done?: (err:
+        Error, addresses?: IAddress[]) => void)
+      parameters:
+        - id: messages
+          type:
+            - >-
+              botbuilder.IIsMessage | botbuilder.IMessage |
+              botbuilder.IMessage[]
+          description: The message (or array of messages) to send the user.
+        - id: done
+          type:
+            - '(err: Error, addresses?: IAddress[]) => void'
+          description: (Optional) function to invoke once the operation is completed.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.set
+    name: 'set(string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Sets a setting on the bot.
+    syntax:
+      content: 'function set(name: string, value: any)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: >-
+            Name of the property to set. Valid names are properties on
+            [IUniversalBotSettings](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html).
+        - id: value
+          type:
+            - any
+          description: |
+            The value to assign to the setting.
+      return:
+        type:
+          - botbuilder.UniversalBot
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.constructor_2
+    name: 'UniversalBot(IConnector, any, string)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the UniversalBot.
+    syntax:
+      content: >-
+        new UniversalBot(connector?: IConnector, defaultDialog?: any,
+        libraryName?: string)
+      parameters:
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >-
+            (Optional) the default connector to use for requests. If there's not
+            a more specific connector registered for a channel then this
+            connector will be used./**
+          optional: true
+        - id: defaultDialog
+          type:
+            - any
+          description: >-
+            (Optional) default handler of received messages. This can either be
+            an individual function or a waterfall sequence.
+          optional: true
+        - id: libraryName
+          type:
+            - string
+          description: |
+            (Optional) library namespace for the bot.  The default value is '*'.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.constructor
+    name: >-
+      UniversalBot(IConnector, IDialogWaterfallStep | IDialogWaterfallStep[],
+      string)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the UniversalBot.
+    syntax:
+      content: >-
+        new UniversalBot(connector: IConnector, defaultDialog?:
+        IDialogWaterfallStep | IDialogWaterfallStep[], libraryName?: string)
+      parameters:
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >-
+            (Optional) the default connector to use for requests. If there's not
+            a more specific connector registered for a channel then this
+            connector will be used./**
+        - id: defaultDialog
+          type:
+            - >-
+              botbuilder.IDialogWaterfallStep |
+              botbuilder.IDialogWaterfallStep[]
+          description: >-
+            (Optional) default handler of received messages. This can either be
+            an individual function or a waterfall sequence.
+          optional: true
+        - id: libraryName
+          type:
+            - string
+          description: |
+            (Optional) library namespace for the bot.  The default value is '*'.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.constructor_1
+    name: 'UniversalBot(IConnector, IUniversalBotSettings)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the UniversalBot.
+    syntax:
+      content: >-
+        new UniversalBot(connector: IConnector, settings?:
+        IUniversalBotSettings)
+      parameters:
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >-
+            (Optional) the default connector to use for requests. If there's not
+            a more specific connector registered for a channel then this
+            connector will be used./**
+        - id: settings
+          type:
+            - botbuilder.IUniversalBotSettings
+          description: ''
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.use
+    name: 'use(IMiddlewareMap[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Installs middleware for the bot. Middleware lets you intercept incoming
+      and outgoing events/messages.
+    syntax:
+      content: 'function use(args: IMiddlewareMap[])'
+      parameters:
+        - id: args
+          type:
+            - 'botbuilder.IMiddlewareMap[]'
+          description: |
+            One or more sets of middleware hooks to install.
+      return:
+        type:
+          - botbuilder.UniversalBot
+    package: botbuilder
+references:
+  - uid: botbuilder.Library
+    name: Library
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder.Library
+  - uid: botbuilder.IConnector
+    name: IConnector
+    spec.typeScript:
+      - name: IConnector
+        fullName: IConnector
+        uid: botbuilder.IConnector
+  - uid: 'botbuilder.IDialogWaterfallStep | botbuilder.IDialogWaterfallStep[]'
+    name: 'IDialogWaterfallStep[]'
+    spec.typeScript:
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: ' | '
+        fullName: ' | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.IUniversalBotSettings
+    name: IUniversalBotSettings
+    spec.typeScript:
+      - name: IUniversalBotSettings
+        fullName: IUniversalBotSettings
+        uid: botbuilder.IUniversalBotSettings
+  - uid: botbuilder.IAddress
+    name: IAddress
+    spec.typeScript:
+      - name: IAddress
+        fullName: IAddress
+        uid: botbuilder.IAddress
+  - uid: botbuilder.UniversalBot
+    name: UniversalBot
+    spec.typeScript:
+      - name: UniversalBot
+        fullName: UniversalBot
+        uid: botbuilder.UniversalBot
+  - uid: botbuilder.IDisambiguateRouteHandler
+    name: IDisambiguateRouteHandler
+    spec.typeScript:
+      - name: IDisambiguateRouteHandler
+        fullName: IDisambiguateRouteHandler
+        uid: botbuilder.IDisambiguateRouteHandler
+  - uid: 'botbuilder.IEvent | botbuilder.IEvent[]'
+    name: 'IEvent[]'
+    spec.typeScript:
+      - name: IEvent
+        fullName: IEvent
+        uid: botbuilder.IEvent
+      - name: ' | '
+        fullName: ' | '
+      - name: IEvent
+        fullName: IEvent
+        uid: botbuilder.IEvent
+      - name: '[]'
+        fullName: '[]'
+  - uid: 'botbuilder.IIsMessage | botbuilder.IMessage | botbuilder.IMessage[]'
+    name: 'IMessage[]'
+    spec.typeScript:
+      - name: IIsMessage
+        fullName: IIsMessage
+        uid: botbuilder.IIsMessage
+      - name: ' | '
+        fullName: ' | '
+      - name: IMessage
+        fullName: IMessage
+        uid: botbuilder.IMessage
+      - name: ' | '
+        fullName: ' | '
+      - name: IMessage
+        fullName: IMessage
+        uid: botbuilder.IMessage
+      - name: '[]'
+        fullName: '[]'
+  - uid: 'botbuilder.IMiddlewareMap[]'
+    name: 'IMiddlewareMap[]'
+    spec.typeScript:
+      - name: IMiddlewareMap
+        fullName: IMiddlewareMap
+        uid: botbuilder.IMiddlewareMap
+      - name: '[]'
+        fullName: '[]'
