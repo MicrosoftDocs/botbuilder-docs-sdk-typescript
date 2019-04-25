@@ -1,0 +1,225 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.PromptChoice
+    name: PromptChoice
+    fullName: PromptChoice
+    children:
+      - botbuilder.PromptChoice.findChoices
+      - botbuilder.PromptChoice.formatMessage
+      - botbuilder.PromptChoice.onChoices
+      - botbuilder.PromptChoice.constructor
+    langs:
+      - typeScript
+    type: class
+    summary: Customizable choice prompt.
+    extends:
+      name: botbuilder.Prompt<botbuilder.IPromptChoiceFeatures>
+    package: botbuilder
+  - uid: botbuilder.PromptChoice.findChoices
+    name: >-
+      findChoices(IRecognizeContext, boolean, (err: Error, choices: IChoice[])
+      => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns the list of dynamic or static choices for the prompt. This method
+      is typically called
+
+      twice, once to get the list of choices to display and a second time to get
+      the list of choices
+
+      to recognize over.
+    syntax:
+      content: >-
+        function findChoices(context: IRecognizeContext, recognizePhase:
+        boolean, callback: (err: Error, choices: IChoice[]) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: Read-only recognizer context for the current conversation.
+        - id: recognizePhase
+          type:
+            - boolean
+          description: >-
+            If true, the list of choices will be used to recognize the users
+            utterance. Otherwise they will be used to render a list of available
+            choices to the user.
+        - id: callback
+          type:
+            - '(err: Error, choices: IChoice[]) => void'
+          description: |
+            Function that will be called with the prompts list of choices.
+    package: botbuilder
+  - uid: botbuilder.PromptChoice.formatMessage
+    name: 'formatMessage(Session, ListStyle, TextType, TextType, IChoice[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a message containing a list of choices.
+    syntax:
+      content: >-
+        static function formatMessage(session: Session, listStyle: ListStyle,
+        text: TextType, speak?: TextType, choices?: IChoice[])
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Current session for the conversation.
+        - id: listStyle
+          type:
+            - botbuilder.ListStyle
+          description: Style of list to include in message.
+        - id: text
+          type:
+            - botbuilder.TextType
+          description: Text of the message.
+        - id: speak
+          type:
+            - botbuilder.TextType
+          description: (Optional) SSML to return with the message. This can be null.
+          optional: true
+        - id: choices
+          type:
+            - 'botbuilder.IChoice[]'
+          description: >
+            (Optional) list of choices to include in the message. If ommitted
+            the message will be sent without including choices.
+          optional: true
+      return:
+        type:
+          - botbuilder.IMessage
+    package: botbuilder
+  - uid: botbuilder.PromptChoice.onChoices
+    name: >-
+      onChoices((context: IRecognizeContext, callback: (err: Error, choices?:
+      IChoice[]) => void, recognizePhase?: boolean) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a handler to provide a dynamic list of choices. The handler will
+      be called at least
+
+      twice during the lifetime of the prompt. Once to generate a list of
+      choices to display to the
+
+      user and a second time to retrieve the list of choices to compare against
+      the users utterance.
+
+      No caching of the returned choices is done and the handler will be called
+      for every turn of ability
+
+      conversation so you shoudl implement your own caching as appropriate.
+
+      Multiple handlers can be registered and the first handler to return a
+      valid (not `null`) list
+
+      of choices will be used.
+    syntax:
+      content: >-
+        function onChoices(handler: (context: IRecognizeContext, callback: (err:
+        Error, choices?: IChoice[]) => void, recognizePhase?: boolean) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeContext, callback: (err: Error, choices?:
+              IChoice[]) => void, recognizePhase?: boolean) => void
+          description: >
+            Function to call when a list of choices is need. The
+            `recognizePhase` parameter will be "true" if the choices will be
+            used to recognize the users response.
+      return:
+        type:
+          - botbuilder.PromptChoice
+    package: botbuilder
+  - uid: botbuilder.PromptChoice.constructor
+    name: PromptChoice(IPromptChoiceFeatures)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: >-
+      Creates a new customizable instance of the prompt. Your new prompt should
+      be added as a
+
+      dialog to either a bot or library.
+    syntax:
+      content: 'new PromptChoice(features?: IPromptChoiceFeatures)'
+      parameters:
+        - id: features
+          type:
+            - botbuilder.IPromptChoiceFeatures
+          description: |
+            (Optional) features used to customize the prompts behaviour.
+          optional: true
+    package: botbuilder
+references:
+  - uid: botbuilder.Prompt<botbuilder.IPromptChoiceFeatures>
+    name: IPromptChoiceFeatures>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder.Prompt
+      - name: <
+        fullName: <
+      - name: IPromptChoiceFeatures
+        fullName: IPromptChoiceFeatures
+        uid: botbuilder.IPromptChoiceFeatures
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder.IPromptChoiceFeatures
+    name: IPromptChoiceFeatures
+    spec.typeScript:
+      - name: IPromptChoiceFeatures
+        fullName: IPromptChoiceFeatures
+        uid: botbuilder.IPromptChoiceFeatures
+  - uid: botbuilder.IRecognizeContext
+    name: IRecognizeContext
+    spec.typeScript:
+      - name: IRecognizeContext
+        fullName: IRecognizeContext
+        uid: botbuilder.IRecognizeContext
+  - uid: botbuilder.PromptChoice
+    name: PromptChoice
+    spec.typeScript:
+      - name: PromptChoice
+        fullName: PromptChoice
+        uid: botbuilder.PromptChoice
+  - uid: botbuilder.Session
+    name: Session
+    spec.typeScript:
+      - name: Session
+        fullName: Session
+        uid: botbuilder.Session
+  - uid: botbuilder.ListStyle
+    name: ListStyle
+    spec.typeScript:
+      - name: ListStyle
+        fullName: ListStyle
+        uid: botbuilder.ListStyle
+  - uid: botbuilder.TextType
+    name: TextType
+    spec.typeScript:
+      - name: TextType
+        fullName: TextType
+        uid: botbuilder.TextType
+  - uid: 'botbuilder.IChoice[]'
+    name: 'IChoice[]'
+    spec.typeScript:
+      - name: IChoice
+        fullName: IChoice
+        uid: botbuilder.IChoice
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.IMessage
+    name: IMessage
+    spec.typeScript:
+      - name: IMessage
+        fullName: IMessage
+        uid: botbuilder.IMessage

@@ -1,0 +1,192 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-azure.IMessage
+    name: IMessage
+    fullName: IMessage
+    children:
+      - botbuilder-azure.IMessage.attachmentLayout
+      - botbuilder-azure.IMessage.attachments
+      - botbuilder-azure.IMessage.entities
+      - botbuilder-azure.IMessage.summary
+      - botbuilder-azure.IMessage.text
+      - botbuilder-azure.IMessage.textFormat
+      - botbuilder-azure.IMessage.textLocale
+      - botbuilder-azure.IMessage.timestamp
+    langs:
+      - typeScript
+    type: interface
+    summary: >
+      A chat message sent between a User and a Bot. Messages from the bot to the
+      user come in two flavors:
+
+      * __reactive messages__ are messages sent from the Bot to the User as a
+      reply to an incoming message from the user.
+
+      * __proactive messages__ are messages sent from the Bot to the User in
+      response to some external event like an alarm triggering.
+
+
+      In the reactive case the you should copy the [address](#address) field
+      from the incoming message to the outgoing message (if you use the
+      [Message](
+      /en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html)
+      builder class and initialize it with the
+
+      [session](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html)
+      this will happen automatically) and then set the [text](#text) or
+      [attachments](#attachments).  For proactive messages you’ll need save the
+      [address](#address) from the incoming message to
+
+      an external storage somewhere. You can then later pass this in to
+      [UniversalBot.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#begindialog)
+      or copy it to an outgoing message passed to
+
+      [UniversalBot.send()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#send).
+
+
+      Composing a message to the user using the incoming address object will by
+      default send a reply to the user in the context of the current
+      conversation. Some channels allow for the starting of new conversations
+      with the user. To start a new proactive conversation with the user simply
+      delete
+
+      the
+      [conversation](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html#conversation)
+      field from the address object before composing the outgoing message.
+    extends:
+      name: botbuilder-azure.IEvent
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.attachmentLayout
+    name: attachmentLayout
+    fullName: attachmentLayout
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Hint for how clients should layout multiple attachments. The default value
+      is 'list'.
+    syntax:
+      content: 'attachmentLayout: string'
+      return:
+        type:
+          - string
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.attachments
+    name: attachments
+    fullName: attachments
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      For incoming messages contains attachments like images sent from the user.
+      For outgoing messages contains objects like cards or images to send to the
+      user.
+    syntax:
+      content: 'attachments: IAttachment[]'
+      return:
+        type:
+          - 'botbuilder-azure.IAttachment[]'
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.entities
+    name: entities
+    fullName: entities
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Structured objects passed to the bot or user.
+    syntax:
+      content: 'entities: any[]'
+      return:
+        type:
+          - 'any[]'
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.summary
+    name: summary
+    fullName: summary
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Text to be displayed by as fall-back and as short description of the
+      message content in e.g. list of recent conversations.
+    syntax:
+      content: 'summary: string'
+      return:
+        type:
+          - string
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.text
+    name: text
+    fullName: text
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Message text.
+    syntax:
+      content: 'text: string'
+      return:
+        type:
+          - string
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.textFormat
+    name: textFormat
+    fullName: textFormat
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Format of text fields. The default value is 'markdown'.
+    syntax:
+      content: 'textFormat: string'
+      return:
+        type:
+          - string
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.textLocale
+    name: textLocale
+    fullName: textLocale
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Identified language of the message text if known.
+    syntax:
+      content: 'textLocale: string'
+      return:
+        type:
+          - string
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.timestamp
+    name: timestamp
+    fullName: timestamp
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Timestamp of message given by chat service for incoming messages.
+    syntax:
+      content: 'timestamp: string'
+      return:
+        type:
+          - string
+    package: botbuilder-azure
+references:
+  - uid: botbuilder-azure.IEvent
+    name: IEvent
+    spec.typeScript:
+      - name: IEvent
+        fullName: IEvent
+        uid: botbuilder-azure.IEvent
+  - uid: 'botbuilder-azure.IAttachment[]'
+    name: 'IAttachment[]'
+    spec.typeScript:
+      - name: IAttachment
+        fullName: IAttachment
+        uid: botbuilder-azure.IAttachment
+      - name: '[]'
+        fullName: '[]'
