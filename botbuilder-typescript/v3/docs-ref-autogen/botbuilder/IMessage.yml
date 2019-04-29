@@ -1,0 +1,494 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.IMessage
+    name: IMessage
+    fullName: IMessage
+    children:
+      - botbuilder.IMessage.attachmentLayout
+      - botbuilder.IMessage.attachments
+      - botbuilder.IMessage.code
+      - botbuilder.IMessage.deliveryMode
+      - botbuilder.IMessage.entities
+      - botbuilder.IMessage.expriation
+      - botbuilder.IMessage.importance
+      - botbuilder.IMessage.inputHint
+      - botbuilder.IMessage.label
+      - botbuilder.IMessage.listenFor
+      - botbuilder.IMessage.localTimestamp
+      - botbuilder.IMessage.localTimezone
+      - botbuilder.IMessage.name
+      - botbuilder.IMessage.relatesTo
+      - botbuilder.IMessage.semanticAction
+      - botbuilder.IMessage.speak
+      - botbuilder.IMessage.summary
+      - botbuilder.IMessage.text
+      - botbuilder.IMessage.textFormat
+      - botbuilder.IMessage.textHighlights
+      - botbuilder.IMessage.textLocale
+      - botbuilder.IMessage.timestamp
+      - botbuilder.IMessage.value
+      - botbuilder.IMessage.valueType
+    langs:
+      - typeScript
+    type: interface
+    summary: >-
+      A chat message sent between a User and a Bot. Messages from the bot to the
+      user come in two flavors:
+
+      * __reactive messages__ are messages sent from the Bot to the User as a
+      reply to an incoming message from the user.
+
+      * __proactive messages__ are messages sent from the Bot to the User in
+      response to some external event like an alarm triggering.
+
+
+      In the reactive case the you should copy the [address](#address) field
+      from the incoming message to the outgoing message (if you use the
+      [Message](
+      /en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html)
+      builder class and initialize it with the
+
+      [session](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html)
+      this will happen automatically) and then set the [text](#text) or
+      [attachments](#attachments).  For proactive messages you’ll need save the
+      [address](#address) from the incoming message to
+
+      an external storage somewhere. You can then later pass this in to
+      [UniversalBot.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#begindialog)
+      or copy it to an outgoing message passed to
+
+      [UniversalBot.send()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#send).
+
+
+      Composing a message to the user using the incoming address object will by
+      default send a reply to the user in the context of the current
+      conversation. Some channels allow for the starting of new conversations
+      with the user. To start a new proactive conversation with the user simply
+      delete
+
+      the
+      [conversation](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html#conversation)
+      field from the address object before composing the outgoing message.
+    extends:
+      name: botbuilder.IEvent
+    package: botbuilder
+  - uid: botbuilder.IMessage.attachmentLayout
+    name: attachmentLayout
+    fullName: attachmentLayout
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Hint for how clients should layout multiple attachments. The default value
+      is 'list'.
+    optional: true
+    syntax:
+      content: 'attachmentLayout?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.attachments
+    name: attachments
+    fullName: attachments
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      For incoming messages contains attachments like images sent from the user.
+      For outgoing messages contains objects like cards or images to send to the
+      user.
+    optional: true
+    syntax:
+      content: 'attachments?: IAttachment[]'
+      return:
+        type:
+          - 'botbuilder.IAttachment[]'
+    package: botbuilder
+  - uid: botbuilder.IMessage.code
+    name: code
+    fullName: code
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Code indicating why the conversation has ended.
+    optional: true
+    syntax:
+      content: 'code?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.deliveryMode
+    name: deliveryMode
+    fullName: deliveryMode
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      A delivery hint to signal to the recipient alternate delivery paths for
+      the activity. The default delivery mode is "default".
+    optional: true
+    syntax:
+      content: 'deliveryMode?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.entities
+    name: entities
+    fullName: entities
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Structured objects passed to the bot or user.
+    optional: true
+    syntax:
+      content: 'entities?: any[]'
+      return:
+        type:
+          - 'any[]'
+    package: botbuilder
+  - uid: botbuilder.IMessage.expriation
+    name: expriation
+    fullName: expriation
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The time at which the activity should be considered to be "expired" and
+      should not be presented to the recipient.
+    optional: true
+    syntax:
+      content: 'expriation?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.importance
+    name: importance
+    fullName: importance
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The importance of the activity.
+    optional: true
+    syntax:
+      content: 'importance?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.inputHint
+    name: inputHint
+    fullName: inputHint
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Hint for clients letting them know if the bot is expecting further input
+      or not. The built-in prompts will automatically populate this value for
+      outgoing messages.
+    optional: true
+    syntax:
+      content: 'inputHint?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.label
+    name: label
+    fullName: label
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: A descriptive label for the activity.
+    optional: true
+    syntax:
+      content: 'label?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.listenFor
+    name: listenFor
+    fullName: listenFor
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      List of phrases and references that speech and language priming systems
+      should listen for.
+    optional: true
+    syntax:
+      content: 'listenFor?: string[]'
+      return:
+        type:
+          - 'string[]'
+    package: botbuilder
+  - uid: botbuilder.IMessage.localTimestamp
+    name: localTimestamp
+    fullName: localTimestamp
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Local time when message was sent (set by client or bot, Ex:
+      2016-09-23T13:07:49.4714686-07:00.)
+    optional: true
+    syntax:
+      content: 'localTimestamp?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.localTimezone
+    name: localTimezone
+    fullName: localTimezone
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Contains the name of the timezone in which the message, in local time,
+      expressed in IANA Time Zone database format. For example,
+      America/Los_Angeles.
+    optional: true
+    syntax:
+      content: 'localTimezone?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.name
+    name: name
+    fullName: name
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Name of the operation to invoke or the name of the event.
+    optional: true
+    syntax:
+      content: 'name?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.relatesTo
+    name: relatesTo
+    fullName: relatesTo
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Reference to another conversation or message.
+    optional: true
+    syntax:
+      content: 'relatesTo?: IAddress'
+      return:
+        type:
+          - botbuilder.IAddress
+    package: botbuilder
+  - uid: botbuilder.IMessage.semanticAction
+    name: semanticAction
+    fullName: semanticAction
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: An optional programmatic action accompanying this request.
+    optional: true
+    syntax:
+      content: 'semanticAction?: ISemanticAction'
+      return:
+        type:
+          - botbuilder.ISemanticAction
+    package: botbuilder
+  - uid: botbuilder.IMessage.speak
+    name: speak
+    fullName: speak
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Spoken message as [Speech Synthesis Markup
+      Language](https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx).
+    optional: true
+    syntax:
+      content: 'speak?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.summary
+    name: summary
+    fullName: summary
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Text to be displayed by as fall-back and as short description of the
+      message content in e.g. list of recent conversations.
+    optional: true
+    syntax:
+      content: 'summary?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.text
+    name: text
+    fullName: text
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Message text.
+    optional: true
+    syntax:
+      content: 'text?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.textFormat
+    name: textFormat
+    fullName: textFormat
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Format of text fields. The default value is 'markdown'.
+    optional: true
+    syntax:
+      content: 'textFormat?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.textHighlights
+    name: textHighlights
+    fullName: textHighlights
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The collection of text fragments to highlight when the activity contains a
+      ReplyToId value.
+    optional: true
+    syntax:
+      content: 'textHighlights?: ITextHighlight[]'
+      return:
+        type:
+          - 'botbuilder.ITextHighlight[]'
+    package: botbuilder
+  - uid: botbuilder.IMessage.textLocale
+    name: textLocale
+    fullName: textLocale
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Identified language of the message text if known.
+    optional: true
+    syntax:
+      content: 'textLocale?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.timestamp
+    name: timestamp
+    fullName: timestamp
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: UTC Time when message was sent (set by service.)
+    optional: true
+    syntax:
+      content: 'timestamp?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+  - uid: botbuilder.IMessage.value
+    name: value
+    fullName: value
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Open-ended value.
+    optional: true
+    syntax:
+      content: 'value?: any'
+      return:
+        type:
+          - any
+    package: botbuilder
+  - uid: botbuilder.IMessage.valueType
+    name: valueType
+    fullName: valueType
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The type of the activity's value object.
+    optional: true
+    syntax:
+      content: 'valueType?: string'
+      return:
+        type:
+          - string
+    package: botbuilder
+references:
+  - uid: botbuilder.IEvent
+    name: IEvent
+    spec.typeScript:
+      - name: IEvent
+        fullName: IEvent
+        uid: botbuilder.IEvent
+  - uid: 'botbuilder.IAttachment[]'
+    name: 'IAttachment[]'
+    spec.typeScript:
+      - name: IAttachment
+        fullName: IAttachment
+        uid: botbuilder.IAttachment
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.IAddress
+    name: IAddress
+    spec.typeScript:
+      - name: IAddress
+        fullName: IAddress
+        uid: botbuilder.IAddress
+  - uid: botbuilder.ISemanticAction
+    name: ISemanticAction
+    spec.typeScript:
+      - name: ISemanticAction
+        fullName: ISemanticAction
+        uid: botbuilder.ISemanticAction
+  - uid: 'botbuilder.ITextHighlight[]'
+    name: 'ITextHighlight[]'
+    spec.typeScript:
+      - name: ITextHighlight
+        fullName: ITextHighlight
+        uid: botbuilder.ITextHighlight
+      - name: '[]'
+        fullName: '[]'

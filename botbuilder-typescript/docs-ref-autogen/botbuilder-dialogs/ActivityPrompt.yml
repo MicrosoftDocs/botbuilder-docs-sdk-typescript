@@ -12,17 +12,25 @@ items:
     langs:
       - typeScript
     type: class
-    summary: Base class for all prompts.
+    summary: Waits for an activity to be received.
     extends:
       name: botbuilder-dialogs.Dialog
     package: botbuilder-dialogs
+    remarks: >-
+      This prompt requires a validator be passed in and is useful when waiting
+      for non-message
+
+      activities like an event to be received. The validator can ignore received
+      events until the
+
+      expected activity is received.
   - uid: botbuilder-dialogs.ActivityPrompt.constructor
-    name: ActivityPrompt
+    name: 'ActivityPrompt(string, PromptValidator<Activity>)'
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Creates a new ActivityPrompt instance.
     syntax:
       content: >-
         new ActivityPrompt(dialogId: string, validator:
@@ -31,14 +39,17 @@ items:
         - id: dialogId
           type:
             - string
-          description: ''
+          description: >-
+            Unique ID of the dialog within its parent `DialogSet` or
+            `ComponentDialog`.
         - id: validator
           type:
             - botbuilder-dialogs.PromptValidator<Activity>
-          description: ''
+          description: |
+            Validator that will be called each time a new activity is received.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ActivityPrompt.beginDialog
-    name: beginDialog
+    name: 'beginDialog(DialogContext, PromptOptions)'
     children: []
     type: method
     langs:
@@ -60,7 +71,7 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ActivityPrompt.continueDialog
-    name: continueDialog
+    name: continueDialog(DialogContext)
     children: []
     type: method
     langs:
@@ -78,7 +89,7 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ActivityPrompt.repromptDialog
-    name: repromptDialog
+    name: 'repromptDialog(TurnContext, DialogInstance)'
     children: []
     type: method
     langs:
@@ -100,7 +111,7 @@ items:
           - Promise<void>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ActivityPrompt.resumeDialog
-    name: resumeDialog
+    name: 'resumeDialog(DialogContext, DialogReason, any)'
     children: []
     type: method
     langs:

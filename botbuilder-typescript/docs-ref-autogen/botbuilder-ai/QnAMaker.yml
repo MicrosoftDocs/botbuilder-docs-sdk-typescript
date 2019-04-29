@@ -6,21 +6,29 @@ items:
     children:
       - botbuilder-ai.QnAMaker.answer
       - botbuilder-ai.QnAMaker.generateAnswer
+      - botbuilder-ai.QnAMaker.getAnswers
       - botbuilder-ai.QnAMaker.constructor
     langs:
       - typeScript
     type: class
-    summary: Manages querying an individual QnA Maker knowledge base for answers.
+    summary: Query a QnA Maker knowledge base for answers.
     package: botbuilder-ai
+    remarks: >-
+      This class is used to make queries to a single QnA Maker knowledge base
+      and return the result.
+
+
+      Use this to process incoming messages with the [getAnswers()](#getAnswers)
+      method.
   - uid: botbuilder-ai.QnAMaker.answer
-    name: answer
+    name: answer(TurnContext)
     children: []
     type: method
     langs:
       - typeScript
     summary: >-
-      Calls [generateAnswer()](#generateanswer) and sends the answer as a
-      message to the user.
+      Calls [generateAnswer()](#generateanswer) and sends the resulting answer
+      as a reply to the user.
     syntax:
       content: 'function answer(context: TurnContext)'
       parameters:
@@ -33,13 +41,17 @@ items:
         type:
           - Promise<boolean>
     package: botbuilder-ai
+    deprecated:
+      content: >-
+        Instead, favor using [QnAMaker.getAnswers()](#getAnswers) to generate
+        answers for a question.
     remarks: >-
       Returns a value of `true` if an answer was found and sent. If multiple
       answers are
 
       returned the first one will be delivered.
   - uid: botbuilder-ai.QnAMaker.generateAnswer
-    name: generateAnswer
+    name: 'generateAnswer(string | undefined, number, number)'
     children: []
     type: method
     langs:
@@ -70,11 +82,51 @@ items:
         type:
           - 'Promise<botbuilder-ai.QnAMakerResult[]>'
     package: botbuilder-ai
+    deprecated:
+      content: >-
+        Instead, favor using [QnAMaker.getAnswers()](#getAnswers) to generate
+        answers for a question.
     remarks: >-
-      The returned answers will be sorted by score with the top scoring answer
+      Returns an array of answers sorted by score with the top scoring answer
       returned first.
+  - uid: botbuilder-ai.QnAMaker.getAnswers
+    name: 'getAnswers(TurnContext, QnAMakerOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Calls the QnA Maker service to generate answer(s) for a question.
+    syntax:
+      content: 'function getAnswers(context: TurnContext, options?: QnAMakerOptions)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: >-
+            The Turn Context that contains the user question to be queried
+            against your knowledge base.
+        - id: options
+          type:
+            - botbuilder-ai.QnAMakerOptions
+          description: >
+            (Optional) The options for the QnA Maker knowledge base. If null,
+            constructor option is used for this instance.
+          optional: true
+      return:
+        type:
+          - 'Promise<botbuilder-ai.QnAMakerResult[]>'
+    package: botbuilder-ai
+    remarks: >-
+      Returns an array of answers sorted by score with the top scoring answer
+      returned first.
+
+
+      In addition to returning the results from QnA Maker,
+      [getAnswers()](#getAnswers) will also
+
+      emit a trace activity that contains the QnA Maker results.
   - uid: botbuilder-ai.QnAMaker.constructor
-    name: QnAMaker
+    name: 'QnAMaker(QnAMakerEndpoint, QnAMakerOptions)'
     children: []
     type: constructor
     langs:

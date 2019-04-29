@@ -6,14 +6,18 @@ items:
     children:
       - botframework-config.IEndpointService.appId
       - botframework-config.IEndpointService.appPassword
+      - botframework-config.IEndpointService.channelService
       - botframework-config.IEndpointService.endpoint
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: JSON description of an endpoint service.
     extends:
       name: botframework-config.IConnectedService
     package: botframework-config
+    remarks: |-
+      - [type](#type) SHOULD be set to `ServiceTypes.Endpoint`.
+      - [id](#id) SHOULD be set to the bots ID.
   - uid: botframework-config.IEndpointService.appId
     name: appId
     fullName: appId
@@ -21,7 +25,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: MSA App ID.
     syntax:
       content: 'appId: string'
       return:
@@ -35,9 +39,30 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: MSA app password for the bot.
     syntax:
       content: 'appPassword: string'
+      return:
+        type:
+          - string
+    package: botframework-config
+  - uid: botframework-config.IEndpointService.channelService
+    name: channelService
+    fullName: channelService
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The channel service (Azure or US Government Azure) for the bot.
+
+      A value of 'https://botframework.azure.us' means the bot will be talking
+      to a US Government Azure data center.
+
+      An undefined or null value means the bot will be talking to public Azure
+    optional: true
+    syntax:
+      content: 'channelService?: string'
       return:
         type:
           - string
@@ -49,7 +74,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Endpoint of localhost service.
     syntax:
       content: 'endpoint: string'
       return:

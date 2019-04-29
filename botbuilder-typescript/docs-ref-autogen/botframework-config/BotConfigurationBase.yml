@@ -21,33 +21,37 @@ items:
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: >-
+      This is class which allows you to manipulate in memory representations of
+      bot configuration with
+
+      no nodejs depedencies.
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.constructor
-    name: BotConfigurationBase
+    name: BotConfigurationBase()
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Creates a new BotConfigutationBase instance.
     syntax:
       content: new BotConfigurationBase()
       parameters: []
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.connectService
-    name: connectService
+    name: connectService(IConnectedService)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Connect a service to the bot file.
     syntax:
       content: 'function connectService(newService: IConnectedService)'
       parameters:
         - id: newService
           type:
             - botframework-config.IConnectedService
-          description: ''
+          description: Service to add.
       return:
         type:
           - string
@@ -67,12 +71,12 @@ items:
           - string
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.disconnectService
-    name: disconnectService
+    name: disconnectService(string)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Remove service by id.
     syntax:
       content: 'function disconnectService(id: string)'
       parameters:
@@ -82,73 +86,79 @@ items:
           description: ''
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.disconnectServiceByNameOrId
-    name: disconnectServiceByNameOrId
+    name: disconnectServiceByNameOrId(string)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Remove service by name or id.
     syntax:
       content: 'function disconnectServiceByNameOrId(nameOrId: string)'
       parameters:
         - id: nameOrId
           type:
             - string
-          description: ''
+          description: |
+            Name or ID of the service to remove.
       return:
         type:
           - botframework-config.IConnectedService
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.findService
-    name: findService
+    name: findService(string)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Find service by id.
     syntax:
       content: 'function findService(id: string)'
       parameters:
         - id: id
           type:
             - string
-          description: ''
+          description: |
+            ID of the service to find.
       return:
         type:
           - botframework-config.IConnectedService
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.findServiceByNameOrId
-    name: findServiceByNameOrId
+    name: findServiceByNameOrId(string)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Find service by name or id.
     syntax:
       content: 'function findServiceByNameOrId(nameOrId: string)'
       parameters:
         - id: nameOrId
           type:
             - string
-          description: ''
+          description: |
+            Name or ID of the service to find.
       return:
         type:
           - botframework-config.IConnectedService
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.fromJSON
-    name: fromJSON
+    name: fromJSON(Partial<IBotConfiguration>)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Returns a new BotConfigurationBase instance given a JSON based
+      configuration.
     syntax:
       content: 'static function fromJSON(source?: Partial<IBotConfiguration>)'
       parameters:
         - id: source
           type:
             - Partial<botframework-config.IBotConfiguration>
-          description: ''
+          description: |
+            JSON based configuration.
           optional: true
       return:
         type:
@@ -183,19 +193,22 @@ items:
           - string
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.serviceFromJSON
-    name: serviceFromJSON
+    name: serviceFromJSON(IConnectedService)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Returns a ConnectedService instance given a JSON based service
+      configuration.
     syntax:
       content: 'static function serviceFromJSON(service: IConnectedService)'
       parameters:
         - id: service
           type:
             - botframework-config.IConnectedService
-          description: ''
+          description: |
+            JSON based service configuration.
       return:
         type:
           - botframework-config.ConnectedService
@@ -215,12 +228,12 @@ items:
           - 'botframework-config.IConnectedService[]'
     package: botframework-config
   - uid: botframework-config.BotConfigurationBase.toJSON
-    name: toJSON
+    name: toJSON()
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Returns a JSON based version of the current bot.
     syntax:
       content: function toJSON()
       parameters: []

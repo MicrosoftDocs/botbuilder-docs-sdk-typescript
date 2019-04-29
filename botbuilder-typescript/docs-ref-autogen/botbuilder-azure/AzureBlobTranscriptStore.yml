@@ -19,7 +19,7 @@ items:
 
       `container/{channelId]/{conversationId}/{Timestamp.ticks}-{activity.id}.json`.
   - uid: botbuilder-azure.AzureBlobTranscriptStore.constructor
-    name: AzureBlobTranscriptStore
+    name: AzureBlobTranscriptStore(BlobStorageSettings)
     children: []
     type: constructor
     langs:
@@ -35,7 +35,7 @@ items:
             Settings required for configuring an instance of BlobStorage
     package: botbuilder-azure
   - uid: botbuilder-azure.AzureBlobTranscriptStore.deleteTranscript
-    name: deleteTranscript
+    name: 'deleteTranscript(string, string)'
     children: []
     type: method
     langs:
@@ -58,7 +58,7 @@ items:
           - Promise<void>
     package: botbuilder-azure
   - uid: botbuilder-azure.AzureBlobTranscriptStore.getTranscriptActivities
-    name: getTranscriptActivities
+    name: 'getTranscriptActivities(string, string, string, Date)'
     children: []
     type: method
     langs:
@@ -93,7 +93,7 @@ items:
           - Promise<PagedResult<Activity>>
     package: botbuilder-azure
   - uid: botbuilder-azure.AzureBlobTranscriptStore.listTranscripts
-    name: listTranscripts
+    name: 'listTranscripts(string, string)'
     children: []
     type: method
     langs:
@@ -110,14 +110,14 @@ items:
           type:
             - string
           description: |
-            Continuatuation token to page through results.
+            ContinuationToken token to page through results.
           optional: true
       return:
         type:
           - Promise<PagedResult<TranscriptInfo>>
     package: botbuilder-azure
   - uid: botbuilder-azure.AzureBlobTranscriptStore.logActivity
-    name: logActivity
+    name: logActivity(Activity)
     children: []
     type: method
     langs:
@@ -133,7 +133,7 @@ items:
             Activity being logged.
       return:
         type:
-          - void | Promise<void>
+          - Promise<void>
     package: botbuilder-azure
 references:
   - uid: botbuilder-azure.BlobStorageSettings

@@ -12,7 +12,7 @@ items:
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: Defines a generic service connection.
     extends:
       name: botframework-config.ConnectedService
     package: botframework-config
@@ -23,7 +23,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Named/value configuration data.
     syntax:
       content: 'configuration: [key: string]: string'
       return:
@@ -31,7 +31,7 @@ items:
           - '[key: string]: string'
     package: botframework-config
   - uid: botframework-config.GenericService.decrypt
-    name: decrypt
+    name: 'decrypt(string, (value: string, secret: string) => string)'
     children: []
     type: method
     langs:
@@ -52,7 +52,7 @@ items:
           description: ''
     package: botframework-config
   - uid: botframework-config.GenericService.encrypt
-    name: encrypt
+    name: 'encrypt(string, (value: string, secret: string) => string)'
     children: []
     type: method
     langs:
@@ -73,19 +73,20 @@ items:
           description: ''
     package: botframework-config
   - uid: botframework-config.GenericService.constructor
-    name: GenericService
+    name: GenericService(IGenericService)
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Creates a new GenericService instance.
     syntax:
       content: 'new GenericService(source?: IGenericService)'
       parameters:
         - id: source
           type:
             - botframework-config.IGenericService
-          description: ''
+          description: |
+            (Optional) JSON based service definition.
           optional: true
     package: botframework-config
   - uid: botframework-config.GenericService.url
@@ -95,7 +96,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Deep link to service.
     syntax:
       content: 'url: string'
       return:

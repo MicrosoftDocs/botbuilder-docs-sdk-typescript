@@ -1,0 +1,229 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-calling.Library
+    name: Library
+    fullName: Library
+    children:
+      - botbuilder-calling.Library.dialog
+      - botbuilder-calling.Library.findDialog
+      - botbuilder-calling.Library.library
+      - botbuilder-calling.Library.constructor
+      - botbuilder-calling.Library.name
+    langs:
+      - typeScript
+    type: class
+    summary: >
+      A library of related dialogs used for routing purposes. Libraries can be
+      chained together to enable
+
+      the development of complex bots. The
+      [UniversalCallBot](en-us/node/builder/calling-reference/classes/_botbuilder_d_.UniversalCallBot.html)
+
+      class is itself a Library that forms the root of this chain.
+
+      Libraries of reusable parts can be developed by creating a new Library
+      instance and adding dialogs
+
+      just as you would to a bot. Your library should have a unique name that
+      corresponds to either your
+
+      libraries website or NPM module name.  Bots can then reuse your library by
+      simply adding your parts
+
+      Library instance to their bot using
+      [UniversalCallBot.library()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.UniversalCallBot.html#library).
+
+      If your library itself depends on other libraries you should add them to
+      your library as a dependency
+
+      using [Library.library()](#library). You can easily manage multiple
+      versions of your library by
+
+      adding a version number to your library name.
+
+
+      To invoke dialogs within your library bots will need to call
+      [session.beginDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#begindialog)
+
+      with a fully qualified dialog id in the form of '<libName>:<dialogId>'.
+      You'll typically hide
+
+      this from the devloper by exposing a function from their module that
+      starts the dialog for them.
+
+      So calling something like `myLib.someDialog(session, { arg: '' });` would
+      end up calling
+
+      `session.beginDialog('myLib:someDialog', args);` under the covers.
+
+
+      Its worth noting that dialogs are always invoked within the current dialog
+      so once your within
+
+      a dialog from your library you don't need to prefix every beginDialog()
+      call your with your
+
+      libraries name. Its only when crossing from one library context to another
+      that you need to
+
+      include the library name prefix.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Library.dialog
+    name: 'dialog(string, Dialog | IDialogWaterfallStep[] | IDialogWaterfallStep)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers or returns a dialog from the library.
+    syntax:
+      content: >-
+        function dialog(id: string, dialog?: Dialog | IDialogWaterfallStep[] |
+        IDialogWaterfallStep)
+      parameters:
+        - id: id
+          type:
+            - string
+          description: Unique ID of the dialog being regsitered or retrieved.
+        - id: dialog
+          type:
+            - >-
+              botbuilder-calling.Dialog |
+              botbuilder-calling.IDialogWaterfallStep[] |
+              botbuilder-calling.IDialogWaterfallStep
+          description: >
+            (Optional) dialog or waterfall to register.
+
+            * __dialog:__ _{Dialog}_ - Dialog to add.
+
+            * __dialog:__ _{IDialogWaterfallStep[]}_ - Waterfall of steps to
+            execute. See
+            [IDialogWaterfallStep](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogwaterfallstep.html)
+            for details.
+
+            * __dialog:__ _{IDialogWaterfallStep}_ - Single step waterfall.
+            Calling a built-in prompt or starting a new dialog will result in
+            the current dialog ending upon completion of the child
+            prompt/dialog.
+          optional: true
+      return:
+        type:
+          - botbuilder-calling.Dialog
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Library.findDialog
+    name: 'findDialog(string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Searches the library and all of its dependencies for a specific dialog.
+      Returns the dialog
+
+      if found, otherwise null.
+    syntax:
+      content: 'function findDialog(libName: string, dialogId: string)'
+      parameters:
+        - id: libName
+          type:
+            - string
+          description: Name of the library containing the dialog.
+        - id: dialogId
+          type:
+            - string
+          description: |
+            Unique ID of the dialog within the library.
+      return:
+        type:
+          - botbuilder-calling.Dialog
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Library.library
+    name: library(Library | string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers or returns a library dependency.
+    syntax:
+      content: 'function library(lib: Library | string)'
+      parameters:
+        - id: lib
+          type:
+            - botbuilder-calling.Library | string
+          description: >
+
+            * __lib:__ _{Library}_ - Library to register as a dependency.
+
+            * __lib:__ _{string}_ - Unique name of the library to lookup. All
+            dependencies will be searched as well.
+      return:
+        type:
+          - botbuilder-calling.Library
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Library.constructor
+    name: Library(string)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the library.
+    syntax:
+      content: 'new Library(name: string)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Library.name
+    name: name
+    fullName: name
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique name of the library.
+    syntax:
+      content: 'name: string'
+      return:
+        type:
+          - string
+    package: botbuilder-calling
+references:
+  - uid: >-
+      botbuilder-calling.Dialog | botbuilder-calling.IDialogWaterfallStep[] |
+      botbuilder-calling.IDialogWaterfallStep
+    name: IDialogWaterfallStep
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-calling.Dialog
+      - name: ' | '
+        fullName: ' | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder-calling.IDialogWaterfallStep
+      - name: '[] | '
+        fullName: '[] | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder-calling.IDialogWaterfallStep
+  - uid: botbuilder-calling.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-calling.Dialog
+  - uid: botbuilder-calling.Library | string
+    name: Library | string
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder-calling.Library
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: botbuilder-calling.Library
+    name: Library
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder-calling.Library

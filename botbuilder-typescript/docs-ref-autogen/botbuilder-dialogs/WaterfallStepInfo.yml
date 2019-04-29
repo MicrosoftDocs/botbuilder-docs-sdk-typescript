@@ -13,7 +13,7 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Values passed to the `WaterfallStepContext` constructor.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepInfo.index
     name: index
@@ -22,7 +22,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The index of the current waterfall step being executed.
     syntax:
       content: 'index: number'
       return:
@@ -30,18 +30,24 @@ items:
           - number
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepInfo.onNext
-    name: onNext
-    fullName: onNext
+    name: onNext(any)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
-    summary: Used to skip to the next waterfall step.
+    summary: Called to skip to the next waterfall step.
     syntax:
-      content: 'onNext: (result?: any) => Promise<DialogTurnResult>'
+      content: 'function onNext(result?: any)'
+      parameters:
+        - id: result
+          type:
+            - any
+          description: |
+            (Optional) result to pass to the next step.
+          optional: true
       return:
         type:
-          - '(result?: any) => Promise<DialogTurnResult>'
+          - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepInfo.options
     name: options
@@ -50,7 +56,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: |-
+      Any options passed to the steps waterfall dialog when it was started with
+      `DialogContext.beginDialog()`.
     syntax:
       content: 'options: O'
       return:
@@ -64,7 +72,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The reason the waterfall step is being executed.
     syntax:
       content: 'reason: DialogReason'
       return:
@@ -78,7 +86,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Results returned by a dialog or prompt that was called in the previous
+      waterfall step.
     syntax:
       content: 'result: any'
       return:
@@ -92,7 +102,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: A dictionary of values which will be persisted across all waterfall steps.
     syntax:
       content: 'values: object'
       return:
@@ -106,3 +116,13 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
+  - uid: Promise<botbuilder-dialogs.DialogTurnResult>
+    name: DialogTurnResult>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
+      - name: '>'
+        fullName: '>'

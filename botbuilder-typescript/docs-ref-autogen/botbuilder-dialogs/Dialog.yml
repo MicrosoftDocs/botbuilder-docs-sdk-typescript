@@ -8,23 +8,27 @@ items:
       - botbuilder-dialogs.Dialog.continueDialog
       - botbuilder-dialogs.Dialog.constructor
       - botbuilder-dialogs.Dialog.endDialog
+      - botbuilder-dialogs.Dialog.EndOfTurn
       - botbuilder-dialogs.Dialog.id
       - botbuilder-dialogs.Dialog.repromptDialog
       - botbuilder-dialogs.Dialog.resumeDialog
+      - botbuilder-dialogs.Dialog.telemetryClient
     langs:
       - typeScript
     type: class
     summary: Base class for all dialogs.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.beginDialog
-    name: beginDialog
+    name: 'beginDialog(DialogContext, O)'
     children: []
     type: method
     langs:
       - typeScript
     summary: >-
-      Method called when a new dialog has been pushed onto the stack and is
-      being activated.
+      Called when a new instance of the dialog has been pushed onto the stack
+      and is being
+
+      activated.
     syntax:
       content: 'function beginDialog(dc: DialogContext, options?: O)'
       parameters:
@@ -36,33 +40,28 @@ items:
           type:
             - O
           description: >
-            (Optional) arguments that were passed to the dialog during `begin()`
-            call that started the instance.
+            (Optional) arguments that were passed to the dialog in the call to
+            `DialogContext.beginDialog()`.
           optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+    remarks: >-
+      MUST be overridden by derived class. Dialogs that only support single-turn
+      conversations
+
+      should call `return await DialogContext.endDialog();` at the end of their
+      implementation.
   - uid: botbuilder-dialogs.Dialog.continueDialog
-    name: continueDialog
+    name: continueDialog(DialogContext)
     children: []
     type: method
     langs:
       - typeScript
     summary: >-
-      (Optional) method called when an instance of the dialog is the active
-      dialog and the user
-
-      replies with a new activity. The dialog will generally continue to receive
-      the users replies
-
-      until it calls `DialogContext.endDialog()`, `DialogContext.beginDialog()`,
-      or `DialogContext.prompt()`.
-
-      If this method is NOT implemented then the dialog will be automatically
-      ended when the user
-
-      replies.
+      Called when an instance of the dialog is the active dialog and a new
+      activity is received.
     syntax:
       content: 'function continueDialog(dc: DialogContext)'
       parameters:
@@ -75,28 +74,34 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by dialogs that support multi-turn conversations. The
+      default
+
+      implementation calls `DialogContext.endDialog()`.
   - uid: botbuilder-dialogs.Dialog.constructor
-    name: Dialog
+    name: Dialog(string)
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Creates a new Dialog instance.
     syntax:
       content: 'new Dialog(dialogId: string)'
       parameters:
         - id: dialogId
           type:
             - string
-          description: ''
+          description: |
+            Unique ID of the dialog.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.endDialog
-    name: endDialog
+    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: (Optional) method called when the dialog is ending.
+    summary: Called when the dialog is ending.
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
@@ -119,6 +124,25 @@ items:
         type:
           - Promise<void>
     package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by dialogs that wish to perform some logging or
+      cleanup action anytime
+
+      the dialog ends.
+  - uid: botbuilder-dialogs.Dialog.EndOfTurn
+    name: EndOfTurn
+    fullName: EndOfTurn
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        type:
+          - botbuilder-dialogs.DialogTurnResult
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.id
     name: id
     fullName: id
@@ -128,20 +152,18 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: 'public id: string'
+      content: 'id: string'
       return:
         type:
           - string
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.repromptDialog
-    name: repromptDialog
+    name: 'repromptDialog(TurnContext, DialogInstance)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      (Optional) method called when the dialog has been requested to re-prompt
-      the user for input.
+    summary: Called when the dialog has been requested to re-prompt the user for input.
     syntax:
       content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
       parameters:
@@ -158,28 +180,20 @@ items:
         type:
           - Promise<void>
     package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by multi-turn dialogs that wish to provide custom
+      re-prompt logic. The
+
+      default implementation performs no action.
   - uid: botbuilder-dialogs.Dialog.resumeDialog
-    name: resumeDialog
+    name: 'resumeDialog(DialogContext, DialogReason, any)'
     children: []
     type: method
     langs:
       - typeScript
     summary: >-
-      (Optional) method called when an instance of the dialog is being returned
-      to from another
-
-      dialog that was started by the current instance using
-      `DialogContext.beginDialog()` or
-
-      `DialogContext.prompt()`.
-
-      If this method is NOT implemented then the dialog will be automatically
-      ended with a call
-
-      to `DialogContext.endDialog()`. Any result passed from the called dialog
-      will be passed to the
-
-      active dialogs parent.
+      Called when an instance of the dialog is being returned to from another
+      dialog.
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
@@ -206,7 +220,35 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by multi-turn dialogs that start other dialogs using
+
+      `DialogContext.beginDialog()` or `DialogContext.prompt()`. The default
+      implementation calls
+
+      `DialogContext.endDialog()` with any results returned from the ending
+      dialog.
+  - uid: botbuilder-dialogs.Dialog.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Set the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+    package: botbuilder-dialogs
 references:
+  - uid: botbuilder-dialogs.DialogTurnResult
+    name: DialogTurnResult
+    spec.typeScript:
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:

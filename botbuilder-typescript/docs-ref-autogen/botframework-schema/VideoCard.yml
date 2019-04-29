@@ -8,6 +8,7 @@ items:
       - botframework-schema.VideoCard.autoloop
       - botframework-schema.VideoCard.autostart
       - botframework-schema.VideoCard.buttons
+      - botframework-schema.VideoCard.duration
       - botframework-schema.VideoCard.image
       - botframework-schema.VideoCard.media
       - botframework-schema.VideoCard.shareable
@@ -18,7 +19,7 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Video card
     package: botframework-schema
   - uid: botframework-schema.VideoCard.aspect
     name: aspect
@@ -27,7 +28,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Aspect ratio of thumbnail/media placeholder. Allowed values are "16:9" and
+      "4:3"
     syntax:
       content: 'aspect: string'
       return:
@@ -41,7 +44,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: 'Should the client loop playback at end of content (default:true)'
     syntax:
       content: 'autoloop: boolean'
       return:
@@ -55,7 +58,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Should the client automatically start playback of media in this card
+      (default:true)
     syntax:
       content: 'autostart: boolean'
       return:
@@ -69,12 +74,30 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Actions on this card
     syntax:
       content: 'buttons: CardAction[]'
       return:
         type:
           - 'botframework-schema.CardAction[]'
+    package: botframework-schema
+  - uid: botframework-schema.VideoCard.duration
+    name: duration
+    fullName: duration
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Describes the length of the media content without requiring a receiver to
+      open the content.
+
+      Formatted as an ISO 8601 Duration field.
+    syntax:
+      content: 'duration: string'
+      return:
+        type:
+          - string
     package: botframework-schema
   - uid: botframework-schema.VideoCard.image
     name: image
@@ -83,7 +106,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Thumbnail placeholder
     syntax:
       content: 'image: ThumbnailUrl'
       return:
@@ -97,7 +120,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Media URLs for this card. When this field contains more than one URL, each
+      URL is an
+
+      alternative format of the same content.
     syntax:
       content: 'media: MediaUrl[]'
       return:
@@ -111,7 +138,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: 'This content may be shared with others (default:true)'
     syntax:
       content: 'shareable: boolean'
       return:
@@ -125,7 +152,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Subtitle of this card
     syntax:
       content: 'subtitle: string'
       return:
@@ -139,7 +166,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Text of this card
     syntax:
       content: 'text: string'
       return:
@@ -153,7 +180,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Title of this card
     syntax:
       content: 'title: string'
       return:
@@ -167,7 +194,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Supplementary parameter for this card
     syntax:
       content: 'value: any'
       return:

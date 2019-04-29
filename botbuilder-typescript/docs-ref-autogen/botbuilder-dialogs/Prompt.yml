@@ -6,7 +6,6 @@ items:
     children:
       - botbuilder-dialogs.Prompt.beginDialog
       - botbuilder-dialogs.Prompt.continueDialog
-      - botbuilder-dialogs.Prompt.constructor
       - botbuilder-dialogs.Prompt.repromptDialog
       - botbuilder-dialogs.Prompt.resumeDialog
     langs:
@@ -17,7 +16,7 @@ items:
       name: botbuilder-dialogs.Dialog
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Prompt.beginDialog
-    name: beginDialog
+    name: 'beginDialog(DialogContext, PromptOptions)'
     children: []
     type: method
     langs:
@@ -39,7 +38,7 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Prompt.continueDialog
-    name: continueDialog
+    name: continueDialog(DialogContext)
     children: []
     type: method
     langs:
@@ -56,28 +55,8 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.constructor
-    name: Prompt
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'new Prompt(dialogId: string, validator?: PromptValidator<T>)'
-      parameters:
-        - id: dialogId
-          type:
-            - string
-          description: ''
-        - id: validator
-          type:
-            - botbuilder-dialogs.PromptValidator<T>
-          description: ''
-          optional: true
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Prompt.repromptDialog
-    name: repromptDialog
+    name: 'repromptDialog(TurnContext, DialogInstance)'
     children: []
     type: method
     langs:
@@ -99,7 +78,7 @@ items:
           - Promise<void>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Prompt.resumeDialog
-    name: resumeDialog
+    name: 'resumeDialog(DialogContext, DialogReason, any)'
     children: []
     type: method
     langs:
@@ -134,14 +113,6 @@ references:
       - name: Dialog
         fullName: Dialog
         uid: botbuilder-dialogs.Dialog
-  - uid: botbuilder-dialogs.PromptValidator<T>
-    name: PromptValidator<T>
-    spec.typeScript:
-      - name: PromptValidator
-        fullName: PromptValidator
-        uid: botbuilder-dialogs.PromptValidator
-      - name: <T>
-        fullName: <T>
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:

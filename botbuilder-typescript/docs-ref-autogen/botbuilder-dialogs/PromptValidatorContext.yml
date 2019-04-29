@@ -11,7 +11,7 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Contextual information passed to a custom `PromptValidator`.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.PromptValidatorContext.context
     name: context
@@ -20,13 +20,14 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The context for the current turn of conversation with the user.
     syntax:
       content: 'context: TurnContext'
       return:
         type:
           - TurnContext
     package: botbuilder-dialogs
+    remarks: The validator can use this to re-prompt the user.
   - uid: botbuilder-dialogs.PromptValidatorContext.options
     name: options
     fullName: options
@@ -34,13 +35,16 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Original set of options passed to the prompt by the calling dialog.
     syntax:
       content: 'options: PromptOptions'
       return:
         type:
           - botbuilder-dialogs.PromptOptions
     package: botbuilder-dialogs
+    remarks: >-
+      The validator can extend this interface to support additional prompt
+      options.
   - uid: botbuilder-dialogs.PromptValidatorContext.recognized
     name: recognized
     fullName: recognized
@@ -48,13 +52,19 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Result returned from the prompts recognizer function.
     syntax:
       content: 'recognized: PromptRecognizerResult<T>'
       return:
         type:
           - botbuilder-dialogs.PromptRecognizerResult<T>
     package: botbuilder-dialogs
+    remarks: >-
+      The `prompt.recognized.succeeded` field can be checked to determine of the
+      recognizer found
+
+      anything and then the value can be retrieved from
+      `prompt.recognized.value`.
   - uid: botbuilder-dialogs.PromptValidatorContext.state
     name: state
     fullName: state
@@ -62,13 +72,18 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      A dictionary of values persisted for each conversational turn while the
+      prompt is active.
     syntax:
       content: 'state: object'
       return:
         type:
           - object
     package: botbuilder-dialogs
+    remarks: >-
+      The validator can use this to persist things like turn counts or other
+      state information.
 references:
   - uid: botbuilder-dialogs.PromptOptions
     name: PromptOptions

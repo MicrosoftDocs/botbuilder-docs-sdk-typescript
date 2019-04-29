@@ -5,11 +5,12 @@ items:
     fullName: ErrorModel
     children:
       - botframework-schema.ErrorModel.code
+      - botframework-schema.ErrorModel.innerHttpError
       - botframework-schema.ErrorModel.message
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Object representing error information
     package: botframework-schema
   - uid: botframework-schema.ErrorModel.code
     name: code
@@ -18,12 +19,26 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Error code
     syntax:
       content: 'code: string'
       return:
         type:
           - string
+    package: botframework-schema
+  - uid: botframework-schema.ErrorModel.innerHttpError
+    name: innerHttpError
+    fullName: innerHttpError
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Error from inner http call
+    syntax:
+      content: 'innerHttpError: InnerHttpError'
+      return:
+        type:
+          - botframework-schema.InnerHttpError
     package: botframework-schema
   - uid: botframework-schema.ErrorModel.message
     name: message
@@ -32,10 +47,17 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Error message
     syntax:
       content: 'message: string'
       return:
         type:
           - string
     package: botframework-schema
+references:
+  - uid: botframework-schema.InnerHttpError
+    name: InnerHttpError
+    spec.typeScript:
+      - name: InnerHttpError
+        fullName: InnerHttpError
+        uid: botframework-schema.InnerHttpError

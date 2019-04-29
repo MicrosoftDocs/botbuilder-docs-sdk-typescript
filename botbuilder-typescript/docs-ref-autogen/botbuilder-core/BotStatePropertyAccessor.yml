@@ -7,34 +7,51 @@ items:
       - botbuilder-core.BotStatePropertyAccessor.constructor
       - botbuilder-core.BotStatePropertyAccessor.delete
       - botbuilder-core.BotStatePropertyAccessor.get
+      - botbuilder-core.BotStatePropertyAccessor.get_1
       - botbuilder-core.BotStatePropertyAccessor.name
       - botbuilder-core.BotStatePropertyAccessor.set
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: >-
+      A `BotState` specific implementation of the `StatePropertyAccessor`
+      interface.
     package: botbuilder-core
+    remarks: >-
+      Properties can be defined for a given `BotState` instance using
+      `createProperty()`.
+
+
+      ```JavaScript
+
+      const dialogStateProperty =
+      ConversationState.createProperty('dialogState');
+
+      const dialogs = new DialogSet(dialogStateProperty);
+
+      ```
   - uid: botbuilder-core.BotStatePropertyAccessor.constructor
-    name: BotStatePropertyAccessor
+    name: 'BotStatePropertyAccessor(BotState, string)'
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Creates a new BotStatePropertyAccessor instance.
     syntax:
       content: 'new BotStatePropertyAccessor(state: BotState, name: string)'
       parameters:
         - id: state
           type:
             - botbuilder-core.BotState
-          description: ''
+          description: Parent BotState instance.
         - id: name
           type:
             - string
-          description: ''
+          description: |
+            Unique name of the property for the parent BotState.
     package: botbuilder-core
   - uid: botbuilder-core.BotStatePropertyAccessor.delete
-    name: delete
+    name: delete(TurnContext)
     children: []
     type: method
     langs:
@@ -52,14 +69,32 @@ items:
           - Promise<void>
     package: botbuilder-core
   - uid: botbuilder-core.BotStatePropertyAccessor.get
-    name: get
+    name: get(TurnContext)
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function get(context: TurnContext, defaultValue?: T)'
+      content: 'function get(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: ''
+      return:
+        type:
+          - Promise<T | undefined>
+    package: botbuilder-core
+  - uid: botbuilder-core.BotStatePropertyAccessor.get_1
+    name: 'get(TurnContext, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function get(context: TurnContext, defaultValue: T)'
       parameters:
         - id: context
           type:
@@ -69,10 +104,9 @@ items:
           type:
             - T
           description: ''
-          optional: true
       return:
         type:
-          - Promise<T | undefined>
+          - Promise<T>
     package: botbuilder-core
   - uid: botbuilder-core.BotStatePropertyAccessor.name
     name: name
@@ -83,13 +117,13 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'public name: string'
+      content: 'name: string'
       return:
         type:
           - string
     package: botbuilder-core
   - uid: botbuilder-core.BotStatePropertyAccessor.set
-    name: set
+    name: 'set(TurnContext, T)'
     children: []
     type: method
     langs:

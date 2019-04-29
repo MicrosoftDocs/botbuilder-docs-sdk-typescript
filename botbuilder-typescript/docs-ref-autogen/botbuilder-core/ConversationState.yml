@@ -24,18 +24,6 @@ items:
       [clear()](#clear).
 
 
-      Since the `ConversationState` class derives from `BotState` it can be used
-      as middleware to
-
-      automatically read and write the bots conversation state for each turn.
-      And it also means it
-
-      can be passed to a `BotStateSet` middleware instance to be managed in
-      parallel with other state
-
-      providers.
-
-
       ```JavaScript
 
       const { ConversationState, MemoryStorage } = require('botbuilder');
@@ -43,29 +31,16 @@ items:
 
       const conversationState = new ConversationState(new MemoryStorage());
 
-      adapter.use(conversationState);
-
-
-      server.post('/api/messages', (req, res) => {
-         adapter.processActivity(req, res, async (context) => {
-            // Get loaded conversation state
-            const convo = await conversationState.get(context);
-
-            // ... route activity ...
-
-         });
-      });
-
       ```
   - uid: botbuilder-core.ConversationState.constructor
-    name: ConversationState
+    name: 'ConversationState(Storage, string)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: Creates a new ConversationState instance.
     syntax:
-      content: 'new ConversationState(storage: Storage, namespace: string)'
+      content: 'new ConversationState(storage: Storage, namespace?: string)'
       parameters:
         - id: storage
           type:
@@ -77,9 +52,10 @@ items:
           description: >
             (Optional) namespace to append to storage keys. Defaults to an empty
             string.
+          optional: true
     package: botbuilder-core
   - uid: botbuilder-core.ConversationState.getStorageKey
-    name: getStorageKey
+    name: getStorageKey(TurnContext)
     children: []
     type: method
     langs:

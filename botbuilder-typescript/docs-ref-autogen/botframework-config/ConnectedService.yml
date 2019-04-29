@@ -14,36 +14,37 @@ items:
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: Base class for all connected service definitions.
     package: botframework-config
   - uid: botframework-config.ConnectedService.constructor
-    name: ConnectedService
+    name: 'ConnectedService(IConnectedService, ServiceTypes)'
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Creates a new ConnectedService instance.
     syntax:
       content: 'new ConnectedService(source?: IConnectedService, type?: ServiceTypes)'
       parameters:
         - id: source
           type:
             - botframework-config.IConnectedService
-          description: ''
+          description: (Optional) JSON based service definition.
           optional: true
         - id: type
           type:
             - botframework-config.ServiceTypes
-          description: ''
+          description: |
+            (Optional) type of service being defined.
           optional: true
     package: botframework-config
   - uid: botframework-config.ConnectedService.decrypt
-    name: decrypt
+    name: 'decrypt(string, (value: string, secret: string) => string)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Decrypt properties on this service.
     syntax:
       content: >-
         function decrypt(secret: string, decryptString: (value: string, secret:
@@ -52,19 +53,20 @@ items:
         - id: secret
           type:
             - string
-          description: ''
+          description: Secret to use to decrypt the keys in this service.
         - id: decryptString
           type:
             - '(value: string, secret: string) => string'
-          description: ''
+          description: |
+            Function called to decrypt an individual value.
     package: botframework-config
   - uid: botframework-config.ConnectedService.encrypt
-    name: encrypt
+    name: 'encrypt(string, (value: string, secret: string) => string)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Encrypt properties on this service.
     syntax:
       content: >-
         function encrypt(secret: string, encryptString: (value: string, secret:
@@ -73,11 +75,12 @@ items:
         - id: secret
           type:
             - string
-          description: ''
+          description: Secret to use to encrypt the keys in this service.
         - id: encryptString
           type:
             - '(value: string, secret: string) => string'
-          description: ''
+          description: |
+            Function called to encrypt an individual value.
     package: botframework-config
   - uid: botframework-config.ConnectedService.id
     name: id
@@ -86,7 +89,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Unique Id for the service.
     syntax:
       content: 'id: string'
       return:
@@ -100,7 +103,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Friendly name for the service.
     syntax:
       content: 'name: string'
       return:
@@ -108,12 +111,12 @@ items:
           - string
     package: botframework-config
   - uid: botframework-config.ConnectedService.toJSON
-    name: toJSON
+    name: toJSON()
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Returns a JSON based version of the model for saving to disk.
     syntax:
       content: function toJSON()
       parameters: []
@@ -129,8 +132,9 @@ items:
       - typeScript
     type: property
     summary: ''
+    optional: true
     syntax:
-      content: 'type: ServiceTypes'
+      content: 'type?: ServiceTypes'
       return:
         type:
           - botframework-config.ServiceTypes

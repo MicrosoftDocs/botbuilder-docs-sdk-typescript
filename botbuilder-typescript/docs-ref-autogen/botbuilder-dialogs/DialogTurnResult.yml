@@ -10,14 +10,34 @@ items:
       - typeScript
     type: interface
     summary: >-
-      Returned by `DialogDialog)` and `Dialog.continueDialog()` to indicate
-      whether the dialog is still
+      Returned by `Dialog.continueDialog()` and `DialogContext.beginDialog()` to
+      indicate whether a
 
-      active after the turn has been processed by the dialog.  This can also be
-      used to access the
-
-      result of a dialog that just completed.
+      dialog is still active after the turn has been processed by the dialog.
     package: botbuilder-dialogs
+    remarks: |-
+      This can be used to determine if the dialog stack is empty:
+
+      ```JavaScript
+      const result = await dialogContext.continueDialog();
+
+      if (result.status == DialogTurnStatus.empty) {
+          await dialogContext.beginDialog('helpDialog');
+      }
+      ```
+
+      Or to access the result of a dialog that just completed:
+
+      ```JavaScript
+      const result = await dialogContext.continueDialog();
+
+      if (result.status == DialogTurnStatus.completed) {
+          const survey = result.result;
+          await submitSurvey(survey);
+      } else if (result.status == DialogTurnStatus.empty) {
+          await dialogContext.beginDialog('surveyDialog');
+      }
+      ```
   - uid: botbuilder-dialogs.DialogTurnResult.result
     name: result
     fullName: result

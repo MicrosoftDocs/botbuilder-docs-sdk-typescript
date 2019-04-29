@@ -24,18 +24,6 @@ items:
       [clear()](#clear).
 
 
-      Since the `PrivateConversationState` class derives from `BotState` it can
-      be used as middleware to
-
-      automatically read and write the bots PrivateConversation state for each
-      turn. And it also means it
-
-      can be passed to a `BotStateSet` middleware instance to be managed in
-      parallel with other state
-
-      providers.
-
-
       ```JavaScript
 
       const { PrivateConversationState, MemoryStorage } = require('botbuilder');
@@ -44,22 +32,9 @@ items:
       const PrivateConversationState = new PrivateConversationState(new
       MemoryStorage());
 
-      adapter.use(PrivateConversationState);
-
-
-      server.post('/api/messages', (req, res) => {
-         adapter.processActivity(req, res, async (context) => {
-            // Get loaded PrivateConversation state
-            const convo = PrivateConversationState.get(context);
-
-            // ... route activity ...
-
-         });
-      });
-
       ```
   - uid: botbuilder-core.PrivateConversationState.getStorageKey
-    name: getStorageKey
+    name: getStorageKey(TurnContext)
     children: []
     type: method
     langs:
@@ -78,14 +53,14 @@ items:
           - string | undefined
     package: botbuilder-core
   - uid: botbuilder-core.PrivateConversationState.constructor
-    name: PrivateConversationState
+    name: 'PrivateConversationState(Storage, string)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: Creates a new PrivateConversationState instance.
     syntax:
-      content: 'new PrivateConversationState(storage: Storage, namespace: string)'
+      content: 'new PrivateConversationState(storage: Storage, namespace?: string)'
       parameters:
         - id: storage
           type:
@@ -97,6 +72,7 @@ items:
           description: >
             (Optional) namespace to append to storage keys. Defaults to an empty
             string.
+          optional: true
     package: botbuilder-core
 references:
   - uid: botbuilder-core.BotState

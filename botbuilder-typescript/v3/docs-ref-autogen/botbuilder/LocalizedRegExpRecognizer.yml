@@ -1,0 +1,103 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.LocalizedRegExpRecognizer
+    name: LocalizedRegExpRecognizer
+    fullName: LocalizedRegExpRecognizer
+    children:
+      - botbuilder.LocalizedRegExpRecognizer.constructor
+      - botbuilder.LocalizedRegExpRecognizer.onRecognize
+    langs:
+      - typeScript
+    type: class
+    summary: >
+      Version of the
+      [RegExpRecognizer](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.regexprecognizer)
+
+      that uses the frameworks localization system to retrieve a localized
+      regular expression.
+
+      The lookup key in the index.json file should be provided and upon
+      receiving a message for
+
+      a new locale, the recognizer will retrieve the localized expression and a
+      new case insensitive
+
+      `RegExp` will be created and used to recognize the intent.
+
+      Libraries can use this feature to let a bot override their default
+      matching expressions. just
+
+      create instances of the recognizer using the namespace of your library and
+      bot developers can
+
+      customize your matching expressions by using a `<namespace>.json` file in
+      their locale directory.
+    extends:
+      name: botbuilder.IntentRecognizer
+    package: botbuilder
+  - uid: botbuilder.LocalizedRegExpRecognizer.constructor
+    name: 'LocalizedRegExpRecognizer(string, string, string)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Constructs a new instance of the recognizer.
+    syntax:
+      content: >-
+        new LocalizedRegExpRecognizer(intent: string, key: string, namespace?:
+        string)
+      parameters:
+        - id: intent
+          type:
+            - string
+          description: The name of the intent to return when the expression is matched.
+        - id: key
+          type:
+            - string
+          description: >-
+            Key for the expression in the `index.json` or `<namespace>.json`
+            file.
+        - id: namespace
+          type:
+            - string
+          description: >
+            (Optional) library namespace to lookup `key` from. The expression
+            should be a string in the `<namespace>.json` locale file.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.LocalizedRegExpRecognizer.onRecognize
+    name: >-
+      onRecognize(IRecognizeContext, (err: Error, result:
+      IIntentRecognizerResult) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Implements the actual recognition logic.
+    syntax:
+      content: >-
+        function onRecognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: ''
+        - id: callback
+          type:
+            - '(err: Error, result: IIntentRecognizerResult) => void'
+          description: ''
+    package: botbuilder
+references:
+  - uid: botbuilder.IntentRecognizer
+    name: IntentRecognizer
+    spec.typeScript:
+      - name: IntentRecognizer
+        fullName: IntentRecognizer
+        uid: botbuilder.IntentRecognizer
+  - uid: botbuilder.IRecognizeContext
+    name: IRecognizeContext
+    spec.typeScript:
+      - name: IRecognizeContext
+        fullName: IRecognizeContext
+        uid: botbuilder.IRecognizeContext

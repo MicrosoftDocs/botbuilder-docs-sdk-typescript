@@ -38,7 +38,9 @@ items:
 
       ```
   - uid: botbuilder-core.MiddlewareSet.constructor
-    name: MiddlewareSet
+    name: >-
+      MiddlewareSet((context: TurnContext, next: () => Promise<void>) =>
+      Promise<void> | Middleware[])
     children: []
     type: constructor
     langs:
@@ -55,10 +57,10 @@ items:
               (context: TurnContext, next: () => Promise<void>) => Promise<void>
               | botbuilder-core.Middleware[]
           description: |
-            Zero or more middleware handlers(s) to register.
+            One or more middleware handlers(s) to register.
     package: botbuilder-core
   - uid: botbuilder-core.MiddlewareSet.onTurn
-    name: onTurn
+    name: 'onTurn(TurnContext, () => Promise<void>)'
     children: []
     type: method
     langs:
@@ -80,7 +82,7 @@ items:
           - Promise<void>
     package: botbuilder-core
   - uid: botbuilder-core.MiddlewareSet.run
-    name: run
+    name: 'run(TurnContext, () => Promise<void>)'
     children: []
     type: method
     langs:
@@ -103,7 +105,9 @@ items:
           - Promise<void>
     package: botbuilder-core
   - uid: botbuilder-core.MiddlewareSet.use
-    name: use
+    name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
     children: []
     type: method
     langs:

@@ -6,6 +6,7 @@ items:
     children:
       - botframework-config.EndpointService.appId
       - botframework-config.EndpointService.appPassword
+      - botframework-config.EndpointService.channelService
       - botframework-config.EndpointService.decrypt
       - botframework-config.EndpointService.encrypt
       - botframework-config.EndpointService.endpoint
@@ -13,7 +14,7 @@ items:
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: Defines an endpoint service connection.
     extends:
       name: botframework-config.ConnectedService
     package: botframework-config
@@ -24,7 +25,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: MSA App ID.
     syntax:
       content: 'appId: string'
       return:
@@ -38,15 +39,35 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: MSA app password for the bot.
     syntax:
       content: 'appPassword: string'
       return:
         type:
           - string
     package: botframework-config
+  - uid: botframework-config.EndpointService.channelService
+    name: channelService
+    fullName: channelService
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The channel service (Azure or US Government Azure) for the bot.
+
+      A value of 'https://botframework.azure.us' means the bot will be talking
+      to a US Government Azure data center.
+
+      An undefined or null value means the bot will be talking to public Azure
+    syntax:
+      content: 'channelService: string'
+      return:
+        type:
+          - string
+    package: botframework-config
   - uid: botframework-config.EndpointService.decrypt
-    name: decrypt
+    name: 'decrypt(string, (value: string, secret: string) => string)'
     children: []
     type: method
     langs:
@@ -67,7 +88,7 @@ items:
           description: ''
     package: botframework-config
   - uid: botframework-config.EndpointService.encrypt
-    name: encrypt
+    name: 'encrypt(string, (value: string, secret: string) => string)'
     children: []
     type: method
     langs:
@@ -94,7 +115,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Endpoint of localhost service.
     syntax:
       content: 'endpoint: string'
       return:
@@ -102,19 +123,20 @@ items:
           - string
     package: botframework-config
   - uid: botframework-config.EndpointService.constructor
-    name: EndpointService
+    name: EndpointService(IEndpointService)
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Creates a new EndpointService instance.
     syntax:
       content: 'new EndpointService(source: IEndpointService)'
       parameters:
         - id: source
           type:
             - botframework-config.IEndpointService
-          description: ''
+          description: |
+            JSON based service definition.
     package: botframework-config
 references:
   - uid: botframework-config.ConnectedService

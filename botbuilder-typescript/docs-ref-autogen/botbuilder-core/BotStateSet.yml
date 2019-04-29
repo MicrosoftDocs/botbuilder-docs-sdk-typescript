@@ -13,52 +13,18 @@ items:
       - typeScript
     type: class
     summary: >-
-      Middleware that will call `read()` and `write()` in parallel on multiple
-      `BotState`
+      A collection of `BotState` plugins that should be loaded or saved in
+      parallel as a single unit.
 
-      instances.
+      See `AutoSaveStateMiddleware` for an implementation of this class.
     package: botbuilder-core
-    remarks: >-
-      This example shows boilerplate code for reading and writing conversation
-      and user state within
-
-      a bot:
-
-
-      ```JavaScript
-
-      const {AutoSaveStateMiddleware, ConversationState, UserState,
-      MemoryStorage } = require('botbuilder');
-
-
-      const storage = new MemoryStorage();
-
-      const conversationState = new ConversationState(storage);
-
-      const userState = new UserState(storage);
-
-      adapter.use(new AutoSaveStateMiddleware(conversationState, userState));
-
-
-      server.post('/api/messages', (req, res) => {
-         adapter.processActivity(req, res, async (context) => {
-            // Get state
-            const convo = await conversationState.get(context);
-            const user = await userState.get(context);
-
-            // ... route activity ...
-
-         });
-      });
-
-      ```
   - uid: botbuilder-core.BotStateSet.add
-    name: add
+    name: 'add(BotState[])'
     children: []
     type: method
     langs:
       - typeScript
-    summary: Registers `BotState` plugins with the set.
+    summary: Registers One or more `BotState` plugins with the set.
     syntax:
       content: 'function add(botStates: BotState[])'
       parameters:
@@ -78,20 +44,20 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Array of the sets `BotState` plugins.
     syntax:
-      content: 'public botStates: BotState[] = []'
+      content: 'botStates: BotState[]'
       return:
         type:
           - 'botbuilder-core.BotState[]'
     package: botbuilder-core
   - uid: botbuilder-core.BotStateSet.constructor
-    name: BotStateSet
+    name: 'BotStateSet(BotState[])'
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: Creates a new AutoSaveStateiMiddleware instance.
+    summary: Creates a new BotStateSet instance.
     syntax:
       content: 'new BotStateSet(botStates: BotState[])'
       parameters:
@@ -99,17 +65,17 @@ items:
           type:
             - 'botbuilder-core.BotState[]'
           description: |
-            Zero or more BotState plugins to register.
+            One or more BotState plugins to register.
     package: botbuilder-core
   - uid: botbuilder-core.BotStateSet.loadAll
-    name: loadAll
+    name: 'loadAll(TurnContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Calls `BotState.load()` on all of the BotState plugins in the set.
     syntax:
-      content: 'function loadAll(context: TurnContext, force: boolean)'
+      content: 'function loadAll(context: TurnContext, force?: boolean)'
       parameters:
         - id: context
           type:
@@ -121,6 +87,7 @@ items:
           description: >
             (Optional) If `true` the cache will be bypassed and the state will
             always be read in directly from storage. Defaults to `false`.
+          optional: true
       return:
         type:
           - Promise<void>
@@ -132,14 +99,14 @@ items:
       await stateSet.readAll(context);
       ```
   - uid: botbuilder-core.BotStateSet.saveAllChanges
-    name: saveAllChanges
+    name: 'saveAllChanges(TurnContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Calls `BotState.saveChanges()` on all of the BotState plugins in the set.
     syntax:
-      content: 'function saveAllChanges(context: TurnContext, force: boolean)'
+      content: 'function saveAllChanges(context: TurnContext, force?: boolean)'
       parameters:
         - id: context
           type:
@@ -151,6 +118,7 @@ items:
           description: >
             (Optional) if `true` the state will always be written out regardless
             of its change state. Defaults to `false`.
+          optional: true
       return:
         type:
           - Promise<void>

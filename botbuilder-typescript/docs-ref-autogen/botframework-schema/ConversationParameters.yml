@@ -9,11 +9,12 @@ items:
       - botframework-schema.ConversationParameters.channelData
       - botframework-schema.ConversationParameters.isGroup
       - botframework-schema.ConversationParameters.members
+      - botframework-schema.ConversationParameters.tenantId
       - botframework-schema.ConversationParameters.topicName
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: Parameters for creating a new conversation
     package: botframework-schema
   - uid: botframework-schema.ConversationParameters.activity
     name: activity
@@ -22,7 +23,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      (Optional) When creating a new conversation, use this activity as the
+      initial message to the
+
+      conversation
     syntax:
       content: 'activity: Activity'
       return:
@@ -36,7 +41,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The bot address for this conversation
     syntax:
       content: 'bot: ChannelAccount'
       return:
@@ -50,7 +55,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Channel specific payload for creating the conversation
     syntax:
       content: 'channelData: any'
       return:
@@ -64,7 +69,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: IsGroup
     syntax:
       content: 'isGroup: boolean'
       return:
@@ -78,13 +83,28 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Members to add to the conversation
     optional: true
     syntax:
       content: 'members?: ChannelAccount[]'
       return:
         type:
           - 'botframework-schema.ChannelAccount[]'
+    package: botframework-schema
+  - uid: botframework-schema.ConversationParameters.tenantId
+    name: tenantId
+    fullName: tenantId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: (Optional) The tenant ID in which the conversation should be created
+    optional: true
+    syntax:
+      content: 'tenantId?: string'
+      return:
+        type:
+          - string
     package: botframework-schema
   - uid: botframework-schema.ConversationParameters.topicName
     name: topicName
@@ -93,7 +113,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: (Optional) Topic of the conversation (if supported by the channel)
     optional: true
     syntax:
       content: 'topicName?: string'

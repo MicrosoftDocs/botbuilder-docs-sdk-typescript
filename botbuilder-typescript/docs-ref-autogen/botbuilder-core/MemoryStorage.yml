@@ -24,12 +24,12 @@ items:
 
       - Anything written to the store will be forgotten when the process exits.
 
-      - Object that are read and written to the store are cloned to properly
+      - Objects that are read and written to the store are cloned to properly
       simulate network based
         storage providers.
-      - Cloned objects serialized using `JSON.stringify()` to catch any possible
-      serialization related
-        issues that might occur when using a network based storage provider.
+      - Cloned objects are serialized using `JSON.stringify()` to catch any
+      possible serialization
+        related issues that might occur when using a network based storage provider.
 
       ```JavaScript
 
@@ -40,7 +40,7 @@ items:
 
       ```
   - uid: botbuilder-core.MemoryStorage.delete
-    name: delete
+    name: 'delete(string[])'
     children: []
     type: method
     langs:
@@ -58,14 +58,14 @@ items:
           - Promise<void>
     package: botbuilder-core
   - uid: botbuilder-core.MemoryStorage.constructor
-    name: MemoryStorage
+    name: 'MemoryStorage([key: string]: string)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: Creates a new MemoryStorage instance.
     syntax:
-      content: 'new MemoryStorage(memory: [key: string]: string)'
+      content: 'new MemoryStorage(memory?: [key: string]: string)'
       parameters:
         - id: memory
           type:
@@ -73,9 +73,10 @@ items:
           description: >
             (Optional) memory to use for storing items. By default it will
             create an empty JSON object `{}`.
+          optional: true
     package: botbuilder-core
   - uid: botbuilder-core.MemoryStorage.read
-    name: read
+    name: 'read(string[])'
     children: []
     type: method
     langs:
@@ -93,7 +94,7 @@ items:
           - Promise<botbuilder-core.StoreItems>
     package: botbuilder-core
   - uid: botbuilder-core.MemoryStorage.write
-    name: write
+    name: write(StoreItems)
     children: []
     type: method
     langs:

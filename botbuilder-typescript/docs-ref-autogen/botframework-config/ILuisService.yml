@@ -6,16 +6,20 @@ items:
     children:
       - botframework-config.ILuisService.appId
       - botframework-config.ILuisService.authoringKey
+      - botframework-config.ILuisService.getEndpoint
       - botframework-config.ILuisService.region
       - botframework-config.ILuisService.subscriptionKey
       - botframework-config.ILuisService.version
     langs:
       - typeScript
     type: interface
-    summary: ''
+    summary: JSON description of a LUIS service.
     extends:
       name: botframework-config.IConnectedService
     package: botframework-config
+    remarks: |-
+      - [type](#type) SHOULD be set to `ServiceTypes.Luis`.
+      - [id](#id) SHOULD be set to the LUIS appid.
   - uid: botframework-config.ILuisService.appId
     name: appId
     fullName: appId
@@ -23,7 +27,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Luis app ID.
     syntax:
       content: 'appId: string'
       return:
@@ -37,9 +41,23 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Authoring key for using authoring api.
     syntax:
       content: 'authoringKey: string'
+      return:
+        type:
+          - string
+    package: botframework-config
+  - uid: botframework-config.ILuisService.getEndpoint
+    name: getEndpoint()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: getEndpoint() Returns the full region endpoint for the LUIS service.
+    syntax:
+      content: function getEndpoint()
+      parameters: []
       return:
         type:
           - string
@@ -51,7 +69,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Region for luis.
     syntax:
       content: 'region: string'
       return:
@@ -65,7 +83,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Subscription key for using calling model api for predictions.
     syntax:
       content: 'subscriptionKey: string'
       return:
@@ -79,7 +97,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Version of the application.
     syntax:
       content: 'version: string'
       return:
