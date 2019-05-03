@@ -4,9 +4,11 @@ items:
     name: LuisRecognizer
     fullName: LuisRecognizer
     children:
+      - botbuilder-ai.LuisRecognizer.logPersonalInformation
       - botbuilder-ai.LuisRecognizer.constructor_1
       - botbuilder-ai.LuisRecognizer.constructor
       - botbuilder-ai.LuisRecognizer.recognize
+      - botbuilder-ai.LuisRecognizer.telemetryClient
       - botbuilder-ai.LuisRecognizer.topIntent
     langs:
       - typeScript
@@ -23,6 +25,22 @@ items:
 
       This component can be used within your bots logic by calling
       [recognize()](#recognize).
+  - uid: botbuilder-ai.LuisRecognizer.logPersonalInformation
+    name: logPersonalInformation
+    fullName: logPersonalInformation
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets a value indicating whether determines whether to log personal
+      information that came from the user.
+    syntax:
+      content: 'logPersonalInformation: boolean'
+      return:
+        type:
+          - boolean
+    package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.constructor_1
     name: 'LuisRecognizer(LuisApplication, LuisPredictionOptions, boolean)'
     children: []
@@ -96,20 +114,35 @@ items:
           optional: true
     package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.recognize
-    name: recognize(TurnContext)
+    name: 'recognize(TurnContext, [key: string]: string, [key: string]: number)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Calls LUIS to recognize intents and entities in a users utterance.
     syntax:
-      content: 'function recognize(context: TurnContext)'
+      content: >-
+        function recognize(context: TurnContext, telemetryProperties?: [key:
+        string]: string, telemetryMetrics?: [key: string]: number)
       parameters:
         - id: context
           type:
             - TurnContext
-          description: |
-            Context for the current turn of conversation with the use.
+          description: Context for the current turn of conversation with the use.
+        - id: telemetryProperties
+          type:
+            - '[key: string]: string'
+          description: >-
+            Additional properties to be logged to telemetry with the LuisResult
+            event.
+          optional: true
+        - id: telemetryMetrics
+          type:
+            - '[key: string]: number'
+          description: >
+            Additional metrics to be logged to telemetry with the LuisResult
+            event.
+          optional: true
       return:
         type:
           - Promise<RecognizerResult>
@@ -147,6 +180,20 @@ items:
       }
 
       ```
+  - uid: botbuilder-ai.LuisRecognizer.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets the currently configured botTelemetryClient that logs the events.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+    package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.topIntent
     name: 'topIntent(RecognizerResult | undefined, string, number)'
     children: []
