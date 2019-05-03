@@ -15,6 +15,7 @@ items:
       - botbuilder.BotFrameworkAdapter.getConversationMembers
       - botbuilder.BotFrameworkAdapter.getConversations
       - botbuilder.BotFrameworkAdapter.getSignInLink
+      - botbuilder.BotFrameworkAdapter.getTokenStatus
       - botbuilder.BotFrameworkAdapter.getUserToken
       - botbuilder.BotFrameworkAdapter.processActivity
       - botbuilder.BotFrameworkAdapter.sendActivities
@@ -506,6 +507,40 @@ items:
         type:
           - Promise<string>
     package: botbuilder
+  - uid: botbuilder.BotFrameworkAdapter.getTokenStatus
+    name: 'getTokenStatus(TurnContext, string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Retrieves the token status for each configured connection for the given
+      user.
+    syntax:
+      content: >-
+        function getTokenStatus(context: TurnContext, userId?: string,
+        includeFilter?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: userId
+          type:
+            - string
+          description: The user Id for which token status is retrieved.
+          optional: true
+        - id: includeFilter
+          type:
+            - string
+          description: >-
+            Optional comma seperated list of connection's to include. Blank will
+            return token status for all configured connections.
+          optional: true
+      return:
+        type:
+          - 'Promise<TokenStatus[]>'
+    package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.getUserToken
     name: 'getUserToken(TurnContext, string, string)'
     children: []
@@ -697,14 +732,16 @@ items:
 
       handling by middleware.
   - uid: botbuilder.BotFrameworkAdapter.signOutUser
-    name: 'signOutUser(TurnContext, string)'
+    name: 'signOutUser(TurnContext, string, string)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Signs the user out with the token server.
     syntax:
-      content: 'function signOutUser(context: TurnContext, connectionName: string)'
+      content: >-
+        function signOutUser(context: TurnContext, connectionName?: string,
+        userId?: string)
       parameters:
         - id: context
           type:
@@ -713,8 +750,13 @@ items:
         - id: connectionName
           type:
             - string
-          description: |
-            Name of the auth connection to use.
+          description: Name of the auth connection to use.
+          optional: true
+        - id: userId
+          type:
+            - string
+          description: id of user to sign out.
+          optional: true
       return:
         type:
           - Promise<void>
