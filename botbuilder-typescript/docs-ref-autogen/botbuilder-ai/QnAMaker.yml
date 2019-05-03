@@ -7,7 +7,9 @@ items:
       - botbuilder-ai.QnAMaker.answer
       - botbuilder-ai.QnAMaker.generateAnswer
       - botbuilder-ai.QnAMaker.getAnswers
+      - botbuilder-ai.QnAMaker.logPersonalInformation
       - botbuilder-ai.QnAMaker.constructor
+      - botbuilder-ai.QnAMaker.telemetryClient
     langs:
       - typeScript
     type: class
@@ -90,14 +92,19 @@ items:
       Returns an array of answers sorted by score with the top scoring answer
       returned first.
   - uid: botbuilder-ai.QnAMaker.getAnswers
-    name: 'getAnswers(TurnContext, QnAMakerOptions)'
+    name: >-
+      getAnswers(TurnContext, QnAMakerOptions, [key: string]: string, [key:
+      string]: number)
     children: []
     type: method
     langs:
       - typeScript
     summary: Calls the QnA Maker service to generate answer(s) for a question.
     syntax:
-      content: 'function getAnswers(context: TurnContext, options?: QnAMakerOptions)'
+      content: >-
+        function getAnswers(context: TurnContext, options?: QnAMakerOptions,
+        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
+        string]: number)
       parameters:
         - id: context
           type:
@@ -108,9 +115,23 @@ items:
         - id: options
           type:
             - botbuilder-ai.QnAMakerOptions
-          description: >
+          description: >-
             (Optional) The options for the QnA Maker knowledge base. If null,
             constructor option is used for this instance.
+          optional: true
+        - id: telemetryProperties
+          type:
+            - '[key: string]: string'
+          description: >-
+            Additional properties to be logged to telemetry with the QnaMessage
+            event.
+          optional: true
+        - id: telemetryMetrics
+          type:
+            - '[key: string]: number'
+          description: >
+            Additional metrics to be logged to telemetry with the QnaMessage
+            event.
           optional: true
       return:
         type:
@@ -125,15 +146,33 @@ items:
       [getAnswers()](#getAnswers) will also
 
       emit a trace activity that contains the QnA Maker results.
+  - uid: botbuilder-ai.QnAMaker.logPersonalInformation
+    name: logPersonalInformation
+    fullName: logPersonalInformation
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets a value indicating whether determines whether to log personal
+      information that came from the user.
+    syntax:
+      content: 'logPersonalInformation: boolean'
+      return:
+        type:
+          - boolean
+    package: botbuilder-ai
   - uid: botbuilder-ai.QnAMaker.constructor
-    name: 'QnAMaker(QnAMakerEndpoint, QnAMakerOptions)'
+    name: 'QnAMaker(QnAMakerEndpoint, QnAMakerOptions, BotTelemetryClient, boolean)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: Creates a new QnAMaker instance.
     syntax:
-      content: 'new QnAMaker(endpoint: QnAMakerEndpoint, options?: QnAMakerOptions)'
+      content: >-
+        new QnAMaker(endpoint: QnAMakerEndpoint, options?: QnAMakerOptions,
+        telemetryClient?: BotTelemetryClient, logPersonalInformation?: boolean)
       parameters:
         - id: endpoint
           type:
@@ -142,9 +181,34 @@ items:
         - id: options
           type:
             - botbuilder-ai.QnAMakerOptions
-          description: |
-            (Optional) additional settings used to configure the instance.
+          description: (Optional) additional settings used to configure the instance.
           optional: true
+        - id: telemetryClient
+          type:
+            - BotTelemetryClient
+          description: The BotTelemetryClient used for logging telemetry events.
+          optional: true
+        - id: logPersonalInformation
+          type:
+            - boolean
+          description: >
+            Set to true to include personally indentifiable information in
+            telemetry events.
+          optional: true
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMaker.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets the currently configured botTelemetryClient that logs the events.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
     package: botbuilder-ai
 references:
   - uid: botbuilder-ai.QnAMakerEndpoint
