@@ -10,6 +10,7 @@ items:
       - botbuilder-core.TestAdapter.getAadTokens
       - botbuilder-core.TestAdapter.getSignInLink
       - botbuilder-core.TestAdapter.getUserToken
+      - botbuilder-core.TestAdapter.onTurnError
       - botbuilder-core.TestAdapter.send
       - botbuilder-core.TestAdapter.signOutUser
       - botbuilder-core.TestAdapter.template
@@ -17,6 +18,7 @@ items:
       - botbuilder-core.TestAdapter.testActivities
       - botbuilder-core.TestAdapter.constructor
       - botbuilder-core.TestAdapter.updatedActivities
+      - botbuilder-core.TestAdapter.use
     langs:
       - typeScript
     type: class
@@ -222,6 +224,24 @@ items:
       return:
         type:
           - Promise<TokenResponse>
+    package: botbuilder-core
+  - uid: botbuilder-core.TestAdapter.onTurnError
+    name: onTurnError
+    fullName: onTurnError
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets/sets a error handler that will be called anytime an uncaught
+      exception is raised during
+
+      a turn.
+    syntax:
+      content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
+      return:
+        type:
+          - '(context: TurnContext, error: Error) => Promise<void>'
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.send
     name: send(string | Partial<Activity>)
@@ -452,6 +472,31 @@ items:
          done();
       });
       ```
+  - uid: botbuilder-core.TestAdapter.use
+    name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers middleware handlers(s) with the adapter.
+    syntax:
+      content: >-
+        function use(middleware: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middleware
+          type:
+            - >-
+              (context: TurnContext, next: () => Promise<void>) => Promise<void>
+              | botbuilder-core.Middleware[]
+          description: |
+            One or more middleware handlers(s) to register.
+      return:
+        type:
+          - this
+    package: botbuilder-core
 references:
   - uid: botbuilder-core.BotAdapter
     name: BotAdapter
@@ -471,3 +516,15 @@ references:
       - name: TestFlow
         fullName: TestFlow
         uid: botbuilder-core.TestFlow
+  - uid: >-
+      (context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      botbuilder-core.Middleware[]
+    name: 'Middleware[]'
+    spec.typeScript:
+      - name: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+        fullName: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+      - name: Middleware
+        fullName: Middleware
+        uid: botbuilder-core.Middleware
+      - name: '[]'
+        fullName: '[]'

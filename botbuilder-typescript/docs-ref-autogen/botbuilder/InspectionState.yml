@@ -4,7 +4,13 @@ items:
     name: InspectionState
     fullName: InspectionState
     children:
+      - botbuilder.InspectionState.clear
+      - botbuilder.InspectionState.createProperty
+      - botbuilder.InspectionState.delete
+      - botbuilder.InspectionState.get
       - botbuilder.InspectionState.constructor
+      - botbuilder.InspectionState.load
+      - botbuilder.InspectionState.saveChanges
     langs:
       - typeScript
     type: class
@@ -17,6 +23,122 @@ items:
     remarks: >-
       InspectionState for use by the InspectionMiddleware for emulator
       inspection of runtime Activities and BotState.
+  - uid: botbuilder.InspectionState.clear
+    name: clear(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Clears the current state object for a turn.
+    syntax:
+      content: 'function clear(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder
+    remarks: >-
+      The cleared state object will not be persisted until
+      [saveChanges()](#savechanges) has
+
+      been called.
+
+
+      ```JavaScript
+
+      await botState.clear(context);
+
+      await botState.saveChanges(context);
+
+      ```
+  - uid: botbuilder.InspectionState.createProperty
+    name: createProperty(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Creates a new property accessor for reading and writing an individual
+      property to the bot
+
+      states storage object.
+    syntax:
+      content: 'function createProperty<T>(name: string)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: |
+            Name of the property to add.
+      return:
+        type:
+          - StatePropertyAccessor<T>
+    package: botbuilder
+  - uid: botbuilder.InspectionState.delete
+    name: delete(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Delete the backing state object for the current turn.
+    syntax:
+      content: 'function delete(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder
+    remarks: >-
+      The state object will be removed from storage if it exists.  If the state
+      object has been
+
+      read in and cached, the cache will be cleared.
+
+
+      ```JavaScript
+
+      await botState.delete(context);
+
+      ```
+  - uid: botbuilder.InspectionState.get
+    name: get(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a cached state object or undefined if not cached.
+    syntax:
+      content: 'function get(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - any | undefined
+    package: botbuilder
+    remarks: >-
+      This example shows how to synchronously get an already loaded and cached
+      state object:
+
+
+      ```JavaScript
+
+      const state = botState.get(context);
+
+      ```
   - uid: botbuilder.InspectionState.constructor
     name: InspectionState(Storage)
     children: []
@@ -32,3 +154,84 @@ items:
             - Storage
           description: ''
     package: botbuilder
+  - uid: botbuilder.InspectionState.load
+    name: 'load(TurnContext, boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Reads in and caches the backing state object for a turn.
+    syntax:
+      content: 'function load(context: TurnContext, force?: boolean)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) If `true` the cache will be bypassed and the state will
+            always be read in directly from storage. Defaults to `false`.
+          optional: true
+      return:
+        type:
+          - Promise<any>
+    package: botbuilder
+    remarks: >-
+      Subsequent reads will return the cached object unless the `force` flag is
+      passed in which
+
+      will force the state object to be re-read.
+
+
+      This method is automatically called on first access of any of created
+      property accessors.
+
+
+      ```JavaScript
+
+      const state = await botState.load(context);
+
+      ```
+  - uid: botbuilder.InspectionState.saveChanges
+    name: 'saveChanges(TurnContext, boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Saves the cached state object if it's been changed.
+    syntax:
+      content: 'function saveChanges(context: TurnContext, force?: boolean)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) if `true` the state will always be written out regardless
+            of its change state. Defaults to `false`.
+          optional: true
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder
+    remarks: >-
+      If the `force` flag is passed in the cached state object will be saved
+      regardless of
+
+      whether its been changed or not and if no object has been cached, an empty
+      object will be
+
+      created and then saved.
+
+
+      ```JavaScript
+
+      await botState.saveChanges(context);
+
+      ```

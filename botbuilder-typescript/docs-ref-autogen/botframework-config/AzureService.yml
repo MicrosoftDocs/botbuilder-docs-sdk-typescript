@@ -5,10 +5,16 @@ items:
     fullName: AzureService
     children:
       - botframework-config.AzureService.constructor
+      - botframework-config.AzureService.decrypt
+      - botframework-config.AzureService.encrypt
+      - botframework-config.AzureService.id
+      - botframework-config.AzureService.name
       - botframework-config.AzureService.resourceGroup
       - botframework-config.AzureService.serviceName
       - botframework-config.AzureService.subscriptionId
       - botframework-config.AzureService.tenantId
+      - botframework-config.AzureService.toJSON
+      - botframework-config.AzureService.type
     langs:
       - typeScript
     type: class
@@ -35,6 +41,78 @@ items:
             - botframework-config.ServiceTypes
           description: |
             Type of service being defined.
+    package: botframework-config
+  - uid: botframework-config.AzureService.decrypt
+    name: 'decrypt(string, (value: string, secret: string) => string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Decrypt properties on this service.
+    syntax:
+      content: >-
+        function decrypt(secret: string, decryptString: (value: string, secret:
+        string) => string)
+      parameters:
+        - id: secret
+          type:
+            - string
+          description: Secret to use to decrypt the keys in this service.
+        - id: decryptString
+          type:
+            - '(value: string, secret: string) => string'
+          description: |
+            Function called to decrypt an individual value.
+    package: botframework-config
+  - uid: botframework-config.AzureService.encrypt
+    name: 'encrypt(string, (value: string, secret: string) => string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Encrypt properties on this service.
+    syntax:
+      content: >-
+        function encrypt(secret: string, encryptString: (value: string, secret:
+        string) => string)
+      parameters:
+        - id: secret
+          type:
+            - string
+          description: Secret to use to encrypt the keys in this service.
+        - id: encryptString
+          type:
+            - '(value: string, secret: string) => string'
+          description: |
+            Function called to encrypt an individual value.
+    package: botframework-config
+  - uid: botframework-config.AzureService.id
+    name: id
+    fullName: id
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique Id for the service.
+    syntax:
+      content: 'id: string'
+      return:
+        type:
+          - string
+    package: botframework-config
+  - uid: botframework-config.AzureService.name
+    name: name
+    fullName: name
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Friendly name for the service.
+    syntax:
+      content: 'name: string'
+      return:
+        type:
+          - string
     package: botframework-config
   - uid: botframework-config.AzureService.resourceGroup
     name: resourceGroup
@@ -92,6 +170,35 @@ items:
         type:
           - string
     package: botframework-config
+  - uid: botframework-config.AzureService.toJSON
+    name: toJSON()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a JSON based version of the model for saving to disk.
+    syntax:
+      content: function toJSON()
+      parameters: []
+      return:
+        type:
+          - botframework-config.IConnectedService
+    package: botframework-config
+  - uid: botframework-config.AzureService.type
+    name: type
+    fullName: type
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    optional: true
+    syntax:
+      content: 'type?: ServiceTypes'
+      return:
+        type:
+          - botframework-config.ServiceTypes
+    package: botframework-config
 references:
   - uid: botframework-config.ConnectedService
     name: ConnectedService
@@ -111,3 +218,9 @@ references:
       - name: ServiceTypes
         fullName: ServiceTypes
         uid: botframework-config.ServiceTypes
+  - uid: botframework-config.IConnectedService
+    name: IConnectedService
+    spec.typeScript:
+      - name: IConnectedService
+        fullName: IConnectedService
+        uid: botframework-config.IConnectedService

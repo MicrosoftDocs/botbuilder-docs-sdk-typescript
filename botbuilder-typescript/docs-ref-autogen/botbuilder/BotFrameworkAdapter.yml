@@ -17,10 +17,12 @@ items:
       - botbuilder.BotFrameworkAdapter.getSignInLink
       - botbuilder.BotFrameworkAdapter.getTokenStatus
       - botbuilder.BotFrameworkAdapter.getUserToken
+      - botbuilder.BotFrameworkAdapter.onTurnError
       - botbuilder.BotFrameworkAdapter.processActivity
       - botbuilder.BotFrameworkAdapter.sendActivities
       - botbuilder.BotFrameworkAdapter.signOutUser
       - botbuilder.BotFrameworkAdapter.updateActivity
+      - botbuilder.BotFrameworkAdapter.use
     langs:
       - typeScript
     type: class
@@ -571,6 +573,24 @@ items:
         type:
           - Promise<TokenResponse>
     package: botbuilder
+  - uid: botbuilder.BotFrameworkAdapter.onTurnError
+    name: onTurnError
+    fullName: onTurnError
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets/sets a error handler that will be called anytime an uncaught
+      exception is raised during
+
+      a turn.
+    syntax:
+      content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
+      return:
+        type:
+          - '(context: TurnContext, error: Error) => Promise<void>'
+    package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.processActivity
     name: >-
       processActivity(WebRequest, WebResponse, (context: TurnContext) =>
@@ -796,6 +816,31 @@ items:
 
 
       It should be noted that not all channels support this feature.
+  - uid: botbuilder.BotFrameworkAdapter.use
+    name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers middleware handlers(s) with the adapter.
+    syntax:
+      content: >-
+        function use(middleware: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middleware
+          type:
+            - >-
+              (context: TurnContext, next: () => Promise<void>) => Promise<void>
+              | Middleware[]
+          description: |
+            One or more middleware handlers(s) to register.
+      return:
+        type:
+          - this
+    package: botbuilder
 references:
   - uid: Partial<botbuilder.BotFrameworkAdapterSettings>
     name: BotFrameworkAdapterSettings>

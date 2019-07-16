@@ -8,7 +8,11 @@ items:
       - botbuilder-dialogs.WaterfallDialog.beginDialog
       - botbuilder-dialogs.WaterfallDialog.continueDialog
       - botbuilder-dialogs.WaterfallDialog.endDialog
+      - botbuilder-dialogs.WaterfallDialog.EndOfTurn
+      - botbuilder-dialogs.WaterfallDialog.id
+      - botbuilder-dialogs.WaterfallDialog.repromptDialog
       - botbuilder-dialogs.WaterfallDialog.resumeDialog
+      - botbuilder-dialogs.WaterfallDialog.telemetryClient
       - botbuilder-dialogs.WaterfallDialog.constructor
     langs:
       - typeScript
@@ -215,6 +219,62 @@ items:
         type:
           - Promise<void>
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.WaterfallDialog.EndOfTurn
+    name: EndOfTurn
+    fullName: EndOfTurn
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        type:
+          - botbuilder-dialogs.DialogTurnResult
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.WaterfallDialog.id
+    name: id
+    fullName: id
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique ID of the dialog.
+    syntax:
+      content: 'id: string'
+      return:
+        type:
+          - string
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.WaterfallDialog.repromptDialog
+    name: 'repromptDialog(TurnContext, DialogInstance)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when the dialog has been requested to re-prompt the user for input.
+    syntax:
+      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: instance
+          type:
+            - botbuilder-dialogs.DialogInstance
+          description: |
+            The instance of the current dialog.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by multi-turn dialogs that wish to provide custom
+      re-prompt logic. The
+
+      default implementation performs no action.
   - uid: botbuilder-dialogs.WaterfallDialog.resumeDialog
     name: 'resumeDialog(DialogContext, DialogReason, any)'
     children: []
@@ -243,6 +303,20 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.WaterfallDialog.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Set the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.constructor
     name: 'WaterfallDialog(string, WaterfallStep<O>[])'
@@ -287,6 +361,12 @@ references:
         uid: botbuilder-dialogs.WaterfallStep
       - name: '<O>[]'
         fullName: '<O>[]'
+  - uid: botbuilder-dialogs.DialogTurnResult
+    name: DialogTurnResult
+    spec.typeScript:
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.WaterfallStep<O>
     name: WaterfallStep<O>
     spec.typeScript:

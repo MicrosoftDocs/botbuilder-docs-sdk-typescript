@@ -7,8 +7,12 @@ items:
       - botbuilder-dialogs.ActivityPrompt.constructor
       - botbuilder-dialogs.ActivityPrompt.beginDialog
       - botbuilder-dialogs.ActivityPrompt.continueDialog
+      - botbuilder-dialogs.ActivityPrompt.endDialog
+      - botbuilder-dialogs.ActivityPrompt.EndOfTurn
+      - botbuilder-dialogs.ActivityPrompt.id
       - botbuilder-dialogs.ActivityPrompt.repromptDialog
       - botbuilder-dialogs.ActivityPrompt.resumeDialog
+      - botbuilder-dialogs.ActivityPrompt.telemetryClient
     langs:
       - typeScript
     type: class
@@ -88,6 +92,68 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ActivityPrompt.endDialog
+    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when the dialog is ending.
+    syntax:
+      content: >-
+        function endDialog(context: TurnContext, instance: DialogInstance,
+        reason: DialogReason)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: instance
+          type:
+            - botbuilder-dialogs.DialogInstance
+          description: The instance of the current dialog.
+        - id: reason
+          type:
+            - botbuilder-dialogs.DialogReason
+          description: |
+            The reason the dialog is ending.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by dialogs that wish to perform some logging or
+      cleanup action anytime
+
+      the dialog ends.
+  - uid: botbuilder-dialogs.ActivityPrompt.EndOfTurn
+    name: EndOfTurn
+    fullName: EndOfTurn
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        type:
+          - botbuilder-dialogs.DialogTurnResult
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ActivityPrompt.id
+    name: id
+    fullName: id
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique ID of the dialog.
+    syntax:
+      content: 'id: string'
+      return:
+        type:
+          - string
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ActivityPrompt.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
     children: []
@@ -139,6 +205,20 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ActivityPrompt.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Set the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+    package: botbuilder-dialogs
 references:
   - uid: botbuilder-dialogs.Dialog
     name: Dialog
@@ -154,6 +234,12 @@ references:
         uid: botbuilder-dialogs.PromptValidator
       - name: <Activity>
         fullName: <Activity>
+  - uid: botbuilder-dialogs.DialogTurnResult
+    name: DialogTurnResult
+    spec.typeScript:
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:
