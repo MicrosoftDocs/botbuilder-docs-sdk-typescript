@@ -7,6 +7,7 @@ items:
       - botframework-schema.Activity.action
       - botframework-schema.Activity.attachmentLayout
       - botframework-schema.Activity.attachments
+      - botframework-schema.Activity.callerId
       - botframework-schema.Activity.channelData
       - botframework-schema.Activity.channelId
       - botframework-schema.Activity.code
@@ -104,6 +105,27 @@ items:
       return:
         type:
           - 'botframework-schema.Attachment[]'
+    package: botframework-schema
+  - uid: botframework-schema.Activity.callerId
+    name: callerId
+    fullName: callerId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      A string containing an IRI identifying the caller of a bot. This field is
+      not intended to be transmitted over
+
+      the wire, but is instead populated by bots and clients based on
+      cryptographically verifiable data that asserts
+
+      the identity of the callers (e.g. tokens).
+    syntax:
+      content: 'callerId: string'
+      return:
+        type:
+          - string
     package: botframework-schema
   - uid: botframework-schema.Activity.channelData
     name: channelData
@@ -370,9 +392,7 @@ items:
       - typeScript
     type: property
     summary: >-
-      Contains the date and time that the message was sent, in local time,
-      expressed in ISO-8601
-
+      Contains the local date and time of the message, expressed in ISO-8601
       format.
 
       For example, 2016-09-23T13:07:49.4714686-07:00.
@@ -391,10 +411,8 @@ items:
       - typeScript
     type: property
     summary: >-
-      Contains the name of the timezone in which the message, in local time,
-      expressed in IANA Time
-
-      Zone database format.
+      Contains the name of the local timezone of the message, expressed in IANA
+      Time Zone database format.
 
       For example, America/Los_Angeles.
     syntax:
@@ -530,8 +548,9 @@ items:
       - typeScript
     type: property
     summary: An optional programmatic action accompanying this request
+    optional: true
     syntax:
-      content: 'semanticAction: SemanticAction'
+      content: 'semanticAction?: SemanticAction'
       return:
         type:
           - botframework-schema.SemanticAction

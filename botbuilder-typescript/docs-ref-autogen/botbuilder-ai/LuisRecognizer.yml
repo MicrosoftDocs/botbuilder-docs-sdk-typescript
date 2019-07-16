@@ -114,7 +114,9 @@ items:
           optional: true
     package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.recognize
-    name: 'recognize(TurnContext, [key: string]: string, [key: string]: number)'
+    name: >-
+      recognize(TurnContext, [key: string]: string, [key: string]: number,
+      LuisPredictionOptions)
     children: []
     type: method
     langs:
@@ -123,7 +125,8 @@ items:
     syntax:
       content: >-
         function recognize(context: TurnContext, telemetryProperties?: [key:
-        string]: string, telemetryMetrics?: [key: string]: number)
+        string]: string, telemetryMetrics?: [key: string]: number, options?:
+        LuisPredictionOptions)
       parameters:
         - id: context
           type:
@@ -139,9 +142,17 @@ items:
         - id: telemetryMetrics
           type:
             - '[key: string]: number'
-          description: >
+          description: >-
             Additional metrics to be logged to telemetry with the LuisResult
             event.
+          optional: true
+        - id: options
+          type:
+            - botbuilder-ai.LuisPredictionOptions
+          description: >
+            (Optional) options object used to control predictions. Should
+            conform to the [LuisPrectionOptions](#luispredictionoptions)
+            definition.
           optional: true
       return:
         type:
