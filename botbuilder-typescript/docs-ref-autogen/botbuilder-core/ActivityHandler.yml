@@ -10,6 +10,9 @@ items:
       - botbuilder-core.ActivityHandler.onMembersAdded
       - botbuilder-core.ActivityHandler.onMembersRemoved
       - botbuilder-core.ActivityHandler.onMessage
+      - botbuilder-core.ActivityHandler.onMessageReaction
+      - botbuilder-core.ActivityHandler.onReactionsAdded
+      - botbuilder-core.ActivityHandler.onReactionsRemoved
       - botbuilder-core.ActivityHandler.onTokenResponseEvent
       - botbuilder-core.ActivityHandler.onTurn
       - botbuilder-core.ActivityHandler.onUnrecognizedActivityType
@@ -242,6 +245,79 @@ items:
 
       Note that while most messages do contain text, this field is not always
       present!
+  - uid: botbuilder-core.ActivityHandler.onMessageReaction
+    name: onMessageReaction(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Receives only MessageReaction activities, regardless of whether message
+      reactions were added or removed
+    syntax:
+      content: 'function onMessageReaction(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: >-
+      MessageReaction activities are sent to the bot when a message reacion,
+      such as 'like' or 'sad' are
+
+      associated with an activity previously sent from the bot.
+  - uid: botbuilder-core.ActivityHandler.onReactionsAdded
+    name: onReactionsAdded(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Receives only MessageReaction activities representing message reactions
+      being added.
+    syntax:
+      content: 'function onReactionsAdded(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: context.activity.reactionsAdded will include at least one entry.
+  - uid: botbuilder-core.ActivityHandler.onReactionsRemoved
+    name: onReactionsRemoved(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Receives only MessageReaction activities representing message reactions
+      being removed.
+    syntax:
+      content: 'function onReactionsRemoved(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: >
+            BotHandler A handler function in the form async(context, next) => {
+            ... }
+      return:
+        type:
+          - this
+    package: botbuilder-core
+    remarks: context.activity.reactionsRemoved will include at least one entry.
   - uid: botbuilder-core.ActivityHandler.onTokenResponseEvent
     name: onTokenResponseEvent(BotHandler)
     children: []

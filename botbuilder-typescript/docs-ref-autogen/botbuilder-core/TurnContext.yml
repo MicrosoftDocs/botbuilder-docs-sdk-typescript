@@ -9,10 +9,13 @@ items:
       - botbuilder-core.TurnContext.applyConversationReference
       - botbuilder-core.TurnContext.deleteActivity
       - botbuilder-core.TurnContext.getConversationReference
+      - botbuilder-core.TurnContext.getMentions
       - botbuilder-core.TurnContext.getReplyConversationReference
       - botbuilder-core.TurnContext.onDeleteActivity
       - botbuilder-core.TurnContext.onSendActivities
       - botbuilder-core.TurnContext.onUpdateActivity
+      - botbuilder-core.TurnContext.removeMentionText
+      - botbuilder-core.TurnContext.removeRecipientMention
       - botbuilder-core.TurnContext.responded
       - botbuilder-core.TurnContext.sendActivities
       - botbuilder-core.TurnContext.sendActivity
@@ -221,6 +224,28 @@ items:
       const reference = TurnContext.getConversationReference(context.request);
 
       ```
+  - uid: botbuilder-core.TurnContext.getMentions
+    name: getMentions(Partial<Activity>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      Returns the mentions on an activity.
+      ```JavaScript
+      const mentions = TurnContext.getMentions(context.request);
+      ```
+    syntax:
+      content: 'static function getMentions(activity: Partial<Activity>)'
+      parameters:
+        - id: activity
+          type:
+            - Partial<Activity>
+          description: The activity to alter the text on
+      return:
+        type:
+          - 'Mention[]'
+    package: botbuilder-core
   - uid: botbuilder-core.TurnContext.getReplyConversationReference
     name: 'getReplyConversationReference(Partial<Activity>, ResourceResponse)'
     children: []
@@ -370,6 +395,85 @@ items:
          // Log update
          logUpdate(activity);
       });
+      ```
+  - uid: botbuilder-core.TurnContext.removeMentionText
+    name: 'removeMentionText(Partial<Activity>, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Rewrites the activity text without any at mention. Specifying a particular
+      recipient id.
+
+      Use with caution because this function is altering the text on the
+      Activity.
+    syntax:
+      content: >-
+        static function removeMentionText(activity: Partial<Activity>, id:
+        string)
+      parameters:
+        - id: activity
+          type:
+            - Partial<Activity>
+          description: The activity to alter the text on
+        - id: id
+          type:
+            - string
+          description: |
+            The recipient id of the at mention
+      return:
+        type:
+          - string
+    package: botbuilder-core
+    remarks: >-
+      Some channels, for example Microsoft Teams, add at mention details into
+      the text on a message activity.
+
+      This can interfer with later processing. This is a helper function to
+      remove the at mention.
+
+
+      ```JavaScript
+
+      const updatedText = TurnContext.removeRecipientMention(context.request);
+
+      ```
+  - uid: botbuilder-core.TurnContext.removeRecipientMention
+    name: removeRecipientMention(Partial<Activity>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Rewrites the activity text without any at mention.
+
+      Use with caution because this function is altering the text on the
+      Activity.
+    syntax:
+      content: 'static function removeRecipientMention(activity: Partial<Activity>)'
+      parameters:
+        - id: activity
+          type:
+            - Partial<Activity>
+          description: |
+            The activity to alter the text on
+      return:
+        type:
+          - string
+    package: botbuilder-core
+    remarks: >-
+      Some channels, for example Microsoft Teams, add at mention details into
+      the text on a message activity.
+
+      This can interfere with later processing. This is a helper function to
+      remove the at mention.
+
+
+      ```JavaScript
+
+      const updatedText = TurnContext.removeRecipientMention(context.request);
+
       ```
   - uid: botbuilder-core.TurnContext.responded
     name: responded

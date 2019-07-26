@@ -6,9 +6,15 @@ items:
     children:
       - botbuilder-dialogs.OAuthPrompt.beginDialog
       - botbuilder-dialogs.OAuthPrompt.continueDialog
+      - botbuilder-dialogs.OAuthPrompt.endDialog
+      - botbuilder-dialogs.OAuthPrompt.EndOfTurn
       - botbuilder-dialogs.OAuthPrompt.getUserToken
+      - botbuilder-dialogs.OAuthPrompt.id
       - botbuilder-dialogs.OAuthPrompt.constructor
+      - botbuilder-dialogs.OAuthPrompt.repromptDialog
+      - botbuilder-dialogs.OAuthPrompt.resumeDialog
       - botbuilder-dialogs.OAuthPrompt.signOutUser
+      - botbuilder-dialogs.OAuthPrompt.telemetryClient
     langs:
       - typeScript
     type: class
@@ -169,6 +175,54 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.endDialog
+    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when the dialog is ending.
+    syntax:
+      content: >-
+        function endDialog(context: TurnContext, instance: DialogInstance,
+        reason: DialogReason)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: instance
+          type:
+            - botbuilder-dialogs.DialogInstance
+          description: The instance of the current dialog.
+        - id: reason
+          type:
+            - botbuilder-dialogs.DialogReason
+          description: |
+            The reason the dialog is ending.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by dialogs that wish to perform some logging or
+      cleanup action anytime
+
+      the dialog ends.
+  - uid: botbuilder-dialogs.OAuthPrompt.EndOfTurn
+    name: EndOfTurn
+    fullName: EndOfTurn
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        type:
+          - botbuilder-dialogs.DialogTurnResult
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.getUserToken
     name: 'getUserToken(TurnContext, string)'
     children: []
@@ -192,6 +246,20 @@ items:
       return:
         type:
           - Promise<TokenResponse | undefined>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.id
+    name: id
+    fullName: id
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique ID of the dialog.
+    syntax:
+      content: 'id: string'
+      return:
+        type:
+          - string
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.constructor
     name: 'OAuthPrompt(string, OAuthPromptSettings, PromptValidator<TokenResponse>)'
@@ -223,6 +291,77 @@ items:
             to the prompt.
           optional: true
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.repromptDialog
+    name: 'repromptDialog(TurnContext, DialogInstance)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when the dialog has been requested to re-prompt the user for input.
+    syntax:
+      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: instance
+          type:
+            - botbuilder-dialogs.DialogInstance
+          description: |
+            The instance of the current dialog.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by multi-turn dialogs that wish to provide custom
+      re-prompt logic. The
+
+      default implementation performs no action.
+  - uid: botbuilder-dialogs.OAuthPrompt.resumeDialog
+    name: 'resumeDialog(DialogContext, DialogReason, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called when an instance of the dialog is being returned to from another
+      dialog.
+    syntax:
+      content: >-
+        function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
+        any)
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: The dialog context for the current turn of conversation.
+        - id: reason
+          type:
+            - botbuilder-dialogs.DialogReason
+          description: >-
+            The reason the dialog is being resumed. This will typically be a
+            value of `DialogReason.endCalled`.
+        - id: result
+          type:
+            - any
+          description: >
+            (Optional) value returned from the dialog that was called. The type
+            of the value returned is dependant on the dialog that was called.
+          optional: true
+      return:
+        type:
+          - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+    remarks: >-
+      SHOULD be overridden by multi-turn dialogs that start other dialogs using
+
+      `DialogContext.beginDialog()` or `DialogContext.prompt()`. The default
+      implementation calls
+
+      `DialogContext.endDialog()` with any results returned from the ending
+      dialog.
   - uid: botbuilder-dialogs.OAuthPrompt.signOutUser
     name: signOutUser(TurnContext)
     children: []
@@ -257,6 +396,20 @@ items:
       await prompt.signOutUser(context);
 
       ```
+  - uid: botbuilder-dialogs.OAuthPrompt.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Set the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+    package: botbuilder-dialogs
 references:
   - uid: botbuilder-dialogs.Dialog
     name: Dialog
@@ -278,6 +431,12 @@ references:
         uid: botbuilder-dialogs.PromptValidator
       - name: <TokenResponse>
         fullName: <TokenResponse>
+  - uid: botbuilder-dialogs.DialogTurnResult
+    name: DialogTurnResult
+    spec.typeScript:
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:
@@ -300,3 +459,15 @@ references:
         uid: botbuilder-dialogs.DialogTurnResult
       - name: '>'
         fullName: '>'
+  - uid: botbuilder-dialogs.DialogInstance
+    name: DialogInstance
+    spec.typeScript:
+      - name: DialogInstance
+        fullName: DialogInstance
+        uid: botbuilder-dialogs.DialogInstance
+  - uid: botbuilder-dialogs.DialogReason
+    name: DialogReason
+    spec.typeScript:
+      - name: DialogReason
+        fullName: DialogReason
+        uid: botbuilder-dialogs.DialogReason

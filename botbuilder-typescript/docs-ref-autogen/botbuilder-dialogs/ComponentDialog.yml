@@ -6,9 +6,12 @@ items:
     children:
       - botbuilder-dialogs.ComponentDialog.addDialog
       - botbuilder-dialogs.ComponentDialog.beginDialog
+      - botbuilder-dialogs.ComponentDialog.constructor
       - botbuilder-dialogs.ComponentDialog.continueDialog
       - botbuilder-dialogs.ComponentDialog.endDialog
+      - botbuilder-dialogs.ComponentDialog.EndOfTurn
       - botbuilder-dialogs.ComponentDialog.findDialog
+      - botbuilder-dialogs.ComponentDialog.id
       - botbuilder-dialogs.ComponentDialog.repromptDialog
       - botbuilder-dialogs.ComponentDialog.resumeDialog
       - botbuilder-dialogs.ComponentDialog.telemetryClient
@@ -38,7 +41,7 @@ items:
       ```JavaScript
 
       const { ComponentDialog, WaterfallDialog, TextPrompt, NumberPrompt } =
-      require('botbuilder-dialogs);
+      require('botbuilder-dialogs');
 
 
       class FillProfileDialog extends ComponentDialog {
@@ -136,6 +139,22 @@ items:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ComponentDialog.constructor
+    name: ComponentDialog(string)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new Dialog instance.
+    syntax:
+      content: 'new ComponentDialog(dialogId: string)'
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: |
+            Unique ID of the dialog.
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ComponentDialog.continueDialog
     name: continueDialog(DialogContext)
     children: []
@@ -182,6 +201,20 @@ items:
         type:
           - Promise<void>
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ComponentDialog.EndOfTurn
+    name: EndOfTurn
+    fullName: EndOfTurn
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        type:
+          - botbuilder-dialogs.DialogTurnResult
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ComponentDialog.findDialog
     name: findDialog(string)
     children: []
@@ -202,6 +235,20 @@ items:
       return:
         type:
           - botbuilder-dialogs.Dialog | undefined
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.ComponentDialog.id
+    name: id
+    fullName: id
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique ID of the dialog.
+    syntax:
+      content: 'id: string'
+      return:
+        type:
+          - string
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ComponentDialog.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -277,6 +324,12 @@ references:
         uid: botbuilder-dialogs.Dialog
       - name: <O>
         fullName: <O>
+  - uid: botbuilder-dialogs.DialogTurnResult
+    name: DialogTurnResult
+    spec.typeScript:
+      - name: DialogTurnResult
+        fullName: DialogTurnResult
+        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.Dialog
     name: Dialog
     spec.typeScript:

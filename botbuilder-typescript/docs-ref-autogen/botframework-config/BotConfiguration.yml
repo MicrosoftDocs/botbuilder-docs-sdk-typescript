@@ -4,9 +4,16 @@ items:
     name: BotConfiguration
     fullName: BotConfiguration
     children:
+      - botframework-config.BotConfiguration.constructor
       - botframework-config.BotConfiguration.clearSecret
+      - botframework-config.BotConfiguration.connectService
       - botframework-config.BotConfiguration.decrypt
+      - botframework-config.BotConfiguration.description
+      - botframework-config.BotConfiguration.disconnectService
+      - botframework-config.BotConfiguration.disconnectServiceByNameOrId
       - botframework-config.BotConfiguration.encrypt
+      - botframework-config.BotConfiguration.findService
+      - botframework-config.BotConfiguration.findServiceByNameOrId
       - botframework-config.BotConfiguration.fromJSON
       - botframework-config.BotConfiguration.generateKey
       - botframework-config.BotConfiguration.getPath
@@ -14,11 +21,17 @@ items:
       - botframework-config.BotConfiguration.loadBotFromFolder
       - botframework-config.BotConfiguration.loadBotFromFolderSync
       - botframework-config.BotConfiguration.loadSync
+      - botframework-config.BotConfiguration.name
+      - botframework-config.BotConfiguration.padlock
       - botframework-config.BotConfiguration.save
       - botframework-config.BotConfiguration.saveAs
       - botframework-config.BotConfiguration.saveAsSync
       - botframework-config.BotConfiguration.saveSync
+      - botframework-config.BotConfiguration.serviceFromJSON
+      - botframework-config.BotConfiguration.services
+      - botframework-config.BotConfiguration.toJSON
       - botframework-config.BotConfiguration.validateSecret
+      - botframework-config.BotConfiguration.version
     langs:
       - typeScript
     type: class
@@ -31,6 +44,17 @@ items:
       methods for encrypting
 
       and manipulating the in-memory representation of the configuration.
+  - uid: botframework-config.BotConfiguration.constructor
+    name: BotConfiguration()
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new BotConfigurationBase instance.
+    syntax:
+      content: new BotConfiguration()
+      parameters: []
+    package: botframework-config
   - uid: botframework-config.BotConfiguration.clearSecret
     name: clearSecret()
     children: []
@@ -41,6 +65,24 @@ items:
     syntax:
       content: function clearSecret()
       parameters: []
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.connectService
+    name: connectService(IConnectedService)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Connect a service to the bot file.
+    syntax:
+      content: 'function connectService(newService: IConnectedService)'
+      parameters:
+        - id: newService
+          type:
+            - botframework-config.IConnectedService
+          description: Service to add.
+      return:
+        type:
+          - string
     package: botframework-config
   - uid: botframework-config.BotConfiguration.decrypt
     name: decrypt(string)
@@ -59,6 +101,54 @@ items:
             Secret to decrypt.
           optional: true
     package: botframework-config
+  - uid: botframework-config.BotConfiguration.description
+    name: description
+    fullName: description
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'description: string'
+      return:
+        type:
+          - string
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.disconnectService
+    name: disconnectService(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Remove service by id.
+    syntax:
+      content: 'function disconnectService(id: string)'
+      parameters:
+        - id: id
+          type:
+            - string
+          description: ''
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.disconnectServiceByNameOrId
+    name: disconnectServiceByNameOrId(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Remove service by name or id.
+    syntax:
+      content: 'function disconnectServiceByNameOrId(nameOrId: string)'
+      parameters:
+        - id: nameOrId
+          type:
+            - string
+          description: |
+            Name or ID of the service to remove.
+      return:
+        type:
+          - botframework-config.IConnectedService
+    package: botframework-config
   - uid: botframework-config.BotConfiguration.encrypt
     name: encrypt(string)
     children: []
@@ -74,6 +164,44 @@ items:
             - string
           description: |
             Secret to encrypt.
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.findService
+    name: findService(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Find service by id.
+    syntax:
+      content: 'function findService(id: string)'
+      parameters:
+        - id: id
+          type:
+            - string
+          description: |
+            ID of the service to find.
+      return:
+        type:
+          - botframework-config.IConnectedService
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.findServiceByNameOrId
+    name: findServiceByNameOrId(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Find service by name or id.
+    syntax:
+      content: 'function findServiceByNameOrId(nameOrId: string)'
+      parameters:
+        - id: nameOrId
+          type:
+            - string
+          description: |
+            Name or ID of the service to find.
+      return:
+        type:
+          - botframework-config.IConnectedService
     package: botframework-config
   - uid: botframework-config.BotConfiguration.fromJSON
     name: fromJSON(Partial<IBotConfiguration>)
@@ -235,6 +363,34 @@ items:
         type:
           - botframework-config.BotConfiguration
     package: botframework-config
+  - uid: botframework-config.BotConfiguration.name
+    name: name
+    fullName: name
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'name: string'
+      return:
+        type:
+          - string
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.padlock
+    name: padlock
+    fullName: padlock
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'padlock: string'
+      return:
+        type:
+          - string
+    package: botframework-config
   - uid: botframework-config.BotConfiguration.save
     name: save(string)
     children: []
@@ -317,6 +473,55 @@ items:
             (Optional) secret used to encrypt the bot file.
           optional: true
     package: botframework-config
+  - uid: botframework-config.BotConfiguration.serviceFromJSON
+    name: serviceFromJSON(IConnectedService)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns a ConnectedService instance given a JSON based service
+      configuration.
+    syntax:
+      content: 'static function serviceFromJSON(service: IConnectedService)'
+      parameters:
+        - id: service
+          type:
+            - botframework-config.IConnectedService
+          description: |
+            JSON based service configuration.
+      return:
+        type:
+          - botframework-config.ConnectedService
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.services
+    name: services
+    fullName: services
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'services: IConnectedService[]'
+      return:
+        type:
+          - 'botframework-config.IConnectedService[]'
+    package: botframework-config
+  - uid: botframework-config.BotConfiguration.toJSON
+    name: toJSON()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a JSON based version of the current bot.
+    syntax:
+      content: function toJSON()
+      parameters: []
+      return:
+        type:
+          - botframework-config.IBotConfiguration
+    package: botframework-config
   - uid: botframework-config.BotConfiguration.validateSecret
     name: validateSecret(string)
     children: []
@@ -333,6 +538,20 @@ items:
           description: |
             Secret to use.
     package: botframework-config
+  - uid: botframework-config.BotConfiguration.version
+    name: version
+    fullName: version
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'version: string'
+      return:
+        type:
+          - string
+    package: botframework-config
 references:
   - uid: botframework-config.BotConfigurationBase
     name: BotConfigurationBase
@@ -340,6 +559,26 @@ references:
       - name: BotConfigurationBase
         fullName: BotConfigurationBase
         uid: botframework-config.BotConfigurationBase
+  - uid: 'botframework-config.IConnectedService[]'
+    name: 'IConnectedService[]'
+    spec.typeScript:
+      - name: IConnectedService
+        fullName: IConnectedService
+        uid: botframework-config.IConnectedService
+      - name: '[]'
+        fullName: '[]'
+  - uid: botframework-config.IConnectedService
+    name: IConnectedService
+    spec.typeScript:
+      - name: IConnectedService
+        fullName: IConnectedService
+        uid: botframework-config.IConnectedService
+  - uid: botframework-config.IBotConfiguration
+    name: IBotConfiguration
+    spec.typeScript:
+      - name: IBotConfiguration
+        fullName: IBotConfiguration
+        uid: botframework-config.IBotConfiguration
   - uid: Partial<botframework-config.IBotConfiguration>
     name: IBotConfiguration>
     spec.typeScript:
@@ -366,3 +605,9 @@ references:
         uid: botframework-config.BotConfiguration
       - name: '>'
         fullName: '>'
+  - uid: botframework-config.ConnectedService
+    name: ConnectedService
+    spec.typeScript:
+      - name: ConnectedService
+        fullName: ConnectedService
+        uid: botframework-config.ConnectedService
