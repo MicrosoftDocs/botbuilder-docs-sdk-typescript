@@ -31,7 +31,7 @@ items:
     type: property
     summary: The name of the event when a message is deleted by the bot.
     syntax:
-      content: 'static botMsgDeleteEvent: string'
+      content: 'public static botMsgDeleteEvent: string = "BotMessageDelete"'
       return:
         type:
           - string
@@ -45,7 +45,7 @@ items:
     type: property
     summary: The name of the event when when new message is received from the user.
     syntax:
-      content: 'static botMsgReceiveEvent: string'
+      content: 'public static botMsgReceiveEvent: string = "BotMessageReceived"'
       return:
         type:
           - string
@@ -59,7 +59,7 @@ items:
     type: property
     summary: The name of the event when a message is updated by the bot.
     syntax:
-      content: 'static botMsgSendEvent: string'
+      content: 'public static botMsgSendEvent: string = "BotMessageSend"'
       return:
         type:
           - string
@@ -73,7 +73,7 @@ items:
     type: property
     summary: The name of the event when a message is updated by the bot.
     syntax:
-      content: 'static botMsgUpdateEvent: string'
+      content: 'public static botMsgUpdateEvent: string = "BotMessageUpdate"'
       return:
         type:
           - string
@@ -89,7 +89,7 @@ items:
       Gets a value indicating whether determines whether to log personal
       information that came from the user.
     syntax:
-      content: 'logPersonalInformation: boolean'
+      content: boolean logPersonalInformation
       return:
         type:
           - boolean
@@ -128,7 +128,7 @@ items:
     type: property
     summary: Gets the currently configured botTelemetryClient that logs the events.
     syntax:
-      content: 'telemetryClient: BotTelemetryClient'
+      content: BotTelemetryClient telemetryClient
       return:
         type:
           - botbuilder-core.BotTelemetryClient
@@ -142,7 +142,7 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'telemetryConstants: TelemetryConstants'
+      content: 'public telemetryConstants: TelemetryConstants = new TelemetryConstants()'
       return:
         type:
           - botbuilder-core.TelemetryConstants
@@ -157,7 +157,7 @@ items:
     syntax:
       content: >-
         new TelemetryLoggerMiddleware(telemetryClient: BotTelemetryClient,
-        logPersonalInformation?: boolean)
+        logPersonalInformation: boolean)
       parameters:
         - id: telemetryClient
           type:
@@ -169,7 +169,6 @@ items:
           description: >
             (Optional) Enable/Disable logging original message name within
             Application Insights.
-          optional: true
     package: botbuilder-core
 references:
   - uid: botbuilder-core.BotTelemetryClient

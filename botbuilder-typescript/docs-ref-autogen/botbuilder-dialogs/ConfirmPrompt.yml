@@ -11,7 +11,6 @@ items:
       - botbuilder-dialogs.ConfirmPrompt.continueDialog
       - botbuilder-dialogs.ConfirmPrompt.defaultLocale
       - botbuilder-dialogs.ConfirmPrompt.endDialog
-      - botbuilder-dialogs.ConfirmPrompt.EndOfTurn
       - botbuilder-dialogs.ConfirmPrompt.id
       - botbuilder-dialogs.ConfirmPrompt.repromptDialog
       - botbuilder-dialogs.ConfirmPrompt.resumeDialog
@@ -64,7 +63,7 @@ items:
 
       rendered to the user.
     syntax:
-      content: 'choiceOptions: ChoiceFactoryOptions | undefined'
+      content: 'public choiceOptions: ChoiceFactoryOptions | undefined'
       return:
         type:
           - botbuilder-dialogs.ChoiceFactoryOptions | undefined
@@ -78,7 +77,7 @@ items:
     type: property
     summary: Custom list of choices to send for the prompt.
     syntax:
-      content: 'confirmChoices: string | Choice[] | undefined'
+      content: 'public confirmChoices: string | Choice[] | undefined'
       return:
         type:
           - 'string | botbuilder-dialogs.Choice[] | undefined'
@@ -143,7 +142,7 @@ items:
     type: property
     summary: The prompts default locale that should be recognized.
     syntax:
-      content: 'defaultLocale: string | undefined'
+      content: 'public defaultLocale: string | undefined'
       return:
         type:
           - string | undefined
@@ -182,20 +181,6 @@ items:
       cleanup action anytime
 
       the dialog ends.
-  - uid: botbuilder-dialogs.ConfirmPrompt.EndOfTurn
-    name: EndOfTurn
-    fullName: EndOfTurn
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
-    syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
-      return:
-        type:
-          - botbuilder-dialogs.DialogTurnResult
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ConfirmPrompt.id
     name: id
     fullName: id
@@ -205,7 +190,7 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: 'id: string'
+      content: 'public id: string'
       return:
         type:
           - string
@@ -270,7 +255,7 @@ items:
     type: property
     summary: Style of the "yes" and "no" choices rendered to the user when prompting.
     syntax:
-      content: 'style: ListStyle'
+      content: 'public style: ListStyle'
       return:
         type:
           - botbuilder-dialogs.ListStyle
@@ -283,9 +268,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Set the telemetry client for this dialog.
+    summary: |-
+      Retrieve the telemetry client for this dialog.
+      Set the telemetry client for this dialog.
     syntax:
-      content: 'telemetryClient: BotTelemetryClient'
+      content: BotTelemetryClient telemetryClient
       return:
         type:
           - BotTelemetryClient
@@ -331,12 +318,6 @@ references:
       - name: ListStyle
         fullName: ListStyle
         uid: botbuilder-dialogs.ListStyle
-  - uid: botbuilder-dialogs.DialogTurnResult
-    name: DialogTurnResult
-    spec.typeScript:
-      - name: DialogTurnResult
-        fullName: DialogTurnResult
-        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:

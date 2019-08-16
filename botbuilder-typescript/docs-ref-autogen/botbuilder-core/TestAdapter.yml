@@ -58,7 +58,7 @@ items:
     syntax:
       content: >-
         function addUserToken(connectionName: string, channelId: string, userId:
-        string, token: string, magicCode?: string)
+        string, token: string, magicCode: string)
       parameters:
         - id: connectionName
           type:
@@ -81,7 +81,6 @@ items:
             - string
           description: |
             (Optional) The optional magic code to associate with this token.
-          optional: true
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.continueConversation
     name: >-
@@ -126,7 +125,7 @@ items:
 
       turn completes.
     syntax:
-      content: 'deletedActivities: Partial<ConversationReference>[]'
+      content: 'public deletedActivities: Partial<ConversationReference>[] = []'
       return:
         type:
           - 'Partial<ConversationReference>[]'
@@ -238,7 +237,7 @@ items:
 
       a turn.
     syntax:
-      content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
+      content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
         type:
           - '(context: TurnContext, error: Error) => Promise<void>'
@@ -312,7 +311,7 @@ items:
       `Activity` template that will be merged with all activities sent to the
       logic under test.
     syntax:
-      content: 'template: Partial<Activity>'
+      content: 'public template: Partial<Activity>'
       return:
         type:
           - Partial<Activity>
@@ -457,7 +456,7 @@ items:
 
       turn completes.
     syntax:
-      content: 'updatedActivities: Partial<Activity>[]'
+      content: 'public updatedActivities: Partial<Activity>[] = []'
       return:
         type:
           - 'Partial<Activity>[]'

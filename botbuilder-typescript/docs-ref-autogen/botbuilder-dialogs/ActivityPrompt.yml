@@ -8,7 +8,6 @@ items:
       - botbuilder-dialogs.ActivityPrompt.beginDialog
       - botbuilder-dialogs.ActivityPrompt.continueDialog
       - botbuilder-dialogs.ActivityPrompt.endDialog
-      - botbuilder-dialogs.ActivityPrompt.EndOfTurn
       - botbuilder-dialogs.ActivityPrompt.id
       - botbuilder-dialogs.ActivityPrompt.repromptDialog
       - botbuilder-dialogs.ActivityPrompt.resumeDialog
@@ -126,20 +125,6 @@ items:
       cleanup action anytime
 
       the dialog ends.
-  - uid: botbuilder-dialogs.ActivityPrompt.EndOfTurn
-    name: EndOfTurn
-    fullName: EndOfTurn
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
-    syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
-      return:
-        type:
-          - botbuilder-dialogs.DialogTurnResult
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ActivityPrompt.id
     name: id
     fullName: id
@@ -149,7 +134,7 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: 'id: string'
+      content: 'public id: string'
       return:
         type:
           - string
@@ -212,9 +197,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Set the telemetry client for this dialog.
+    summary: |-
+      Retrieve the telemetry client for this dialog.
+      Set the telemetry client for this dialog.
     syntax:
-      content: 'telemetryClient: BotTelemetryClient'
+      content: BotTelemetryClient telemetryClient
       return:
         type:
           - BotTelemetryClient
@@ -234,12 +221,6 @@ references:
         uid: botbuilder-dialogs.PromptValidator
       - name: <Activity>
         fullName: <Activity>
-  - uid: botbuilder-dialogs.DialogTurnResult
-    name: DialogTurnResult
-    spec.typeScript:
-      - name: DialogTurnResult
-        fullName: DialogTurnResult
-        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:

@@ -46,7 +46,7 @@ items:
     type: property
     summary: Array of the sets `BotState` plugins.
     syntax:
-      content: 'botStates: BotState[]'
+      content: 'public botStates: BotState[] = []'
       return:
         type:
           - 'botbuilder-core.BotState[]'
@@ -75,7 +75,7 @@ items:
       - typeScript
     summary: Calls `BotState.load()` on all of the BotState plugins in the set.
     syntax:
-      content: 'function loadAll(context: TurnContext, force?: boolean)'
+      content: 'function loadAll(context: TurnContext, force: boolean)'
       parameters:
         - id: context
           type:
@@ -87,7 +87,6 @@ items:
           description: >
             (Optional) If `true` the cache will be bypassed and the state will
             always be read in directly from storage. Defaults to `false`.
-          optional: true
       return:
         type:
           - Promise<void>
@@ -106,7 +105,7 @@ items:
       - typeScript
     summary: Calls `BotState.saveChanges()` on all of the BotState plugins in the set.
     syntax:
-      content: 'function saveAllChanges(context: TurnContext, force?: boolean)'
+      content: 'function saveAllChanges(context: TurnContext, force: boolean)'
       parameters:
         - id: context
           type:
@@ -118,7 +117,6 @@ items:
           description: >
             (Optional) if `true` the state will always be written out regardless
             of its change state. Defaults to `false`.
-          optional: true
       return:
         type:
           - Promise<void>
