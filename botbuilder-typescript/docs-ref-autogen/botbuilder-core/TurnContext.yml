@@ -402,11 +402,40 @@ items:
     langs:
       - typeScript
     summary: >-
-      Rewrites the activity text without any at mention. Specifying a particular
-      recipient id.
+      Remove any mention text for given id from the Activity.Text property.  For
+      example, given the message
 
-      Use with caution because this function is altering the text on the
-      Activity.
+      "@echoBot Hi Bot", this will remove "@echoBot", leaving "Hi Bot".
+
+      Typically this would be used to remove the mention text for the target
+      recipient (the bot usually), though
+
+      it could be called for each member.  For example:
+        turnContext.Activity.RemoveMentionText(turnContext.Activity.Recipient.Id);
+
+      The format of a mention Activity.Entity is dependent on the Channel.  But
+      in all cases we
+
+      expect the Mention.Text to contain the exact text for the user as it
+      appears in
+
+      Activity.Text.
+
+
+      For example, Teams uses "<at>username</at>", whereas slack use
+      "@username". It
+
+      is expected that text is in Activity.Text and this method will remove that
+      value from
+
+      Activity.Text.
+
+
+      ```JavaScript
+
+      const updatedText = TurnContext.removeRecipientMention(context.request);
+
+      ```
     syntax:
       content: >-
         static function removeMentionText(activity: Partial<Activity>, id:
@@ -425,19 +454,6 @@ items:
         type:
           - string
     package: botbuilder-core
-    remarks: >-
-      Some channels, for example Microsoft Teams, add at mention details into
-      the text on a message activity.
-
-      This can interfere with later processing. This is a helper function to
-      remove the at mention.
-
-
-      ```JavaScript
-
-      const updatedText = TurnContext.removeRecipientMention(context.request);
-
-      ```
   - uid: botbuilder-core.TurnContext.removeRecipientMention
     name: removeRecipientMention(Partial<Activity>)
     children: []
