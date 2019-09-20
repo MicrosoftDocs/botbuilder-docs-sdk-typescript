@@ -10,7 +10,11 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: Express or Restify Request object.
+    summary: >
+      Represents an Express or Restify request object.
+
+      > [!NOTE] This interface supports the framework and is not intended to be
+      called directly for your code.
     package: botbuilder
   - uid: botbuilder.WebRequest.body
     name: body
@@ -19,7 +23,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Optional. The request body.
     optional: true
     syntax:
       content: 'body?: any'
@@ -34,7 +38,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Optional. The request headers.
     syntax:
       content: 'headers: any'
       return:
@@ -47,18 +51,22 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: |-
+      When implemented in a derived class, adds a listener for an event.
+      The framework uses this method to retrieve the request body when the
+      [body](xref:botbuilder.WebRequest.body) property is `null` or `undefined`.
     syntax:
       content: 'function on(event: string, args: any[])'
       parameters:
         - id: event
           type:
             - string
-          description: ''
+          description: The event name.
         - id: args
           type:
             - 'any[]'
-          description: ''
+          description: |
+            Arguments used to handle the event.
       return:
         type:
           - any
