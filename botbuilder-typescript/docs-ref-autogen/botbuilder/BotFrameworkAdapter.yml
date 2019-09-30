@@ -27,50 +27,27 @@ items:
       - typeScript
     type: class
     summary: >-
-      A [BotAdapter](xref:botbuilder-core.BotAdapter) that can connect a bot to
-      a service endpoint.
-
-      Implements [IUserTokenProvider](xref:botbuilder-core.IUserTokenProvider).
+      A BotAdapter class that connects your bot to Bot Framework channels and
+      the Emulator.
     extends:
       name: BotAdapter
     package: botbuilder
     remarks: >-
-      The bot adapter encapsulates authentication processes and sends activities
-      to and receives
+      Use this adapter to connect your bot to the Bot Framework service, through
+      which
 
-      activities from the Bot Connector Service. When your bot receives an
-      activity, the adapter
+      your bot can reach many chat channels like Skype, Slack, and Teams. This
+      adapter
 
-      creates a turn context object, passes it to your bot application logic,
-      and sends responses
+      also allows your bot to work with the Bot Framework Emulator, which
+      simulates
 
-      back to the user's channel.
-
-
-      The adapter processes and directs incoming activities in through the bot
-      middleware pipeline to
-
-      your bot logic and then back out again. As each activity flows in and out
-      of the bot, each
-
-      piece of middleware can inspect or act upon the activity, both before and
-      after the bot logic runs.
-
-      Use the [use](xref:botbuilder-core.BotAdapter.use) method to add
-      [Middleware](xref:botbuilder-core.Middleware)
-
-      objects to your adapter's middleware collection.
+      the Bot Framework service and provides a chat interface for testing and
+      debugging.
 
 
-      For more information, see the articles on
+      The following example shows the typical adapter setup:
 
-      [How bots
-      work](https://docs.microsoft.com/azure/bot-service/bot-builder-basics) and
-
-      [Middleware](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-middleware).
-
-
-      For example:
 
       ```JavaScript
 
@@ -78,14 +55,9 @@ items:
 
 
       const adapter = new BotFrameworkAdapter({
-          appId: process.env.MicrosoftAppId,
-          appPassword: process.env.MicrosoftAppPassword
+         appId: process.env.MICROSOFT_APP_ID,
+         appPassword: process.env.MICROSOFT_APP_PASSWORD
       });
-
-
-      adapter.onTurnError = async (context, error) => {
-          // Catch-all logic for errors.
-      };
 
       ```
   - uid: botbuilder.BotFrameworkAdapter.constructor
@@ -94,9 +66,7 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: >-
-      Creates a new instance of the
-      [BotFrameworkAdapter](xref:botbuilder.BotFrameworkAdapter) class.
+    summary: Creates a new BotFrameworkAdapter instance.
     syntax:
       content: 'new BotFrameworkAdapter(settings?: Partial<BotFrameworkAdapterSettings>)'
       parameters:
@@ -104,32 +74,20 @@ items:
           type:
             - Partial<botbuilder.BotFrameworkAdapterSettings>
           description: |
-            Optional. The settings to use for this adapter instance.
+            (optional) configuration settings for the adapter.
           optional: true
     package: botbuilder
-    remarks: >-
-      If the `settings` parameter does not include
-
-      [channelService](xref:botbuilder.BotFrameworkAdapterSettings.channelService)
-      or
-
-      [openIdMetadata](xref:botbuilder.BotFrameworkAdapterSettings.openIdMetadata)
-      values, the
-
-      constructor checks the process' environment variables for these values.
-      These values may be
-
-      set when a bot is provisioned on Azure and if so are required for the bot
-      to work properly
-
-      in the global cloud or in a national cloud.
-
-
-      The
-      [BotFrameworkAdapterSettings](xref:botbuilder.BotFrameworkAdapterSettings)
-      class defines
-
-      the available adapter settings.
+    remarks: |-
+      Settings for this adapter include:
+      ```javascript
+      {
+           "appId": "ID assigned to your bot in the [Bot Framework Portal](https://dev.botframework.com/).",
+           "appPassword": "Password assigned to your bot in the [Bot Framework Portal](https://dev.botframework.com/).",
+           "openIdMetadata": "The Open ID Metadata Endpoint for your bot to use.",
+           "oAuthEndpoint": "The OAuth API Endpoint for your bot to use.",
+           "channelService": "(Optional) The channel service option for this bot to validate connections from Azure or other channel locations"
+       }
+      ```
   - uid: botbuilder.BotFrameworkAdapter.continueConversation
     name: >-
       continueConversation(Partial<ConversationReference>, (context:
@@ -138,9 +96,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      An asynchronous method that resumes a conversation with a user, possibly
-      after some time has gone by.
+    summary: 'Resume a conversation with a user, possibly after some time has gone by.'
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
@@ -149,71 +105,61 @@ items:
         - id: reference
           type:
             - Partial<ConversationReference>
-          description: A reference to the conversation to continue.
+          description: A `ConversationReference` saved during a previous incoming activity.
         - id: logic
           type:
             - '(context: TurnContext) => Promise<void>'
-          description: |
-            The asynchronous method to call after the adapter middleware runs.
+          description: >
+            A function handler that will be called to perform the bots logic
+            after the the adapters middleware has been run.
       return:
         type:
           - Promise<void>
     package: botbuilder
     remarks: >-
-      This is often referred to as a _proactive notification_, the bot can
-      proactively
+      This is often referred to as the bot's "Proactive Messaging" flow as it
+      lets the bot proactively
 
-      send a message to a conversation or user without waiting for an incoming
-      message.
+      send messages to a conversation or user without having to reply directly
+      to an incoming message.
 
-      For example, a bot can use this method to send notifications or coupons to
-      a user.
-
-
-      To send a proactive message:
-
-      1. Save a copy of a
-      [ConversationReference](xref:botframework-schema.ConversationReference)
-         from an incoming activity. For example, you can store the conversation reference in a database.
-      1. Call this method to resume the conversation at a later time. Use the
-      saved reference to access the conversation.
-
-      1. On success, the adapter generates a
-      [TurnContext](xref:botbuilder-core.TurnContext) object and calls the
-      `logic` function handler.
-         Use the `logic` function to send the proactive message.
-
-      To copy the reference from any incoming activity in the conversation, use
-      the
-
-      [TurnContext.getConversationReference](xref:botbuilder-core.TurnContext.getConversationReference)
-      method.
+      Scenarios like sending notifications or coupons to a user are enabled by
+      this method.
 
 
-      This method is similar to the
-      [processActivity](xref:botbuilder.BotFrameworkAdapter.processActivity)
-      method.
+      In order to use this method, a ConversationReference must first be
+      extracted from an incoming
 
-      The adapter creates a [TurnContext](xref:botbuilder-core.TurnContext) and
-      routes it through
+      activity. This reference can be stored in a database and used to resume
+      the conversation at a later time.
 
-      its middleware before calling the `logic` handler. The created activity
-      will have a
-
-      [type](xref:botframework-schema.Activity.type) of 'event' and a
-
-      [name](xref:botframework-schema.Activity.name) of 'continueConversation'.
+      The reference can be created from any incoming activity using
+      `TurnContext.getConversationReference(context.activity)`.
 
 
-      For example:
+      The processing steps for this method are very similar to
+      [processActivity()](#processactivity)
+
+      in that a `TurnContext` will be created which is then routed through the
+      adapters middleware
+
+      before calling the passed in logic handler. The key difference is that
+      since an activity
+
+      wasn't actually received from outside, it has to be created by the bot. 
+      The created activity will have its address
+
+      related fields populated but will have a `context.activity.type ===
+      undefined`.
+
 
       ```JavaScript
 
       server.post('/api/notifyUser', async (req, res) => {
-         // Lookup previously saved conversation reference.
+         // Lookup previously saved conversation reference
          const reference = await findReference(req.body.refId);
 
-         // Proactively notify the user.
+         // Proactively notify the user
          if (reference) {
             await adapter.continueConversation(reference, async (context) => {
                await context.sendActivity(req.body.message);
@@ -234,8 +180,10 @@ items:
     langs:
       - typeScript
     summary: >-
-      An asynchronous method that creates and starts a conversation with a user
-      on a channel.
+      Starts a new conversation with a user. This is typically used to Direct
+      Message (DM) a member
+
+      of a group.
     syntax:
       content: >-
         function createConversation(reference: Partial<ConversationReference>,
@@ -244,76 +192,59 @@ items:
         - id: reference
           type:
             - Partial<ConversationReference>
-          description: A reference for the conversation to create.
+          description: >-
+            A `ConversationReference` of the user to start a new conversation
+            with.
         - id: logic
           type:
             - '(context: TurnContext) => Promise<void>'
-          description: |
-            The asynchronous method to call after the adapter middleware runs.
+          description: >
+            A function handler that will be called to perform the bot's logic
+            after the the adapters middleware has been run.
           optional: true
       return:
         type:
           - Promise<void>
     package: botbuilder
     remarks: >-
-      To use this method, you need both the bot's and the user's account
-      information on a channel.
+      This function creates a new conversation between the bot and a single
+      user, as specified by
 
-      The Bot Connector service supports the creating of group conversations;
-      however, this
+      the ConversationReference passed in. In multi-user chat environments, this
+      typically means
 
-      method and most channels only support initiating a direct message
-      (non-group) conversation.
+      starting a 1:1 direct message conversation with a single user. If called
+      on a reference
 
-
-      To create and start a new conversation:
-
-      1. Get a copy of a
-      [ConversationReference](xref:botframework-schema.ConversationReference)
-      from an incoming activity.
-
-      1. Set the [user](xref:botframework-schema.ConversationReference.user)
-      property to the
-         [ChannelAccount](xref:botframework-schema.ChannelAccount) value for the intended recipient.
-      1. Call this method to request that the channel create a new conversation
-      with the specified user.
-
-      1. On success, the adapter generates a turn context and calls the `logic`
-      function handler.
+      already representing a 1:1 conversation, the new conversation will
+      continue to be 1:1.
 
 
-      To get the initial reference, use the
+      * In order to use this method, a ConversationReference must first be
+      extracted from an incoming
 
-      [TurnContext.getConversationReference](xref:botbuilder-core.TurnContext.getConversationReference)
+      activity. This reference can be stored in a database and used to resume
+      the conversation at a later time.
 
-      method on any incoming activity in the conversation.
-
-
-      If the channel establishes the conversation, the generated event
-      activity's
-
-      [conversation](xref:botframework-schema.Activity.conversation) property
-      will contain the
-
-      ID of the new conversation.
+      The reference can be created from any incoming activity using
+      `TurnContext.getConversationReference(context.activity)`.
 
 
-      This method is similar to the
-      [processActivity](xref:botbuilder.BotFrameworkAdapter.processActivity)
-      method.
+      The processing steps for this method are very similar to
+      [processActivity()](#processactivity)
 
-      The adapter creates a [TurnContext](xref:botbuilder-core.TurnContext) and
-      routes it through
+      in that a `TurnContext` will be created which is then routed through the
+      adapters middleware
 
-      middleware before calling the `logic` handler. The created activity will
-      have a
+      before calling the passed in logic handler. The key difference is that
+      since an activity
 
-      [type](xref:botframework-schema.Activity.type) of 'event' and a
+      wasn't actually received from outside, it has to be created by the bot. 
+      The created activity will have its address
 
-      [name](xref:botframework-schema.Activity.name) of 'createConversation'.
+      related fields populated but will have a `context.activity.type ===
+      undefined`..
 
-
-      For example:
 
       ```JavaScript
 
@@ -321,8 +252,6 @@ items:
 
       const reference = TurnContext.getConversationReference(context.activity);
 
-
-      // ...
 
       // Start a new conversation with the user
 
@@ -337,16 +266,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >
-      An asynchronous method that deletes an existing activity.
-
-      > [!NOTE]
-
-      > - This interface supports the framework and is not intended to be called
-      directly for your code.
-
-      > - Not all channels support this operation. For channels that don't, this
-      call may throw an exception.
+    summary: Deletes an activity that was previously sent to a channel.
     syntax:
       content: >-
         function deleteActivity(context: TurnContext, reference:
@@ -355,34 +275,34 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: reference
           type:
             - Partial<ConversationReference>
           description: |
-            Conversation reference information for the activity to delete.
+            Conversation reference information for the activity being deleted.
       return:
         type:
           - Promise<void>
     package: botbuilder
     remarks: >-
-      Use
-      [TurnContext.deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
-      to delete
+      Calling `TurnContext.deleteActivity()` is the preferred way of deleting
+      activities (rather than calling it directly from the adapter), as that
 
-      an activity from your bot code.
+      will ensure that any interested middleware will be notified.
+
+
+      > [!TIP]
+
+      > Note: Not all chat channels support this method. Calling it on an
+      unsupported channel may result in an error.
   - uid: botbuilder.BotFrameworkAdapter.deleteConversationMember
     name: 'deleteConversationMember(TurnContext, string)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: >
-      An asynchronous method that removes a member from the current
-      conversation.
-
-      > [!NOTE] Not all channels support this operation. For channels that
-      don't, this call may throw an exception.
+    summary: Deletes a member from the current conversation.
     syntax:
       content: >-
         function deleteConversationMember(context: TurnContext, memberId:
@@ -391,17 +311,20 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: memberId
           type:
             - string
           description: |
-            The ID of the member to remove from the conversation.
+            ID of the member to delete from the conversation.
       return:
         type:
           - Promise<void>
     package: botbuilder
-    remarks: Remove a member's identity information from the conversation.
+    remarks: |-
+      Remove a member's identity information from the conversation.
+
+      Note that this method does not apply to all channels.
   - uid: botbuilder.BotFrameworkAdapter.emulateOAuthCards
     name: 'emulateOAuthCards(TurnContext | string, boolean)'
     children: []
@@ -409,10 +332,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      An asynchronous method that sends an emulated OAuth card for a channel.
-
-      > [!NOTE] This method supports the framework and is not intended to be
-      called directly for your code.
+      Tells the token service to emulate the sending of OAuthCards for a
+      channel.
     syntax:
       content: >-
         function emulateOAuthCards(contextOrServiceUrl: TurnContext | string,
@@ -425,23 +346,19 @@ items:
         - id: emulate
           type:
             - boolean
-          description: >
-            `true` to send an emulated OAuth card to the emulator; or `false` to
-            not send the card.
+          description: |
+            If `true` the emulator will emulate the sending of OAuthCards.
       return:
         type:
           - Promise<void>
     package: botbuilder
-    remarks: >-
-      When testing a bot in the Bot Framework Emulator, this method can emulate
-      the OAuth card interaction.
   - uid: botbuilder.BotFrameworkAdapter.getAadTokens
     name: 'getAadTokens(TurnContext, string, string[])'
     children: []
     type: method
     langs:
       - typeScript
-    summary: An asynchronous method that signs out the user from the token server.
+    summary: Signs the user out with the token server.
     syntax:
       content: >-
         function getAadTokens(context: TurnContext, connectionName: string,
@@ -450,16 +367,16 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: connectionName
           type:
             - string
-          description: The name of the auth connection to use.
+          description: |
+            Name of the auth connection to use.
         - id: resourceUrls
           type:
             - 'string[]'
-          description: |
-            The list of resource URLs to retrieve tokens for.
+          description: ''
       return:
         type:
           - 'Promise<[key: string]: TokenResponse>'
@@ -470,44 +387,43 @@ items:
     type: method
     langs:
       - typeScript
-    summary: An asynchronous method that lists the members of a given activity.
+    summary: Lists the members of a given activity as specified in a TurnContext.
     syntax:
       content: 'function getActivityMembers(context: TurnContext, activityId?: string)'
       parameters:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: activityId
           type:
             - string
           description: >
-            Optional. The ID of the activity to get the members of. If not
-            specified, the current activity ID is used.
+            (Optional) activity ID to enumerate. If not specified the current
+            activities ID will be used.
           optional: true
       return:
         type:
           - 'Promise<ChannelAccount[]>'
     package: botbuilder
     remarks: >-
-      Returns an array of
-      [ChannelAccount](xref:botframework-schema.ChannelAccount) objects for
-
-      the users involved in a given activity.
+      Returns an array of ChannelAccount objects representing the users involved
+      in a given activity.
 
 
-      This is different from
-      [getConversationMembers](xref:botbuilder.BotFrameworkAdapter.getConversationMembers)
+      This is different from `getConversationMembers()` in that it will return
+      only those users
 
-      in that it will return only those users directly involved in the activity,
-      not all members of the conversation.
+      directly involved in the activity, not all members of the conversation.
   - uid: botbuilder.BotFrameworkAdapter.getConversationMembers
     name: getConversationMembers(TurnContext)
     children: []
     type: method
     langs:
       - typeScript
-    summary: An asynchronous method that lists the members of the current conversation.
+    summary: >-
+      Lists the members of the current conversation as specified in a
+      TurnContext.
     syntax:
       content: 'function getConversationMembers(context: TurnContext)'
       parameters:
@@ -515,23 +431,22 @@ items:
           type:
             - TurnContext
           description: |
-            The context object for the turn.
+            Context for the current turn of conversation with the user.
       return:
         type:
           - 'Promise<ChannelAccount[]>'
     package: botbuilder
     remarks: >-
-      Returns an array of
-      [ChannelAccount](xref:botframework-schema.ChannelAccount) objects for
+      Returns an array of ChannelAccount objects representing the users
+      currently involved in the conversation
 
-      all users currently involved in a conversation.
+      in which an activity occured.
 
 
-      This is different from
-      [getActivityMembers](xref:botbuilder.BotFrameworkAdapter.getActivityMembers)
+      This is different from `getActivityMembers()` in that it will return all
 
-      in that it will return all members of the conversation, not just those
-      directly involved in a specific activity.
+      members of the conversation, not just those directly involved in the
+      activity.
   - uid: botbuilder.BotFrameworkAdapter.getConversations
     name: 'getConversations(TurnContext | string, string)'
     children: []
@@ -539,8 +454,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      An asynchronous method that, for the specified channel, gets a page of the
-      conversations in which this bot has participated.
+      Lists the Conversations in which this bot has participated for a given
+      channel server.
     syntax:
       content: >-
         function getConversations(contextOrServiceUrl: TurnContext | string,
@@ -550,53 +465,25 @@ items:
           type:
             - TurnContext | string
           description: >-
-            The URL of the channel server to query or a
-
-            [TurnContext](xref:botbuilder-core.TurnContext) object from a
-            conversation on the channel.
+            The URL of the channel server to query or a TurnContext.  This can
+            be retrieved from `context.activity.serviceUrl`.
         - id: continuationToken
           type:
             - string
           description: >
-            Optional. The continuation token from the previous page of results.
-
-            Omit this parameter or use `undefined` to retrieve the first page of
-            results.
+            (Optional) token used to fetch the next page of results from the
+            channel server. This should be left as `undefined` to retrieve the
+            first page of results.
           optional: true
       return:
         type:
           - Promise<ConversationsResult>
     package: botbuilder
     remarks: >-
-      The the return value's
-      [conversations](xref:botframework-schema.ConversationsResult.conversations)
-      property contains a page of
+      The channel server returns results in pages and each page will include a
+      `continuationToken`
 
-      [ConversationMembers](xref:botframework-schema.ConversationMembers)
-      objects. Each object's
-
-      [id](xref:botframework-schema.ConversationMembers.id) is the ID of a
-      conversation in which the bot has participated on this channel.
-
-      This method can be called from outside the context of a conversation, as
-      only the bot's service URL and credentials are required.
-
-
-      The channel batches results in pages. If the result's
-
-      [continuationToken](xref:botframework-schema.ConversationsResult.continuationToken)
-      property is not empty, then
-
-      there are more pages to get. Use the returned token to get the next page
-      of results.
-
-      If the `contextOrServiceUrl` parameter is a
-      [TurnContext](xref:botbuilder-core.TurnContext), the URL of the channel
-      server is
-
-      retrieved from
-
-      `contextOrServiceUrl`.[activity](xref:botbuilder-core.TurnContext.activity).[serviceUrl](xref:botframework-schema.Activity.serviceUrl).
+      that can be used to fetch the next page of results from the server.
   - uid: botbuilder.BotFrameworkAdapter.getSignInLink
     name: 'getSignInLink(TurnContext, string)'
     children: []
@@ -604,22 +491,20 @@ items:
     langs:
       - typeScript
     summary: >-
-      An asynchronous method that gets a sign-in link from the token server that
-      can be sent as part
-
-      of a [SigninCard](xref:botframework-schema.SigninCard).
+      Gets a signin link from the token server that can be sent as part of a
+      SigninCard.
     syntax:
       content: 'function getSignInLink(context: TurnContext, connectionName: string)'
       parameters:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: connectionName
           type:
             - string
           description: |
-            The name of the auth connection to use.
+            Name of the auth connection to use.
       return:
         type:
           - Promise<string>
@@ -631,8 +516,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      An asynchronous method that retrieves the token status for each configured
-      connection for the given user.
+      Retrieves the token status for each configured connection for the given
+      user.
     syntax:
       content: >-
         function getTokenStatus(context: TurnContext, userId?: string,
@@ -641,22 +526,18 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: userId
           type:
             - string
-          description: >-
-            Optional. If present, the ID of the user to retrieve the token
-            status for.
-                 Otherwise, the ID of the user who sent the current activity is used.
+          description: The user Id for which token status is retrieved.
           optional: true
         - id: includeFilter
           type:
             - string
-          description: >
-            Optional. A comma-separated list of connection's to include. If
-            present,
-                 the `includeFilter` parameter limits the tokens this method returns.
+          description: >-
+            Optional comma seperated list of connection's to include. Blank will
+            return token status for all configured connections.
           optional: true
       return:
         type:
@@ -668,9 +549,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      An asynchronous method that attempts to retrieve the token for a user
-      that's in a login flow.
+    summary: Retrieves the OAuth token for a user that is in a sign-in flow.
     syntax:
       content: >-
         function getUserToken(context: TurnContext, connectionName: string,
@@ -679,16 +558,16 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: connectionName
           type:
             - string
-          description: The name of the auth connection to use.
+          description: Name of the auth connection to use.
         - id: magicCode
           type:
             - string
           description: |
-            Optional. The validation code the user entered.
+            (Optional) Optional user entered code to validate.
           optional: true
       return:
         type:
@@ -721,8 +600,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      An asynchronous method that creates a turn context and runs the middleware
-      pipeline for an incoming activity.
+      Processes an incoming request received by the bots web server into a
+      TurnContext.
     syntax:
       content: >-
         function processActivity(req: WebRequest, res: WebResponse, logic:
@@ -731,61 +610,81 @@ items:
         - id: req
           type:
             - botbuilder.WebRequest
-          description: An Express or Restify style request object.
+          description: An Express or Restify style Request object.
         - id: res
           type:
             - botbuilder.WebResponse
-          description: An Express or Restify style response object.
+          description: An Express or Restify style Response object.
         - id: logic
           type:
             - '(context: TurnContext) => Promise<any>'
-          description: |
-            The function to call at the end of the middleware pipeline.
+          description: >
+            A function handler that will be called to perform the bots logic
+            after the received activity has been pre-processed by the adapter
+            and routed through any middleware for processing.
       return:
         type:
           - Promise<void>
     package: botbuilder
     remarks: >-
-      This is the main way a bot receives incoming messages and defines a turn
-      in the conversation. This method:
+      This method is the main way a bot receives incoming messages.
 
 
-      1. Parses and authenticates an incoming request.
-         - The activity is read from the body of the incoming request. An error will be returned
-           if the activity can't be parsed.
-         - The identity of the sender is authenticated as either the Emulator or a valid Microsoft
-           server, using the bot's `appId` and `appPassword`. The request is rejected if the sender's
-           identity is not verified.
-      1. Creates a [TurnContext](xref:botbuilder-core.TurnContext) object for
-      the received activity.
-         - This object is wrapped with a [revocable proxy](https://www.ecma-international.org/ecma-262/6.0/#sec-proxy.revocable).
-         - When this method completes, the proxy is revoked.
-      1. Sends the turn context through the adapter's middleware pipeline.
+      This method takes a raw incoming request object from a webserver and
+      processes it into a
 
-      1. Sends the turn context to the `logic` function.
-         - The bot may perform additional routing or processing at this time.
-           Returning a promise (or providing an `async` handler) will cause the adapter to wait for any asynchronous operations to complete.
-         - After the `logic` function completes, the promise chain set up by the middleware is resolved.
+      normalized TurnContext that can be used by the bot. This includes any
+      messages sent from a
 
-      Middleware can _short circuit_ a turn. When this happens, subsequent
-      middleware and the
+      user and is the method that drives what is often referred to as the bot's
+      "Reactive Messaging"
 
-      `logic` function is not called; however, all middleware prior to this
-      point still run to completion.
-
-      For more information about the middleware pipeline, see the
-
-      [how bots
-      work](https://docs.microsoft.com/azure/bot-service/bot-builder-basics) and
-
-      [middleware](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-middleware)
-      articles.
-
-      Use the adapter's [use](xref:botbuilder-core.BotAdapter.use) method to add
-      middleware to the adapter.
+      flow.
 
 
-      For example:
+      The following steps will be taken to process the activity:
+
+
+      - The identity of the sender will be verified to be either the Emulator or
+      a valid Microsoft
+        server. The bots `appId` and `appPassword` will be used during this process and the request
+        will be rejected if the senders identity can't be verified.
+      - The activity will be parsed from the body of the incoming request. An
+      error will be returned
+        if the activity can't be parsed.
+      - A `TurnContext` instance will be created for the received activity and
+      wrapped with a
+        [Revocable Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/revocable).
+      - The context will be routed through any middleware registered with the
+      adapter using
+        [use()](#use).  Middleware is executed in the order in which it's added and any middleware
+        can intercept or prevent further routing of the context by simply not calling the passed
+        in `next()` function. This is called the "Leading Edge" of the request; middleware will
+        get a second chance to run on the "Trailing Edge" of the request after the bots logic has run.
+      - Assuming the context hasn't been intercepted by a piece of middleware,
+      the context will be
+        passed to the logic handler passed in.  The bot may perform additional routing or
+        processing at this time. Returning a promise (or providing an `async` handler) will cause the
+        adapter to wait for any asynchronous operations to complete.
+      - Once the bot's logic completes, the promise chain set up by the
+      middleware stack will be resolved,
+        giving middleware a second chance to run on the "Trailing Edge" of the request.
+      - After the middleware stack's promise chain has been fully resolved the
+      context object will be
+        `revoked()` and any future calls to the context will result in a `TypeError: Cannot perform
+        'set' on a proxy that has been revoked` being thrown.
+
+      > [!TIP]
+
+      > Note: If you see the error `TypeError: Cannot perform 'set' on a proxy
+      that has been revoked`
+
+      > appearing in your bot's console output, the likely cause is that an
+      async function was used
+
+      > without using the `await` keyword. Make sure all async functions use
+      await!
+
 
       ```JavaScript
 
@@ -800,30 +699,13 @@ items:
       });
 
       ```
-
-
-      > [!TIP]
-
-      > If you see the error `TypeError: Cannot perform 'set' on a proxy that
-      has been revoked`
-
-      > in your bot's console output, the likely cause is that an async function
-      was used
-
-      > without using the `await` keyword. Make sure all async functions use
-      await!
   - uid: botbuilder.BotFrameworkAdapter.sendActivities
     name: 'sendActivities(TurnContext, Partial<Activity>[])'
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      An asynchronous method that sends a set of outgoing activities to a
-      channel server.
-
-      > [!NOTE] This method supports the framework and is not intended to be
-      called directly for your code.
+    summary: Sends a set of outgoing activities to the appropriate channel server.
     syntax:
       content: >-
         function sendActivities(context: TurnContext, activities:
@@ -832,44 +714,50 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: activities
           type:
             - 'Partial<Activity>[]'
           description: |
-            The activities to send.
+            List of activities to send.
       return:
         type:
           - 'Promise<ResourceResponse[]>'
     package: botbuilder
     remarks: >-
       The activities will be sent one after another in the order in which
-      they're received. A
+      they're received. A response object will be returned for each
 
-      response object will be returned for each sent activity. For `message`
-      activities this will
-
-      contain the ID of the delivered message.
+      sent activity. For `message` activities this will contain the id of the
+      delivered message.
 
 
-      Use the turn context's
-      [sendActivity](xref:botbuilder-core.TurnContext.sendActivity) or
+      Instead of calling these methods directly on the adapter, calling
+      `TurnContext.sendActivities()` or `TurnContext.sendActivity()`
 
-      [sendActivities](xref:botbuilder-core.TurnContext.sendActivities) method,
-      instead of directly
+      is the preferred way of sending activities as that will ensure that
+      outgoing activities have been properly addressed
 
-      calling this method. The [TurnContext](xref:botbuilder-core.TurnContext)
-      ensures that outgoing
+      and that any interested middleware has been notified.
 
-      activities are properly addressed and that all registered response event
-      handlers are notified.
+
+      The primary scenario for calling this method directly is when you want to
+      explicitly bypass
+
+      going through any middleware. For instance, sending the `typing` activity
+      might
+
+      be a good reason to call this method directly as those activities are
+      unlikely to require
+
+      handling by middleware.
   - uid: botbuilder.BotFrameworkAdapter.signOutUser
     name: 'signOutUser(TurnContext, string, string)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: An asynchronous method that signs out the user from the token server.
+    summary: Signs the user out with the token server.
     syntax:
       content: >-
         function signOutUser(context: TurnContext, connectionName?: string,
@@ -878,17 +766,16 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: connectionName
           type:
             - string
-          description: The name of the auth connection to use.
+          description: Name of the auth connection to use.
           optional: true
         - id: userId
           type:
             - string
-          description: |
-            The ID of user to sign out.
+          description: id of user to sign out.
           optional: true
       return:
         type:
@@ -900,17 +787,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >
-      An asynchronous method that replaces a previous activity with an updated
+    summary: >-
+      Replaces an activity that was previously sent to a channel with an updated
       version.
-
-      > [!NOTE]
-
-      > - This interface supports the framework and is not intended to be called
-      directly for your code.
-
-      > - Not all channels support this operation. For channels that don't, this
-      call may throw an exception.
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
@@ -919,22 +798,24 @@ items:
         - id: context
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: Context for the current turn of conversation with the user.
         - id: activity
           type:
             - Partial<Activity>
           description: |
-            The updated version of the activity to replace.
+            New activity to replace a current activity with.
       return:
         type:
           - Promise<void>
     package: botbuilder
     remarks: >-
-      Use
-      [TurnContext.updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
-      to update
+      Calling `TurnContext.updateActivity()` is the preferred way of updating
+      activities (rather than calling it directly from the adapter) as that
 
-      an activity from your bot code.
+      will ensure that any interested middleware has been notified.
+
+
+      It should be noted that not all channels support this feature.
   - uid: botbuilder.BotFrameworkAdapter.use
     name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
