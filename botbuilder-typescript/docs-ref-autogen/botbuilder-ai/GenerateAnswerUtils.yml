@@ -8,6 +8,7 @@ items:
       - botbuilder-ai.GenerateAnswerUtils.constructor
       - botbuilder-ai.GenerateAnswerUtils.httpRequestUtils
       - botbuilder-ai.GenerateAnswerUtils.queryQnaService
+      - botbuilder-ai.GenerateAnswerUtils.queryQnaServiceRaw
       - botbuilder-ai.GenerateAnswerUtils.sortAnswersWithinThreshold
       - botbuilder-ai.GenerateAnswerUtils.validateOptions
     langs:
@@ -27,13 +28,13 @@ items:
     summary: Emits a trace event detailing a QnA Maker call and its results.
     syntax:
       content: >-
-        function emitTraceInfo(context: TurnContext, answers: QnAMakerResult[],
-        queryOptions?: QnAMakerOptions)
+        function emitTraceInfo(turnContext: TurnContext, answers:
+        QnAMakerResult[], queryOptions?: QnAMakerOptions)
       parameters:
-        - id: context
+        - id: turnContext
           type:
             - TurnContext
-          description: Context for the current turn of conversation with the user.
+          description: Turn Context for the current turn of conversation with the user.
         - id: answers
           type:
             - 'botbuilder-ai.QnAMakerResult[]'
@@ -113,6 +114,37 @@ items:
       return:
         type:
           - 'Promise<botbuilder-ai.QnAMakerResult[]>'
+    package: botbuilder-ai
+  - uid: botbuilder-ai.GenerateAnswerUtils.queryQnaServiceRaw
+    name: 'queryQnaServiceRaw(QnAMakerEndpoint, string, QnAMakerOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called internally to query the QnA Maker service.
+    syntax:
+      content: >-
+        function queryQnaServiceRaw(endpoint: QnAMakerEndpoint, question:
+        string, options?: QnAMakerOptions)
+      parameters:
+        - id: endpoint
+          type:
+            - botbuilder-ai.QnAMakerEndpoint
+          description: The endpoint of the knowledge base to query.
+        - id: question
+          type:
+            - string
+          description: Question which need to be queried.
+        - id: options
+          type:
+            - botbuilder-ai.QnAMakerOptions
+          description: >
+            (Optional) The options for the QnA Maker knowledge base. If null,
+            constructor option is used for this instance.
+          optional: true
+      return:
+        type:
+          - Promise<botbuilder-ai.QnAMakerResults>
     package: botbuilder-ai
   - uid: botbuilder-ai.GenerateAnswerUtils.sortAnswersWithinThreshold
     name: 'sortAnswersWithinThreshold(QnAMakerResult[], QnAMakerOptions)'
@@ -196,3 +228,13 @@ references:
         uid: botbuilder-ai.QnAMakerResult
       - name: '[]>'
         fullName: '[]>'
+  - uid: Promise<botbuilder-ai.QnAMakerResults>
+    name: QnAMakerResults>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: QnAMakerResults
+        fullName: QnAMakerResults
+        uid: botbuilder-ai.QnAMakerResults
+      - name: '>'
+        fullName: '>'

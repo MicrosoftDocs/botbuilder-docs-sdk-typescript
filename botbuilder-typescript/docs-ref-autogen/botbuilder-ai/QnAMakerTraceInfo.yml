@@ -4,9 +4,11 @@ items:
     name: QnAMakerTraceInfo
     fullName: QnAMakerTraceInfo
     children:
+      - botbuilder-ai.QnAMakerTraceInfo.context
       - botbuilder-ai.QnAMakerTraceInfo.knowledgeBaseId
       - botbuilder-ai.QnAMakerTraceInfo.message
       - botbuilder-ai.QnAMakerTraceInfo.metadataBoost
+      - botbuilder-ai.QnAMakerTraceInfo.qnaId
       - botbuilder-ai.QnAMakerTraceInfo.queryResults
       - botbuilder-ai.QnAMakerTraceInfo.scoreThreshold
       - botbuilder-ai.QnAMakerTraceInfo.strictFilters
@@ -15,6 +17,21 @@ items:
       - typeScript
     type: interface
     summary: Trace info that we collect and emit from a QnA Maker query
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerTraceInfo.context
+    name: context
+    fullName: context
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The context for multi-turn responses.
+    optional: true
+    syntax:
+      content: 'context?: QnARequestContext'
+      return:
+        type:
+          - botbuilder-ai.QnARequestContext
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMakerTraceInfo.knowledgeBaseId
     name: knowledgeBaseId
@@ -57,6 +74,21 @@ items:
       return:
         type:
           - 'any[]'
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerTraceInfo.qnaId
+    name: qnaId
+    fullName: qnaId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Id of the current question asked.
+    optional: true
+    syntax:
+      content: 'qnaId?: number'
+      return:
+        type:
+          - number
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMakerTraceInfo.queryResults
     name: queryResults
@@ -115,6 +147,12 @@ items:
           - number
     package: botbuilder-ai
 references:
+  - uid: botbuilder-ai.QnARequestContext
+    name: QnARequestContext
+    spec.typeScript:
+      - name: QnARequestContext
+        fullName: QnARequestContext
+        uid: botbuilder-ai.QnARequestContext
   - uid: 'botbuilder-ai.QnAMakerResult[]'
     name: 'QnAMakerResult[]'
     spec.typeScript:
