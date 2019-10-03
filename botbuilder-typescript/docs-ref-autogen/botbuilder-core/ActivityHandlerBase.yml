@@ -1,0 +1,60 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.ActivityHandlerBase
+    name: ActivityHandlerBase
+    fullName: ActivityHandlerBase
+    children:
+      - botbuilder-core.ActivityHandlerBase.run
+    langs:
+      - typeScript
+    type: class
+    summary: Activity handling base class bots.
+    package: botbuilder-core
+    remarks: >-
+      This provides an inheritble base class for processing incoming events.
+
+      `onTurnActivity()` contains dispatching logic based on the
+      `Activity.type`.
+
+      Developers should implement the `on*Activity()` methods with processing
+
+      logic for each `Activity.type` their bot supports.
+  - uid: botbuilder-core.ActivityHandlerBase.run
+    name: run(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      `run()` is the main "activity handler" function used to ingest activities
+      for processing by Activity Type.
+    syntax:
+      content: 'function run(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: >
+            TurnContext A TurnContext representing an incoming Activity from an
+            Adapter
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder-core
+    remarks: |-
+      Sample code:
+      ```javascript
+       server.post('/api/messages', (req, res) => {
+           adapter.processActivity(req, res, async (context) => {
+               // Route to main dialog.
+               await bot.run(context);
+           });
+      });
+      ```
+references:
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext

@@ -7,31 +7,18 @@ items:
       - botbuilder.TeamsActivityHandler.onConversationUpdate
       - botbuilder.TeamsActivityHandler.onDialog
       - botbuilder.TeamsActivityHandler.onEvent
-      - botbuilder.TeamsActivityHandler.onInvokeActivity
       - botbuilder.TeamsActivityHandler.onMembersAdded
       - botbuilder.TeamsActivityHandler.onMembersRemoved
       - botbuilder.TeamsActivityHandler.onMessage
       - botbuilder.TeamsActivityHandler.onMessageReaction
       - botbuilder.TeamsActivityHandler.onReactionsAdded
       - botbuilder.TeamsActivityHandler.onReactionsRemoved
-      - botbuilder.TeamsActivityHandler.onTeamsAppBasedLinkQuery
-      - botbuilder.TeamsActivityHandler.onTeamsBotMessagePreviewEdit
-      - botbuilder.TeamsActivityHandler.onTeamsBotMessagePreviewSend
-      - botbuilder.TeamsActivityHandler.onTeamsFileConsent
-      - botbuilder.TeamsActivityHandler.onTeamsFileConsentAccept
-      - botbuilder.TeamsActivityHandler.onTeamsFileConsentDecline
-      - botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionFetchTask
-      - botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionQuery
-      - botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionQuerySetting
-      - botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionQuerySettingUrl
-      - botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionSelectItem
-      - botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionSubmitAction
-      - >-
-        botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionSubmitActionDispatch
-      - botbuilder.TeamsActivityHandler.onTeamsO365ConnectorCardAction
-      - botbuilder.TeamsActivityHandler.onTeamsSigninVerifyState
-      - botbuilder.TeamsActivityHandler.onTeamsTaskModuleFetch
-      - botbuilder.TeamsActivityHandler.onTeamsTaskModuleSubmit
+      - botbuilder.TeamsActivityHandler.onTeamsChannelCreatedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsChannelDeletedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsChannelRenamedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsMembersAddedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsMembersRemovedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsTeamRenamedEvent
       - botbuilder.TeamsActivityHandler.onTokenResponseEvent
       - botbuilder.TeamsActivityHandler.onTurn
       - botbuilder.TeamsActivityHandler.onUnrecognizedActivityType
@@ -128,27 +115,6 @@ items:
       channel to a bot.
 
       The meaning of an event activity is defined by the `name` field.
-  - uid: botbuilder.TeamsActivityHandler.onInvokeActivity
-    name: 'onInvokeActivity((context: TurnContext) => Promise<void>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: >-
-        function onInvokeActivity(handler: (context: TurnContext) =>
-        Promise<void>)
-      parameters:
-        - id: handler
-          type:
-            - '(context: TurnContext) => Promise<void>'
-          description: |
-            (context: TurnContext) => Promise<void>
-      return:
-        type:
-          - this
-    package: botbuilder
   - uid: botbuilder.TeamsActivityHandler.onMembersAdded
     name: onMembersAdded(BotHandler)
     children: []
@@ -297,509 +263,159 @@ items:
           - this
     package: botbuilder
     remarks: context.activity.reactionsRemoved will include at least one entry.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsAppBasedLinkQuery
+  - uid: botbuilder.TeamsActivityHandler.onTeamsChannelCreatedEvent
     name: >-
-      onTeamsAppBasedLinkQuery((context: TurnContext, value: AppBasedLinkQuery)
-      => Promise<MessagingExtensionResponse>)
+      onTeamsChannelCreatedEvent((channelInfo: ChannelInfo, teamInfo: TeamInfo,
+      context: TurnContext, next: () => Promise<void>) => Promise<void>)
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      Receives invoke activities with Activity name of
-      'composeExtension/queryLink'
+    summary: ''
     syntax:
       content: >-
-        function onTeamsAppBasedLinkQuery(handler: (context: TurnContext, value:
-        AppBasedLinkQuery) => Promise<MessagingExtensionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: AppBasedLinkQuery) =>
-              Promise<MessagingExtensionResponse>
-          description: >
-            (context: TurnContext, value: AppBasedLinkQuery) =>
-            Promise<MessagingExtensionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: Used in creating a Search-based Message Extension.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsBotMessagePreviewEdit
-    name: >-
-      onTeamsBotMessagePreviewEdit((context: TurnContext, value:
-      MessagingExtensionAction) => Promise<MessagingExtensionActionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with the name 'composeExtension/submitAction'
-      with the 'botMessagePreview' property present on activity.value.
-
-      The value for 'botMessagePreview' is 'edit'.
-    syntax:
-      content: >-
-        function onTeamsBotMessagePreviewEdit(handler: (context: TurnContext,
-        value: MessagingExtensionAction) =>
-        Promise<MessagingExtensionActionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionAction) =>
-              Promise<MessagingExtensionActionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionAction) =>
-            Promise<MessagingExtensionActionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: This invoke activity is received when a user
-  - uid: botbuilder.TeamsActivityHandler.onTeamsBotMessagePreviewSend
-    name: >-
-      onTeamsBotMessagePreviewSend((context: TurnContext, value:
-      MessagingExtensionAction) => Promise<MessagingExtensionActionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with the name 'composeExtension/submitAction'
-      with the 'botMessagePreview' property present on activity.value.
-
-      The value for 'botMessagePreview' is 'send'.
-    syntax:
-      content: >-
-        function onTeamsBotMessagePreviewSend(handler: (context: TurnContext,
-        value: MessagingExtensionAction) =>
-        Promise<MessagingExtensionActionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionAction) =>
-              Promise<MessagingExtensionActionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionAction, next: () =>
-            Promise<void>) => Promise<MessagingExtensionActionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: This invoke activity is received when a user
-  - uid: botbuilder.TeamsActivityHandler.onTeamsFileConsent
-    name: >-
-      onTeamsFileConsent((context: TurnContext, fileConsentCardResponse:
-      FileConsentCardResponse) => Promise<void>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with Activity name of 'fileConsent/invoke'.
-      Handlers registered here run before
-
-      `onTeamsFileConsentAccept` and `onTeamsFileConsentDecline`.
-
-      Developers are not passed a pointer to the next `onTeamsFileConsent`
-      handler because the _wrapper_ around
-
-      the handler will call `onDialogs` handlers after delegating to
-      `onTeamsFileConsentAccept` or `onTeamsFileConsentDecline`.
-    syntax:
-      content: >-
-        function onTeamsFileConsent(handler: (context: TurnContext,
-        fileConsentCardResponse: FileConsentCardResponse) => Promise<void>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, fileConsentCardResponse:
-              FileConsentCardResponse) => Promise<void>
-          description: >
-            (context: TurnContext, fileConsentCardResponse:
-            FileConsentCardResponse) => Promise<void>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: >-
-      It is important that only ONE onTeamsFileConsent handler is registered,
-      otherwise the handlers for
-
-      onTeamsFileConsentAccept and onTeamsFileConsentDecline will run more than
-      once.
-
-      This method wraps the given handler and sends an InvokeResponse on behalf
-      of the user.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsFileConsentAccept
-    name: >-
-      onTeamsFileConsentAccept((context: TurnContext, fileConsentCardResponse:
-      FileConsentCardResponse) => Promise<void>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with Activity name of 'fileConsent/invoke' with
-      confirmation from user
-    syntax:
-      content: >-
-        function onTeamsFileConsentAccept(handler: (context: TurnContext,
-        fileConsentCardResponse: FileConsentCardResponse) => Promise<void>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, fileConsentCardResponse:
-              FileConsentCardResponse) => Promise<void>
-          description: >
-            (context: TurnContext, fileConsentCardResponse:
-            FileConsentCardResponse) => Promise<void>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: This type of invoke activity occur during the File Consent flow.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsFileConsentDecline
-    name: >-
-      onTeamsFileConsentDecline((context: TurnContext, fileConsentCardResponse:
-      FileConsentCardResponse) => Promise<void>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with Activity name of 'fileConsent/invoke' with
-      decline from user
-    syntax:
-      content: >-
-        function onTeamsFileConsentDecline(handler: (context: TurnContext,
-        fileConsentCardResponse: FileConsentCardResponse) => Promise<void>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, fileConsentCardResponse:
-              FileConsentCardResponse) => Promise<void>
-          description: >
-            (context: TurnContext, fileConsentCardResponse:
-            FileConsentCardResponse) => Promise<void>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: This type of invoke activity occur during the File Consent flow.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionFetchTask
-    name: >-
-      onTeamsMessagingExtensionFetchTask((context: TurnContext, value:
-      MessagingExtensionAction) => Promise<MessagingExtensionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Receives invoke activities with the name 'composeExtension/fetchTask'
-    syntax:
-      content: >-
-        function onTeamsMessagingExtensionFetchTask(handler: (context:
-        TurnContext, value: MessagingExtensionAction) =>
-        Promise<MessagingExtensionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionAction) =>
-              Promise<MessagingExtensionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionAction) =>
-            Promise<MessagingExtensionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-  - uid: botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionQuery
-    name: >-
-      onTeamsMessagingExtensionQuery((context: TurnContext, value:
-      MessagingExtensionQuery) => Promise<MessagingExtensionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Receives invoke activities with the name 'composeExtension/query'.
-    syntax:
-      content: >-
-        function onTeamsMessagingExtensionQuery(handler: (context: TurnContext,
-        value: MessagingExtensionQuery) => Promise<MessagingExtensionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionQuery) =>
-              Promise<MessagingExtensionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionQuery) =>
-            Promise<MessagingExtensionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: Used in creating a Search-based Message Extension.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionQuerySetting
-    name: >-
-      onTeamsMessagingExtensionQuerySetting((context: TurnContext, value:
-      MessagingExtensionQuery) => Promise<MessagingExtensionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Receives invoke activities with the name 'composeExtension/setting'
-    syntax:
-      content: >-
-        function onTeamsMessagingExtensionQuerySetting(handler: (context:
-        TurnContext, value: MessagingExtensionQuery) =>
-        Promise<MessagingExtensionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionQuery) =>
-              Promise<MessagingExtensionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionQuery) =>
-            Promise<MessagingExtensionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-  - uid: botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionQuerySettingUrl
-    name: >-
-      onTeamsMessagingExtensionQuerySettingUrl((context: TurnContext, value:
-      MessagingExtensionQuery) => Promise<MessagingExtensionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with the name
-      'composeExtension/querySettingUrl'
-    syntax:
-      content: >-
-        function onTeamsMessagingExtensionQuerySettingUrl(handler: (context:
-        TurnContext, value: MessagingExtensionQuery) =>
-        Promise<MessagingExtensionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionQuery) =>
-              Promise<MessagingExtensionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionAction) =>
-            Promise<MessagingExtensionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-  - uid: botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionSelectItem
-    name: >-
-      onTeamsMessagingExtensionSelectItem((context: TurnContext, value:
-      MessagingExtensionQuery) => Promise<MessagingExtensionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Receives invoke activities with the name 'composeExtension/selectItem'.
-    syntax:
-      content: >-
-        function onTeamsMessagingExtensionSelectItem(handler: (context:
-        TurnContext, value: MessagingExtensionQuery) =>
-        Promise<MessagingExtensionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionQuery) =>
-              Promise<MessagingExtensionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionQuery) =>
-            Promise<MessagingExtensionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: Used in creating a Search-based Message Extension.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionSubmitAction
-    name: >-
-      onTeamsMessagingExtensionSubmitAction((context: TurnContext, value:
-      MessagingExtensionAction) => Promise<MessagingExtensionActionResponse>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Receives invoke activities with the name 'composeExtension/submitAction'.
-    syntax:
-      content: >-
-        function onTeamsMessagingExtensionSubmitAction(handler: (context:
-        TurnContext, value: MessagingExtensionAction) =>
-        Promise<MessagingExtensionActionResponse>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, value: MessagingExtensionAction) =>
-              Promise<MessagingExtensionActionResponse>
-          description: >
-            (context: TurnContext, value: MessagingExtensionAction) =>
-            Promise<MessagingExtensionActionResponse>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: This invoke activity is received when a user
-  - uid: >-
-      botbuilder.TeamsActivityHandler.onTeamsMessagingExtensionSubmitActionDispatch
-    name: >-
-      onTeamsMessagingExtensionSubmitActionDispatch((context: TurnContext,
-      action: MessagingExtensionAction) => Promise<void>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with the name 'composeExtension/submitAction'
-      and is called before the next appropriate handler is called.
-    syntax:
-      content: >-
-        function onTeamsMessagingExtensionSubmitActionDispatch(handler:
-        (context: TurnContext, action: MessagingExtensionAction) =>
+        function onTeamsChannelCreatedEvent(handler: (channelInfo: ChannelInfo,
+        teamInfo: TeamInfo, context: TurnContext, next: () => Promise<void>) =>
         Promise<void>)
       parameters:
         - id: handler
           type:
             - >-
-              (context: TurnContext, action: MessagingExtensionAction) =>
-              Promise<void>
-          description: >
-            handler: (context: TurnContext, action: MessagingExtensionAction) =>
-            Promise<void>
-      return:
-        type:
-          - this
-    package: botbuilder
-    remarks: >-
-      A handler registered through this method does not dispatch to the next
-      handler (either `onTeamsMessagingExtensionSubmitAction`,
-      `onTeamsBotMessagePreviewEdit`, or `onTeamsBotMessagePreviewSend`).
+              (channelInfo: ChannelInfo, teamInfo: TeamInfo, context:
+              TurnContext, next: () => Promise<void>) => Promise<void>
+          description: |+
 
-      This method exists for developers to optionally add more logic before the
-      TeamsActivityHandler routes the activity to one of the
+      return:
+        type:
+          - this
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsChannelDeletedEvent
+    name: >-
+      onTeamsChannelDeletedEvent((channelInfo: ChannelInfo, teamInfo: TeamInfo,
+      context: TurnContext, next: () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        function onTeamsChannelDeletedEvent(handler: (channelInfo: ChannelInfo,
+        teamInfo: TeamInfo, context: TurnContext, next: () => Promise<void>) =>
+        Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (channelInfo: ChannelInfo, teamInfo: TeamInfo, context:
+              TurnContext, next: () => Promise<void>) => Promise<void>
+          description: |+
 
-      previously mentioned handlers.
-  - uid: botbuilder.TeamsActivityHandler.onTeamsO365ConnectorCardAction
-    name: >-
-      onTeamsO365ConnectorCardAction((context: TurnContext, query:
-      O365ConnectorCardActionQuery) => Promise<void>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Receives invoke activities with Activity name of
-      'actionableMessage/executeAction'
-    syntax:
-      content: >-
-        function onTeamsO365ConnectorCardAction(handler: (context: TurnContext,
-        query: O365ConnectorCardActionQuery) => Promise<void>)
-      parameters:
-        - id: handler
-          type:
-            - >-
-              (context: TurnContext, query: O365ConnectorCardActionQuery) =>
-              Promise<void>
-          description: >
-            (context: TurnContext, value: O365ConnectorCardActionQuery) =>
-            Promise<void>
       return:
         type:
           - this
     package: botbuilder
-  - uid: botbuilder.TeamsActivityHandler.onTeamsSigninVerifyState
+  - uid: botbuilder.TeamsActivityHandler.onTeamsChannelRenamedEvent
     name: >-
-      onTeamsSigninVerifyState((context: TurnContext, value:
-      SigninStateVerificationQuery) => Promise<InvokeResponse>)
+      onTeamsChannelRenamedEvent((channelInfo: ChannelInfo, teamInfo: TeamInfo,
+      context: TurnContext, next: () => Promise<void>) => Promise<void>)
     children: []
     type: method
     langs:
       - typeScript
-    summary: Receives invoke activities with Activity name of 'signin/verifyState'
+    summary: ''
     syntax:
       content: >-
-        function onTeamsSigninVerifyState(handler: (context: TurnContext, value:
-        SigninStateVerificationQuery) => Promise<InvokeResponse>)
+        function onTeamsChannelRenamedEvent(handler: (channelInfo: ChannelInfo,
+        teamInfo: TeamInfo, context: TurnContext, next: () => Promise<void>) =>
+        Promise<void>)
       parameters:
         - id: handler
           type:
             - >-
-              (context: TurnContext, value: SigninStateVerificationQuery) =>
-              Promise<InvokeResponse>
-          description: >
-            (context: TurnContext, value: SigninStateVerificationQuery) =>
-            Promise<InvokeResponse>
+              (channelInfo: ChannelInfo, teamInfo: TeamInfo, context:
+              TurnContext, next: () => Promise<void>) => Promise<void>
+          description: |+
+
       return:
         type:
           - this
     package: botbuilder
-  - uid: botbuilder.TeamsActivityHandler.onTeamsTaskModuleFetch
+  - uid: botbuilder.TeamsActivityHandler.onTeamsMembersAddedEvent
     name: >-
-      onTeamsTaskModuleFetch((context: TurnContext, value: TaskModuleRequest) =>
-      Promise<TaskModuleResponse>)
+      onTeamsMembersAddedEvent((membersAdded: ChannelAccount[], teamInfo:
+      TeamInfo, context: TurnContext, next: () => Promise<void>) =>
+      Promise<void>)
     children: []
     type: method
     langs:
       - typeScript
-    summary: Receives invoke activities with Activity name of 'task/fetch'
+    summary: ''
     syntax:
       content: >-
-        function onTeamsTaskModuleFetch(handler: (context: TurnContext, value:
-        TaskModuleRequest) => Promise<TaskModuleResponse>)
+        function onTeamsMembersAddedEvent(handler: (membersAdded:
+        ChannelAccount[], teamInfo: TeamInfo, context: TurnContext, next: () =>
+        Promise<void>) => Promise<void>)
       parameters:
         - id: handler
           type:
             - >-
-              (context: TurnContext, value: TaskModuleRequest) =>
-              Promise<TaskModuleResponse>
-          description: >
-            (context: TurnContext, value: TaskModuleRequest) =>
-            Promise<TaskModuleResponse>
+              (membersAdded: ChannelAccount[], teamInfo: TeamInfo, context:
+              TurnContext, next: () => Promise<void>) => Promise<void>
+          description: |+
+
       return:
         type:
           - this
     package: botbuilder
-  - uid: botbuilder.TeamsActivityHandler.onTeamsTaskModuleSubmit
+  - uid: botbuilder.TeamsActivityHandler.onTeamsMembersRemovedEvent
     name: >-
-      onTeamsTaskModuleSubmit((context: TurnContext, value: TaskModuleRequest)
-      => Promise<TaskModuleResponse | undefined>)
+      onTeamsMembersRemovedEvent((membersRemoved: ChannelAccount[], teamInfo:
+      TeamInfo, context: TurnContext, next: () => Promise<void>) =>
+      Promise<void>)
     children: []
     type: method
     langs:
       - typeScript
-    summary: Receives invoke activities with Activity name of 'task/submit'
+    summary: ''
     syntax:
       content: >-
-        function onTeamsTaskModuleSubmit(handler: (context: TurnContext, value:
-        TaskModuleRequest) => Promise<TaskModuleResponse | undefined>)
+        function onTeamsMembersRemovedEvent(handler: (membersRemoved:
+        ChannelAccount[], teamInfo: TeamInfo, context: TurnContext, next: () =>
+        Promise<void>) => Promise<void>)
       parameters:
         - id: handler
           type:
             - >-
-              (context: TurnContext, value: TaskModuleRequest) =>
-              Promise<TaskModuleResponse | undefined>
-          description: >
-            (context: TurnContext, value: TaskModuleRequest) =>
-            Promise<TaskModuleResponse|undefined>
+              (membersRemoved: ChannelAccount[], teamInfo: TeamInfo, context:
+              TurnContext, next: () => Promise<void>) => Promise<void>
+          description: |+
+
+      return:
+        type:
+          - this
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsTeamRenamedEvent
+    name: >-
+      onTeamsTeamRenamedEvent((teamInfo: TeamInfo, context: TurnContext, next:
+      () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        function onTeamsTeamRenamedEvent(handler: (teamInfo: TeamInfo, context:
+        TurnContext, next: () => Promise<void>) => Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (teamInfo: TeamInfo, context: TurnContext, next: () =>
+              Promise<void>) => Promise<void>
+          description: |+
+
       return:
         type:
           - this
