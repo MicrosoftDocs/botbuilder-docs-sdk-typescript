@@ -20,6 +20,7 @@ items:
       - botbuilder.BotFrameworkAdapter.getUserToken
       - botbuilder.BotFrameworkAdapter.onTurnError
       - botbuilder.BotFrameworkAdapter.processActivity
+      - botbuilder.BotFrameworkAdapter.processActivityDirect
       - botbuilder.BotFrameworkAdapter.sendActivities
       - botbuilder.BotFrameworkAdapter.signOutUser
       - botbuilder.BotFrameworkAdapter.updateActivity
@@ -835,6 +836,65 @@ items:
 
       > without using the `await` keyword. Make sure all async functions use
       await!
+  - uid: botbuilder.BotFrameworkAdapter.processActivityDirect
+    name: 'processActivityDirect(Activity, (context: TurnContext) => Promise<any>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      An asynchronous method that creates a turn context and runs the middleware
+      pipeline for an incoming activity.
+    syntax:
+      content: >-
+        function processActivityDirect(activity: Activity, logic: (context:
+        TurnContext) => Promise<any>)
+      parameters:
+        - id: activity
+          type:
+            - Activity
+          description: The activity to process.
+        - id: logic
+          type:
+            - '(context: TurnContext) => Promise<any>'
+          description: |
+            The function to call at the end of the middleware pipeline.
+      return:
+        type:
+          - Promise<void>
+    package: botbuilder
+    remarks: >-
+      This is the main way a bot receives incoming messages and defines a turn
+      in the conversation. This method:
+
+
+      1. Creates a [TurnContext](xref:botbuilder-core.TurnContext) object for
+      the received activity.
+         - This object is wrapped with a [revocable proxy](https://www.ecma-international.org/ecma-262/6.0/#sec-proxy.revocable).
+         - When this method completes, the proxy is revoked.
+      1. Sends the turn context through the adapter's middleware pipeline.
+
+      1. Sends the turn context to the `logic` function.
+         - The bot may perform additional routing or processing at this time.
+           Returning a promise (or providing an `async` handler) will cause the adapter to wait for any asynchronous operations to complete.
+         - After the `logic` function completes, the promise chain set up by the middleware is resolved.
+
+      Middleware can _short circuit_ a turn. When this happens, subsequent
+      middleware and the
+
+      `logic` function is not called; however, all middleware prior to this
+      point still run to completion.
+
+      For more information about the middleware pipeline, see the
+
+      [how bots
+      work](https://docs.microsoft.com/azure/bot-service/bot-builder-basics) and
+
+      [middleware](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-middleware)
+      articles.
+
+      Use the adapter's [use](xref:botbuilder-core.BotAdapter.use) method to add
+      middleware to the adapter.
   - uid: botbuilder.BotFrameworkAdapter.sendActivities
     name: 'sendActivities(TurnContext, Partial<Activity>[])'
     children: []
@@ -960,8 +1020,8 @@ items:
       an activity from your bot code.
   - uid: botbuilder.BotFrameworkAdapter.use
     name: >-
-      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
-      Middleware[])
+      use(Middleware | (context: TurnContext, next: () => Promise<void>) =>
+      Promise<void>[])
     children: []
     type: method
     langs:
@@ -969,14 +1029,14 @@ items:
     summary: Registers middleware handlers(s) with the adapter.
     syntax:
       content: >-
-        function use(middleware: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[])
+        function use(middleware: Middleware | (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void>[])
       parameters:
         - id: middleware
           type:
             - >-
-              (context: TurnContext, next: () => Promise<void>) => Promise<void>
-              | Middleware[]
+              Middleware | (context: TurnContext, next: () => Promise<void>) =>
+              Promise<void>[]
           description: |
             One or more middleware handlers(s) to register.
       return:

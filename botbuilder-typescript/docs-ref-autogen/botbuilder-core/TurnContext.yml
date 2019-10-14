@@ -11,6 +11,7 @@ items:
       - botbuilder-core.TurnContext.getConversationReference
       - botbuilder-core.TurnContext.getMentions
       - botbuilder-core.TurnContext.getReplyConversationReference
+      - botbuilder-core.TurnContext.isFromStreamingConnection
       - botbuilder-core.TurnContext.onDeleteActivity
       - botbuilder-core.TurnContext.onSendActivities
       - botbuilder-core.TurnContext.onUpdateActivity
@@ -286,6 +287,31 @@ items:
       TurnContext.getReplyConversationReference(context.activity, reply);
 
       ```
+  - uid: botbuilder-core.TurnContext.isFromStreamingConnection
+    name: isFromStreamingConnection(Activity)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Determine if the Activity was sent via an Http/Https connection or
+      Streaming
+
+      This can be determined by looking at the ServiceUrl property:
+        (1) All channels that send messages via http/https are not streaming
+        (2) Channels that send messages via streaming have a ServiceUrl that does not begin with http/https.
+    syntax:
+      content: 'static function isFromStreamingConnection(activity: Activity)'
+      parameters:
+        - id: activity
+          type:
+            - Activity
+          description: |+
+
+      return:
+        type:
+          - boolean
+    package: botbuilder-core
   - uid: botbuilder-core.TurnContext.onDeleteActivity
     name: onDeleteActivity(DeleteActivityHandler)
     children: []
