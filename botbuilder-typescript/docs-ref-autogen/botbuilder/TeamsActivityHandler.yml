@@ -37,24 +37,40 @@ items:
     langs:
       - typeScript
     summary: >-
-      Receives all ConversationUpdate activities, regardless of whether members
-      were added or removed
+      Registers an activity event handler for the _conversation update_ event,
+      emitted for every incoming
+
+      conversation update activity.
     syntax:
       content: 'function onConversationUpdate(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
     remarks: >-
-      Conversation update activities describe a change in a conversation's
-      members, description, existence, or otherwise.
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      Conversation update activities describe a changes to a conversation's
+      metadata, such as title, participants,
+
+      or other channel-specific information.
+
+
+      To handle when members are added to or removed from the conversation, use
+      the
+
+      [onMembersAdded](xref:botbuilder-core.ActivityHandler.onMembersAdded) and
+
+      [onMembersRemoved](xref:botbuilder-core.ActivityHandler.onMembersRemoved)
+      sub-type event handlers.
   - uid: botbuilder.TeamsActivityHandler.onDialog
     name: onDialog(BotHandler)
     children: []
@@ -62,24 +78,29 @@ items:
     langs:
       - typeScript
     summary: >-
-      onDialog fires at the end of the event emission process, and should be
-      used to handle Dialog activity.
+      Registers an activity event handler for the _dialog_ event, emitted as the
+      last event for an incoming activity.
     syntax:
       content: 'function onDialog(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
-    remarks: |-
-      Sample code:
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      For example:
+
       ```javascript
+
       bot.onDialog(async (context, next) => {
            if (context.activity.type === ActivityTypes.Message) {
                const dialogContext = await dialogSet.createContext(context);
@@ -89,6 +110,7 @@ items:
 
            await next();
       });
+
       ```
   - uid: botbuilder.TeamsActivityHandler.onEvent
     name: onEvent(BotHandler)
@@ -96,25 +118,49 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Receives all Event activities.
+    summary: >-
+      Registers an activity event handler for the _event_ event, emitted for
+      every incoming event activity.
     syntax:
       content: 'function onEvent(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
     remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
       Event activities communicate programmatic information from a client or
       channel to a bot.
 
-      The meaning of an event activity is defined by the `name` field.
+      The meaning of an event activity is defined by the activity's
+
+      [name](xref:botframework-schema.Activity.name) property, which is
+      meaningful within the scope
+
+      of a channel. Event activities are designed to carry both interactive
+      information (such as
+
+      button clicks) and non-interactive information (such as a notification of
+      a client
+
+      automatically updating an embedded speech model).
+
+
+      To handle a `tokens/response` event event, use the
+
+      [onTokenResponseEvent](xref:botbuilder-core.ActivityHandler.onTokenResponseEvent)
+      sub-type
+
+      event handler. To handle other named events, add logic to this handler.
   - uid: botbuilder.TeamsActivityHandler.onMembersAdded
     name: onMembersAdded(BotHandler)
     children: []
@@ -122,22 +168,38 @@ items:
     langs:
       - typeScript
     summary: >-
-      Receives only ConversationUpdate activities representing members being
-      added.
+      Registers an activity event handler for the _members added_ event, emitted
+      for any incoming
+
+      conversation update activity that includes members added to the
+      conversation.
     syntax:
       content: 'function onMembersAdded(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
-    remarks: context.activity.membersAdded will include at least one entry.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [membersAdded](xref:botframework-schema.Activity.membersAdded) property
+
+      contains the members added to the conversation, which can include the bot.
+
+
+      To handle conversation update events in general, use the
+
+      [onConversationUpdate](xref:botbuilder-core.ActivityHandler.onConversationUpdate)
+      type-specific event handler.
   - uid: botbuilder.TeamsActivityHandler.onMembersRemoved
     name: onMembersRemoved(BotHandler)
     children: []
@@ -145,51 +207,76 @@ items:
     langs:
       - typeScript
     summary: >-
-      Receives only ConversationUpdate activities representing members being
-      removed.
+      Registers an activity event handler for the _members removed_ event,
+      emitted for any incoming
+
+      conversation update activity that includes members removed from the
+      conversation.
     syntax:
       content: 'function onMembersRemoved(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
-    remarks: context.activity.membersRemoved will include at least one entry.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [membersRemoved](xref:botframework-schema.Activity.membersRemoved)
+      property
+
+      contains the members removed from the conversation, which can include the
+      bot.
+
+
+      To handle conversation update events in general, use the
+
+      [onConversationUpdate](xref:botbuilder-core.ActivityHandler.onConversationUpdate)
+      type-specific event handler.
   - uid: botbuilder.TeamsActivityHandler.onMessage
     name: onMessage(BotHandler)
     children: []
     type: method
     langs:
       - typeScript
-    summary: Receives all incoming Message activities
+    summary: >-
+      Registers an activity event handler for the _message_ event, emitted for
+      every incoming message activity.
     syntax:
       content: 'function onMessage(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
     remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
       Message activities represent content intended to be shown within a
-      conversational interface.
+      conversational interface
 
-      Message activities may contain text, speech, interactive cards, and binary
-      or unknown attachments.
+      and can contain text, speech, interactive cards, and binary or unknown
+      attachments.
 
-      Note that while most messages do contain text, this field is not always
-      present!
+      Not all message activities contain text, the activity's
+      [text](xref:botframework-schema.Activity.text)
+
+      property can be `null` or `undefined`.
   - uid: botbuilder.TeamsActivityHandler.onMessageReaction
     name: onMessageReaction(BotHandler)
     children: []
@@ -197,26 +284,49 @@ items:
     langs:
       - typeScript
     summary: >-
-      Receives only MessageReaction activities, regardless of whether message
-      reactions were added or removed
+      Registers an activity event handler for the _message reaction_ event,
+      emitted for every incoming
+
+      message reaction activity.
     syntax:
       content: 'function onMessageReaction(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
     remarks: >-
-      MessageReaction activities are sent to the bot when a message reacion,
-      such as 'like' or 'sad' are
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
 
-      associated with an activity previously sent from the bot.
+
+      Message reaction activities represent a social interaction on an existing
+      message activity
+
+      within a conversation. The original activity is referred to by the message
+      reaction activity's
+
+      [replyToId](xref:botframework-schema.Activity.replyToId) property. The
+
+      [from](xref:botframework-schema.Activity.from) property represents the
+      source of the reaction,
+
+      such as the user that reacted to the message.
+
+
+      To handle when reactions are added to or removed from messages in the
+      conversation, use the
+
+      [onReactionsAdded](xref:botbuilder-core.ActivityHandler.onReactionsAdded)
+      and
+
+      [onReactionsRemoved](xref:botbuilder-core.ActivityHandler.onReactionsRemoved)
+      sub-type event handlers.
   - uid: botbuilder.TeamsActivityHandler.onReactionsAdded
     name: onReactionsAdded(BotHandler)
     children: []
@@ -224,22 +334,38 @@ items:
     langs:
       - typeScript
     summary: >-
-      Receives only MessageReaction activities representing message reactions
-      being added.
+      Registers an activity event handler for the _reactions added_ event,
+      emitted for any incoming
+
+      message reaction activity that describes reactions added to a message.
     syntax:
       content: 'function onReactionsAdded(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
-    remarks: context.activity.reactionsAdded will include at least one entry.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [reactionsAdded](xref:botframework-schema.Activity.reactionsAdded)
+      property
+
+      includes one or more reactions that were added.
+
+
+      To handle message reaction events in general, use the
+
+      [onMessageReaction](xref:botbuilder-core.ActivityHandler.onMessageReaction)
+      type-specific event handler.
   - uid: botbuilder.TeamsActivityHandler.onReactionsRemoved
     name: onReactionsRemoved(BotHandler)
     children: []
@@ -247,22 +373,38 @@ items:
     langs:
       - typeScript
     summary: >-
-      Receives only MessageReaction activities representing message reactions
-      being removed.
+      Registers an activity event handler for the _reactions removed_ event,
+      emitted for any incoming
+
+      message reaction activity that describes reactions removed from a message.
     syntax:
       content: 'function onReactionsRemoved(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
-    remarks: context.activity.reactionsRemoved will include at least one entry.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [reactionsRemoved](xref:botframework-schema.Activity.reactionsRemoved)
+      property
+
+      includes one or more reactions that were removed.
+
+
+      To handle message reaction events in general, use the
+
+      [onMessageReaction](xref:botbuilder-core.ActivityHandler.onMessageReaction)
+      type-specific event handler.
   - uid: botbuilder.TeamsActivityHandler.onTeamsChannelCreatedEvent
     name: >-
       onTeamsChannelCreatedEvent((channelInfo: ChannelInfo, teamInfo: TeamInfo,
@@ -426,21 +568,44 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Receives event activities of type 'tokens/response'
+    summary: >-
+      Registers an activity event handler for the _tokens-response_ event,
+      emitted for any incoming
+
+      `tokens/response` event activity. These are generated as part of the OAuth
+      authentication flow.
     syntax:
       content: 'function onTokenResponseEvent(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
-    remarks: These events occur during the oauth flow
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's [value](xref:botframework-schema.Activity.value) property
+      contains the user token.
+
+
+      If your bot handles authentication using an
+      [OAuthPrompt](xref:botbuilder-dialogs.OAuthPrompt)
+
+      within a dialog, then the dialog will need to receive this activity to
+      complete the authentication flow.
+
+
+      To handle other named events and event events in general, use the
+
+      [onEvent](xref:botbuilder-core.ActivityHandler.onEvent) type-specific
+      event handler.
   - uid: botbuilder.TeamsActivityHandler.onTurn
     name: onTurn(BotHandler)
     children: []
@@ -448,21 +613,23 @@ items:
     langs:
       - typeScript
     summary: >-
-      Bind a handler to the Turn event that is fired for every incoming
-      activity, regardless of type
+      Registers an activity event handler for the _turn_ event, emitted for
+      every incoming activity, regardless of type.
     syntax:
       content: 'function onTurn(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
   - uid: botbuilder.TeamsActivityHandler.onUnrecognizedActivityType
     name: onUnrecognizedActivityType(BotHandler)
     children: []
@@ -470,52 +637,76 @@ items:
     langs:
       - typeScript
     summary: >-
-      UnrecognizedActivityType will fire if an activity is received with a type
-      that has not previously been defined.
+      Registers an activity event handler for the _unrecognized activity type_
+      event, emitted for an
+
+      incoming activity with a type for which the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler)
+
+      doesn't provide an event handler.
     syntax:
       content: 'function onUnrecognizedActivityType(handler: BotHandler)'
       parameters:
         - id: handler
           type:
             - BotHandler
-          description: >
-            BotHandler A handler function in the form async(context, next) => {
-            ... }
+          description: |
+            The event handler.
       return:
         type:
           - this
     package: botbuilder
     remarks: >-
-      Some channels or custom adapters may create Actitivies with different,
-      "unofficial" types.
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
 
-      These events will be passed through as UnrecognizedActivityType events.
 
-      Check `context.activity.type` for the type value.
+      The `ActivityHandler` does not define events for all activity types
+      defined in the
+
+      [Bot Framework Activity schema](http://aka.ms/botSpecs-activitySchema). In
+      addition,
+
+      channels and custom adapters can create
+      [Activities](xref:botframework-schema.Activity) with
+
+      types not in the schema. When the activity handler receives such an event,
+      it emits an unrecognized activity type event.
+
+
+      The activity's [type](xref:botframework-schema.Activity.type) property
+      contains the activity type.
   - uid: botbuilder.TeamsActivityHandler.run
     name: run(TurnContext)
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      `run()` is the main "activity handler" function used to ingest activities
-      into the event emission process.
+    summary: Called to initiate the event emission process.
     syntax:
       content: 'function run(context: TurnContext)'
       parameters:
         - id: context
           type:
             - TurnContext
-          description: >
-            TurnContext A TurnContext representing an incoming Activity from an
-            Adapter
+          description: |
+            The context object for the current turn.
       return:
         type:
           - Promise<void>
     package: botbuilder
-    remarks: |-
-      Sample code:
+    remarks: >-
+      Typically, you would provide this method as the function handler that the
+      adapter calls
+
+      to perform the bot's logic after the received activity has been
+      pre-processed by the adapter
+
+      and routed through any middleware.
+
+
+      For example:
+
       ```javascript
        server.post('/api/messages', (req, res) => {
            adapter.processActivity(req, res, async (context) => {
@@ -523,4 +714,11 @@ items:
                await bot.run(context);
            });
       });
+
       ```
+
+
+      **See also**
+
+      -
+      [BotFrameworkAdapter.processActivity](xref:botbuilder.BotFrameworkAdapter.processActivity)

@@ -232,16 +232,26 @@ items:
       - typeScript
     type: property
     summary: >-
-      Gets/sets a error handler that will be called anytime an uncaught
-      exception is raised during
-
-      a turn.
+      Gets or sets an error handler that can catch exceptions in the middleware
+      or application.
     syntax:
       content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
         type:
           - '(context: TurnContext, error: Error) => Promise<void>'
     package: botbuilder-core
+    remarks: >-
+      The error handler is called with these parameters:
+
+
+      | Name | Type | Description |
+
+      | :--- | :--- | :--- |
+
+      | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The
+      context object for the turn. |
+
+      | `error` | `Error` | The Node.js error thrown. |
   - uid: botbuilder-core.TestAdapter.send
     name: send(string | Partial<Activity>)
     children: []
@@ -479,7 +489,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Registers middleware handlers(s) with the adapter.
+    summary: Adds middleware to the adapter's pipeline.
     syntax:
       content: >-
         function use(middleware: (context: TurnContext, next: () =>
@@ -491,11 +501,16 @@ items:
               (context: TurnContext, next: () => Promise<void>) => Promise<void>
               | botbuilder-core.Middleware[]
           description: |
-            One or more middleware handlers(s) to register.
+            The middleware or middleware handlers to add.
       return:
         type:
           - this
     package: botbuilder-core
+    remarks: >-
+      Middleware is added to the adapter at initialization time.
+
+      Each turn, the adapter calls its middleware in the order in which you
+      added it.
 references:
   - uid: botbuilder-core.BotAdapter
     name: BotAdapter

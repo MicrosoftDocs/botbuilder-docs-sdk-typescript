@@ -22,18 +22,30 @@ items:
     langs:
       - typeScript
     type: class
-    summary: A context object used to manipulate a dialog stack.
+    summary: >-
+      The context for the current dialog turn with respect to a specific
+      [DialogSet](xref:botbuilder-dialogs.DialogSet).
     package: botbuilder-dialogs
     remarks: >-
-      This is typically created through a call to `DialogSet.createContext()`
-      and is then passed
+      This includes the turn context, information about the dialog set, and the
+      state of the dialog stack.
 
-      through to all of the bots dialogs and waterfall steps.
 
+      Use a dialog set's
+      [createContext](xref:botbuilder-dialogs.DialogSet.createContext) method to
+      create the dialog context.
+
+      Use the methods of the dialog context to manage the progression of dialogs
+      in the set.
+
+
+      For example:
 
       ```JavaScript
 
       const dc = await dialogs.createContext(turnContext);
+
+      const result = await dc.continueDialog();
 
       ```
   - uid: botbuilder-dialogs.DialogContext.activeDialog
@@ -44,8 +56,8 @@ items:
       - typeScript
     type: property
     summary: >-
-      Returns the persisted instance of the active dialog on the top of the
-      stack or `undefined` if
+      Returns the state information for the dialog on the top of the dialog
+      stack, or `undefined` if
 
       the stack is empty.
     syntax:
@@ -54,23 +66,13 @@ items:
         type:
           - botbuilder-dialogs.DialogInstance | undefined
     package: botbuilder-dialogs
-    remarks: >-
-      Dialogs can use this to persist custom state in between conversation
-      turns:
-
-
-      ```JavaScript
-
-      dc.activeDialog.state = { someFlag: true };
-
-      ```
   - uid: botbuilder-dialogs.DialogContext.beginDialog
     name: 'beginDialog(string, object)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: Pushes a new dialog onto the dialog stack.
+    summary: Starts a dialog instance and pushes it onto the dialog stack.
     syntax:
       content: 'function beginDialog(dialogId: string, options?: object)'
       parameters:
@@ -81,9 +83,8 @@ items:
         - id: options
           type:
             - object
-          description: >
-            (Optional) additional argument(s) to pass to the dialog being
-            started.
+          description: |
+            Optional. Information to pass into the dialog when it starts.
           optional: true
       return:
         type:
@@ -91,31 +92,46 @@ items:
     package: botbuilder-dialogs
     remarks: >-
       If there's already an active dialog on the stack, that dialog will be
-      paused until the new
+      paused until
 
-      dialog calls [endDialog()](#enddialog).
+      it is again the top dialog on the stack.
 
+
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
+
+      the status of the dialog stack after this method completes.
+
+
+      This method throws an exception if the requested dialog can't be found in
+      this dialog context
+
+      or any of its ancestors.
+
+
+      For example:
 
       ```JavaScript
 
-      return await dc.beginDialog('greeting', { name: user.name });
+      const result = await dc.beginDialog('greeting', { name: user.name });
 
       ```
 
 
-      The `DialogTurnResult.status` returned can be:
+      **See also**
 
-      - `DialogTurnStatus.active` if the dialog started was a multi-turn dialog.
+      - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
 
-      - `DialogTurnStatus.completed` if the dialog started was a single-turn
-      dialog.
+      - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
+
+      - [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
   - uid: botbuilder-dialogs.DialogContext.cancelAllDialogs
     name: cancelAllDialogs()
     children: []
     type: method
     langs:
       - typeScript
-    summary: Cancels any dialogs on the stack resulting in an empty stack.
+    summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
     syntax:
       content: function cancelAllDialogs()
       parameters: []
@@ -124,11 +140,24 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      The dialogs being cancelled will have their `Dialog.endDialog()` method
-      called before being
+      This calls each dialog's
+      [endDialog](xref:botbuilder-dialogs.Dialog.endDialog) method before
 
-      removed from the stack.
+      removing the dialog from the stack.
 
+
+      If there were any dialogs on the stack initially, the
+      [status](xref:botbuilder-dialogs.DialogTurnResult.status)
+
+      of the return value is
+      [cancelled](xref:botbuilder-dialogs.DialogTurnStatus.cancelled);
+      otherwise, it's
+
+      [empty](xref:botbuilder-dialogs.DialogTurnStatus.empty).
+
+
+      This example clears a dialog stack, `dc`, before starting a 'bookFlight'
+      dialog.
 
       ```JavaScript
 
@@ -139,11 +168,9 @@ items:
       ```
 
 
-      The `DialogTurnResult.status` returned can be:
+      **See also**
 
-      - `DialogTurnStatus.cancelled` if one or more dialogs were cancelled.
-
-      - `DialogTurnStatus.empty` if the stack was empty.
+      - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
   - uid: botbuilder-dialogs.DialogContext.context
     name: context
     fullName: context
@@ -151,7 +178,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Context for the current turn of conversation.
+    summary: Gets the context object for the turn.
     syntax:
       content: 'public context: TurnContext'
       return:
@@ -164,7 +191,12 @@ items:
     type: method
     langs:
       - typeScript
-    summary: 'Continues execution of the active multi-turn dialog, if there is one.'
+    summary: >-
+      Continues execution of the active dialog, if there is one, by passing this
+      dialog context to its
+
+      [Dialog.continueDialog](xref:botbuilder-dialogs.Dialog.continueDialog)
+      method.
     syntax:
       content: function continueDialog()
       parameters: []
@@ -173,11 +205,22 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      The stack will be inspected and the active dialog will be retrieved using
-      `DialogSet.find()`.
+      After the call completes, you can check the turn context's
+      [responded](xref:botbuilder-core.TurnContext.responded)
 
-      The dialog will then have its `Dialog.continueDialog()` method called.
+      property to determine if the dialog sent a reply to the user.
 
+
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
+
+      the status of the dialog stack after this method completes.
+
+
+      Typically, you would call this from within your bot's turn handler.
+
+
+      For example:
 
       ```JavaScript
 
@@ -192,21 +235,18 @@ items:
       ```
 
 
-      The `DialogTurnResult.status` returned can be:
+      **See also**
 
-      - `DialogTurnStatus.active` if there's still one or more dialogs on the
-      stack.
-
-      - `DialogTurnStatus.completed` if the last dialog on the stack just ended.
-
-      - `DialogTurnStatus.empty` if the stack was empty.
+      - [Dialog.continueDialog](xref:botbuilder-dialogs.Dialog.continueDialog)
   - uid: botbuilder-dialogs.DialogContext.constructor
     name: 'DialogContext(DialogSet, TurnContext, DialogState)'
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: Creates a new DialogContext instance.
+    summary: >-
+      Creates an new instance of the
+      [DialogContext](xref:botbuilder-dialogs.DialogContext) class.
     syntax:
       content: >-
         new DialogContext(dialogs: DialogSet, context: TurnContext, state:
@@ -215,16 +255,16 @@ items:
         - id: dialogs
           type:
             - botbuilder-dialogs.DialogSet
-          description: Parent dialog set.
+          description: The dialog set for which to create the dialog context.
         - id: context
           type:
             - TurnContext
-          description: Context for the current turn of conversation with the user.
+          description: The context object for the current turn of the bot.
         - id: state
           type:
             - botbuilder-dialogs.DialogState
           description: |
-            State object being used to persist the dialog stack.
+            The state object to use to read and write dialog state to storage.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogContext.dialogs
     name: dialogs
@@ -233,7 +273,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Set of dialogs that can be called from this context.
+    summary: Gets the dialogs that can be called directly from this context.
     syntax:
       content: 'public dialogs: DialogSet'
       return:
@@ -248,7 +288,7 @@ items:
       - typeScript
     summary: >-
       Ends a dialog by popping it off the stack and returns an optional result
-      to the dialogs
+      to the dialog's
 
       parent.
     syntax:
@@ -258,42 +298,60 @@ items:
           type:
             - any
           description: >
-            (Optional) result to pass to the parent dialogs `Dialog.resume()`
-            method.
+            Optional. A result to pass to the parent logic. This might be the
+            next dialog
+                 on the stack, or it might be the bot's turn handler, if this was the last dialog on the stack.
           optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      The parent dialog is the dialog the started the one being ended via a call
-      to either
+      The _parent_ dialog is the next dialog on the dialog stack, if there is
+      one. This method
 
-      [beginDialog()](#begindialog) or [prompt()](#prompt). The parent dialog
-      will have its
+      calls the parent dialog's
+      [resumeDialog](xref:botbuilder-dialogs.Dialog.resumeDialog) method,
 
-      `Dialog.resumeDialog()` method called with any returned `result`. If there
-      is no parent
+      passing the result returned by the ending dialog. If there is no parent
+      dialog, the turn ends
 
-      dialog then turn will end and the result will be passed to the bot via
+      and the result is available to the bot through the returned object's
 
-      `DialogTurnResult.result`.
+      [result](xref:botbuilder-dialogs.DialogTurnResult.result) property.
 
+
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
+
+      the status of the dialog stack after this method completes.
+
+
+      Typically, you would call this from within the logic for a specific dialog
+      to signal back to
+
+      the dialog context that the dialog has completed, the dialog should be
+      removed from the stack,
+
+      and the parent dialog should resume.
+
+
+      For example:
 
       ```JavaScript
 
-      return await dc.endDialog();
+      return await dc.endDialog(returnValue);
 
       ```
 
 
-      The `DialogTurnResult.status` returned can be:
+      **See also**
 
-      - `DialogTurnStatus.active` the parent dialog was resumed and is still
-      active.
+      - [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
 
-      - `DialogTurnStatus.completed` the parent dialog completed or there was no
-      parent dialog to resume.
+      - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
+
+      - [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog)
   - uid: botbuilder-dialogs.DialogContext.findDialog
     name: findDialog(string)
     children: []
@@ -314,10 +372,22 @@ items:
           - botbuilder-dialogs.Dialog | undefined
     package: botbuilder-dialogs
     remarks: >-
+      If the dialog to start is not found in the
+      [DialogSet](xref:botbuilder-dialogs.DialogSet) associated
+
+      with this dialog context, it attempts to find the dialog in its parent
+      dialog context.
+
+
       If the dialog cannot be found within the current `DialogSet`, the parent
       `DialogContext`
 
       will be searched if there is one.
+
+
+      **See also**
+
+      - [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs)
   - uid: botbuilder-dialogs.DialogContext.parent
     name: parent
     fullName: parent
@@ -325,14 +395,24 @@ items:
     langs:
       - typeScript
     type: property
-    summary: The parent DialogContext if any.
+    summary: >-
+      The parent dialog context for this dialog context, or `undefined` if this
+      context doesn't have a parent.
     syntax:
       content: 'public parent: DialogContext | undefined'
       return:
         type:
           - botbuilder-dialogs.DialogContext | undefined
     package: botbuilder-dialogs
-    remarks: This will be used when searching for dialogs to start.
+    remarks: >-
+      When it attempts to start a dialog, the dialog context searches for the
+      [id](xref:botbuilder-dialogs.Dialog.id)
+
+      in its [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs). If the
+      dialog to start is not found
+
+      in this dialog context, it searches in its parent dialog context, and so
+      on.
   - uid: botbuilder-dialogs.DialogContext.prompt
     name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
     children: []
@@ -340,8 +420,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      Helper function to simplify formatting the options for calling a `Prompt`
-      based dialog.
+      Helper function to simplify formatting the options for calling a prompt
+      dialog.
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
@@ -350,23 +430,24 @@ items:
         - id: dialogId
           type:
             - string
-          description: ID of the prompt to start.
+          description: ID of the prompt dialog to start.
         - id: promptOrOptions
           type:
             - string | Partial<Activity> | botbuilder-dialogs.PromptOptions
-          description: >-
-            Initial prompt to send the user or a set of options to configure the
-            prompt with.
+          description: |-
+            The text of the initial prompt to send the user,
+                 the activity to send as the initial prompt, or
+                 the object with which to format the prompt dialog.
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      This is a lightweight wrapper abound [beginDialog()](#begindialog). It
-      fills in a
+      This helper method formats the object to use as the `options` parameter,
+      and then calls
 
-      `PromptOptions` structure and then passes it through to
-      `dc.beginDialog(dialogId, options)`.
+      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
+      the specified prompt dialog.
 
 
       ```JavaScript
@@ -384,8 +465,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      Helper function to simplify formatting the options for calling a `Prompt`
-      based dialog.
+      Helper function to simplify formatting the options for calling a prompt
+      dialog.
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
@@ -408,11 +489,11 @@ items:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      This is a lightweight wrapper abound [beginDialog()](#begindialog). It
-      fills in a
+      This helper method formats the object to use as the `options` parameter,
+      and then calls
 
-      `PromptOptions` structure and then passes it through to
-      `dc.beginDialog(dialogId, options)`.
+      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
+      the specified prompt dialog.
 
 
       ```JavaScript
@@ -434,31 +515,35 @@ items:
         - id: dialogId
           type:
             - string
-          description: ID of the new dialog to start.
+          description: ID of the dialog to start.
         - id: options
           type:
             - object
           description: |
-            (Optional) additional argument(s) to pass to the new dialog.
+            Optional. Information to pass into the dialog when it starts.
           optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
     package: botbuilder-dialogs
     remarks: >-
-      This method is conceptually equivalent to calling
-      [endDialog()](#enddialog) and then
-
-      immediately calling [beginDialog()](#begindialog). The difference is that
-      the parent
-
-      dialog is not resumed or otherwise notified that the dialog it started has
-      been replaced.
+      This is particularly useful for creating a loop or redirecting to another
+      dialog.
 
 
-      This method is particularly useful for creating conversational loops
-      within your bot:
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
 
+      the status of the dialog stack after this method completes.
+
+
+      This method is similar to ending the current dialog and immediately
+      beginning the new one.
+
+      However, the parent dialog is neither resumed nor otherwise notified.
+
+
+      For example:
 
       ```JavaScript
 
@@ -481,15 +566,20 @@ items:
       this.addDialog(new ConfirmPrompt('continuePrompt'));
 
       ```
+
+
+      **See also**
+
+      - [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
+
+      - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
   - uid: botbuilder-dialogs.DialogContext.repromptDialog
     name: repromptDialog()
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      Requests the [activeDialog](#activeDialog) to re-prompt the user for
-      input.
+    summary: Requests the active dialog to re-prompt the user for input.
     syntax:
       content: function repromptDialog()
       parameters: []
@@ -497,11 +587,17 @@ items:
         type:
           - Promise<void>
     package: botbuilder-dialogs
-    remarks: |-
-      The active dialogs `Dialog.repromptDialog()` method will be called.
+    remarks: >-
+      This calls the active dialog's
+      [repromptDialog](xref:botbuilder-dialogs.Dialog.repromptDialog) method.
+
+
+      For example:
 
       ```JavaScript
+
       await dc.repromptDialog();
+
       ```
   - uid: botbuilder-dialogs.DialogContext.stack
     name: stack
@@ -510,7 +606,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Current dialog stack.
+    summary: Gets the current dialog stack.
     syntax:
       content: 'public stack: DialogInstance[]'
       return:
