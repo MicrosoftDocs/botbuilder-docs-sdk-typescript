@@ -83,7 +83,9 @@ items:
           - 'string | botbuilder-dialogs.Choice[] | undefined'
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ConfirmPrompt.constructor
-    name: 'ConfirmPrompt(string, PromptValidator<boolean>, string)'
+    name: >-
+      ConfirmPrompt(string, PromptValidator<boolean>, string,
+      ChoiceDefaultsConfirmPrompt)
     children: []
     type: constructor
     langs:
@@ -92,7 +94,8 @@ items:
     syntax:
       content: >-
         new ConfirmPrompt(dialogId: string, validator?:
-        PromptValidator<boolean>, defaultLocale?: string)
+        PromptValidator<boolean>, defaultLocale?: string, choiceDefaults?:
+        ChoiceDefaultsConfirmPrompt)
       parameters:
         - id: dialogId
           type:
@@ -113,6 +116,11 @@ items:
           description: >
             (Optional) locale to use if `TurnContext.activity.locale` is not
             specified. Defaults to a value of `en-us`.
+          optional: true
+        - id: choiceDefaults
+          type:
+            - ChoiceDefaultsConfirmPrompt
+          description: ''
           optional: true
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ConfirmPrompt.continueDialog

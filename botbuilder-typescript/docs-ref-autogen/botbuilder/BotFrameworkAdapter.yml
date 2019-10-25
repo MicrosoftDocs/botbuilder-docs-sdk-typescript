@@ -21,7 +21,6 @@ items:
       - botbuilder.BotFrameworkAdapter.onTurnError
       - botbuilder.BotFrameworkAdapter.processActivity
       - botbuilder.BotFrameworkAdapter.processActivityDirect
-      - botbuilder.BotFrameworkAdapter.processRequest
       - botbuilder.BotFrameworkAdapter.sendActivities
       - botbuilder.BotFrameworkAdapter.signOutUser
       - botbuilder.BotFrameworkAdapter.updateActivity
@@ -902,28 +901,6 @@ items:
 
       Use the adapter's [use](xref:botbuilder-core.BotAdapter.use) method to add
       middleware to the adapter.
-  - uid: botbuilder.BotFrameworkAdapter.processRequest
-    name: processRequest(IReceiveRequest)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Checks the validity of the request and attempts to map it the correct
-      virtual endpoint,
-
-      then generates and returns a response if appropriate.
-    syntax:
-      content: 'function processRequest(request: IReceiveRequest)'
-      parameters:
-        - id: request
-          type:
-            - IReceiveRequest
-          description: A ReceiveRequest from the connected channel.
-      return:
-        type:
-          - Promise<StreamingResponse>
-    package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.sendActivities
     name: 'sendActivities(TurnContext, Partial<Activity>[])'
     children: []
@@ -1038,8 +1015,8 @@ items:
       call may throw an exception.
   - uid: botbuilder.BotFrameworkAdapter.use
     name: >-
-      use(Middleware | (context: TurnContext, next: () => Promise<void>) =>
-      Promise<void>[])
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
     children: []
     type: method
     langs:
@@ -1047,14 +1024,14 @@ items:
     summary: Adds middleware to the adapter's pipeline.
     syntax:
       content: >-
-        function use(middleware: Middleware | (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void>[])
+        function use(middleware: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
       parameters:
         - id: middleware
           type:
             - >-
-              Middleware | (context: TurnContext, next: () => Promise<void>) =>
-              Promise<void>[]
+              (context: TurnContext, next: () => Promise<void>) => Promise<void>
+              | Middleware[]
           description: |
             The middleware or middleware handlers to add.
       return:

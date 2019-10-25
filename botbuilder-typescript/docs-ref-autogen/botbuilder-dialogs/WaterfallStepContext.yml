@@ -56,7 +56,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Starts a dialog instance and pushes it onto the dialog stack.
+    summary: Creates a new instance of the dialog and pushes it onto the stack.
     syntax:
       content: 'function beginDialog(dialogId: string, options?: object)'
       parameters:
@@ -68,7 +68,7 @@ items:
           type:
             - object
           description: |
-            Optional. Information to pass into the dialog when it starts.
+            Optional. Arguments to pass into the dialog when it starts.
           optional: true
       return:
         type:
@@ -106,6 +106,8 @@ items:
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
 
+      - [prompt](xref:botbuilder-dialogs.DialogContext.prompt)
+
       - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
 
       - [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
@@ -115,7 +117,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
+    summary: 'Cancels all dialogs on the dialog stack, and clears the stack.'
     syntax:
       content: function cancelAllDialogs()
       parameters: []
@@ -125,7 +127,7 @@ items:
     package: botbuilder-dialogs
     remarks: >-
       This calls each dialog's
-      [endDialog](xref:botbuilder-dialogs.Dialog.endDialog) method before
+      [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog) method before
 
       removing the dialog from the stack.
 
@@ -217,11 +219,6 @@ items:
       }
 
       ```
-
-
-      **See also**
-
-      - [Dialog.continueDialog](xref:botbuilder-dialogs.Dialog.continueDialog)
   - uid: botbuilder-dialogs.WaterfallStepContext.dialogs
     name: dialogs
     fullName: dialogs
@@ -243,10 +240,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      Ends a dialog by popping it off the stack and returns an optional result
-      to the dialog's
-
-      parent.
+      Ends a dialog and pops it off the stack. Returns an optional result to the
+      dialog's parent.
     syntax:
       content: 'function endDialog(result?: any)'
       parameters:
@@ -266,8 +261,8 @@ items:
       The _parent_ dialog is the next dialog on the dialog stack, if there is
       one. This method
 
-      calls the parent dialog's
-      [resumeDialog](xref:botbuilder-dialogs.Dialog.resumeDialog) method,
+      calls the parent's
+      [Dialog.resumeDialog](xref:botbuilder-dialogs.Dialog.resumeDialog) method,
 
       passing the result returned by the ending dialog. If there is no parent
       dialog, the turn ends
@@ -335,15 +330,11 @@ items:
       dialog context.
 
 
-      If the dialog cannot be found within the current `DialogSet`, the parent
-      `DialogContext`
-
-      will be searched if there is one.
-
-
       **See also**
 
       - [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs)
+
+      - [parent](xref:botbuilder-dialogs.DialogContext.parent)
   - uid: botbuilder-dialogs.WaterfallStepContext.index
     name: index
     fullName: index
@@ -416,7 +407,7 @@ items:
     package: botbuilder-dialogs
     remarks: >-
       When it attempts to start a dialog, the dialog context searches for the
-      [id](xref:botbuilder-dialogs.Dialog.id)
+      [Dialog.id](xref:botbuilder-dialogs.Dialog.id)
 
       in its [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs). If the
       dialog to start is not found
@@ -544,7 +535,7 @@ items:
           type:
             - object
           description: |
-            Optional. Information to pass into the dialog when it starts.
+            Optional. Arguments to pass into the new dialog when it starts.
           optional: true
       return:
         type:
@@ -565,31 +556,6 @@ items:
       beginning the new one.
 
       However, the parent dialog is neither resumed nor otherwise notified.
-
-
-      For example:
-
-      ```JavaScript
-
-      this.addDialog(new WaterfallDialog('randomNumber', [
-          async (step) => {
-              const { min, max } = step.options;
-              const num = min + Math.floor((max - min) * Math.random());
-              return await step.prompt('continuePrompt', `Here's a number between ${min} and ${max}: ${num}. Should I pick another one?`);
-          },
-          async (step) {
-              if (step.result) {
-                  return await step.replaceDialog(this.id, step.options);
-              } else {
-                  return await step.endDialog();
-              }
-          }
-      ]));
-
-
-      this.addDialog(new ConfirmPrompt('continuePrompt'));
-
-      ```
 
 
       **See also**

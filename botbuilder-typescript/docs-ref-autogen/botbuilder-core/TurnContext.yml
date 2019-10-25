@@ -19,6 +19,7 @@ items:
       - botbuilder-core.TurnContext.responded
       - botbuilder-core.TurnContext.sendActivities
       - botbuilder-core.TurnContext.sendActivity
+      - botbuilder-core.TurnContext.sendTraceActivity
       - botbuilder-core.TurnContext.constructor
       - botbuilder-core.TurnContext.constructor_1
       - botbuilder-core.TurnContext.turnState
@@ -721,6 +722,66 @@ items:
       - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
 
       - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
+  - uid: botbuilder-core.TurnContext.sendTraceActivity
+    name: 'sendTraceActivity(string, any, string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Asynchronously sends an activity to the sender of the incoming activity.
+    syntax:
+      content: >-
+        function sendTraceActivity(name: string, value?: any, valueType?:
+        string, label?: string)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: The activity or text to send.
+        - id: value
+          type:
+            - any
+          description: >-
+            Optional. The text to be spoken by your bot on a speech-enabled
+            channel.
+          optional: true
+        - id: valueType
+          type:
+            - string
+          description: >-
+            Optional. Indicates whether your bot is accepting, expecting, or
+            ignoring user
+          optional: true
+        - id: label
+          type:
+            - string
+          description: >
+            Optional. Indicates whether your bot is accepting, expecting, or
+            ignoring user
+          optional: true
+      return:
+        type:
+          - Promise<ResourceResponse | undefined>
+    package: botbuilder-core
+    remarks: >-
+      Creates and sends a Trace activity. Trace activities are only sent when
+      the channel is the emulator.
+
+
+      For example:
+
+      ```JavaScript
+
+      await context.sendTraceActivity(`The following exception was thrown
+      ${msg}`);
+
+      ```
+
+
+      **See also**
+
+
+      - [sendActivities](xref:botbuilder-core.TurnContext.sendActivities)
   - uid: botbuilder-core.TurnContext.constructor
     name: 'TurnContext(BotAdapter, Partial<Activity>)'
     children: []

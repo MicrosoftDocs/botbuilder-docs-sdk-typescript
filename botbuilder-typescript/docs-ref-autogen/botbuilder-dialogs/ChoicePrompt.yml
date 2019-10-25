@@ -69,7 +69,9 @@ items:
           - botbuilder-dialogs.ChoiceFactoryOptions | undefined
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.constructor
-    name: 'ChoicePrompt(string, PromptValidator<FoundChoice>, string)'
+    name: >-
+      ChoicePrompt(string, PromptValidator<FoundChoice>, string,
+      ChoiceDefaultsChoicePrompt)
     children: []
     type: constructor
     langs:
@@ -78,7 +80,8 @@ items:
     syntax:
       content: >-
         new ChoicePrompt(dialogId: string, validator?:
-        PromptValidator<FoundChoice>, defaultLocale?: string)
+        PromptValidator<FoundChoice>, defaultLocale?: string, choiceDefaults?:
+        ChoiceDefaultsChoicePrompt)
       parameters:
         - id: dialogId
           type:
@@ -95,9 +98,17 @@ items:
         - id: defaultLocale
           type:
             - string
-          description: >
+          description: >-
             (Optional) locale to use if `dc.context.activity.locale` not
             specified. Defaults to a value of `en-us`.
+          optional: true
+        - id: choiceDefaults
+          type:
+            - ChoiceDefaultsChoicePrompt
+          description: >
+            (Optional) Overrides the dictionary of Bot Framework SDK-supported
+            _choiceDefaults (for prompt localization).
+             Must be passed in to each ConfirmPrompt that needs the custom choice defaults.
           optional: true
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.continueDialog
