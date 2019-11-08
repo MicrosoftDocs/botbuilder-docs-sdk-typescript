@@ -21,13 +21,10 @@ items:
       - botbuilder.BotFrameworkAdapter.onTurnError
       - botbuilder.BotFrameworkAdapter.processActivity
       - botbuilder.BotFrameworkAdapter.processActivityDirect
-      - botbuilder.BotFrameworkAdapter.processRequest
       - botbuilder.BotFrameworkAdapter.sendActivities
       - botbuilder.BotFrameworkAdapter.signOutUser
       - botbuilder.BotFrameworkAdapter.updateActivity
       - botbuilder.BotFrameworkAdapter.use
-      - botbuilder.BotFrameworkAdapter.useNamedPipe
-      - botbuilder.BotFrameworkAdapter.useWebSocket
     langs:
       - typeScript
     type: class
@@ -728,7 +725,7 @@ items:
       Gets or sets an error handler that can catch exceptions in the middleware
       or application.
     syntax:
-      content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
+      content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
         type:
           - '(context: TurnContext, error: Error) => Promise<void>'
@@ -904,28 +901,6 @@ items:
 
       Use the adapter's [use](xref:botbuilder-core.BotAdapter.use) method to add
       middleware to the adapter.
-  - uid: botbuilder.BotFrameworkAdapter.processRequest
-    name: processRequest(IReceiveRequest)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Checks the validity of the request and attempts to map it the correct
-      virtual endpoint,
-
-      then generates and returns a response if appropriate.
-    syntax:
-      content: 'function processRequest(request: IReceiveRequest)'
-      parameters:
-        - id: request
-          type:
-            - IReceiveRequest
-          description: A ReceiveRequest from the connected channel.
-      return:
-        type:
-          - Promise<StreamingResponse>
-    package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.sendActivities
     name: 'sendActivities(TurnContext, Partial<Activity>[])'
     children: []
@@ -1068,66 +1043,6 @@ items:
 
       Each turn, the adapter calls its middleware in the order in which you
       added it.
-  - uid: botbuilder.BotFrameworkAdapter.useNamedPipe
-    name: 'useNamedPipe((context: TurnContext) => Promise<any>, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Connects the handler to a Named Pipe server and begins listening for
-      incoming requests.
-    syntax:
-      content: >-
-        function useNamedPipe(logic: (context: TurnContext) => Promise<any>,
-        pipeName: string)
-      parameters:
-        - id: logic
-          type:
-            - '(context: TurnContext) => Promise<any>'
-          description: |
-            The logic that will handle incoming requests.
-        - id: pipeName
-          type:
-            - string
-          description: The name of the named pipe to use when creating the server.
-      return:
-        type:
-          - Promise<void>
-    package: botbuilder
-  - uid: botbuilder.BotFrameworkAdapter.useWebSocket
-    name: >-
-      useWebSocket(WebRequest, WebResponse, (context: TurnContext) =>
-      Promise<any>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Process the initial request to establish a long lived connection via a
-      streaming server.
-    syntax:
-      content: >-
-        function useWebSocket(req: WebRequest, res: WebResponse, logic:
-        (context: TurnContext) => Promise<any>)
-      parameters:
-        - id: req
-          type:
-            - botbuilder.WebRequest
-          description: The connection request.
-        - id: res
-          type:
-            - botbuilder.WebResponse
-          description: The response sent on error or connection termination.
-        - id: logic
-          type:
-            - '(context: TurnContext) => Promise<any>'
-          description: |
-            The logic that will handle incoming requests.
-      return:
-        type:
-          - Promise<void>
-    package: botbuilder
 references:
   - uid: Partial<botbuilder.BotFrameworkAdapterSettings>
     name: BotFrameworkAdapterSettings>
