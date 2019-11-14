@@ -5,9 +5,11 @@ items:
     fullName: TextPrompt<O>
     children:
       - botbuilder-dialogs.TextPrompt.beginDialog
+      - botbuilder-dialogs.TextPrompt.configure
       - botbuilder-dialogs.TextPrompt.continueDialog
       - botbuilder-dialogs.TextPrompt.endDialog
       - botbuilder-dialogs.TextPrompt.id
+      - botbuilder-dialogs.TextPrompt.onDialogEvent
       - botbuilder-dialogs.TextPrompt.repromptDialog
       - botbuilder-dialogs.TextPrompt.resumeDialog
       - botbuilder-dialogs.TextPrompt.telemetryClient
@@ -43,6 +45,25 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.TextPrompt.configure
+    name: configure(object)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Fluent method for configuring the object.
+    syntax:
+      content: 'function configure(config: object)'
+      parameters:
+        - id: config
+          type:
+            - object
+          description: |
+            Configuration settings to apply.
+      return:
+        type:
+          - this
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.TextPrompt.continueDialog
     name: continueDialog(DialogContext)
@@ -105,10 +126,33 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: 'public id: string'
+      content: string id
       return:
         type:
           - string
+    package: botbuilder-dialogs
+    remarks: This will be automatically generated if not specified.
+  - uid: botbuilder-dialogs.TextPrompt.onDialogEvent
+    name: 'onDialogEvent(DialogContext, DialogEvent)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: ''
+        - id: e
+          type:
+            - botbuilder-dialogs.DialogEvent
+          description: ''
+      return:
+        type:
+          - Promise<boolean>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.TextPrompt.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -252,3 +296,9 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
+  - uid: botbuilder-dialogs.DialogEvent
+    name: DialogEvent
+    spec.typeScript:
+      - name: DialogEvent
+        fullName: DialogEvent
+        uid: botbuilder-dialogs.DialogEvent
