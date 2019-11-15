@@ -5,12 +5,10 @@ items:
     fullName: Dialog<O>
     children:
       - botbuilder-dialogs.Dialog.beginDialog
-      - botbuilder-dialogs.Dialog.configure
       - botbuilder-dialogs.Dialog.continueDialog
       - botbuilder-dialogs.Dialog.constructor
       - botbuilder-dialogs.Dialog.endDialog
       - botbuilder-dialogs.Dialog.id
-      - botbuilder-dialogs.Dialog.onDialogEvent
       - botbuilder-dialogs.Dialog.repromptDialog
       - botbuilder-dialogs.Dialog.resumeDialog
       - botbuilder-dialogs.Dialog.telemetryClient
@@ -18,8 +16,6 @@ items:
       - typeScript
     type: class
     summary: Base class for all dialogs.
-    extends:
-      name: botbuilder-dialogs.Configurable
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.beginDialog
     name: 'beginDialog(DialogContext, O)'
@@ -56,25 +52,6 @@ items:
 
       should call `return await DialogContext.endDialog();` at the end of their
       implementation.
-  - uid: botbuilder-dialogs.Dialog.configure
-    name: configure(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Fluent method for configuring the object.
-    syntax:
-      content: 'function configure(config: object)'
-      parameters:
-        - id: config
-          type:
-            - object
-          description: |
-            Configuration settings to apply.
-      return:
-        type:
-          - this
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.continueDialog
     name: continueDialog(DialogContext)
     children: []
@@ -109,14 +86,13 @@ items:
       - typeScript
     summary: Creates a new Dialog instance.
     syntax:
-      content: 'new Dialog(dialogId?: string)'
+      content: 'new Dialog(dialogId: string)'
       parameters:
         - id: dialogId
           type:
             - string
           description: |
-            Optional. unique ID of the dialog.
-          optional: true
+            Unique ID of the dialog.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.endDialog
     name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
@@ -161,33 +137,10 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: string id
+      content: 'public id: string'
       return:
         type:
           - string
-    package: botbuilder-dialogs
-    remarks: This will be automatically generated if not specified.
-  - uid: botbuilder-dialogs.Dialog.onDialogEvent
-    name: 'onDialogEvent(DialogContext, DialogEvent)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
-      parameters:
-        - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: ''
-        - id: e
-          type:
-            - botbuilder-dialogs.DialogEvent
-          description: ''
-      return:
-        type:
-          - Promise<boolean>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -277,12 +230,6 @@ items:
           - BotTelemetryClient
     package: botbuilder-dialogs
 references:
-  - uid: botbuilder-dialogs.Configurable
-    name: Configurable
-    spec.typeScript:
-      - name: Configurable
-        fullName: Configurable
-        uid: botbuilder-dialogs.Configurable
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:
@@ -311,9 +258,3 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
-  - uid: botbuilder-dialogs.DialogEvent
-    name: DialogEvent
-    spec.typeScript:
-      - name: DialogEvent
-        fullName: DialogEvent
-        uid: botbuilder-dialogs.DialogEvent

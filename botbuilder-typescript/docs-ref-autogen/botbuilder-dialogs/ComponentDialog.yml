@@ -7,14 +7,11 @@ items:
       - botbuilder-dialogs.ComponentDialog.addDialog
       - botbuilder-dialogs.ComponentDialog.beginDialog
       - botbuilder-dialogs.ComponentDialog.constructor
-      - botbuilder-dialogs.ComponentDialog.configure
       - botbuilder-dialogs.ComponentDialog.continueDialog
       - botbuilder-dialogs.ComponentDialog.createChildContext
-      - botbuilder-dialogs.ComponentDialog.dialogs
       - botbuilder-dialogs.ComponentDialog.endDialog
       - botbuilder-dialogs.ComponentDialog.findDialog
       - botbuilder-dialogs.ComponentDialog.id
-      - botbuilder-dialogs.ComponentDialog.onDialogEvent
       - botbuilder-dialogs.ComponentDialog.repromptDialog
       - botbuilder-dialogs.ComponentDialog.resumeDialog
       - botbuilder-dialogs.ComponentDialog.telemetryClient
@@ -23,7 +20,7 @@ items:
     type: class
     summary: Base class for a dialog that contains other child dialogs.
     extends:
-      name: botbuilder-dialogs.DialogContainer<O>
+      name: botbuilder-dialogs.Dialog<O>
     package: botbuilder-dialogs
     remarks: >-
       Component dialogs let you break your bot's logic up into components that
@@ -150,33 +147,13 @@ items:
       - typeScript
     summary: Creates a new Dialog instance.
     syntax:
-      content: 'new ComponentDialog(dialogId?: string)'
+      content: 'new ComponentDialog(dialogId: string)'
       parameters:
         - id: dialogId
           type:
             - string
           description: |
-            Optional. unique ID of the dialog.
-          optional: true
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ComponentDialog.configure
-    name: configure(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Fluent method for configuring the object.
-    syntax:
-      content: 'function configure(config: object)'
-      parameters:
-        - id: config
-          type:
-            - object
-          description: |
-            Configuration settings to apply.
-      return:
-        type:
-          - this
+            Unique ID of the dialog.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ComponentDialog.continueDialog
     name: continueDialog(DialogContext)
@@ -215,20 +192,6 @@ items:
         type:
           - botbuilder-dialogs.DialogContext
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ComponentDialog.dialogs
-    name: dialogs
-    fullName: dialogs
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: The containers dialog set.
-    syntax:
-      content: 'public dialogs: DialogSet = new DialogSet(undefined)'
-      return:
-        type:
-          - botbuilder-dialogs.DialogSet
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ComponentDialog.endDialog
     name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     children: []
@@ -263,7 +226,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Finds a child dialog that was previously added to the container.
+    summary: |-
+      Finds a child dialog that was previously added to the component using
+      [addDialog()](#adddialog).
     syntax:
       content: 'function findDialog(dialogId: string)'
       parameters:
@@ -271,7 +236,7 @@ items:
           type:
             - string
           description: |
-            ID of the dialog to lookup.
+            ID of the dialog or prompt to lookup.
       return:
         type:
           - botbuilder-dialogs.Dialog | undefined
@@ -285,33 +250,10 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: string id
+      content: 'public id: string'
       return:
         type:
           - string
-    package: botbuilder-dialogs
-    remarks: This will be automatically generated if not specified.
-  - uid: botbuilder-dialogs.ComponentDialog.onDialogEvent
-    name: 'onDialogEvent(DialogContext, DialogEvent)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
-      parameters:
-        - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: ''
-        - id: e
-          type:
-            - botbuilder-dialogs.DialogEvent
-          description: ''
-      return:
-        type:
-          - Promise<boolean>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ComponentDialog.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -382,20 +324,14 @@ items:
           - BotTelemetryClient
     package: botbuilder-dialogs
 references:
-  - uid: botbuilder-dialogs.DialogContainer<O>
-    name: DialogContainer<O>
+  - uid: botbuilder-dialogs.Dialog<O>
+    name: Dialog<O>
     spec.typeScript:
-      - name: DialogContainer
-        fullName: DialogContainer
-        uid: botbuilder-dialogs.DialogContainer
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-dialogs.Dialog
       - name: <O>
         fullName: <O>
-  - uid: botbuilder-dialogs.DialogSet
-    name: DialogSet
-    spec.typeScript:
-      - name: DialogSet
-        fullName: DialogSet
-        uid: botbuilder-dialogs.DialogSet
   - uid: botbuilder-dialogs.Dialog
     name: Dialog
     spec.typeScript:
@@ -438,9 +374,3 @@ references:
         uid: botbuilder-dialogs.Dialog
       - name: ' | undefined'
         fullName: ' | undefined'
-  - uid: botbuilder-dialogs.DialogEvent
-    name: DialogEvent
-    spec.typeScript:
-      - name: DialogEvent
-        fullName: DialogEvent
-        uid: botbuilder-dialogs.DialogEvent
