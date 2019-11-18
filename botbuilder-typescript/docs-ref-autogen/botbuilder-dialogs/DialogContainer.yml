@@ -1,27 +1,30 @@
 ### YamlMime:UniversalReference
 items:
-  - uid: botbuilder-dialogs.Dialog
-    name: Dialog
-    fullName: Dialog<O>
+  - uid: botbuilder-dialogs.DialogContainer
+    name: DialogContainer
+    fullName: DialogContainer<O>
     children:
-      - botbuilder-dialogs.Dialog.beginDialog
-      - botbuilder-dialogs.Dialog.configure
-      - botbuilder-dialogs.Dialog.continueDialog
-      - botbuilder-dialogs.Dialog.constructor
-      - botbuilder-dialogs.Dialog.endDialog
-      - botbuilder-dialogs.Dialog.id
-      - botbuilder-dialogs.Dialog.onDialogEvent
-      - botbuilder-dialogs.Dialog.repromptDialog
-      - botbuilder-dialogs.Dialog.resumeDialog
-      - botbuilder-dialogs.Dialog.telemetryClient
+      - botbuilder-dialogs.DialogContainer.beginDialog
+      - botbuilder-dialogs.DialogContainer.configure
+      - botbuilder-dialogs.DialogContainer.continueDialog
+      - botbuilder-dialogs.DialogContainer.createChildContext
+      - botbuilder-dialogs.DialogContainer.constructor
+      - botbuilder-dialogs.DialogContainer.dialogs
+      - botbuilder-dialogs.DialogContainer.endDialog
+      - botbuilder-dialogs.DialogContainer.findDialog
+      - botbuilder-dialogs.DialogContainer.id
+      - botbuilder-dialogs.DialogContainer.onDialogEvent
+      - botbuilder-dialogs.DialogContainer.repromptDialog
+      - botbuilder-dialogs.DialogContainer.resumeDialog
+      - botbuilder-dialogs.DialogContainer.telemetryClient
     langs:
       - typeScript
     type: class
-    summary: Base class for all dialogs.
+    summary: ''
     extends:
-      name: botbuilder-dialogs.Configurable
+      name: botbuilder-dialogs.Dialog<O>
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Dialog.beginDialog
+  - uid: botbuilder-dialogs.DialogContainer.beginDialog
     name: 'beginDialog(DialogContext, O)'
     children: []
     type: method
@@ -56,7 +59,7 @@ items:
 
       should call `return await DialogContext.endDialog();` at the end of their
       implementation.
-  - uid: botbuilder-dialogs.Dialog.configure
+  - uid: botbuilder-dialogs.DialogContainer.configure
     name: configure(object)
     children: []
     type: method
@@ -75,7 +78,7 @@ items:
         type:
           - this
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Dialog.continueDialog
+  - uid: botbuilder-dialogs.DialogContainer.continueDialog
     name: continueDialog(DialogContext)
     children: []
     type: method
@@ -101,15 +104,33 @@ items:
       default
 
       implementation calls `DialogContext.endDialog()`.
-  - uid: botbuilder-dialogs.Dialog.constructor
-    name: Dialog(string)
+  - uid: botbuilder-dialogs.DialogContainer.createChildContext
+    name: createChildContext(DialogContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Creates an inner dialog context for the containers active child.
+    syntax:
+      content: 'function createChildContext(dc: DialogContext)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: Parents dialog context.
+      return:
+        type:
+          - botbuilder-dialogs.DialogContext | undefined
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.DialogContainer.constructor
+    name: DialogContainer(string)
     children: []
     type: constructor
     langs:
       - typeScript
     summary: Creates a new Dialog instance.
     syntax:
-      content: 'new Dialog(dialogId?: string)'
+      content: 'new DialogContainer(dialogId?: string)'
       parameters:
         - id: dialogId
           type:
@@ -118,7 +139,21 @@ items:
             Optional. unique ID of the dialog.
           optional: true
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Dialog.endDialog
+  - uid: botbuilder-dialogs.DialogContainer.dialogs
+    name: dialogs
+    fullName: dialogs
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The containers dialog set.
+    syntax:
+      content: 'public dialogs: DialogSet = new DialogSet(undefined)'
+      return:
+        type:
+          - botbuilder-dialogs.DialogSet
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.DialogContainer.endDialog
     name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     children: []
     type: method
@@ -152,7 +187,26 @@ items:
       cleanup action anytime
 
       the dialog ends.
-  - uid: botbuilder-dialogs.Dialog.id
+  - uid: botbuilder-dialogs.DialogContainer.findDialog
+    name: findDialog(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Finds a child dialog that was previously added to the container.
+    syntax:
+      content: 'function findDialog(dialogId: string)'
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: |
+            ID of the dialog to lookup.
+      return:
+        type:
+          - botbuilder-dialogs.Dialog | undefined
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.DialogContainer.id
     name: id
     fullName: id
     children: []
@@ -167,7 +221,7 @@ items:
           - string
     package: botbuilder-dialogs
     remarks: This will be automatically generated if not specified.
-  - uid: botbuilder-dialogs.Dialog.onDialogEvent
+  - uid: botbuilder-dialogs.DialogContainer.onDialogEvent
     name: 'onDialogEvent(DialogContext, DialogEvent)'
     children: []
     type: method
@@ -189,7 +243,7 @@ items:
         type:
           - Promise<boolean>
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Dialog.repromptDialog
+  - uid: botbuilder-dialogs.DialogContainer.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
     children: []
     type: method
@@ -217,7 +271,7 @@ items:
       re-prompt logic. The
 
       default implementation performs no action.
-  - uid: botbuilder-dialogs.Dialog.resumeDialog
+  - uid: botbuilder-dialogs.DialogContainer.resumeDialog
     name: 'resumeDialog(DialogContext, DialogReason, any)'
     children: []
     type: method
@@ -260,7 +314,7 @@ items:
 
       `DialogContext.endDialog()` with any results returned from the ending
       dialog.
-  - uid: botbuilder-dialogs.Dialog.telemetryClient
+  - uid: botbuilder-dialogs.DialogContainer.telemetryClient
     name: telemetryClient
     fullName: telemetryClient
     children: []
@@ -277,12 +331,20 @@ items:
           - BotTelemetryClient
     package: botbuilder-dialogs
 references:
-  - uid: botbuilder-dialogs.Configurable
-    name: Configurable
+  - uid: botbuilder-dialogs.Dialog<O>
+    name: Dialog<O>
     spec.typeScript:
-      - name: Configurable
-        fullName: Configurable
-        uid: botbuilder-dialogs.Configurable
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-dialogs.Dialog
+      - name: <O>
+        fullName: <O>
+  - uid: botbuilder-dialogs.DialogSet
+    name: DialogSet
+    spec.typeScript:
+      - name: DialogSet
+        fullName: DialogSet
+        uid: botbuilder-dialogs.DialogSet
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:
@@ -299,6 +361,14 @@ references:
         uid: botbuilder-dialogs.DialogTurnResult
       - name: '>'
         fullName: '>'
+  - uid: botbuilder-dialogs.DialogContext | undefined
+    name: DialogContext | undefined
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
+      - name: ' | undefined'
+        fullName: ' | undefined'
   - uid: botbuilder-dialogs.DialogInstance
     name: DialogInstance
     spec.typeScript:
@@ -311,6 +381,14 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
+  - uid: botbuilder-dialogs.Dialog | undefined
+    name: Dialog | undefined
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-dialogs.Dialog
+      - name: ' | undefined'
+        fullName: ' | undefined'
   - uid: botbuilder-dialogs.DialogEvent
     name: DialogEvent
     spec.typeScript:
