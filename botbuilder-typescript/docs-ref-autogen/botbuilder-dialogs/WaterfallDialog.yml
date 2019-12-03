@@ -6,11 +6,9 @@ items:
     children:
       - botbuilder-dialogs.WaterfallDialog.addStep
       - botbuilder-dialogs.WaterfallDialog.beginDialog
-      - botbuilder-dialogs.WaterfallDialog.configure
       - botbuilder-dialogs.WaterfallDialog.continueDialog
       - botbuilder-dialogs.WaterfallDialog.endDialog
       - botbuilder-dialogs.WaterfallDialog.id
-      - botbuilder-dialogs.WaterfallDialog.onDialogEvent
       - botbuilder-dialogs.WaterfallDialog.repromptDialog
       - botbuilder-dialogs.WaterfallDialog.resumeDialog
       - botbuilder-dialogs.WaterfallDialog.telemetryClient
@@ -96,6 +94,7 @@ items:
       return:
         type:
           - this
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       All step functions should be asynchronous and return a `DialogTurnResult`.
@@ -172,25 +171,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.WaterfallDialog.configure
-    name: configure(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Fluent method for configuring the object.
-    syntax:
-      content: 'function configure(config: object)'
-      parameters:
-        - id: config
-          type:
-            - object
-          description: |
-            Configuration settings to apply.
-      return:
-        type:
-          - this
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.continueDialog
     name: continueDialog(DialogContext)
@@ -209,6 +190,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.endDialog
     name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
@@ -238,6 +220,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.id
     name: id
@@ -248,33 +231,11 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: string id
+      content: 'public id: string'
       return:
         type:
           - string
-    package: botbuilder-dialogs
-    remarks: This will be automatically generated if not specified.
-  - uid: botbuilder-dialogs.WaterfallDialog.onDialogEvent
-    name: 'onDialogEvent(DialogContext, DialogEvent)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
-      parameters:
-        - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: ''
-        - id: e
-          type:
-            - botbuilder-dialogs.DialogEvent
-          description: ''
-      return:
-        type:
-          - Promise<boolean>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -298,6 +259,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by multi-turn dialogs that wish to provide custom
@@ -332,6 +294,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.telemetryClient
     name: telemetryClient
@@ -348,6 +311,7 @@ items:
       return:
         type:
           - BotTelemetryClient
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallDialog.constructor
     name: 'WaterfallDialog(string, WaterfallStep<O>[])'
@@ -428,9 +392,3 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
-  - uid: botbuilder-dialogs.DialogEvent
-    name: DialogEvent
-    spec.typeScript:
-      - name: DialogEvent
-        fullName: DialogEvent
-        uid: botbuilder-dialogs.DialogEvent

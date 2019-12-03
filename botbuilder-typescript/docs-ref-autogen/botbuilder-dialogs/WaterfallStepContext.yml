@@ -7,11 +7,9 @@ items:
       - botbuilder-dialogs.WaterfallStepContext.activeDialog
       - botbuilder-dialogs.WaterfallStepContext.beginDialog
       - botbuilder-dialogs.WaterfallStepContext.cancelAllDialogs
-      - botbuilder-dialogs.WaterfallStepContext.child
       - botbuilder-dialogs.WaterfallStepContext.context
       - botbuilder-dialogs.WaterfallStepContext.continueDialog
       - botbuilder-dialogs.WaterfallStepContext.dialogs
-      - botbuilder-dialogs.WaterfallStepContext.emitEvent
       - botbuilder-dialogs.WaterfallStepContext.endDialog
       - botbuilder-dialogs.WaterfallStepContext.findDialog
       - botbuilder-dialogs.WaterfallStepContext.index
@@ -25,7 +23,6 @@ items:
       - botbuilder-dialogs.WaterfallStepContext.repromptDialog
       - botbuilder-dialogs.WaterfallStepContext.result
       - botbuilder-dialogs.WaterfallStepContext.stack
-      - botbuilder-dialogs.WaterfallStepContext.state
       - botbuilder-dialogs.WaterfallStepContext.values
       - botbuilder-dialogs.WaterfallStepContext.constructor
     langs:
@@ -52,6 +49,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogInstance | undefined
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.beginDialog
     name: 'beginDialog(string, object)'
@@ -59,9 +57,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |-
-      Starts a dialog instance and pushes it onto the dialog stack.
-      Creates a new instance of the dialog and pushes it onto the stack.
+    summary: Creates a new instance of the dialog and pushes it onto the stack.
     syntax:
       content: 'function beginDialog(dialogId: string, options?: object)'
       parameters:
@@ -78,6 +74,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       If there's already an active dialog on the stack, that dialog will be
@@ -117,38 +114,19 @@ items:
 
       - [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
   - uid: botbuilder-dialogs.WaterfallStepContext.cancelAllDialogs
-    name: 'cancelAllDialogs(boolean, string, any)'
+    name: cancelAllDialogs()
     children: []
     type: method
     langs:
       - typeScript
-    summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
+    summary: 'Cancels all dialogs on the dialog stack, and clears the stack.'
     syntax:
-      content: >-
-        function cancelAllDialogs(cancelParents: boolean, eventName?: string,
-        eventValue?: any)
-      parameters:
-        - id: cancelParents
-          type:
-            - boolean
-          description: Optional. If `true` all parent dialogs will be cancelled as well.
-        - id: eventName
-          type:
-            - string
-          description: >-
-            Optional. Name of a custom event to raise as dialogs are cancelled.
-            This defaults to
-            [cancelDialog](xref:botbuilder-dialogs.DialogEvents.cancelDialog).
-          optional: true
-        - id: eventValue
-          type:
-            - any
-          description: |
-            Optional. Value to pass along with custom cancellation event.
-          optional: true
+      content: function cancelAllDialogs()
+      parameters: []
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       This calls each dialog's
@@ -182,20 +160,6 @@ items:
       **See also**
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-  - uid: botbuilder-dialogs.WaterfallStepContext.child
-    name: child
-    fullName: child
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Returns dialog context for child if the active dialog is a container.
-    syntax:
-      content: DialogContext | undefined child
-      return:
-        type:
-          - botbuilder-dialogs.DialogContext | undefined
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.context
     name: context
     fullName: context
@@ -209,6 +173,7 @@ items:
       return:
         type:
           - TurnContext
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.continueDialog
     name: continueDialog()
@@ -228,6 +193,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       After the call completes, you can check the turn context's
@@ -271,39 +237,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogSet
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.WaterfallStepContext.emitEvent
-    name: 'emitEvent(string, any, boolean, boolean)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: >-
-        function emitEvent(name: string, value?: any, bubble: boolean, fromLeaf:
-        boolean)
-      parameters:
-        - id: name
-          type:
-            - string
-          description: ''
-        - id: value
-          type:
-            - any
-          description: ''
-          optional: true
-        - id: bubble
-          type:
-            - boolean
-          description: ''
-        - id: fromLeaf
-          type:
-            - boolean
-          description: ''
-      return:
-        type:
-          - Promise<boolean>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.endDialog
     name: endDialog(any)
@@ -328,6 +262,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       The _parent_ dialog is the next dialog on the dialog stack, if there is
@@ -393,6 +328,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.Dialog | undefined
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       If the dialog to start is not found in the
@@ -420,6 +356,7 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.next
     name: next(any)
@@ -440,6 +377,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: |-
       ```JavaScript
@@ -460,6 +398,7 @@ items:
       return:
         type:
           - O
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.parent
     name: parent
@@ -476,6 +415,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogContext | undefined
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       When it attempts to start a dialog, the dialog context searches for the
@@ -514,6 +454,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       This helper method formats the object to use as the `options` parameter,
@@ -560,6 +501,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       This helper method formats the object to use as the `options` parameter,
@@ -588,6 +530,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogReason
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.replaceDialog
     name: 'replaceDialog(string, object)'
@@ -612,6 +555,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       This is particularly useful for creating a loop or redirecting to another
@@ -648,6 +592,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       This calls the active dialog's
@@ -676,6 +621,7 @@ items:
       return:
         type:
           - any
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.stack
     name: stack
@@ -690,20 +636,7 @@ items:
       return:
         type:
           - 'botbuilder-dialogs.DialogInstance[]'
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.WaterfallStepContext.state
-    name: state
-    fullName: state
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'public state: DialogStateManager'
-      return:
-        type:
-          - botbuilder-dialogs.DialogStateManager
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.values
     name: values
@@ -718,6 +651,7 @@ items:
       return:
         type:
           - object
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.constructor
     name: 'WaterfallStepContext(DialogContext, WaterfallStepInfo<O>)'
@@ -776,12 +710,6 @@ references:
         uid: botbuilder-dialogs.DialogInstance
       - name: '[]'
         fullName: '[]'
-  - uid: botbuilder-dialogs.DialogStateManager
-    name: DialogStateManager
-    spec.typeScript:
-      - name: DialogStateManager
-        fullName: DialogStateManager
-        uid: botbuilder-dialogs.DialogStateManager
   - uid: botbuilder-dialogs.DialogInstance | undefined
     name: DialogInstance | undefined
     spec.typeScript:

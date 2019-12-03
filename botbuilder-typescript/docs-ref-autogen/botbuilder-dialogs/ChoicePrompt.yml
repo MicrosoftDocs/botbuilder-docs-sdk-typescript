@@ -7,12 +7,10 @@ items:
       - botbuilder-dialogs.ChoicePrompt.beginDialog
       - botbuilder-dialogs.ChoicePrompt.choiceOptions
       - botbuilder-dialogs.ChoicePrompt.constructor
-      - botbuilder-dialogs.ChoicePrompt.configure
       - botbuilder-dialogs.ChoicePrompt.continueDialog
       - botbuilder-dialogs.ChoicePrompt.defaultLocale
       - botbuilder-dialogs.ChoicePrompt.endDialog
       - botbuilder-dialogs.ChoicePrompt.id
-      - botbuilder-dialogs.ChoicePrompt.onDialogEvent
       - botbuilder-dialogs.ChoicePrompt.recognizerOptions
       - botbuilder-dialogs.ChoicePrompt.repromptDialog
       - botbuilder-dialogs.ChoicePrompt.resumeDialog
@@ -51,6 +49,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.choiceOptions
     name: choiceOptions
@@ -69,6 +68,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.ChoiceFactoryOptions | undefined
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.constructor
     name: >-
@@ -113,25 +113,6 @@ items:
              Must be passed in to each ConfirmPrompt that needs the custom choice defaults.
           optional: true
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.configure
-    name: configure(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Fluent method for configuring the object.
-    syntax:
-      content: 'function configure(config: object)'
-      parameters:
-        - id: config
-          type:
-            - object
-          description: |
-            Configuration settings to apply.
-      return:
-        type:
-          - this
-    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.continueDialog
     name: continueDialog(DialogContext)
     children: []
@@ -149,6 +130,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.defaultLocale
     name: defaultLocale
@@ -163,6 +145,7 @@ items:
       return:
         type:
           - string | undefined
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.endDialog
     name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
@@ -192,6 +175,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by dialogs that wish to perform some logging or
@@ -207,33 +191,11 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: string id
+      content: 'public id: string'
       return:
         type:
           - string
-    package: botbuilder-dialogs
-    remarks: This will be automatically generated if not specified.
-  - uid: botbuilder-dialogs.ChoicePrompt.onDialogEvent
-    name: 'onDialogEvent(DialogContext, DialogEvent)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
-      parameters:
-        - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: ''
-        - id: e
-          type:
-            - botbuilder-dialogs.DialogEvent
-          description: ''
-      return:
-        type:
-          - Promise<boolean>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.recognizerOptions
     name: recognizerOptions
@@ -248,6 +210,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.FindChoicesOptions | undefined
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -270,6 +233,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.resumeDialog
     name: 'resumeDialog(DialogContext, DialogReason, any)'
@@ -299,6 +263,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.ChoicePrompt.style
     name: style
@@ -313,6 +278,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.ListStyle
+        description: ''
     package: botbuilder-dialogs
     remarks: Defaults to `ListStyle.auto`.
   - uid: botbuilder-dialogs.ChoicePrompt.telemetryClient
@@ -330,6 +296,7 @@ items:
       return:
         type:
           - BotTelemetryClient
+        description: ''
     package: botbuilder-dialogs
 references:
   - uid: botbuilder-dialogs.Prompt<botbuilder-dialogs.FoundChoice>
@@ -414,9 +381,3 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
-  - uid: botbuilder-dialogs.DialogEvent
-    name: DialogEvent
-    spec.typeScript:
-      - name: DialogEvent
-        fullName: DialogEvent
-        uid: botbuilder-dialogs.DialogEvent
