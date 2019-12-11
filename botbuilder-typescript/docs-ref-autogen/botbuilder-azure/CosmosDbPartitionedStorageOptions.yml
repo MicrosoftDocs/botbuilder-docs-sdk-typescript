@@ -5,11 +5,13 @@ items:
     fullName: CosmosDbPartitionedStorageOptions
     children:
       - botbuilder-azure.CosmosDbPartitionedStorageOptions.authKey
+      - botbuilder-azure.CosmosDbPartitionedStorageOptions.compatibilityMode
       - botbuilder-azure.CosmosDbPartitionedStorageOptions.containerId
       - botbuilder-azure.CosmosDbPartitionedStorageOptions.containerThroughput
       - botbuilder-azure.CosmosDbPartitionedStorageOptions.cosmosClientOptions
       - botbuilder-azure.CosmosDbPartitionedStorageOptions.cosmosDbEndpoint
       - botbuilder-azure.CosmosDbPartitionedStorageOptions.databaseId
+      - botbuilder-azure.CosmosDbPartitionedStorageOptions.keySuffix
     langs:
       - typeScript
     type: interface
@@ -28,6 +30,32 @@ items:
       return:
         type:
           - string
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.CosmosDbPartitionedStorageOptions.compatibilityMode
+    name: compatibilityMode
+    fullName: compatibilityMode
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >
+      Early version of CosmosDb had a max key length of 255.  Keys longer than
+
+      this were truncated in cosmosDbKeyEscape.escapeKey.  This remains the
+      default
+
+      behavior of cosmosDbPartitionedStorage, but can be overridden by setting
+
+      compatibilityMode to false.
+
+      compatibilityMode cannot be true if keySuffix is used.
+    optional: true
+    syntax:
+      content: 'compatibilityMode?: boolean'
+      return:
+        type:
+          - boolean
         description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.CosmosDbPartitionedStorageOptions.containerId
@@ -102,6 +130,29 @@ items:
     summary: The database identifier for Cosmos DB instance.
     syntax:
       content: 'databaseId: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.CosmosDbPartitionedStorageOptions.keySuffix
+    name: keySuffix
+    fullName: keySuffix
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: |
+      The suffix to be added to every key. See cosmosDbKeyEscape.escapeKey
+      Note: compatibilityMode must be set to 'false' to use a KeySuffix.
+      When KeySuffix is used, keys will NOT be truncated but an exception will
+      be thrown if the key length is longer than allowed by CosmosDb.
+
+      The keySuffix must contain only valid ComosDb key characters.
+      (e.g. not: '\\', '?', '/', '#', '*')
+    optional: true
+    syntax:
+      content: 'keySuffix?: string'
       return:
         type:
           - string
