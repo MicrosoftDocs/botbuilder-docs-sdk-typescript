@@ -1,0 +1,557 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter
+    name: TestAdapter
+    fullName: TestAdapter
+    children:
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.addUserToken
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.continueConversation
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.deletedActivities
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.getAadTokens
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.getSignInLink
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.getUserToken
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.onTurnError
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.send
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.signOutUser
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.template
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.test
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.testActivities
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.constructor
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.updatedActivities
+      - botbuilder-core - v4.8.0-preview.97252.TestAdapter.use
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Test adapter used for unit tests. This adapter can be used to simulate
+      sending messages from the
+
+      user to the bot.
+    extends:
+      name: botbuilder-core - v4.8.0-preview.97252.BotAdapter
+    package: botbuilder-core - v4
+    remarks: >-
+      The following example sets up the test adapter and then executes a simple
+      test:
+
+
+      ```JavaScript
+
+      const { TestAdapter } = require('botbuilder');
+
+
+      const adapter = new TestAdapter(async (context) => {
+           await context.sendActivity(`Hello World`);
+      });
+
+
+      adapter.test(`hi`, `Hello World`)
+             .then(() => done());
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.addUserToken
+    name: 'addUserToken(string, string, string, string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Adds a fake user token so it can later be retrieved.
+    syntax:
+      content: >-
+        function addUserToken(connectionName: string, channelId: string, userId:
+        string, token: string, magicCode: string)
+      parameters:
+        - id: connectionName
+          type:
+            - string
+          description: The connection name.
+        - id: channelId
+          type:
+            - string
+          description: The channel id.
+        - id: userId
+          type:
+            - string
+          description: The user id.
+        - id: token
+          type:
+            - string
+          description: The token to store.
+        - id: magicCode
+          type:
+            - string
+          description: |
+            (Optional) The optional magic code to associate with this token.
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.continueConversation
+    name: >-
+      continueConversation(Partial<ConversationReference>, (revocableContext:
+      TurnContext) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      The `TestAdapter` doesn't implement `continueConversation()` and will
+      return an error if it's
+
+      called.
+    syntax:
+      content: >-
+        function continueConversation(reference: Partial<ConversationReference>,
+        logic: (revocableContext: TurnContext) => Promise<void>)
+      parameters:
+        - id: reference
+          type:
+            - Partial<ConversationReference>
+          description: ''
+        - id: logic
+          type:
+            - '(revocableContext: TurnContext) => Promise<void>'
+          description: ''
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.deletedActivities
+    name: deletedActivities
+    fullName: deletedActivities
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      List of deleted activities passed to the adapter which can be inspected
+      after the current
+
+      turn completes.
+    syntax:
+      content: 'public deletedActivities: Partial<ConversationReference>[] = []'
+      return:
+        type:
+          - 'Partial<ConversationReference>[]'
+        description: ''
+    package: botbuilder-core - v4
+    remarks: |-
+      This example shows how to test that expected deletes have been preformed:
+
+      ```JavaScript
+      adapter.test('delete', '1 deleted').then(() => {
+         assert(adapter.deletedActivities.length === 1);
+         assert(adapter.deletedActivities[0].activityId === '12345');
+         done();
+      });
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.getAadTokens
+    name: 'getAadTokens(TurnContext, string, string[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Signs the user out with the token server.
+    syntax:
+      content: >-
+        function getAadTokens(context: TurnContext, connectionName: string,
+        resourceUrls: string[])
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+        - id: resourceUrls
+          type:
+            - 'string[]'
+          description: ''
+      return:
+        type:
+          - 'Promise<[key: string]: TokenResponse>'
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.getSignInLink
+    name: 'getSignInLink(TurnContext, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Gets a signin link from the token server that can be sent as part of a
+      SigninCard.
+    syntax:
+      content: 'function getSignInLink(context: TurnContext, connectionName: string)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+      return:
+        type:
+          - Promise<string>
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.getUserToken
+    name: 'getUserToken(TurnContext, string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Retrieves the OAuth token for a user that is in a sign-in flow.
+    syntax:
+      content: >-
+        function getUserToken(context: TurnContext, connectionName: string,
+        magicCode?: string)
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: Name of the auth connection to use.
+        - id: magicCode
+          type:
+            - string
+          description: |
+            (Optional) Optional user entered code to validate.
+          optional: true
+      return:
+        type:
+          - Promise<TokenResponse>
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.onTurnError
+    name: onTurnError
+    fullName: onTurnError
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets or sets an error handler that can catch exceptions in the middleware
+      or application.
+    syntax:
+      content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
+      return:
+        type:
+          - '(context: TurnContext, error: Error) => Promise<void>'
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      The error handler is called with these parameters:
+
+
+      | Name | Type | Description |
+
+      | :--- | :--- | :--- |
+
+      | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The
+      context object for the turn. |
+
+      | `error` | `Error` | The Node.js error thrown. |
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.send
+    name: send(string | Partial<Activity>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sends something to the bot. This returns a new `TestFlow` instance which
+      can be used to add
+
+      additional steps for inspecting the bots reply and then sending additional
+      activities.
+    syntax:
+      content: 'function send(userSays: string | Partial<Activity>)'
+      parameters:
+        - id: userSays
+          type:
+            - string | Partial<Activity>
+          description: |
+            Text or activity simulating user input.
+      return:
+        type:
+          - botbuilder-core - v4.8.0-preview.97252.TestFlow
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      This example shows how to send a message and then verify that the response
+      was as expected:
+
+
+      ```JavaScript
+
+      adapter.send('hi')
+             .assertReply('Hello World')
+             .then(() => done());
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.signOutUser
+    name: 'signOutUser(TurnContext, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Signs the user out with the token server.
+    syntax:
+      content: 'function signOutUser(context: TurnContext, connectionName: string)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: connectionName
+          type:
+            - string
+          description: |
+            Name of the auth connection to use.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.template
+    name: template
+    fullName: template
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      `Activity` template that will be merged with all activities sent to the
+      logic under test.
+    syntax:
+      content: 'public template: Partial<Activity>'
+      return:
+        type:
+          - Partial<Activity>
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.test
+    name: >-
+      test(string | Partial<Activity>, string | Partial<Activity> | (activity:
+      Partial<Activity>, description?: string) => void, string, number)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Send something to the bot and expects the bot to return with a given
+      reply.
+    syntax:
+      content: >-
+        function test(userSays: string | Partial<Activity>, expected: string |
+        Partial<Activity> | (activity: Partial<Activity>, description?: string)
+        => void, description?: string, timeout?: number)
+      parameters:
+        - id: userSays
+          type:
+            - string | Partial<Activity>
+          description: Text or activity simulating user input.
+        - id: expected
+          type:
+            - >-
+              string | Partial<Activity> | (activity: Partial<Activity>,
+              description?: string) => void
+          description: Expected text or activity of the reply sent by the bot.
+        - id: description
+          type:
+            - string
+          description: >-
+            (Optional) Description of the test case. If not provided one will be
+            generated.
+          optional: true
+        - id: timeout
+          type:
+            - number
+          description: >
+            (Optional) number of milliseconds to wait for a response from bot.
+            Defaults to a value of `3000`.
+          optional: true
+      return:
+        type:
+          - botbuilder-core - v4.8.0-preview.97252.TestFlow
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      This is simply a wrapper around calls to `send()` and `assertReply()`.
+      This is such a
+
+      common pattern that a helper is provided.
+
+
+      ```JavaScript
+
+      adapter.test('hi', 'Hello World')
+             .then(() => done());
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.testActivities
+    name: 'testActivities(Partial<Activity>[], string, number)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Test a list of activities.
+    syntax:
+      content: >-
+        function testActivities(activities: Partial<Activity>[], description?:
+        string, timeout?: number)
+      parameters:
+        - id: activities
+          type:
+            - 'Partial<Activity>[]'
+          description: Array of activities.
+        - id: description
+          type:
+            - string
+          description: >-
+            (Optional) Description of the test case. If not provided one will be
+            generated.
+          optional: true
+        - id: timeout
+          type:
+            - number
+          description: >
+            (Optional) number of milliseconds to wait for a response from bot.
+            Defaults to a value of `3000`.
+          optional: true
+      return:
+        type:
+          - botbuilder-core - v4.8.0-preview.97252.TestFlow
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      Each activity with the "bot" role will be processed with assertReply() and
+      every other
+
+      activity will be processed as a user message with send().
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.constructor
+    name: >-
+      TestAdapter((context: TurnContext) => Promise<void>, Partial<Activity>,
+      boolean)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new TestAdapter instance.
+    syntax:
+      content: >-
+        new TestAdapter(logic: (context: TurnContext) => Promise<void>,
+        template?: Partial<Activity>, sendTraceActivities?: boolean)
+      parameters:
+        - id: logic
+          type:
+            - '(context: TurnContext) => Promise<void>'
+          description: The bots logic that's under test.
+        - id: template
+          type:
+            - Partial<Activity>
+          description: >
+            (Optional) activity containing default values to assign to all test
+            messages received.
+          optional: true
+        - id: sendTraceActivities
+          type:
+            - boolean
+          description: ''
+          optional: true
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.updatedActivities
+    name: updatedActivities
+    fullName: updatedActivities
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      List of updated activities passed to the adapter which can be inspected
+      after the current
+
+      turn completes.
+    syntax:
+      content: 'public updatedActivities: Partial<Activity>[] = []'
+      return:
+        type:
+          - 'Partial<Activity>[]'
+        description: ''
+    package: botbuilder-core - v4
+    remarks: |-
+      This example shows how to test that expected updates have been preformed:
+
+      ```JavaScript
+      adapter.test('update', '1 updated').then(() => {
+         assert(adapter.updatedActivities.length === 1);
+         assert(adapter.updatedActivities[0].id === '12345');
+         done();
+      });
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestAdapter.use
+    name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Adds middleware to the adapter's pipeline.
+    syntax:
+      content: >-
+        function use(middleware: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middleware
+          type:
+            - >-
+              (context: TurnContext, next: () => Promise<void>) => Promise<void>
+              | botbuilder-core - v4.8.0-preview.97252.Middleware[]
+          description: |
+            The middleware or middleware handlers to add.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      Middleware is added to the adapter at initialization time.
+
+      Each turn, the adapter calls its middleware in the order in which you
+      added it.
+references:
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotAdapter
+    name: BotAdapter
+    spec.typeScript:
+      - name: BotAdapter
+        fullName: BotAdapter
+        uid: botbuilder-core - v4.8.0-preview.97252.BotAdapter
+  - uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
+  - uid: botbuilder-core - v4.8.0-preview.97252.TestFlow
+    name: TestFlow
+    spec.typeScript:
+      - name: TestFlow
+        fullName: TestFlow
+        uid: botbuilder-core - v4.8.0-preview.97252.TestFlow
+  - uid: >-
+      (context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      botbuilder-core - v4.8.0-preview.97252.Middleware[]
+    name: 'Middleware[]'
+    spec.typeScript:
+      - name: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+        fullName: '(context: TurnContext, next: () => Promise<void>) => Promise<void> | '
+      - name: Middleware
+        fullName: Middleware
+        uid: botbuilder-core - v4.8.0-preview.97252.Middleware
+      - name: '[]'
+        fullName: '[]'

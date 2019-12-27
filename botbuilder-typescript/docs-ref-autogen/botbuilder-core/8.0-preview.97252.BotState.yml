@@ -1,0 +1,283 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState
+    name: BotState
+    fullName: BotState
+    children:
+      - botbuilder-core - v4.8.0-preview.97252.BotState.constructor
+      - botbuilder-core - v4.8.0-preview.97252.BotState.clear
+      - botbuilder-core - v4.8.0-preview.97252.BotState.createProperty
+      - botbuilder-core - v4.8.0-preview.97252.BotState.delete
+      - botbuilder-core - v4.8.0-preview.97252.BotState.get
+      - botbuilder-core - v4.8.0-preview.97252.BotState.load
+      - botbuilder-core - v4.8.0-preview.97252.BotState.saveChanges
+    langs:
+      - typeScript
+    type: class
+    summary: Base class for the frameworks state persistance scopes.
+    package: botbuilder-core - v4
+    remarks: >-
+      This class will read and write state, to a provided storage provider, for
+      each turn of
+
+      conversation with a user. Derived classes, like `ConversationState` and
+      `UserState`, provide a
+
+      `StorageKeyFactory` which is used to determine the key used to persist a
+      given storage object.
+
+
+      The state object thats loaded will be automatically cached on the context
+      object for the
+
+      lifetime of the turn and will only be written to storage if it has been
+      modified.
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState.constructor
+    name: 'BotState(Storage, StorageKeyFactory)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new BotState instance.
+    syntax:
+      content: 'new BotState(storage: Storage, storageKey: StorageKeyFactory)'
+      parameters:
+        - id: storage
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.Storage
+          description: Storage provider to persist the state object to.
+        - id: storageKey
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.StorageKeyFactory
+          description: >
+            Function called anytime the storage key for a given turn needs to be
+            calculated.
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState.clear
+    name: clear(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Clears the current state object for a turn.
+    syntax:
+      content: 'function clear(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      The cleared state object will not be persisted until
+      [saveChanges()](#savechanges) has
+
+      been called.
+
+
+      ```JavaScript
+
+      await botState.clear(context);
+
+      await botState.saveChanges(context);
+
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState.createProperty
+    name: createProperty(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Creates a new property accessor for reading and writing an individual
+      property to the bot
+
+      states storage object.
+    syntax:
+      content: 'function createProperty<T>(name: string)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: |
+            Name of the property to add.
+      return:
+        type:
+          - botbuilder-core - v4.8.0-preview.97252.StatePropertyAccessor<T>
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState.delete
+    name: delete(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Delete the backing state object for the current turn.
+    syntax:
+      content: 'function delete(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      The state object will be removed from storage if it exists.  If the state
+      object has been
+
+      read in and cached, the cache will be cleared.
+
+
+      ```JavaScript
+
+      await botState.delete(context);
+
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState.get
+    name: get(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a cached state object or undefined if not cached.
+    syntax:
+      content: 'function get(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type:
+          - any | undefined
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      This example shows how to synchronously get an already loaded and cached
+      state object:
+
+
+      ```JavaScript
+
+      const state = botState.get(context);
+
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState.load
+    name: 'load(TurnContext, boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Reads in and caches the backing state object for a turn.
+    syntax:
+      content: 'function load(context: TurnContext, force: boolean)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) If `true` the cache will be bypassed and the state will
+            always be read in directly from storage. Defaults to `false`.
+      return:
+        type:
+          - Promise<any>
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      Subsequent reads will return the cached object unless the `force` flag is
+      passed in which
+
+      will force the state object to be re-read.
+
+
+      This method is automatically called on first access of any of created
+      property accessors.
+
+
+      ```JavaScript
+
+      const state = await botState.load(context);
+
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotState.saveChanges
+    name: 'saveChanges(TurnContext, boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Saves the cached state object if it's been changed.
+    syntax:
+      content: 'function saveChanges(context: TurnContext, force: boolean)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) if `true` the state will always be written out regardless
+            of its change state. Defaults to `false`.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      If the `force` flag is passed in the cached state object will be saved
+      regardless of
+
+      whether its been changed or not and if no object has been cached, an empty
+      object will be
+
+      created and then saved.
+
+
+      ```JavaScript
+
+      await botState.saveChanges(context);
+
+      ```
+references:
+  - uid: botbuilder-core - v4.8.0-preview.97252.Storage
+    name: Storage
+    spec.typeScript:
+      - name: Storage
+        fullName: Storage
+        uid: botbuilder-core - v4.8.0-preview.97252.Storage
+  - uid: botbuilder-core - v4.8.0-preview.97252.StorageKeyFactory
+    name: StorageKeyFactory
+    spec.typeScript:
+      - name: StorageKeyFactory
+        fullName: StorageKeyFactory
+        uid: botbuilder-core - v4.8.0-preview.97252.StorageKeyFactory
+  - uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
+  - uid: botbuilder-core - v4.8.0-preview.97252.StatePropertyAccessor<T>
+    name: StatePropertyAccessor<T>
+    spec.typeScript:
+      - name: StatePropertyAccessor
+        fullName: StatePropertyAccessor
+        uid: botbuilder-core - v4.8.0-preview.97252.StatePropertyAccessor
+      - name: <T>
+        fullName: <T>

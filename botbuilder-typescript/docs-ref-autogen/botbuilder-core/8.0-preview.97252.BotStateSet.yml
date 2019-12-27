@@ -1,0 +1,148 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotStateSet
+    name: BotStateSet
+    fullName: BotStateSet
+    children:
+      - botbuilder-core - v4.8.0-preview.97252.BotStateSet.add
+      - botbuilder-core - v4.8.0-preview.97252.BotStateSet.botStates
+      - botbuilder-core - v4.8.0-preview.97252.BotStateSet.constructor
+      - botbuilder-core - v4.8.0-preview.97252.BotStateSet.loadAll
+      - botbuilder-core - v4.8.0-preview.97252.BotStateSet.saveAllChanges
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      A collection of `BotState` plugins that should be loaded or saved in
+      parallel as a single unit.
+
+      See `AutoSaveStateMiddleware` for an implementation of this class.
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotStateSet.add
+    name: 'add(BotState[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers One or more `BotState` plugins with the set.
+    syntax:
+      content: 'function add(botStates: BotState[])'
+      parameters:
+        - id: botStates
+          type:
+            - 'botbuilder-core - v4.8.0-preview.97252.BotState[]'
+          description: |
+            One or more BotState plugins to register.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotStateSet.botStates
+    name: botStates
+    fullName: botStates
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Array of the sets `BotState` plugins.
+    syntax:
+      content: 'public botStates: BotState[] = []'
+      return:
+        type:
+          - 'botbuilder-core - v4.8.0-preview.97252.BotState[]'
+        description: ''
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotStateSet.constructor
+    name: 'BotStateSet(BotState[])'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new BotStateSet instance.
+    syntax:
+      content: 'new BotStateSet(botStates: BotState[])'
+      parameters:
+        - id: botStates
+          type:
+            - 'botbuilder-core - v4.8.0-preview.97252.BotState[]'
+          description: |
+            One or more BotState plugins to register.
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotStateSet.loadAll
+    name: 'loadAll(TurnContext, boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Calls `BotState.load()` on all of the BotState plugins in the set.
+    syntax:
+      content: 'function loadAll(context: TurnContext, force: boolean)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) If `true` the cache will be bypassed and the state will
+            always be read in directly from storage. Defaults to `false`.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+    remarks: |-
+      This will trigger all of the plugins to read in their state in parallel.
+
+      ```JavaScript
+      await stateSet.readAll(context);
+      ```
+  - uid: botbuilder-core - v4.8.0-preview.97252.BotStateSet.saveAllChanges
+    name: 'saveAllChanges(TurnContext, boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Calls `BotState.saveChanges()` on all of the BotState plugins in the set.
+    syntax:
+      content: 'function saveAllChanges(context: TurnContext, force: boolean)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type:
+            - boolean
+          description: >
+            (Optional) if `true` the state will always be written out regardless
+            of its change state. Defaults to `false`.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+    remarks: |-
+      This will trigger all of the plugins to write out their state in parallel.
+
+      ```JavaScript
+      await stateSet.saveAllChanges(context);
+      ```
+references:
+  - uid: 'botbuilder-core - v4.8.0-preview.97252.BotState[]'
+    name: 'BotState[]'
+    spec.typeScript:
+      - name: BotState
+        fullName: BotState
+        uid: botbuilder-core - v4.8.0-preview.97252.BotState
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
