@@ -15,7 +15,7 @@ items:
     summary: ''
     package: botframework-connector
   - uid: botframework-connector.JwtTokenExtractor.getIdentity
-    name: 'getIdentity(string, string, string)'
+    name: 'getIdentity(string, string, string, string[])'
     children: []
     type: method
     langs:
@@ -24,7 +24,7 @@ items:
     syntax:
       content: >-
         function getIdentity(scheme: string, parameter: string, channelId:
-        string)
+        string, requiredEndorsements?: string[])
       parameters:
         - id: scheme
           type:
@@ -38,12 +38,18 @@ items:
           type:
             - string
           description: ''
+        - id: requiredEndorsements
+          type:
+            - 'string[]'
+          description: ''
+          optional: true
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity | null>
+        description: ''
     package: botframework-connector
   - uid: botframework-connector.JwtTokenExtractor.getIdentityFromAuthHeader
-    name: 'getIdentityFromAuthHeader(string, string)'
+    name: 'getIdentityFromAuthHeader(string, string, string[])'
     children: []
     type: method
     langs:
@@ -52,7 +58,7 @@ items:
     syntax:
       content: >-
         function getIdentityFromAuthHeader(authorizationHeader: string,
-        channelId: string)
+        channelId: string, requiredEndorsements?: string[])
       parameters:
         - id: authorizationHeader
           type:
@@ -62,9 +68,15 @@ items:
           type:
             - string
           description: ''
+        - id: requiredEndorsements
+          type:
+            - 'string[]'
+          description: ''
+          optional: true
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity | null>
+        description: ''
     package: botframework-connector
   - uid: botframework-connector.JwtTokenExtractor.constructor
     name: 'JwtTokenExtractor(VerifyOptions, string, string[])'
@@ -104,6 +116,7 @@ items:
       return:
         type:
           - botframework-connector.OpenIdMetadata
+        description: ''
     package: botframework-connector
   - uid: botframework-connector.JwtTokenExtractor.tokenValidationParameters
     name: tokenValidationParameters
@@ -118,6 +131,7 @@ items:
       return:
         type:
           - VerifyOptions
+        description: ''
     package: botframework-connector
 references:
   - uid: botframework-connector.OpenIdMetadata

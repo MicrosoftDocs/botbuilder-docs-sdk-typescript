@@ -6,11 +6,18 @@ items:
     children:
       - botbuilder.WebRequest.body
       - botbuilder.WebRequest.headers
+      - botbuilder.WebRequest.method
       - botbuilder.WebRequest.on
+      - botbuilder.WebRequest.params
+      - botbuilder.WebRequest.query
     langs:
       - typeScript
     type: interface
-    summary: Express or Restify Request object.
+    summary: >
+      Represents an Express or Restify request object.
+
+      This interface supports the framework and is not intended to be called
+      directly for your code.
     package: botbuilder
   - uid: botbuilder.WebRequest.body
     name: body
@@ -19,13 +26,14 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Optional. The request body.
     optional: true
     syntax:
       content: 'body?: any'
       return:
         type:
           - any
+        description: ''
     package: botbuilder
   - uid: botbuilder.WebRequest.headers
     name: headers
@@ -34,12 +42,29 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Optional. The request headers.
     syntax:
       content: 'headers: any'
       return:
         type:
           - any
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.WebRequest.method
+    name: method
+    fullName: method
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Optional. The request method.
+    optional: true
+    syntax:
+      content: 'method?: any'
+      return:
+        type:
+          - any
+        description: ''
     package: botbuilder
   - uid: botbuilder.WebRequest.on
     name: 'on(string, any[])'
@@ -47,19 +72,56 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: |-
+      When implemented in a derived class, adds a listener for an event.
+      The framework uses this method to retrieve the request body when the
+      [body](xref:botbuilder.WebRequest.body) property is `null` or `undefined`.
     syntax:
       content: 'function on(event: string, args: any[])'
       parameters:
         - id: event
           type:
             - string
-          description: ''
+          description: The event name.
         - id: args
           type:
             - 'any[]'
-          description: ''
+          description: |
+            Arguments used to handle the event.
       return:
         type:
           - any
+        description: A reference to the request object.
+    package: botbuilder
+  - uid: botbuilder.WebRequest.params
+    name: params
+    fullName: params
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Optional. The request parameters from the url.
+    optional: true
+    syntax:
+      content: 'params?: any'
+      return:
+        type:
+          - any
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.WebRequest.query
+    name: query
+    fullName: query
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Optional. The values from the query string.
+    optional: true
+    syntax:
+      content: 'query?: any'
+      return:
+        type:
+          - any
+        description: ''
     package: botbuilder

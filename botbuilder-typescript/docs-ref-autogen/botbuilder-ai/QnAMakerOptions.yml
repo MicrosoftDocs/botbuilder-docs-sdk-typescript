@@ -4,7 +4,11 @@ items:
     name: QnAMakerOptions
     fullName: QnAMakerOptions
     children:
+      - botbuilder-ai.QnAMakerOptions.context
+      - botbuilder-ai.QnAMakerOptions.isTest
       - botbuilder-ai.QnAMakerOptions.metadataBoost
+      - botbuilder-ai.QnAMakerOptions.qnaId
+      - botbuilder-ai.QnAMakerOptions.rankerType
       - botbuilder-ai.QnAMakerOptions.scoreThreshold
       - botbuilder-ai.QnAMakerOptions.strictFilters
       - botbuilder-ai.QnAMakerOptions.timeout
@@ -13,6 +17,40 @@ items:
       - typeScript
     type: interface
     summary: Additional settings used to configure a `QnAMaker` instance.
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerOptions.context
+    name: context
+    fullName: context
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The context of the previous turn.
+    optional: true
+    syntax:
+      content: 'context?: QnARequestContext'
+      return:
+        type:
+          - botbuilder-ai.QnARequestContext
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerOptions.isTest
+    name: isTest
+    fullName: isTest
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      A value indicating whether to call test or prod environment of
+      knowledgebase.
+    optional: true
+    syntax:
+      content: 'isTest?: boolean'
+      return:
+        type:
+          - boolean
+        description: ''
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMakerOptions.metadataBoost
     name: metadataBoost
@@ -28,6 +66,39 @@ items:
       return:
         type:
           - 'botbuilder-ai.QnAMakerMetadata[]'
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerOptions.qnaId
+    name: qnaId
+    fullName: qnaId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Id of the current question asked.
+    optional: true
+    syntax:
+      content: 'qnaId?: number'
+      return:
+        type:
+          - number
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerOptions.rankerType
+    name: rankerType
+    fullName: rankerType
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Ranker types.
+    optional: true
+    syntax:
+      content: 'rankerType?: string'
+      return:
+        type:
+          - string
+        description: ''
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMakerOptions.scoreThreshold
     name: scoreThreshold
@@ -43,6 +114,7 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder-ai
     remarks: Defaults to "0.3".
   - uid: botbuilder-ai.QnAMakerOptions.strictFilters
@@ -59,6 +131,7 @@ items:
       return:
         type:
           - 'botbuilder-ai.QnAMakerMetadata[]'
+        description: ''
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMakerOptions.timeout
     name: timeout
@@ -74,6 +147,7 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder-ai
     remarks: Defaults to "100000" milliseconds.
   - uid: botbuilder-ai.QnAMakerOptions.top
@@ -90,9 +164,16 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder-ai
     remarks: Defaults to "1".
 references:
+  - uid: botbuilder-ai.QnARequestContext
+    name: QnARequestContext
+    spec.typeScript:
+      - name: QnARequestContext
+        fullName: QnARequestContext
+        uid: botbuilder-ai.QnARequestContext
   - uid: 'botbuilder-ai.QnAMakerMetadata[]'
     name: 'QnAMakerMetadata[]'
     spec.typeScript:
