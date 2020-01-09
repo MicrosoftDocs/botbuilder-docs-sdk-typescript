@@ -7,7 +7,10 @@ items:
       - botbuilder.IntentRecognizerSet.clone
       - botbuilder.IntentRecognizerSet.constructor
       - botbuilder.IntentRecognizerSet.length
+      - botbuilder.IntentRecognizerSet.onEnabled
+      - botbuilder.IntentRecognizerSet.onFilter
       - botbuilder.IntentRecognizerSet.onRecognize
+      - botbuilder.IntentRecognizerSet.recognize
       - botbuilder.IntentRecognizerSet.recognizer
     langs:
       - typeScript
@@ -36,6 +39,7 @@ items:
       return:
         type:
           - botbuilder.IntentRecognizerSet
+        description: ''
     package: botbuilder
   - uid: botbuilder.IntentRecognizerSet.constructor
     name: IntentRecognizerSet(IIntentRecognizerSetOptions)
@@ -68,6 +72,73 @@ items:
       return:
         type:
           - number
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.onEnabled
+    name: >-
+      onEnabled((context: IRecognizeContext, callback: (err: Error, enabled:
+      boolean) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a function to conditionally enable/disable the recognizer.
+      Multiple handlers can
+
+      be registered and the new handler will be executed before any other
+      handlers.
+    syntax:
+      content: >-
+        function onEnabled(handler: (context: IRecognizeContext, callback: (err:
+        Error, enabled: boolean) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeContext, callback: (err: Error, enabled:
+              boolean) => void) => void
+          description: >
+            Function called for every message. You should call `callback(null,
+            true)` for every message that should be recognized.
+      return:
+        type:
+          - botbuilder.IntentRecognizer
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.onFilter
+    name: >-
+      onFilter((context: IRecognizeContext, result: IIntentRecognizerResult,
+      callback: (err: Error, result: IIntentRecognizerResult) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a function to filter the output from the recognizer. Multiple
+      handlers can be
+
+      registered and the new handler will be executed after any other handlers.
+    syntax:
+      content: >-
+        function onFilter(handler: (context: IRecognizeContext, result:
+        IIntentRecognizerResult, callback: (err: Error, result:
+        IIntentRecognizerResult) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeContext, result: IIntentRecognizerResult,
+              callback: (err: Error, result: IIntentRecognizerResult) => void)
+              => void
+          description: >
+            Function called for every message that results in an intent with a
+            score greater then 0.0. You should call `callback(null, { score:
+            0.0, intent: null })` to block an intent from being returned.
+      return:
+        type:
+          - botbuilder.IntentRecognizer
+        description: ''
     package: botbuilder
   - uid: botbuilder.IntentRecognizerSet.onRecognize
     name: >-
@@ -92,6 +163,32 @@ items:
             - '(err: Error, result: IIntentRecognizerResult) => void'
           description: ''
     package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.recognize
+    name: >-
+      recognize(IRecognizeContext, (err: Error, result: IIntentRecognizerResult)
+      => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Attempts to match a users text utterance to an intent.
+    syntax:
+      content: >-
+        function recognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: >-
+            Contextual information for a received message that's being
+            recognized.
+        - id: callback
+          type:
+            - '(err: Error, result: IIntentRecognizerResult) => void'
+          description: |
+            Function to invoke with the results of the recognition operation.
+    package: botbuilder
   - uid: botbuilder.IntentRecognizerSet.recognizer
     name: recognizer(IIntentRecognizer)
     children: []
@@ -110,6 +207,7 @@ items:
       return:
         type:
           - botbuilder.IntentDialog
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.IntentRecognizer

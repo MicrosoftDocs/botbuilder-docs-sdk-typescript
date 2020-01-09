@@ -4,16 +4,20 @@ items:
     name: Dialog
     fullName: Dialog
     children:
+      - botbuilder.Dialog.addDialogTrigger
       - botbuilder.Dialog.begin
       - botbuilder.Dialog.beginDialogAction
       - botbuilder.Dialog.cancelAction
+      - botbuilder.Dialog.clone
       - botbuilder.Dialog.customAction
       - botbuilder.Dialog.dialogInterrupted
       - botbuilder.Dialog.dialogResumed
       - botbuilder.Dialog.endConversationAction
+      - botbuilder.Dialog.findActionRoutes
       - botbuilder.Dialog.recognize
       - botbuilder.Dialog.reloadAction
       - botbuilder.Dialog.replyReceived
+      - botbuilder.Dialog.selectActionRoute
       - botbuilder.Dialog.triggerAction
     langs:
       - typeScript
@@ -28,6 +32,34 @@ items:
       a user.
     extends:
       name: botbuilder.ActionSet
+    package: botbuilder
+  - uid: botbuilder.Dialog.addDialogTrigger
+    name: 'addDialogTrigger(ActionSet, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called once for each dialog within a library to give the dialog a chance
+      to add its
+
+      `triggerAction()` to the libraries global action set.  These triggers get
+      mapped to
+
+      a `beginDialogAction()` that starts the dialog when the trigger condition
+      is met.
+    syntax:
+      content: 'function addDialogTrigger(actions: ActionSet, dialogId: string)'
+      parameters:
+        - id: actions
+          type:
+            - botbuilder.ActionSet
+          description: Libraries global action set.
+        - id: dialogId
+          type:
+            - string
+          description: |
+            The fully qualified ID of the dialog to trigger.
     package: botbuilder
   - uid: botbuilder.Dialog.begin
     name: 'begin(Session, T)'
@@ -103,6 +135,7 @@ items:
       return:
         type:
           - botbuilder.Dialog
+        description: ''
     package: botbuilder
   - uid: botbuilder.Dialog.cancelAction
     name: 'cancelAction(string, TextOrMessageType, ICancelActionOptions)'
@@ -149,6 +182,29 @@ items:
       return:
         type:
           - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.Dialog.clone
+    name: clone(ActionSet)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a clone of an existing ActionSet.
+    syntax:
+      content: 'function clone(copyTo?: ActionSet)'
+      parameters:
+        - id: copyTo
+          type:
+            - botbuilder.ActionSet
+          description: >
+            (Optional) instance to copy the current object to. If missing a new
+            instance will be created.
+          optional: true
+      return:
+        type:
+          - botbuilder.ActionSet
+        description: ''
     package: botbuilder
   - uid: botbuilder.Dialog.customAction
     name: customAction(IDialogActionOptions)
@@ -178,6 +234,7 @@ items:
       return:
         type:
           - botbuilder.Library
+        description: ''
     package: botbuilder
   - uid: botbuilder.Dialog.dialogInterrupted
     name: 'dialogInterrupted(Session, string, any)'
@@ -275,6 +332,41 @@ items:
       return:
         type:
           - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.Dialog.findActionRoutes
+    name: >-
+      findActionRoutes(IRecognizeDialogContext, (err: Error, results:
+      IRouteResult[]) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called during the
+      [Library.findRoutes()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#findroutes)
+
+      call for each dialog on the stack to determine if any of the dialogs
+      actions are triggered
+
+      by the users utterance.
+    syntax:
+      content: >-
+        function findActionRoutes(context: IRecognizeDialogContext, callback:
+        (err: Error, results: IRouteResult[]) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeDialogContext
+          description: >-
+            The context of the incoming message as well as the
+            [dialogData](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#dialogdata)
+            for the evaluated dialog.
+        - id: callback
+          type:
+            - '(err: Error, results: IRouteResult[]) => void'
+          description: |
+            Function to invoke with the top candidate route(s).
     package: botbuilder
   - uid: botbuilder.Dialog.recognize
     name: >-
@@ -385,6 +477,7 @@ items:
       return:
         type:
           - botbuilder.Dialog
+        description: ''
     package: botbuilder
   - uid: botbuilder.Dialog.replyReceived
     name: 'replyReceived(Session, IRecognizeResult)'
@@ -412,6 +505,27 @@ items:
           description: >
             Results returned from a prior call to the dialogs
             [recognize()](#recognize) method.
+    package: botbuilder
+  - uid: botbuilder.Dialog.selectActionRoute
+    name: 'selectActionRoute(Session, IRouteResult)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Selects the route that had the highest confidence score for the utterance.
+    syntax:
+      content: 'function selectActionRoute(session: Session, route: IRouteResult)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: >
+            Results returned from the call to
+            [findActionRoutes()](#findactionroute).
     package: botbuilder
   - uid: botbuilder.Dialog.triggerAction
     name: triggerAction(ITriggerActionOptions)
@@ -450,6 +564,7 @@ items:
       return:
         type:
           - botbuilder.Dialog
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.ActionSet
@@ -520,6 +635,12 @@ references:
       - name: IRecognizeResult
         fullName: IRecognizeResult
         uid: botbuilder.IRecognizeResult
+  - uid: botbuilder.IRouteResult
+    name: IRouteResult
+    spec.typeScript:
+      - name: IRouteResult
+        fullName: IRouteResult
+        uid: botbuilder.IRouteResult
   - uid: botbuilder.ITriggerActionOptions
     name: ITriggerActionOptions
     spec.typeScript:

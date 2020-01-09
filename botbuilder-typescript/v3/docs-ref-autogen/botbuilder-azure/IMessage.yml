@@ -4,14 +4,20 @@ items:
     name: IMessage
     fullName: IMessage
     children:
+      - botbuilder-azure.IMessage.address
+      - botbuilder-azure.IMessage.agent
       - botbuilder-azure.IMessage.attachmentLayout
       - botbuilder-azure.IMessage.attachments
       - botbuilder-azure.IMessage.entities
+      - botbuilder-azure.IMessage.source
+      - botbuilder-azure.IMessage.sourceEvent
       - botbuilder-azure.IMessage.summary
       - botbuilder-azure.IMessage.text
       - botbuilder-azure.IMessage.textFormat
       - botbuilder-azure.IMessage.textLocale
       - botbuilder-azure.IMessage.timestamp
+      - botbuilder-azure.IMessage.type
+      - botbuilder-azure.IMessage.user
     langs:
       - typeScript
     type: interface
@@ -56,6 +62,38 @@ items:
     extends:
       name: botbuilder-azure.IEvent
     package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.address
+    name: address
+    fullName: address
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Address routing information for the event. Save this field to external
+      storage somewhere to later compose a proactive message to the user.
+    syntax:
+      content: 'address: IAddress'
+      return:
+        type:
+          - botbuilder-azure.IAddress
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.agent
+    name: agent
+    fullName: agent
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: SDK thats processing the event. Will always be 'botbuilder'.
+    syntax:
+      content: 'agent: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.attachmentLayout
     name: attachmentLayout
     fullName: attachmentLayout
@@ -71,6 +109,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.attachments
     name: attachments
@@ -88,6 +127,7 @@ items:
       return:
         type:
           - 'botbuilder-azure.IAttachment[]'
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.entities
     name: entities
@@ -102,6 +142,39 @@ items:
       return:
         type:
           - 'any[]'
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.source
+    name: source
+    fullName: source
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: 'The original source of the event (i.e. ''facebook'', ''skype'', ''slack'', etc.)'
+    syntax:
+      content: 'source: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.sourceEvent
+    name: sourceEvent
+    fullName: sourceEvent
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The original event in the sources native schema. For outgoing messages can
+      be used to pass source specific event data like custom attachments.
+    syntax:
+      content: 'sourceEvent: any'
+      return:
+        type:
+          - any
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.summary
     name: summary
@@ -118,6 +191,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.text
     name: text
@@ -132,6 +206,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.textFormat
     name: textFormat
@@ -146,6 +221,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.textLocale
     name: textLocale
@@ -160,6 +236,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IMessage.timestamp
     name: timestamp
@@ -174,6 +251,44 @@ items:
       return:
         type:
           - string
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.type
+    name: type
+    fullName: type
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Defines type of event. Should be 'message' for an IMessage.
+    syntax:
+      content: 'type: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IMessage.user
+    name: user
+    fullName: user
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      For incoming messages this is the user that sent the message. By default
+      this is a copy of
+      [address.user](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html#user)
+      but you can configure your bot with a
+
+      [lookupUser](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html#lookupuser)
+      function that lets map the incoming user to an internal user id.
+    syntax:
+      content: 'user: IIdentity'
+      return:
+        type:
+          - botbuilder-azure.IIdentity
+        description: ''
     package: botbuilder-azure
 references:
   - uid: botbuilder-azure.IEvent
@@ -182,6 +297,12 @@ references:
       - name: IEvent
         fullName: IEvent
         uid: botbuilder-azure.IEvent
+  - uid: botbuilder-azure.IAddress
+    name: IAddress
+    spec.typeScript:
+      - name: IAddress
+        fullName: IAddress
+        uid: botbuilder-azure.IAddress
   - uid: 'botbuilder-azure.IAttachment[]'
     name: 'IAttachment[]'
     spec.typeScript:
@@ -190,3 +311,9 @@ references:
         uid: botbuilder-azure.IAttachment
       - name: '[]'
         fullName: '[]'
+  - uid: botbuilder-azure.IIdentity
+    name: IIdentity
+    spec.typeScript:
+      - name: IIdentity
+        fullName: IIdentity
+        uid: botbuilder-azure.IIdentity

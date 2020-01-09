@@ -4,18 +4,73 @@ items:
     name: ICallConnectorAddress
     fullName: ICallConnectorAddress
     children:
+      - botbuilder-calling.ICallConnectorAddress.bot
+      - botbuilder-calling.ICallConnectorAddress.channelId
+      - botbuilder-calling.ICallConnectorAddress.conversation
       - botbuilder-calling.ICallConnectorAddress.correlationId
       - botbuilder-calling.ICallConnectorAddress.participants
       - botbuilder-calling.ICallConnectorAddress.serviceUrl
       - botbuilder-calling.ICallConnectorAddress.subject
       - botbuilder-calling.ICallConnectorAddress.threadId
       - botbuilder-calling.ICallConnectorAddress.useAuth
+      - botbuilder-calling.ICallConnectorAddress.user
     langs:
       - typeScript
     type: interface
     summary: Chat connector specific address.
     extends:
       name: botbuilder-calling.IAddress
+    package: botbuilder-calling
+  - uid: botbuilder-calling.ICallConnectorAddress.bot
+    name: bot
+    fullName: bot
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Bot that either received or is sending the message.
+    syntax:
+      content: 'bot: IIdentity'
+      return:
+        type:
+          - botbuilder-calling.IIdentity
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.ICallConnectorAddress.channelId
+    name: channelId
+    fullName: channelId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique identifier for channel.
+    syntax:
+      content: 'channelId: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.ICallConnectorAddress.conversation
+    name: conversation
+    fullName: conversation
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Represents the current conversation and tracks where replies should be
+      routed to.
+
+      Can be deleted to start a new conversation with a [user](#user) on
+      channels that support new conversations.
+    optional: true
+    syntax:
+      content: 'conversation?: IIdentity'
+      return:
+        type:
+          - botbuilder-calling.IIdentity
+        description: ''
     package: botbuilder-calling
   - uid: botbuilder-calling.ICallConnectorAddress.correlationId
     name: correlationId
@@ -31,6 +86,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-calling
   - uid: botbuilder-calling.ICallConnectorAddress.participants
     name: participants
@@ -45,6 +101,7 @@ items:
       return:
         type:
           - 'botbuilder-calling.IIdentity[]'
+        description: ''
     package: botbuilder-calling
   - uid: botbuilder-calling.ICallConnectorAddress.serviceUrl
     name: serviceUrl
@@ -60,6 +117,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-calling
   - uid: botbuilder-calling.ICallConnectorAddress.subject
     name: subject
@@ -75,6 +133,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-calling
   - uid: botbuilder-calling.ICallConnectorAddress.threadId
     name: threadId
@@ -90,6 +149,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-calling
   - uid: botbuilder-calling.ICallConnectorAddress.useAuth
     name: useAuth
@@ -105,6 +165,22 @@ items:
       return:
         type:
           - boolean
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.ICallConnectorAddress.user
+    name: user
+    fullName: user
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: User that sent or should receive the message.
+    syntax:
+      content: 'user: IIdentity'
+      return:
+        type:
+          - botbuilder-calling.IIdentity
+        description: ''
     package: botbuilder-calling
 references:
   - uid: botbuilder-calling.IAddress
@@ -113,6 +189,12 @@ references:
       - name: IAddress
         fullName: IAddress
         uid: botbuilder-calling.IAddress
+  - uid: botbuilder-calling.IIdentity
+    name: IIdentity
+    spec.typeScript:
+      - name: IIdentity
+        fullName: IIdentity
+        uid: botbuilder-calling.IIdentity
   - uid: 'botbuilder-calling.IIdentity[]'
     name: 'IIdentity[]'
     spec.typeScript:

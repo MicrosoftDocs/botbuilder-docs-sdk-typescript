@@ -5,6 +5,10 @@ items:
     fullName: ICancelActionOptions
     children:
       - botbuilder.ICancelActionOptions.confirmPrompt
+      - botbuilder.ICancelActionOptions.intentThreshold
+      - botbuilder.ICancelActionOptions.matches
+      - botbuilder.ICancelActionOptions.onFindAction
+      - botbuilder.ICancelActionOptions.onSelectAction
     langs:
       - typeScript
     type: interface
@@ -30,6 +34,119 @@ items:
       return:
         type:
           - botbuilder.TextOrMessageType
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.ICancelActionOptions.intentThreshold
+    name: intentThreshold
+    fullName: intentThreshold
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      (Optional) minimum score needed to trigger the action using the value of
+      [matches](#matches). The default value is 0.1.
+    optional: true
+    syntax:
+      content: 'intentThreshold?: number'
+      return:
+        type:
+          - number
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.ICancelActionOptions.matches
+    name: matches
+    fullName: matches
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >
+      (Optional) intent(s) used to trigger the action. Either a regular
+      expression or a named
+
+      intent can be provided and multiple intents can be specified.  When a
+      named intent is
+
+      provided the action will be matched using the recognizers assigned to the
+      library/bot using
+
+      [Library.recognizer()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#recognizer).
+
+      If a matches option isn't provided then the action can only be matched if
+      an [onFindAction](#onfindaction)
+
+      handler is provided.
+    optional: true
+    syntax:
+      content: 'matches?: MatchType'
+      return:
+        type:
+          - botbuilder.MatchType
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.ICancelActionOptions.onFindAction
+    name: onFindAction
+    fullName: onFindAction
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      (Optional) custom handler that's invoked whenever the action is being
+      checked to see if it
+
+      should be triggered. The handler is passed a context object containing the
+      received message
+
+      and any intents detected. The handler should return a confidence score for
+      0.0 to 1.0 and
+
+      routeData that should be passed in during the `selectActionRoute` call.
+    optional: true
+    syntax:
+      content: >-
+        onFindAction?: (context: IFindActionRouteContext, callback: (err: Error,
+        score: number, routeData?: IActionRouteData) => void) => void
+      return:
+        type:
+          - >-
+            (context: IFindActionRouteContext, callback: (err: Error, score:
+            number, routeData?: IActionRouteData) => void) => void
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.ICancelActionOptions.onSelectAction
+    name: onSelectAction
+    fullName: onSelectAction
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >
+      (Optional) custom handler that's invoked whenever the action is
+      triggered.  This lets you
+
+      customize the behavior of an action. For instance you could clear the
+      dialog stack before
+
+      the new dialog is started, changing the default behavior which is to just
+      push the new
+
+      dialog onto the end of the stack.
+
+      It's important to note that this is not a waterfall and you should call
+      `next()` if you
+
+      would like the actions default behavior to run.
+    optional: true
+    syntax:
+      content: >-
+        onSelectAction?: (session: Session, args?: IActionRouteData, next?:
+        Function) => void
+      return:
+        type:
+          - '(session: Session, args?: IActionRouteData, next?: Function) => void'
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.IDialogActionOptions
@@ -44,3 +161,9 @@ references:
       - name: TextOrMessageType
         fullName: TextOrMessageType
         uid: botbuilder.TextOrMessageType
+  - uid: botbuilder.MatchType
+    name: MatchType
+    spec.typeScript:
+      - name: MatchType
+        fullName: MatchType
+        uid: botbuilder.MatchType

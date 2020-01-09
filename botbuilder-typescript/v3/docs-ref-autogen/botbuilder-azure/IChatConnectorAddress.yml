@@ -4,14 +4,69 @@ items:
     name: IChatConnectorAddress
     fullName: IChatConnectorAddress
     children:
+      - botbuilder-azure.IChatConnectorAddress.bot
+      - botbuilder-azure.IChatConnectorAddress.channelId
+      - botbuilder-azure.IChatConnectorAddress.conversation
       - botbuilder-azure.IChatConnectorAddress.id
       - botbuilder-azure.IChatConnectorAddress.serviceUrl
+      - botbuilder-azure.IChatConnectorAddress.user
     langs:
       - typeScript
     type: interface
     summary: Chat connector specific address.
     extends:
       name: botbuilder-azure.IAddress
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IChatConnectorAddress.bot
+    name: bot
+    fullName: bot
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Bot that either received or is sending the message.
+    syntax:
+      content: 'bot: IIdentity'
+      return:
+        type:
+          - botbuilder-azure.IIdentity
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IChatConnectorAddress.channelId
+    name: channelId
+    fullName: channelId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique identifier for channel.
+    syntax:
+      content: 'channelId: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IChatConnectorAddress.conversation
+    name: conversation
+    fullName: conversation
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Represents the current conversation and tracks where replies should be
+      routed to.
+
+      Can be deleted to start a new conversation with a [user](#user) on
+      channels that support new conversations.
+    optional: true
+    syntax:
+      content: 'conversation?: IIdentity'
+      return:
+        type:
+          - botbuilder-azure.IIdentity
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IChatConnectorAddress.id
     name: id
@@ -27,6 +82,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-azure
   - uid: botbuilder-azure.IChatConnectorAddress.serviceUrl
     name: serviceUrl
@@ -42,6 +98,22 @@ items:
       return:
         type:
           - string
+        description: ''
+    package: botbuilder-azure
+  - uid: botbuilder-azure.IChatConnectorAddress.user
+    name: user
+    fullName: user
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: User that sent or should receive the message.
+    syntax:
+      content: 'user: IIdentity'
+      return:
+        type:
+          - botbuilder-azure.IIdentity
+        description: ''
     package: botbuilder-azure
 references:
   - uid: botbuilder-azure.IAddress
@@ -50,3 +122,9 @@ references:
       - name: IAddress
         fullName: IAddress
         uid: botbuilder-azure.IAddress
+  - uid: botbuilder-azure.IIdentity
+    name: IIdentity
+    spec.typeScript:
+      - name: IIdentity
+        fullName: IIdentity
+        uid: botbuilder-azure.IIdentity
