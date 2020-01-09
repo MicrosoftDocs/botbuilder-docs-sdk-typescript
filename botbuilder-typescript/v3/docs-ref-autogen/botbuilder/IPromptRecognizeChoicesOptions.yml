@@ -4,8 +4,10 @@ items:
     name: IPromptRecognizeChoicesOptions
     fullName: IPromptRecognizeChoicesOptions
     children:
+      - botbuilder.IPromptRecognizeChoicesOptions.allowPartialMatches
       - botbuilder.IPromptRecognizeChoicesOptions.excludeAction
       - botbuilder.IPromptRecognizeChoicesOptions.excludeValue
+      - botbuilder.IPromptRecognizeChoicesOptions.maxTokenDistance
     langs:
       - typeScript
     type: interface
@@ -14,6 +16,26 @@ items:
       [PromptRecognizers.recognizeChoices()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.promptrecognizers#recognizechoices).
     extends:
       name: botbuilder.IPromptRecognizeValuesOptions
+    package: botbuilder
+  - uid: botbuilder.IPromptRecognizeChoicesOptions.allowPartialMatches
+    name: allowPartialMatches
+    fullName: allowPartialMatches
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      (Optional) if true, then only some of the tokens in a value need to exist
+      to be considered
+
+      a match. The default value is "false".
+    optional: true
+    syntax:
+      content: 'allowPartialMatches?: boolean'
+      return:
+        type:
+          - boolean
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptRecognizeChoicesOptions.excludeAction
     name: excludeAction
@@ -29,6 +51,7 @@ items:
       return:
         type:
           - boolean
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptRecognizeChoicesOptions.excludeValue
     name: excludeValue
@@ -44,6 +67,32 @@ items:
       return:
         type:
           - boolean
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IPromptRecognizeChoicesOptions.maxTokenDistance
+    name: maxTokenDistance
+    fullName: maxTokenDistance
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      (Optional) maximum tokens allowed between two matched tokens in the
+      utterance. So with
+
+      a max distance of 2 the value "second last" would match the utterance
+      "second from the last"
+
+      but it wouldn't match "Wait a second. That's not the last one is it?".
+
+      The default value is "2".
+    optional: true
+    syntax:
+      content: 'maxTokenDistance?: number'
+      return:
+        type:
+          - number
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.IPromptRecognizeValuesOptions

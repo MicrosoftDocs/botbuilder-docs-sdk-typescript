@@ -4,6 +4,8 @@ items:
     name: SimpleDialog
     fullName: SimpleDialog
     children:
+      - botbuilder-calling.SimpleDialog.begin
+      - botbuilder-calling.SimpleDialog.dialogResumed
       - botbuilder-calling.SimpleDialog.replyReceived
       - botbuilder-calling.SimpleDialog.constructor
     langs:
@@ -30,6 +32,49 @@ items:
         until you call [session.endDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#enddialog).
     extends:
       name: botbuilder-calling.Dialog
+    package: botbuilder-calling
+  - uid: botbuilder-calling.SimpleDialog.begin
+    name: 'begin(CallSession, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when a new dialog session is being started.
+    syntax:
+      content: 'function begin<T>(session: CallSession, args?: T)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: args
+          type:
+            - T
+          description: |
+            (Optional) arguments passed to the dialog by its parent.
+          optional: true
+    package: botbuilder-calling
+  - uid: botbuilder-calling.SimpleDialog.dialogResumed
+    name: 'dialogResumed(CallSession, IDialogResult<T>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: A child dialog has ended and the current one is being resumed.
+    syntax:
+      content: >-
+        function dialogResumed<T>(session: CallSession, result:
+        IDialogResult<T>)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: result
+          type:
+            - botbuilder-calling.IDialogResult<T>
+          description: |
+            Result returned by the child dialog.
     package: botbuilder-calling
   - uid: botbuilder-calling.SimpleDialog.replyReceived
     name: replyReceived(CallSession)
@@ -79,3 +124,11 @@ references:
       - name: CallSession
         fullName: CallSession
         uid: botbuilder-calling.CallSession
+  - uid: botbuilder-calling.IDialogResult<T>
+    name: IDialogResult<T>
+    spec.typeScript:
+      - name: IDialogResult
+        fullName: IDialogResult
+        uid: botbuilder-calling.IDialogResult
+      - name: <T>
+        fullName: <T>
