@@ -1,0 +1,221 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botframework-connector.JwtTokenValidation
+    name: JwtTokenValidation
+    fullName: JwtTokenValidation
+    children:
+      - botframework-connector.JwtTokenValidation.authenticateRequest
+      - botframework-connector.JwtTokenValidation.getAppIdFromClaims
+      - botframework-connector.JwtTokenValidation.isGovernment
+      - botframework-connector.JwtTokenValidation.isValidTokenFormat
+      - botframework-connector.JwtTokenValidation.validateAuthHeader
+    langs:
+      - typeScript
+    type: module
+    summary: ''
+    package: botframework-connector
+  - uid: botframework-connector.JwtTokenValidation.authenticateRequest
+    name: >-
+      authenticateRequest(Activity, string, ICredentialProvider, string,
+      AuthenticationConfiguration)
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      Authenticates the request and sets the service url in the set of trusted
+      urls.
+    syntax:
+      content: >-
+        function authenticateRequest(activity: Activity, authHeader: string,
+        credentials: ICredentialProvider, channelService: string, authConfig?:
+        AuthenticationConfiguration)
+      parameters:
+        - id: activity
+          type:
+            - Activity
+          description: The incoming Activity from the Bot Framework or the Emulator
+        - id: authHeader
+          type:
+            - string
+          description: The Bearer token included as part of the request
+        - id: credentials
+          type:
+            - botframework-connector.ICredentialProvider
+          description: 'The set of valid credentials, such as the Bot Application ID'
+        - id: channelService
+          type:
+            - string
+          description: ''
+        - id: authConfig
+          type:
+            - botframework-connector.AuthenticationConfiguration
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<botframework-connector.ClaimsIdentity>
+        description: Promise with ClaimsIdentity for the request.
+    package: botframework-connector
+  - uid: botframework-connector.JwtTokenValidation.getAppIdFromClaims
+    name: 'getAppIdFromClaims(Claim[])'
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: Gets the AppId from a claims list.
+    syntax:
+      content: 'function getAppIdFromClaims(claims: Claim[])'
+      parameters:
+        - id: claims
+          type:
+            - 'botframework-connector.Claim[]'
+          description: |
+            An object containing claims types and their values.
+      return:
+        type:
+          - string
+        description: ''
+    package: botframework-connector
+    remarks: >-
+      In v1 tokens the AppId is in the "ver" AuthenticationConstants.AppIdClaim
+      claim.
+
+      In v2 tokens the AppId is in the "azp"
+      AuthenticationConstants.AuthorizedParty claim.
+
+      If the AuthenticationConstants.VersionClaim is not present, this method
+      will attempt to
+
+      obtain the attribute from the AuthenticationConstants.AppIdClaim or if
+      present.
+
+
+      Throws a TypeError if claims is falsy.
+  - uid: botframework-connector.JwtTokenValidation.isGovernment
+    name: isGovernment(string)
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function isGovernment(channelService: string)'
+      parameters:
+        - id: channelService
+          type:
+            - string
+          description: ''
+      return:
+        type:
+          - boolean
+        description: ''
+    package: botframework-connector
+  - uid: botframework-connector.JwtTokenValidation.isValidTokenFormat
+    name: isValidTokenFormat(string)
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: >-
+      Internal helper to check if the token has the shape we expect "Bearer [big
+      long string]".
+    syntax:
+      content: 'function isValidTokenFormat(authHeader: string)'
+      parameters:
+        - id: authHeader
+          type:
+            - string
+          description: A string containing the token header.
+      return:
+        type:
+          - boolean
+        description: 'True if the token is valid, false if not.'
+    package: botframework-connector
+  - uid: botframework-connector.JwtTokenValidation.validateAuthHeader
+    name: >-
+      validateAuthHeader(string, ICredentialProvider, string, string, string,
+      AuthenticationConfiguration)
+    children: []
+    type: function
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        function validateAuthHeader(authHeader: string, credentials:
+        ICredentialProvider, channelService: string, channelId: string,
+        serviceUrl?: string, authConfig?: AuthenticationConfiguration)
+      parameters:
+        - id: authHeader
+          type:
+            - string
+          description: ''
+        - id: credentials
+          type:
+            - botframework-connector.ICredentialProvider
+          description: ''
+        - id: channelService
+          type:
+            - string
+          description: ''
+        - id: channelId
+          type:
+            - string
+          description: ''
+        - id: serviceUrl
+          type:
+            - string
+          description: ''
+          optional: true
+        - id: authConfig
+          type:
+            - botframework-connector.AuthenticationConfiguration
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<botframework-connector.ClaimsIdentity>
+        description: ''
+    package: botframework-connector
+references:
+  - uid: botframework-connector.ICredentialProvider
+    name: ICredentialProvider
+    spec.typeScript:
+      - name: ICredentialProvider
+        fullName: ICredentialProvider
+        uid: botframework-connector.ICredentialProvider
+  - uid: botframework-connector.AuthenticationConfiguration
+    name: AuthenticationConfiguration
+    spec.typeScript:
+      - name: AuthenticationConfiguration
+        fullName: AuthenticationConfiguration
+        uid: botframework-connector.AuthenticationConfiguration
+  - uid: Promise<botframework-connector.ClaimsIdentity>
+    name: ClaimsIdentity>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: ClaimsIdentity
+        fullName: ClaimsIdentity
+        uid: botframework-connector.ClaimsIdentity
+      - name: '>'
+        fullName: '>'
+  - uid: 'botframework-connector.Claim[]'
+    name: 'Claim[]'
+    spec.typeScript:
+      - name: Claim
+        fullName: Claim
+        uid: botframework-connector.Claim
+      - name: '[]'
+        fullName: '[]'
+  - uid: botframework-connector.JwtTokenValidation.authenticateRequest
+    name: authenticateRequest
+  - uid: botframework-connector.JwtTokenValidation.getAppIdFromClaims
+    name: getAppIdFromClaims
+  - uid: botframework-connector.JwtTokenValidation.isGovernment
+    name: isGovernment
+  - uid: botframework-connector.JwtTokenValidation.isValidTokenFormat
+    name: isValidTokenFormat
+  - uid: botframework-connector.JwtTokenValidation.validateAuthHeader
+    name: validateAuthHeader
