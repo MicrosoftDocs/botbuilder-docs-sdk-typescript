@@ -1,0 +1,310 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager
+    name: DialogStateManager
+    fullName: DialogStateManager
+    children:
+      - >-
+        botbuilder-dialogs -
+        v4.8.0-preview.97252.DialogStateManager.configuration
+      - >-
+        botbuilder-dialogs -
+        v4.8.0-preview.97252.DialogStateManager.createStandardConfiguration
+      - >-
+        botbuilder-dialogs -
+        v4.8.0-preview.97252.DialogStateManager.deleteScopesMemory
+      - botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.deleteValue
+      - botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.constructor
+      - >-
+        botbuilder-dialogs -
+        v4.8.0-preview.97252.DialogStateManager.getMemorySnapshot
+      - botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.getValue
+      - >-
+        botbuilder-dialogs -
+        v4.8.0-preview.97252.DialogStateManager.loadAllScopes
+      - botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.parsePath
+      - >-
+        botbuilder-dialogs -
+        v4.8.0-preview.97252.DialogStateManager.saveAllChanges
+      - botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.setValue
+      - >-
+        botbuilder-dialogs -
+        v4.8.0-preview.97252.DialogStateManager.transformPath
+    langs:
+      - typeScript
+    type: class
+    summary: The DialogStateManager manages memory scopes and path resolvers.
+    package: botbuilder-dialogs - v4
+    remarks: >-
+      MemoryScopes are named root level objects, which can exist either in the
+      dialog context or off
+
+      of turn state. Path resolvers allow for shortcut behavior for mapping
+      things like
+
+      $foo -> dialog.foo
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.configuration
+    name: configuration
+    fullName: configuration
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Gets or sets the configured path resolvers and memory scopes for the
+      dialog state manager.
+    syntax:
+      content: DialogStateManagerConfiguration configuration
+      return:
+        type:
+          - >-
+            botbuilder-dialogs -
+            v4.8.0-preview.97252.DialogStateManagerConfiguration
+        description: ''
+    package: botbuilder-dialogs - v4
+    remarks: >-
+      There is a single set of configuration information for a given chain of
+      dialog contexts.
+
+      Assigning a new configuration to any DialogStateManager within the chain
+      will update the
+
+      configuration for the entire chain.
+  - uid: >-
+      botbuilder-dialogs -
+      v4.8.0-preview.97252.DialogStateManager.createStandardConfiguration
+    name: 'createStandardConfiguration(ConversationState, UserState)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        static function createStandardConfiguration(conversationState?:
+        ConversationState, userState?: UserState)
+      parameters:
+        - id: conversationState
+          type:
+            - ConversationState
+          description: ''
+          optional: true
+        - id: userState
+          type:
+            - UserState
+          description: ''
+          optional: true
+      return:
+        type:
+          - >-
+            botbuilder-dialogs -
+            v4.8.0-preview.97252.DialogStateManagerConfiguration
+        description: ''
+    package: botbuilder-dialogs - v4
+  - uid: >-
+      botbuilder-dialogs -
+      v4.8.0-preview.97252.DialogStateManager.deleteScopesMemory
+    name: deleteScopesMemory(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Deletes all of the backing memory for a given scope.
+    syntax:
+      content: 'function deleteScopesMemory(name: string)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: ''
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-dialogs - v4
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.deleteValue
+    name: deleteValue(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Delete property from memory
+    syntax:
+      content: 'function deleteValue(pathExpression: string)'
+      parameters:
+        - id: pathExpression
+          type:
+            - string
+          description: ''
+    package: botbuilder-dialogs - v4
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.constructor
+    name: DialogStateManager(DialogContext)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'new DialogStateManager(dc: DialogContext)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs - v4.8.0-preview.97252.DialogContext
+          description: ''
+    package: botbuilder-dialogs - v4
+  - uid: >-
+      botbuilder-dialogs -
+      v4.8.0-preview.97252.DialogStateManager.getMemorySnapshot
+    name: getMemorySnapshot()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Gets all memory scopes suitable for logging.
+    syntax:
+      content: function getMemorySnapshot()
+      parameters: []
+      return:
+        type:
+          - object
+        description: Object which represents all memory scopes.
+    package: botbuilder-dialogs - v4
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.getValue
+    name: 'getValue(string, T | () => T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Get the value from memory using path expression.
+    syntax:
+      content: 'function getValue<T>(pathExpression: string, defaultValue?: T | () => T)'
+      parameters:
+        - id: pathExpression
+          type:
+            - string
+          description: Path expression to use.
+        - id: defaultValue
+          type:
+            - T | () => T
+          description: >-
+            (Optional) default value to use if the path isn't found. May be a
+            function that returns the default value to use.
+          optional: true
+      return:
+        type:
+          - T
+        description: >-
+          The found value or undefined if not found and no `defaultValue`
+          specified.
+    package: botbuilder-dialogs - v4
+    remarks: >-
+      This always returns a CLONE of the memory, any modifications to the result
+      will not affect memory.
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.loadAllScopes
+    name: loadAllScopes()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Ensures that all memory scopes have been loaded for the current turn.
+    syntax:
+      content: function loadAllScopes()
+      parameters: []
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-dialogs - v4
+    remarks: This should be called at the beginning of the turn.
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.parsePath
+    name: parsePath(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Normalizes the path segments of a passed in path.
+    syntax:
+      content: 'function parsePath(pathExpression: string)'
+      parameters:
+        - id: pathExpression
+          type:
+            - string
+          description: The path to normalize.
+      return:
+        type:
+          - 'string | number[]'
+        description: The normalized path.
+    package: botbuilder-dialogs - v4
+    remarks: 'A path of `profile.address[0]` will be normalized to `profile.address.0`.'
+  - uid: >-
+      botbuilder-dialogs -
+      v4.8.0-preview.97252.DialogStateManager.saveAllChanges
+    name: saveAllChanges()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Saves any changes made to memory scopes.
+    syntax:
+      content: function saveAllChanges()
+      parameters: []
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-dialogs - v4
+    remarks: This should be called at the end of the turn.
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.setValue
+    name: 'setValue(string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Set memory to value.
+    syntax:
+      content: 'function setValue(pathExpression: string, value: any)'
+      parameters:
+        - id: pathExpression
+          type:
+            - string
+          description: Path to memory.
+        - id: value
+          type:
+            - any
+          description: |
+            Value to set.
+    package: botbuilder-dialogs - v4
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManager.transformPath
+    name: transformPath(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Transform the path using the registered path transformers.
+    syntax:
+      content: 'function transformPath(pathExpression: string)'
+      parameters:
+        - id: pathExpression
+          type:
+            - string
+          description: The path to transform.
+      return:
+        type:
+          - string
+        description: The transformed path.
+    package: botbuilder-dialogs - v4
+references:
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogContext
+    name: DialogContext
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogContext
+  - uid: botbuilder-dialogs - v4.8.0-preview.97252.DialogStateManagerConfiguration
+    name: DialogStateManagerConfiguration
+    spec.typeScript:
+      - name: DialogStateManagerConfiguration
+        fullName: DialogStateManagerConfiguration
+        uid: >-
+          botbuilder-dialogs -
+          v4.8.0-preview.97252.DialogStateManagerConfiguration

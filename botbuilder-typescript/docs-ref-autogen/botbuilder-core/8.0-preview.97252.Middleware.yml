@@ -1,0 +1,73 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core - v4.8.0-preview.97252.Middleware
+    name: Middleware
+    fullName: Middleware
+    children:
+      - botbuilder-core - v4.8.0-preview.97252.Middleware.onTurn
+    langs:
+      - typeScript
+    type: interface
+    summary: Interface implemented by object based middleware.
+    package: botbuilder-core - v4
+  - uid: botbuilder-core - v4.8.0-preview.97252.Middleware.onTurn
+    name: 'onTurn(TurnContext, () => Promise<void>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called each time the bot receives a new request.
+    syntax:
+      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core - v4.8.0-preview.97252.TurnContext
+          description: Context for current turn of conversation with the user.
+        - id: next
+          type:
+            - () => Promise<void>
+          description: >
+            Function to call to continue execution to the next step in the
+            middleware chain.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core - v4
+    remarks: >-
+      Calling `await next();` will cause execution to continue to either the
+      next piece of
+
+      middleware in the chain or the bots main logic if you are the last piece
+      of middleware.
+
+
+      Your middleware should perform its business logic before and/or after the
+      call to `next()`.
+
+      You can short-circuit further execution of the turn by omitting the call
+      to `next()`.
+
+
+      The following example shows a simple piece of logging middleware:
+
+
+      ```JavaScript
+
+      class MyLogger {
+          async onTurn(context, next) {
+              console.log(`Leading Edge`);
+              await next();
+              console.log(`Trailing Edge`);
+          }
+      }
+
+      ```
+references:
+  - uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core - v4.8.0-preview.97252.TurnContext
