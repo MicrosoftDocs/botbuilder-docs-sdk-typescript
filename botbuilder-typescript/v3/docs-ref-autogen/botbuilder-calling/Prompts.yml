@@ -1,0 +1,372 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-calling.Prompts
+    name: Prompts
+    fullName: Prompts
+    children:
+      - botbuilder-calling.Prompts.action
+      - botbuilder-calling.Prompts.begin
+      - botbuilder-calling.Prompts.choice
+      - botbuilder-calling.Prompts.configure
+      - botbuilder-calling.Prompts.confirm
+      - botbuilder-calling.Prompts.dialogResumed
+      - botbuilder-calling.Prompts.digits
+      - botbuilder-calling.Prompts.record
+      - botbuilder-calling.Prompts.replyReceived
+    langs:
+      - typeScript
+    type: class
+    summary: Built in built-in prompts that can be called from any dialog.
+    extends:
+      name: botbuilder-calling.Dialog
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.action
+    name: 'action(CallSession, IAction | IIsAction)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sends a wrokflow action as a prompt to the user. Lets you process the raw
+      outcome
+    syntax:
+      content: >-
+        static function action(session: CallSession, action: IAction |
+        IIsAction)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: action
+          type:
+            - botbuilder-calling.IAction | botbuilder-calling.IIsAction
+          description: |
+            The workflow action to send.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.begin
+    name: 'begin(CallSession, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when a new dialog session is being started.
+    syntax:
+      content: 'function begin<T>(session: CallSession, args?: T)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: args
+          type:
+            - T
+          description: |
+            (Optional) arguments passed to the dialog by its parent.
+          optional: true
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.choice
+    name: >-
+      choice(CallSession, string | string[] | IAction | IIsAction,
+      IRecognitionChoice[], IRecognizerPromptOptions)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Prompts the user to choose from a list of options.
+    syntax:
+      content: >-
+        static function choice(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, choices: IRecognitionChoice[], options?:
+        IRecognizerPromptOptions)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type:
+            - >-
+              string | string[] | botbuilder-calling.IAction |
+              botbuilder-calling.IIsAction
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: choices
+          type:
+            - 'botbuilder-calling.IRecognitionChoice[]'
+          description: List of choices to prompt user with.
+        - id: options
+          type:
+            - botbuilder-calling.IRecognizerPromptOptions
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+          optional: true
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.configure
+    name: configure(IPromptsSettings)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Updates global options for the Prompts dialog.
+    syntax:
+      content: 'static function configure(settings: IPromptsSettings)'
+      parameters:
+        - id: settings
+          type:
+            - botbuilder-calling.IPromptsSettings
+          description: |
+            Options to set.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.confirm
+    name: >-
+      confirm(CallSession, string | string[] | IAction | IIsAction,
+      IConfirmPromptOptions)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Prompts the user to confirm an action with a yes/no response.
+    syntax:
+      content: >-
+        static function confirm(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, options?: IConfirmPromptOptions)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type:
+            - >-
+              string | string[] | botbuilder-calling.IAction |
+              botbuilder-calling.IIsAction
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: options
+          type:
+            - botbuilder-calling.IConfirmPromptOptions
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+          optional: true
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.dialogResumed
+    name: 'dialogResumed(CallSession, IDialogResult<T>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: A child dialog has ended and the current one is being resumed.
+    syntax:
+      content: >-
+        function dialogResumed<T>(session: CallSession, result:
+        IDialogResult<T>)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: result
+          type:
+            - botbuilder-calling.IDialogResult<T>
+          description: |
+            Result returned by the child dialog.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.digits
+    name: >-
+      digits(CallSession, string | string[] | IAction | IIsAction, number,
+      IDigitsPromptOptions)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Prompts the user to input a sequence of digits.
+    syntax:
+      content: >-
+        static function digits(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, maxDigits: number, options?:
+        IDigitsPromptOptions)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type:
+            - >-
+              string | string[] | botbuilder-calling.IAction |
+              botbuilder-calling.IIsAction
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: maxDigits
+          type:
+            - number
+          description: Maximum number of digits allowed.
+        - id: options
+          type:
+            - botbuilder-calling.IDigitsPromptOptions
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+          optional: true
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.record
+    name: >-
+      record(CallSession, string | string[] | IAction | IIsAction,
+      IRecordPromptOptions)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Prompts the user to record a message.
+    syntax:
+      content: >-
+        static function record(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, options?: IRecordPromptOptions)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type:
+            - >-
+              string | string[] | botbuilder-calling.IAction |
+              botbuilder-calling.IIsAction
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: options
+          type:
+            - botbuilder-calling.IRecordPromptOptions
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+          optional: true
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.replyReceived
+    name: replyReceived(CallSession)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Processes messages received from the user. Called by the dialog system.
+    syntax:
+      content: 'function replyReceived(session: CallSession)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: |
+            Session object for the current conversation.
+    package: botbuilder-calling
+references:
+  - uid: botbuilder-calling.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder-calling.Dialog
+  - uid: botbuilder-calling.CallSession
+    name: CallSession
+    spec.typeScript:
+      - name: CallSession
+        fullName: CallSession
+        uid: botbuilder-calling.CallSession
+  - uid: botbuilder-calling.IDialogResult<T>
+    name: IDialogResult<T>
+    spec.typeScript:
+      - name: IDialogResult
+        fullName: IDialogResult
+        uid: botbuilder-calling.IDialogResult
+      - name: <T>
+        fullName: <T>
+  - uid: botbuilder-calling.IAction | botbuilder-calling.IIsAction
+    name: IIsAction
+    spec.typeScript:
+      - name: IAction
+        fullName: IAction
+        uid: botbuilder-calling.IAction
+      - name: ' | '
+        fullName: ' | '
+      - name: IIsAction
+        fullName: IIsAction
+        uid: botbuilder-calling.IIsAction
+  - uid: >-
+      string | string[] | botbuilder-calling.IAction |
+      botbuilder-calling.IIsAction
+    name: IIsAction
+    spec.typeScript:
+      - name: 'string | string[] | '
+        fullName: 'string | string[] | '
+      - name: IAction
+        fullName: IAction
+        uid: botbuilder-calling.IAction
+      - name: ' | '
+        fullName: ' | '
+      - name: IIsAction
+        fullName: IIsAction
+        uid: botbuilder-calling.IIsAction
+  - uid: 'botbuilder-calling.IRecognitionChoice[]'
+    name: 'IRecognitionChoice[]'
+    spec.typeScript:
+      - name: IRecognitionChoice
+        fullName: IRecognitionChoice
+        uid: botbuilder-calling.IRecognitionChoice
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder-calling.IRecognizerPromptOptions
+    name: IRecognizerPromptOptions
+    spec.typeScript:
+      - name: IRecognizerPromptOptions
+        fullName: IRecognizerPromptOptions
+        uid: botbuilder-calling.IRecognizerPromptOptions
+  - uid: botbuilder-calling.IPromptsSettings
+    name: IPromptsSettings
+    spec.typeScript:
+      - name: IPromptsSettings
+        fullName: IPromptsSettings
+        uid: botbuilder-calling.IPromptsSettings
+  - uid: botbuilder-calling.IConfirmPromptOptions
+    name: IConfirmPromptOptions
+    spec.typeScript:
+      - name: IConfirmPromptOptions
+        fullName: IConfirmPromptOptions
+        uid: botbuilder-calling.IConfirmPromptOptions
+  - uid: botbuilder-calling.IDigitsPromptOptions
+    name: IDigitsPromptOptions
+    spec.typeScript:
+      - name: IDigitsPromptOptions
+        fullName: IDigitsPromptOptions
+        uid: botbuilder-calling.IDigitsPromptOptions
+  - uid: botbuilder-calling.IRecordPromptOptions
+    name: IRecordPromptOptions
+    spec.typeScript:
+      - name: IRecordPromptOptions
+        fullName: IRecordPromptOptions
+        uid: botbuilder-calling.IRecordPromptOptions

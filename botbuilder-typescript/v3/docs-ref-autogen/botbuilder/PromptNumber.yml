@@ -1,0 +1,1149 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.PromptNumber
+    name: PromptNumber
+    fullName: PromptNumber
+    children:
+      - botbuilder.PromptNumber.addDialogTrigger
+      - botbuilder.PromptNumber.begin
+      - botbuilder.PromptNumber.beginDialogAction
+      - botbuilder.PromptNumber.cancelAction
+      - botbuilder.PromptNumber.clone
+      - botbuilder.PromptNumber.customAction
+      - botbuilder.PromptNumber.dialogInterrupted
+      - botbuilder.PromptNumber.dialogResumed
+      - botbuilder.PromptNumber.endConversationAction
+      - botbuilder.PromptNumber.features
+      - botbuilder.PromptNumber.findActionRoutes
+      - botbuilder.PromptNumber.formatMessage
+      - botbuilder.PromptNumber.gettext
+      - botbuilder.PromptNumber.matches
+      - botbuilder.PromptNumber.matchesAny
+      - botbuilder.PromptNumber.onFormatMessage
+      - botbuilder.PromptNumber.onPrompt
+      - botbuilder.PromptNumber.onRecognize
+      - botbuilder.PromptNumber.constructor
+      - botbuilder.PromptNumber.recognize
+      - botbuilder.PromptNumber.recognizer
+      - botbuilder.PromptNumber.reloadAction
+      - botbuilder.PromptNumber.replyReceived
+      - botbuilder.PromptNumber.selectActionRoute
+      - botbuilder.PromptNumber.sendPrompt
+      - botbuilder.PromptNumber.triggerAction
+    langs:
+      - typeScript
+    type: class
+    summary: Customizable confirmation prompt.
+    extends:
+      name: botbuilder.Prompt<botbuilder.IPromptFeatures>
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.addDialogTrigger
+    name: 'addDialogTrigger(ActionSet, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called once for each dialog within a library to give the dialog a chance
+      to add its
+
+      `triggerAction()` to the libraries global action set.  These triggers get
+      mapped to
+
+      a `beginDialogAction()` that starts the dialog when the trigger condition
+      is met.
+    syntax:
+      content: 'function addDialogTrigger(actions: ActionSet, dialogId: string)'
+      parameters:
+        - id: actions
+          type:
+            - botbuilder.ActionSet
+          description: Libraries global action set.
+        - id: dialogId
+          type:
+            - string
+          description: |
+            The fully qualified ID of the dialog to trigger.
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.begin
+    name: 'begin(Session, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when a new dialog session is being started.
+    syntax:
+      content: 'function begin<T>(session: Session, args?: T)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: args
+          type:
+            - T
+          description: |
+            (Optional) arguments passed to the dialog by its parent.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.beginDialogAction
+    name: 'beginDialogAction(string, string, IBeginDialogActionOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Binds an action to the dialog that will start another dialog anytime it's
+      triggered. The new
+
+      dialog will be pushed onto the stack so it does not automatically end the
+      current task. The
+
+      current task will be continued once the new dialog ends. The built-in
+      prompts will automatically
+
+      re-prompt the user once this happens but that behaviour can be disabled by
+      setting the
+      [promptAfterAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ipromptoptions#promptafteraction)
+
+      flag when calling a built-in prompt.
+    syntax:
+      content: >-
+        function beginDialogAction(name: string, id: string, options?:
+        IBeginDialogActionOptions)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: Unique name to assign the action.
+        - id: id
+          type:
+            - string
+          description: ID of the dialog to start.
+        - id: options
+          type:
+            - botbuilder.IBeginDialogActionOptions
+          description: >
+            (Optional) options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action,
+            otherwise the action needs to be bound to a button using
+            [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
+
+            to trigger the action. You can also use
+            [dialogArgs](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs)
+            to pass additional params to the dialog being started.
+          optional: true
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.cancelAction
+    name: 'cancelAction(string, TextOrMessageType, ICancelActionOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Binds an action to the dialog that will cancel the dialog anytime it's
+      triggered. When canceled, the
+
+      dialogs parent will be resumed with a
+      [resumed](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogresult#resumed)
+      code indicating that it was
+      [canceled](/en-us/node/builder/chat-reference/enums/_botbuilder_d_.resumereason#canceled).
+    syntax:
+      content: >-
+        function cancelAction(name: string, msg?: TextOrMessageType, options?:
+        ICancelActionOptions)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: Unique name to assign the action.
+        - id: msg
+          type:
+            - botbuilder.TextOrMessageType
+          description: (Optional) message to send the user prior to canceling the dialog.
+          optional: true
+        - id: options
+          type:
+            - botbuilder.ICancelActionOptions
+          description: >
+            (Optional) options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action,
+            otherwise the action needs to be bound to a button using
+            [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
+
+            to trigger the action.
+          optional: true
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.clone
+    name: clone(ActionSet)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a clone of an existing ActionSet.
+    syntax:
+      content: 'function clone(copyTo?: ActionSet)'
+      parameters:
+        - id: copyTo
+          type:
+            - botbuilder.ActionSet
+          description: >
+            (Optional) instance to copy the current object to. If missing a new
+            instance will be created.
+          optional: true
+      return:
+        type:
+          - botbuilder.ActionSet
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.customAction
+    name: customAction(IDialogActionOptions)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Binds a custom action to the dialog that will call the passed in
+      [onSelectAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onselectaction)
+
+      handler when triggered.
+    syntax:
+      content: 'function customAction(options: IDialogActionOptions)'
+      parameters:
+        - id: options
+          type:
+            - botbuilder.IDialogActionOptions
+          description: >
+            The options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action.
+            Custom matching logic can be provided using
+            [onFindAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onfindaction).
+      return:
+        type:
+          - botbuilder.Library
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.dialogInterrupted
+    name: 'dialogInterrupted(Session, string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called when a root dialog is being interrupted by another dialog. This
+      gives the dialog
+
+      that's being interrupted a chance to run custom logic before it's removed
+      from the stack.
+
+      The dialog itself is responsible for clearing the dialog stack and
+      starting the new dialog.
+    syntax:
+      content: >-
+        function dialogInterrupted(session: Session, dialogId: string,
+        dialogArgs: any)
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: dialogId
+          type:
+            - string
+          description: ID of the dialog that should be started.
+        - id: dialogArgs
+          type:
+            - any
+          description: |
+            Arguments that should be passed to the new dialog.
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.dialogResumed
+    name: 'dialogResumed(Session, IDialogResult<T>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: A child dialog has ended and the current one is being resumed.
+    syntax:
+      content: 'function dialogResumed<T>(session: Session, result: IDialogResult<T>)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: result
+          type:
+            - botbuilder.IDialogResult<T>
+          description: |
+            Result returned by the child dialog.
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.endConversationAction
+    name: 'endConversationAction(string, TextOrMessageType, ICancelActionOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Binds an action that will end the conversation with the user when
+      triggered.
+    syntax:
+      content: >-
+        function endConversationAction(name: string, msg?: TextOrMessageType,
+        options?: ICancelActionOptions)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: Unique name to assign the action.
+        - id: msg
+          type:
+            - botbuilder.TextOrMessageType
+          description: >-
+            (Optional) message to send the user prior to ending the
+            conversation.
+          optional: true
+        - id: options
+          type:
+            - botbuilder.ICancelActionOptions
+          description: >
+            (Optional) options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action,
+            otherwise the action needs to be bound to a button using
+            [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
+
+            to trigger the action.
+          optional: true
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.features
+    name: features
+    fullName: features
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The prompts current configured set of features.
+    syntax:
+      content: 'public features: IPromptFeatures'
+      return:
+        type:
+          - botbuilder.IPromptFeatures
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.findActionRoutes
+    name: >-
+      findActionRoutes(IRecognizeDialogContext, (err: Error, results:
+      IRouteResult[]) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called during the
+      [Library.findRoutes()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#findroutes)
+
+      call for each dialog on the stack to determine if any of the dialogs
+      actions are triggered
+
+      by the users utterance.
+    syntax:
+      content: >-
+        function findActionRoutes(context: IRecognizeDialogContext, callback:
+        (err: Error, results: IRouteResult[]) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeDialogContext
+          description: >-
+            The context of the incoming message as well as the
+            [dialogData](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#dialogdata)
+            for the evaluated dialog.
+        - id: callback
+          type:
+            - '(err: Error, results: IRouteResult[]) => void'
+          description: |
+            Function to invoke with the top candidate route(s).
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.formatMessage
+    name: >-
+      formatMessage(Session, TextType, TextType, (err: Error, msg: IMessage) =>
+      void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Creates the message to send for the prompt. This is called automatically
+      by [sendPrompt()](#sendprompt)
+
+      so in most cases you'll want to register a
+      [onFormatMessage()](#onformatmessage) handler to
+
+      customize the message sent for a prompt. You should only need to call this
+      method if you're
+
+      implementing your own `sendPrompt()` logic.
+    syntax:
+      content: >-
+        function formatMessage(session: Session, text: TextType, speak:
+        TextType, callback: (err: Error, msg: IMessage) => void)
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: text
+          type:
+            - botbuilder.TextType
+          description: Current prompt/retryPrompt text.
+        - id: speak
+          type:
+            - botbuilder.TextType
+          description: Current speak/retrySpeak SSML. This value may be null.
+        - id: callback
+          type:
+            - '(err: Error, msg: IMessage) => void'
+          description: |
+            Function to receive the created message.
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.gettext
+    name: 'gettext(Session, TextType, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns the text for a prompt that's been localized using the namespace of
+      the prompts caller.
+    syntax:
+      content: >-
+        static function gettext(session: Session, text: TextType, namespace?:
+        string)
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Current session for the conversation.
+        - id: text
+          type:
+            - botbuilder.TextType
+          description: Prompt to localize.
+        - id: namespace
+          type:
+            - string
+          description: >
+            (Optional) library namespace to use for localizing the prompt. By
+            default the namespace of the prompts caller will be used.
+          optional: true
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.matches
+    name: >-
+      matches(RegExp | string, string | IDialogWaterfallStep[] |
+      IDialogWaterfallStep, any)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Invokes a handler when a given intent is detected in the users utterance.
+      For `string` based
+
+      intents, the intent can either be an intent returned by a
+      [recognizer()](#recognizer) registered
+
+      for the prompt or it can be an intent that flows in from a global
+      [recognizer()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#recognizer).
+
+      > __NOTE:__ The full details of the match, including the list of intents &
+      entities detected, will be passed to the
+      [args](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizerresult)
+      of the first waterfall step or dialog that's started.
+    syntax:
+      content: >-
+        function matches(intent: RegExp | string, dialogId: string |
+        IDialogWaterfallStep[] | IDialogWaterfallStep, dialogArgs?: any)
+      parameters:
+        - id: intent
+          type:
+            - RegExp | string
+          description: >-
+
+            * __intent:__ _{RegExp}_ - A regular expression that will be
+            evaluated to detect the users intent.
+
+            * __intent:__ _{string}_ - A named intent returned by an
+            [IIntentRecognizer](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizer)
+            plugin that will be used to match the users intent.
+        - id: dialogId
+          type:
+            - >-
+              string | botbuilder.IDialogWaterfallStep[] |
+              botbuilder.IDialogWaterfallStep
+          description: >-
+
+            * __dialogId:__ _{string} - The ID of a dialog to begin when the
+            intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep[]}_ - Waterfall of steps to
+            execute when the intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep}_ - Single step waterfall to
+            execute when the intent is matched. Calling a built-in prompt or
+            starting a new dialog will result in the current dialog ending upon
+            completion of the child prompt/dialog.
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) arguments to pass the dialog that started when `dialogId`
+            is a _{string}_.
+          optional: true
+      return:
+        type:
+          - botbuilder.IntentDialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.matchesAny
+    name: >-
+      matchesAny(RegExp[] | string[], string | IDialogWaterfallStep[] |
+      IDialogWaterfallStep, any)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Invokes a handler when any of the given intents are detected in the users
+      utterance. For `string` based
+
+      intents, the intent can either be an intent returned by a
+      [recognizer()](#recognizer) registered
+
+      for the prompt or it can be an intent that flows in from a global
+      [recognizer()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#recognizer).
+
+      > __NOTE:__ The full details of the match, including the list of intents &
+      entities detected, will be passed to the
+      [args](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizerresult)
+      of the first waterfall step or dialog that's started.
+    syntax:
+      content: >-
+        function matchesAny(intent: RegExp[] | string[], dialogId: string |
+        IDialogWaterfallStep[] | IDialogWaterfallStep, dialogArgs?: any)
+      parameters:
+        - id: intent
+          type:
+            - 'RegExp[] | string[]'
+          description: >-
+
+            * __intent:__ _{RegExp[]}_ - Array of regular expressions that will
+            be evaluated to detect the users intent.
+
+            * __intent:__ _{string[]}_ - Array of named intents returned by an
+            [IIntentRecognizer](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizer)
+            plugin that will be used to match the users intent.
+        - id: dialogId
+          type:
+            - >-
+              string | botbuilder.IDialogWaterfallStep[] |
+              botbuilder.IDialogWaterfallStep
+          description: >-
+
+            * __dialogId:__ _{string} - The ID of a dialog to begin when the
+            intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep[]}_ - Waterfall of steps to
+            execute when the intent is matched.
+
+            * __dialogId:__ _{IDialogWaterfallStep}_ - Single step waterfall to
+            execute when the intent is matched. Calling a built-in prompt or
+            starting a new dialog will result in the current dialog ending upon
+            completion of the child prompt/dialog.
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) arguments to pass the dialog that started when `dialogId`
+            is a _{string}_.
+          optional: true
+      return:
+        type:
+          - botbuilder.IntentDialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.onFormatMessage
+    name: >-
+      onFormatMessage((session: Session, text: TextType, speak: TextType,
+      callback: (err: Error, message?: IMessage) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a handler that will be called to create the outgoing
+      [IMessage](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage)
+
+      that will be sent for the prompt.  This handler is only called when the
+      current
+
+      prompt/retryPrompt is of type `string|string[]`. Anytime the
+      prompt/retryPrompt is an
+
+      `IMessage|IIsMessage` the configured message is used so your handler will
+      not be called.
+
+      Multiple handlers can be registered and the first handler to call
+      `callback()` with a message
+
+      will be used. Calling `callback(null, null)` will cause processing to move
+      to the next handler
+
+      in the chain.
+    syntax:
+      content: >-
+        function onFormatMessage(handler: (session: Session, text: TextType,
+        speak: TextType, callback: (err: Error, message?: IMessage) => void) =>
+        void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (session: Session, text: TextType, speak: TextType, callback:
+              (err: Error, message?: IMessage) => void) => void
+          description: >
+            Function that will be called to create an `IMessage` for the current
+            prompt. Call `callback()` with either a message or `null` to
+            continue processing.
+      return:
+        type:
+          - botbuilder.Prompt<any>
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.onPrompt
+    name: 'onPrompt((session: Session, next: Function) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a handler that will be called every time the prompt is about to
+      send a message to
+
+      the user. You can use this hook to implement your own custom prompt
+      sending logic.
+
+      Multiple handlers can be registered and calling `next()` will invoke the
+      next handler in
+
+      the chain. The final handler performs the prompts default logic which is
+      to create a new
+
+      message using [formatMessage()](#formatmessage) and then send it.
+    syntax:
+      content: 'function onPrompt(handler: (session: Session, next: Function) => void)'
+      parameters:
+        - id: handler
+          type:
+            - '(session: Session, next: Function) => void'
+          description: >
+            Function that will be called anytime [sendPrompt()](#sendprompt) is
+            called.
+      return:
+        type:
+          - botbuilder.Prompt<any>
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.onRecognize
+    name: >-
+      onRecognize((context: IRecognizeDialogContext, callback: (err: Error,
+      score: number, response?: any) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a handler that will be called everytime the prompt receives a
+      reply from the user.
+
+      The handlers `callback()` can be used to return a confidence score that it
+      understood the
+
+      users input as well as the value that should be returned to the caller of
+      the prompt.
+
+      Calling `callback(null, 1.0, true);` would indicate a high confidence that
+      the user answered
+
+      the prompt and would return a `boolean` true as the response from the
+      prompt. Any response
+
+      type is possible, including objects. Calling `callback(null, 0.0);`
+      indicates that the users
+
+      input was not understood at all and that they should be re-prompted.
+
+
+      Multiple handlers can be registered and unlike the other handler types,
+      all of the registered
+
+      will be called and handler providing the highest confidence score will be
+      chosen as the winner.
+
+      When customizing one of the built-in prompt types you'll often want to
+      disable the prompts
+
+      default recognizer logic. This can be achieved by setting the
+      [features](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ipromptfeatures)
+
+      of the prompt when you create it. Just keep in mind that if you completely
+      disable the prompts
+
+      default recognizer logic, you'll need to do all of the recognition
+      yourself.
+    syntax:
+      content: >-
+        function onRecognize(handler: (context: IRecognizeDialogContext,
+        callback: (err: Error, score: number, response?: any) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeDialogContext, callback: (err: Error, score:
+              number, response?: any) => void) => void
+          description: >
+            Function that will be called to recognize the users reply to a
+            prompt.
+      return:
+        type:
+          - botbuilder.Prompt<any>
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.constructor
+    name: PromptNumber(IPromptFeatures)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: >-
+      Creates a new customizable instance of the prompt. Your new prompt should
+      be added as a
+
+      dialog to either a bot or library.
+    syntax:
+      content: 'new PromptNumber(features?: IPromptFeatures)'
+      parameters:
+        - id: features
+          type:
+            - botbuilder.IPromptFeatures
+          description: |
+            (Optional) features used to customize the prompts behaviour.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.recognize
+    name: >-
+      recognize(IRecognizeDialogContext, (err: Error, result: IRecognizeResult)
+      => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Parses the users utterance and assigns a score from 0.0 - 1.0 indicating
+      how confident the
+
+      dialog is that it understood the users utterance.  This method is always
+      called for the active
+
+      dialog on the stack.  A score of 1.0 will indicate a perfect match and
+      terminate any further
+
+      recognition.
+
+      When the score is less than 1.0, every dialog on the stack will have its
+
+      [recognizeAction()](#recognizeaction) method called as well to see if
+      there are any named
+
+      actions bound to the dialog that better matches the users utterance.
+      Global actions registered
+
+      at the bot level will also be evaluated. If the dialog has a score higher
+      then any bound actions,
+
+      the dialogs [replyReceived()](#replyreceived) method will be called with
+      the result object
+
+      returned from the recognize() call.  This lets the dialog pass additional
+      data collected during
+
+      the recognize phase to the replyReceived() method for handling.
+
+
+      Should there be an action with a higher score then the dialog the action
+      will be invoked instead
+
+      of the dialogs replyReceived() method.  The dialog will stay on the stack
+      and may be resumed
+
+      at some point should the action invoke a new dialog so dialogs should
+      prepare for unexpected calls
+
+      to [dialogResumed()](#dialogresumed).
+    syntax:
+      content: >-
+        function recognize(context: IRecognizeDialogContext, callback: (err:
+        Error, result: IRecognizeResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeDialogContext
+          description: The context of the request.
+        - id: callback
+          type:
+            - '(err: Error, result: IRecognizeResult) => void'
+          description: |
+            Function to invoke with the recognition results.
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.recognizer
+    name: recognizer(IIntentRecognizer)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Adds a new recognizer plugin to the Prompt which will be run everytime the
+      user replies
+
+      to the prompt.
+    syntax:
+      content: 'function recognizer(plugin: IIntentRecognizer)'
+      parameters:
+        - id: plugin
+          type:
+            - botbuilder.IIntentRecognizer
+          description: |
+            The recognizer to add.
+      return:
+        type:
+          - botbuilder.IntentDialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.reloadAction
+    name: 'reloadAction(string, TextOrMessageType, IBeginDialogActionOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Binds an action to the dialog that will cause the dialog to be reloaded
+      anytime it's triggered. This is
+
+      useful to implement logic that handle user utterances like "start over".
+    syntax:
+      content: >-
+        function reloadAction(name: string, msg?: TextOrMessageType, options?:
+        IBeginDialogActionOptions)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: Unique name to assign the action.
+        - id: msg
+          type:
+            - botbuilder.TextOrMessageType
+          description: (Optional) message to send the user prior to reloading the dialog.
+          optional: true
+        - id: options
+          type:
+            - botbuilder.IBeginDialogActionOptions
+          description: >
+            (Optional) options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action,
+            otherwise the action needs to be bound to a button using
+            [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
+
+            to trigger the action. You can also use
+            [dialogArgs](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs)
+            to pass additional params to the dialog when reloaded.
+          optional: true
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.replyReceived
+    name: 'replyReceived(Session, IRecognizeResult)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Processes messages received from the user. Called by the dialog system.
+    syntax:
+      content: >-
+        function replyReceived(session: Session, recognizeResult?:
+        IRecognizeResult)
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: recognizeResult
+          type:
+            - botbuilder.IRecognizeResult
+          description: ''
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.selectActionRoute
+    name: 'selectActionRoute(Session, IRouteResult)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Selects the route that had the highest confidence score for the utterance.
+    syntax:
+      content: 'function selectActionRoute(session: Session, route: IRouteResult)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: >
+            Results returned from the call to
+            [findActionRoutes()](#findactionroute).
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.sendPrompt
+    name: sendPrompt(Session)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sends a prompt to the user for the current turn. This can be called from a
+      [matches()][#matches]
+
+      handler to manually send a prompt/reprompt to the user. To force sending
+      of the initial prompt
+
+      you would need to set `session.dialogData.turns = 0;` before calling
+      `sendPrompt()`.
+    syntax:
+      content: 'function sendPrompt(session: Session)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: |
+            Session object for the current conversation.
+    package: botbuilder
+  - uid: botbuilder.PromptNumber.triggerAction
+    name: triggerAction(ITriggerActionOptions)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Binds an action to the dialog that will make it the active dialog anytime
+      it's triggered.
+
+      The default behaviour is to interupt any existing dialog by clearing the
+      stack and starting
+
+      the dialog at the root of the stack.  The dialog being interrupted can
+      intercept this
+
+      interruption by adding a custom
+      [onInterrupted](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionsoptions#oninterrupted)
+
+      handler to their trigger action options.  Additionally, you can customize
+      the way the
+
+      triggered dialog is started by providing a custom
+      [onSelectAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ibegindialogactionsoptions#onselectaction)
+
+      handler to your trigger action options.
+    syntax:
+      content: 'function triggerAction(options: ITriggerActionOptions)'
+      parameters:
+        - id: options
+          type:
+            - botbuilder.ITriggerActionOptions
+          description: |
+            Options used to configure the action.
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+references:
+  - uid: botbuilder.Prompt<botbuilder.IPromptFeatures>
+    name: IPromptFeatures>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder.Prompt
+      - name: <
+        fullName: <
+      - name: IPromptFeatures
+        fullName: IPromptFeatures
+        uid: botbuilder.IPromptFeatures
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder.IPromptFeatures
+    name: IPromptFeatures
+    spec.typeScript:
+      - name: IPromptFeatures
+        fullName: IPromptFeatures
+        uid: botbuilder.IPromptFeatures
+  - uid: botbuilder.ActionSet
+    name: ActionSet
+    spec.typeScript:
+      - name: ActionSet
+        fullName: ActionSet
+        uid: botbuilder.ActionSet
+  - uid: botbuilder.Session
+    name: Session
+    spec.typeScript:
+      - name: Session
+        fullName: Session
+        uid: botbuilder.Session
+  - uid: botbuilder.IBeginDialogActionOptions
+    name: IBeginDialogActionOptions
+    spec.typeScript:
+      - name: IBeginDialogActionOptions
+        fullName: IBeginDialogActionOptions
+        uid: botbuilder.IBeginDialogActionOptions
+  - uid: botbuilder.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder.Dialog
+  - uid: botbuilder.TextOrMessageType
+    name: TextOrMessageType
+    spec.typeScript:
+      - name: TextOrMessageType
+        fullName: TextOrMessageType
+        uid: botbuilder.TextOrMessageType
+  - uid: botbuilder.ICancelActionOptions
+    name: ICancelActionOptions
+    spec.typeScript:
+      - name: ICancelActionOptions
+        fullName: ICancelActionOptions
+        uid: botbuilder.ICancelActionOptions
+  - uid: botbuilder.IDialogActionOptions
+    name: IDialogActionOptions
+    spec.typeScript:
+      - name: IDialogActionOptions
+        fullName: IDialogActionOptions
+        uid: botbuilder.IDialogActionOptions
+  - uid: botbuilder.Library
+    name: Library
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder.Library
+  - uid: botbuilder.IDialogResult<T>
+    name: IDialogResult<T>
+    spec.typeScript:
+      - name: IDialogResult
+        fullName: IDialogResult
+        uid: botbuilder.IDialogResult
+      - name: <T>
+        fullName: <T>
+  - uid: botbuilder.IRecognizeDialogContext
+    name: IRecognizeDialogContext
+    spec.typeScript:
+      - name: IRecognizeDialogContext
+        fullName: IRecognizeDialogContext
+        uid: botbuilder.IRecognizeDialogContext
+  - uid: botbuilder.TextType
+    name: TextType
+    spec.typeScript:
+      - name: TextType
+        fullName: TextType
+        uid: botbuilder.TextType
+  - uid: >-
+      string | botbuilder.IDialogWaterfallStep[] |
+      botbuilder.IDialogWaterfallStep
+    name: IDialogWaterfallStep
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: '[] | '
+        fullName: '[] | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+  - uid: botbuilder.IntentDialog
+    name: IntentDialog
+    spec.typeScript:
+      - name: IntentDialog
+        fullName: IntentDialog
+        uid: botbuilder.IntentDialog
+  - uid: botbuilder.Prompt<any>
+    name: Prompt<any>
+    spec.typeScript:
+      - name: Prompt
+        fullName: Prompt
+        uid: botbuilder.Prompt
+      - name: <any>
+        fullName: <any>
+  - uid: botbuilder.IIntentRecognizer
+    name: IIntentRecognizer
+    spec.typeScript:
+      - name: IIntentRecognizer
+        fullName: IIntentRecognizer
+        uid: botbuilder.IIntentRecognizer
+  - uid: botbuilder.IRecognizeResult
+    name: IRecognizeResult
+    spec.typeScript:
+      - name: IRecognizeResult
+        fullName: IRecognizeResult
+        uid: botbuilder.IRecognizeResult
+  - uid: botbuilder.IRouteResult
+    name: IRouteResult
+    spec.typeScript:
+      - name: IRouteResult
+        fullName: IRouteResult
+        uid: botbuilder.IRouteResult
+  - uid: botbuilder.ITriggerActionOptions
+    name: ITriggerActionOptions
+    spec.typeScript:
+      - name: ITriggerActionOptions
+        fullName: ITriggerActionOptions
+        uid: botbuilder.ITriggerActionOptions

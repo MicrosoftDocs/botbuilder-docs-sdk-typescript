@@ -1,0 +1,156 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.ActionSet
+    name: ActionSet
+    fullName: ActionSet
+    children:
+      - botbuilder.ActionSet.addDialogTrigger
+      - botbuilder.ActionSet.clone
+      - botbuilder.ActionSet.findActionRoutes
+      - botbuilder.ActionSet.selectActionRoute
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Implement support for named actions which can be bound to a dialog to
+      handle global utterances from the user like "help" or
+
+      "cancel". Actions get pushed onto and off of the dialog stack as part of
+      dialogs so these listeners can
+
+      come into and out of scope as the conversation progresses. You can also
+      bind named to actions to buttons
+
+      which let your bot respond to button clicks on cards that have maybe
+      scrolled off the screen.
+    package: botbuilder
+  - uid: botbuilder.ActionSet.addDialogTrigger
+    name: 'addDialogTrigger(ActionSet, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called once for each dialog within a library to give the dialog a chance
+      to add its
+
+      `triggerAction()` to the libraries global action set.  These triggers get
+      mapped to
+
+      a `beginDialogAction()` that starts the dialog when the trigger condition
+      is met.
+    syntax:
+      content: 'function addDialogTrigger(actions: ActionSet, dialogId: string)'
+      parameters:
+        - id: actions
+          type:
+            - botbuilder.ActionSet
+          description: Libraries global action set.
+        - id: dialogId
+          type:
+            - string
+          description: |
+            The fully qualified ID of the dialog to trigger.
+    package: botbuilder
+  - uid: botbuilder.ActionSet.clone
+    name: clone(ActionSet)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a clone of an existing ActionSet.
+    syntax:
+      content: 'function clone(copyTo?: ActionSet)'
+      parameters:
+        - id: copyTo
+          type:
+            - botbuilder.ActionSet
+          description: >
+            (Optional) instance to copy the current object to. If missing a new
+            instance will be created.
+          optional: true
+      return:
+        type:
+          - botbuilder.ActionSet
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.ActionSet.findActionRoutes
+    name: >-
+      findActionRoutes(IRecognizeDialogContext, (err: Error, results:
+      IRouteResult[]) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called during the
+      [Library.findRoutes()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#findroutes)
+
+      call for each dialog on the stack to determine if any of the dialogs
+      actions are triggered
+
+      by the users utterance.
+    syntax:
+      content: >-
+        function findActionRoutes(context: IRecognizeDialogContext, callback:
+        (err: Error, results: IRouteResult[]) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeDialogContext
+          description: >-
+            The context of the incoming message as well as the
+            [dialogData](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#dialogdata)
+            for the evaluated dialog.
+        - id: callback
+          type:
+            - '(err: Error, results: IRouteResult[]) => void'
+          description: |
+            Function to invoke with the top candidate route(s).
+    package: botbuilder
+  - uid: botbuilder.ActionSet.selectActionRoute
+    name: 'selectActionRoute(Session, IRouteResult)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Selects the route that had the highest confidence score for the utterance.
+    syntax:
+      content: 'function selectActionRoute(session: Session, route: IRouteResult)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: >
+            Results returned from the call to
+            [findActionRoutes()](#findactionroute).
+    package: botbuilder
+references:
+  - uid: botbuilder.ActionSet
+    name: ActionSet
+    spec.typeScript:
+      - name: ActionSet
+        fullName: ActionSet
+        uid: botbuilder.ActionSet
+  - uid: botbuilder.IRecognizeDialogContext
+    name: IRecognizeDialogContext
+    spec.typeScript:
+      - name: IRecognizeDialogContext
+        fullName: IRecognizeDialogContext
+        uid: botbuilder.IRecognizeDialogContext
+  - uid: botbuilder.Session
+    name: Session
+    spec.typeScript:
+      - name: Session
+        fullName: Session
+        uid: botbuilder.Session
+  - uid: botbuilder.IRouteResult
+    name: IRouteResult
+    spec.typeScript:
+      - name: IRouteResult
+        fullName: IRouteResult
+        uid: botbuilder.IRouteResult

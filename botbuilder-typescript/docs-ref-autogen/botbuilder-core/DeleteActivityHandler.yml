@@ -1,0 +1,64 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.DeleteActivityHandler
+    name: DeleteActivityHandler
+    fullName: DeleteActivityHandler
+    children: []
+    langs:
+      - typeScript
+    type: type alias
+    summary: >-
+      A handler that can participate in delete activity events for the current
+      turn.
+    syntax:
+      content: >-
+        type DeleteActivityHandler = (context: TurnContext, reference:
+        Partial<ConversationReference>, next: () => Promise<void>) =>
+        Promise<void>
+    package: botbuilder-core
+    remarks: >-
+      **Parameters**
+
+
+      | Name | Type | Description |
+
+      | :--- | :--- | :--- |
+
+      | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The
+      context object for the turn. |
+
+      | `reference` |
+      Partial\<[ConversationReference](xref:botframework-schema.ConversationReference)>
+      | The conversation containing the activity to delete. |
+
+      | `next` | () => Promise\<void> | The function to call to continue event
+      processing. |
+
+
+      A handler calls the `next` function to pass control to the next registered
+      handler.
+
+      If a handler doesn’t call the `next` function, the adapter does not call
+      any of the
+
+      subsequent handlers and does not attempt to delete the activity.
+
+
+      The `reference` parameter's
+      [activityId](xref:botframework-schema.ConversationReference.activityId)
+      property indicates which activity
+
+      in the conversation to delete.
+
+
+      **See also**
+
+
+      - [BotAdapter](xref:botbuilder-core.BotAdapter)
+
+      - [SendActivitiesHandler](xref:botbuilder-core.SendActivitiesHandler)
+
+      - [UpdateActivityHandler](xref:botbuilder-core.UpdateActivityHandler)
+
+      -
+      [TurnContext.onDeleteActivity](xref:botbuilder-core.TurnContext.onDeleteActivity)

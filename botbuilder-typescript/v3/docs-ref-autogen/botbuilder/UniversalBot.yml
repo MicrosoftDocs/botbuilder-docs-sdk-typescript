@@ -1,0 +1,1571 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.UniversalBot
+    name: UniversalBot
+    fullName: UniversalBot
+    children:
+      - botbuilder.UniversalBot.addRouteResult
+      - botbuilder.UniversalBot.beginDialog
+      - botbuilder.UniversalBot.beginDialogAction
+      - botbuilder.UniversalBot.bestRouteResult
+      - botbuilder.UniversalBot.clone
+      - botbuilder.UniversalBot.connector
+      - botbuilder.UniversalBot.customAction
+      - botbuilder.UniversalBot.dialog
+      - botbuilder.UniversalBot.endConversationAction
+      - botbuilder.UniversalBot.findActiveDialogRoutes
+      - botbuilder.UniversalBot.findDialog
+      - botbuilder.UniversalBot.findGlobalActionRoutes
+      - botbuilder.UniversalBot.findRoutes
+      - botbuilder.UniversalBot.findStackActionRoutes
+      - botbuilder.UniversalBot.forEachDialog
+      - botbuilder.UniversalBot.forEachLibrary
+      - botbuilder.UniversalBot.get
+      - botbuilder.UniversalBot.isInConversation
+      - botbuilder.UniversalBot.library
+      - botbuilder.UniversalBot.libraryList
+      - botbuilder.UniversalBot.loadSession
+      - botbuilder.UniversalBot.localePath
+      - botbuilder.UniversalBot.name
+      - botbuilder.UniversalBot.on
+      - botbuilder.UniversalBot.onDisambiguateRoute
+      - botbuilder.UniversalBot.onFindRoutes
+      - botbuilder.UniversalBot.onSelectRoute
+      - botbuilder.UniversalBot.receive
+      - botbuilder.UniversalBot.recognize
+      - botbuilder.UniversalBot.recognizer
+      - botbuilder.UniversalBot.RouteTypes
+      - botbuilder.UniversalBot.selectActiveDialogRoute
+      - botbuilder.UniversalBot.selectGlobalActionRoute
+      - botbuilder.UniversalBot.selectRoute
+      - botbuilder.UniversalBot.selectStackActionRoute
+      - botbuilder.UniversalBot.send
+      - botbuilder.UniversalBot.set
+      - botbuilder.UniversalBot.constructor_2
+      - botbuilder.UniversalBot.constructor
+      - botbuilder.UniversalBot.constructor_1
+      - botbuilder.UniversalBot.use
+    langs:
+      - typeScript
+    type: class
+    summary: Manages your bots conversations with users across multiple channels.
+    extends:
+      name: botbuilder.Library
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.addRouteResult
+    name: 'addRouteResult(IRouteResult, IRouteResult[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Helper method called from the various route finding methods to manage
+      adding a candidate
+
+      route to the result set.
+
+      * If the score is greater then the current best match in the set a new
+      result set will be returned containing just the new match.
+
+      * If the score is equal to the current best match it will be added to the
+      existing set.
+
+      * If the score is less than the current best match it will be ignored.
+    syntax:
+      content: >-
+        static function addRouteResult(route: IRouteResult, current?:
+        IRouteResult[])
+      parameters:
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: The candidate route to add to the set.
+        - id: current
+          type:
+            - 'botbuilder.IRouteResult[]'
+          description: >
+            (Optional) result set to add the route too. If missing then a new
+            set with just the route will be returned.
+          optional: true
+      return:
+        type:
+          - 'botbuilder.IRouteResult[]'
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.beginDialog
+    name: 'beginDialog(IAddress, string, any, (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Proactively starts a new dialog with the user. Any current conversation
+      between the bot and user will be replaced with a new dialog stack.
+    syntax:
+      content: >-
+        function beginDialog(address: IAddress, dialogId: string, dialogArgs?:
+        any, done?: (err: Error) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: >-
+            Address of the user to start a new conversation with. This should be
+            saved during a previous conversation with the user. Any existing
+            conversation or dialog will be immediately terminated.
+        - id: dialogId
+          type:
+            - string
+          description: ID of the dialog to begin.
+        - id: dialogArgs
+          type:
+            - any
+          description: (Optional) arguments to pass to dialog.
+          optional: true
+        - id: done
+          type:
+            - '(err: Error) => void'
+          description: |
+            (Optional) function to invoke once the operation is completed.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.beginDialogAction
+    name: 'beginDialogAction(string, string, IDialogActionOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a global action that will start another dialog anytime it's
+      triggered. The new
+
+      dialog will be pushed onto the stack so it does not automatically end any
+      current task. The
+
+      current task will be continued once the new dialog ends. The built-in
+      prompts will automatically
+
+      re-prompt the user once this happens but that behaviour can be disabled by
+      setting the
+      [promptAfterAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ipromptoptions#promptafteraction)
+
+      flag when calling a built-in prompt.
+    syntax:
+      content: >-
+        function beginDialogAction(name: string, id: string, options?:
+        IDialogActionOptions)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: Unique name to assign the action.
+        - id: id
+          type:
+            - string
+          description: ID of the dialog to start.
+        - id: options
+          type:
+            - botbuilder.IDialogActionOptions
+          description: >
+            (Optional) options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action,
+            otherwise the action needs to be bound to a button using
+            [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
+
+            to trigger the action. You can also use
+            [dialogArgs](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs)
+            to pass additional params to the dialog being started.
+          optional: true
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.bestRouteResult
+    name: 'bestRouteResult(IRouteResult[], IDialogState[], string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Finds the best route to use within a result set containing multiple
+      ambiguous routes. The
+
+      following disambigution strategy will be used:
+
+      1. __<custom>__: Custom route types are the highest priority and will
+      alwsays be preferred. This lets the developer override routing within a
+      bot in very powerful way.
+
+      2. __ActiveDialog__: The active dialog is the next highest priority.
+
+      3. __StackAction__: Stack actions are the next highest priority and the
+      action with the deepest stack position will be returned.
+
+      4. __GlobalAction__: Global actions are the lowest priority. If a
+      `dialogStack` is past in the actions from the library deepest on the stack
+      will be favored. Otherwise the first one will be returned.
+    syntax:
+      content: >-
+        static function bestRouteResult(routes: IRouteResult[], dialogStack?:
+        IDialogState[], rootLibraryName?: string)
+      parameters:
+        - id: routes
+          type:
+            - 'botbuilder.IRouteResult[]'
+          description: Array of candidate routes to filter.
+        - id: dialogStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: >-
+            (Optional) dialog stack used to determine which libraries global
+            actions to favor.
+          optional: true
+        - id: rootLibraryName
+          type:
+            - string
+          description: >
+            (Optional) library namespace to prefer when disambiguating global
+            actions and there's no dialogs on the stack.
+          optional: true
+      return:
+        type:
+          - botbuilder.IRouteResult
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.clone
+    name: 'clone(UniversalBot, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a clone of an existing bot.
+    syntax:
+      content: 'function clone(copyTo?: UniversalBot, newName?: string)'
+      parameters:
+        - id: copyTo
+          type:
+            - botbuilder.UniversalBot
+          description: >-
+            (Optional) instance to copy the current object to. If missing a new
+            instance will be created.
+          optional: true
+        - id: newName
+          type:
+            - string
+          description: >
+            (Optional) if specified the returned copy will be renamed to a new
+            name.
+          optional: true
+      return:
+        type:
+          - botbuilder.UniversalBot
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.connector
+    name: 'connector(string, IConnector)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers or returns a connector for a specific channel.
+    syntax:
+      content: 'function connector(channelId: string, connector?: IConnector)'
+      parameters:
+        - id: channelId
+          type:
+            - string
+          description: >-
+            Unique ID of the channel. Use a channelId of '*' to reference the
+            default connector.
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >
+            (Optional) connector to register. If ommited the connector for
+            __channelId__ will be returned.
+          optional: true
+      return:
+        type:
+          - botbuilder.IConnector
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.customAction
+    name: customAction(IDialogActionOptions)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a custom global action that will call the passed in
+      [onSelectAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onselectaction)
+
+      handler when triggered.
+    syntax:
+      content: 'function customAction(options: IDialogActionOptions)'
+      parameters:
+        - id: options
+          type:
+            - botbuilder.IDialogActionOptions
+          description: >
+            The options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action.
+            Custom matching logic can be provided using
+            [onFindAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onfindaction).
+      return:
+        type:
+          - botbuilder.Library
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.dialog
+    name: >-
+      dialog(string, Dialog | IDialogWaterfallStep[] | IDialogWaterfallStep,
+      boolean)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers or returns a dialog from the library.
+    syntax:
+      content: >-
+        function dialog(id: string, dialog?: Dialog | IDialogWaterfallStep[] |
+        IDialogWaterfallStep, replace?: boolean)
+      parameters:
+        - id: id
+          type:
+            - string
+          description: Unique ID of the dialog being regsitered or retrieved.
+        - id: dialog
+          type:
+            - >-
+              botbuilder.Dialog | botbuilder.IDialogWaterfallStep[] |
+              botbuilder.IDialogWaterfallStep
+          description: >-
+            (Optional) dialog or waterfall to register.
+
+            * __dialog:__ _{Dialog}_ - Dialog to add.
+
+            * __dialog:__ _{IDialogWaterfallStep[]}_ - Waterfall of steps to
+            execute. See
+            [IDialogWaterfallStep](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogwaterfallstep.html)
+            for details.
+
+            * __dialog:__ _{IDialogWaterfallStep}_ - Single step waterfall.
+            Calling a built-in prompt or starting a new dialog will result in
+            the current dialog ending upon completion of the child
+            prompt/dialog.
+          optional: true
+        - id: replace
+          type:
+            - boolean
+          description: >
+            (Optional) if true, the dialog should replace the existing dialog if
+            already registered.
+          optional: true
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.endConversationAction
+    name: 'endConversationAction(string, TextOrMessageType, ICancelActionOptions)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a global action that will end the conversation with the user
+      when triggered.
+    syntax:
+      content: >-
+        function endConversationAction(name: string, msg?: TextOrMessageType,
+        options?: ICancelActionOptions)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: Unique name to assign the action.
+        - id: msg
+          type:
+            - botbuilder.TextOrMessageType
+          description: >-
+            (Optional) message to send the user prior to ending the
+            conversation.
+          optional: true
+        - id: options
+          type:
+            - botbuilder.ICancelActionOptions
+          description: >
+            (Optional) options used to configure the action. If
+            [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
+            is specified the action will listen
+
+            for the user to say a word or phrase that triggers the action,
+            otherwise the action needs to be bound to a button using
+            [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
+
+            to trigger the action.
+          optional: true
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.findActiveDialogRoutes
+    name: >-
+      findActiveDialogRoutes(IRecognizeContext, (err: Error, routes:
+      IRouteResult[]) => void, IDialogState[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Gets the active dialogs confidence that it understands the current
+      message. The dialog
+
+      must be a member of the current library, otherwise a score of 0.0 will be
+      returned.
+    syntax:
+      content: >-
+        function findActiveDialogRoutes(context: IRecognizeContext, callback:
+        (err: Error, routes: IRouteResult[]) => void, dialogStack?:
+        IDialogState[])
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: Read-only recognizer context for the current conversation.
+        - id: callback
+          type:
+            - '(err: Error, routes: IRouteResult[]) => void'
+          description: Function that should be invoked with the found routes.
+        - id: dialogStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: >
+            (Optional) dialog stack to search over. The default behaviour is to
+            search over the sessions current dialog stack.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.findDialog
+    name: 'findDialog(string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Searches the library and all of its dependencies for a specific dialog.
+      Returns the dialog
+
+      if found, otherwise null.
+    syntax:
+      content: 'function findDialog(libName: string, dialogId: string)'
+      parameters:
+        - id: libName
+          type:
+            - string
+          description: Name of the library containing the dialog.
+        - id: dialogId
+          type:
+            - string
+          description: |
+            Unique ID of the dialog within the library.
+      return:
+        type:
+          - botbuilder.Dialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.findGlobalActionRoutes
+    name: >-
+      findGlobalActionRoutes(IRecognizeContext, (err: Error, routes:
+      IRouteResult[]) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Searches the library to see if any global actions have been triggered.
+    syntax:
+      content: >-
+        function findGlobalActionRoutes(context: IRecognizeContext, callback:
+        (err: Error, routes: IRouteResult[]) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: Read-only recognizer context for the current conversation.
+        - id: callback
+          type:
+            - '(err: Error, routes: IRouteResult[]) => void'
+          description: Function that should be invoked with the found routes.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.findRoutes
+    name: >-
+      findRoutes(IRecognizeContext, (err: Error, routes: IRouteResult[]) =>
+      void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Searches for candidate routes to handle the current message. To actually
+      initiate the
+
+      handling of the message you should call [selectRoute()](#selectroute) with
+      one of the
+
+      returned results.
+
+      The default search logic can be overriden using
+      [onFindRoute()](#onfindroute) and only the
+
+      current library is searched so you should call `findRoutes()` seperately
+      for each library
+
+      within the hierarchy.
+    syntax:
+      content: >-
+        function findRoutes(context: IRecognizeContext, callback: (err: Error,
+        routes: IRouteResult[]) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: Read-only recognizer context for the current conversation.
+        - id: callback
+          type:
+            - '(err: Error, routes: IRouteResult[]) => void'
+          description: Function that should be invoked with the found routes.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.findStackActionRoutes
+    name: >-
+      findStackActionRoutes(IRecognizeContext, (err: Error, routes:
+      IRouteResult[]) => void, IDialogState[])
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Searches the sessions dialog stack to see if any actions have been
+      triggered.
+    syntax:
+      content: >-
+        function findStackActionRoutes(context: IRecognizeContext, callback:
+        (err: Error, routes: IRouteResult[]) => void, dialogStack?:
+        IDialogState[])
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: Read-only recognizer context for the current conversation.
+        - id: callback
+          type:
+            - '(err: Error, routes: IRouteResult[]) => void'
+          description: Function that should be invoked with the found routes.
+        - id: dialogStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: >
+            (Optional) dialog stack to search over. The default behaviour is to
+            search over the sessions current dialog stack.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.forEachDialog
+    name: 'forEachDialog((dialog: Dialog, id: string) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Enumerates all of the libraries dialogs.
+    syntax:
+      content: 'function forEachDialog(callback: (dialog: Dialog, id: string) => void)'
+      parameters:
+        - id: callback
+          type:
+            - '(dialog: Dialog, id: string) => void'
+          description: Iterator function to call with each dialog.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.forEachLibrary
+    name: 'forEachLibrary((library: Library) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Enumerates all of the libraries child libraries. The caller should take
+      appropriate steps to
+
+      avoid circular references when enumerating the hierarchy. In most cases
+      calling
+
+      [libraryList()](#librarylist) is a better choice as it already contains
+      logic to avoid cycles.
+    syntax:
+      content: 'function forEachLibrary(callback: (library: Library) => void)'
+      parameters:
+        - id: callback
+          type:
+            - '(library: Library) => void'
+          description: Iterator function to call with each child libray.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.get
+    name: get(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns the current value of a setting.
+    syntax:
+      content: 'function get(name: string)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: >
+            Name of the property to return. Valid names are properties on
+            [IUniversalBotSettings](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html).
+      return:
+        type:
+          - any
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.isInConversation
+    name: 'isInConversation(IAddress, (err: Error, lastAccess: Date) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns information about when the last turn between the user and a bot
+      occured. This can be called
+
+      before [beginDialog](#begindialog) to determine if the user is currently
+      in a conversation with the
+
+      bot.
+    syntax:
+      content: >-
+        function isInConversation(address: IAddress, callback: (err: Error,
+        lastAccess: Date) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: >-
+            Address of the user to lookup. This should be saved during a
+            previous conversation with the user.
+        - id: callback
+          type:
+            - '(err: Error, lastAccess: Date) => void'
+          description: |
+            Function to invoke with the results of the query.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.library
+    name: library(Library | string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers or returns a library dependency.
+    syntax:
+      content: 'function library(lib: Library | string)'
+      parameters:
+        - id: lib
+          type:
+            - botbuilder.Library | string
+          description: >
+
+            * __lib:__ _{Library}_ - Library to register as a dependency.
+
+            * __lib:__ _{string}_ - Unique name of the library to lookup. All
+            dependencies will be searched as well.
+      return:
+        type:
+          - botbuilder.Library
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.libraryList
+    name: libraryList(boolean)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Returns a list of unique libraries within the hierarchy. Should be called
+      on the root of the
+
+      library hierarchy and avoids cycles created when two child libraries
+      reference the same
+
+      dependent library.
+    syntax:
+      content: 'function libraryList(reverse?: boolean)'
+      parameters:
+        - id: reverse
+          type:
+            - boolean
+          description: >
+            (Optional) If true list will be generated from the leaves up meaning
+            the root library will be listed last. The default value is false
+            which means it will be generated from the roots down and the root
+            library will be listed first.
+          optional: true
+      return:
+        type:
+          - 'botbuilder.Library[]'
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.loadSession
+    name: 'loadSession(IAddress, (err: Error, session: Session) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Loads a session object for an arbitrary address.
+    syntax:
+      content: >-
+        function loadSession(address: IAddress, callback: (err: Error, session:
+        Session) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: >-
+            Address of the user/session to load. This should be saved during a
+            previous conversation with the user.
+        - id: callback
+          type:
+            - '(err: Error, session: Session) => void'
+          description: |
+            Function to invoke with the loaded session.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.localePath
+    name: localePath(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Gets or sets the path to the libraries "/locale/" folder containing its
+      localized prompts.
+
+      The prompts for the library should be stored in a
+      "/locale/<IETF_TAG>/<NAMESPACE>.json" file
+
+      under this path where "<IETF_TAG>" representes the 2-3 digit language tage
+      for the locale and
+
+      "<NAMESPACE>" is a filename matching the libraries namespace.
+    syntax:
+      content: 'function localePath(path?: string)'
+      parameters:
+        - id: path
+          type:
+            - string
+          description: >
+            (Optional) path to the libraries "/locale/" folder. If specified
+            this will update the libraries path.
+          optional: true
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.name
+    name: name
+    fullName: name
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The libraries unique namespace. This is used to issolate the libraries
+      dialogs and localized
+
+      prompts.
+    syntax:
+      content: 'name: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.on
+    name: 'on(string, (data: any) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >
+      Registers an event listener. The bot will emit its own events as it
+      processes incoming and outgoing messages. It will also forward activity
+      related events emitted from the connector, giving you one place to listen
+      for all activity from your bot. The flow of events from the bot is as
+      follows:
+
+      #### Message Received
+
+      When the bot receives a new message it will emit the following events in
+      order:
+
+
+      > lookupUser -> receive -> incoming -> getStorageData -> routing
+
+
+      Any [receive
+      middleware](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imiddlewaremap#receive)
+      that's been installed will be executed between the 'receive' and
+      'incoming' events. After the 'routing' event is emitted any
+
+      [botbuilder
+      middleware](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imiddlewaremap#botbuilder)
+      will be executed prior to dispatching the message to the bots active
+      dialog.
+
+
+      #### Connector Activity Received
+
+      Connectors can emit activity events to signal things like a user is typing
+      or that they friended a bot. These activities get routed through
+      middleware like messages but they are not routed through the bots dialog
+      system.  They are only ever emitted as events.
+
+
+      The flow of connector events is:
+
+
+      > lookupUser -> receive -> (activity)
+
+
+      #### Message sent
+
+      Bots can send multiple messages so the session will batch up all outgoing
+      message and then save the bots current state before delivering the sent
+      messages.  You'll see a single 'saveStorageData' event emitted and then
+      for every outgoing message in the batch you'll see the following
+
+      sequence of events:
+
+
+      > send -> outgoing
+
+
+      Any [send
+      middleware](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imiddlewaremap#send)
+      that's been installed will be executed between the 'send' and 'outgoing'
+      events.
+    syntax:
+      content: 'function on(event: string, listener: (data: any) => void)'
+      parameters:
+        - id: event
+          type:
+            - string
+          description: >
+            Name of the event. Bot and connector specific event types:
+
+            #### Bot Events
+
+            - __error:__ An error occured. Passed a JavaScript `Error` object.
+
+            - __lookupUser:__ The user is for an address is about to be looked
+            up. Passed an
+            [IAddress](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html)
+            object.
+
+            - __receive:__ An incoming message has been received. Passed an
+            [IEvent](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ievent.html)
+            object.
+
+            - __incoming:__ An incoming message has been received and processed
+            by middleware. Passed an
+            [IMessage](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html)
+            object.
+
+            - __routing:__ An incoming message has been bound to a session and
+            is about to be routed through any session middleware and then
+            dispatched to the active dialog for processing. Passed a
+            [Session](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html)
+            object.
+
+            - __send:__ An outgoing message is about to be sent to middleware
+            for processing. Passed an
+            [IMessage](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html)
+            object.
+
+            - __outgoing:__ An outgoing message has just been sent through
+            middleware and is about to be delivered to the users chat client.
+
+            - __getStorageData:__ The sessions persisted state data is being
+            loaded from storage. Passed an
+            [IBotStorageContext](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ibotstoragecontext.html)
+            object.
+
+            - __saveStorageData:__ The sessions persisted state data is being
+            written to storage. Passed an
+            [IBotStorageContext](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ibotstoragecontext.html)
+            object.
+
+
+            #### ChatConnector Events
+
+            - __conversationUpdate:__ Your bot was added to a conversation or
+            other conversation metadata changed. Passed an
+            [IConversationUpdate](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iconversationupdate.html)
+            object.
+
+            - __contactRelationUpdate:__ The bot was added to or removed from a
+            user's contact list. Passed an
+            [IContactRelationUpdate](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.icontactrelationupdate.html)
+            object.
+
+            - __typing:__ The user or bot on the other end of the conversation
+            is typing. Passed an
+            [IEvent](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ievent.html)
+            object.
+        - id: listener
+          type:
+            - '(data: any) => void'
+          description: Function to invoke.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.onDisambiguateRoute
+    name: onDisambiguateRoute(IDisambiguateRouteHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Replaces the bots default route disambiguation logic with a custom
+      implementation.
+    syntax:
+      content: 'function onDisambiguateRoute(handler: IDisambiguateRouteHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder.IDisambiguateRouteHandler
+          description: >
+            Function that will be invoked with the candidate routes to dispatch
+            an incoming message to.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.onFindRoutes
+    name: onFindRoutes(IFindRoutesHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Replaces [findRoutes()](#findroutes) default route searching logic with a
+      custom
+
+      implementation.
+    syntax:
+      content: 'function onFindRoutes(handler: IFindRoutesHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder.IFindRoutesHandler
+          description: >
+            Function that will be invoked anytime `findRoutes()` is called for
+            the library.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.onSelectRoute
+    name: onSelectRoute(ISelectRouteHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Replaces the default logic for [selectRoute()](#selectroute) with a custom
+      implementation.
+    syntax:
+      content: 'function onSelectRoute(handler: ISelectRouteHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder.ISelectRouteHandler
+          description: |
+            Function that will be invoked anytime `selectRoute()` is called.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.receive
+    name: 'receive(IEvent | IEvent[], (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called when a new event is received. This can be called manually to mimic
+      the bot receiving a message from the user.
+    syntax:
+      content: 'function receive(events: IEvent | IEvent[], done?: (err: Error) => void)'
+      parameters:
+        - id: events
+          type:
+            - 'botbuilder.IEvent | botbuilder.IEvent[]'
+          description: Event or (array of events) received.
+        - id: done
+          type:
+            - '(err: Error) => void'
+          description: |
+            (Optional) function to invoke once the operation is completed.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.recognize
+    name: >-
+      recognize(IRecognizeContext, (err: Error, result: IIntentRecognizerResult)
+      => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Attempts to match a users text utterance to an intent using the libraries
+      recognizers. See
+
+      [IIntentRecognizer.recognize()](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizer#recognize)
+
+      for details.
+    syntax:
+      content: >-
+        function recognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: Read-only recognizer context for the current conversation.
+        - id: callback
+          type:
+            - '(err: Error, result: IIntentRecognizerResult) => void'
+          description: Function that should be invoked upon completion of the recognition.
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.recognizer
+    name: recognizer(IIntentRecognizer)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Adds a new recognizer plugin to the library.
+    syntax:
+      content: 'function recognizer(plugin: IIntentRecognizer)'
+      parameters:
+        - id: plugin
+          type:
+            - botbuilder.IIntentRecognizer
+          description: |
+            The recognizer to add.
+      return:
+        type:
+          - botbuilder.IntentDialog
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.RouteTypes
+    name: RouteTypes
+    fullName: RouteTypes
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Supported
+      [routeType](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.irouteresult#routetype)
+      values returned by default from [findRoutes()](#findroutes).
+    syntax:
+      content: 'static RouteTypes: Object'
+      return:
+        type:
+          - Object
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.selectActiveDialogRoute
+    name: 'selectActiveDialogRoute(Session, IRouteResult, IDialogState[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Routes the current message to the active dialog.
+    syntax:
+      content: >-
+        function selectActiveDialogRoute(session: Session, route: IRouteResult,
+        newStack?: IDialogState[])
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: >
+            Route result returned from a previous call to
+            [findRoutes()](#findroutes) or
+            [findActiveDialogRoutes()](#findactivedialogroutes).
+        - id: newStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: ''
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.selectGlobalActionRoute
+    name: 'selectGlobalActionRoute(Session, IRouteResult, IDialogState[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Routes the current message to a triggered global action.
+    syntax:
+      content: >-
+        function selectGlobalActionRoute(session: Session, route: IRouteResult,
+        newStack?: IDialogState[])
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: >
+            Route result returned from a previous call to
+            [findRoutes()](#findroutes) or
+            [findGlobalActionRoutes()](#findglobalactionroutes).
+        - id: newStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: ''
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.selectRoute
+    name: 'selectRoute(Session, IRouteResult)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Triggers the handling of the current message using the selected route. The
+      default logic can
+
+      be overriden using [onSelectRoute()](#onselectroute).
+    syntax:
+      content: 'function selectRoute(session: Session, route: IRouteResult)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: >
+            Route result returned from a previous call to
+            [findRoutes()](#findroutes).
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.selectStackActionRoute
+    name: 'selectStackActionRoute(Session, IRouteResult, IDialogState[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Routes the current message to a triggered stack action.
+    syntax:
+      content: >-
+        function selectStackActionRoute(session: Session, route: IRouteResult,
+        newStack?: IDialogState[])
+      parameters:
+        - id: session
+          type:
+            - botbuilder.Session
+          description: Session object for the current conversation.
+        - id: route
+          type:
+            - botbuilder.IRouteResult
+          description: >
+            Route result returned from a previous call to
+            [findRoutes()](#findroutes) or
+            [findStackActionRoutes()](#findstackactionroutes).
+        - id: newStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: ''
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.send
+    name: >-
+      send(IIsMessage | IMessage | IMessage[], (err: Error, addresses?:
+      IAddress[]) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Sends a message to the user without disrupting the current conversations
+      dialog stack.
+    syntax:
+      content: >-
+        function send(messages: IIsMessage | IMessage | IMessage[], done?: (err:
+        Error, addresses?: IAddress[]) => void)
+      parameters:
+        - id: messages
+          type:
+            - >-
+              botbuilder.IIsMessage | botbuilder.IMessage |
+              botbuilder.IMessage[]
+          description: The message (or array of messages) to send the user.
+        - id: done
+          type:
+            - '(err: Error, addresses?: IAddress[]) => void'
+          description: (Optional) function to invoke once the operation is completed.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.set
+    name: 'set(string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Sets a setting on the bot.
+    syntax:
+      content: 'function set(name: string, value: any)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: >-
+            Name of the property to set. Valid names are properties on
+            [IUniversalBotSettings](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html).
+        - id: value
+          type:
+            - any
+          description: |
+            The value to assign to the setting.
+      return:
+        type:
+          - botbuilder.UniversalBot
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.constructor_2
+    name: 'UniversalBot(IConnector, any, string)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the UniversalBot.
+    syntax:
+      content: >-
+        new UniversalBot(connector?: IConnector, defaultDialog?: any,
+        libraryName?: string)
+      parameters:
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >-
+            (Optional) the default connector to use for requests. If there's not
+            a more specific connector registered for a channel then this
+            connector will be used./**
+          optional: true
+        - id: defaultDialog
+          type:
+            - any
+          description: >-
+            (Optional) default handler of received messages. This can either be
+            an individual function or a waterfall sequence.
+          optional: true
+        - id: libraryName
+          type:
+            - string
+          description: |
+            (Optional) library namespace for the bot.  The default value is '*'.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.constructor
+    name: >-
+      UniversalBot(IConnector, IDialogWaterfallStep | IDialogWaterfallStep[],
+      string)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the UniversalBot.
+    syntax:
+      content: >-
+        new UniversalBot(connector: IConnector, defaultDialog?:
+        IDialogWaterfallStep | IDialogWaterfallStep[], libraryName?: string)
+      parameters:
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >-
+            (Optional) the default connector to use for requests. If there's not
+            a more specific connector registered for a channel then this
+            connector will be used./**
+        - id: defaultDialog
+          type:
+            - >-
+              botbuilder.IDialogWaterfallStep |
+              botbuilder.IDialogWaterfallStep[]
+          description: >-
+            (Optional) default handler of received messages. This can either be
+            an individual function or a waterfall sequence.
+          optional: true
+        - id: libraryName
+          type:
+            - string
+          description: |
+            (Optional) library namespace for the bot.  The default value is '*'.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.constructor_1
+    name: 'UniversalBot(IConnector, IUniversalBotSettings)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instance of the UniversalBot.
+    syntax:
+      content: >-
+        new UniversalBot(connector: IConnector, settings?:
+        IUniversalBotSettings)
+      parameters:
+        - id: connector
+          type:
+            - botbuilder.IConnector
+          description: >-
+            (Optional) the default connector to use for requests. If there's not
+            a more specific connector registered for a channel then this
+            connector will be used./**
+        - id: settings
+          type:
+            - botbuilder.IUniversalBotSettings
+          description: ''
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.UniversalBot.use
+    name: 'use(IMiddlewareMap[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Installs middleware for the bot. Middleware lets you intercept incoming
+      and outgoing events/messages.
+    syntax:
+      content: 'function use(args: IMiddlewareMap[])'
+      parameters:
+        - id: args
+          type:
+            - 'botbuilder.IMiddlewareMap[]'
+          description: |
+            One or more sets of middleware hooks to install.
+      return:
+        type:
+          - botbuilder.UniversalBot
+        description: ''
+    package: botbuilder
+references:
+  - uid: botbuilder.Library
+    name: Library
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder.Library
+  - uid: botbuilder.IConnector
+    name: IConnector
+    spec.typeScript:
+      - name: IConnector
+        fullName: IConnector
+        uid: botbuilder.IConnector
+  - uid: 'botbuilder.IDialogWaterfallStep | botbuilder.IDialogWaterfallStep[]'
+    name: 'IDialogWaterfallStep[]'
+    spec.typeScript:
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: ' | '
+        fullName: ' | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.IUniversalBotSettings
+    name: IUniversalBotSettings
+    spec.typeScript:
+      - name: IUniversalBotSettings
+        fullName: IUniversalBotSettings
+        uid: botbuilder.IUniversalBotSettings
+  - uid: botbuilder.IAddress
+    name: IAddress
+    spec.typeScript:
+      - name: IAddress
+        fullName: IAddress
+        uid: botbuilder.IAddress
+  - uid: botbuilder.IDialogActionOptions
+    name: IDialogActionOptions
+    spec.typeScript:
+      - name: IDialogActionOptions
+        fullName: IDialogActionOptions
+        uid: botbuilder.IDialogActionOptions
+  - uid: botbuilder.Dialog
+    name: Dialog
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder.Dialog
+  - uid: botbuilder.UniversalBot
+    name: UniversalBot
+    spec.typeScript:
+      - name: UniversalBot
+        fullName: UniversalBot
+        uid: botbuilder.UniversalBot
+  - uid: >-
+      botbuilder.Dialog | botbuilder.IDialogWaterfallStep[] |
+      botbuilder.IDialogWaterfallStep
+    name: IDialogWaterfallStep
+    spec.typeScript:
+      - name: Dialog
+        fullName: Dialog
+        uid: botbuilder.Dialog
+      - name: ' | '
+        fullName: ' | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+      - name: '[] | '
+        fullName: '[] | '
+      - name: IDialogWaterfallStep
+        fullName: IDialogWaterfallStep
+        uid: botbuilder.IDialogWaterfallStep
+  - uid: botbuilder.TextOrMessageType
+    name: TextOrMessageType
+    spec.typeScript:
+      - name: TextOrMessageType
+        fullName: TextOrMessageType
+        uid: botbuilder.TextOrMessageType
+  - uid: botbuilder.ICancelActionOptions
+    name: ICancelActionOptions
+    spec.typeScript:
+      - name: ICancelActionOptions
+        fullName: ICancelActionOptions
+        uid: botbuilder.ICancelActionOptions
+  - uid: botbuilder.IRecognizeContext
+    name: IRecognizeContext
+    spec.typeScript:
+      - name: IRecognizeContext
+        fullName: IRecognizeContext
+        uid: botbuilder.IRecognizeContext
+  - uid: 'botbuilder.IDialogState[]'
+    name: 'IDialogState[]'
+    spec.typeScript:
+      - name: IDialogState
+        fullName: IDialogState
+        uid: botbuilder.IDialogState
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.Library | string
+    name: Library | string
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder.Library
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'botbuilder.Library[]'
+    name: 'Library[]'
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder.Library
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.IDisambiguateRouteHandler
+    name: IDisambiguateRouteHandler
+    spec.typeScript:
+      - name: IDisambiguateRouteHandler
+        fullName: IDisambiguateRouteHandler
+        uid: botbuilder.IDisambiguateRouteHandler
+  - uid: botbuilder.IFindRoutesHandler
+    name: IFindRoutesHandler
+    spec.typeScript:
+      - name: IFindRoutesHandler
+        fullName: IFindRoutesHandler
+        uid: botbuilder.IFindRoutesHandler
+  - uid: botbuilder.ISelectRouteHandler
+    name: ISelectRouteHandler
+    spec.typeScript:
+      - name: ISelectRouteHandler
+        fullName: ISelectRouteHandler
+        uid: botbuilder.ISelectRouteHandler
+  - uid: 'botbuilder.IEvent | botbuilder.IEvent[]'
+    name: 'IEvent[]'
+    spec.typeScript:
+      - name: IEvent
+        fullName: IEvent
+        uid: botbuilder.IEvent
+      - name: ' | '
+        fullName: ' | '
+      - name: IEvent
+        fullName: IEvent
+        uid: botbuilder.IEvent
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.IIntentRecognizer
+    name: IIntentRecognizer
+    spec.typeScript:
+      - name: IIntentRecognizer
+        fullName: IIntentRecognizer
+        uid: botbuilder.IIntentRecognizer
+  - uid: botbuilder.IntentDialog
+    name: IntentDialog
+    spec.typeScript:
+      - name: IntentDialog
+        fullName: IntentDialog
+        uid: botbuilder.IntentDialog
+  - uid: botbuilder.Session
+    name: Session
+    spec.typeScript:
+      - name: Session
+        fullName: Session
+        uid: botbuilder.Session
+  - uid: botbuilder.IRouteResult
+    name: IRouteResult
+    spec.typeScript:
+      - name: IRouteResult
+        fullName: IRouteResult
+        uid: botbuilder.IRouteResult
+  - uid: 'botbuilder.IIsMessage | botbuilder.IMessage | botbuilder.IMessage[]'
+    name: 'IMessage[]'
+    spec.typeScript:
+      - name: IIsMessage
+        fullName: IIsMessage
+        uid: botbuilder.IIsMessage
+      - name: ' | '
+        fullName: ' | '
+      - name: IMessage
+        fullName: IMessage
+        uid: botbuilder.IMessage
+      - name: ' | '
+        fullName: ' | '
+      - name: IMessage
+        fullName: IMessage
+        uid: botbuilder.IMessage
+      - name: '[]'
+        fullName: '[]'
+  - uid: 'botbuilder.IMiddlewareMap[]'
+    name: 'IMiddlewareMap[]'
+    spec.typeScript:
+      - name: IMiddlewareMap
+        fullName: IMiddlewareMap
+        uid: botbuilder.IMiddlewareMap
+      - name: '[]'
+        fullName: '[]'
+  - uid: 'botbuilder.IRouteResult[]'
+    name: 'IRouteResult[]'
+    spec.typeScript:
+      - name: IRouteResult
+        fullName: IRouteResult
+        uid: botbuilder.IRouteResult
+      - name: '[]'
+        fullName: '[]'

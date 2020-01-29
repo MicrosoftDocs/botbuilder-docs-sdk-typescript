@@ -1,0 +1,648 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.ChatConnector
+    name: ChatConnector
+    fullName: ChatConnector
+    children:
+      - botbuilder.ChatConnector.constructor
+      - botbuilder.ChatConnector.delete
+      - botbuilder.ChatConnector.deleteConversationMember
+      - botbuilder.ChatConnector.emulateOAuthCards
+      - botbuilder.ChatConnector.exportBotStateData
+      - botbuilder.ChatConnector.getAccessToken
+      - botbuilder.ChatConnector.getConversationPagedMembers
+      - botbuilder.ChatConnector.getConversations
+      - botbuilder.ChatConnector.getData
+      - botbuilder.ChatConnector.getSignInLink
+      - botbuilder.ChatConnector.getUserToken
+      - botbuilder.ChatConnector.listen
+      - botbuilder.ChatConnector.onEvent
+      - botbuilder.ChatConnector.onInvoke
+      - botbuilder.ChatConnector.saveData
+      - botbuilder.ChatConnector.send
+      - botbuilder.ChatConnector.sendConversationHistory
+      - botbuilder.ChatConnector.signOutUser
+      - botbuilder.ChatConnector.startConversation
+      - botbuilder.ChatConnector.update
+    langs:
+      - typeScript
+    type: class
+    summary: Connects a UniversalBot to multiple channels via the Bot Framework.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.constructor
+    name: ChatConnector(IChatConnectorSettings)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new instnace of the ChatConnector.
+    syntax:
+      content: 'new ChatConnector(settings?: IChatConnectorSettings)'
+      parameters:
+        - id: settings
+          type:
+            - botbuilder.IChatConnectorSettings
+          description: >
+            (Optional) config params that let you specify the bots App ID &
+            Password you were assigned in the Bot Frameworks developer portal.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.delete
+    name: 'delete(IAddress, (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Deletes an existing message.
+    syntax:
+      content: 'function delete(address: IAddress, done: (err: Error) => void)'
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: ''
+        - id: done
+          type:
+            - '(err: Error) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.deleteConversationMember
+    name: 'deleteConversationMember(string, string, string, (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Deletes the data for an individual user within a conversation.
+    syntax:
+      content: >-
+        function deleteConversationMember(serviceUrl: string, conversationId:
+        string, memberId: string, done: (err: Error) => void)
+      parameters:
+        - id: serviceUrl
+          type:
+            - string
+          description: >-
+            The service url for the channel being updated. This can be found in
+            the `address.serviceUrl` for a message sent to the bot.
+        - id: conversationId
+          type:
+            - string
+          description: ID of the conversation with the member to delete.
+        - id: memberId
+          type:
+            - string
+          description: ID of the member to delete.
+        - id: done
+          type:
+            - '(err: Error) => void'
+          description: |
+            Callback invoked upon completion of the delete operation.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.emulateOAuthCards
+    name: 'emulateOAuthCards(string, boolean, (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Tells the token service to emulate the sending of OAuthCards.
+    syntax:
+      content: >-
+        function emulateOAuthCards(serviceUrl: string, emulate: boolean, done:
+        (err: Error) => void)
+      parameters:
+        - id: serviceUrl
+          type:
+            - string
+          description: >-
+            The service url for the channel being queried. This can be found in
+            the `address.serviceUrl` for a message sent to the bot.
+        - id: emulate
+          type:
+            - boolean
+          description: If `true` the token service will emulate the sending of OAuthCards.
+        - id: done
+          type:
+            - '(err: Error) => void'
+          description: |
+            Callback invoked upon completion of the operation.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.exportBotStateData
+    name: >-
+      exportBotStateData(string, string, string | undefined, (err: Error,
+      results: IBotStateDataResult) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Exports bot state data persisted for a given channel.
+    syntax:
+      content: >-
+        function exportBotStateData(serviceUrl: string, channelId: string,
+        continuationToken: string | undefined, done: (err: Error, results:
+        IBotStateDataResult) => void)
+      parameters:
+        - id: serviceUrl
+          type:
+            - string
+          description: >-
+            The service url for the channel being queried. This can be found in
+            the `address.serviceUrl` for a message sent to the bot.
+        - id: channelId
+          type:
+            - string
+          description: >-
+            ID of the channel being exported. This can be found in the
+            `address.channelId` for a message sent to the bot.
+        - id: continuationToken
+          type:
+            - string | undefined
+          description: >-
+            The continuation token for the next page of results to fetch.  This
+            should be `undefined` for the first page requested.
+        - id: done
+          type:
+            - '(err: Error, results: IBotStateDataResult) => void'
+          description: |
+            Callback to recieve the next page of results.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.getAccessToken
+    name: 'getAccessToken((err: Error, accessToken: string) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Gets the current access token for the bot.
+    syntax:
+      content: >-
+        function getAccessToken(callback: (err: Error, accessToken: string) =>
+        void)
+      parameters:
+        - id: callback
+          type:
+            - '(err: Error, accessToken: string) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.getConversationPagedMembers
+    name: >-
+      getConversationPagedMembers(string, string, number | undefined, string |
+      undefined, (err: Error, result?: IPagedMembersResult) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Enumerate the members of a conversation one page at a time.
+
+      This REST API takes a ConversationId. Optionally a pageSize and/or
+
+      continuationToken can be provided. It returns a PagedMembersResult, which
+
+      contains an array of ChannelAccounts representing the members of the
+      conversation and a
+
+      continuation token that can be used to get more values.
+
+
+      One page of ChannelAccounts records are returned with each call. The
+      number
+
+      of records in a page may vary between channels and calls. The pageSize
+
+      parameter can be used as a suggestion. If there are no additional results
+      the response will not
+
+      contain a continuation token. If there are no members in the conversation
+
+      the Members will be empty or not present in the response.
+
+
+      A response to a request that has a continuation token from a prior request
+
+      may rarely return members from a previous request.
+    syntax:
+      content: >-
+        function getConversationPagedMembers(serviceUrl: string, conversationId:
+        string, pageSize: number | undefined, continuationToken: string |
+        undefined, done: (err: Error, result?: IPagedMembersResult) => void)
+      parameters:
+        - id: serviceUrl
+          type:
+            - string
+          description: >-
+            The service url for the channel being queried. This can be found in
+            the `address.serviceUrl` for a message sent to the bot.
+        - id: conversationId
+          type:
+            - string
+          description: The conversationId
+        - id: pageSize
+          type:
+            - number | undefined
+          description: The number of results to get (default is 20)
+        - id: continuationToken
+          type:
+            - string | undefined
+          description: >-
+            The continuation token for the next page of results to fetch.  This
+            should be `undefined` for the first page requested.
+        - id: done
+          type:
+            - '(err: Error, result?: IPagedMembersResult) => void'
+          description: |
+            Callback to recieve the next page of results.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.getConversations
+    name: >-
+      getConversations(string, string | undefined, (err: Error, result?:
+      IConversationsResult) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Retrieves a list of all the conversations the bot has on a given channel.
+      Results will be
+
+      sent back to the bot in pages along with a `continuationToken` that can be
+      used to fetch
+
+      the next page of conversations.  This data can be used to delete all of
+      the conversation data
+
+      for a user via the [deleteConversationMember()](#deleteconversationmember)
+      method.
+    syntax:
+      content: >-
+        function getConversations(serviceUrl: string, continuationToken: string
+        | undefined, done: (err: Error, result?: IConversationsResult) => void)
+      parameters:
+        - id: serviceUrl
+          type:
+            - string
+          description: >-
+            The service url for the channel being queried. This can be found in
+            the `address.serviceUrl` for a message sent to the bot.
+        - id: continuationToken
+          type:
+            - string | undefined
+          description: >-
+            The continuation token for the next page of results to fetch.  This
+            should be `undefined` for the first page requested.
+        - id: done
+          type:
+            - '(err: Error, result?: IConversationsResult) => void'
+          description: |
+            Callback to recieve the next page of results.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.getData
+    name: 'getData(IBotStorageContext, (err: Error, data: IBotStorageData) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Reads in data from the Bot Frameworks state service.
+    syntax:
+      content: >-
+        function getData(context: IBotStorageContext, callback: (err: Error,
+        data: IBotStorageData) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IBotStorageContext
+          description: ''
+        - id: callback
+          type:
+            - '(err: Error, data: IBotStorageData) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.getSignInLink
+    name: >-
+      getSignInLink(IChatConnectorAddress, string, (err: Error, link: string) =>
+      void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Gets a signin link from the token server that can be sent as part of a
+      SigninCard.
+    syntax:
+      content: >-
+        function getSignInLink(address: IChatConnectorAddress, connectionName:
+        string, done: (err: Error, link: string) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IChatConnectorAddress
+          description: Address of the user and channel to get signin link for.
+        - id: connectionName
+          type:
+            - string
+          description: Name of the auth connection to use.
+        - id: done
+          type:
+            - '(err: Error, link: string) => void'
+          description: |
+            Callback to retrieve the link.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.getUserToken
+    name: >-
+      getUserToken(IChatConnectorAddress, string, string | undefined, (err:
+      Error, results: ITokenResponse) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Attempts to retrieve the token for a user that's in a signin flow.
+    syntax:
+      content: >-
+        function getUserToken(address: IChatConnectorAddress, connectionName:
+        string, magicCode: string | undefined, done: (err: Error, results:
+        ITokenResponse) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IChatConnectorAddress
+          description: Address of the user and channel to login.
+        - id: connectionName
+          type:
+            - string
+          description: Name of the auth connection to use.
+        - id: magicCode
+          type:
+            - string | undefined
+          description: (Optional) Optional user entered code to validate.
+        - id: done
+          type:
+            - '(err: Error, results: ITokenResponse) => void'
+          description: |
+            Callback to retrieve the users token.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.listen
+    name: listen()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers an Express or Restify style hook to listen for new messages.
+    syntax:
+      content: function listen()
+      parameters: []
+      return:
+        type:
+          - '(req: any, res: any) => void'
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.onEvent
+    name: 'onEvent((events: IEvent[], callback?: (err: Error) => void) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called by the UniversalBot at registration time to register a handler for
+      receiving incoming events from a channel.
+    syntax:
+      content: >-
+        function onEvent(handler: (events: IEvent[], callback?: (err: Error) =>
+        void) => void)
+      parameters:
+        - id: handler
+          type:
+            - '(events: IEvent[], callback?: (err: Error) => void) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.onInvoke
+    name: >-
+      onInvoke((event: IEvent, cb?: (err: Error, body: any, status?: number) =>
+      void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Used to register a handler for receiving incoming invoke events.
+    syntax:
+      content: >-
+        function onInvoke(handler: (event: IEvent, cb?: (err: Error, body: any,
+        status?: number) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (event: IEvent, cb?: (err: Error, body: any, status?: number) =>
+              void) => void
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.saveData
+    name: 'saveData(IBotStorageContext, IBotStorageData, (err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Writes out data to the Bot Frameworks state service.
+    syntax:
+      content: >-
+        function saveData(context: IBotStorageContext, data: IBotStorageData,
+        callback?: (err: Error) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IBotStorageContext
+          description: ''
+        - id: data
+          type:
+            - botbuilder.IBotStorageData
+          description: ''
+        - id: callback
+          type:
+            - '(err: Error) => void'
+          description: ''
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.send
+    name: 'send(IMessage[], (err: Error, addresses?: IAddress[]) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called by the UniversalBot to deliver outgoing messages to a user.
+    syntax:
+      content: >-
+        function send(messages: IMessage[], done: (err: Error, addresses?:
+        IAddress[]) => void)
+      parameters:
+        - id: messages
+          type:
+            - 'botbuilder.IMessage[]'
+          description: ''
+        - id: done
+          type:
+            - '(err: Error, addresses?: IAddress[]) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.sendConversationHistory
+    name: >-
+      sendConversationHistory(string, string, ITranscript, (err: Error, results:
+      any) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      This method allows you to upload the historic activities to the
+      conversation. Sender must ensure that the historic activities have unique
+      ids and appropriate timestamps.
+
+      The ids are used by the client to deal with duplicate activities and the
+      timestamps are used by the client to render the activities in the right
+      order.
+    syntax:
+      content: >-
+        function sendConversationHistory(serviceUrl: string, conversationId:
+        string, transcript: ITranscript, done: (err: Error, results: any) =>
+        void)
+      parameters:
+        - id: serviceUrl
+          type:
+            - string
+          description: >-
+            The service url for the channel being queried. This can be found in
+            the `address.serviceUrl` for a message sent to the bot.
+        - id: conversationId
+          type:
+            - string
+          description: ID of the conversation with the history to send.
+        - id: transcript
+          type:
+            - botbuilder.ITranscript
+          description: ''
+        - id: done
+          type:
+            - '(err: Error, results: any) => void'
+          description: |+
+
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.signOutUser
+    name: >-
+      signOutUser(IChatConnectorAddress, string, (err: Error, results:
+      ITokenResponse) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Signs the user out with the token server.
+    syntax:
+      content: >-
+        function signOutUser(address: IChatConnectorAddress, connectionName:
+        string, done: (err: Error, results: ITokenResponse) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IChatConnectorAddress
+          description: Address of the user and channel to signout.
+        - id: connectionName
+          type:
+            - string
+          description: Name of the auth connection to use.
+        - id: done
+          type:
+            - '(err: Error, results: ITokenResponse) => void'
+          description: |
+            Callback to retrieve the users token.
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.startConversation
+    name: 'startConversation(IAddress, (err: Error, address?: IAddress) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Called when a UniversalBot wants to start a new proactive conversation
+      with a user. The connector should return a properly formated __address__
+      object with a populated __conversation__ field.
+    syntax:
+      content: >-
+        function startConversation(address: IAddress, done: (err: Error,
+        address?: IAddress) => void)
+      parameters:
+        - id: address
+          type:
+            - botbuilder.IAddress
+          description: ''
+        - id: done
+          type:
+            - '(err: Error, address?: IAddress) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.ChatConnector.update
+    name: 'update(IMessage, (err: Error, address?: IAddress) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Replaces an existing message with a new one.
+    syntax:
+      content: >-
+        function update(message: IMessage, done: (err: Error, address?:
+        IAddress) => void)
+      parameters:
+        - id: message
+          type:
+            - botbuilder.IMessage
+          description: ''
+        - id: done
+          type:
+            - '(err: Error, address?: IAddress) => void'
+          description: ''
+    package: botbuilder
+references:
+  - uid: botbuilder.IChatConnectorSettings
+    name: IChatConnectorSettings
+    spec.typeScript:
+      - name: IChatConnectorSettings
+        fullName: IChatConnectorSettings
+        uid: botbuilder.IChatConnectorSettings
+  - uid: botbuilder.IAddress
+    name: IAddress
+    spec.typeScript:
+      - name: IAddress
+        fullName: IAddress
+        uid: botbuilder.IAddress
+  - uid: botbuilder.IBotStorageContext
+    name: IBotStorageContext
+    spec.typeScript:
+      - name: IBotStorageContext
+        fullName: IBotStorageContext
+        uid: botbuilder.IBotStorageContext
+  - uid: botbuilder.IChatConnectorAddress
+    name: IChatConnectorAddress
+    spec.typeScript:
+      - name: IChatConnectorAddress
+        fullName: IChatConnectorAddress
+        uid: botbuilder.IChatConnectorAddress
+  - uid: botbuilder.IBotStorageData
+    name: IBotStorageData
+    spec.typeScript:
+      - name: IBotStorageData
+        fullName: IBotStorageData
+        uid: botbuilder.IBotStorageData
+  - uid: 'botbuilder.IMessage[]'
+    name: 'IMessage[]'
+    spec.typeScript:
+      - name: IMessage
+        fullName: IMessage
+        uid: botbuilder.IMessage
+      - name: '[]'
+        fullName: '[]'
+  - uid: botbuilder.ITranscript
+    name: ITranscript
+    spec.typeScript:
+      - name: ITranscript
+        fullName: ITranscript
+        uid: botbuilder.ITranscript
+  - uid: botbuilder.IMessage
+    name: IMessage
+    spec.typeScript:
+      - name: IMessage
+        fullName: IMessage
+        uid: botbuilder.IMessage

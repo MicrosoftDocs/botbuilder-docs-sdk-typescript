@@ -1,0 +1,719 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-calling.CallSession
+    name: CallSession
+    fullName: CallSession
+    children:
+      - botbuilder-calling.CallSession.answer
+      - botbuilder-calling.CallSession.beginDialog
+      - botbuilder-calling.CallSession.constructor
+      - botbuilder-calling.CallSession.conversationData
+      - botbuilder-calling.CallSession.dialogData
+      - botbuilder-calling.CallSession.dispatch
+      - botbuilder-calling.CallSession.endConversation
+      - botbuilder-calling.CallSession.endDialog
+      - botbuilder-calling.CallSession.endDialogWithResult
+      - botbuilder-calling.CallSession.error
+      - botbuilder-calling.CallSession.gettext
+      - botbuilder-calling.CallSession.hangup
+      - botbuilder-calling.CallSession.isReset
+      - botbuilder-calling.CallSession.library
+      - botbuilder-calling.CallSession.message
+      - botbuilder-calling.CallSession.messageSent
+      - botbuilder-calling.CallSession.ngettext
+      - botbuilder-calling.CallSession.on
+      - botbuilder-calling.CallSession.privateConversationData
+      - botbuilder-calling.CallSession.reject
+      - botbuilder-calling.CallSession.replaceDialog
+      - botbuilder-calling.CallSession.reset
+      - botbuilder-calling.CallSession.save
+      - botbuilder-calling.CallSession.send
+      - botbuilder-calling.CallSession.sendBatch
+      - botbuilder-calling.CallSession.sessionState
+      - botbuilder-calling.CallSession.userData
+    langs:
+      - typeScript
+    type: class
+    summary: Manages the bots conversation with a user.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.answer
+    name: answer()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Manually answers the call. The call will be automatically answered when
+      the bot takes an action.
+    syntax:
+      content: function answer()
+      parameters: []
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.beginDialog
+    name: 'beginDialog(string, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Passes control of the conversation to a new dialog. The current dialog
+      will be suspended
+
+      until the child dialog completes. Once the child ends the current dialog
+      will receive a
+
+      call to
+      [dialogResumed()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.dialog.html#dialogresumed)
+
+      where it can inspect any results returned from the child.
+    syntax:
+      content: 'function beginDialog<T>(id: string, args?: T)'
+      parameters:
+        - id: id
+          type:
+            - string
+          description: Unique ID of the dialog to start.
+        - id: args
+          type:
+            - T
+          description: >
+            (Optional) arguments to pass to the dialogs
+            [begin()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.dialog.html#begin)
+            method.
+          optional: true
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.constructor
+    name: CallSession(ICallSessionOptions)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates an instance of the session.
+    syntax:
+      content: 'new CallSession(options: ICallSessionOptions)'
+      parameters:
+        - id: options
+          type:
+            - botbuilder-calling.ICallSessionOptions
+          description: |
+            Sessions configuration options.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.conversationData
+    name: conversationData
+    fullName: conversationData
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Shared conversation data that's visible to all members of the
+      conversation.
+    syntax:
+      content: 'conversationData: any'
+      return:
+        type:
+          - any
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.dialogData
+    name: dialogData
+    fullName: dialogData
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Data that's only visible to the current dialog.
+    syntax:
+      content: 'dialogData: any'
+      return:
+        type:
+          - any
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.dispatch
+    name: 'dispatch(ISessionState, IEvent)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Dispatches a message for processing. The session will call any installed
+      middleware before
+
+      the message to the active dialog for processing.
+    syntax:
+      content: 'function dispatch(sessionState: ISessionState, message: IEvent)'
+      parameters:
+        - id: sessionState
+          type:
+            - botbuilder-calling.ISessionState
+          description: >-
+            The current session state. If _null_ a new conversation will be
+            started beginning with the configured [dialogId](#dialogid).
+        - id: message
+          type:
+            - botbuilder-calling.IEvent
+          description: |
+            The message to dispatch.
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.endConversation
+    name: 'endConversation(string | string[] | IAction | IIsAction, any[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Ends the current conversation and optionally sends a message to the user.
+      The call will be automatically hungup or rejected.
+    syntax:
+      content: >-
+        function endConversation(action?: string | string[] | IAction |
+        IIsAction, args: any[])
+      parameters:
+        - id: action
+          type:
+            - >-
+              string | string[] | botbuilder-calling.IAction |
+              botbuilder-calling.IIsAction
+          description: >-
+            (Optional)
+
+            * __action:__ _{string}_ - Text of the message to send. The message
+            will be localized using the sessions configured localizer. If
+            arguments are passed in the message will be formatted using
+            [sprintf-js](https://github.com/alexei/sprintf.js).
+
+            * __action:__ _{string[]}_ - The sent message will be chosen at
+            random from the array.
+
+            * __action:__ _{IAction|IIsAction}_ - Action to send.
+          optional: true
+        - id: args
+          type:
+            - 'any[]'
+          description: >
+            (Optional) arguments used to format the final output text when
+            __message__ is a _{string|string[]}_.
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.endDialog
+    name: 'endDialog(string | string[] | IAction | IIsAction, any[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Ends the current dialog and optionally sends a message to the user. The
+      parent will be resumed with an
+      [IDialogResult.resumed](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogresult.html#resumed)
+
+      reason of
+      [completed](en-us/node/builder/calling-reference/enums/_botbuilder_d_.resumereason.html#completed).
+    syntax:
+      content: >-
+        function endDialog(action?: string | string[] | IAction | IIsAction,
+        args: any[])
+      parameters:
+        - id: action
+          type:
+            - >-
+              string | string[] | botbuilder-calling.IAction |
+              botbuilder-calling.IIsAction
+          description: >-
+            (Optional)
+
+            * __action:__ _{string}_ - Text of the message to send. The message
+            will be localized using the sessions configured localizer. If
+            arguments are passed in the message will be formatted using
+            [sprintf-js](https://github.com/alexei/sprintf.js).
+
+            * __action:__ _{string[]}_ - The sent message will be chosen at
+            random from the array.
+
+            * __action:__ _{IAction|IIsAction}_ - Action to send.
+          optional: true
+        - id: args
+          type:
+            - 'any[]'
+          description: >
+            (Optional) arguments used to format the final output text when
+            __message__ is a _{string|string[]}_.
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.endDialogWithResult
+    name: endDialogWithResult(IDialogResult<any>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Ends the current dialog and optionally returns a result to the dialogs
+      parent.
+    syntax:
+      content: 'function endDialogWithResult(result?: IDialogResult<any>)'
+      parameters:
+        - id: result
+          type:
+            - botbuilder-calling.IDialogResult<any>
+          description: ''
+          optional: true
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.error
+    name: error(Error)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Signals that an error occured. The bot will signal the error via an
+      on('error', err) event.
+    syntax:
+      content: 'function error(err: Error)'
+      parameters:
+        - id: err
+          type:
+            - Error
+          description: |
+            Error that occured.
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.gettext
+    name: 'gettext(string, any[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Loads a localized string for the messages language. If arguments are
+      passed the localized string
+
+      will be treated as a template and formatted using
+      [sprintf-js](https://github.com/alexei/sprintf.js) (see their docs for
+      details.)
+    syntax:
+      content: 'function gettext(msgid: string, args: any[])'
+      parameters:
+        - id: msgid
+          type:
+            - string
+          description: >-
+            String to use as a key in the localized string table. Typically this
+            will just be the english version of the string.
+        - id: args
+          type:
+            - 'any[]'
+          description: |
+            (Optional) arguments used to format the final output string.
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.hangup
+    name: hangup()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Manually ends an established call. The call will be automatically ended
+      when the bot stops prompting the user for input.
+    syntax:
+      content: function hangup()
+      parameters: []
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.isReset
+    name: isReset()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns true if the session has been reset.
+    syntax:
+      content: function isReset()
+      parameters: []
+      return:
+        type:
+          - boolean
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.library
+    name: library
+    fullName: library
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The bots root library of dialogs.
+    syntax:
+      content: 'library: Library'
+      return:
+        type:
+          - botbuilder-calling.Library
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.message
+    name: message
+    fullName: message
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The message recieved from the user. For bot originated messages this may
+      only contain the "to" & "from" fields.
+    syntax:
+      content: 'message: IEvent'
+      return:
+        type:
+          - botbuilder-calling.IEvent
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.messageSent
+    name: messageSent()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns true if a message has been sent for this session.
+    syntax:
+      content: function messageSent()
+      parameters: []
+      return:
+        type:
+          - boolean
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.ngettext
+    name: 'ngettext(string, string, number)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Loads the plural form of a localized string for the messages language. The
+      output string will be formatted to
+
+      include the count by replacing %d in the string with the count.
+    syntax:
+      content: 'function ngettext(msgid: string, msgid_plural: string, count: number)'
+      parameters:
+        - id: msgid
+          type:
+            - string
+          description: >-
+            Singular form of the string to use as a key in the localized string
+            table. Use %d to specify where the count should go.
+        - id: msgid_plural
+          type:
+            - string
+          description: >-
+            Plural form of the string to use as a key in the localized string
+            table. Use %d to specify where the count should go.
+        - id: count
+          type:
+            - number
+          description: >
+            Count to use when determining whether the singular or plural form of
+            the string should be used.
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.on
+    name: 'on(string, Function)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers an event listener.
+    syntax:
+      content: 'function on(event: string, listener: Function)'
+      parameters:
+        - id: event
+          type:
+            - string
+          description: >-
+            Name of the event. Event types:
+
+            - __error:__ An error occured.
+            [IErrorEvent](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.ierrorevent.html)
+        - id: listener
+          type:
+            - Function
+          description: |
+            Function to invoke.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.privateConversationData
+    name: privateConversationData
+    fullName: privateConversationData
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Private conversation data that's only visible to the user.
+    syntax:
+      content: 'privateConversationData: any'
+      return:
+        type:
+          - any
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.reject
+    name: reject()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Rejects an incoming call.
+    syntax:
+      content: function reject()
+      parameters: []
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.replaceDialog
+    name: 'replaceDialog(string, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Ends the current dialog and starts a new one its place. The parent dialog
+      will not be
+
+      resumed until the new dialog completes.
+    syntax:
+      content: 'function replaceDialog<T>(id: string, args?: T)'
+      parameters:
+        - id: id
+          type:
+            - string
+          description: Unique ID of the dialog to start.
+        - id: args
+          type:
+            - T
+          description: >
+            (Optional) arguments to pass to the dialogs
+            [begin()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.dialog.html#begin)
+            method.
+          optional: true
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.reset
+    name: 'reset(string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Clears the sessions callstack and restarts the conversation with the
+      configured dialogId.
+    syntax:
+      content: 'function reset(dialogId?: string, dialogArgs?: any)'
+      parameters:
+        - id: dialogId
+          type:
+            - string
+          description: (Optional) ID of the dialog to start.
+          optional: true
+        - id: dialogArgs
+          type:
+            - any
+          description: >
+            (Optional) arguments to pass to the dialogs
+            [begin()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.dialog.html#begin)
+            method.
+          optional: true
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.save
+    name: save()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Triggers saving of changes made to [dialogData](#dialogdata),
+      [userData](#userdata), [conversationdata](#conversationdata), or
+      [privateConversationData'(#privateconversationdata).
+    syntax:
+      content: function save()
+      parameters: []
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.send
+    name: 'send(string | string[] | IAction | IIsAction, any[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Sends a PlayPrompt action to the user.
+    syntax:
+      content: >-
+        function send(action: string | string[] | IAction | IIsAction, args:
+        any[])
+      parameters:
+        - id: action
+          type:
+            - >-
+              string | string[] | botbuilder-calling.IAction |
+              botbuilder-calling.IIsAction
+          description: >-
+
+            * __action:__ _{string}_ - Text of the message to send. The message
+            will be localized using the sessions configured localizer. If
+            arguments are passed in the message will be formatted using
+            [sprintf-js](https://github.com/alexei/sprintf.js).
+
+            * __action:__ _{string[]}_ - The sent message will be chosen at
+            random from the array.
+
+            * __action:__ _{IAction|IIsAction}_ - Action to send.
+        - id: args
+          type:
+            - 'any[]'
+          description: >
+            (Optional) arguments used to format the final output text when
+            __action__ is a _{string|string[]}_.
+      return:
+        type:
+          - botbuilder-calling.CallSession
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.sendBatch
+    name: sendBatch()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Immediately ends the current batch and delivers any queued up messages.
+    syntax:
+      content: function sendBatch()
+      parameters: []
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.sessionState
+    name: sessionState
+    fullName: sessionState
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Sessions current state information.
+    syntax:
+      content: 'sessionState: ISessionState'
+      return:
+        type:
+          - botbuilder-calling.ISessionState
+        description: ''
+    package: botbuilder-calling
+  - uid: botbuilder-calling.CallSession.userData
+    name: userData
+    fullName: userData
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Data for the user that's persisted across all conversations with the bot.
+    syntax:
+      content: 'userData: any'
+      return:
+        type:
+          - any
+        description: ''
+    package: botbuilder-calling
+references:
+  - uid: botbuilder-calling.ICallSessionOptions
+    name: ICallSessionOptions
+    spec.typeScript:
+      - name: ICallSessionOptions
+        fullName: ICallSessionOptions
+        uid: botbuilder-calling.ICallSessionOptions
+  - uid: botbuilder-calling.Library
+    name: Library
+    spec.typeScript:
+      - name: Library
+        fullName: Library
+        uid: botbuilder-calling.Library
+  - uid: botbuilder-calling.IEvent
+    name: IEvent
+    spec.typeScript:
+      - name: IEvent
+        fullName: IEvent
+        uid: botbuilder-calling.IEvent
+  - uid: botbuilder-calling.ISessionState
+    name: ISessionState
+    spec.typeScript:
+      - name: ISessionState
+        fullName: ISessionState
+        uid: botbuilder-calling.ISessionState
+  - uid: botbuilder-calling.CallSession
+    name: CallSession
+    spec.typeScript:
+      - name: CallSession
+        fullName: CallSession
+        uid: botbuilder-calling.CallSession
+  - uid: >-
+      string | string[] | botbuilder-calling.IAction |
+      botbuilder-calling.IIsAction
+    name: IIsAction
+    spec.typeScript:
+      - name: 'string | string[] | '
+        fullName: 'string | string[] | '
+      - name: IAction
+        fullName: IAction
+        uid: botbuilder-calling.IAction
+      - name: ' | '
+        fullName: ' | '
+      - name: IIsAction
+        fullName: IIsAction
+        uid: botbuilder-calling.IIsAction
+  - uid: botbuilder-calling.IDialogResult<any>
+    name: IDialogResult<any>
+    spec.typeScript:
+      - name: IDialogResult
+        fullName: IDialogResult
+        uid: botbuilder-calling.IDialogResult
+      - name: <any>
+        fullName: <any>

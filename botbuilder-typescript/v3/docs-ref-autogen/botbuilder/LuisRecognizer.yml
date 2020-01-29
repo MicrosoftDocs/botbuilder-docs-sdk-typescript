@@ -1,0 +1,207 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.LuisRecognizer
+    name: LuisRecognizer
+    fullName: LuisRecognizer
+    children:
+      - botbuilder.LuisRecognizer.constructor
+      - botbuilder.LuisRecognizer.onEnabled
+      - botbuilder.LuisRecognizer.onFilter
+      - botbuilder.LuisRecognizer.onRecognize
+      - botbuilder.LuisRecognizer.recognize
+      - botbuilder.LuisRecognizer.recognize
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Intent recognizer plugin that detects a users intent using Microsofts
+      [Language Understanding Intelligent Service (LUIS)](https://luis.ai)
+
+      The service URLs for multiple LUIS models (apps) can be passed in to
+      support recognition
+
+      across multiple languages.
+    extends:
+      name: botbuilder.IntentRecognizer
+    package: botbuilder
+  - uid: botbuilder.LuisRecognizer.constructor
+    name: LuisRecognizer(string | ILuisModelMap)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Constructs a new instance of the recognizer.
+    syntax:
+      content: 'new LuisRecognizer(models: string | ILuisModelMap)'
+      parameters:
+        - id: models
+          type:
+            - string | botbuilder.ILuisModelMap
+          description: >
+            Either an individual LUIS model used for all utterances or a map of
+            per/locale models conditionally used depending on the locale of the
+            utterance.
+    package: botbuilder
+  - uid: botbuilder.LuisRecognizer.onEnabled
+    name: >-
+      onEnabled((context: IRecognizeContext, callback: (err: Error, enabled:
+      boolean) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a function to conditionally enable/disable the recognizer.
+      Multiple handlers can
+
+      be registered and the new handler will be executed before any other
+      handlers.
+    syntax:
+      content: >-
+        function onEnabled(handler: (context: IRecognizeContext, callback: (err:
+        Error, enabled: boolean) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeContext, callback: (err: Error, enabled:
+              boolean) => void) => void
+          description: >
+            Function called for every message. You should call `callback(null,
+            true)` for every message that should be recognized.
+      return:
+        type:
+          - botbuilder.IntentRecognizer
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.LuisRecognizer.onFilter
+    name: >-
+      onFilter((context: IRecognizeContext, result: IIntentRecognizerResult,
+      callback: (err: Error, result: IIntentRecognizerResult) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a function to filter the output from the recognizer. Multiple
+      handlers can be
+
+      registered and the new handler will be executed after any other handlers.
+    syntax:
+      content: >-
+        function onFilter(handler: (context: IRecognizeContext, result:
+        IIntentRecognizerResult, callback: (err: Error, result:
+        IIntentRecognizerResult) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeContext, result: IIntentRecognizerResult,
+              callback: (err: Error, result: IIntentRecognizerResult) => void)
+              => void
+          description: >
+            Function called for every message that results in an intent with a
+            score greater then 0.0. You should call `callback(null, { score:
+            0.0, intent: null })` to block an intent from being returned.
+      return:
+        type:
+          - botbuilder.IntentRecognizer
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.LuisRecognizer.onRecognize
+    name: >-
+      onRecognize(IRecognizeContext, (err: Error, result:
+      IIntentRecognizerResult) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Implements the actual recognition logic.
+    syntax:
+      content: >-
+        function onRecognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: ''
+        - id: callback
+          type:
+            - '(err: Error, result: IIntentRecognizerResult) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.LuisRecognizer.recognize
+    name: >-
+      recognize(IRecognizeContext, (err: Error, result: IIntentRecognizerResult)
+      => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Attempts to match a users text utterance to an intent.
+    syntax:
+      content: >-
+        function recognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: >-
+            Contextual information for a received message that's being
+            recognized.
+        - id: callback
+          type:
+            - '(err: Error, result: IIntentRecognizerResult) => void'
+          description: |
+            Function to invoke with the results of the recognition operation.
+    package: botbuilder
+  - uid: botbuilder.LuisRecognizer.recognize
+    name: >-
+      recognize(string, string, (err: Error, intents?: IIntent[], entities?:
+      IEntity[]) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Calls LUIS to recognizing intents & entities in a users utterance.
+    syntax:
+      content: >-
+        static function recognize(utterance: string, modelUrl: string, callback:
+        (err: Error, intents?: IIntent[], entities?: IEntity[]) => void)
+      parameters:
+        - id: utterance
+          type:
+            - string
+          description: The text to pass to LUIS for recognition.
+        - id: modelUrl
+          type:
+            - string
+          description: ''
+        - id: callback
+          type:
+            - '(err: Error, intents?: IIntent[], entities?: IEntity[]) => void'
+          description: Callback to invoke with the results of the intent recognition step.
+    package: botbuilder
+references:
+  - uid: botbuilder.IntentRecognizer
+    name: IntentRecognizer
+    spec.typeScript:
+      - name: IntentRecognizer
+        fullName: IntentRecognizer
+        uid: botbuilder.IntentRecognizer
+  - uid: string | botbuilder.ILuisModelMap
+    name: ILuisModelMap
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - name: ILuisModelMap
+        fullName: ILuisModelMap
+        uid: botbuilder.ILuisModelMap
+  - uid: botbuilder.IRecognizeContext
+    name: IRecognizeContext
+    spec.typeScript:
+      - name: IRecognizeContext
+        fullName: IRecognizeContext
+        uid: botbuilder.IRecognizeContext

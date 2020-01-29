@@ -1,0 +1,248 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder.IntentRecognizerSet
+    name: IntentRecognizerSet
+    fullName: IntentRecognizerSet
+    children:
+      - botbuilder.IntentRecognizerSet.clone
+      - botbuilder.IntentRecognizerSet.constructor
+      - botbuilder.IntentRecognizerSet.length
+      - botbuilder.IntentRecognizerSet.onEnabled
+      - botbuilder.IntentRecognizerSet.onFilter
+      - botbuilder.IntentRecognizerSet.onRecognize
+      - botbuilder.IntentRecognizerSet.recognize
+      - botbuilder.IntentRecognizerSet.recognizer
+    langs:
+      - typeScript
+    type: class
+    summary: Federates a recognize() call across a set of intent recognizers.
+    extends:
+      name: botbuilder.IntentRecognizer
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.clone
+    name: clone(IntentRecognizerSet)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a clone of an existing IntentRecognizerSet.
+    syntax:
+      content: 'function clone(copyTo?: IntentRecognizerSet)'
+      parameters:
+        - id: copyTo
+          type:
+            - botbuilder.IntentRecognizerSet
+          description: >
+            (Optional) instance to copy the current object to. If missing a new
+            instance will be created.
+          optional: true
+      return:
+        type:
+          - botbuilder.IntentRecognizerSet
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.constructor
+    name: IntentRecognizerSet(IIntentRecognizerSetOptions)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Constructs a new instance of an IntentRecognizerSet.
+    syntax:
+      content: 'new IntentRecognizerSet(options?: IIntentRecognizerSetOptions)'
+      parameters:
+        - id: options
+          type:
+            - botbuilder.IIntentRecognizerSetOptions
+          description: >
+            (Optional) options used to initialize the set and control the flow
+            of recognition.
+          optional: true
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.length
+    name: length
+    fullName: length
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Number of recognizers in the set.
+    syntax:
+      content: 'length: number'
+      return:
+        type:
+          - number
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.onEnabled
+    name: >-
+      onEnabled((context: IRecognizeContext, callback: (err: Error, enabled:
+      boolean) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a function to conditionally enable/disable the recognizer.
+      Multiple handlers can
+
+      be registered and the new handler will be executed before any other
+      handlers.
+    syntax:
+      content: >-
+        function onEnabled(handler: (context: IRecognizeContext, callback: (err:
+        Error, enabled: boolean) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeContext, callback: (err: Error, enabled:
+              boolean) => void) => void
+          description: >
+            Function called for every message. You should call `callback(null,
+            true)` for every message that should be recognized.
+      return:
+        type:
+          - botbuilder.IntentRecognizer
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.onFilter
+    name: >-
+      onFilter((context: IRecognizeContext, result: IIntentRecognizerResult,
+      callback: (err: Error, result: IIntentRecognizerResult) => void) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers a function to filter the output from the recognizer. Multiple
+      handlers can be
+
+      registered and the new handler will be executed after any other handlers.
+    syntax:
+      content: >-
+        function onFilter(handler: (context: IRecognizeContext, result:
+        IIntentRecognizerResult, callback: (err: Error, result:
+        IIntentRecognizerResult) => void) => void)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (context: IRecognizeContext, result: IIntentRecognizerResult,
+              callback: (err: Error, result: IIntentRecognizerResult) => void)
+              => void
+          description: >
+            Function called for every message that results in an intent with a
+            score greater then 0.0. You should call `callback(null, { score:
+            0.0, intent: null })` to block an intent from being returned.
+      return:
+        type:
+          - botbuilder.IntentRecognizer
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.onRecognize
+    name: >-
+      onRecognize(IRecognizeContext, (err: Error, result:
+      IIntentRecognizerResult) => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Implements the actual recognition logic.
+    syntax:
+      content: >-
+        function onRecognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: ''
+        - id: callback
+          type:
+            - '(err: Error, result: IIntentRecognizerResult) => void'
+          description: ''
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.recognize
+    name: >-
+      recognize(IRecognizeContext, (err: Error, result: IIntentRecognizerResult)
+      => void)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Attempts to match a users text utterance to an intent.
+    syntax:
+      content: >-
+        function recognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type:
+            - botbuilder.IRecognizeContext
+          description: >-
+            Contextual information for a received message that's being
+            recognized.
+        - id: callback
+          type:
+            - '(err: Error, result: IIntentRecognizerResult) => void'
+          description: |
+            Function to invoke with the results of the recognition operation.
+    package: botbuilder
+  - uid: botbuilder.IntentRecognizerSet.recognizer
+    name: recognizer(IIntentRecognizer)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Adds a new recognizer plugin to the set.
+    syntax:
+      content: 'function recognizer(plugin: IIntentRecognizer)'
+      parameters:
+        - id: plugin
+          type:
+            - botbuilder.IIntentRecognizer
+          description: |
+            The recognizer to add.
+      return:
+        type:
+          - botbuilder.IntentDialog
+        description: ''
+    package: botbuilder
+references:
+  - uid: botbuilder.IntentRecognizer
+    name: IntentRecognizer
+    spec.typeScript:
+      - name: IntentRecognizer
+        fullName: IntentRecognizer
+        uid: botbuilder.IntentRecognizer
+  - uid: botbuilder.IIntentRecognizerSetOptions
+    name: IIntentRecognizerSetOptions
+    spec.typeScript:
+      - name: IIntentRecognizerSetOptions
+        fullName: IIntentRecognizerSetOptions
+        uid: botbuilder.IIntentRecognizerSetOptions
+  - uid: botbuilder.IntentRecognizerSet
+    name: IntentRecognizerSet
+    spec.typeScript:
+      - name: IntentRecognizerSet
+        fullName: IntentRecognizerSet
+        uid: botbuilder.IntentRecognizerSet
+  - uid: botbuilder.IRecognizeContext
+    name: IRecognizeContext
+    spec.typeScript:
+      - name: IRecognizeContext
+        fullName: IRecognizeContext
+        uid: botbuilder.IRecognizeContext
+  - uid: botbuilder.IIntentRecognizer
+    name: IIntentRecognizer
+    spec.typeScript:
+      - name: IIntentRecognizer
+        fullName: IIntentRecognizer
+        uid: botbuilder.IIntentRecognizer
+  - uid: botbuilder.IntentDialog
+    name: IntentDialog
+    spec.typeScript:
+      - name: IntentDialog
+        fullName: IntentDialog
+        uid: botbuilder.IntentDialog
