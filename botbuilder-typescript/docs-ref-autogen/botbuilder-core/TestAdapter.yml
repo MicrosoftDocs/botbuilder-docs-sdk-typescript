@@ -112,6 +112,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.deletedActivities
     name: deletedActivities
@@ -130,6 +131,7 @@ items:
       return:
         type:
           - 'Partial<ConversationReference>[]'
+        description: ''
     package: botbuilder-core
     remarks: |-
       This example shows how to test that expected deletes have been preformed:
@@ -169,6 +171,7 @@ items:
       return:
         type:
           - 'Promise<[key: string]: TokenResponse>'
+        description: ''
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.getSignInLink
     name: 'getSignInLink(TurnContext, string)'
@@ -194,6 +197,7 @@ items:
       return:
         type:
           - Promise<string>
+        description: ''
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.getUserToken
     name: 'getUserToken(TurnContext, string, string)'
@@ -224,6 +228,7 @@ items:
       return:
         type:
           - Promise<TokenResponse>
+        description: ''
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.onTurnError
     name: onTurnError
@@ -233,16 +238,27 @@ items:
       - typeScript
     type: property
     summary: >-
-      Gets/sets a error handler that will be called anytime an uncaught
-      exception is raised during
-
-      a turn.
+      Gets or sets an error handler that can catch exceptions in the middleware
+      or application.
     syntax:
       content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
       return:
         type:
           - '(context: TurnContext, error: Error) => Promise<void>'
+        description: ''
     package: botbuilder-core
+    remarks: >-
+      The error handler is called with these parameters:
+
+
+      | Name | Type | Description |
+
+      | :--- | :--- | :--- |
+
+      | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The
+      context object for the turn. |
+
+      | `error` | `Error` | The Node.js error thrown. |
   - uid: botbuilder-core.TestAdapter.send
     name: send(string | Partial<Activity>)
     children: []
@@ -266,6 +282,7 @@ items:
       return:
         type:
           - botbuilder-core.TestFlow
+        description: ''
     package: botbuilder-core
     remarks: >-
       This example shows how to send a message and then verify that the response
@@ -300,6 +317,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.template
     name: template
@@ -316,6 +334,7 @@ items:
       return:
         type:
           - Partial<Activity>
+        description: ''
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.test
     name: >-
@@ -361,6 +380,7 @@ items:
       return:
         type:
           - botbuilder-core.TestFlow
+        description: ''
     package: botbuilder-core
     remarks: >-
       This is simply a wrapper around calls to `send()` and `assertReply()`.
@@ -407,6 +427,7 @@ items:
       return:
         type:
           - botbuilder-core.TestFlow
+        description: ''
     package: botbuilder-core
     remarks: >-
       Each activity with the "bot" role will be processed with assertReply() and
@@ -461,6 +482,7 @@ items:
       return:
         type:
           - 'Partial<Activity>[]'
+        description: ''
     package: botbuilder-core
     remarks: |-
       This example shows how to test that expected updates have been preformed:
@@ -480,7 +502,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Registers middleware handlers(s) with the adapter.
+    summary: Adds middleware to the adapter's pipeline.
     syntax:
       content: >-
         function use(middleware: (context: TurnContext, next: () =>
@@ -492,11 +514,17 @@ items:
               (context: TurnContext, next: () => Promise<void>) => Promise<void>
               | botbuilder-core.Middleware[]
           description: |
-            One or more middleware handlers(s) to register.
+            The middleware or middleware handlers to add.
       return:
         type:
           - this
+        description: ''
     package: botbuilder-core
+    remarks: >-
+      Middleware is added to the adapter at initialization time.
+
+      Each turn, the adapter calls its middleware in the order in which you
+      added it.
 references:
   - uid: botbuilder-core.BotAdapter
     name: BotAdapter

@@ -4,7 +4,13 @@ items:
     name: RemoteSessionLogger
     fullName: RemoteSessionLogger
     children:
+      - botbuilder.RemoteSessionLogger.dump
+      - botbuilder.RemoteSessionLogger.error
+      - botbuilder.RemoteSessionLogger.flush
+      - botbuilder.RemoteSessionLogger.isEnabled
+      - botbuilder.RemoteSessionLogger.log
       - botbuilder.RemoteSessionLogger.constructor
+      - botbuilder.RemoteSessionLogger.warn
     langs:
       - typeScript
     type: class
@@ -22,6 +28,106 @@ items:
       `session.privateConversationData["BotBuilder.Data.DebugSession"]`.
     extends:
       name: botbuilder.SessionLogger
+    package: botbuilder
+  - uid: botbuilder.RemoteSessionLogger.dump
+    name: 'dump(string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Logs the state of a variable to the output.
+    syntax:
+      content: 'function dump(name: string, value: any)'
+      parameters:
+        - id: name
+          type:
+            - string
+          description: Name of the variable being logged.
+        - id: value
+          type:
+            - any
+          description: |
+            Variables current state.
+    package: botbuilder
+  - uid: botbuilder.RemoteSessionLogger.error
+    name: 'error(IDialogState[], Error)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Logs an error to the output.
+    syntax:
+      content: 'function error(dialogStack: IDialogState[], err: Error)'
+      parameters:
+        - id: dialogStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: >-
+            (Optional) dialog stack for the session. This is used to provide
+            context for where the event occured.
+        - id: err
+          type:
+            - Error
+          description: >
+            Error object to log. The errors message plus stack trace will be
+            logged.
+    package: botbuilder
+  - uid: botbuilder.RemoteSessionLogger.flush
+    name: 'flush((err: Error) => void)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Flushes any buffered entries to the output.
+    syntax:
+      content: 'function flush(callback: (err: Error) => void)'
+      parameters:
+        - id: callback
+          type:
+            - '(err: Error) => void'
+          description: |
+            Function to call when the operation is completed.
+    package: botbuilder
+  - uid: botbuilder.RemoteSessionLogger.isEnabled
+    name: isEnabled
+    fullName: isEnabled
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: If true the logger is enabled and will log the sessions activity.
+    syntax:
+      content: 'isEnabled: boolean'
+      return:
+        type:
+          - boolean
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.RemoteSessionLogger.log
+    name: 'log(IDialogState[], string, any[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Logs an informational level message to the output.
+    syntax:
+      content: 'function log(dialogStack: IDialogState[], msg: string, args: any[])'
+      parameters:
+        - id: dialogStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: >-
+            (Optional) dialog stack for the session. This is used to provide
+            context for where the event occured.
+        - id: msg
+          type:
+            - string
+          description: Message to log.
+        - id: args
+          type:
+            - 'any[]'
+          description: |
+            (Optional) arguments to log with the message.
     package: botbuilder
   - uid: botbuilder.RemoteSessionLogger.constructor
     name: 'RemoteSessionLogger(IConnector, IAddress, IAddress)'
@@ -49,6 +155,32 @@ items:
           description: |
             Address of the conversation the debug events are for.
     package: botbuilder
+  - uid: botbuilder.RemoteSessionLogger.warn
+    name: 'warn(IDialogState[], string, any[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Logs a warning to the output.
+    syntax:
+      content: 'function warn(dialogStack: IDialogState[], msg: string, args: any[])'
+      parameters:
+        - id: dialogStack
+          type:
+            - 'botbuilder.IDialogState[]'
+          description: >-
+            (Optional) dialog stack for the session. This is used to provide
+            context for where the event occured.
+        - id: msg
+          type:
+            - string
+          description: Message to log.
+        - id: args
+          type:
+            - 'any[]'
+          description: |
+            (Optional) arguments to log with the message.
+    package: botbuilder
 references:
   - uid: botbuilder.SessionLogger
     name: SessionLogger
@@ -68,3 +200,11 @@ references:
       - name: IAddress
         fullName: IAddress
         uid: botbuilder.IAddress
+  - uid: 'botbuilder.IDialogState[]'
+    name: 'IDialogState[]'
+    spec.typeScript:
+      - name: IDialogState
+        fullName: IDialogState
+        uid: botbuilder.IDialogState
+      - name: '[]'
+        fullName: '[]'

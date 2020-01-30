@@ -4,6 +4,8 @@ items:
     name: IMessage
     fullName: IMessage
     children:
+      - botbuilder.IMessage.address
+      - botbuilder.IMessage.agent
       - botbuilder.IMessage.attachmentLayout
       - botbuilder.IMessage.attachments
       - botbuilder.IMessage.code
@@ -18,7 +20,10 @@ items:
       - botbuilder.IMessage.localTimezone
       - botbuilder.IMessage.name
       - botbuilder.IMessage.relatesTo
+      - botbuilder.IMessage.replyToId
       - botbuilder.IMessage.semanticAction
+      - botbuilder.IMessage.source
+      - botbuilder.IMessage.sourceEvent
       - botbuilder.IMessage.speak
       - botbuilder.IMessage.summary
       - botbuilder.IMessage.text
@@ -26,6 +31,8 @@ items:
       - botbuilder.IMessage.textHighlights
       - botbuilder.IMessage.textLocale
       - botbuilder.IMessage.timestamp
+      - botbuilder.IMessage.type
+      - botbuilder.IMessage.user
       - botbuilder.IMessage.value
       - botbuilder.IMessage.valueType
     langs:
@@ -72,6 +79,38 @@ items:
     extends:
       name: botbuilder.IEvent
     package: botbuilder
+  - uid: botbuilder.IMessage.address
+    name: address
+    fullName: address
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Address routing information for the event. Save this field to external
+      storage somewhere to later compose a proactive message to the user.
+    syntax:
+      content: 'address: IAddress'
+      return:
+        type:
+          - botbuilder.IAddress
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IMessage.agent
+    name: agent
+    fullName: agent
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: SDK thats processing the event. Will always be 'botbuilder'.
+    syntax:
+      content: 'agent: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
   - uid: botbuilder.IMessage.attachmentLayout
     name: attachmentLayout
     fullName: attachmentLayout
@@ -88,6 +127,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.attachments
     name: attachments
@@ -106,6 +146,7 @@ items:
       return:
         type:
           - 'botbuilder.IAttachment[]'
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.code
     name: code
@@ -121,6 +162,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.deliveryMode
     name: deliveryMode
@@ -138,6 +180,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.entities
     name: entities
@@ -153,6 +196,7 @@ items:
       return:
         type:
           - 'any[]'
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.expriation
     name: expriation
@@ -170,6 +214,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.importance
     name: importance
@@ -185,6 +230,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.inputHint
     name: inputHint
@@ -203,6 +249,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.label
     name: label
@@ -218,6 +265,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.listenFor
     name: listenFor
@@ -235,6 +283,7 @@ items:
       return:
         type:
           - 'string[]'
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.localTimestamp
     name: localTimestamp
@@ -252,6 +301,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.localTimezone
     name: localTimezone
@@ -270,6 +320,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.name
     name: name
@@ -285,6 +336,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.relatesTo
     name: relatesTo
@@ -300,6 +352,23 @@ items:
       return:
         type:
           - botbuilder.IAddress
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IMessage.replyToId
+    name: replyToId
+    fullName: replyToId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The ID of the event this update is related to.
+    optional: true
+    syntax:
+      content: 'replyToId?: string'
+      return:
+        type:
+          - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.semanticAction
     name: semanticAction
@@ -315,6 +384,39 @@ items:
       return:
         type:
           - botbuilder.ISemanticAction
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IMessage.source
+    name: source
+    fullName: source
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: 'The original source of the event (i.e. ''facebook'', ''skype'', ''slack'', etc.)'
+    syntax:
+      content: 'source: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IMessage.sourceEvent
+    name: sourceEvent
+    fullName: sourceEvent
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The original event in the sources native schema. For outgoing messages can
+      be used to pass source specific event data like custom attachments.
+    syntax:
+      content: 'sourceEvent: any'
+      return:
+        type:
+          - any
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.speak
     name: speak
@@ -332,6 +434,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.summary
     name: summary
@@ -349,6 +452,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.text
     name: text
@@ -364,6 +468,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.textFormat
     name: textFormat
@@ -379,6 +484,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.textHighlights
     name: textHighlights
@@ -396,6 +502,7 @@ items:
       return:
         type:
           - 'botbuilder.ITextHighlight[]'
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.textLocale
     name: textLocale
@@ -411,6 +518,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.timestamp
     name: timestamp
@@ -426,6 +534,44 @@ items:
       return:
         type:
           - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IMessage.type
+    name: type
+    fullName: type
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Defines type of event. Should be 'message' for an IMessage.
+    syntax:
+      content: 'type: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IMessage.user
+    name: user
+    fullName: user
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      For incoming messages this is the user that sent the message. By default
+      this is a copy of
+      [address.user](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html#user)
+      but you can configure your bot with a
+
+      [lookupUser](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html#lookupuser)
+      function that lets map the incoming user to an internal user id.
+    syntax:
+      content: 'user: IIdentity'
+      return:
+        type:
+          - botbuilder.IIdentity
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.value
     name: value
@@ -441,6 +587,7 @@ items:
       return:
         type:
           - any
+        description: ''
     package: botbuilder
   - uid: botbuilder.IMessage.valueType
     name: valueType
@@ -456,6 +603,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.IEvent
@@ -464,6 +612,12 @@ references:
       - name: IEvent
         fullName: IEvent
         uid: botbuilder.IEvent
+  - uid: botbuilder.IAddress
+    name: IAddress
+    spec.typeScript:
+      - name: IAddress
+        fullName: IAddress
+        uid: botbuilder.IAddress
   - uid: 'botbuilder.IAttachment[]'
     name: 'IAttachment[]'
     spec.typeScript:
@@ -472,12 +626,6 @@ references:
         uid: botbuilder.IAttachment
       - name: '[]'
         fullName: '[]'
-  - uid: botbuilder.IAddress
-    name: IAddress
-    spec.typeScript:
-      - name: IAddress
-        fullName: IAddress
-        uid: botbuilder.IAddress
   - uid: botbuilder.ISemanticAction
     name: ISemanticAction
     spec.typeScript:
@@ -492,3 +640,9 @@ references:
         uid: botbuilder.ITextHighlight
       - name: '[]'
         fullName: '[]'
+  - uid: botbuilder.IIdentity
+    name: IIdentity
+    spec.typeScript:
+      - name: IIdentity
+        fullName: IIdentity
+        uid: botbuilder.IIdentity

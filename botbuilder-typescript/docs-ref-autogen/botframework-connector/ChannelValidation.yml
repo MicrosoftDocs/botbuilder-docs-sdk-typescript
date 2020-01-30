@@ -2,19 +2,21 @@
 items:
   - uid: botframework-connector.ChannelValidation
     name: ChannelValidation
+    langs:
+      - typeScript
     fullName: ChannelValidation
     children:
       - botframework-connector.ChannelValidation.authenticateChannelToken
       - >-
         botframework-connector.ChannelValidation.authenticateChannelTokenWithServiceUrl
       - botframework-connector.ChannelValidation.validateIdentity
-    langs:
-      - typeScript
     type: module
     summary: ''
     package: botframework-connector
   - uid: botframework-connector.ChannelValidation.authenticateChannelToken
-    name: 'authenticateChannelToken(string, ICredentialProvider, string)'
+    name: >-
+      authenticateChannelToken(string, ICredentialProvider, string,
+      AuthenticationConfiguration)
     children: []
     type: function
     langs:
@@ -27,7 +29,8 @@ items:
     syntax:
       content: >-
         function authenticateChannelToken(authHeader: string, credentials:
-        ICredentialProvider, channelId: string)
+        ICredentialProvider, channelId: string, authConfig?:
+        AuthenticationConfiguration)
       parameters:
         - id: authHeader
           type:
@@ -41,15 +44,21 @@ items:
           type:
             - string
           description: ''
+        - id: authConfig
+          type:
+            - botframework-connector.AuthenticationConfiguration
+          description: ''
+          optional: true
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity>
+        description: A valid ClaimsIdentity.
     package: botframework-connector
   - uid: >-
       botframework-connector.ChannelValidation.authenticateChannelTokenWithServiceUrl
     name: >-
       authenticateChannelTokenWithServiceUrl(string, ICredentialProvider,
-      string, string)
+      string, string, AuthenticationConfiguration)
     children: []
     type: function
     langs:
@@ -62,7 +71,8 @@ items:
     syntax:
       content: >-
         function authenticateChannelTokenWithServiceUrl(authHeader: string,
-        credentials: ICredentialProvider, serviceUrl: string, channelId: string)
+        credentials: ICredentialProvider, serviceUrl: string, channelId: string,
+        authConfig?: AuthenticationConfiguration)
       parameters:
         - id: authHeader
           type:
@@ -80,9 +90,15 @@ items:
           type:
             - string
           description: ''
+        - id: authConfig
+          type:
+            - botframework-connector.AuthenticationConfiguration
+          description: ''
+          optional: true
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity>
+        description: A valid ClaimsIdentity.
     package: botframework-connector
   - uid: botframework-connector.ChannelValidation.validateIdentity
     name: 'validateIdentity(ClaimsIdentity, ICredentialProvider)'
@@ -107,6 +123,7 @@ items:
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity>
+        description: A valid ClaimsIdentity.
     package: botframework-connector
 references:
   - uid: botframework-connector.ICredentialProvider
@@ -115,6 +132,12 @@ references:
       - name: ICredentialProvider
         fullName: ICredentialProvider
         uid: botframework-connector.ICredentialProvider
+  - uid: botframework-connector.AuthenticationConfiguration
+    name: AuthenticationConfiguration
+    spec.typeScript:
+      - name: AuthenticationConfiguration
+        fullName: AuthenticationConfiguration
+        uid: botframework-connector.AuthenticationConfiguration
   - uid: Promise<botframework-connector.ClaimsIdentity>
     name: ClaimsIdentity>
     spec.typeScript:

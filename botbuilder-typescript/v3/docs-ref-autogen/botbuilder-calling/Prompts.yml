@@ -5,9 +5,11 @@ items:
     fullName: Prompts
     children:
       - botbuilder-calling.Prompts.action
+      - botbuilder-calling.Prompts.begin
       - botbuilder-calling.Prompts.choice
       - botbuilder-calling.Prompts.configure
       - botbuilder-calling.Prompts.confirm
+      - botbuilder-calling.Prompts.dialogResumed
       - botbuilder-calling.Prompts.digits
       - botbuilder-calling.Prompts.record
       - botbuilder-calling.Prompts.replyReceived
@@ -41,6 +43,27 @@ items:
             - botbuilder-calling.IAction | botbuilder-calling.IIsAction
           description: |
             The workflow action to send.
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.begin
+    name: 'begin(CallSession, T)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when a new dialog session is being started.
+    syntax:
+      content: 'function begin<T>(session: CallSession, args?: T)'
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: args
+          type:
+            - T
+          description: |
+            (Optional) arguments passed to the dialog by its parent.
+          optional: true
     package: botbuilder-calling
   - uid: botbuilder-calling.Prompts.choice
     name: >-
@@ -140,6 +163,28 @@ items:
           description: |
             (Optional) parameters to control the behaviour of the prompt.
           optional: true
+    package: botbuilder-calling
+  - uid: botbuilder-calling.Prompts.dialogResumed
+    name: 'dialogResumed(CallSession, IDialogResult<T>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: A child dialog has ended and the current one is being resumed.
+    syntax:
+      content: >-
+        function dialogResumed<T>(session: CallSession, result:
+        IDialogResult<T>)
+      parameters:
+        - id: session
+          type:
+            - botbuilder-calling.CallSession
+          description: Session object for the current conversation.
+        - id: result
+          type:
+            - botbuilder-calling.IDialogResult<T>
+          description: |
+            Result returned by the child dialog.
     package: botbuilder-calling
   - uid: botbuilder-calling.Prompts.digits
     name: >-
@@ -253,6 +298,14 @@ references:
       - name: CallSession
         fullName: CallSession
         uid: botbuilder-calling.CallSession
+  - uid: botbuilder-calling.IDialogResult<T>
+    name: IDialogResult<T>
+    spec.typeScript:
+      - name: IDialogResult
+        fullName: IDialogResult
+        uid: botbuilder-calling.IDialogResult
+      - name: <T>
+        fullName: <T>
   - uid: botbuilder-calling.IAction | botbuilder-calling.IIsAction
     name: IIsAction
     spec.typeScript:

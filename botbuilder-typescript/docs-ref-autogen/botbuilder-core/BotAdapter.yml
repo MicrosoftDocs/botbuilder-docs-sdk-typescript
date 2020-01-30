@@ -13,13 +13,44 @@ items:
     langs:
       - typeScript
     type: class
-    summary: Abstract base class for all adapter plugins.
+    summary: >-
+      Defines the core behavior of a bot adapter that can connect a bot to a
+      service endpoint.
     package: botbuilder-core
     remarks: >-
-      Adapters manage the communication between the bot and a user over a
-      specific channel, or set
+      The bot adapter encapsulates authentication processes and sends activities
+      to and receives
 
-      of channels.
+      activities from the Bot Connector Service. When your bot receives an
+      activity, the adapter
+
+      creates a turn context object, passes it to your bot application logic,
+      and sends responses
+
+      back to the user's channel.
+
+
+      The adapter processes and directs incoming activities in through the bot
+      middleware pipeline to
+
+      your bot logic and then back out again. As each activity flows in and out
+      of the bot, each
+
+      piece of middleware can inspect or act upon the activity, both before and
+      after the bot logic runs.
+
+      Use the [use](xref:botbuilder-core.BotAdapter.use) method to add
+      [Middleware](xref:botbuilder-core.Middleware)
+
+      objects to your adapter's middleware collection.
+
+
+      For more information, see the articles on
+
+      [How bots
+      work](https://docs.microsoft.com/azure/bot-service/bot-builder-basics) and
+
+      [Middleware](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-middleware).
   - uid: botbuilder-core.BotAdapter.continueConversation
     name: >-
       continueConversation(Partial<ConversationReference>, (revocableContext:
@@ -28,7 +59,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Proactively continues an existing conversation.
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
@@ -37,23 +70,43 @@ items:
         - id: reference
           type:
             - Partial<ConversationReference>
-          description: Conversation reference for the conversation being continued.
+          description: A reference to the conversation to continue.
         - id: logic
           type:
             - '(revocableContext: TurnContext) => Promise<void>'
           description: |
-            Function to execute for performing the bots logic.
+            The asynchronous method to call after the adapter middleware runs.
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-core
+    remarks: >-
+      This is often referred to as a _proactive notification_, the bot can
+      proactively
+
+      send a message to a conversation or user without waiting for an incoming
+      message.
+
+      For example, a bot can use this method to send notifications or coupons to
+      a user.
   - uid: botbuilder-core.BotAdapter.deleteActivity
     name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: Deletes an existing activity.
+    summary: >
+      Asynchronously deletes an existing activity.
+
+      This interface supports the framework and is not intended to be called
+      directly for your code.
+
+      Use
+      [TurnContext.deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
+      to delete
+
+      an activity from your bot code.
     syntax:
       content: >-
         function deleteActivity(context: TurnContext, reference:
@@ -62,16 +115,20 @@ items:
         - id: context
           type:
             - botbuilder-core.TurnContext
-          description: Context for the current turn of conversation with the user.
+          description: The context object for the turn.
         - id: reference
           type:
             - Partial<ConversationReference>
           description: |
-            Conversation reference of the activity being deleted.
+            Conversation reference information for the activity to delete.
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-core
+    remarks: >-
+      Not all channels support this operation. For channels that don't, this
+      call may throw an exception.
   - uid: botbuilder-core.BotAdapter.onTurnError
     name: onTurnError
     fullName: onTurnError
@@ -80,23 +137,44 @@ items:
       - typeScript
     type: property
     summary: >-
-      Gets/sets a error handler that will be called anytime an uncaught
-      exception is raised during
-
-      a turn.
+      Gets or sets an error handler that can catch exceptions in the middleware
+      or application.
     syntax:
       content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
       return:
         type:
           - '(context: TurnContext, error: Error) => Promise<void>'
+        description: ''
     package: botbuilder-core
+    remarks: >-
+      The error handler is called with these parameters:
+
+
+      | Name | Type | Description |
+
+      | :--- | :--- | :--- |
+
+      | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The
+      context object for the turn. |
+
+      | `error` | `Error` | The Node.js error thrown. |
   - uid: botbuilder-core.BotAdapter.sendActivities
     name: 'sendActivities(TurnContext, Partial<Activity>[])'
     children: []
     type: method
     langs:
       - typeScript
-    summary: Sends a set of activities to the user.
+    summary: >
+      Asynchronously sends a set of outgoing activities to a channel server.
+
+      This method supports the framework and is not intended to be called
+      directly for your code.
+
+      Use the turn context's
+      [sendActivity](xref:botbuilder-core.TurnContext.sendActivity) or
+
+      [sendActivities](xref:botbuilder-core.TurnContext.sendActivities) method
+      from your bot code.
     syntax:
       content: >-
         function sendActivities(context: TurnContext, activities:
@@ -105,24 +183,42 @@ items:
         - id: context
           type:
             - botbuilder-core.TurnContext
-          description: Context for the current turn of conversation with the user.
+          description: The context object for the turn.
         - id: activities
           type:
             - 'Partial<Activity>[]'
           description: |
-            Set of activities being sent.
+            The activities to send.
       return:
         type:
           - 'Promise<ResourceResponse[]>'
+        description: 'An array of [ResourceResponse](xref:)'
     package: botbuilder-core
-    remarks: An array of responses from the server will be returned.
+    remarks: >-
+      The activities will be sent one after another in the order in which
+      they're received. A
+
+      response object will be returned for each sent activity. For `message`
+      activities this will
+
+      contain the ID of the delivered message.
   - uid: botbuilder-core.BotAdapter.updateActivity
     name: 'updateActivity(TurnContext, Partial<Activity>)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: Replaces an existing activity.
+    summary: >
+      Asynchronously replaces a previous activity with an updated version.
+
+      This interface supports the framework and is not intended to be called
+      directly for your code.
+
+      Use
+      [TurnContext.updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
+      to update
+
+      an activity from your bot code.
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
@@ -131,17 +227,20 @@ items:
         - id: context
           type:
             - botbuilder-core.TurnContext
-          description: Context for the current turn of conversation with the user.
+          description: The context object for the turn.
         - id: activity
           type:
             - Partial<Activity>
-          description: >
-            New replacement activity. The activity should already have it's ID
-            information populated.
+          description: |
+            The updated version of the activity to replace.
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-core
+    remarks: >-
+      Not all channels support this operation. For channels that don't, this
+      call may throw an exception.
   - uid: botbuilder-core.BotAdapter.use
     name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
@@ -150,7 +249,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Registers middleware handlers(s) with the adapter.
+    summary: Adds middleware to the adapter's pipeline.
     syntax:
       content: >-
         function use(middleware: (context: TurnContext, next: () =>
@@ -162,11 +261,17 @@ items:
               (context: TurnContext, next: () => Promise<void>) => Promise<void>
               | botbuilder-core.Middleware[]
           description: |
-            One or more middleware handlers(s) to register.
+            The middleware or middleware handlers to add.
       return:
         type:
           - this
+        description: ''
     package: botbuilder-core
+    remarks: >-
+      Middleware is added to the adapter at initialization time.
+
+      Each turn, the adapter calls its middleware in the order in which you
+      added it.
 references:
   - uid: botbuilder-core.TurnContext
     name: TurnContext

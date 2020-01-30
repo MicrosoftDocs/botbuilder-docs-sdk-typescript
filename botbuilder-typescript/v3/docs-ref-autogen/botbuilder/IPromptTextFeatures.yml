@@ -4,6 +4,9 @@ items:
     name: IPromptTextFeatures
     fullName: IPromptTextFeatures
     children:
+      - botbuilder.IPromptTextFeatures.defaultRetryNamespace
+      - botbuilder.IPromptTextFeatures.defaultRetryPrompt
+      - botbuilder.IPromptTextFeatures.disableRecognizer
       - botbuilder.IPromptTextFeatures.recognizeScore
     langs:
       - typeScript
@@ -14,6 +17,59 @@ items:
       class.
     extends:
       name: botbuilder.IPromptFeatures
+    package: botbuilder
+  - uid: botbuilder.IPromptTextFeatures.defaultRetryNamespace
+    name: defaultRetryNamespace
+    fullName: defaultRetryNamespace
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The library namespace to use for the
+      [defaultRetryPrompt](#defaultretryprompt). If not specified then the bots
+      default namespace of "*" will be used.
+    optional: true
+    syntax:
+      content: 'defaultRetryNamespace?: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IPromptTextFeatures.defaultRetryPrompt
+    name: defaultRetryPrompt
+    fullName: defaultRetryPrompt
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The default retryPrompt to send should the caller not provide one.
+    optional: true
+    syntax:
+      content: 'defaultRetryPrompt?: TextOrMessageType'
+      return:
+        type:
+          - botbuilder.TextOrMessageType
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IPromptTextFeatures.disableRecognizer
+    name: disableRecognizer
+    fullName: disableRecognizer
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      If true, then the prompt should not execute it's own recognition logic.
+      The default is "false".
+    optional: true
+    syntax:
+      content: 'disableRecognizer?: boolean'
+      return:
+        type:
+          - boolean
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptTextFeatures.recognizeScore
     name: recognizeScore
@@ -33,6 +89,7 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.IPromptFeatures
@@ -41,3 +98,9 @@ references:
       - name: IPromptFeatures
         fullName: IPromptFeatures
         uid: botbuilder.IPromptFeatures
+  - uid: botbuilder.TextOrMessageType
+    name: TextOrMessageType
+    spec.typeScript:
+      - name: TextOrMessageType
+        fullName: TextOrMessageType
+        uid: botbuilder.TextOrMessageType

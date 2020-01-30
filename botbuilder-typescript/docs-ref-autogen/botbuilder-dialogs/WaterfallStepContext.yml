@@ -7,9 +7,11 @@ items:
       - botbuilder-dialogs.WaterfallStepContext.activeDialog
       - botbuilder-dialogs.WaterfallStepContext.beginDialog
       - botbuilder-dialogs.WaterfallStepContext.cancelAllDialogs
+      - botbuilder-dialogs.WaterfallStepContext.child
       - botbuilder-dialogs.WaterfallStepContext.context
       - botbuilder-dialogs.WaterfallStepContext.continueDialog
       - botbuilder-dialogs.WaterfallStepContext.dialogs
+      - botbuilder-dialogs.WaterfallStepContext.emitEvent
       - botbuilder-dialogs.WaterfallStepContext.endDialog
       - botbuilder-dialogs.WaterfallStepContext.findDialog
       - botbuilder-dialogs.WaterfallStepContext.index
@@ -23,6 +25,7 @@ items:
       - botbuilder-dialogs.WaterfallStepContext.repromptDialog
       - botbuilder-dialogs.WaterfallStepContext.result
       - botbuilder-dialogs.WaterfallStepContext.stack
+      - botbuilder-dialogs.WaterfallStepContext.state
       - botbuilder-dialogs.WaterfallStepContext.values
       - botbuilder-dialogs.WaterfallStepContext.constructor
     langs:
@@ -40,8 +43,8 @@ items:
       - typeScript
     type: property
     summary: >-
-      Returns the persisted instance of the active dialog on the top of the
-      stack or `undefined` if
+      Returns the state information for the dialog on the top of the dialog
+      stack, or `undefined` if
 
       the stack is empty.
     syntax:
@@ -49,24 +52,17 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogInstance | undefined
+        description: ''
     package: botbuilder-dialogs
-    remarks: >-
-      Dialogs can use this to persist custom state in between conversation
-      turns:
-
-
-      ```JavaScript
-
-      dc.activeDialog.state = { someFlag: true };
-
-      ```
   - uid: botbuilder-dialogs.WaterfallStepContext.beginDialog
     name: 'beginDialog(string, object)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: Pushes a new dialog onto the dialog stack.
+    summary: |-
+      Starts a dialog instance and pushes it onto the dialog stack.
+      Creates a new instance of the dialog and pushes it onto the stack.
     syntax:
       content: 'function beginDialog(dialogId: string, options?: object)'
       parameters:
@@ -77,54 +73,106 @@ items:
         - id: options
           type:
             - object
-          description: >
-            (Optional) additional argument(s) to pass to the dialog being
-            started.
+          description: |
+            Optional. Arguments to pass into the dialog when it starts.
           optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       If there's already an active dialog on the stack, that dialog will be
-      paused until the new
+      paused until
 
-      dialog calls [endDialog()](#enddialog).
+      it is again the top dialog on the stack.
 
+
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
+
+      the status of the dialog stack after this method completes.
+
+
+      This method throws an exception if the requested dialog can't be found in
+      this dialog context
+
+      or any of its ancestors.
+
+
+      For example:
 
       ```JavaScript
 
-      return await dc.beginDialog('greeting', { name: user.name });
+      const result = await dc.beginDialog('greeting', { name: user.name });
 
       ```
 
 
-      The `DialogTurnResult.status` returned can be:
+      **See also**
 
-      - `DialogTurnStatus.active` if the dialog started was a multi-turn dialog.
+      - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
 
-      - `DialogTurnStatus.completed` if the dialog started was a single-turn
-      dialog.
+      - [prompt](xref:botbuilder-dialogs.DialogContext.prompt)
+
+      - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
+
+      - [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
   - uid: botbuilder-dialogs.WaterfallStepContext.cancelAllDialogs
-    name: cancelAllDialogs()
+    name: 'cancelAllDialogs(boolean, string, any)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: Cancels any dialogs on the stack resulting in an empty stack.
+    summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
     syntax:
-      content: function cancelAllDialogs()
-      parameters: []
+      content: >-
+        function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
+        eventValue?: any)
+      parameters:
+        - id: cancelParents
+          type:
+            - boolean
+          description: Optional. If `true` all parent dialogs will be cancelled as well.
+          optional: true
+        - id: eventName
+          type:
+            - string
+          description: >-
+            Optional. Name of a custom event to raise as dialogs are cancelled.
+            This defaults to
+            [cancelDialog](xref:botbuilder-dialogs.DialogEvents.cancelDialog).
+          optional: true
+        - id: eventValue
+          type:
+            - any
+          description: |
+            Optional. Value to pass along with custom cancellation event.
+          optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
-      The dialogs being cancelled will have their `Dialog.endDialog()` method
-      called before being
+      This calls each dialog's
+      [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog) method before
 
-      removed from the stack.
+      removing the dialog from the stack.
 
+
+      If there were any dialogs on the stack initially, the
+      [status](xref:botbuilder-dialogs.DialogTurnResult.status)
+
+      of the return value is
+      [cancelled](xref:botbuilder-dialogs.DialogTurnStatus.cancelled);
+      otherwise, it's
+
+      [empty](xref:botbuilder-dialogs.DialogTurnStatus.empty).
+
+
+      This example clears a dialog stack, `dc`, before starting a 'bookFlight'
+      dialog.
 
       ```JavaScript
 
@@ -135,11 +183,24 @@ items:
       ```
 
 
-      The `DialogTurnResult.status` returned can be:
+      **See also**
 
-      - `DialogTurnStatus.cancelled` if one or more dialogs were cancelled.
-
-      - `DialogTurnStatus.empty` if the stack was empty.
+      - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+  - uid: botbuilder-dialogs.WaterfallStepContext.child
+    name: child
+    fullName: child
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Returns dialog context for child if the active dialog is a container.
+    syntax:
+      content: 'child: DialogContext | undefined'
+      return:
+        type:
+          - botbuilder-dialogs.DialogContext | undefined
+        description: ''
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.context
     name: context
     fullName: context
@@ -147,12 +208,13 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Context for the current turn of conversation.
+    summary: Gets the context object for the turn.
     syntax:
       content: 'context: TurnContext'
       return:
         type:
           - TurnContext
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.continueDialog
     name: continueDialog()
@@ -160,20 +222,37 @@ items:
     type: method
     langs:
       - typeScript
-    summary: 'Continues execution of the active multi-turn dialog, if there is one.'
+    summary: >-
+      Continues execution of the active dialog, if there is one, by passing this
+      dialog context to its
+
+      [Dialog.continueDialog](xref:botbuilder-dialogs.Dialog.continueDialog)
+      method.
     syntax:
       content: function continueDialog()
       parameters: []
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
-      The stack will be inspected and the active dialog will be retrieved using
-      `DialogSet.find()`.
+      After the call completes, you can check the turn context's
+      [responded](xref:botbuilder-core.TurnContext.responded)
 
-      The dialog will then have its `Dialog.continueDialog()` method called.
+      property to determine if the dialog sent a reply to the user.
 
+
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
+
+      the status of the dialog stack after this method completes.
+
+
+      Typically, you would call this from within your bot's turn handler.
+
+
+      For example:
 
       ```JavaScript
 
@@ -186,16 +265,6 @@ items:
       }
 
       ```
-
-
-      The `DialogTurnResult.status` returned can be:
-
-      - `DialogTurnStatus.active` if there's still one or more dialogs on the
-      stack.
-
-      - `DialogTurnStatus.completed` if the last dialog on the stack just ended.
-
-      - `DialogTurnStatus.empty` if the stack was empty.
   - uid: botbuilder-dialogs.WaterfallStepContext.dialogs
     name: dialogs
     fullName: dialogs
@@ -203,12 +272,49 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Set of dialogs that can be called from this context.
+    summary: Gets the dialogs that can be called directly from this context.
     syntax:
       content: 'dialogs: DialogSet'
       return:
         type:
           - botbuilder-dialogs.DialogSet
+        description: ''
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.WaterfallStepContext.emitEvent
+    name: 'emitEvent(string, any, boolean, boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        function emitEvent(name: string, value?: any, bubble?: boolean,
+        fromLeaf?: boolean)
+      parameters:
+        - id: name
+          type:
+            - string
+          description: ''
+        - id: value
+          type:
+            - any
+          description: ''
+          optional: true
+        - id: bubble
+          type:
+            - boolean
+          description: ''
+          optional: true
+        - id: fromLeaf
+          type:
+            - boolean
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<boolean>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.endDialog
     name: endDialog(any)
@@ -217,10 +323,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      Ends a dialog by popping it off the stack and returns an optional result
-      to the dialogs
-
-      parent.
+      Ends a dialog and pops it off the stack. Returns an optional result to the
+      dialog's parent.
     syntax:
       content: 'function endDialog(result?: any)'
       parameters:
@@ -228,42 +332,61 @@ items:
           type:
             - any
           description: >
-            (Optional) result to pass to the parent dialogs `Dialog.resume()`
-            method.
+            Optional. A result to pass to the parent logic. This might be the
+            next dialog
+                 on the stack, or it might be the bot's turn handler, if this was the last dialog on the stack.
           optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
-      The parent dialog is the dialog the started the one being ended via a call
-      to either
+      The _parent_ dialog is the next dialog on the dialog stack, if there is
+      one. This method
 
-      [beginDialog()](#begindialog) or [prompt()](#prompt). The parent dialog
-      will have its
+      calls the parent's
+      [Dialog.resumeDialog](xref:botbuilder-dialogs.Dialog.resumeDialog) method,
 
-      `Dialog.resumeDialog()` method called with any returned `result`. If there
-      is no parent
+      passing the result returned by the ending dialog. If there is no parent
+      dialog, the turn ends
 
-      dialog then turn will end and the result will be passed to the bot via
+      and the result is available to the bot through the returned object's
 
-      `DialogTurnResult.result`.
+      [result](xref:botbuilder-dialogs.DialogTurnResult.result) property.
 
+
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
+
+      the status of the dialog stack after this method completes.
+
+
+      Typically, you would call this from within the logic for a specific dialog
+      to signal back to
+
+      the dialog context that the dialog has completed, the dialog should be
+      removed from the stack,
+
+      and the parent dialog should resume.
+
+
+      For example:
 
       ```JavaScript
 
-      return await dc.endDialog();
+      return await dc.endDialog(returnValue);
 
       ```
 
 
-      The `DialogTurnResult.status` returned can be:
+      **See also**
 
-      - `DialogTurnStatus.active` the parent dialog was resumed and is still
-      active.
+      - [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
 
-      - `DialogTurnStatus.completed` the parent dialog completed or there was no
-      parent dialog to resume.
+      - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
+
+      - [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog)
   - uid: botbuilder-dialogs.WaterfallStepContext.findDialog
     name: findDialog(string)
     children: []
@@ -282,12 +405,21 @@ items:
       return:
         type:
           - botbuilder-dialogs.Dialog | undefined
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
-      If the dialog cannot be found within the current `DialogSet`, the parent
-      `DialogContext`
+      If the dialog to start is not found in the
+      [DialogSet](xref:botbuilder-dialogs.DialogSet) associated
 
-      will be searched if there is one.
+      with this dialog context, it attempts to find the dialog in its parent
+      dialog context.
+
+
+      **See also**
+
+      - [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs)
+
+      - [parent](xref:botbuilder-dialogs.DialogContext.parent)
   - uid: botbuilder-dialogs.WaterfallStepContext.index
     name: index
     fullName: index
@@ -301,6 +433,7 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.next
     name: next(any)
@@ -321,6 +454,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: |-
       ```JavaScript
@@ -341,6 +475,7 @@ items:
       return:
         type:
           - O
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.parent
     name: parent
@@ -349,14 +484,25 @@ items:
     langs:
       - typeScript
     type: property
-    summary: The parent DialogContext if any.
+    summary: >-
+      The parent dialog context for this dialog context, or `undefined` if this
+      context doesn't have a parent.
     syntax:
       content: 'parent: DialogContext | undefined'
       return:
         type:
           - botbuilder-dialogs.DialogContext | undefined
+        description: ''
     package: botbuilder-dialogs
-    remarks: This will be used when searching for dialogs to start.
+    remarks: >-
+      When it attempts to start a dialog, the dialog context searches for the
+      [Dialog.id](xref:botbuilder-dialogs.Dialog.id)
+
+      in its [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs). If the
+      dialog to start is not found
+
+      in this dialog context, it searches in its parent dialog context, and so
+      on.
   - uid: botbuilder-dialogs.WaterfallStepContext.prompt
     name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
     children: []
@@ -364,8 +510,8 @@ items:
     langs:
       - typeScript
     summary: >-
-      Helper function to simplify formatting the options for calling a `Prompt`
-      based dialog.
+      Helper function to simplify formatting the options for calling a prompt
+      dialog.
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
@@ -374,23 +520,25 @@ items:
         - id: dialogId
           type:
             - string
-          description: ID of the prompt to start.
+          description: ID of the prompt dialog to start.
         - id: promptOrOptions
           type:
             - string | Partial<Activity> | botbuilder-dialogs.PromptOptions
-          description: >-
-            Initial prompt to send the user or a set of options to configure the
-            prompt with.
+          description: |-
+            The text of the initial prompt to send the user,
+                 the activity to send as the initial prompt, or
+                 the object with which to format the prompt dialog.
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
-      This is a lightweight wrapper abound [beginDialog()](#begindialog). It
-      fills in a
+      This helper method formats the object to use as the `options` parameter,
+      and then calls
 
-      `PromptOptions` structure and then passes it through to
-      `dc.beginDialog(dialogId, options)`.
+      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
+      the specified prompt dialog.
 
 
       ```JavaScript
@@ -407,9 +555,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      Helper function to simplify formatting the options for calling a `Prompt`
-      based dialog.
+    summary: ''
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
@@ -430,13 +576,14 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
-      This is a lightweight wrapper abound [beginDialog()](#begindialog). It
-      fills in a
+      This helper method formats the object to use as the `options` parameter,
+      and then calls
 
-      `PromptOptions` structure and then passes it through to
-      `dc.beginDialog(dialogId, options)`.
+      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
+      the specified prompt dialog.
 
 
       ```JavaScript
@@ -458,6 +605,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogReason
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.replaceDialog
     name: 'replaceDialog(string, object)'
@@ -472,74 +620,66 @@ items:
         - id: dialogId
           type:
             - string
-          description: ID of the new dialog to start.
+          description: ID of the dialog to start.
         - id: options
           type:
             - object
           description: |
-            (Optional) additional argument(s) to pass to the new dialog.
+            Optional. Arguments to pass into the new dialog when it starts.
           optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
-      This method is conceptually equivalent to calling
-      [endDialog()](#enddialog) and then
-
-      immediately calling [beginDialog()](#begindialog). The difference is that
-      the parent
-
-      dialog is not resumed or otherwise notified that the dialog it started has
-      been replaced.
+      This is particularly useful for creating a loop or redirecting to another
+      dialog.
 
 
-      This method is particularly useful for creating conversational loops
-      within your bot:
+      The [status](xref:botbuilder-dialogs.DialogTurnResult.status) of returned
+      object describes
+
+      the status of the dialog stack after this method completes.
 
 
-      ```JavaScript
+      This method is similar to ending the current dialog and immediately
+      beginning the new one.
 
-      this.addDialog(new WaterfallDialog('randomNumber', [
-          async (step) => {
-              const { min, max } = step.options;
-              const num = min + Math.floor((max - min) * Math.random());
-              return await step.prompt('continuePrompt', `Here's a number between ${min} and ${max}: ${num}. Should I pick another one?`);
-          },
-          async (step) {
-              if (step.result) {
-                  return await step.replaceDialog(this.id, step.options);
-              } else {
-                  return await step.endDialog();
-              }
-          }
-      ]));
+      However, the parent dialog is neither resumed nor otherwise notified.
 
 
-      this.addDialog(new ConfirmPrompt('continuePrompt'));
+      **See also**
 
-      ```
+      - [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
+
+      - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
   - uid: botbuilder-dialogs.WaterfallStepContext.repromptDialog
     name: repromptDialog()
     children: []
     type: method
     langs:
       - typeScript
-    summary: >-
-      Requests the [activeDialog](#activeDialog) to re-prompt the user for
-      input.
+    summary: Requests the active dialog to re-prompt the user for input.
     syntax:
       content: function repromptDialog()
       parameters: []
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
-    remarks: |-
-      The active dialogs `Dialog.repromptDialog()` method will be called.
+    remarks: >-
+      This calls the active dialog's
+      [repromptDialog](xref:botbuilder-dialogs.Dialog.repromptDialog) method.
+
+
+      For example:
 
       ```JavaScript
+
       await dc.repromptDialog();
+
       ```
   - uid: botbuilder-dialogs.WaterfallStepContext.result
     name: result
@@ -556,6 +696,7 @@ items:
       return:
         type:
           - any
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.stack
     name: stack
@@ -564,12 +705,28 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Current dialog stack.
+    summary: Gets the current dialog stack.
     syntax:
       content: 'stack: DialogInstance[]'
       return:
         type:
           - 'botbuilder-dialogs.DialogInstance[]'
+        description: ''
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.WaterfallStepContext.state
+    name: state
+    fullName: state
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'state: DialogStateManager'
+      return:
+        type:
+          - botbuilder-dialogs.DialogStateManager
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.values
     name: values
@@ -584,6 +741,7 @@ items:
       return:
         type:
           - object
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.constructor
     name: 'WaterfallStepContext(DialogContext, WaterfallStepInfo<O>)'
@@ -628,12 +786,6 @@ references:
         uid: botbuilder-dialogs.DialogInstance
       - name: ' | undefined'
         fullName: ' | undefined'
-  - uid: botbuilder-dialogs.DialogSet
-    name: DialogSet
-    spec.typeScript:
-      - name: DialogSet
-        fullName: DialogSet
-        uid: botbuilder-dialogs.DialogSet
   - uid: botbuilder-dialogs.DialogContext | undefined
     name: DialogContext | undefined
     spec.typeScript:
@@ -642,6 +794,12 @@ references:
         uid: botbuilder-dialogs.DialogContext
       - name: ' | undefined'
         fullName: ' | undefined'
+  - uid: botbuilder-dialogs.DialogSet
+    name: DialogSet
+    spec.typeScript:
+      - name: DialogSet
+        fullName: DialogSet
+        uid: botbuilder-dialogs.DialogSet
   - uid: botbuilder-dialogs.DialogReason
     name: DialogReason
     spec.typeScript:
@@ -656,6 +814,12 @@ references:
         uid: botbuilder-dialogs.DialogInstance
       - name: '[]'
         fullName: '[]'
+  - uid: botbuilder-dialogs.DialogStateManager
+    name: DialogStateManager
+    spec.typeScript:
+      - name: DialogStateManager
+        fullName: DialogStateManager
+        uid: botbuilder-dialogs.DialogStateManager
   - uid: Promise<botbuilder-dialogs.DialogTurnResult>
     name: DialogTurnResult>
     spec.typeScript:

@@ -5,12 +5,14 @@ items:
     fullName: OAuthPrompt<O>
     children:
       - botbuilder-dialogs.OAuthPrompt.beginDialog
+      - botbuilder-dialogs.OAuthPrompt.configure
       - botbuilder-dialogs.OAuthPrompt.continueDialog
       - botbuilder-dialogs.OAuthPrompt.endDialog
       - botbuilder-dialogs.OAuthPrompt.EndOfTurn
       - botbuilder-dialogs.OAuthPrompt.getUserToken
       - botbuilder-dialogs.OAuthPrompt.id
       - botbuilder-dialogs.OAuthPrompt.constructor
+      - botbuilder-dialogs.OAuthPrompt.onDialogEvent
       - botbuilder-dialogs.OAuthPrompt.repromptDialog
       - botbuilder-dialogs.OAuthPrompt.resumeDialog
       - botbuilder-dialogs.OAuthPrompt.signOutUser
@@ -96,7 +98,8 @@ items:
 
       ```JavaScript
 
-      const { ConversationState, MemoryStorage } = require('botbuilder');
+      const { ConversationState, MemoryStorage, OAuthLoginTimeoutMsValue } =
+      require('botbuilder');
 
       const { DialogSet, OAuthPrompt, WaterfallDialog } =
       require('botbuilder-dialogs');
@@ -112,7 +115,7 @@ items:
       dialogs.add(new OAuthPrompt('loginPrompt', {
          connectionName: 'GitConnection',
          title: 'Login To GitHub',
-         timeout: 300000   // User has 5 minutes to login
+         timeout: OAuthLoginTimeoutMsValue   // User has 15 minutes to login
       }));
 
 
@@ -156,6 +159,27 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.configure
+    name: configure(object)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Fluent method for configuring the object.
+    syntax:
+      content: 'function configure(config: object)'
+      parameters:
+        - id: config
+          type:
+            - object
+          description: |
+            Configuration settings to apply.
+      return:
+        type:
+          - this
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.continueDialog
     name: continueDialog(DialogContext)
@@ -174,6 +198,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.endDialog
     name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
@@ -203,6 +228,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by dialogs that wish to perform some logging or
@@ -222,6 +248,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogTurnResult
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.getUserToken
     name: 'getUserToken(TurnContext, string)'
@@ -246,6 +273,7 @@ items:
       return:
         type:
           - Promise<TokenResponse | undefined>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.id
     name: id
@@ -260,7 +288,9 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-dialogs
+    remarks: This will be automatically generated if not specified.
   - uid: botbuilder-dialogs.OAuthPrompt.constructor
     name: 'OAuthPrompt(string, OAuthPromptSettings, PromptValidator<TokenResponse>)'
     children: []
@@ -291,6 +321,29 @@ items:
             to the prompt.
           optional: true
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.OAuthPrompt.onDialogEvent
+    name: 'onDialogEvent(DialogContext, DialogEvent)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: ''
+        - id: e
+          type:
+            - botbuilder-dialogs.DialogEvent
+          description: ''
+      return:
+        type:
+          - Promise<boolean>
+        description: ''
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.OAuthPrompt.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
     children: []
@@ -313,6 +366,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by multi-turn dialogs that wish to provide custom
@@ -353,6 +407,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by multi-turn dialogs that start other dialogs using
@@ -380,6 +435,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       This example shows creating an instance of the prompt and then signing out
@@ -409,6 +465,7 @@ items:
       return:
         type:
           - BotTelemetryClient
+        description: ''
     package: botbuilder-dialogs
 references:
   - uid: botbuilder-dialogs.Dialog
@@ -471,3 +528,9 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
+  - uid: botbuilder-dialogs.DialogEvent
+    name: DialogEvent
+    spec.typeScript:
+      - name: DialogEvent
+        fullName: DialogEvent
+        uid: botbuilder-dialogs.DialogEvent

@@ -1,0 +1,73 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-core.SkypeMentionNormalizeMiddleware
+    name: SkypeMentionNormalizeMiddleware
+    fullName: SkypeMentionNormalizeMiddleware
+    children:
+      - >-
+        botbuilder-core.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
+      - botbuilder-core.SkypeMentionNormalizeMiddleware.onTurn
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Middleware to patch mention Entities from Skype since they don't conform
+      to expected values.
+
+      Bots that interact with Skype should use this middleware if mentions are
+      used.
+    package: botbuilder-core
+    remarks: >-
+      A Skype mention "text" field is of the format:
+        <at id="28:2bc5b54d-5d48-4ff1-bd25-03dcbb5ce918">botname</at>
+      But Activity.Text doesn't contain those tags and RemoveMentionText can't
+      remove
+
+      the entity from Activity.Text.
+
+      This will remove the <at> nodes, leaving just the name.
+  - uid: botbuilder-core.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
+    name: normalizeSkypeMentionText(Activity)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'static function normalizeSkypeMentionText(activity: Activity)'
+      parameters:
+        - id: activity
+          type:
+            - Activity
+          description: ''
+    package: botbuilder-core
+  - uid: botbuilder-core.SkypeMentionNormalizeMiddleware.onTurn
+    name: 'onTurn(TurnContext, () => Promise<void>)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onTurn(turnContext: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: turnContext
+          type:
+            - botbuilder-core.TurnContext
+          description: ''
+        - id: next
+          type:
+            - () => Promise<void>
+          description: ''
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-core
+references:
+  - uid: botbuilder-core.TurnContext
+    name: TurnContext
+    spec.typeScript:
+      - name: TurnContext
+        fullName: TurnContext
+        uid: botbuilder-core.TurnContext

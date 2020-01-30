@@ -4,8 +4,12 @@ items:
     name: IChatConnectorAddress
     fullName: IChatConnectorAddress
     children:
+      - botbuilder.IChatConnectorAddress.bot
+      - botbuilder.IChatConnectorAddress.channelId
+      - botbuilder.IChatConnectorAddress.conversation
       - botbuilder.IChatConnectorAddress.id
       - botbuilder.IChatConnectorAddress.serviceUrl
+      - botbuilder.IChatConnectorAddress.user
     langs:
       - typeScript
     type: interface
@@ -14,6 +18,57 @@ items:
       specific address.
     extends:
       name: botbuilder.IAddress
+    package: botbuilder
+  - uid: botbuilder.IChatConnectorAddress.bot
+    name: bot
+    fullName: bot
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Bot that either received or is sending the message.
+    syntax:
+      content: 'bot: IIdentity'
+      return:
+        type:
+          - botbuilder.IIdentity
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IChatConnectorAddress.channelId
+    name: channelId
+    fullName: channelId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique identifier for channel.
+    syntax:
+      content: 'channelId: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IChatConnectorAddress.conversation
+    name: conversation
+    fullName: conversation
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Represents the current conversation and tracks where replies should be
+      routed to.
+
+      Can be deleted to start a new conversation with a [user](#user) on
+      channels that support new conversations.
+    optional: true
+    syntax:
+      content: 'conversation?: IIdentity'
+      return:
+        type:
+          - botbuilder.IIdentity
+        description: ''
     package: botbuilder
   - uid: botbuilder.IChatConnectorAddress.id
     name: id
@@ -29,6 +84,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IChatConnectorAddress.serviceUrl
     name: serviceUrl
@@ -44,6 +100,22 @@ items:
       return:
         type:
           - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IChatConnectorAddress.user
+    name: user
+    fullName: user
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: User that sent or should receive the message.
+    syntax:
+      content: 'user: IIdentity'
+      return:
+        type:
+          - botbuilder.IIdentity
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.IAddress
@@ -52,3 +124,9 @@ references:
       - name: IAddress
         fullName: IAddress
         uid: botbuilder.IAddress
+  - uid: botbuilder.IIdentity
+    name: IIdentity
+    spec.typeScript:
+      - name: IIdentity
+        fullName: IIdentity
+        uid: botbuilder.IIdentity

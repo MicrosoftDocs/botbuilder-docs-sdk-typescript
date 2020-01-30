@@ -2,6 +2,8 @@
 items:
   - uid: botframework-connector.EnterpriseChannelValidation
     name: EnterpriseChannelValidation
+    langs:
+      - typeScript
     fullName: EnterpriseChannelValidation
     children:
       - >-
@@ -9,14 +11,14 @@ items:
       - >-
         botframework-connector.EnterpriseChannelValidation.authenticateChannelTokenWithServiceUrl
       - botframework-connector.EnterpriseChannelValidation.validateIdentity
-    langs:
-      - typeScript
     type: module
     summary: ''
     package: botframework-connector
   - uid: >-
       botframework-connector.EnterpriseChannelValidation.authenticateChannelToken
-    name: 'authenticateChannelToken(string, ICredentialProvider, string, string)'
+    name: >-
+      authenticateChannelToken(string, ICredentialProvider, string, string,
+      AuthenticationConfiguration)
     children: []
     type: function
     langs:
@@ -29,7 +31,8 @@ items:
     syntax:
       content: >-
         function authenticateChannelToken(authHeader: string, credentials:
-        ICredentialProvider, channelId: string, channelService: string)
+        ICredentialProvider, channelId: string, channelService: string,
+        authConfig?: AuthenticationConfiguration)
       parameters:
         - id: authHeader
           type:
@@ -47,9 +50,15 @@ items:
           type:
             - string
           description: ''
+        - id: authConfig
+          type:
+            - botframework-connector.AuthenticationConfiguration
+          description: ''
+          optional: true
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity>
+        description: A valid ClaimsIdentity.
     package: botframework-connector
   - uid: >-
       botframework-connector.EnterpriseChannelValidation.authenticateChannelTokenWithServiceUrl
@@ -94,6 +103,7 @@ items:
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity>
+        description: A valid ClaimsIdentity.
     package: botframework-connector
   - uid: botframework-connector.EnterpriseChannelValidation.validateIdentity
     name: 'validateIdentity(ClaimsIdentity, ICredentialProvider)'
@@ -118,6 +128,7 @@ items:
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity>
+        description: A valid ClaimsIdentity.
     package: botframework-connector
 references:
   - uid: botframework-connector.ICredentialProvider
@@ -126,6 +137,12 @@ references:
       - name: ICredentialProvider
         fullName: ICredentialProvider
         uid: botframework-connector.ICredentialProvider
+  - uid: botframework-connector.AuthenticationConfiguration
+    name: AuthenticationConfiguration
+    spec.typeScript:
+      - name: AuthenticationConfiguration
+        fullName: AuthenticationConfiguration
+        uid: botframework-connector.AuthenticationConfiguration
   - uid: Promise<botframework-connector.ClaimsIdentity>
     name: ClaimsIdentity>
     spec.typeScript:

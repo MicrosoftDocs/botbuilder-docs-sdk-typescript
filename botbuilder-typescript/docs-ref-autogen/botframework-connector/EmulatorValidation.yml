@@ -2,17 +2,19 @@
 items:
   - uid: botframework-connector.EmulatorValidation
     name: EmulatorValidation
+    langs:
+      - typeScript
     fullName: EmulatorValidation
     children:
       - botframework-connector.EmulatorValidation.authenticateEmulatorToken
       - botframework-connector.EmulatorValidation.isTokenFromEmulator
-    langs:
-      - typeScript
     type: module
     summary: Validates and Examines JWT tokens from the Bot Framework Emulator
     package: botframework-connector
   - uid: botframework-connector.EmulatorValidation.authenticateEmulatorToken
-    name: 'authenticateEmulatorToken(string, ICredentialProvider, string, string)'
+    name: >-
+      authenticateEmulatorToken(string, ICredentialProvider, string, string,
+      AuthenticationConfiguration)
     children: []
     type: function
     langs:
@@ -26,7 +28,8 @@ items:
     syntax:
       content: >-
         function authenticateEmulatorToken(authHeader: string, credentials:
-        ICredentialProvider, channelService: string, channelId: string)
+        ICredentialProvider, channelService: string, channelId: string,
+        authConfig?: AuthenticationConfiguration)
       parameters:
         - id: authHeader
           type:
@@ -46,9 +49,15 @@ items:
           type:
             - string
           description: ''
+        - id: authConfig
+          type:
+            - botframework-connector.AuthenticationConfiguration
+          description: ''
+          optional: true
       return:
         type:
           - Promise<botframework-connector.ClaimsIdentity>
+        description: A valid ClaimsIdentity.
     package: botframework-connector
   - uid: botframework-connector.EmulatorValidation.isTokenFromEmulator
     name: isTokenFromEmulator(string)
@@ -67,6 +76,7 @@ items:
       return:
         type:
           - boolean
+        description: 'True, if the token was issued by the Emulator. Otherwise, false.'
     package: botframework-connector
 references:
   - uid: botframework-connector.ICredentialProvider
@@ -75,6 +85,12 @@ references:
       - name: ICredentialProvider
         fullName: ICredentialProvider
         uid: botframework-connector.ICredentialProvider
+  - uid: botframework-connector.AuthenticationConfiguration
+    name: AuthenticationConfiguration
+    spec.typeScript:
+      - name: AuthenticationConfiguration
+        fullName: AuthenticationConfiguration
+        uid: botframework-connector.AuthenticationConfiguration
   - uid: Promise<botframework-connector.ClaimsIdentity>
     name: ClaimsIdentity>
     spec.typeScript:

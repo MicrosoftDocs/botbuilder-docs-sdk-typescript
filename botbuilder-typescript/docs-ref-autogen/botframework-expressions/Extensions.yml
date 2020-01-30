@@ -1,0 +1,181 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botframework-expressions.Extensions
+    name: Extensions
+    fullName: Extensions
+    children:
+      - botframework-expressions.Extensions.accessIndex
+      - botframework-expressions.Extensions.accessProperty
+      - botframework-expressions.Extensions.isMemoryInterface
+      - botframework-expressions.Extensions.references
+      - botframework-expressions.Extensions.referenceWalk
+      - botframework-expressions.Extensions.setProperty
+    langs:
+      - typeScript
+    type: class
+    summary: Some util and extension functions
+    package: botframework-expressions
+  - uid: botframework-expressions.Extensions.accessIndex
+    name: 'accessIndex(any, number)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: 'Lookup a property in IDictionary, JObject or through reflection.'
+    syntax:
+      content: 'static function accessIndex(instance: any, index: number)'
+      parameters:
+        - id: instance
+          type:
+            - any
+          description: Instance with property.
+        - id: index
+          type:
+            - number
+          description: ''
+      return:
+        type:
+          - Object
+        description: Value and error information if any.
+    package: botframework-expressions
+  - uid: botframework-expressions.Extensions.accessProperty
+    name: 'accessProperty(any, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: 'Lookup a property in IDictionary, JObject or through reflection.'
+    syntax:
+      content: 'static function accessProperty(instance: any, property: string)'
+      parameters:
+        - id: instance
+          type:
+            - any
+          description: Instance with property.
+        - id: property
+          type:
+            - string
+          description: Property to lookup.
+      return:
+        type:
+          - Object
+        description: Value and error information if any.
+    package: botframework-expressions
+  - uid: botframework-expressions.Extensions.isMemoryInterface
+    name: isMemoryInterface(any)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Patch method
+
+      TODO: is there any better solution?
+
+      To judge if an object is implements MemoryInterface. Same with 'is
+      MemoryInterface' in C#
+    syntax:
+      content: 'static function isMemoryInterface(obj: any)'
+      parameters:
+        - id: obj
+          type:
+            - any
+          description: ''
+      return:
+        type:
+          - boolean
+        description: ''
+    package: botframework-expressions
+  - uid: botframework-expressions.Extensions.references
+    name: references(Expression)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Return the static reference paths to memory.
+
+      Return all static paths to memory.  If there is a computed element index,
+      then the path is terminated there,
+
+      but you might get other paths from the computed part as well.
+    syntax:
+      content: 'static function references(expression: Expression)'
+      parameters:
+        - id: expression
+          type:
+            - botframework-expressions.Expression
+          description: Expression to get references from.
+      return:
+        type:
+          - 'string[]'
+        description: Hash set of the static reference paths.
+    package: botframework-expressions
+  - uid: botframework-expressions.Extensions.referenceWalk
+    name: 'referenceWalk(Expression, Set<string>, (arg0: Expression) => boolean)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Walking function for identifying static memory references in an
+      expression.
+    syntax:
+      content: >-
+        static function referenceWalk(expression: Expression, references:
+        Set<string>, extension?: (arg0: Expression) => boolean)
+      parameters:
+        - id: expression
+          type:
+            - botframework-expressions.Expression
+          description: Expression to analyze.
+        - id: references
+          type:
+            - Set<string>
+          description: Tracking for references found.
+        - id: extension
+          type:
+            - '(arg0: Expression) => boolean'
+          description: >-
+            If present, called to override lookup for things like template
+            expansion.
+          optional: true
+      return:
+        type:
+          - string
+        description: Accessor path of expression.
+    package: botframework-expressions
+  - uid: botframework-expressions.Extensions.setProperty
+    name: 'setProperty(any, string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Set a property in Map or Object.
+    syntax:
+      content: 'static function setProperty(instance: any, property: string, value: any)'
+      parameters:
+        - id: instance
+          type:
+            - any
+          description: Instance to set.
+        - id: property
+          type:
+            - string
+          description: Property to set.
+        - id: value
+          type:
+            - any
+          description: Value to set.
+      return:
+        type:
+          - Object
+        description: set value.
+    package: botframework-expressions
+references:
+  - uid: botframework-expressions.Expression
+    name: Expression
+    spec.typeScript:
+      - name: Expression
+        fullName: Expression
+        uid: botframework-expressions.Expression

@@ -5,6 +5,7 @@ items:
     fullName: LuisRecognizer
     children:
       - botbuilder-ai.LuisRecognizer.logPersonalInformation
+      - botbuilder-ai.LuisRecognizer.constructor_2
       - botbuilder-ai.LuisRecognizer.constructor_1
       - botbuilder-ai.LuisRecognizer.constructor
       - botbuilder-ai.LuisRecognizer.recognize
@@ -20,7 +21,7 @@ items:
       messages.
 
       See this class in action [in this sample
-      application](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/12.nlp-with-luis).
+      application](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/14.nlp-with-dispatch).
 
 
       This component can be used within your bots logic by calling
@@ -40,6 +41,39 @@ items:
       return:
         type:
           - boolean
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.LuisRecognizer.constructor_2
+    name: >-
+      LuisRecognizer(LuisApplication | string, LuisRecognizerOptionsV3 |
+      LuisRecognizerOptionsV2)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new LuisRecognizer instance.
+    syntax:
+      content: >-
+        new LuisRecognizer(application: LuisApplication | string, options?:
+        LuisRecognizerOptionsV3 | LuisRecognizerOptionsV2)
+      parameters:
+        - id: application
+          type:
+            - botbuilder-ai.LuisApplication | string
+          description: >-
+            An object conforming to the [LuisApplication](#luisapplication)
+            definition or a string representing a LUIS application endpoint,
+            usually retrieved from https://luis.ai.
+        - id: options
+          type:
+            - >-
+              botbuilder-ai.LuisRecognizerOptionsV3 |
+              botbuilder-ai.LuisRecognizerOptionsV2
+          description: >-
+            (Optional) options object used to control predictions. Should
+            conform to the [LuisRecognizerOptions](#luisrecognizeroptions)
+            definition.
+          optional: true
     package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.constructor_1
     name: 'LuisRecognizer(LuisApplication, LuisPredictionOptions, boolean)'
@@ -65,14 +99,14 @@ items:
             - botbuilder-ai.LuisPredictionOptions
           description: >-
             (Optional) options object used to control predictions. Should
-            conform to the [LuisPrectionOptions](#luispredictionoptions)
+            conform to the [LuisRecognizerOptions](#luisrecognizeroptions)
             definition.
           optional: true
         - id: includeApiResults
           type:
             - boolean
           description: >
-            (Optional) flag that if set to `true` will force the inclusion of
+            (Deprecated) flag that if set to `true` will force the inclusion of
             LUIS Api call in results returned by [recognize()](#recognize).
             Defaults to a value of `false`.
           optional: true
@@ -101,14 +135,14 @@ items:
             - botbuilder-ai.LuisPredictionOptions
           description: >-
             (Optional) options object used to control predictions. Should
-            conform to the [LuisPrectionOptions](#luispredictionoptions)
+            conform to the [LuisRecognizerOptions](#luisrecognizeroptions)
             definition.
           optional: true
         - id: includeApiResults
           type:
             - boolean
           description: >
-            (Optional) flag that if set to `true` will force the inclusion of
+            (Deprecated) flag that if set to `true` will force the inclusion of
             LUIS Api call in results returned by [recognize()](#recognize).
             Defaults to a value of `false`.
           optional: true
@@ -116,7 +150,7 @@ items:
   - uid: botbuilder-ai.LuisRecognizer.recognize
     name: >-
       recognize(TurnContext, [key: string]: string, [key: string]: number,
-      LuisPredictionOptions)
+      LuisRecognizerOptionsV2 | LuisRecognizerOptionsV3 | LuisPredictionOptions)
     children: []
     type: method
     langs:
@@ -126,6 +160,7 @@ items:
       content: >-
         function recognize(context: TurnContext, telemetryProperties?: [key:
         string]: string, telemetryMetrics?: [key: string]: number, options?:
+        LuisRecognizerOptionsV2 | LuisRecognizerOptionsV3 |
         LuisPredictionOptions)
       parameters:
         - id: context
@@ -148,15 +183,19 @@ items:
           optional: true
         - id: options
           type:
-            - botbuilder-ai.LuisPredictionOptions
+            - >-
+              botbuilder-ai.LuisRecognizerOptionsV2 |
+              botbuilder-ai.LuisRecognizerOptionsV3 |
+              botbuilder-ai.LuisPredictionOptions
           description: >
-            (Optional) options object used to control predictions. Should
-            conform to the [LuisPrectionOptions](#luispredictionoptions)
-            definition.
+            (Optional) options object used to override control predictions.
+            Should conform to the [LuisRecognizerOptionsV2] or
+            [LuisRecognizerOptionsV3] definition.
           optional: true
       return:
         type:
           - Promise<RecognizerResult>
+        description: ''
     package: botbuilder-ai
     remarks: >-
       Returns a [RecognizerResult](../botbuilder-core/recognizerresult)
@@ -204,6 +243,7 @@ items:
       return:
         type:
           - BotTelemetryClient
+        description: ''
     package: botbuilder-ai
   - uid: botbuilder-ai.LuisRecognizer.topIntent
     name: 'topIntent(RecognizerResult | undefined, string, number)'
@@ -239,6 +279,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder-ai
 references:
   - uid: botbuilder-ai.LuisPredictionOptions
@@ -253,3 +294,43 @@ references:
       - name: LuisApplication
         fullName: LuisApplication
         uid: botbuilder-ai.LuisApplication
+  - uid: botbuilder-ai.LuisApplication | string
+    name: LuisApplication | string
+    spec.typeScript:
+      - name: LuisApplication
+        fullName: LuisApplication
+        uid: botbuilder-ai.LuisApplication
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: >-
+      botbuilder-ai.LuisRecognizerOptionsV3 |
+      botbuilder-ai.LuisRecognizerOptionsV2
+    name: LuisRecognizerOptionsV2
+    spec.typeScript:
+      - name: LuisRecognizerOptionsV3
+        fullName: LuisRecognizerOptionsV3
+        uid: botbuilder-ai.LuisRecognizerOptionsV3
+      - name: ' | '
+        fullName: ' | '
+      - name: LuisRecognizerOptionsV2
+        fullName: LuisRecognizerOptionsV2
+        uid: botbuilder-ai.LuisRecognizerOptionsV2
+  - uid: >-
+      botbuilder-ai.LuisRecognizerOptionsV2 |
+      botbuilder-ai.LuisRecognizerOptionsV3 |
+      botbuilder-ai.LuisPredictionOptions
+    name: LuisPredictionOptions
+    spec.typeScript:
+      - name: LuisRecognizerOptionsV2
+        fullName: LuisRecognizerOptionsV2
+        uid: botbuilder-ai.LuisRecognizerOptionsV2
+      - name: ' | '
+        fullName: ' | '
+      - name: LuisRecognizerOptionsV3
+        fullName: LuisRecognizerOptionsV3
+        uid: botbuilder-ai.LuisRecognizerOptionsV3
+      - name: ' | '
+        fullName: ' | '
+      - name: LuisPredictionOptions
+        fullName: LuisPredictionOptions
+        uid: botbuilder-ai.LuisPredictionOptions

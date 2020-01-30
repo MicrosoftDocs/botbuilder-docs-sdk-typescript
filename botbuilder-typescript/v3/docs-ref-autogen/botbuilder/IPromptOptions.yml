@@ -4,6 +4,10 @@ items:
     name: IPromptOptions
     fullName: IPromptOptions
     children:
+      - botbuilder.IPromptOptions.attachmentLayout
+      - botbuilder.IPromptOptions.attachments
+      - botbuilder.IPromptOptions.entities
+      - botbuilder.IPromptOptions.inputHint
       - botbuilder.IPromptOptions.libraryNamespace
       - botbuilder.IPromptOptions.listStyle
       - botbuilder.IPromptOptions.localizationNamespace
@@ -14,6 +18,7 @@ items:
       - botbuilder.IPromptOptions.retryPrompt
       - botbuilder.IPromptOptions.retrySpeak
       - botbuilder.IPromptOptions.speak
+      - botbuilder.IPromptOptions.textFormat
     langs:
       - typeScript
     type: interface
@@ -22,6 +27,78 @@ items:
       prompts](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.__global.iprompts).
     extends:
       name: botbuilder.IMessageOptions
+    package: botbuilder
+  - uid: botbuilder.IPromptOptions.attachmentLayout
+    name: attachmentLayout
+    fullName: attachmentLayout
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Hint for how clients should layout multiple attachments. The default value
+      is 'list'.
+    optional: true
+    syntax:
+      content: 'attachmentLayout?: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IPromptOptions.attachments
+    name: attachments
+    fullName: attachments
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      For incoming messages contains attachments like images sent from the user.
+      For outgoing messages contains objects like cards or images to send to the
+      user.
+    optional: true
+    syntax:
+      content: 'attachments?: IAttachment[]'
+      return:
+        type:
+          - 'botbuilder.IAttachment[]'
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IPromptOptions.entities
+    name: entities
+    fullName: entities
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Structured objects passed to the bot or user.
+    optional: true
+    syntax:
+      content: 'entities?: any[]'
+      return:
+        type:
+          - 'any[]'
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IPromptOptions.inputHint
+    name: inputHint
+    fullName: inputHint
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Hint for clients letting them know if the bot is expecting further input
+      or not. The built-in prompts will automatically populate this value for
+      outgoing messages.
+    optional: true
+    syntax:
+      content: 'inputHint?: string'
+      return:
+        type:
+          - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.libraryNamespace
     name: libraryNamespace
@@ -39,6 +116,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.listStyle
     name: listStyle
@@ -56,6 +134,7 @@ items:
       return:
         type:
           - botbuilder.ListStyle
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.localizationNamespace
     name: localizationNamespace
@@ -71,6 +150,7 @@ items:
       return:
         type:
           - string
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.maxRetries
     name: maxRetries
@@ -88,6 +168,7 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.prompt
     name: prompt
@@ -105,6 +186,7 @@ items:
       return:
         type:
           - botbuilder.TextOrMessageType
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.promptAfterAction
     name: promptAfterAction
@@ -122,6 +204,7 @@ items:
       return:
         type:
           - boolean
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.refDate
     name: refDate
@@ -139,6 +222,7 @@ items:
       return:
         type:
           - number
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.retryPrompt
     name: retryPrompt
@@ -158,6 +242,7 @@ items:
       return:
         type:
           - botbuilder.TextOrMessageType
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.retrySpeak
     name: retrySpeak
@@ -176,6 +261,7 @@ items:
       return:
         type:
           - botbuilder.TextType
+        description: ''
     package: botbuilder
   - uid: botbuilder.IPromptOptions.speak
     name: speak
@@ -194,6 +280,23 @@ items:
       return:
         type:
           - botbuilder.TextType
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.IPromptOptions.textFormat
+    name: textFormat
+    fullName: textFormat
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Format of text fields. The default value is 'markdown'.
+    optional: true
+    syntax:
+      content: 'textFormat?: string'
+      return:
+        type:
+          - string
+        description: ''
     package: botbuilder
 references:
   - uid: botbuilder.IMessageOptions
@@ -202,6 +305,14 @@ references:
       - name: IMessageOptions
         fullName: IMessageOptions
         uid: botbuilder.IMessageOptions
+  - uid: 'botbuilder.IAttachment[]'
+    name: 'IAttachment[]'
+    spec.typeScript:
+      - name: IAttachment
+        fullName: IAttachment
+        uid: botbuilder.IAttachment
+      - name: '[]'
+        fullName: '[]'
   - uid: botbuilder.ListStyle
     name: ListStyle
     spec.typeScript:

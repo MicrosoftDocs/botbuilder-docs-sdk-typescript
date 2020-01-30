@@ -5,11 +5,13 @@ items:
     fullName: Dialog<O>
     children:
       - botbuilder-dialogs.Dialog.beginDialog
+      - botbuilder-dialogs.Dialog.configure
       - botbuilder-dialogs.Dialog.continueDialog
       - botbuilder-dialogs.Dialog.constructor
       - botbuilder-dialogs.Dialog.endDialog
       - botbuilder-dialogs.Dialog.EndOfTurn
       - botbuilder-dialogs.Dialog.id
+      - botbuilder-dialogs.Dialog.onDialogEvent
       - botbuilder-dialogs.Dialog.repromptDialog
       - botbuilder-dialogs.Dialog.resumeDialog
       - botbuilder-dialogs.Dialog.telemetryClient
@@ -17,6 +19,8 @@ items:
       - typeScript
     type: class
     summary: Base class for all dialogs.
+    extends:
+      name: botbuilder-dialogs.Configurable
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.beginDialog
     name: 'beginDialog(DialogContext, O)'
@@ -46,6 +50,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       MUST be overridden by derived class. Dialogs that only support single-turn
@@ -53,6 +58,26 @@ items:
 
       should call `return await DialogContext.endDialog();` at the end of their
       implementation.
+  - uid: botbuilder-dialogs.Dialog.configure
+    name: configure(object)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Fluent method for configuring the object.
+    syntax:
+      content: 'function configure(config: object)'
+      parameters:
+        - id: config
+          type:
+            - object
+          description: |
+            Configuration settings to apply.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.continueDialog
     name: continueDialog(DialogContext)
     children: []
@@ -73,6 +98,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by dialogs that support multi-turn conversations. The
@@ -87,13 +113,14 @@ items:
       - typeScript
     summary: Creates a new Dialog instance.
     syntax:
-      content: 'new Dialog(dialogId: string)'
+      content: 'new Dialog(dialogId?: string)'
       parameters:
         - id: dialogId
           type:
             - string
           description: |
-            Unique ID of the dialog.
+            Optional. unique ID of the dialog.
+          optional: true
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.endDialog
     name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
@@ -123,6 +150,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by dialogs that wish to perform some logging or
@@ -142,6 +170,7 @@ items:
       return:
         type:
           - botbuilder-dialogs.DialogTurnResult
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.id
     name: id
@@ -156,6 +185,31 @@ items:
       return:
         type:
           - string
+        description: ''
+    package: botbuilder-dialogs
+    remarks: This will be automatically generated if not specified.
+  - uid: botbuilder-dialogs.Dialog.onDialogEvent
+    name: 'onDialogEvent(DialogContext, DialogEvent)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      parameters:
+        - id: dc
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: ''
+        - id: e
+          type:
+            - botbuilder-dialogs.DialogEvent
+          description: ''
+      return:
+        type:
+          - Promise<boolean>
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.Dialog.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -179,6 +233,7 @@ items:
       return:
         type:
           - Promise<void>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by multi-turn dialogs that wish to provide custom
@@ -219,6 +274,7 @@ items:
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
+        description: ''
     package: botbuilder-dialogs
     remarks: >-
       SHOULD be overridden by multi-turn dialogs that start other dialogs using
@@ -241,8 +297,15 @@ items:
       return:
         type:
           - BotTelemetryClient
+        description: ''
     package: botbuilder-dialogs
 references:
+  - uid: botbuilder-dialogs.Configurable
+    name: Configurable
+    spec.typeScript:
+      - name: Configurable
+        fullName: Configurable
+        uid: botbuilder-dialogs.Configurable
   - uid: botbuilder-dialogs.DialogTurnResult
     name: DialogTurnResult
     spec.typeScript:
@@ -277,3 +340,9 @@ references:
       - name: DialogReason
         fullName: DialogReason
         uid: botbuilder-dialogs.DialogReason
+  - uid: botbuilder-dialogs.DialogEvent
+    name: DialogEvent
+    spec.typeScript:
+      - name: DialogEvent
+        fullName: DialogEvent
+        uid: botbuilder-dialogs.DialogEvent
