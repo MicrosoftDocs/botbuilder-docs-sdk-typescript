@@ -252,7 +252,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
+    summary: Gets a default end-of-turn result.
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
@@ -260,6 +260,12 @@ items:
           - botbuilder-dialogs.DialogTurnResult
         description: ''
     package: botbuilder-dialogs
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
   - uid: botbuilder-dialogs.WaterfallDialog.id
     name: id
     fullName: id
@@ -305,29 +311,44 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Called when the dialog has been requested to re-prompt the user for input.
+    summary: 'When overridden in a derived class, reprompts the user for input.'
     syntax:
       content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
       parameters:
         - id: context
           type:
             - TurnContext
-          description: Context for the current turn of conversation.
+          description: The context object for the turn.
         - id: instance
           type:
             - botbuilder-dialogs.DialogInstance
           description: |
-            The instance of the current dialog.
+            Current state information for this dialog.
       return:
         type:
           - Promise<void>
         description: ''
     package: botbuilder-dialogs
     remarks: >-
-      SHOULD be overridden by multi-turn dialogs that wish to provide custom
-      re-prompt logic. The
+      Derived dialogs that support validation and re-prompt logic should
+      override this method.
 
-      default implementation performs no action.
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog should re-request input from the user. This method is implemented
+      for prompt dialogs.
+
+
+      **See also**
+
+      -
+      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
+
+      - [Prompt](xref:botbuilder-dialogs.Prompt)
   - uid: botbuilder-dialogs.WaterfallDialog.resumeDialog
     name: 'resumeDialog(DialogContext, DialogReason, any)'
     children: []
@@ -365,7 +386,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Set the telemetry client for this dialog.
+    summary: Sets the telemetry client for this dialog.
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:

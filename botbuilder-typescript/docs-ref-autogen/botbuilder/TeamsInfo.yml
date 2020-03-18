@@ -4,14 +4,42 @@ items:
     name: TeamsInfo
     fullName: TeamsInfo
     children:
+      - botbuilder.TeamsInfo.getMember
       - botbuilder.TeamsInfo.getMembers
+      - botbuilder.TeamsInfo.getPagedMembers
+      - botbuilder.TeamsInfo.getPagedTeamMembers
       - botbuilder.TeamsInfo.getTeamChannels
       - botbuilder.TeamsInfo.getTeamDetails
+      - botbuilder.TeamsInfo.getTeamMember
       - botbuilder.TeamsInfo.getTeamMembers
+      - botbuilder.TeamsInfo.sendMessageToTeamsChannel
     langs:
       - typeScript
     type: class
     summary: ''
+    package: botbuilder
+  - uid: botbuilder.TeamsInfo.getMember
+    name: 'getMember(TurnContext, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'static function getMember(context: TurnContext, userId: string)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: userId
+          type:
+            - string
+          description: ''
+      return:
+        type:
+          - Promise<TeamsChannelAccount>
+        description: ''
     package: botbuilder
   - uid: botbuilder.TeamsInfo.getMembers
     name: getMembers(TurnContext)
@@ -30,6 +58,73 @@ items:
       return:
         type:
           - 'Promise<TeamsChannelAccount[]>'
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.TeamsInfo.getPagedMembers
+    name: 'getPagedMembers(TurnContext, number, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        static function getPagedMembers(context: TurnContext, pageSize?: number,
+        continuationToken?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: pageSize
+          type:
+            - number
+          description: ''
+          optional: true
+        - id: continuationToken
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<TeamsPagedMembersResult>
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.TeamsInfo.getPagedTeamMembers
+    name: 'getPagedTeamMembers(TurnContext, string, number, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        static function getPagedTeamMembers(context: TurnContext, teamId?:
+        string, pageSize?: number, continuationToken?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: teamId
+          type:
+            - string
+          description: ''
+          optional: true
+        - id: pageSize
+          type:
+            - number
+          description: ''
+          optional: true
+        - id: continuationToken
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<TeamsPagedMembersResult>
         description: ''
     package: botbuilder
   - uid: botbuilder.TeamsInfo.getTeamChannels
@@ -80,6 +175,37 @@ items:
           - Promise<TeamDetails>
         description: ''
     package: botbuilder
+  - uid: botbuilder.TeamsInfo.getTeamMember
+    name: 'getTeamMember(TurnContext, string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        static function getTeamMember(context: TurnContext, teamId?: string,
+        userId?: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: teamId
+          type:
+            - string
+          description: ''
+          optional: true
+        - id: userId
+          type:
+            - string
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<TeamsChannelAccount>
+        description: ''
+    package: botbuilder
   - uid: botbuilder.TeamsInfo.getTeamMembers
     name: 'getTeamMembers(TurnContext, string)'
     children: []
@@ -102,5 +228,34 @@ items:
       return:
         type:
           - 'Promise<TeamsChannelAccount[]>'
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.TeamsInfo.sendMessageToTeamsChannel
+    name: 'sendMessageToTeamsChannel(TurnContext, Activity, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        static function sendMessageToTeamsChannel(context: TurnContext,
+        activity: Activity, teamsChannelId: string)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+        - id: activity
+          type:
+            - Activity
+          description: ''
+        - id: teamsChannelId
+          type:
+            - string
+          description: ''
+      return:
+        type:
+          - Promise<Object>
         description: ''
     package: botbuilder

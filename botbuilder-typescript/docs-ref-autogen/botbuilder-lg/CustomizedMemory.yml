@@ -13,21 +13,29 @@ items:
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: |-
+      A customized memory designed for LG evaluation, in which
+      we want to make sure the global memory (the first memory passed in) can be
+      accessible at any sub evaluation process.
     package: botbuilder-lg
   - uid: botbuilder-lg.CustomizedMemory.constructor
-    name: CustomizedMemory(any)
+    name: 'CustomizedMemory(any, MemoryInterface)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'new CustomizedMemory(scope?: any)'
+      content: 'new CustomizedMemory(scope?: any, localMemory?: MemoryInterface)'
       parameters:
         - id: scope
           type:
             - any
+          description: ''
+          optional: true
+        - id: localMemory
+          type:
+            - MemoryInterface
           description: ''
           optional: true
     package: botbuilder-lg
@@ -37,18 +45,21 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Try to get the value from a given path. Firstly, get result from global
+      memory,
+       if global memory does not contain, get from local memory.
     syntax:
       content: 'function getValue(path: string)'
       parameters:
         - id: path
           type:
             - string
-          description: ''
+          description: memory path.
       return:
         type:
-          - Object
-        description: ''
+          - any
+        description: resolved value.
     package: botbuilder-lg
   - uid: botbuilder-lg.CustomizedMemory.globalMemory
     name: globalMemory
@@ -57,7 +68,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Global memory.
     syntax:
       content: 'globalMemory: MemoryInterface'
       return:
@@ -72,7 +83,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Local memory.
     syntax:
       content: 'localMemory: MemoryInterface'
       return:
@@ -98,10 +109,6 @@ items:
           type:
             - any
           description: ''
-      return:
-        type:
-          - Object
-        description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.CustomizedMemory.version
     name: version()

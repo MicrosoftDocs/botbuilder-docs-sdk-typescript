@@ -13,14 +13,35 @@ items:
     langs:
       - typeScript
     type: enum
-    summary: Codes indicating why a waterfall step is being called.
+    summary: Indicates why a dialog method is being called.
     package: botbuilder-dialogs
+    remarks: >-
+      Use a dialog context to control the dialogs in a dialog set. The dialog
+      context will pass a reference to itself
+
+      to the dialog method it calls. It also passes in the _reason_ why the
+      specific method is being called.
+
+
+      **See also**
+
+      - [DialogContext](xref:botbuilder-dialogs.DialogContext)
+
+      - [DialogSet](xref:botbuilder-dialogs.DialogSet)
+
+      - [Dialog](xref:botbuilder-dialogs.Dialog)
   - uid: botbuilder-dialogs.DialogReason.beginCalled
     name: beginCalled
     children: []
     langs:
       - typeScript
-    summary: A dialog is being started through a call to `DialogContext.beginDialog()`.
+    summary: >-
+      The dialog is being started from
+
+      [DialogContext.beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
+      or
+
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog).
     type: field
     numericValue: null
     package: botbuilder-dialogs
@@ -30,8 +51,9 @@ items:
     langs:
       - typeScript
     summary: >-
-      A dialog was cancelled as part of a call to
-      `DialogContext.cancelAllDialogs()`.
+      The dialog is being cancelled from
+
+      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs).
     type: field
     numericValue: null
     package: botbuilder-dialogs
@@ -41,8 +63,9 @@ items:
     langs:
       - typeScript
     summary: >-
-      A dialog is being continued through a call to
-      `DialogContext.continueDialog()`.
+      The dialog is being continued from
+
+      [DialogContext.continueDialog](xref:botbuilder-dialogs.DialogContext.continueDialog).
     type: field
     numericValue: null
     package: botbuilder-dialogs
@@ -51,7 +74,10 @@ items:
     children: []
     langs:
       - typeScript
-    summary: A dialog ended normally through a call to `DialogContext.endDialog()`.
+    summary: >-
+      The dialog is being ended from
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog).
     type: field
     numericValue: null
     package: botbuilder-dialogs
@@ -60,7 +86,13 @@ items:
     children: []
     langs:
       - typeScript
-    summary: A step was advanced through a call to `WaterfallStepContext.next()`.
+    summary: >-
+      A step in a [WaterfallDialog](xref:botbuilder-dialogs.WaterfallDialog) is
+      being called
+
+      because the previous step in the waterfall dialog called
+
+      [WaterfallStepContext.next](xref:botbuilder-dialogs.WaterfallStepContext.next).
     type: field
     numericValue: null
     package: botbuilder-dialogs
@@ -70,8 +102,9 @@ items:
     langs:
       - typeScript
     summary: >-
-      A dialog is ending because its being replaced through a call to
-      `DialogContext.replaceDialog()`.
+      The dialog is being ended from
+
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog).
     type: field
     numericValue: null
     package: botbuilder-dialogs

@@ -6,14 +6,14 @@ items:
     children:
       - botbuilder-lg.Evaluator.activityAttachmentFunctionName
       - botbuilder-lg.Evaluator.constructScope
-      - botbuilder-lg.Evaluator.escapeSeperatorReverseRegex
       - botbuilder-lg.Evaluator.evaluateTemplate
       - botbuilder-lg.Evaluator.constructor
-      - botbuilder-lg.Evaluator.expressionEngine
+      - botbuilder-lg.Evaluator.expressionParser
       - botbuilder-lg.Evaluator.expressionRecognizeReverseRegex
       - botbuilder-lg.Evaluator.fromFileFunctionName
-      - botbuilder-lg.Evaluator.isPureExpression
+      - botbuilder-lg.Evaluator.isTemplateFunctionName
       - botbuilder-lg.Evaluator.LGType
+      - botbuilder-lg.Evaluator.ReExecuteSuffix
       - botbuilder-lg.Evaluator.templateFunctionName
       - botbuilder-lg.Evaluator.templateMap
       - botbuilder-lg.Evaluator.templates
@@ -33,7 +33,7 @@ items:
     langs:
       - typeScript
     type: class
-    summary: Evaluation tuntime engine
+    summary: Evaluation runtime engine
     extends:
       name: AbstractParseTreeVisitor<any>
     package: botbuilder-lg
@@ -62,9 +62,9 @@ items:
       - typeScript
     summary: ''
     syntax:
-      content: 'function constructScope(templateName: string, args: any[])'
+      content: 'function constructScope(inputTemplateName: string, args: any[])'
       parameters:
-        - id: templateName
+        - id: inputTemplateName
           type:
             - string
           description: ''
@@ -77,46 +77,31 @@ items:
           - any
         description: ''
     package: botbuilder-lg
-  - uid: botbuilder-lg.Evaluator.escapeSeperatorReverseRegex
-    name: escapeSeperatorReverseRegex
-    fullName: escapeSeperatorReverseRegex
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'static escapeSeperatorReverseRegex: RegExp'
-      return:
-        type:
-          - RegExp
-        description: ''
-    package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.evaluateTemplate
     name: 'evaluateTemplate(string, any)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Evaluate a template with given name and scope.
     syntax:
-      content: 'function evaluateTemplate(templateName: string, scope: any)'
+      content: 'function evaluateTemplate(inputTemplateName: string, scope: any)'
       parameters:
-        - id: templateName
+        - id: inputTemplateName
           type:
             - string
-          description: ''
+          description: template name.
         - id: scope
           type:
             - any
-          description: ''
+          description: scope.
       return:
         type:
           - any
-        description: ''
+        description: Evaluate result.
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.constructor
-    name: 'Evaluator(LGTemplate[], ExpressionEngine)'
+    name: 'Evaluator(Template[], ExpressionParser, boolean)'
     children: []
     type: constructor
     langs:
@@ -124,31 +109,36 @@ items:
     summary: ''
     syntax:
       content: >-
-        new Evaluator(templates: LGTemplate[], expressionEngine:
-        ExpressionEngine)
+        new Evaluator(templates: Template[], expressionParser: ExpressionParser,
+        strictMode?: boolean)
       parameters:
         - id: templates
           type:
-            - 'botbuilder-lg.LGTemplate[]'
+            - 'botbuilder-lg.Template[]'
           description: ''
-        - id: expressionEngine
+        - id: expressionParser
           type:
-            - ExpressionEngine
+            - ExpressionParser
           description: ''
+        - id: strictMode
+          type:
+            - boolean
+          description: ''
+          optional: true
     package: botbuilder-lg
-  - uid: botbuilder-lg.Evaluator.expressionEngine
-    name: expressionEngine
-    fullName: expressionEngine
+  - uid: botbuilder-lg.Evaluator.expressionParser
+    name: expressionParser
+    fullName: expressionParser
     children: []
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Expression parser.
     syntax:
-      content: 'expressionEngine: ExpressionEngine'
+      content: 'expressionParser: ExpressionParser'
       return:
         type:
-          - ExpressionEngine
+          - ExpressionParser
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.expressionRecognizeReverseRegex
@@ -181,23 +171,19 @@ items:
           - '"fromFile"'
         description: ''
     package: botbuilder-lg
-  - uid: botbuilder-lg.Evaluator.isPureExpression
-    name: isPureExpression(string)
+  - uid: botbuilder-lg.Evaluator.isTemplateFunctionName
+    name: isTemplateFunctionName
+    fullName: isTemplateFunctionName
     children: []
-    type: method
     langs:
       - typeScript
+    type: property
     summary: ''
     syntax:
-      content: 'static function isPureExpression(exp: string)'
-      parameters:
-        - id: exp
-          type:
-            - string
-          description: ''
+      content: 'static isTemplateFunctionName: "isTemplate" = "isTemplate"'
       return:
         type:
-          - boolean
+          - '"isTemplate"'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.LGType
@@ -213,6 +199,21 @@ items:
       return:
         type:
           - '"lgType"'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.Evaluator.ReExecuteSuffix
+    name: ReExecuteSuffix
+    fullName: ReExecuteSuffix
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static ReExecuteSuffix: "!" = "!"'
+      return:
+        type:
+          - '"!"'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.templateFunctionName
@@ -237,12 +238,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: TemplateMap.
     syntax:
-      content: 'templateMap: [key: string]: LGTemplate'
+      content: 'templateMap: [key: string]: Template'
       return:
         type:
-          - '[key: string]: botbuilder-lg.LGTemplate'
+          - '[key: string]: botbuilder-lg.Template'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.templates
@@ -252,12 +253,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Templates.
     syntax:
-      content: 'templates: LGTemplate[]'
+      content: 'templates: Template[]'
       return:
         type:
-          - 'botbuilder-lg.LGTemplate[]'
+          - 'botbuilder-lg.Template[]'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.visit
@@ -537,22 +538,22 @@ items:
         description: ''
     package: botbuilder-lg
 references:
-  - uid: 'botbuilder-lg.LGTemplate[]'
-    name: 'LGTemplate[]'
+  - uid: 'botbuilder-lg.Template[]'
+    name: 'Template[]'
     spec.typeScript:
-      - name: LGTemplate
-        fullName: LGTemplate
-        uid: botbuilder-lg.LGTemplate
+      - name: Template
+        fullName: Template
+        uid: botbuilder-lg.Template
       - name: '[]'
         fullName: '[]'
-  - uid: '[key: string]: botbuilder-lg.LGTemplate'
-    name: LGTemplate
+  - uid: '[key: string]: botbuilder-lg.Template'
+    name: Template
     spec.typeScript:
       - name: '[key: string]: '
         fullName: '[key: string]: '
-      - name: LGTemplate
-        fullName: LGTemplate
-        uid: botbuilder-lg.LGTemplate
+      - name: Template
+        fullName: Template
+        uid: botbuilder-lg.Template
   - uid: botbuilder-lg.IfElseBodyContext
     name: IfElseBodyContext
     spec.typeScript:

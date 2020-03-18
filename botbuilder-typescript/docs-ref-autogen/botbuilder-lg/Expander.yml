@@ -23,7 +23,7 @@ items:
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: LG template expander.
     extends:
       name: 'AbstractParseTreeVisitor<string[]>'
     package: botbuilder-lg
@@ -51,7 +51,7 @@ items:
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Expander.constructor
-    name: 'Expander(LGTemplate[], ExpressionEngine)'
+    name: 'Expander(Template[], ExpressionParser, boolean)'
     children: []
     type: constructor
     langs:
@@ -59,17 +59,22 @@ items:
     summary: ''
     syntax:
       content: >-
-        new Expander(templates: LGTemplate[], expressionEngine:
-        ExpressionEngine)
+        new Expander(templates: Template[], expressionParser: ExpressionParser,
+        strictMode?: boolean)
       parameters:
         - id: templates
           type:
-            - 'botbuilder-lg.LGTemplate[]'
+            - 'botbuilder-lg.Template[]'
           description: ''
-        - id: expressionEngine
+        - id: expressionParser
           type:
-            - ExpressionEngine
+            - ExpressionParser
           description: ''
+        - id: strictMode
+          type:
+            - boolean
+          description: ''
+          optional: true
     package: botbuilder-lg
   - uid: botbuilder-lg.Expander.expandTemplate
     name: 'expandTemplate(string, any)'
@@ -77,22 +82,22 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Expand the results of a template with given name and scope.
     syntax:
       content: 'function expandTemplate(templateName: string, scope: any)'
       parameters:
         - id: templateName
           type:
             - string
-          description: ''
+          description: Given template name.
         - id: scope
           type:
             - any
-          description: ''
+          description: Given scope.
       return:
         type:
           - 'string[]'
-        description: ''
+        description: All possiable results.
     package: botbuilder-lg
   - uid: botbuilder-lg.Expander.templateMap
     name: templateMap
@@ -101,12 +106,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: TemplateMap.
     syntax:
-      content: 'templateMap: [key: string]: LGTemplate'
+      content: 'templateMap: [key: string]: Template'
       return:
         type:
-          - '[key: string]: botbuilder-lg.LGTemplate'
+          - '[key: string]: botbuilder-lg.Template'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Expander.templates
@@ -116,12 +121,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Templates.
     syntax:
-      content: 'templates: LGTemplate[]'
+      content: 'templates: Template[]'
       return:
         type:
-          - 'botbuilder-lg.LGTemplate[]'
+          - 'botbuilder-lg.Template[]'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Expander.visit
@@ -355,22 +360,22 @@ items:
         description: ''
     package: botbuilder-lg
 references:
-  - uid: 'botbuilder-lg.LGTemplate[]'
-    name: 'LGTemplate[]'
+  - uid: 'botbuilder-lg.Template[]'
+    name: 'Template[]'
     spec.typeScript:
-      - name: LGTemplate
-        fullName: LGTemplate
-        uid: botbuilder-lg.LGTemplate
+      - name: Template
+        fullName: Template
+        uid: botbuilder-lg.Template
       - name: '[]'
         fullName: '[]'
-  - uid: '[key: string]: botbuilder-lg.LGTemplate'
-    name: LGTemplate
+  - uid: '[key: string]: botbuilder-lg.Template'
+    name: Template
     spec.typeScript:
       - name: '[key: string]: '
         fullName: '[key: string]: '
-      - name: LGTemplate
-        fullName: LGTemplate
-        uid: botbuilder-lg.LGTemplate
+      - name: Template
+        fullName: Template
+        uid: botbuilder-lg.Template
   - uid: botbuilder-lg.IfElseBodyContext
     name: IfElseBodyContext
     spec.typeScript:
