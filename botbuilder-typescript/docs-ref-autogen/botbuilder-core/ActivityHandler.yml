@@ -6,6 +6,7 @@ items:
     children:
       - botbuilder-core.ActivityHandler.onConversationUpdate
       - botbuilder-core.ActivityHandler.onDialog
+      - botbuilder-core.ActivityHandler.onEndOfConversation
       - botbuilder-core.ActivityHandler.onEvent
       - botbuilder-core.ActivityHandler.onMembersAdded
       - botbuilder-core.ActivityHandler.onMembersRemoved
@@ -15,6 +16,7 @@ items:
       - botbuilder-core.ActivityHandler.onReactionsRemoved
       - botbuilder-core.ActivityHandler.onTokenResponseEvent
       - botbuilder-core.ActivityHandler.onTurn
+      - botbuilder-core.ActivityHandler.onTyping
       - botbuilder-core.ActivityHandler.onUnrecognizedActivityType
       - botbuilder-core.ActivityHandler.run
     langs:
@@ -59,8 +61,7 @@ items:
       | Sub-type | Emitted for certain specialized events, based on activity
       content. |
 
-      | Dialog | Emitted as the final activity processing event. Designed for
-      passing control to a dialog. |
+      | Dialog | Emitted as the final activity processing event. |
 
 
       For example:
@@ -73,7 +74,7 @@ items:
 
       server.post('/api/messages', (req, res) => {
           adapter.processActivity(req, res, async (context) => {
-              // Route to main dialog.
+              // Route to bot's activity logic.
               await bot.run(context);
           });
       });
@@ -165,23 +166,41 @@ items:
     remarks: >-
       Returns a reference to the
       [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+  - uid: botbuilder-core.ActivityHandler.onEndOfConversation
+    name: onEndOfConversation(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers an activity event handler for the _end of conversation_
+      activity.
+    syntax:
+      content: 'function onEndOfConversation(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: |
+            The event handler.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-core
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
 
 
-      For example:
+      This activity is typically send from a Skill to a Skill caller indicating
+      the end of that particular child conversation.
 
-      ```javascript
 
-      bot.onDialog(async (context, next) => {
-           if (context.activity.type === ActivityTypes.Message) {
-               const dialogContext = await dialogSet.createContext(context);
-               const results = await dialogContext.continueDialog();
-               await conversationState.saveChanges(context);
-           }
+      To handle an End of Conversation, use the
 
-           await next();
-      });
-
-      ```
+      [onEndOfConversation](xref:botbuilder-core.ActivityHandler.onEndOfConversation)
+      type-specific event handler.
   - uid: botbuilder-core.ActivityHandler.onEvent
     name: onEvent(BotHandler)
     children: []
@@ -552,6 +571,35 @@ items:
     remarks: >-
       Returns a reference to the
       [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+  - uid: botbuilder-core.ActivityHandler.onTyping
+    name: onTyping(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers an activity event handler for the _typing_ activity.
+    syntax:
+      content: 'function onTyping(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - botbuilder-core.BotHandler
+          description: |
+            The event handler.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-core
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a Typing event, use the
+
+      [onTyping](xref:botbuilder-core.ActivityHandler.onTyping) type-specific
+      event handler.
   - uid: botbuilder-core.ActivityHandler.onUnrecognizedActivityType
     name: onUnrecognizedActivityType(BotHandler)
     children: []
@@ -634,7 +682,7 @@ items:
       ```javascript
        server.post('/api/messages', (req, res) => {
            adapter.processActivity(req, res, async (context) => {
-               // Route to main dialog.
+               // Route to bot's activity logic.
                await bot.run(context);
            });
       });

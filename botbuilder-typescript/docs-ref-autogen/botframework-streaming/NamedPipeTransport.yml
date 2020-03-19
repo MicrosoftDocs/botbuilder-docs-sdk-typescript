@@ -44,7 +44,7 @@ items:
         description: ''
     package: botframework-streaming
   - uid: botframework-streaming.NamedPipeTransport.constructor
-    name: NamedPipeTransport(Socket)
+    name: NamedPipeTransport(INodeSocket)
     children: []
     type: constructor
     langs:
@@ -54,11 +54,11 @@ items:
       [NamedPipeTransport](xref:botframework-streaming.NamedPipeTransport)
       class.
     syntax:
-      content: 'new NamedPipeTransport(socket: Socket)'
+      content: 'new NamedPipeTransport(socket: INodeSocket)'
       parameters:
         - id: socket
           type:
-            - Socket
+            - botframework-streaming.INodeSocket
           description: |
             The socket object to build this connection on.
     package: botframework-streaming
@@ -93,22 +93,22 @@ items:
           description: ''
       return:
         type:
-          - Promise<Buffer>
+          - Promise<botframework-streaming.INodeBuffer>
         description: ''
     package: botframework-streaming
   - uid: botframework-streaming.NamedPipeTransport.send
-    name: send(Buffer)
+    name: send(INodeBuffer)
     children: []
     type: method
     langs:
       - typeScript
     summary: Writes to the pipe and sends.
     syntax:
-      content: 'function send(buffer: Buffer)'
+      content: 'function send(buffer: INodeBuffer)'
       parameters:
         - id: buffer
           type:
-            - Buffer
+            - botframework-streaming.INodeBuffer
           description: |
             The buffer full of data to send out across the socket.
       return:
@@ -146,3 +146,26 @@ items:
           - string
         description: ''
     package: botframework-streaming
+references:
+  - uid: botframework-streaming.INodeSocket
+    name: INodeSocket
+    spec.typeScript:
+      - name: INodeSocket
+        fullName: INodeSocket
+        uid: botframework-streaming.INodeSocket
+  - uid: Promise<botframework-streaming.INodeBuffer>
+    name: INodeBuffer>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: INodeBuffer
+        fullName: INodeBuffer
+        uid: botframework-streaming.INodeBuffer
+      - name: '>'
+        fullName: '>'
+  - uid: botframework-streaming.INodeBuffer
+    name: INodeBuffer
+    spec.typeScript:
+      - name: INodeBuffer
+        fullName: INodeBuffer
+        uid: botframework-streaming.INodeBuffer

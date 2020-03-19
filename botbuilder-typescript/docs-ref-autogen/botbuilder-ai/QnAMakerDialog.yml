@@ -1,0 +1,440 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-ai.QnAMakerDialog
+    name: QnAMakerDialog
+    fullName: QnAMakerDialog<O>
+    children:
+      - botbuilder-ai.QnAMakerDialog.addStep
+      - botbuilder-ai.QnAMakerDialog.beginDialog
+      - botbuilder-ai.QnAMakerDialog.configure
+      - botbuilder-ai.QnAMakerDialog.continueDialog
+      - botbuilder-ai.QnAMakerDialog.endDialog
+      - botbuilder-ai.QnAMakerDialog.EndOfTurn
+      - botbuilder-ai.QnAMakerDialog.id
+      - botbuilder-ai.QnAMakerDialog.onDialogEvent
+      - botbuilder-ai.QnAMakerDialog.constructor
+      - botbuilder-ai.QnAMakerDialog.repromptDialog
+      - botbuilder-ai.QnAMakerDialog.resumeDialog
+      - botbuilder-ai.QnAMakerDialog.telemetryClient
+    langs:
+      - typeScript
+    type: class
+    summary: >-
+      Query QnAMaker knowledgebase using user utterance. The dialog will also
+      present user with appropriate multi-turn prompt or active learning
+      options.
+    extends:
+      name: WaterfallDialog
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.addStep
+    name: addStep(WaterfallStep<O>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Adds a new step to the waterfall.
+    syntax:
+      content: 'function addStep(step: WaterfallStep<O>)'
+      parameters:
+        - id: step
+          type:
+            - WaterfallStep<O>
+          description: |
+            Asynchronous step function to call.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-ai
+    remarks: >-
+      All step functions should be asynchronous and return a `DialogTurnResult`.
+      The
+
+      `WaterfallStepContext` passed into your function derives from
+      `DialogContext` and contains
+
+      numerous stack manipulation methods which return a `DialogTurnResult` so
+      you can typically
+
+      just return the result from the DialogContext method you call.
+
+
+      The step function itself can be either an asynchronous closure:
+
+
+      ```JavaScript
+
+      const helloDialog = new WaterfallDialog('hello');
+
+
+      helloDialog.addStep(async (step) => {
+          await step.context.sendActivity(`Hello World!`);
+          return await step.endDialog();
+      });
+
+      ```
+
+
+      A named async function:
+
+
+      ```JavaScript
+
+      async function helloWorldStep(step) {
+          await step.context.sendActivity(`Hello World!`);
+          return await step.endDialog();
+      }
+
+
+      helloDialog.addStep(helloWorldStep);
+
+      ```
+
+
+      Or a class method that's been bound to its `this` pointer:
+
+
+      ```JavaScript
+
+      helloDialog.addStep(this.helloWorldStep.bind(this));
+
+      ```
+  - uid: botbuilder-ai.QnAMakerDialog.beginDialog
+    name: 'beginDialog(DialogContext, object)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function beginDialog(dc: DialogContext, options?: object)'
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: ''
+        - id: options
+          type:
+            - object
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<DialogTurnResult>
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.configure
+    name: configure(object)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Fluent method for configuring the object.
+    syntax:
+      content: 'function configure(config: object)'
+      parameters:
+        - id: config
+          type:
+            - object
+          description: |
+            Configuration settings to apply.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.continueDialog
+    name: continueDialog(DialogContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function continueDialog(dc: DialogContext)'
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: ''
+      return:
+        type:
+          - Promise<DialogTurnResult>
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.endDialog
+    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Called when the dialog is ending.
+    syntax:
+      content: >-
+        function endDialog(context: TurnContext, instance: DialogInstance,
+        reason: DialogReason)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: Context for the current turn of conversation.
+        - id: instance
+          type:
+            - DialogInstance
+          description: The instance of the current dialog.
+        - id: reason
+          type:
+            - DialogReason
+          description: |
+            The reason the dialog is ending.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.EndOfTurn
+    name: EndOfTurn
+    fullName: EndOfTurn
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets a default end-of-turn result.
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        type:
+          - DialogTurnResult
+        description: ''
+    package: botbuilder-ai
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
+  - uid: botbuilder-ai.QnAMakerDialog.id
+    name: id
+    fullName: id
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique ID of the dialog.
+    syntax:
+      content: 'id: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-ai
+    remarks: This will be automatically generated if not specified.
+  - uid: botbuilder-ai.QnAMakerDialog.onDialogEvent
+    name: 'onDialogEvent(DialogContext, DialogEvent)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: ''
+        - id: e
+          type:
+            - DialogEvent
+          description: ''
+      return:
+        type:
+          - Promise<boolean>
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.constructor
+    name: >-
+      QnAMakerDialog(string, string, string, Activity, number, string, string,
+      number, Activity, QnAMakerMetadata[], string)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Creates a new QnAMakerDialog instance.
+    syntax:
+      content: >-
+        new QnAMakerDialog(knowledgeBaseId: string, endpointKey: string,
+        hostName: string, noAnswer?: Activity, threshold?: number,
+        activeLearningCardTitle?: string, cardNoMatchText?: string, top?:
+        number, cardNoMatchResponse?: Activity, strictFilters?:
+        QnAMakerMetadata[], dialogId?: string)
+      parameters:
+        - id: knowledgeBaseId
+          type:
+            - string
+          description: The Id of the QnAMaker knowledgebase to be queried.
+        - id: endpointKey
+          type:
+            - string
+          description: The endpoint key to use when querying the knowledgebase.
+        - id: hostName
+          type:
+            - string
+          description: >-
+            Hostname to be used to form the QnAMaker host URL, which follows the
+            following format https://{hostName}.azurewebsites.net/qnamaker
+        - id: noAnswer
+          type:
+            - Activity
+          description: >-
+            (Optional) Activity to be sent in the event no answer is found
+            within the knowledgebase.
+          optional: true
+        - id: threshold
+          type:
+            - number
+          description: >-
+            (Optional) The threshold above which to treat answers found from the
+            knowledgebase as a match.
+          optional: true
+        - id: activeLearningCardTitle
+          type:
+            - string
+          description: >-
+            (Optional) Title of the card displayed showing active learning
+            options if active learning is enabled.
+          optional: true
+        - id: cardNoMatchText
+          type:
+            - string
+          description: >-
+            (Optional) Text to be show on a button alongside active learning
+            options, allowing a user to indicate none of the options are
+            applicable.
+          optional: true
+        - id: top
+          type:
+            - number
+          description: >-
+            (Optional) Maximum number of answers to return from the
+            knowledgebase.
+          optional: true
+        - id: cardNoMatchResponse
+          type:
+            - Activity
+          description: >-
+            (Optional) Activity to be sent if the user selects the no match
+            option on an active learning card.
+          optional: true
+        - id: strictFilters
+          type:
+            - 'botbuilder-ai.QnAMakerMetadata[]'
+          description: >-
+            (Optional) QnAMakerMetadata collection used to filter / boost
+            queries to the knowledgebase.
+          optional: true
+        - id: dialogId
+          type:
+            - string
+          description: |
+            (Optional) Id of the created dialog. Default is 'QnAMakerDialog'.
+          optional: true
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.repromptDialog
+    name: 'repromptDialog(TurnContext, DialogInstance)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: 'When overridden in a derived class, reprompts the user for input.'
+    syntax:
+      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: The context object for the turn.
+        - id: instance
+          type:
+            - DialogInstance
+          description: |
+            Current state information for this dialog.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-ai
+    remarks: >-
+      Derived dialogs that support validation and re-prompt logic should
+      override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog should re-request input from the user. This method is implemented
+      for prompt dialogs.
+
+
+      **See also**
+
+      -
+      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
+
+      - [Prompt](xref:botbuilder-dialogs.Prompt)
+  - uid: botbuilder-ai.QnAMakerDialog.resumeDialog
+    name: 'resumeDialog(DialogContext, DialogReason, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
+        any)
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: ''
+        - id: reason
+          type:
+            - DialogReason
+          description: ''
+        - id: result
+          type:
+            - any
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<DialogTurnResult>
+        description: ''
+    package: botbuilder-ai
+  - uid: botbuilder-ai.QnAMakerDialog.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Sets the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+        description: ''
+    package: botbuilder-ai
+references:
+  - uid: 'botbuilder-ai.QnAMakerMetadata[]'
+    name: 'QnAMakerMetadata[]'
+    spec.typeScript:
+      - name: QnAMakerMetadata
+        fullName: QnAMakerMetadata
+        uid: botbuilder-ai.QnAMakerMetadata
+      - name: '[]'
+        fullName: '[]'

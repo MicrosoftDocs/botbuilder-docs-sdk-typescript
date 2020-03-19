@@ -6,6 +6,7 @@ items:
     children:
       - botbuilder.TeamsActivityHandler.onConversationUpdate
       - botbuilder.TeamsActivityHandler.onDialog
+      - botbuilder.TeamsActivityHandler.onEndOfConversation
       - botbuilder.TeamsActivityHandler.onEvent
       - botbuilder.TeamsActivityHandler.onMembersAdded
       - botbuilder.TeamsActivityHandler.onMembersRemoved
@@ -21,6 +22,7 @@ items:
       - botbuilder.TeamsActivityHandler.onTeamsTeamRenamedEvent
       - botbuilder.TeamsActivityHandler.onTokenResponseEvent
       - botbuilder.TeamsActivityHandler.onTurn
+      - botbuilder.TeamsActivityHandler.onTyping
       - botbuilder.TeamsActivityHandler.onUnrecognizedActivityType
       - botbuilder.TeamsActivityHandler.run
     langs:
@@ -97,23 +99,41 @@ items:
     remarks: >-
       Returns a reference to the
       [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+  - uid: botbuilder.TeamsActivityHandler.onEndOfConversation
+    name: onEndOfConversation(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers an activity event handler for the _end of conversation_
+      activity.
+    syntax:
+      content: 'function onEndOfConversation(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - BotHandler
+          description: |
+            The event handler.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
 
 
-      For example:
+      This activity is typically send from a Skill to a Skill caller indicating
+      the end of that particular child conversation.
 
-      ```javascript
 
-      bot.onDialog(async (context, next) => {
-           if (context.activity.type === ActivityTypes.Message) {
-               const dialogContext = await dialogSet.createContext(context);
-               const results = await dialogContext.continueDialog();
-               await conversationState.saveChanges(context);
-           }
+      To handle an End of Conversation, use the
 
-           await next();
-      });
-
-      ```
+      [onEndOfConversation](xref:botbuilder-core.ActivityHandler.onEndOfConversation)
+      type-specific event handler.
   - uid: botbuilder.TeamsActivityHandler.onEvent
     name: onEvent(BotHandler)
     children: []
@@ -647,6 +667,35 @@ items:
     remarks: >-
       Returns a reference to the
       [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+  - uid: botbuilder.TeamsActivityHandler.onTyping
+    name: onTyping(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers an activity event handler for the _typing_ activity.
+    syntax:
+      content: 'function onTyping(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - BotHandler
+          description: |
+            The event handler.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a Typing event, use the
+
+      [onTyping](xref:botbuilder-core.ActivityHandler.onTyping) type-specific
+      event handler.
   - uid: botbuilder.TeamsActivityHandler.onUnrecognizedActivityType
     name: onUnrecognizedActivityType(BotHandler)
     children: []
@@ -729,7 +778,7 @@ items:
       ```javascript
        server.post('/api/messages', (req, res) => {
            adapter.processActivity(req, res, async (context) => {
-               // Route to main dialog.
+               // Route to bot's activity logic.
                await bot.run(context);
            });
       });

@@ -6,7 +6,6 @@ items:
     children:
       - botbuilder-lg.Analyzer.constructor
       - botbuilder-lg.Analyzer.analyzeTemplate
-      - botbuilder-lg.Analyzer.templateMap
       - botbuilder-lg.Analyzer.templates
       - botbuilder-lg.Analyzer.visit
       - botbuilder-lg.Analyzer.visitChildren
@@ -16,35 +15,34 @@ items:
       - botbuilder-lg.Analyzer.visitNormalTemplateBody
       - botbuilder-lg.Analyzer.visitNormalTemplateString
       - botbuilder-lg.Analyzer.visitStructuredTemplateBody
+      - botbuilder-lg.Analyzer.visitStructureValue
       - botbuilder-lg.Analyzer.visitSwitchCaseBody
       - botbuilder-lg.Analyzer.visitTemplateDefinition
       - botbuilder-lg.Analyzer.visitTerminal
     langs:
       - typeScript
     type: class
-    summary: Analyzer engine. To analyse which variable may be used
+    summary: Analyzer engine. To to get the static analyzer results.
     extends:
       name: AbstractParseTreeVisitor<botbuilder-lg.AnalyzerResult>
     package: botbuilder-lg
   - uid: botbuilder-lg.Analyzer.constructor
-    name: 'Analyzer(LGTemplate[], ExpressionEngine)'
+    name: 'Analyzer(Template[], ExpressionParser)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: >-
-        new Analyzer(templates: LGTemplate[], expressionEngine:
-        ExpressionEngine)
+      content: 'new Analyzer(templates: Template[], expressionParser: ExpressionParser)'
       parameters:
         - id: templates
           type:
-            - 'botbuilder-lg.LGTemplate[]'
+            - 'botbuilder-lg.Template[]'
           description: ''
-        - id: expressionEngine
+        - id: expressionParser
           type:
-            - ExpressionEngine
+            - ExpressionParser
           description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Analyzer.analyzeTemplate
@@ -53,33 +51,18 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Analyzer a template to get the static analyzer results.
     syntax:
       content: 'function analyzeTemplate(templateName: string)'
       parameters:
         - id: templateName
           type:
             - string
-          description: ''
+          description: Template name.
       return:
         type:
           - botbuilder-lg.AnalyzerResult
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.Analyzer.templateMap
-    name: templateMap
-    fullName: templateMap
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'templateMap: [key: string]: LGTemplate'
-      return:
-        type:
-          - '[key: string]: botbuilder-lg.LGTemplate'
-        description: ''
+        description: analyze result including variables and template references.
     package: botbuilder-lg
   - uid: botbuilder-lg.Analyzer.templates
     name: templates
@@ -88,12 +71,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Templates.
     syntax:
-      content: 'templates: LGTemplate[]'
+      content: 'templates: Template[]'
       return:
         type:
-          - 'botbuilder-lg.LGTemplate[]'
+          - 'botbuilder-lg.Template[]'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Analyzer.visit
@@ -266,6 +249,25 @@ items:
           - botbuilder-lg.AnalyzerResult
         description: ''
     package: botbuilder-lg
+  - uid: botbuilder-lg.Analyzer.visitStructureValue
+    name: visitStructureValue(KeyValueStructureLineContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function visitStructureValue(ctx: KeyValueStructureLineContext)'
+      parameters:
+        - id: ctx
+          type:
+            - botbuilder-lg.KeyValueStructureLineContext
+          description: ''
+      return:
+        type:
+          - botbuilder-lg.AnalyzerResult
+        description: ''
+    package: botbuilder-lg
   - uid: botbuilder-lg.Analyzer.visitSwitchCaseBody
     name: visitSwitchCaseBody(SwitchCaseBodyContext)
     children: []
@@ -337,22 +339,14 @@ references:
         uid: botbuilder-lg.AnalyzerResult
       - name: '>'
         fullName: '>'
-  - uid: 'botbuilder-lg.LGTemplate[]'
-    name: 'LGTemplate[]'
+  - uid: 'botbuilder-lg.Template[]'
+    name: 'Template[]'
     spec.typeScript:
-      - name: LGTemplate
-        fullName: LGTemplate
-        uid: botbuilder-lg.LGTemplate
+      - name: Template
+        fullName: Template
+        uid: botbuilder-lg.Template
       - name: '[]'
         fullName: '[]'
-  - uid: '[key: string]: botbuilder-lg.LGTemplate'
-    name: LGTemplate
-    spec.typeScript:
-      - name: '[key: string]: '
-        fullName: '[key: string]: '
-      - name: LGTemplate
-        fullName: LGTemplate
-        uid: botbuilder-lg.LGTemplate
   - uid: botbuilder-lg.AnalyzerResult
     name: AnalyzerResult
     spec.typeScript:
@@ -383,6 +377,12 @@ references:
       - name: NormalTemplateStringContext
         fullName: NormalTemplateStringContext
         uid: botbuilder-lg.NormalTemplateStringContext
+  - uid: botbuilder-lg.KeyValueStructureLineContext
+    name: KeyValueStructureLineContext
+    spec.typeScript:
+      - name: KeyValueStructureLineContext
+        fullName: KeyValueStructureLineContext
+        uid: botbuilder-lg.KeyValueStructureLineContext
   - uid: botbuilder-lg.StructuredTemplateBodyContext
     name: StructuredTemplateBodyContext
     spec.typeScript:
