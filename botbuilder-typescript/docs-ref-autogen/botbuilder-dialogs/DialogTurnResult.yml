@@ -9,35 +9,41 @@ items:
     langs:
       - typeScript
     type: interface
-    summary: >-
-      Returned by `Dialog.continueDialog()` and `DialogContext.beginDialog()` to
-      indicate whether a
-
-      dialog is still active after the turn has been processed by the dialog.
+    summary: |-
+      Represents the result of a dialog context's attempt to begin, continue,
+      or otherwise manipulate one or more dialogs.
     package: botbuilder-dialogs
-    remarks: |-
-      This can be used to determine if the dialog stack is empty:
+    remarks: >-
+      This can be used to determine if a dialog completed and a result is
+      available, or if the stack
+
+      was initially empty and a dialog should be started.
+
 
       ```JavaScript
-      const result = await dialogContext.continueDialog();
 
-      if (result.status == DialogTurnStatus.empty) {
-          await dialogContext.beginDialog('helpDialog');
-      }
-      ```
+      const dc = await dialogs.createContext(turnContext);
 
-      Or to access the result of a dialog that just completed:
+      const result = await dc.continueDialog();
 
-      ```JavaScript
-      const result = await dialogContext.continueDialog();
 
       if (result.status == DialogTurnStatus.completed) {
           const survey = result.result;
           await submitSurvey(survey);
       } else if (result.status == DialogTurnStatus.empty) {
-          await dialogContext.beginDialog('surveyDialog');
+          await dc.beginDialog('surveyDialog');
       }
+
       ```
+
+
+      **See also**
+
+      - [DialogContext](xref:botbuilder-dialogs.DialogContext)
+
+      - [DialogSet](xref:botbuilder-dialogs.DialogSet)
+
+      - [Dialog](xref:botbuilder-dialogs.Dialog)
   - uid: botbuilder-dialogs.DialogTurnResult.result
     name: result
     fullName: result
@@ -45,9 +51,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: >-
-      Final result returned by a dialog that just completed. Can be `undefined`
-      even when [hasResult](#hasResult) is true.
+    summary: 'The result, if any, returned by the last dialog on the stack.'
     optional: true
     syntax:
       content: 'result?: T'
@@ -56,6 +60,11 @@ items:
           - T
         description: ''
     package: botbuilder-dialogs
+    remarks: |-
+      A result value is available only if
+      the stack is now empty,
+      the last dialog on the stack completed normally,
+      and the last dialog returned a result to the dialog context.
   - uid: botbuilder-dialogs.DialogTurnResult.status
     name: status
     fullName: status
@@ -63,7 +72,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Gets or sets the current status of the stack.
+    summary: The state of the dialog stack after a dialog context's attempt.
     syntax:
       content: 'status: DialogTurnStatus'
       return:

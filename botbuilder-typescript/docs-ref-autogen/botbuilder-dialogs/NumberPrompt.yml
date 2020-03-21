@@ -109,7 +109,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: Called when the dialog is ending.
+    summary: >-
+      When overridden in a derived class, performs clean up for the dialog
+      before it ends.
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
@@ -118,11 +120,11 @@ items:
         - id: context
           type:
             - TurnContext
-          description: Context for the current turn of conversation.
+          description: The context object for the turn.
         - id: instance
           type:
             - botbuilder-dialogs.DialogInstance
-          description: The instance of the current dialog.
+          description: Current state information for this dialog.
         - id: reason
           type:
             - botbuilder-dialogs.DialogReason
@@ -134,10 +136,28 @@ items:
         description: ''
     package: botbuilder-dialogs
     remarks: >-
-      SHOULD be overridden by dialogs that wish to perform some logging or
-      cleanup action anytime
+      Derived dialogs that need to perform logging or cleanup before ending
+      should override this method.
 
-      the dialog ends.
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog is ending.
+
+
+      **See also**
+
+      -
+      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+
+      -
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
   - uid: botbuilder-dialogs.NumberPrompt.EndOfTurn
     name: EndOfTurn
     fullName: EndOfTurn
@@ -145,7 +165,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Signals the end of a turn by a dialog method or waterfall/sequence step.
+    summary: Gets a default end-of-turn result.
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
@@ -153,6 +173,12 @@ items:
           - botbuilder-dialogs.DialogTurnResult
         description: ''
     package: botbuilder-dialogs
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
   - uid: botbuilder-dialogs.NumberPrompt.id
     name: id
     fullName: id
@@ -285,7 +311,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Set the telemetry client for this dialog.
+    summary: Sets the telemetry client for this dialog.
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:

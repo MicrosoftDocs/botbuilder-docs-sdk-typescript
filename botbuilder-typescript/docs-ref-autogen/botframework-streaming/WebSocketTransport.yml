@@ -42,7 +42,7 @@ items:
         description: ''
     package: botframework-streaming
   - uid: botframework-streaming.WebSocketTransport.onReceive
-    name: onReceive(Buffer)
+    name: onReceive(INodeBuffer)
     children: []
     type: method
     langs:
@@ -51,11 +51,11 @@ items:
       Sets the transport to attempt to receive incoming data that has not yet
       arrived.
     syntax:
-      content: 'function onReceive(data: Buffer)'
+      content: 'function onReceive(data: INodeBuffer)'
       parameters:
         - id: data
           type:
-            - Buffer
+            - botframework-streaming.INodeBuffer
           description: |
             A buffer to store incoming data in.
     package: botframework-streaming
@@ -75,22 +75,22 @@ items:
           description: The number of bytes to attempt to receive.
       return:
         type:
-          - Promise<Buffer>
+          - Promise<botframework-streaming.INodeBuffer>
         description: A buffer populated with the received data.
     package: botframework-streaming
   - uid: botframework-streaming.WebSocketTransport.send
-    name: send(Buffer)
+    name: send(INodeBuffer)
     children: []
     type: method
     langs:
       - typeScript
     summary: Sends the given buffer out over the socket's connection.
     syntax:
-      content: 'function send(buffer: Buffer)'
+      content: 'function send(buffer: INodeBuffer)'
       parameters:
         - id: buffer
           type:
-            - Buffer
+            - botframework-streaming.INodeBuffer
           description: |
             The buffered data to send out over the connection.
       return:
@@ -124,3 +124,19 @@ references:
       - name: ISocket
         fullName: ISocket
         uid: botframework-streaming.ISocket
+  - uid: botframework-streaming.INodeBuffer
+    name: INodeBuffer
+    spec.typeScript:
+      - name: INodeBuffer
+        fullName: INodeBuffer
+        uid: botframework-streaming.INodeBuffer
+  - uid: Promise<botframework-streaming.INodeBuffer>
+    name: INodeBuffer>
+    spec.typeScript:
+      - name: Promise<
+        fullName: Promise<
+      - name: INodeBuffer
+        fullName: INodeBuffer
+        uid: botframework-streaming.INodeBuffer
+      - name: '>'
+        fullName: '>'

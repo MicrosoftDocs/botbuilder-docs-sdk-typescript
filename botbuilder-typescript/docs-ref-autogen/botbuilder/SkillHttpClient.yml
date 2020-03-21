@@ -5,6 +5,8 @@ items:
     fullName: SkillHttpClient
     children:
       - botbuilder.SkillHttpClient.postActivity
+      - botbuilder.SkillHttpClient.postActivity_1
+      - botbuilder.SkillHttpClient.postToSkill_1
       - botbuilder.SkillHttpClient.postToSkill
       - botbuilder.SkillHttpClient.constructor
     langs:
@@ -25,8 +27,8 @@ items:
     summary: Forwards an activity to a another bot.
     syntax:
       content: >-
-        function postActivity(fromBotId: string, toBotId: string, toUrl: string,
-        serviceUrl: string, conversationId: string, activity: Activity)
+        function postActivity<T>(fromBotId: string, toBotId: string, toUrl:
+        string, serviceUrl: string, conversationId: string, activity: Activity)
       parameters:
         - id: fromBotId
           type:
@@ -55,12 +57,12 @@ items:
             Activity to forward.
       return:
         type:
-          - Promise<botbuilder.InvokeResponse>
+          - Promise<InvokeResponse<T>>
         description: ''
     package: botbuilder
     remarks: ''
-  - uid: botbuilder.SkillHttpClient.postToSkill
-    name: 'postToSkill(string, BotFrameworkSkill, string, Activity)'
+  - uid: botbuilder.SkillHttpClient.postActivity_1
+    name: 'postActivity(string, string, string, string, string, Activity)'
     children: []
     type: method
     langs:
@@ -68,18 +70,26 @@ items:
     summary: ''
     syntax:
       content: >-
-        function postToSkill(fromBotId: string, toSkill: BotFrameworkSkill,
-        serviceUrl: string, activity: Activity)
+        function postActivity(fromBotId: string, toBotId: string, toUrl: string,
+        serviceUrl: string, conversationId: string, activity: Activity)
       parameters:
         - id: fromBotId
           type:
             - string
           description: ''
-        - id: toSkill
+        - id: toBotId
           type:
-            - botbuilder.BotFrameworkSkill
+            - string
+          description: ''
+        - id: toUrl
+          type:
+            - string
           description: ''
         - id: serviceUrl
+          type:
+            - string
+          description: ''
+        - id: conversationId
           type:
             - string
           description: ''
@@ -89,7 +99,86 @@ items:
           description: ''
       return:
         type:
-          - Promise<botbuilder.InvokeResponse>
+          - Promise<InvokeResponse>
+        description: ''
+    package: botbuilder
+    remarks: ''
+  - uid: botbuilder.SkillHttpClient.postToSkill_1
+    name: 'postToSkill(string, BotFrameworkSkill, string, Activity)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Uses the SkillConversationIdFactory to create or retrieve a Skill
+      Conversation Id, and sends the activity.
+    syntax:
+      content: >-
+        function postToSkill(fromBotId: string, toSkill: BotFrameworkSkill,
+        callbackUrl: string, activity: Activity)
+      parameters:
+        - id: fromBotId
+          type:
+            - string
+          description: The MicrosoftAppId of the bot sending the activity.
+        - id: toSkill
+          type:
+            - BotFrameworkSkill
+          description: The skill to create the Conversation Id for.
+        - id: callbackUrl
+          type:
+            - string
+          description: The callback Url for the skill host.
+        - id: activity
+          type:
+            - Activity
+          description: |
+            The activity to send.
+      return:
+        type:
+          - Promise<InvokeResponse>
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.SkillHttpClient.postToSkill
+    name: 'postToSkill(string, string, BotFrameworkSkill, string, Activity)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Uses the SkillConversationIdFactory to create or retrieve a Skill
+      Conversation Id, and sends the activity.
+    syntax:
+      content: >-
+        function postToSkill<T>(originatingAudience: string, fromBotId: string,
+        toSkill: BotFrameworkSkill, callbackUrl: string, activity: Activity)
+      parameters:
+        - id: originatingAudience
+          type:
+            - string
+          description: >-
+            The OAuth audience scope, used during token retrieval. (Either
+            https://api.botframework.com or bot app id.)
+        - id: fromBotId
+          type:
+            - string
+          description: The MicrosoftAppId of the bot sending the activity.
+        - id: toSkill
+          type:
+            - BotFrameworkSkill
+          description: The skill to create the Conversation Id for.
+        - id: callbackUrl
+          type:
+            - string
+          description: The callback Url for the skill host.
+        - id: activity
+          type:
+            - Activity
+          description: |
+            The activity to send.
+      return:
+        type:
+          - Promise<InvokeResponse<T>>
         description: ''
     package: botbuilder
   - uid: botbuilder.SkillHttpClient.constructor
@@ -113,7 +202,7 @@ items:
           description: ''
         - id: conversationIdFactory
           type:
-            - botbuilder.SkillConversationIdFactoryBase
+            - SkillConversationIdFactoryBase
           description: ''
         - id: channelService
           type:
@@ -128,25 +217,3 @@ references:
       - name: BotFrameworkHttpClient
         fullName: BotFrameworkHttpClient
         uid: botbuilder.BotFrameworkHttpClient
-  - uid: botbuilder.SkillConversationIdFactoryBase
-    name: SkillConversationIdFactoryBase
-    spec.typeScript:
-      - name: SkillConversationIdFactoryBase
-        fullName: SkillConversationIdFactoryBase
-        uid: botbuilder.SkillConversationIdFactoryBase
-  - uid: Promise<botbuilder.InvokeResponse>
-    name: InvokeResponse>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: InvokeResponse
-        fullName: InvokeResponse
-        uid: botbuilder.InvokeResponse
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder.BotFrameworkSkill
-    name: BotFrameworkSkill
-    spec.typeScript:
-      - name: BotFrameworkSkill
-        fullName: BotFrameworkSkill
-        uid: botbuilder.BotFrameworkSkill

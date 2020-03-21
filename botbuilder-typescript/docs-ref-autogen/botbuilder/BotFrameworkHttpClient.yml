@@ -6,6 +6,7 @@ items:
     children:
       - botbuilder.BotFrameworkHttpClient.constructor
       - botbuilder.BotFrameworkHttpClient.postActivity
+      - botbuilder.BotFrameworkHttpClient.postActivity_1
     langs:
       - typeScript
     type: class
@@ -42,8 +43,8 @@ items:
     summary: Forwards an activity to a another bot.
     syntax:
       content: >-
-        function postActivity(fromBotId: string, toBotId: string, toUrl: string,
-        serviceUrl: string, conversationId: string, activity: Activity)
+        function postActivity<T>(fromBotId: string, toBotId: string, toUrl:
+        string, serviceUrl: string, conversationId: string, activity: Activity)
       parameters:
         - id: fromBotId
           type:
@@ -72,18 +73,49 @@ items:
             Activity to forward.
       return:
         type:
-          - Promise<botbuilder.InvokeResponse>
+          - Promise<InvokeResponse<T>>
         description: ''
     package: botbuilder
     remarks: ''
-references:
-  - uid: Promise<botbuilder.InvokeResponse>
-    name: InvokeResponse>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: InvokeResponse
-        fullName: InvokeResponse
-        uid: botbuilder.InvokeResponse
-      - name: '>'
-        fullName: '>'
+  - uid: botbuilder.BotFrameworkHttpClient.postActivity_1
+    name: 'postActivity(string, string, string, string, string, Activity)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        function postActivity(fromBotId: string, toBotId: string, toUrl: string,
+        serviceUrl: string, conversationId: string, activity: Activity)
+      parameters:
+        - id: fromBotId
+          type:
+            - string
+          description: ''
+        - id: toBotId
+          type:
+            - string
+          description: ''
+        - id: toUrl
+          type:
+            - string
+          description: ''
+        - id: serviceUrl
+          type:
+            - string
+          description: ''
+        - id: conversationId
+          type:
+            - string
+          description: ''
+        - id: activity
+          type:
+            - Activity
+          description: ''
+      return:
+        type:
+          - Promise<InvokeResponse>
+        description: ''
+    package: botbuilder
+    remarks: ''
