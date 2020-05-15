@@ -8,6 +8,7 @@ items:
       - botbuilder-dialogs.DialogSet.createContext
       - botbuilder-dialogs.DialogSet.constructor
       - botbuilder-dialogs.DialogSet.find
+      - botbuilder-dialogs.DialogSet.getVersion
       - botbuilder-dialogs.DialogSet.telemetryClient
     langs:
       - typeScript
@@ -111,8 +112,16 @@ items:
         description: ''
     package: botbuilder-dialogs
     remarks: >-
-      The `Dialog.id` of all dialogs or prompts added to the set need to be
-      unique within the set.
+      If the `Dialog.id` being added already exists in the set, the dialogs id
+      will be updated to
+
+      include a suffix which makes it unique. So adding 2 dialogs named
+      "duplicate" to the set
+
+      would result in the first one having an id of "duplicate" and the second
+      one having an id
+
+      of "duplicate2".
   - uid: botbuilder-dialogs.DialogSet.createContext
     name: createContext(TurnContext)
     children: []
@@ -193,6 +202,24 @@ items:
       ```JavaScript
       const dialog = dialogs.find('greeting');
       ```
+  - uid: botbuilder-dialogs.DialogSet.getVersion
+    name: getVersion()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Returns a 32-bit hash of the all the `Dialog.version` values in the set.
+    syntax:
+      content: function getVersion()
+      parameters: []
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-dialogs
+    remarks: >-
+      This hash is persisted to state storage and used to detect changes to a
+      dialog set.
   - uid: botbuilder-dialogs.DialogSet.telemetryClient
     name: telemetryClient
     fullName: telemetryClient

@@ -11,6 +11,7 @@ items:
       - botbuilder.BotFrameworkAdapter.continueConversation_1
       - botbuilder.BotFrameworkAdapter.createConnectorClient
       - botbuilder.BotFrameworkAdapter.createConnectorClientWithIdentity
+      - botbuilder.BotFrameworkAdapter.createConnectorClientWithIdentity_1
       - botbuilder.BotFrameworkAdapter.createConversation
       - botbuilder.BotFrameworkAdapter.deleteActivity
       - botbuilder.BotFrameworkAdapter.deleteConversationMember
@@ -28,6 +29,7 @@ items:
       - botbuilder.BotFrameworkAdapter.getTokenStatus_1
       - botbuilder.BotFrameworkAdapter.getUserToken
       - botbuilder.BotFrameworkAdapter.getUserToken_1
+      - botbuilder.BotFrameworkAdapter.healthCheck
       - botbuilder.BotFrameworkAdapter.isStreamingConnectionOpen
       - botbuilder.BotFrameworkAdapter.OAuthScopeKey
       - botbuilder.BotFrameworkAdapter.onTurnError
@@ -424,6 +426,46 @@ items:
     remarks: >-
       If the ClaimsIdentity contains the claims for a Skills request, create a
       ConnectorClient for use with Skills.
+
+      Derives the correct audience from the ClaimsIdentity, or the instance's
+      credentials property.
+  - uid: botbuilder.BotFrameworkAdapter.createConnectorClientWithIdentity_1
+    name: 'createConnectorClientWithIdentity(string, ClaimsIdentity, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Create a ConnectorClient with a ClaimsIdentity and an explicit audience.
+    syntax:
+      content: >-
+        function createConnectorClientWithIdentity(serviceUrl: string, identity:
+        ClaimsIdentity, audience: string)
+      parameters:
+        - id: serviceUrl
+          type:
+            - string
+          description: ''
+        - id: identity
+          type:
+            - ClaimsIdentity
+          description: ClaimsIdentity
+        - id: audience
+          type:
+            - string
+          description: >
+            The recipient of the ConnectorClient's messages. Normally the Bot
+            Framework Channel Service or the AppId of another bot.
+      return:
+        type:
+          - Promise<ConnectorClient>
+        description: ''
+    package: botbuilder
+    remarks: >-
+      If the ClaimsIdentity contains the claims for a Skills request, create a
+      ConnectorClient for use with Skills.
+
+      Derives the correct audience from the ClaimsIdentity, or the instance's
+      credentials property.
   - uid: botbuilder.BotFrameworkAdapter.createConversation
     name: >-
       createConversation(Partial<ConversationReference>, (context: TurnContext)
@@ -1170,6 +1212,25 @@ items:
       return:
         type:
           - Promise<TokenResponse>
+        description: ''
+    package: botbuilder
+  - uid: botbuilder.BotFrameworkAdapter.healthCheck
+    name: healthCheck(TurnContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function healthCheck(context: TurnContext)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: ''
+      return:
+        type:
+          - Promise<HealthCheckResponse>
         description: ''
     package: botbuilder
   - uid: botbuilder.BotFrameworkAdapter.isStreamingConnectionOpen
