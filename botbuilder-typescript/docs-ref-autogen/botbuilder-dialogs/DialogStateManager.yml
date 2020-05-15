@@ -4,6 +4,7 @@ items:
     name: DialogStateManager
     fullName: DialogStateManager
     children:
+      - botbuilder-dialogs.DialogStateManager.anyPathChanged
       - botbuilder-dialogs.DialogStateManager.configuration
       - botbuilder-dialogs.DialogStateManager.createStandardConfiguration
       - botbuilder-dialogs.DialogStateManager.deleteScopesMemory
@@ -15,7 +16,9 @@ items:
       - botbuilder-dialogs.DialogStateManager.parsePath
       - botbuilder-dialogs.DialogStateManager.saveAllChanges
       - botbuilder-dialogs.DialogStateManager.setValue
+      - botbuilder-dialogs.DialogStateManager.trackPaths
       - botbuilder-dialogs.DialogStateManager.transformPath
+      - botbuilder-dialogs.DialogStateManager.version
     langs:
       - typeScript
     type: class
@@ -29,6 +32,29 @@ items:
       things like
 
       $foo -> dialog.foo
+  - uid: botbuilder-dialogs.DialogStateManager.anyPathChanged
+    name: 'anyPathChanged(number, string[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Check to see if any path has changed since watermark.
+    syntax:
+      content: 'function anyPathChanged(counter: number, paths: string[])'
+      parameters:
+        - id: counter
+          type:
+            - number
+          description: Time counter to compare to.
+        - id: paths
+          type:
+            - 'string[]'
+          description: 'Paths from [trackPaths()](#trackpaths) to check.'
+      return:
+        type:
+          - boolean
+        description: True if any path has changed since counter.
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogStateManager.configuration
     name: configuration
     fullName: configuration
@@ -55,27 +81,15 @@ items:
 
       configuration for the entire chain.
   - uid: botbuilder-dialogs.DialogStateManager.createStandardConfiguration
-    name: 'createStandardConfiguration(ConversationState, UserState)'
+    name: createStandardConfiguration()
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: >-
-        static function createStandardConfiguration(conversationState?:
-        ConversationState, userState?: UserState)
-      parameters:
-        - id: conversationState
-          type:
-            - ConversationState
-          description: ''
-          optional: true
-        - id: userState
-          type:
-            - UserState
-          description: ''
-          optional: true
+      content: static function createStandardConfiguration()
+      parameters: []
       return:
         type:
           - botbuilder-dialogs.DialogStateManagerConfiguration
@@ -116,19 +130,26 @@ items:
           description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogStateManager.constructor
-    name: DialogStateManager(DialogContext)
+    name: 'DialogStateManager(DialogContext, DialogStateManagerConfiguration)'
     children: []
     type: constructor
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'new DialogStateManager(dc: DialogContext)'
+      content: >-
+        new DialogStateManager(dc: DialogContext, configuration?:
+        DialogStateManagerConfiguration)
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
           description: ''
+        - id: configuration
+          type:
+            - botbuilder-dialogs.DialogStateManagerConfiguration
+          description: ''
+          optional: true
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogStateManager.getMemorySnapshot
     name: getMemorySnapshot()
@@ -193,19 +214,26 @@ items:
     package: botbuilder-dialogs
     remarks: This should be called at the beginning of the turn.
   - uid: botbuilder-dialogs.DialogStateManager.parsePath
-    name: parsePath(string)
+    name: 'parsePath(string, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Normalizes the path segments of a passed in path.
     syntax:
-      content: 'function parsePath(pathExpression: string)'
+      content: 'function parsePath(pathExpression: string, allowNestedPaths?: boolean)'
       parameters:
         - id: pathExpression
           type:
             - string
           description: The path to normalize.
+        - id: allowNestedPaths
+          type:
+            - boolean
+          description: >-
+            Optional. If `false` then detection of a nested path will cause an
+            empty path to be returned. Defaults to 'true'.
+          optional: true
       return:
         type:
           - 'string | number[]'
@@ -248,6 +276,25 @@ items:
           description: |
             Value to set.
     package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.DialogStateManager.trackPaths
+    name: 'trackPaths(string[])'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Track when specific paths are changed.
+    syntax:
+      content: 'function trackPaths(paths: string[])'
+      parameters:
+        - id: paths
+          type:
+            - 'string[]'
+          description: Paths to track.
+      return:
+        type:
+          - 'string[]'
+        description: 'Normalized paths to pass to [anyPathChanged()](#anypathchanged).'
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogStateManager.transformPath
     name: transformPath(string)
     children: []
@@ -266,6 +313,21 @@ items:
         type:
           - string
         description: The transformed path.
+    package: botbuilder-dialogs
+  - uid: botbuilder-dialogs.DialogStateManager.version
+    name: version()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function version()
+      parameters: []
+      return:
+        type:
+          - string
+        description: ''
     package: botbuilder-dialogs
 references:
   - uid: botbuilder-dialogs.DialogContext

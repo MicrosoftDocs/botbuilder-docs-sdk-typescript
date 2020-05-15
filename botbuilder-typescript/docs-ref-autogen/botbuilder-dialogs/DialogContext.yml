@@ -11,6 +11,9 @@ items:
       - botbuilder-dialogs.DialogContext.context
       - botbuilder-dialogs.DialogContext.continueDialog
       - botbuilder-dialogs.DialogContext.constructor
+      - botbuilder-dialogs.DialogContext.constructor_2
+      - botbuilder-dialogs.DialogContext.constructor_1
+      - botbuilder-dialogs.DialogContext.dialogManager
       - botbuilder-dialogs.DialogContext.dialogs
       - botbuilder-dialogs.DialogContext.emitEvent
       - botbuilder-dialogs.DialogContext.endDialog
@@ -285,6 +288,53 @@ items:
 
       ```
   - uid: botbuilder-dialogs.DialogContext.constructor
+    name: DialogContext(DialogContext)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: >-
+      Creates an new instance of the
+      [DialogContext](xref:botbuilder-dialogs.DialogContext) class.
+    syntax:
+      content: 'new DialogContext(dialogContext: DialogContext)'
+      parameters:
+        - id: dialogContext
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: |
+            The dialog context to clone.
+    package: botbuilder-dialogs
+    remarks: Passing in a dialog context instance will clone the dialog context.
+  - uid: botbuilder-dialogs.DialogContext.constructor_2
+    name: 'DialogContext(DialogSet, DialogContext, DialogState)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: >-
+      Creates an new instance of the
+      [DialogContext](xref:botbuilder-dialogs.DialogContext) class.
+    syntax:
+      content: >-
+        new DialogContext(dialogs: DialogSet, contextOrDC: DialogContext, state:
+        DialogState)
+      parameters:
+        - id: dialogs
+          type:
+            - botbuilder-dialogs.DialogSet
+          description: The dialog set for which to create the dialog context.
+        - id: contextOrDC
+          type:
+            - botbuilder-dialogs.DialogContext
+          description: ''
+        - id: state
+          type:
+            - botbuilder-dialogs.DialogState
+          description: The state object to use to read and write dialog state to storage.
+    package: botbuilder-dialogs
+    remarks: Passing in a dialog context instance will clone the dialog context.
+  - uid: botbuilder-dialogs.DialogContext.constructor_1
     name: 'DialogContext(DialogSet, TurnContext, DialogState)'
     children: []
     type: constructor
@@ -295,22 +345,37 @@ items:
       [DialogContext](xref:botbuilder-dialogs.DialogContext) class.
     syntax:
       content: >-
-        new DialogContext(dialogs: DialogSet, context: TurnContext, state:
+        new DialogContext(dialogs: DialogSet, contextOrDC: TurnContext, state:
         DialogState)
       parameters:
         - id: dialogs
           type:
             - botbuilder-dialogs.DialogSet
           description: The dialog set for which to create the dialog context.
-        - id: context
+        - id: contextOrDC
           type:
             - TurnContext
-          description: The context object for the current turn of the bot.
+          description: ''
         - id: state
           type:
             - botbuilder-dialogs.DialogState
-          description: |
-            The state object to use to read and write dialog state to storage.
+          description: The state object to use to read and write dialog state to storage.
+    package: botbuilder-dialogs
+    remarks: Passing in a dialog context instance will clone the dialog context.
+  - uid: botbuilder-dialogs.DialogContext.dialogManager
+    name: dialogManager
+    fullName: dialogManager
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Returns the current dialog manager instance.
+    syntax:
+      content: 'dialogManager: DialogManager'
+      return:
+        type:
+          - botbuilder-dialogs.DialogManager
+        description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogContext.dialogs
     name: dialogs
@@ -333,7 +398,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Searches for a dialog with a given ID.
     syntax:
       content: >-
         function emitEvent(name: string, value?: any, bubble?: boolean,
@@ -342,27 +407,32 @@ items:
         - id: name
           type:
             - string
-          description: ''
+          description: Name of the event to raise.
         - id: value
           type:
             - any
-          description: ''
+          description: Optional. Value to send along with the event.
           optional: true
         - id: bubble
           type:
             - boolean
-          description: ''
+          description: >-
+            Optional. Flag to control whether the event should be bubbled to its
+            parent if not handled locally. Defaults to a value of `true`.
           optional: true
         - id: fromLeaf
           type:
             - boolean
-          description: ''
+          description: Optional. Whether the event is emitted from a leaf node.
           optional: true
       return:
         type:
           - Promise<boolean>
-        description: ''
+        description: '`true` if the event was handled.'
     package: botbuilder-dialogs
+    remarks: >-
+      Emits a named event for the current dialog, or someone who started it, to
+      handle.
   - uid: botbuilder-dialogs.DialogContext.endDialog
     name: endDialog(any)
     children: []
@@ -688,6 +758,12 @@ items:
         description: ''
     package: botbuilder-dialogs
 references:
+  - uid: botbuilder-dialogs.DialogContext
+    name: DialogContext
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
   - uid: botbuilder-dialogs.DialogSet
     name: DialogSet
     spec.typeScript:
@@ -716,6 +792,12 @@ references:
         uid: botbuilder-dialogs.DialogContext
       - name: ' | undefined'
         fullName: ' | undefined'
+  - uid: botbuilder-dialogs.DialogManager
+    name: DialogManager
+    spec.typeScript:
+      - name: DialogManager
+        fullName: DialogManager
+        uid: botbuilder-dialogs.DialogManager
   - uid: 'botbuilder-dialogs.DialogInstance[]'
     name: 'DialogInstance[]'
     spec.typeScript:

@@ -4,6 +4,7 @@ items:
     name: TestFlow
     fullName: TestFlow
     children:
+      - botbuilder-core.TestFlow.assertNoReply
       - botbuilder-core.TestFlow.assertReply
       - botbuilder-core.TestFlow.assertReplyOneOf
       - botbuilder-core.TestFlow.catch
@@ -45,6 +46,37 @@ items:
              .test(`bye`, `Goodbye`)
              .then(() => done());
       ```
+  - uid: botbuilder-core.TestFlow.assertNoReply
+    name: 'assertNoReply(string, number)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Generates an assertion that the turn processing logic did not generate a
+      reply from the bot, as expected.
+    syntax:
+      content: 'function assertNoReply(description?: string, timeout?: number)'
+      parameters:
+        - id: description
+          type:
+            - string
+          description: >-
+            (Optional) Description of the test case. If not provided one will be
+            generated.
+          optional: true
+        - id: timeout
+          type:
+            - number
+          description: >
+            (Optional) number of milliseconds to wait for a response from bot.
+            Defaults to a value of `3000`.
+          optional: true
+      return:
+        type:
+          - botbuilder-core.TestFlow
+        description: ''
+    package: botbuilder-core
   - uid: botbuilder-core.TestFlow.assertReply
     name: >-
       assertReply(string | Partial<Activity> | TestActivityInspector, string,
@@ -287,6 +319,12 @@ items:
         description: ''
     package: botbuilder-core
 references:
+  - uid: botbuilder-core.TestFlow
+    name: TestFlow
+    spec.typeScript:
+      - name: TestFlow
+        fullName: TestFlow
+        uid: botbuilder-core.TestFlow
   - uid: string | Partial<Activity> | botbuilder-core.TestActivityInspector
     name: TestActivityInspector
     spec.typeScript:
@@ -295,9 +333,3 @@ references:
       - name: TestActivityInspector
         fullName: TestActivityInspector
         uid: botbuilder-core.TestActivityInspector
-  - uid: botbuilder-core.TestFlow
-    name: TestFlow
-    spec.typeScript:
-      - name: TestFlow
-        fullName: TestFlow
-        uid: botbuilder-core.TestFlow

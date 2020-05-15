@@ -10,6 +10,7 @@ items:
       - botbuilder-dialogs.WaterfallStepContext.child
       - botbuilder-dialogs.WaterfallStepContext.context
       - botbuilder-dialogs.WaterfallStepContext.continueDialog
+      - botbuilder-dialogs.WaterfallStepContext.dialogManager
       - botbuilder-dialogs.WaterfallStepContext.dialogs
       - botbuilder-dialogs.WaterfallStepContext.emitEvent
       - botbuilder-dialogs.WaterfallStepContext.endDialog
@@ -265,6 +266,21 @@ items:
       }
 
       ```
+  - uid: botbuilder-dialogs.WaterfallStepContext.dialogManager
+    name: dialogManager
+    fullName: dialogManager
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Returns the current dialog manager instance.
+    syntax:
+      content: 'dialogManager: DialogManager'
+      return:
+        type:
+          - botbuilder-dialogs.DialogManager
+        description: ''
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.WaterfallStepContext.dialogs
     name: dialogs
     fullName: dialogs
@@ -286,7 +302,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Searches for a dialog with a given ID.
     syntax:
       content: >-
         function emitEvent(name: string, value?: any, bubble?: boolean,
@@ -295,27 +311,32 @@ items:
         - id: name
           type:
             - string
-          description: ''
+          description: Name of the event to raise.
         - id: value
           type:
             - any
-          description: ''
+          description: Optional. Value to send along with the event.
           optional: true
         - id: bubble
           type:
             - boolean
-          description: ''
+          description: >-
+            Optional. Flag to control whether the event should be bubbled to its
+            parent if not handled locally. Defaults to a value of `true`.
           optional: true
         - id: fromLeaf
           type:
             - boolean
-          description: ''
+          description: Optional. Whether the event is emitted from a leaf node.
           optional: true
       return:
         type:
           - Promise<boolean>
-        description: ''
+        description: '`true` if the event was handled.'
     package: botbuilder-dialogs
+    remarks: >-
+      Emits a named event for the current dialog, or someone who started it, to
+      handle.
   - uid: botbuilder-dialogs.WaterfallStepContext.endDialog
     name: endDialog(any)
     children: []
@@ -795,6 +816,12 @@ references:
         uid: botbuilder-dialogs.DialogContext
       - name: ' | undefined'
         fullName: ' | undefined'
+  - uid: botbuilder-dialogs.DialogManager
+    name: DialogManager
+    spec.typeScript:
+      - name: DialogManager
+        fullName: DialogManager
+        uid: botbuilder-dialogs.DialogManager
   - uid: botbuilder-dialogs.DialogSet
     name: DialogSet
     spec.typeScript:
