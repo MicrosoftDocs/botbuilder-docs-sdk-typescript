@@ -1,0 +1,587 @@
+### YamlMime:UniversalReference
+items:
+  - uid: botbuilder-dialogs-adaptive.HttpRequest
+    name: HttpRequest
+    fullName: HttpRequest<O>
+    children:
+      - botbuilder-dialogs-adaptive.HttpRequest.beginDialog
+      - botbuilder-dialogs-adaptive.HttpRequest.body
+      - botbuilder-dialogs-adaptive.HttpRequest.configure
+      - botbuilder-dialogs-adaptive.HttpRequest.contentType
+      - botbuilder-dialogs-adaptive.HttpRequest.continueDialog
+      - botbuilder-dialogs-adaptive.HttpRequest.disabled
+      - botbuilder-dialogs-adaptive.HttpRequest.endDialog
+      - botbuilder-dialogs-adaptive.HttpRequest.EndOfTurn
+      - botbuilder-dialogs-adaptive.HttpRequest.getVersion
+      - botbuilder-dialogs-adaptive.HttpRequest.headers
+      - botbuilder-dialogs-adaptive.HttpRequest.constructor
+      - botbuilder-dialogs-adaptive.HttpRequest.constructor_1
+      - botbuilder-dialogs-adaptive.HttpRequest.id
+      - botbuilder-dialogs-adaptive.HttpRequest.method
+      - botbuilder-dialogs-adaptive.HttpRequest.onDialogEvent
+      - botbuilder-dialogs-adaptive.HttpRequest.repromptDialog
+      - botbuilder-dialogs-adaptive.HttpRequest.responseType
+      - botbuilder-dialogs-adaptive.HttpRequest.resultProperty
+      - botbuilder-dialogs-adaptive.HttpRequest.resumeDialog
+      - botbuilder-dialogs-adaptive.HttpRequest.telemetryClient
+      - botbuilder-dialogs-adaptive.HttpRequest.url
+    langs:
+      - typeScript
+    type: class
+    summary: ''
+    extends:
+      name: Dialog<O>
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.beginDialog
+    name: 'beginDialog(DialogContext, O)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function beginDialog(dc: DialogContext, options?: O)'
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: ''
+        - id: options
+          type:
+            - O
+          description: ''
+          optional: true
+      return:
+        type:
+          - Promise<DialogTurnResult>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.body
+    name: body
+    fullName: body
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Http Body
+    optional: true
+    syntax:
+      content: 'body?: ValueExpression'
+      return:
+        type:
+          - ValueExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.configure
+    name: configure(HttpRequestConfiguration)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function configure(config: HttpRequestConfiguration)'
+      parameters:
+        - id: config
+          type:
+            - botbuilder-dialogs-adaptive.HttpRequestConfiguration
+          description: ''
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.contentType
+    name: contentType
+    fullName: contentType
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Content type of request body
+    optional: true
+    syntax:
+      content: 'contentType?: StringExpression'
+      return:
+        type:
+          - StringExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.continueDialog
+    name: continueDialog(DialogContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: 'When overridden in a derived class, continues the dialog.'
+    syntax:
+      content: 'function continueDialog(dc: DialogContext)'
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: |
+            The context for the current dialog turn.
+      return:
+        type:
+          - Promise<DialogTurnResult>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+    remarks: >-
+      Derived dialogs that support multiple-turn conversations should override
+      this method.
+
+      By default, this method signals that the dialog is complete and returns.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when it continues
+
+      the dialog.
+
+
+      To signal to the dialog context that this dialog has completed, await
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+      before exiting this method.
+
+
+      **See also**
+
+      -
+      [DialogContext.continueDialog](xref:botbuilder-dialogs.DialogContext.continueDialog)
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.disabled
+    name: disabled
+    fullName: disabled
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: An optional expression which if is true will disable this action.
+    optional: true
+    syntax:
+      content: 'disabled?: BoolExpression'
+      return:
+        type:
+          - BoolExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.endDialog
+    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      When overridden in a derived class, performs clean up for the dialog
+      before it ends.
+    syntax:
+      content: >-
+        function endDialog(context: TurnContext, instance: DialogInstance,
+        reason: DialogReason)
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: The context object for the turn.
+        - id: instance
+          type:
+            - DialogInstance
+          description: Current state information for this dialog.
+        - id: reason
+          type:
+            - DialogReason
+          description: |
+            The reason the dialog is ending.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+    remarks: >-
+      Derived dialogs that need to perform logging or cleanup before ending
+      should override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog is ending.
+
+
+      **See also**
+
+      -
+      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+
+      -
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.EndOfTurn
+    name: EndOfTurn
+    fullName: EndOfTurn
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets a default end-of-turn result.
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        type:
+          - DialogTurnResult
+        description: ''
+    package: botbuilder-dialogs-adaptive
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.getVersion
+    name: getVersion()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      An encoded string used to aid in the detection of bot changes on
+      re-deployment.
+    syntax:
+      content: function getVersion()
+      parameters: []
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-dialogs-adaptive
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.headers
+    name: headers
+    fullName: headers
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Http Headers
+    optional: true
+    syntax:
+      content: 'headers?: [key: string]: StringExpression'
+      return:
+        type:
+          - '[key: string]: StringExpression'
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.constructor
+    name: HttpRequest()
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: new HttpRequest()
+      parameters: []
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.constructor_1
+    name: 'HttpRequest(HttpMethod, string, [key: string]: string, any)'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: >-
+        new HttpRequest(method: HttpMethod, url: string, headers: [key: string]:
+        string, body: any)
+      parameters:
+        - id: method
+          type:
+            - botbuilder-dialogs-adaptive.HttpMethod
+          description: ''
+        - id: url
+          type:
+            - string
+          description: ''
+        - id: headers
+          type:
+            - '[key: string]: string'
+          description: ''
+        - id: body
+          type:
+            - any
+          description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.id
+    name: id
+    fullName: id
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Unique ID of the dialog.
+    syntax:
+      content: 'id: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-dialogs-adaptive
+    remarks: This will be automatically generated if not specified.
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.method
+    name: method
+    fullName: method
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Http Method
+    optional: true
+    syntax:
+      content: 'method?: HttpMethod'
+      return:
+        type:
+          - botbuilder-dialogs-adaptive.HttpMethod
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.onDialogEvent
+    name: 'onDialogEvent(DialogContext, DialogEvent)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: ''
+        - id: e
+          type:
+            - DialogEvent
+          description: ''
+      return:
+        type:
+          - Promise<boolean>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.repromptDialog
+    name: 'repromptDialog(TurnContext, DialogInstance)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: 'When overridden in a derived class, reprompts the user for input.'
+    syntax:
+      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      parameters:
+        - id: context
+          type:
+            - TurnContext
+          description: The context object for the turn.
+        - id: instance
+          type:
+            - DialogInstance
+          description: |
+            Current state information for this dialog.
+      return:
+        type:
+          - Promise<void>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+    remarks: >-
+      Derived dialogs that support validation and re-prompt logic should
+      override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog should re-request input from the user. This method is implemented
+      for prompt dialogs.
+
+
+      **See also**
+
+      -
+      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
+
+      - [Prompt](xref:botbuilder-dialogs.Prompt)
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.responseType
+    name: responseType
+    fullName: responseType
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: The response type of the response
+    optional: true
+    syntax:
+      content: 'responseType?: EnumExpression<ResponsesTypes>'
+      return:
+        type:
+          - EnumExpression<botbuilder-dialogs-adaptive.ResponsesTypes>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.resultProperty
+    name: resultProperty
+    fullName: resultProperty
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets or sets the property expression to store the HTTP response in.
+    optional: true
+    syntax:
+      content: 'resultProperty?: StringExpression'
+      return:
+        type:
+          - StringExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.resumeDialog
+    name: 'resumeDialog(DialogContext, DialogReason, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      When overridden in a derived class, resumes the dialog after the dialog
+      above it on the stack completes.
+    syntax:
+      content: >-
+        function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
+        any)
+      parameters:
+        - id: dc
+          type:
+            - DialogContext
+          description: The context for the current dialog turn.
+        - id: reason
+          type:
+            - DialogReason
+          description: |-
+            The reason the dialog is resuming. This will typically be
+                 [DialogReason.endCalled](xref:botbuilder-dialogs.DialogReason.endCalled)
+        - id: result
+          type:
+            - any
+          description: |
+            Optional. The return value, if any, from the dialog that ended.
+          optional: true
+      return:
+        type:
+          - Promise<DialogTurnResult>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+    remarks: >-
+      Derived dialogs that support multiple-turn conversations should override
+      this method.
+
+      By default, this method signals that the dialog is complete and returns.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when it resumes
+
+      the dialog. If the previous dialog on the stack returned a value, that
+      value is in the `result`
+
+      parameter.
+
+
+      To start a _child_ dialog, use
+      [DialogContext.beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
+
+      or [DialogContext.prompt](xref:botbuilder-dialogs.DialogContext.prompt);
+      however, this dialog will not
+
+      necessarily be the one that started the child dialog.
+
+      To signal to the dialog context that this dialog has completed, await
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+      before exiting this method.
+
+
+      **See also**
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Sets the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.HttpRequest.url
+    name: url
+    fullName: url
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Http Url
+    optional: true
+    syntax:
+      content: 'url?: StringExpression'
+      return:
+        type:
+          - StringExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
+references:
+  - uid: botbuilder-dialogs-adaptive.HttpMethod
+    name: HttpMethod
+    spec.typeScript:
+      - name: HttpMethod
+        fullName: HttpMethod
+        uid: botbuilder-dialogs-adaptive.HttpMethod
+  - uid: EnumExpression<botbuilder-dialogs-adaptive.ResponsesTypes>
+    name: ResponsesTypes>
+    spec.typeScript:
+      - name: EnumExpression<
+        fullName: EnumExpression<
+      - name: ResponsesTypes
+        fullName: ResponsesTypes
+        uid: botbuilder-dialogs-adaptive.ResponsesTypes
+      - name: '>'
+        fullName: '>'
+  - uid: botbuilder-dialogs-adaptive.HttpRequestConfiguration
+    name: HttpRequestConfiguration
+    spec.typeScript:
+      - name: HttpRequestConfiguration
+        fullName: HttpRequestConfiguration
+        uid: botbuilder-dialogs-adaptive.HttpRequestConfiguration
