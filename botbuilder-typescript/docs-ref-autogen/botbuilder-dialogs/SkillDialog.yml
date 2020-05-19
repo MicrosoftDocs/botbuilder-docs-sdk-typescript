@@ -2,13 +2,14 @@
 items:
   - uid: botbuilder-dialogs.SkillDialog
     name: SkillDialog
-    fullName: SkillDialog<O>
+    fullName: SkillDialog
     children:
       - botbuilder-dialogs.SkillDialog.beginDialog
       - botbuilder-dialogs.SkillDialog.configure
       - botbuilder-dialogs.SkillDialog.continueDialog
       - botbuilder-dialogs.SkillDialog.endDialog
       - botbuilder-dialogs.SkillDialog.EndOfTurn
+      - botbuilder-dialogs.SkillDialog.getVersion
       - botbuilder-dialogs.SkillDialog.id
       - botbuilder-dialogs.SkillDialog.onDialogEvent
       - botbuilder-dialogs.SkillDialog.repromptDialog
@@ -20,17 +21,20 @@ items:
     type: class
     summary: ''
     extends:
-      name: botbuilder-dialogs.Dialog
+      name: >-
+        botbuilder-dialogs.Dialog<Partial<botbuilder-dialogs.BeginSkillDialogOptions>>
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.SkillDialog.beginDialog
-    name: 'beginDialog(DialogContext, any)'
+    name: 'beginDialog(DialogContext, BeginSkillDialogOptions)'
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function beginDialog(dc: DialogContext, options?: any)'
+      content: >-
+        function beginDialog(dc: DialogContext, options:
+        BeginSkillDialogOptions)
       parameters:
         - id: dc
           type:
@@ -38,9 +42,8 @@ items:
           description: ''
         - id: options
           type:
-            - any
+            - botbuilder-dialogs.BeginSkillDialogOptions
           description: ''
-          optional: true
       return:
         type:
           - Promise<botbuilder-dialogs.DialogTurnResult>
@@ -135,6 +138,39 @@ items:
 
       processing for the current turn, is still active, and is waiting for more
       input.
+  - uid: botbuilder-dialogs.SkillDialog.getVersion
+    name: getVersion()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      An encoded string used to aid in the detection of bot changes on
+      re-deployment.
+    syntax:
+      content: function getVersion()
+      parameters: []
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-dialogs
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
   - uid: botbuilder-dialogs.SkillDialog.id
     name: id
     fullName: id
@@ -269,12 +305,20 @@ items:
         description: ''
     package: botbuilder-dialogs
 references:
-  - uid: botbuilder-dialogs.Dialog
-    name: Dialog
+  - uid: >-
+      botbuilder-dialogs.Dialog<Partial<botbuilder-dialogs.BeginSkillDialogOptions>>
+    name: BeginSkillDialogOptions>>
     spec.typeScript:
       - name: Dialog
         fullName: Dialog
         uid: botbuilder-dialogs.Dialog
+      - name: <Partial<
+        fullName: <Partial<
+      - name: BeginSkillDialogOptions
+        fullName: BeginSkillDialogOptions
+        uid: botbuilder-dialogs.BeginSkillDialogOptions
+      - name: '>>'
+        fullName: '>>'
   - uid: botbuilder-dialogs.SkillDialogOptions
     name: SkillDialogOptions
     spec.typeScript:
@@ -293,6 +337,12 @@ references:
       - name: DialogContext
         fullName: DialogContext
         uid: botbuilder-dialogs.DialogContext
+  - uid: botbuilder-dialogs.BeginSkillDialogOptions
+    name: BeginSkillDialogOptions
+    spec.typeScript:
+      - name: BeginSkillDialogOptions
+        fullName: BeginSkillDialogOptions
+        uid: botbuilder-dialogs.BeginSkillDialogOptions
   - uid: Promise<botbuilder-dialogs.DialogTurnResult>
     name: DialogTurnResult>
     spec.typeScript:

@@ -6,6 +6,7 @@ items:
     children:
       - botframework-config.DispatchService.appId
       - botframework-config.DispatchService.authoringKey
+      - botframework-config.DispatchService.customEndpoint
       - botframework-config.DispatchService.decrypt
       - botframework-config.DispatchService.constructor
       - botframework-config.DispatchService.encrypt
@@ -50,6 +51,26 @@ items:
     summary: Authoring key for using authoring api.
     syntax:
       content: 'authoringKey: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: botframework-config
+  - uid: botframework-config.DispatchService.customEndpoint
+    name: customEndpoint
+    fullName: customEndpoint
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      URL for a custom endpoint. This should only be used when the LUIS deployed
+      via a container.
+
+      If a value is set, then the GetEndpoint() method will return the value for
+      Custom Endpoint.
+    syntax:
+      content: 'customEndpoint: string'
       return:
         type:
           - string
@@ -120,7 +141,11 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Get endpoint for the luis service. If a customEndpoint is set then this is
+      returned
+
+      otherwise the endpoint is automatically generated based on the region set.
     syntax:
       content: function getEndpoint()
       parameters: []

@@ -10,6 +10,7 @@ items:
       - botbuilder-dialogs.ActivityPrompt.continueDialog
       - botbuilder-dialogs.ActivityPrompt.endDialog
       - botbuilder-dialogs.ActivityPrompt.EndOfTurn
+      - botbuilder-dialogs.ActivityPrompt.getVersion
       - botbuilder-dialogs.ActivityPrompt.id
       - botbuilder-dialogs.ActivityPrompt.onDialogEvent
       - botbuilder-dialogs.ActivityPrompt.repromptDialog
@@ -192,6 +193,39 @@ items:
 
       processing for the current turn, is still active, and is waiting for more
       input.
+  - uid: botbuilder-dialogs.ActivityPrompt.getVersion
+    name: getVersion()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      An encoded string used to aid in the detection of bot changes on
+      re-deployment.
+    syntax:
+      content: function getVersion()
+      parameters: []
+      return:
+        type:
+          - string
+        description: ''
+    package: botbuilder-dialogs
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
   - uid: botbuilder-dialogs.ActivityPrompt.id
     name: id
     fullName: id

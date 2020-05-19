@@ -44,14 +44,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Get the backing memory for this scope.
     syntax:
       content: 'function getMemory(dc: DialogContext)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
-          description: ''
+          description: |
+            current dialog context
       return:
         type:
           - object
@@ -75,19 +76,24 @@ items:
         description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.UserMemoryScope.load
-    name: load(DialogContext)
+    name: 'load(DialogContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function load(dc: DialogContext)'
+      content: 'function load(dc: DialogContext, force?: boolean)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
           description: ''
+        - id: force
+          type:
+            - boolean
+          description: ''
+          optional: true
       return:
         type:
           - Promise<void>
@@ -109,19 +115,24 @@ items:
         description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.UserMemoryScope.saveChanges
-    name: saveChanges(DialogContext)
+    name: 'saveChanges(DialogContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function saveChanges(dc: DialogContext)'
+      content: 'function saveChanges(dc: DialogContext, force?: boolean)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
           description: ''
+        - id: force
+          type:
+            - boolean
+          description: ''
+          optional: true
       return:
         type:
           - Promise<void>
@@ -133,38 +144,30 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Changes the backing object for the memory scope.
     syntax:
       content: 'function setMemory(dc: DialogContext, memory: object)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
-          description: ''
+          description: current dialog context
         - id: memory
           type:
             - object
-          description: ''
+          description: |
+            memory
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.UserMemoryScope.constructor
-    name: 'UserMemoryScope(UserState, string)'
+    name: UserMemoryScope()
     children: []
     type: constructor
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'new UserMemoryScope(userState: UserState, propertyName?: string)'
-      parameters:
-        - id: userState
-          type:
-            - UserState
-          description: ''
-        - id: propertyName
-          type:
-            - string
-          description: ''
-          optional: true
+      content: new UserMemoryScope()
+      parameters: []
     package: botbuilder-dialogs
 references:
   - uid: botbuilder-dialogs.BotStateMemoryScope

@@ -20,30 +20,20 @@ items:
       name: botbuilder-dialogs.MemoryScope
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.BotStateMemoryScope.constructor
-    name: 'BotStateMemoryScope(string, BotState, string)'
+    name: BotStateMemoryScope(string)
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Initializes a new instance of the `BotStateMemoryScope` class.
     syntax:
-      content: >-
-        new BotStateMemoryScope(name: string, botState: BotState, propertyName?:
-        string)
+      content: 'new BotStateMemoryScope(name: string)'
       parameters:
         - id: name
           type:
             - string
-          description: ''
-        - id: botState
-          type:
-            - BotState
-          description: ''
-        - id: propertyName
-          type:
-            - string
-          description: ''
-          optional: true
+          description: |
+            name of the property.
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.BotStateMemoryScope.delete
     name: delete(DialogContext)
@@ -70,14 +60,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Get the backing memory for this scope.
     syntax:
       content: 'function getMemory(dc: DialogContext)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
-          description: ''
+          description: |
+            current dialog context
       return:
         type:
           - object
@@ -101,19 +92,24 @@ items:
         description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.BotStateMemoryScope.load
-    name: load(DialogContext)
+    name: 'load(DialogContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function load(dc: DialogContext)'
+      content: 'function load(dc: DialogContext, force?: boolean)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
           description: ''
+        - id: force
+          type:
+            - boolean
+          description: ''
+          optional: true
       return:
         type:
           - Promise<void>
@@ -135,19 +131,24 @@ items:
         description: ''
     package: botbuilder-dialogs
   - uid: botbuilder-dialogs.BotStateMemoryScope.saveChanges
-    name: saveChanges(DialogContext)
+    name: 'saveChanges(DialogContext, boolean)'
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function saveChanges(dc: DialogContext)'
+      content: 'function saveChanges(dc: DialogContext, force?: boolean)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
           description: ''
+        - id: force
+          type:
+            - boolean
+          description: ''
+          optional: true
       return:
         type:
           - Promise<void>
@@ -159,18 +160,19 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Changes the backing object for the memory scope.
     syntax:
       content: 'function setMemory(dc: DialogContext, memory: object)'
       parameters:
         - id: dc
           type:
             - botbuilder-dialogs.DialogContext
-          description: ''
+          description: current dialog context
         - id: memory
           type:
             - object
-          description: ''
+          description: |
+            memory
     package: botbuilder-dialogs
 references:
   - uid: botbuilder-dialogs.MemoryScope
