@@ -1,0 +1,76 @@
+### YamlMime:UniversalReference
+items:
+  - uid: adaptive-expressions.MemoryInterface
+    name: MemoryInterface
+    fullName: MemoryInterface
+    children:
+      - adaptive-expressions.MemoryInterface.getValue
+      - adaptive-expressions.MemoryInterface.setValue
+      - adaptive-expressions.MemoryInterface.version
+    langs:
+      - typeScript
+    type: interface
+    summary: Interface to parse a string into an Expression
+    package: adaptive-expressions
+  - uid: adaptive-expressions.MemoryInterface.getValue
+    name: getValue(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      get value from a given path, it can be a simple indenfiter like "a", or
+
+      a combined path like "a.b", "a.b[2]", "a.b[2].c", inside [] is guranteed
+      to be a int number or a string.
+    syntax:
+      content: 'function getValue(path: string)'
+      parameters:
+        - id: path
+          type:
+            - string
+          description: memory path.
+      return:
+        type:
+          - any
+        description: value.
+    package: adaptive-expressions
+  - uid: adaptive-expressions.MemoryInterface.setValue
+    name: 'setValue(string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Set value to a given path.
+    syntax:
+      content: 'function setValue(path: string, value: any)'
+      parameters:
+        - id: path
+          type:
+            - string
+          description: memory path.
+        - id: value
+          type:
+            - any
+          description: value to set.
+    package: adaptive-expressions
+  - uid: adaptive-expressions.MemoryInterface.version
+    name: version()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Version is used to identify whether the a particular memory instance has
+      been updated or not.
+
+      If version is not changed, the caller may choose to use the cached result
+      instead of recomputing everything.
+    syntax:
+      content: function version()
+      parameters: []
+      return:
+        type:
+          - string
+        description: ''
+    package: adaptive-expressions
