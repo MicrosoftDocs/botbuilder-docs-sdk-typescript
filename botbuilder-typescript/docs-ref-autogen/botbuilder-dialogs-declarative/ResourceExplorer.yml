@@ -8,17 +8,20 @@ items:
       - botbuilder-dialogs-declarative.ResourceExplorer.addFolder
       - botbuilder-dialogs-declarative.ResourceExplorer.addFolders
       - botbuilder-dialogs-declarative.ResourceExplorer.addResourceProvider
+      - botbuilder-dialogs-declarative.ResourceExplorer.addResourceType
       - botbuilder-dialogs-declarative.ResourceExplorer.buildType
-      - botbuilder-dialogs-declarative.ResourceExplorer.emitter
+      - botbuilder-dialogs-declarative.ResourceExplorer.changed
       - botbuilder-dialogs-declarative.ResourceExplorer.getResource
       - botbuilder-dialogs-declarative.ResourceExplorer.getResources
-      - botbuilder-dialogs-declarative.ResourceExplorer.loadProject
       - botbuilder-dialogs-declarative.ResourceExplorer.loadType
+      - botbuilder-dialogs-declarative.ResourceExplorer.refresh
+      - botbuilder-dialogs-declarative.ResourceExplorer.constructor
       - botbuilder-dialogs-declarative.ResourceExplorer.resourceProviders
+      - botbuilder-dialogs-declarative.ResourceExplorer.resourceTypes
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: Class which gives standard access to content resources.
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.ResourceExplorer.addComponent
     name: addComponent(ComponentRegistration)
@@ -26,14 +29,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add a ComponentRegistration to resource explorer for building types.
     syntax:
       content: 'function addComponent(component: ComponentRegistration)'
       parameters:
         - id: component
           type:
             - botbuilder-dialogs-declarative.ComponentRegistration
-          description: ''
+          description: |
+            Component registration to be added.
       return:
         type:
           - botbuilder-dialogs-declarative.ResourceExplorer
@@ -45,7 +49,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add a folder resource.
     syntax:
       content: >-
         function addFolder(folder: string, includeSubFolders?: boolean,
@@ -54,16 +58,17 @@ items:
         - id: folder
           type:
             - string
-          description: ''
+          description: Folder to be included as a resource.
         - id: includeSubFolders
           type:
             - boolean
-          description: ''
+          description: Whether to include subfolders.
           optional: true
         - id: monitorChanges
           type:
             - boolean
-          description: ''
+          description: |
+            Whether to track changes.
           optional: true
       return:
         type:
@@ -76,7 +81,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add folder resources.
     syntax:
       content: >-
         function addFolders(folder: string, ignoreFolders?: string[],
@@ -85,16 +90,17 @@ items:
         - id: folder
           type:
             - string
-          description: ''
+          description: Collection of folders to be included as resources.
         - id: ignoreFolders
           type:
             - 'string[]'
-          description: ''
+          description: Imediate subfolders to ignore.
           optional: true
         - id: monitorChanges
           type:
             - boolean
-          description: ''
+          description: |
+            Whether to track changes.
           optional: true
       return:
         type:
@@ -102,23 +108,40 @@ items:
         description: ''
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.ResourceExplorer.addResourceProvider
-    name: addResourceProvider(IResourceProvider)
+    name: addResourceProvider(ResourceProvider)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add a resource provider to the resources managed by resource explorer.
     syntax:
-      content: 'function addResourceProvider(resourceProvider: IResourceProvider)'
+      content: 'function addResourceProvider(resourceProvider: ResourceProvider)'
       parameters:
         - id: resourceProvider
           type:
-            - botbuilder-dialogs-declarative.IResourceProvider
-          description: ''
+            - botbuilder-dialogs-declarative.ResourceProvider
+          description: |
+            Resource provider to be added.
       return:
         type:
           - botbuilder-dialogs-declarative.ResourceExplorer
         description: ''
+    package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.ResourceExplorer.addResourceType
+    name: addResourceType(string)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Add a resource type to resource type set.
+    syntax:
+      content: 'function addResourceType(type: string)'
+      parameters:
+        - id: type
+          type:
+            - string
+          description: |
+            Resource type.
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.ResourceExplorer.buildType
     name: buildType(object)
@@ -126,32 +149,33 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Build types from object configuration.
     syntax:
       content: 'function buildType(config: object)'
       parameters:
         - id: config
           type:
             - object
-          description: ''
+          description: |
+            Configuration to be parsed as a type.
       return:
         type:
           - object
         description: ''
     package: botbuilder-dialogs-declarative
-  - uid: botbuilder-dialogs-declarative.ResourceExplorer.emitter
-    name: emitter
-    fullName: emitter
+  - uid: botbuilder-dialogs-declarative.ResourceExplorer.changed
+    name: changed
+    fullName: changed
     children: []
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Event which fires when a resource is changed.
     syntax:
-      content: 'emitter: EventEmitter'
+      content: 'changed: (event: ResourceChangeEvent, resources: Resource[]) => void'
       return:
         type:
-          - EventEmitter
+          - '(event: ResourceChangeEvent, resources: Resource[]) => void'
         description: ''
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.ResourceExplorer.getResource
@@ -160,17 +184,18 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Gets resource by id.
     syntax:
       content: 'function getResource(id: string)'
       parameters:
         - id: id
           type:
             - string
-          description: ''
+          description: |
+            Resource id.
       return:
         type:
-          - botbuilder-dialogs-declarative.IResource
+          - botbuilder-dialogs-declarative.Resource
         description: ''
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.ResourceExplorer.getResources
@@ -179,67 +204,67 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Get resources of a given type extension.
     syntax:
       content: 'function getResources(fileExtension: string)'
       parameters:
         - id: fileExtension
           type:
             - string
-          description: ''
+          description: |
+            File extension filter.
       return:
         type:
-          - 'botbuilder-dialogs-declarative.IResource[]'
-        description: ''
-    package: botbuilder-dialogs-declarative
-  - uid: botbuilder-dialogs-declarative.ResourceExplorer.loadProject
-    name: 'loadProject(string, string[], boolean)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: >-
-        function loadProject(projectFile: string, ignoreFolders: string[],
-        monitorChanges?: boolean)
-      parameters:
-        - id: projectFile
-          type:
-            - string
-          description: ''
-        - id: ignoreFolders
-          type:
-            - 'string[]'
-          description: ''
-        - id: monitorChanges
-          type:
-            - boolean
-          description: ''
-          optional: true
-      return:
-        type:
-          - botbuilder-dialogs-declarative.ResourceExplorer
+          - 'botbuilder-dialogs-declarative.Resource[]'
         description: ''
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.ResourceExplorer.loadType
-    name: loadType(string | IResource)
+    name: loadType(string | Resource)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Load types from resource or resource id.
     syntax:
-      content: 'function loadType(resource: string | IResource)'
+      content: 'function loadType(resource: string | Resource)'
       parameters:
         - id: resource
           type:
-            - string | botbuilder-dialogs-declarative.IResource
-          description: ''
+            - string | botbuilder-dialogs-declarative.Resource
+          description: |
+            Resource or resource id to be parsed as a type.
       return:
         type:
           - object
         description: ''
+    package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.ResourceExplorer.refresh
+    name: refresh()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Reload any cached data.
+    syntax:
+      content: function refresh()
+      parameters: []
+    package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.ResourceExplorer.constructor
+    name: 'ResourceExplorer(ResourceProvider[])'
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Initializes a new instance of the `ResourceExplorer` class.
+    syntax:
+      content: 'new ResourceExplorer(providers?: ResourceProvider[])'
+      parameters:
+        - id: providers
+          type:
+            - 'botbuilder-dialogs-declarative.ResourceProvider[]'
+          description: |
+            Resource providers.
+          optional: true
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.ResourceExplorer.resourceProviders
     name: resourceProviders
@@ -248,21 +273,36 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets resource providers.
     syntax:
-      content: 'resourceProviders: IResourceProvider[]'
+      content: 'resourceProviders: ResourceProvider[]'
       return:
         type:
-          - 'botbuilder-dialogs-declarative.IResourceProvider[]'
+          - 'botbuilder-dialogs-declarative.ResourceProvider[]'
+        description: ''
+    package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.ResourceExplorer.resourceTypes
+    name: resourceTypes
+    fullName: resourceTypes
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets resource type id extensions managed by resource explorer.
+    syntax:
+      content: 'resourceTypes: Set<string>'
+      return:
+        type:
+          - Set<string>
         description: ''
     package: botbuilder-dialogs-declarative
 references:
-  - uid: 'botbuilder-dialogs-declarative.IResourceProvider[]'
-    name: 'IResourceProvider[]'
+  - uid: 'botbuilder-dialogs-declarative.ResourceProvider[]'
+    name: 'ResourceProvider[]'
     spec.typeScript:
-      - name: IResourceProvider
-        fullName: IResourceProvider
-        uid: botbuilder-dialogs-declarative.IResourceProvider
+      - name: ResourceProvider
+        fullName: ResourceProvider
+        uid: botbuilder-dialogs-declarative.ResourceProvider
       - name: '[]'
         fullName: '[]'
   - uid: botbuilder-dialogs-declarative.ComponentRegistration
@@ -277,31 +317,31 @@ references:
       - name: ResourceExplorer
         fullName: ResourceExplorer
         uid: botbuilder-dialogs-declarative.ResourceExplorer
-  - uid: botbuilder-dialogs-declarative.IResourceProvider
-    name: IResourceProvider
+  - uid: botbuilder-dialogs-declarative.ResourceProvider
+    name: ResourceProvider
     spec.typeScript:
-      - name: IResourceProvider
-        fullName: IResourceProvider
-        uid: botbuilder-dialogs-declarative.IResourceProvider
-  - uid: botbuilder-dialogs-declarative.IResource
-    name: IResource
+      - name: ResourceProvider
+        fullName: ResourceProvider
+        uid: botbuilder-dialogs-declarative.ResourceProvider
+  - uid: botbuilder-dialogs-declarative.Resource
+    name: Resource
     spec.typeScript:
-      - name: IResource
-        fullName: IResource
-        uid: botbuilder-dialogs-declarative.IResource
-  - uid: 'botbuilder-dialogs-declarative.IResource[]'
-    name: 'IResource[]'
+      - name: Resource
+        fullName: Resource
+        uid: botbuilder-dialogs-declarative.Resource
+  - uid: 'botbuilder-dialogs-declarative.Resource[]'
+    name: 'Resource[]'
     spec.typeScript:
-      - name: IResource
-        fullName: IResource
-        uid: botbuilder-dialogs-declarative.IResource
+      - name: Resource
+        fullName: Resource
+        uid: botbuilder-dialogs-declarative.Resource
       - name: '[]'
         fullName: '[]'
-  - uid: string | botbuilder-dialogs-declarative.IResource
-    name: IResource
+  - uid: string | botbuilder-dialogs-declarative.Resource
+    name: Resource
     spec.typeScript:
       - name: 'string | '
         fullName: 'string | '
-      - name: IResource
-        fullName: IResource
-        uid: botbuilder-dialogs-declarative.IResource
+      - name: Resource
+        fullName: Resource
+        uid: botbuilder-dialogs-declarative.Resource

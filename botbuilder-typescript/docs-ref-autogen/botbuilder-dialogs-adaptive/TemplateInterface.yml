@@ -4,32 +4,33 @@ items:
     name: TemplateInterface
     fullName: TemplateInterface<T>
     children:
-      - botbuilder-dialogs-adaptive.TemplateInterface.bindToData
+      - botbuilder-dialogs-adaptive.TemplateInterface.bind
     langs:
       - typeScript
     type: interface
     summary: Defines Template interface for binding data to T.
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.TemplateInterface.bindToData
-    name: 'bindToData(TurnContext, object)'
+  - uid: botbuilder-dialogs-adaptive.TemplateInterface.bind
+    name: 'bind(DialogContext, object)'
     children: []
     type: method
     langs:
       - typeScript
     summary: Given the turn context bind to the data to create the object
     syntax:
-      content: 'function bindToData(turnContext: TurnContext, data: object)'
+      content: 'function bind(dialogContext: DialogContext, data?: object)'
       parameters:
-        - id: turnContext
+        - id: dialogContext
           type:
-            - TurnContext
-          description: TurnContext.
+            - DialogContext
+          description: DialogContext.
         - id: data
           type:
             - object
-          description: data to bind to.
+          description: Data to bind to.
+          optional: true
       return:
         type:
           - Promise<T>
-        description: instance.
+        description: Instance of T.
     package: botbuilder-dialogs-adaptive

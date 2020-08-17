@@ -11,6 +11,7 @@ items:
       - botbuilder-core.ExtendedUserTokenProvider.getSignInResource
       - botbuilder-core.ExtendedUserTokenProvider.getSignInResource_1
       - botbuilder-core.ExtendedUserTokenProvider.getSignInResource_2
+      - botbuilder-core.ExtendedUserTokenProvider.getTokenStatus
       - botbuilder-core.ExtendedUserTokenProvider.getUserToken
       - botbuilder-core.ExtendedUserTokenProvider.signOutUser
     langs:
@@ -269,6 +270,46 @@ items:
       return:
         type:
           - Promise<SignInUrlResponse>
+        description: ''
+    package: botbuilder-core
+  - uid: botbuilder-core.ExtendedUserTokenProvider.getTokenStatus
+    name: 'getTokenStatus(TurnContext, string, string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Retrieves the token status for each configured connection for the given
+      user, using the bot's AppCredentials.
+    syntax:
+      content: >-
+        function getTokenStatus(context: TurnContext, userId: string,
+        includeFilter?: string, oAuthAppCredentials?: any)
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: Context for the current turn of conversation with the user.
+        - id: userId
+          type:
+            - string
+          description: The user Id for which token status is retrieved.
+        - id: includeFilter
+          type:
+            - string
+          description: >-
+            Comma separated list of connection's to include. Blank will return
+            token status for all configured connections.
+          optional: true
+        - id: oAuthAppCredentials
+          type:
+            - any
+          description: |
+            The app credentials for OAuth.
+          optional: true
+      return:
+        type:
+          - 'Promise<any[]>'
         description: ''
     package: botbuilder-core
   - uid: botbuilder-core.ExtendedUserTokenProvider.getUserToken

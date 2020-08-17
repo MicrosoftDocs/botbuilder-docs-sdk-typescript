@@ -5,7 +5,7 @@ items:
     fullName: BoolExpression
     children:
       - adaptive-expressions.BoolExpression.constructor
-      - adaptive-expressions.BoolExpression.expression
+      - adaptive-expressions.BoolExpression.expressionText
       - adaptive-expressions.BoolExpression.getValue
       - adaptive-expressions.BoolExpression.setValue
       - adaptive-expressions.BoolExpression.toExpression
@@ -40,19 +40,19 @@ items:
           description: ''
           optional: true
     package: adaptive-expressions
-  - uid: adaptive-expressions.BoolExpression.expression
-    name: expression
-    fullName: expression
+  - uid: adaptive-expressions.BoolExpression.expressionText
+    name: expressionText
+    fullName: expressionText
     children: []
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Getes or sets the expression text to evaluate to get the value.
     syntax:
-      content: 'expression: Expression'
+      content: 'expressionText: string'
       return:
         type:
-          - adaptive-expressions.Expression
+          - string
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.BoolExpression.getValue
@@ -72,7 +72,7 @@ items:
       return:
         type:
           - boolean
-        description: the value.
+        description: The value.
     package: adaptive-expressions
     remarks: An error will be thrown if value is an invalid expression.
   - uid: adaptive-expressions.BoolExpression.setValue
@@ -81,14 +81,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Set the value.
     syntax:
       content: 'function setValue(value: boolean | string | Expression)'
       parameters:
         - id: value
           type:
             - boolean | string | adaptive-expressions.Expression
-          description: ''
+          description: |
+            Value to set.
     package: adaptive-expressions
   - uid: adaptive-expressions.BoolExpression.toExpression
     name: toExpression()
@@ -96,7 +97,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: This will return the existing expression if the value is non-complex type.
     syntax:
       content: function toExpression()
       parameters: []
@@ -111,7 +112,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Convert an expression property to string.
     syntax:
       content: function toString()
       parameters: []
@@ -146,7 +147,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets or sets the raw value of the expression property.
     syntax:
       content: 'value: boolean'
       return:

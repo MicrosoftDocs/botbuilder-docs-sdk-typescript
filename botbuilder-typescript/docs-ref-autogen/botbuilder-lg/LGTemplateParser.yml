@@ -16,6 +16,8 @@ items:
       - botbuilder-lg.LGTemplateParser.compileParseTreePattern_1
       - botbuilder-lg.LGTemplateParser.consume
       - botbuilder-lg.LGTemplateParser.context
+      - botbuilder-lg.LGTemplateParser.createErrorNode
+      - botbuilder-lg.LGTemplateParser.createTerminalNode
       - botbuilder-lg.LGTemplateParser.currentToken
       - botbuilder-lg.LGTemplateParser.DASH
       - botbuilder-lg.LGTemplateParser.DEFAULT
@@ -35,7 +37,8 @@ items:
       - botbuilder-lg.LGTemplateParser.ESCAPE_CHARACTER_IN_STRUCTURE_BODY
       - botbuilder-lg.LGTemplateParser.exitRule
       - botbuilder-lg.LGTemplateParser.EXPRESSION
-      - botbuilder-lg.LGTemplateParser.EXPRESSION_FRAGMENT
+      - botbuilder-lg.LGTemplateParser.expression
+      - botbuilder-lg.LGTemplateParser.expressionInStructure
       - botbuilder-lg.LGTemplateParser.EXPRESSION_IN_STRUCTURE_BODY
       - botbuilder-lg.LGTemplateParser.getATNWithBypassAlts
       - botbuilder-lg.LGTemplateParser.getDFAStrings
@@ -79,8 +82,6 @@ items:
       - botbuilder-lg.LGTemplateParser.notifyErrorListeners
       - botbuilder-lg.LGTemplateParser.notifyErrorListeners_1
       - botbuilder-lg.LGTemplateParser.numberOfSyntaxErrors
-      - botbuilder-lg.LGTemplateParser.objectStructureLine
-      - botbuilder-lg.LGTemplateParser.OBJECT_DEFINITION
       - botbuilder-lg.LGTemplateParser.parseInfo
       - botbuilder-lg.LGTemplateParser.precedence
       - botbuilder-lg.LGTemplateParser.precpred
@@ -98,6 +99,8 @@ items:
       - botbuilder-lg.LGTemplateParser.RULE_errorStructuredName
       - botbuilder-lg.LGTemplateParser.RULE_errorStructureLine
       - botbuilder-lg.LGTemplateParser.RULE_errorTemplateString
+      - botbuilder-lg.LGTemplateParser.RULE_expression
+      - botbuilder-lg.LGTemplateParser.RULE_expressionInStructure
       - botbuilder-lg.LGTemplateParser.RULE_ifCondition
       - botbuilder-lg.LGTemplateParser.RULE_ifConditionRule
       - botbuilder-lg.LGTemplateParser.RULE_ifElseTemplateBody
@@ -105,7 +108,6 @@ items:
       - botbuilder-lg.LGTemplateParser.RULE_keyValueStructureValue
       - botbuilder-lg.LGTemplateParser.RULE_normalTemplateBody
       - botbuilder-lg.LGTemplateParser.RULE_normalTemplateString
-      - botbuilder-lg.LGTemplateParser.RULE_objectStructureLine
       - botbuilder-lg.LGTemplateParser.RULE_structuredBodyContentLine
       - botbuilder-lg.LGTemplateParser.RULE_structuredBodyEndLine
       - botbuilder-lg.LGTemplateParser.RULE_structuredBodyNameLine
@@ -202,28 +204,26 @@ items:
     langs:
       - typeScript
     summary: |
-      Registers {@code listener} to receive events during the parsing process.
-      <p>To support output-preserving grammar transformations (including but not
+      Registers `listener` to receive events during the parsing process.
+      To support output-preserving grammar transformations (including but not
       limited to left-recursion removal, automated left-factoring, and
       optimized code generation), calls to listener methods during the parse
       may differ substantially from calls made by
       <xref:ParseTreeWalker%23DEFAULT> used after the parse is complete. In
       particular, rule entry and exit events may occur in a different order
       during the parse than after the parser. In addition, calls to certain
-      rule entry methods may be omitted.</p>
+      rule entry methods may be omitted.
 
-      <p>With the following specific exceptions, calls to listener events are
-      <em>deterministic</em>, i.e. for identical input the calls to listener
-      methods will be the same.</p>
+      With the following specific exceptions, calls to listener events are
+      *deterministic*, i.e. for identical input the calls to listener
+      methods will be the same.
 
-      <ul>
-      <li>Alterations to the grammar used to generate code may change the
-      behavior of the listener calls.</li>
-      <li>Alterations to the command line options passed to ANTLR 4 when
-      generating the parser may change the behavior of the listener calls.</li>
-      <li>Changing the version of the ANTLR Tool used to generate the parser
-      may change the behavior of the listener calls.</li>
-      </ul>
+      * Alterations to the grammar used to generate code may change the
+        behavior of the listener calls.
+      * Alterations to the command line options passed to ANTLR 4 when
+        generating the parser may change the behavior of the listener calls.
+      * Changing the version of the ANTLR Tool used to generate the parser
+        may change the behavior of the listener calls.
     syntax:
       content: 'function addParseListener(listener: ParseTreeListener)'
       parameters:
@@ -232,8 +232,6 @@ items:
             - ParseTreeListener
           description: |
             the listener to add
-
-            @ if {@code} listener is {@code null}
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.atn
     name: atn
@@ -277,14 +275,14 @@ items:
       them up using the <xref:ParserRuleContext%23children> list so that it
       forms a parse tree. The <xref:ParserRuleContext> returned from the start
       rule represents the root of the parse tree.
-      <p>Note that if we are not building parse trees, rule contexts only point
+      Note that if we are not building parse trees, rule contexts only point
       upwards. When a rule exits, it returns the context but that gets garbage
       collected if nobody holds a reference. It points upwards but nobody
-      points at it.</p>
+      points at it.
 
-      <p>When we build parse trees, we are adding all of these contexts to
+      When we build parse trees, we are adding all of these contexts to
       <xref:ParserRuleContext%23children> list. Contexts are then not candidates
-      for garbage collection.</p>
+      for garbage collection.
     syntax:
       content: 'buildParseTree: boolean'
       return:
@@ -301,10 +299,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static CASE: 16 = 16'
+      content: 'static CASE: 14 = 14'
       return:
         type:
-          - '16'
+          - '14'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.COMMENTS
@@ -403,24 +401,41 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
+    summary: >
       Consume and return the [current symbol](`currentToken`).
-      <p>E.g., given the following input with {@code A} being the current
-      lookahead symbol, this function moves the cursor to {@code B} and returns
-      {@code A}.</p>
 
-      <pre>
-       A B
-       ^
-      </pre>
+      E.g., given the following input with `A` being the current
+
+      lookahead symbol, this function moves the cursor to `B` and returns
+
+      `A`.
+
+
+      ```
+
+      A B
+
+      ^
+
+      ```
+
 
       If the parser is not in error recovery mode, the consumed symbol is added
-      to the parse tree using <xref:ParserRuleContext%23addChild(Token)>, and
+
+      to the parse tree using <xref:ParserRuleContext%23addChild(TerminalNode)>,
+      and
+
       <xref:ParseTreeListener%23visitTerminal> is called on any parse listeners.
-      If the parser <em>is</em> in error recovery mode, the consumed symbol is
+
+      If the parser *is* in error recovery mode, the consumed symbol is
+
       added to the parse tree using
-      <xref:ParserRuleContext%23addErrorNode(Token)>, and
+      [Token)](xref:%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)> and
+
       <xref:ParseTreeListener%23visitErrorNode> is called on any parse
+
       listeners.
     syntax:
       content: function consume()
@@ -443,6 +458,56 @@ items:
       return:
         type:
           - ParserRuleContext
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGTemplateParser.createErrorNode
+    name: 'createErrorNode(ParserRuleContext, Token)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      How to create an error node, given a token, associated with a parent.
+      Typically, the error node to create is not a function of the parent.
+    syntax:
+      content: 'function createErrorNode(parent: ParserRuleContext, t: Token)'
+      parameters:
+        - id: parent
+          type:
+            - ParserRuleContext
+          description: ''
+        - id: t
+          type:
+            - Token
+          description: ''
+      return:
+        type:
+          - ErrorNode
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGTemplateParser.createTerminalNode
+    name: 'createTerminalNode(ParserRuleContext, Token)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      How to create a token leaf node associated with a parent.
+      Typically, the terminal node to create is not a function of the parent.
+    syntax:
+      content: 'function createTerminalNode(parent: ParserRuleContext, t: Token)'
+      parameters:
+        - id: parent
+          type:
+            - ParserRuleContext
+          description: ''
+        - id: t
+          type:
+            - Token
+          description: ''
+      return:
+        type:
+          - TerminalNode
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.currentToken
@@ -486,10 +551,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static DEFAULT: 17 = 17'
+      content: 'static DEFAULT: 15 = 15'
       return:
         type:
-          - '17'
+          - '15'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.dumpDFA
@@ -512,10 +577,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static ELSE: 14 = 14'
+      content: 'static ELSE: 12 = 12'
       return:
         type:
-          - '14'
+          - '12'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.ELSEIF
@@ -527,10 +592,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static ELSEIF: 13 = 13'
+      content: 'static ELSEIF: 11 = 11'
       return:
         type:
-          - '13'
+          - '11'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.enterLeftFactoredRule
@@ -717,10 +782,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static ESCAPE_CHARACTER: 18 = 18'
+      content: 'static ESCAPE_CHARACTER: 16 = 16'
       return:
         type:
-          - '18'
+          - '16'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.ESCAPE_CHARACTER_IN_STRUCTURE_BODY
@@ -732,10 +797,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static ESCAPE_CHARACTER_IN_STRUCTURE_BODY: 33 = 33'
+      content: 'static ESCAPE_CHARACTER_IN_STRUCTURE_BODY: 31 = 31'
       return:
         type:
-          - '33'
+          - '31'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.exitRule
@@ -758,25 +823,40 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static EXPRESSION: 19 = 19'
+      content: 'static EXPRESSION: 17 = 17'
       return:
         type:
-          - '19'
+          - '17'
         description: ''
     package: botbuilder-lg
-  - uid: botbuilder-lg.LGTemplateParser.EXPRESSION_FRAGMENT
-    name: EXPRESSION_FRAGMENT
-    fullName: EXPRESSION_FRAGMENT
+  - uid: botbuilder-lg.LGTemplateParser.expression
+    name: expression()
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static EXPRESSION_FRAGMENT: 6 = 6'
+      content: function expression()
+      parameters: []
       return:
         type:
-          - '6'
+          - botbuilder-lg.ExpressionContext
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGTemplateParser.expressionInStructure
+    name: expressionInStructure()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function expressionInStructure()
+      parameters: []
+      return:
+        type:
+          - botbuilder-lg.ExpressionInStructureContext
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.EXPRESSION_IN_STRUCTURE_BODY
@@ -788,10 +868,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static EXPRESSION_IN_STRUCTURE_BODY: 34 = 34'
+      content: 'static EXPRESSION_IN_STRUCTURE_BODY: 32 = 32'
       return:
         type:
-          - '34'
+          - '32'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.getATNWithBypassAlts
@@ -953,7 +1033,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: 'Get a rule''s index (i.e., {@code RULE_ruleName} field) or -1 if not found.'
+    summary: 'Get a rule''s index (i.e., `RULE_ruleName` field) or -1 if not found.'
     syntax:
       content: 'function getRuleIndex(ruleName: string)'
       parameters:
@@ -974,7 +1054,7 @@ items:
       - typeScript
     summary: |
       Get a map from rule names to rule indexes.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getRuleIndexMap()
       parameters: []
@@ -1035,7 +1115,7 @@ items:
       - typeScript
     summary: |
       Get a map from token names to token types.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getTokenTypeMap()
       parameters: []
@@ -1068,10 +1148,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static IF: 12 = 12'
+      content: 'static IF: 10 = 10'
       return:
         type:
-          - '12'
+          - '10'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.ifCondition
@@ -1177,10 +1257,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static INVALID_TOKEN: 8 = 8'
+      content: 'static INVALID_TOKEN: 6 = 6'
       return:
         type:
-          - '8'
+          - '6'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.isExpectedToken
@@ -1190,13 +1270,13 @@ items:
     langs:
       - typeScript
     summary: |
-      Checks whether or not {@code symbol} can follow the current state in the
+      Checks whether or not `symbol` can follow the current state in the
       ATN. The behavior of this method is equivalent to the following, but is
       implemented such that the complete context-sensitive follow set does not
       need to be explicitly constructed.
-      <pre>
+      ```
       return getExpectedTokens().contains(symbol);
-      </pre>
+      ```
     syntax:
       content: 'function isExpectedToken(symbol: number)'
       parameters:
@@ -1208,8 +1288,8 @@ items:
         type:
           - boolean
         description: |-
-          if {@code symbol} can follow the current state in
-          the ATN, otherwise {@code false}.
+          `true` if `symbol` can follow the current state in
+          the ATN, otherwise `false`.
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.isMatchedEOF
     name: isMatchedEOF
@@ -1282,10 +1362,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static LEFT_SQUARE_BRACKET: 7 = 7'
+      content: 'static LEFT_SQUARE_BRACKET: 5 = 5'
       return:
         type:
-          - '7'
+          - '5'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.constructor
@@ -1309,16 +1389,27 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
-      Match current input symbol against {@code ttype}. If the symbol type
+    summary: >
+      Match current input symbol against `ttype`. If the symbol type
+
       matches, <xref:ANTLRErrorStrategy%23reportMatch> and <xref:%23consume> are
+
       called to complete the match process.
-      <p>If the symbol type does not match,
+
+      If the symbol type does not match,
+
       <xref:ANTLRErrorStrategy%23recoverInline> is called on the current error
+
       strategy to attempt recovery. If <xref:%23getBuildParseTree> is
-      {@code true} and the token index of the symbol returned by
+
+      `true` and the token index of the symbol returned by
+
       <xref:ANTLRErrorStrategy%23recoverInline> is -1, the symbol is added to
-      the parse tree by calling <xref:ParserRuleContext%23addErrorNode>.</p>
+
+      the parse tree by calling
+      [Token)](xref:%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)>.
     syntax:
       content: 'function match(ttype: number)'
       parameters:
@@ -1332,7 +1423,7 @@ items:
         description: |-
           the matched symbol
           @ if the current input symbol did not match
-          {@code ttype} and the error strategy could not recover from the
+          `ttype` and the error strategy could not recover from the
           mismatched symbol
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.matchWildcard
@@ -1341,16 +1432,27 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
+    summary: >
       Match current input symbol as a wildcard. If the symbol type matches
+
       (i.e. has a value greater than 0), <xref:ANTLRErrorStrategy%23reportMatch>
+
       and <xref:%23consume> are called to complete the match process.
-      <p>If the symbol type does not match,
+
+      If the symbol type does not match,
+
       <xref:ANTLRErrorStrategy%23recoverInline> is called on the current error
+
       strategy to attempt recovery. If <xref:%23getBuildParseTree> is
-      {@code true} and the token index of the symbol returned by
+
+      `true` and the token index of the symbol returned by
+
       <xref:ANTLRErrorStrategy%23recoverInline> is -1, the symbol is added to
-      the parse tree by calling <xref:ParserRuleContext%23addErrorNode>.</p>
+
+      the parse tree by calling
+      [Token)](xref:Parser%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)>.
     syntax:
       content: function matchWildcard()
       parameters: []
@@ -1376,10 +1478,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static MULTILINE_PREFIX: 10 = 10'
+      content: 'static MULTILINE_PREFIX: 8 = 8'
       return:
         type:
-          - '10'
+          - '8'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.MULTILINE_SUFFIX
@@ -1391,10 +1493,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static MULTILINE_SUFFIX: 21 = 21'
+      content: 'static MULTILINE_SUFFIX: 19 = 19'
       return:
         type:
-          - '21'
+          - '19'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.NEWLINE
@@ -1421,10 +1523,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static NEWLINE_IN_BODY: 11 = 11'
+      content: 'static NEWLINE_IN_BODY: 9 = 9'
       return:
         type:
-          - '11'
+          - '9'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.NEWLINE_IN_STRUCTURE_NAME
@@ -1436,10 +1538,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static NEWLINE_IN_STRUCTURE_NAME: 23 = 23'
+      content: 'static NEWLINE_IN_STRUCTURE_NAME: 21 = 21'
       return:
         type:
-          - '23'
+          - '21'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.normalTemplateBody
@@ -1529,36 +1631,6 @@ items:
       return:
         type:
           - number
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.LGTemplateParser.objectStructureLine
-    name: objectStructureLine()
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: function objectStructureLine()
-      parameters: []
-      return:
-        type:
-          - botbuilder-lg.ObjectStructureLineContext
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.LGTemplateParser.OBJECT_DEFINITION
-    name: OBJECT_DEFINITION
-    fullName: OBJECT_DEFINITION
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'static OBJECT_DEFINITION: 5 = 5'
-      return:
-        type:
-          - '5'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.parseInfo
@@ -1674,9 +1746,9 @@ items:
     langs:
       - typeScript
     summary: |
-      Remove {@code listener} from the list of parse listeners.
-      <p>If {@code listener} is {@code null} or has not been added as a parse
-      listener, this method does nothing.</p>
+      Remove `listener` from the list of parse listeners.
+      If `listener` is `undefined` or has not been added as a parse
+      listener, this method does nothing.
     syntax:
       content: 'function removeParseListener(listener: ParseTreeListener)'
       parameters:
@@ -1822,10 +1894,40 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_errorTemplateString: 14 = 14'
+      content: 'static RULE_errorTemplateString: 13 = 13'
       return:
         type:
-          - '14'
+          - '13'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGTemplateParser.RULE_expression
+    name: RULE_expression
+    fullName: RULE_expression
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static RULE_expression: 20 = 20'
+      return:
+        type:
+          - '20'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGTemplateParser.RULE_expressionInStructure
+    name: RULE_expressionInStructure
+    fullName: RULE_expressionInStructure
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static RULE_expressionInStructure: 21 = 21'
+      return:
+        type:
+          - '21'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_ifCondition
@@ -1837,10 +1939,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_ifCondition: 17 = 17'
+      content: 'static RULE_ifCondition: 16 = 16'
       return:
         type:
-          - '17'
+          - '16'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_ifConditionRule
@@ -1852,10 +1954,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_ifConditionRule: 16 = 16'
+      content: 'static RULE_ifConditionRule: 15 = 15'
       return:
         type:
-          - '16'
+          - '15'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_ifElseTemplateBody
@@ -1867,10 +1969,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_ifElseTemplateBody: 15 = 15'
+      content: 'static RULE_ifElseTemplateBody: 14 = 14'
       return:
         type:
-          - '15'
+          - '14'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_keyValueStructureLine
@@ -1912,10 +2014,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_normalTemplateBody: 11 = 11'
+      content: 'static RULE_normalTemplateBody: 10 = 10'
       return:
         type:
-          - '11'
+          - '10'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_normalTemplateString
@@ -1927,25 +2029,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_normalTemplateString: 13 = 13'
+      content: 'static RULE_normalTemplateString: 12 = 12'
       return:
         type:
-          - '13'
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.LGTemplateParser.RULE_objectStructureLine
-    name: RULE_objectStructureLine
-    fullName: RULE_objectStructureLine
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'static RULE_objectStructureLine: 9 = 9'
-      return:
-        type:
-          - '9'
+          - '12'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_structuredBodyContentLine
@@ -1972,10 +2059,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_structuredBodyEndLine: 10 = 10'
+      content: 'static RULE_structuredBodyEndLine: 9 = 9'
       return:
         type:
-          - '10'
+          - '9'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_structuredBodyNameLine
@@ -2017,10 +2104,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_switchCaseRule: 19 = 19'
+      content: 'static RULE_switchCaseRule: 18 = 18'
       return:
         type:
-          - '19'
+          - '18'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_switchCaseStat
@@ -2032,10 +2119,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_switchCaseStat: 20 = 20'
+      content: 'static RULE_switchCaseStat: 19 = 19'
       return:
         type:
-          - '20'
+          - '19'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_switchCaseTemplateBody
@@ -2047,10 +2134,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_switchCaseTemplateBody: 18 = 18'
+      content: 'static RULE_switchCaseTemplateBody: 17 = 17'
       return:
         type:
-          - '18'
+          - '17'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.RULE_template
@@ -2077,10 +2164,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_templateString: 12 = 12'
+      content: 'static RULE_templateString: 11 = 11'
       return:
         type:
-          - '12'
+          - '11'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.sempred
@@ -2251,10 +2338,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static STRUCTURED_BODY_END: 29 = 29'
+      content: 'static STRUCTURED_BODY_END: 27 = 27'
       return:
         type:
-          - '29'
+          - '27'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.STRUCTURED_COMMENTS
@@ -2266,10 +2353,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static STRUCTURED_COMMENTS: 26 = 26'
+      content: 'static STRUCTURED_COMMENTS: 24 = 24'
       return:
         type:
-          - '26'
+          - '24'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.STRUCTURED_NEWLINE
@@ -2281,10 +2368,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static STRUCTURED_NEWLINE: 28 = 28'
+      content: 'static STRUCTURED_NEWLINE: 26 = 26'
       return:
         type:
-          - '28'
+          - '26'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.STRUCTURE_EQUALS
@@ -2296,10 +2383,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static STRUCTURE_EQUALS: 31 = 31'
+      content: 'static STRUCTURE_EQUALS: 29 = 29'
       return:
         type:
-          - '31'
+          - '29'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.STRUCTURE_IDENTIFIER
@@ -2311,10 +2398,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static STRUCTURE_IDENTIFIER: 30 = 30'
+      content: 'static STRUCTURE_IDENTIFIER: 28 = 28'
       return:
         type:
-          - '30'
+          - '28'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.STRUCTURE_NAME
@@ -2326,10 +2413,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static STRUCTURE_NAME: 24 = 24'
+      content: 'static STRUCTURE_NAME: 22 = 22'
       return:
         type:
-          - '24'
+          - '22'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.STRUCTURE_OR_MARK
@@ -2341,10 +2428,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static STRUCTURE_OR_MARK: 32 = 32'
+      content: 'static STRUCTURE_OR_MARK: 30 = 30'
       return:
         type:
-          - '32'
+          - '30'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.SWITCH
@@ -2356,10 +2443,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static SWITCH: 15 = 15'
+      content: 'static SWITCH: 13 = 13'
       return:
         type:
-          - '15'
+          - '13'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.switchCaseRule
@@ -2446,10 +2533,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static TEXT: 20 = 20'
+      content: 'static TEXT: 18 = 18'
       return:
         type:
-          - '20'
+          - '18'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.TEXT_IN_STRUCTURE_BODY
@@ -2461,10 +2548,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static TEXT_IN_STRUCTURE_BODY: 35 = 35'
+      content: 'static TEXT_IN_STRUCTURE_BODY: 33 = 33'
       return:
         type:
-          - '35'
+          - '33'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.TEXT_IN_STRUCTURE_NAME
@@ -2476,10 +2563,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static TEXT_IN_STRUCTURE_NAME: 25 = 25'
+      content: 'static TEXT_IN_STRUCTURE_NAME: 23 = 23'
       return:
         type:
-          - '25'
+          - '23'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.tokenFactory
@@ -2566,10 +2653,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static WS_IN_BODY: 9 = 9'
+      content: 'static WS_IN_BODY: 7 = 7'
       return:
         type:
-          - '9'
+          - '7'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.WS_IN_STRUCTURE_BODY
@@ -2581,10 +2668,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static WS_IN_STRUCTURE_BODY: 27 = 27'
+      content: 'static WS_IN_STRUCTURE_BODY: 25 = 25'
       return:
         type:
-          - '27'
+          - '25'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGTemplateParser.WS_IN_STRUCTURE_NAME
@@ -2596,10 +2683,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static WS_IN_STRUCTURE_NAME: 22 = 22'
+      content: 'static WS_IN_STRUCTURE_NAME: 20 = 20'
       return:
         type:
-          - '22'
+          - '20'
         description: ''
     package: botbuilder-lg
 references:
@@ -2627,6 +2714,18 @@ references:
       - name: ErrorTemplateStringContext
         fullName: ErrorTemplateStringContext
         uid: botbuilder-lg.ErrorTemplateStringContext
+  - uid: botbuilder-lg.ExpressionContext
+    name: ExpressionContext
+    spec.typeScript:
+      - name: ExpressionContext
+        fullName: ExpressionContext
+        uid: botbuilder-lg.ExpressionContext
+  - uid: botbuilder-lg.ExpressionInStructureContext
+    name: ExpressionInStructureContext
+    spec.typeScript:
+      - name: ExpressionInStructureContext
+        fullName: ExpressionInStructureContext
+        uid: botbuilder-lg.ExpressionInStructureContext
   - uid: botbuilder-lg.IfConditionContext
     name: IfConditionContext
     spec.typeScript:
@@ -2669,12 +2768,6 @@ references:
       - name: NormalTemplateStringContext
         fullName: NormalTemplateStringContext
         uid: botbuilder-lg.NormalTemplateStringContext
-  - uid: botbuilder-lg.ObjectStructureLineContext
-    name: ObjectStructureLineContext
-    spec.typeScript:
-      - name: ObjectStructureLineContext
-        fullName: ObjectStructureLineContext
-        uid: botbuilder-lg.ObjectStructureLineContext
   - uid: botbuilder-lg.StructuredBodyContentLineContext
     name: StructuredBodyContentLineContext
     spec.typeScript:

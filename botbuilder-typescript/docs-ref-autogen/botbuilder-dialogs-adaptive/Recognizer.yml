@@ -6,9 +6,10 @@ items:
     children:
       - botbuilder-dialogs-adaptive.Recognizer.id
       - botbuilder-dialogs-adaptive.Recognizer.recognize
+      - botbuilder-dialogs-adaptive.Recognizer.telemetryClient
     langs:
       - typeScript
-    type: interface
+    type: class
     summary: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.Recognizer.id
@@ -18,7 +19,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Recognizers unique ID.
     syntax:
       content: 'id: string'
       return:
@@ -27,27 +28,56 @@ items:
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.Recognizer.recognize
-    name: 'recognize(DialogContext, Partial<Activity>)'
+    name: >-
+      recognize(DialogContext, Partial<Activity>, [key: string]: string, [key:
+      string]: number)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: To recognize intents and entities in a users utterance.
     syntax:
       content: >-
         function recognize(dialogContext: DialogContext, activity:
-        Partial<Activity>)
+        Partial<Activity>, telemetryProperties?: [key: string]: string,
+        telemetryMetrics?: [key: string]: number)
       parameters:
         - id: dialogContext
           type:
             - DialogContext
-          description: ''
+          description: Dialog Context.
         - id: activity
           type:
             - Partial<Activity>
-          description: ''
+          description: Activity.
+        - id: telemetryProperties
+          type:
+            - '[key: string]: string'
+          description: Additional properties to be logged to telemetry with event.
+          optional: true
+        - id: telemetryMetrics
+          type:
+            - '[key: string]: number'
+          description: |
+            Additional metrics to be logged to telemetry with event.
+          optional: true
       return:
         type:
           - Promise<RecognizerResult>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.Recognizer.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Sets the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
         description: ''
     package: botbuilder-dialogs-adaptive

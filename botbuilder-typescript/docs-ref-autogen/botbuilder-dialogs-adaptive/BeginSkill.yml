@@ -21,7 +21,6 @@ items:
       - botbuilder-dialogs-adaptive.BeginSkill.repromptDialog
       - botbuilder-dialogs-adaptive.BeginSkill.resultProperty
       - botbuilder-dialogs-adaptive.BeginSkill.resumeDialog
-      - botbuilder-dialogs-adaptive.BeginSkill.setSkillHostOptions
       - botbuilder-dialogs-adaptive.BeginSkill.skillAppId
       - botbuilder-dialogs-adaptive.BeginSkill.skillEndpoint
       - botbuilder-dialogs-adaptive.BeginSkill.skillHostEndpoint
@@ -208,10 +207,10 @@ items:
     summary: ''
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
+        function endDialog(turnContext: TurnContext, instance: DialogInstance,
         reason: DialogReason)
       parameters:
-        - id: context
+        - id: turnContext
           type:
             - TurnContext
           description: ''
@@ -304,22 +303,26 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: The dialog context for the current turn of conversation.
         - id: e
           type:
             - DialogEvent
-          description: ''
+          description: The event being raised.
       return:
         type:
           - Promise<boolean>
-        description: ''
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.BeginSkill.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -329,9 +332,11 @@ items:
       - typeScript
     summary: ''
     syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      content: >-
+        function repromptDialog(turnContext: TurnContext, instance:
+        DialogInstance)
       parameters:
-        - id: context
+        - id: turnContext
           type:
             - TurnContext
           description: ''
@@ -387,37 +392,8 @@ items:
           optional: true
       return:
         type:
-          - Promise<DialogTurnResult>
+          - Promise<DialogTurnResult<any>>
         description: ''
-    package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.BeginSkill.setSkillHostOptions
-    name: >-
-      setSkillHostOptions(DialogManager, BotFrameworkClient,
-      SkillConversationIdFactoryBase)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Configures the skill client and conversation ID factory to use.
-    syntax:
-      content: >-
-        static function setSkillHostOptions(dm: DialogManager, skillClient:
-        BotFrameworkClient, conversationIdFactory:
-        SkillConversationIdFactoryBase)
-      parameters:
-        - id: dm
-          type:
-            - DialogManager
-          description: DialogManager to configure.
-        - id: skillClient
-          type:
-            - BotFrameworkClient
-          description: Skill client instance to use.
-        - id: conversationIdFactory
-          type:
-            - SkillConversationIdFactoryBase
-          description: |
-            Conversation ID factory to use.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.BeginSkill.skillAppId
     name: skillAppId

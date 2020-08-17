@@ -18,6 +18,8 @@ items:
       - adaptive-expressions.CommonRegexLexer.Caret
       - adaptive-expressions.CommonRegexLexer.CarriageReturn
       - adaptive-expressions.CommonRegexLexer.channel
+      - adaptive-expressions.CommonRegexLexer.channelNames
+      - adaptive-expressions.CommonRegexLexer.channelNames
       - adaptive-expressions.CommonRegexLexer.CharacterClassEnd
       - adaptive-expressions.CommonRegexLexer.CharacterClassStart
       - adaptive-expressions.CommonRegexLexer.charIndex
@@ -395,6 +397,36 @@ items:
       return:
         type:
           - number
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.CommonRegexLexer.channelNames
+    name: channelNames
+    fullName: channelNames
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'channelNames: string[]'
+      return:
+        type:
+          - 'string[]'
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.CommonRegexLexer.channelNames
+    name: channelNames
+    fullName: channelNames
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static channelNames: string[]'
+      return:
+        type:
+          - 'string[]'
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.CommonRegexLexer.CharacterClassEnd
@@ -1167,7 +1199,7 @@ items:
       - typeScript
     summary: |
       Get a map from rule names to rule indexes.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getRuleIndexMap()
       parameters: []
@@ -1203,7 +1235,7 @@ items:
       - typeScript
     summary: |
       Get a map from token names to token types.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getTokenTypeMap()
       parameters: []
@@ -2290,7 +2322,7 @@ items:
       Instruct the lexer to skip creating a token for current lexer rule
        and look for another token.  nextToken() knows to keep looking when
        a lexer rule finishes with token set to SKIP_TOKEN.  Recall that
-       if token==null at end of any token rule, it creates one for you
+       if token==undefined at end of any token rule, it creates one for you
        and emits it.
     syntax:
       content: function skip()

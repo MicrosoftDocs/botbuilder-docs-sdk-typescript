@@ -10,12 +10,11 @@ items:
       - botbuilder-lg.Evaluator.constructScope
       - botbuilder-lg.Evaluator.evaluateTemplate
       - botbuilder-lg.Evaluator.constructor
+      - botbuilder-lg.Evaluator.expandTextFunctionName
       - botbuilder-lg.Evaluator.expressionParser
-      - botbuilder-lg.Evaluator.expressionRecognizeReverseRegex
       - botbuilder-lg.Evaluator.fromFileFunctionName
       - botbuilder-lg.Evaluator.isTemplateFunctionName
       - botbuilder-lg.Evaluator.LGType
-      - botbuilder-lg.Evaluator.newLineRegex
       - botbuilder-lg.Evaluator.ReExecuteSuffix
       - botbuilder-lg.Evaluator.templateFunctionName
       - botbuilder-lg.Evaluator.templateMap
@@ -31,7 +30,6 @@ items:
       - botbuilder-lg.Evaluator.visitSwitchCaseBody
       - botbuilder-lg.Evaluator.visitTerminal
       - botbuilder-lg.Evaluator.wrappedEvalTextContainsExpression
-      - botbuilder-lg.Evaluator.wrappedRegExSplit
     langs:
       - typeScript
     type: class
@@ -57,9 +55,7 @@ items:
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.checkExpressionResult
-    name: >-
-      checkExpressionResult(string, string, any, string, ParserRuleContext,
-      string)
+    name: 'checkExpressionResult(string, string, any, string, string, string)'
     children: []
     type: method
     langs:
@@ -68,8 +64,8 @@ items:
     syntax:
       content: >-
         static function checkExpressionResult(exp: string, error: string,
-        result: any, templateName: string, context?: ParserRuleContext,
-        errorPrefix?: string)
+        result: any, templateName: string, inlineContent?: string, errorPrefix?:
+        string)
       parameters:
         - id: exp
           type:
@@ -87,9 +83,9 @@ items:
           type:
             - string
           description: ''
-        - id: context
+        - id: inlineContent
           type:
-            - ParserRuleContext
+            - string
           description: ''
           optional: true
         - id: errorPrefix
@@ -193,6 +189,21 @@ items:
           description: ''
           optional: true
     package: botbuilder-lg
+  - uid: botbuilder-lg.Evaluator.expandTextFunctionName
+    name: expandTextFunctionName
+    fullName: expandTextFunctionName
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static expandTextFunctionName: "expandText" = "expandText"'
+      return:
+        type:
+          - '"expandText"'
+        description: ''
+    package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.expressionParser
     name: expressionParser
     fullName: expressionParser
@@ -206,21 +217,6 @@ items:
       return:
         type:
           - ExpressionParser
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.Evaluator.expressionRecognizeReverseRegex
-    name: expressionRecognizeReverseRegex
-    fullName: expressionRecognizeReverseRegex
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'static expressionRecognizeReverseRegex: RegExp'
-      return:
-        type:
-          - RegExp
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.fromFileFunctionName
@@ -266,21 +262,6 @@ items:
       return:
         type:
           - '"lgType"'
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.Evaluator.newLineRegex
-    name: newLineRegex
-    fullName: newLineRegex
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'newLineRegex: RegExp'
-      return:
-        type:
-          - RegExp
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.Evaluator.ReExecuteSuffix
@@ -351,8 +332,8 @@ items:
       - typeScript
     summary: |
       {@inheritDoc}
-      <p>The default implementation calls <xref:ParseTree%23accept> on the
-      specified tree.</p>
+      The default implementation calls <xref:ParseTree%23accept> on the
+      specified tree.
     syntax:
       content: 'function visit(tree: ParseTree)'
       parameters:
@@ -373,17 +354,17 @@ items:
       - typeScript
     summary: |
       {@inheritDoc}
-      <p>The default implementation initializes the aggregate result to
+      The default implementation initializes the aggregate result to
       [defaultResult()](xref:%23defaultResult). Before visiting each child, it
       calls [shouldVisitNextChild](xref:%23shouldVisitNextChild); if the result
-      is {@code false} no more children are visited and the current aggregate
+      is `false` no more children are visited and the current aggregate
       result is returned. After visiting a child, the aggregate result is
       updated by calling [aggregateResult](xref:%23aggregateResult) with the
-      previous aggregate result and the result of visiting the child.</p>
+      previous aggregate result and the result of visiting the child.
 
-      <p>The default implementation is not safe for use in visitors that modify
+      The default implementation is not safe for use in visitors that modify
       the tree structure. Visitors that modify the tree should override this
-      method to behave properly in respect to the specific algorithm in use.</p>
+      method to behave properly in respect to the specific algorithm in use.
     syntax:
       content: 'function visitChildren(node: RuleNode)'
       parameters:
@@ -404,8 +385,8 @@ items:
       - typeScript
     summary: |
       {@inheritDoc}
-      <p>The default implementation returns the result of
-      [defaultResult](xref:%23defaultResult).</p>
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
     syntax:
       content: 'function visitErrorNode(node: ErrorNode)'
       parameters:
@@ -540,8 +521,8 @@ items:
       - typeScript
     summary: |
       {@inheritDoc}
-      <p>The default implementation returns the result of
-      [defaultResult](xref:%23defaultResult).</p>
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
     syntax:
       content: 'function visitTerminal(node: TerminalNode)'
       parameters:
@@ -575,29 +556,6 @@ items:
       return:
         type:
           - string
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.Evaluator.wrappedRegExSplit
-    name: 'wrappedRegExSplit(string, RegExp)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'static function wrappedRegExSplit(inputString: string, regex: RegExp)'
-      parameters:
-        - id: inputString
-          type:
-            - string
-          description: ''
-        - id: regex
-          type:
-            - RegExp
-          description: ''
-      return:
-        type:
-          - 'string[]'
         description: ''
     package: botbuilder-lg
 references:

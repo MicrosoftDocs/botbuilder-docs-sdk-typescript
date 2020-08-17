@@ -5,11 +5,12 @@ items:
     fullName: LuisAdaptiveRecognizer
     children:
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.applicationId
-      - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.configure
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.dynamicLists
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.endpoint
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.endpointKey
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.id
+      - >-
+        botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.logPersonalInformation
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.predictionOptions
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.recognize
       - botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.recognizerOptions
@@ -19,7 +20,7 @@ items:
     type: class
     summary: ''
     extends:
-      name: Configurable
+      name: botbuilder-dialogs-adaptive.Recognizer
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.applicationId
     name: applicationId
@@ -34,26 +35,6 @@ items:
       return:
         type:
           - StringExpression
-        description: ''
-    package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.configure
-    name: configure(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Fluent method for configuring the object.
-    syntax:
-      content: 'function configure(config: object)'
-      parameters:
-        - id: config
-          type:
-            - object
-          description: |
-            Configuration settings to apply.
-      return:
-        type:
-          - this
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.dynamicLists
@@ -117,6 +98,23 @@ items:
           - string
         description: ''
     package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.logPersonalInformation
+    name: logPersonalInformation
+    fullName: logPersonalInformation
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The flag to indicate in personal information should be logged in
+      telemetry.
+    syntax:
+      content: 'logPersonalInformation: BoolExpression'
+      return:
+        type:
+          - BoolExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.predictionOptions
     name: predictionOptions
     fullName: predictionOptions
@@ -133,14 +131,19 @@ items:
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.LuisAdaptiveRecognizer.recognize
-    name: 'recognize(DialogContext, Activity)'
+    name: >-
+      recognize(DialogContext, Activity, [key: string]: string, [key: string]:
+      number)
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function recognize(dialogContext: DialogContext, activity: Activity)'
+      content: >-
+        function recognize(dialogContext: DialogContext, activity: Activity,
+        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
+        string]: number)
       parameters:
         - id: dialogContext
           type:
@@ -150,6 +153,16 @@ items:
           type:
             - Activity
           description: ''
+        - id: telemetryProperties
+          type:
+            - '[key: string]: string'
+          description: ''
+          optional: true
+        - id: telemetryMetrics
+          type:
+            - '[key: string]: number'
+          description: ''
+          optional: true
       return:
         type:
           - Promise<RecognizerResult>
@@ -182,7 +195,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Telemetry client.
+    summary: Sets the telemetry client for this dialog.
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
@@ -190,3 +203,10 @@ items:
           - BotTelemetryClient
         description: ''
     package: botbuilder-dialogs-adaptive
+references:
+  - uid: botbuilder-dialogs-adaptive.Recognizer
+    name: Recognizer
+    spec.typeScript:
+      - name: Recognizer
+        fullName: Recognizer
+        uid: botbuilder-dialogs-adaptive.Recognizer

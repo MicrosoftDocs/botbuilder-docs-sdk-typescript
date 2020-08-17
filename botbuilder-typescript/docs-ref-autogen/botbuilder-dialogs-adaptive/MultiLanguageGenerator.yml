@@ -7,43 +7,43 @@ items:
       - botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
       - botbuilder-dialogs-adaptive.MultiLanguageGenerator.languageGenerators
       - botbuilder-dialogs-adaptive.MultiLanguageGenerator.languagePolicy
-      - botbuilder-dialogs-adaptive.MultiLanguageGenerator.constructor
       - botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
     langs:
       - typeScript
     type: class
     summary: >-
-      ILanguageGenerator which uses implements a map of
-      locale->ILanguageGenerator for the locale
+      LanguageGenerator which uses implements a map of locale->LanguageGenerator
+      for the locale
 
       and has a policy which controls fallback (try en-us -> en -> default).
     extends:
       name: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
-    name: 'generate(TurnContext, string, object)'
+    name: 'generate(DialogContext, string, object)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Find a language generator that matches the current context locale.
     syntax:
       content: >-
-        function generate(turnContext: TurnContext, template: string, data:
+        function generate(dialogContext: DialogContext, template: string, data:
         object)
       parameters:
-        - id: turnContext
+        - id: dialogContext
           type:
-            - TurnContext
-          description: ''
+            - DialogContext
+          description: Context for the current turn of conversation.
         - id: template
           type:
             - string
-          description: ''
+          description: Template to use.
         - id: data
           type:
             - object
-          description: ''
+          description: |
+            Data to bind to.
       return:
         type:
           - Promise<string>
@@ -56,7 +56,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets or sets the language generators for multiple languages.
     syntax:
       content: 'languageGenerators: Map<string, LanguageGenerator>'
       return:
@@ -71,43 +71,33 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Language policy required by language generator.
     syntax:
-      content: 'languagePolicy: any'
+      content: 'languagePolicy: LanguagePolicy'
       return:
         type:
-          - any
+          - botbuilder-dialogs-adaptive.LanguagePolicy
         description: ''
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.constructor
-    name: MultiLanguageGenerator()
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: new MultiLanguageGenerator()
-      parameters: []
-    package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
-    name: 'tryGetGenerator(TurnContext, string)'
+    name: 'tryGetGenerator(DialogContext, string)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Implementation of lookup by locale.
     syntax:
-      content: 'function tryGetGenerator(context: TurnContext, locale: string)'
+      content: 'function tryGetGenerator(dialogContext: DialogContext, locale: string)'
       parameters:
-        - id: context
+        - id: dialogContext
           type:
-            - TurnContext
-          description: ''
+            - DialogContext
+          description: Context for the current turn of conversation with the user.
         - id: locale
           type:
             - string
-          description: ''
+          description: |
+            Locale to lookup.
       return:
         type:
           - Object
@@ -130,3 +120,9 @@ references:
         uid: botbuilder-dialogs-adaptive.LanguageGenerator
       - name: '>'
         fullName: '>'
+  - uid: botbuilder-dialogs-adaptive.LanguagePolicy
+    name: LanguagePolicy
+    spec.typeScript:
+      - name: LanguagePolicy
+        fullName: LanguagePolicy
+        uid: botbuilder-dialogs-adaptive.LanguagePolicy

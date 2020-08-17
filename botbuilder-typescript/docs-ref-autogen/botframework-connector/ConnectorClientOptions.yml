@@ -13,9 +13,11 @@ items:
       - botframework-connector.ConnectorClientOptions.httpClient
       - botframework-connector.ConnectorClientOptions.httpPipelineLogger
       - botframework-connector.ConnectorClientOptions.noRetryPolicy
+      - botframework-connector.ConnectorClientOptions.proxySettings
       - botframework-connector.ConnectorClientOptions.requestPolicyFactories
       - botframework-connector.ConnectorClientOptions.rpRegistrationRetryTimeout
       - botframework-connector.ConnectorClientOptions.userAgent
+      - botframework-connector.ConnectorClientOptions.userAgentHeaderName
       - botframework-connector.ConnectorClientOptions.withCredentials
     langs:
       - typeScript
@@ -31,9 +33,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: |-
+      (Optional) baseUri will be set automatically within BotFrameworkAdapter,
+      but is required if using the ConnectorClient outside of the adapter.
+    optional: true
     syntax:
-      content: 'baseUri: string'
+      content: 'baseUri?: string'
       return:
         type:
           - string
@@ -145,6 +150,22 @@ items:
           - boolean
         description: ''
     package: botframework-connector
+  - uid: botframework-connector.ConnectorClientOptions.proxySettings
+    name: proxySettings
+    fullName: proxySettings
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Proxy settings which will be used for every HTTP request (Node.js only).
+    optional: true
+    syntax:
+      content: 'proxySettings?: ProxySettings'
+      return:
+        type:
+          - ProxySettings
+        description: ''
+    package: botframework-connector
   - uid: botframework-connector.ConnectorClientOptions.requestPolicyFactories
     name: requestPolicyFactories
     fullName: requestPolicyFactories
@@ -154,15 +175,23 @@ items:
     type: property
     summary: >-
       An array of factories which get called to create the RequestPolicy
-      pipeline
+      pipeline used to send a HTTP
 
-      used to send a HTTP request on the wire.
+      request on the wire, or a function that takes in the
+      defaultRequestPolicyFactories and returns
+
+      the requestPolicyFactories that will be used.
     optional: true
     syntax:
-      content: 'requestPolicyFactories?: RequestPolicyFactory[]'
+      content: >-
+        requestPolicyFactories?: RequestPolicyFactory[] |
+        (defaultRequestPolicyFactories: RequestPolicyFactory[]) => void |
+        Object[]
       return:
         type:
-          - 'RequestPolicyFactory[]'
+          - >-
+            RequestPolicyFactory[] | (defaultRequestPolicyFactories:
+            RequestPolicyFactory[]) => void | Object[]
         description: ''
     package: botframework-connector
   - uid: botframework-connector.ConnectorClientOptions.rpRegistrationRetryTimeout
@@ -190,13 +219,43 @@ items:
     langs:
       - typeScript
     type: property
-    summary: The string to be set to the telemetry header while sending the request.
+    summary: >-
+      The string to be set to the telemetry header while sending the request, or
+      a function that
+
+      takes in the default user-agent string and returns the user-agent string
+      that will be used.
     optional: true
     syntax:
-      content: 'userAgent?: string'
+      content: 'userAgent?: string | (defaultUserAgent: string) => string'
       return:
         type:
-          - string
+          - 'string | (defaultUserAgent: string) => string'
+        description: ''
+    package: botframework-connector
+  - uid: botframework-connector.ConnectorClientOptions.userAgentHeaderName
+    name: userAgentHeaderName
+    fullName: userAgentHeaderName
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The header name to use for the telemetry header while sending the request.
+      If this is not
+
+      specified, then "User-Agent" will be used when running on Node.js and
+      "x-ms-command-name" will
+
+      be used when running in a browser.
+    optional: true
+    syntax:
+      content: >-
+        userAgentHeaderName?: string | (defaultUserAgentHeaderName: string) =>
+        string
+      return:
+        type:
+          - 'string | (defaultUserAgentHeaderName: string) => string'
         description: ''
     package: botframework-connector
   - uid: botframework-connector.ConnectorClientOptions.withCredentials

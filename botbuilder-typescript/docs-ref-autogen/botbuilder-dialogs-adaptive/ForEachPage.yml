@@ -17,6 +17,8 @@ items:
       - botbuilder-dialogs-adaptive.ForEachPage.id
       - botbuilder-dialogs-adaptive.ForEachPage.itemsProperty
       - botbuilder-dialogs-adaptive.ForEachPage.onDialogEvent
+      - botbuilder-dialogs-adaptive.ForEachPage.page
+      - botbuilder-dialogs-adaptive.ForEachPage.pageIndex
       - botbuilder-dialogs-adaptive.ForEachPage.pageSize
       - botbuilder-dialogs-adaptive.ForEachPage.repromptDialog
       - botbuilder-dialogs-adaptive.ForEachPage.resumeDialog
@@ -243,9 +245,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      An encoded string used to aid in the detection of bot changes on
-      re-deployment.
+    summary: ''
     syntax:
       content: function getVersion()
       parameters: []
@@ -254,22 +254,6 @@ items:
           - string
         description: ''
     package: botbuilder-dialogs-adaptive
-    remarks: >-
-      This defaults to returning the dialogs [id](#id) but can be overridden to
-      provide more
-
-      precise change detection logic. Any dialog on the stack that has its
-      version change will
-
-      result in a `versionChanged` event will be raised. If this event is not
-      handled by the bot,
-
-      an error will be thrown resulting in the bots error handler logic being
-      run.
-
-
-      Returning an empty string will disable version tracking for the component
-      all together.
   - uid: botbuilder-dialogs-adaptive.ForEachPage.id
     name: id
     fullName: id
@@ -307,21 +291,55 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: The dialog context for the current turn of conversation.
         - id: e
           type:
             - DialogEvent
-          description: ''
+          description: The event being raised.
       return:
         type:
           - Promise<boolean>
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.ForEachPage.page
+    name: page
+    fullName: page
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Expression used to compute the list that should be enumerated.
+    syntax:
+      content: 'page: StringExpression'
+      return:
+        type:
+          - StringExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.ForEachPage.pageIndex
+    name: pageIndex
+    fullName: pageIndex
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Expression used to compute the list that should be enumerated.
+    syntax:
+      content: 'pageIndex: StringExpression'
+      return:
+        type:
+          - StringExpression
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ForEachPage.pageSize
