@@ -4,9 +4,9 @@ items:
     name: PathUtil
     fullName: PathUtil
     children:
-      - botbuilder-dialogs-declarative.PathUtil.getAllFiles
-      - botbuilder-dialogs-declarative.PathUtil.GetDirectories
-      - botbuilder-dialogs-declarative.PathUtil.IsDirectory
+      - botbuilder-dialogs-declarative.PathUtil.getDirectories
+      - botbuilder-dialogs-declarative.PathUtil.getFiles
+      - botbuilder-dialogs-declarative.PathUtil.isDirectory
     langs:
       - typeScript
     type: class
@@ -14,52 +14,68 @@ items:
       Copyright (c) Microsoft Corporation. All rights reserved.
       Licensed under the MIT License.
     package: botbuilder-dialogs-declarative
-  - uid: botbuilder-dialogs-declarative.PathUtil.getAllFiles
-    name: getAllFiles(string)
+  - uid: botbuilder-dialogs-declarative.PathUtil.getDirectories
+    name: getDirectories(string)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Get sub folders in a directory
     syntax:
-      content: 'static function getAllFiles(dir: string)'
+      content: 'static function getDirectories(path: string)'
       parameters:
-        - id: dir
+        - id: path
           type:
             - string
-          description: ''
+          description: |
+            Path of root directory
       return:
         type:
           - 'string[]'
         description: ''
     package: botbuilder-dialogs-declarative
-  - uid: botbuilder-dialogs-declarative.PathUtil.GetDirectories
-    name: GetDirectories
-    fullName: GetDirectories
+  - uid: botbuilder-dialogs-declarative.PathUtil.getFiles
+    name: 'getFiles(string, boolean)'
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
-    summary: ''
+    summary: Get files in a directory
     syntax:
-      content: 'static GetDirectories: (source: any) => string[]'
+      content: 'static function getFiles(path: string, includeSubFolders?: boolean)'
+      parameters:
+        - id: path
+          type:
+            - string
+          description: Path of root directory
+        - id: includeSubFolders
+          type:
+            - boolean
+          description: |
+            Whether include its sub folders
+          optional: true
       return:
         type:
-          - '(source: any) => string[]'
+          - 'string[]'
         description: ''
     package: botbuilder-dialogs-declarative
-  - uid: botbuilder-dialogs-declarative.PathUtil.IsDirectory
-    name: IsDirectory
-    fullName: IsDirectory
+  - uid: botbuilder-dialogs-declarative.PathUtil.isDirectory
+    name: isDirectory(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
-    summary: ''
+    summary: Check if a path is a directory
     syntax:
-      content: 'static IsDirectory: (source: any) => boolean'
+      content: 'static function isDirectory(path: string)'
+      parameters:
+        - id: path
+          type:
+            - string
+          description: |
+            Path of the diretory
       return:
         type:
-          - '(source: any) => boolean'
+          - boolean
         description: ''
     package: botbuilder-dialogs-declarative

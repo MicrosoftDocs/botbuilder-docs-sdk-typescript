@@ -14,11 +14,13 @@ items:
       - botframework-connector.TeamsConnectorClientOptions.httpClient
       - botframework-connector.TeamsConnectorClientOptions.httpPipelineLogger
       - botframework-connector.TeamsConnectorClientOptions.noRetryPolicy
+      - botframework-connector.TeamsConnectorClientOptions.proxySettings
       - >-
         botframework-connector.TeamsConnectorClientOptions.requestPolicyFactories
       - >-
         botframework-connector.TeamsConnectorClientOptions.rpRegistrationRetryTimeout
       - botframework-connector.TeamsConnectorClientOptions.userAgent
+      - botframework-connector.TeamsConnectorClientOptions.userAgentHeaderName
       - botframework-connector.TeamsConnectorClientOptions.withCredentials
     langs:
       - typeScript
@@ -151,6 +153,22 @@ items:
           - boolean
         description: ''
     package: botframework-connector
+  - uid: botframework-connector.TeamsConnectorClientOptions.proxySettings
+    name: proxySettings
+    fullName: proxySettings
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Proxy settings which will be used for every HTTP request (Node.js only).
+    optional: true
+    syntax:
+      content: 'proxySettings?: ProxySettings'
+      return:
+        type:
+          - ProxySettings
+        description: ''
+    package: botframework-connector
   - uid: botframework-connector.TeamsConnectorClientOptions.requestPolicyFactories
     name: requestPolicyFactories
     fullName: requestPolicyFactories
@@ -160,15 +178,23 @@ items:
     type: property
     summary: >-
       An array of factories which get called to create the RequestPolicy
-      pipeline
+      pipeline used to send a HTTP
 
-      used to send a HTTP request on the wire.
+      request on the wire, or a function that takes in the
+      defaultRequestPolicyFactories and returns
+
+      the requestPolicyFactories that will be used.
     optional: true
     syntax:
-      content: 'requestPolicyFactories?: RequestPolicyFactory[]'
+      content: >-
+        requestPolicyFactories?: RequestPolicyFactory[] |
+        (defaultRequestPolicyFactories: RequestPolicyFactory[]) => void |
+        Object[]
       return:
         type:
-          - 'RequestPolicyFactory[]'
+          - >-
+            RequestPolicyFactory[] | (defaultRequestPolicyFactories:
+            RequestPolicyFactory[]) => void | Object[]
         description: ''
     package: botframework-connector
   - uid: >-
@@ -197,13 +223,43 @@ items:
     langs:
       - typeScript
     type: property
-    summary: The string to be set to the telemetry header while sending the request.
+    summary: >-
+      The string to be set to the telemetry header while sending the request, or
+      a function that
+
+      takes in the default user-agent string and returns the user-agent string
+      that will be used.
     optional: true
     syntax:
-      content: 'userAgent?: string'
+      content: 'userAgent?: string | (defaultUserAgent: string) => string'
       return:
         type:
-          - string
+          - 'string | (defaultUserAgent: string) => string'
+        description: ''
+    package: botframework-connector
+  - uid: botframework-connector.TeamsConnectorClientOptions.userAgentHeaderName
+    name: userAgentHeaderName
+    fullName: userAgentHeaderName
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      The header name to use for the telemetry header while sending the request.
+      If this is not
+
+      specified, then "User-Agent" will be used when running on Node.js and
+      "x-ms-command-name" will
+
+      be used when running in a browser.
+    optional: true
+    syntax:
+      content: >-
+        userAgentHeaderName?: string | (defaultUserAgentHeaderName: string) =>
+        string
+      return:
+        type:
+          - 'string | (defaultUserAgentHeaderName: string) => string'
         description: ''
     package: botframework-connector
   - uid: botframework-connector.TeamsConnectorClientOptions.withCredentials

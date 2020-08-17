@@ -5,13 +5,17 @@ items:
     fullName: QuantifierContext
     children:
       - adaptive-expressions.QuantifierContext.accept
+      - adaptive-expressions.QuantifierContext.addAnyChild
       - adaptive-expressions.QuantifierContext.addChild_1
       - adaptive-expressions.QuantifierContext.addChild
       - adaptive-expressions.QuantifierContext.addChild_2
       - adaptive-expressions.QuantifierContext.addErrorNode
+      - adaptive-expressions.QuantifierContext.addErrorNode_1
       - adaptive-expressions.QuantifierContext.altNumber
       - adaptive-expressions.QuantifierContext.childCount
       - adaptive-expressions.QuantifierContext.children
+      - adaptive-expressions.QuantifierContext.CloseBrace
+      - adaptive-expressions.QuantifierContext.Comma
       - adaptive-expressions.QuantifierContext.copyFrom
       - adaptive-expressions.QuantifierContext.depth
       - adaptive-expressions.QuantifierContext.emptyContext
@@ -29,14 +33,19 @@ items:
       - adaptive-expressions.QuantifierContext.isEmpty
       - adaptive-expressions.QuantifierContext.number
       - adaptive-expressions.QuantifierContext.number_1
+      - adaptive-expressions.QuantifierContext.OpenBrace
       - adaptive-expressions.QuantifierContext.parent
       - adaptive-expressions.QuantifierContext.payload
+      - adaptive-expressions.QuantifierContext.Plus
       - adaptive-expressions.QuantifierContext.constructor
       - adaptive-expressions.QuantifierContext.quantifier_type
+      - adaptive-expressions.QuantifierContext.QuestionMark
       - adaptive-expressions.QuantifierContext.removeLastChild
       - adaptive-expressions.QuantifierContext.ruleContext
       - adaptive-expressions.QuantifierContext.ruleIndex
+      - adaptive-expressions.QuantifierContext.setParent
       - adaptive-expressions.QuantifierContext.sourceInterval
+      - adaptive-expressions.QuantifierContext.Star
       - adaptive-expressions.QuantifierContext.start
       - adaptive-expressions.QuantifierContext.stop
       - adaptive-expressions.QuantifierContext.text
@@ -78,6 +87,34 @@ items:
           - Result
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.addAnyChild
+    name: addAnyChild(T)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |
+      Add a parse tree node to this as a child.  Works for
+       internal and leaf nodes. Does not set parent link;
+       other add methods must do that. Other addChild methods
+       call this.
+       We cannot set the parent pointer of the incoming node
+       because the existing interfaces do not have a setParent()
+       method and I don't want to break backward compatibility for this.
+
+       @since 4.7
+    syntax:
+      content: 'function addAnyChild<T>(t: T)'
+      parameters:
+        - id: t
+          type:
+            - T
+          description: ''
+      return:
+        type:
+          - T
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.addChild_1
     name: addChild(RuleContext)
     children: []
@@ -99,7 +136,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add a token leaf node child and force its parent to be this node.
     syntax:
       content: 'function addChild(t: TerminalNode)'
       parameters:
@@ -114,7 +151,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon matchedToken. It
+
+      creates a TerminalNodeImpl rather than using
+
+      [Token)](xref:Parser%23createTerminalNode(ParserRuleContext%2C). I'm
+      leaving this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addChild(matchedToken: Token)'
       parameters:
@@ -128,12 +173,39 @@ items:
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.addErrorNode
+    name: addErrorNode(ErrorNode)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Add an error node child and force its parent to be this node.
+    syntax:
+      content: 'function addErrorNode(errorNode: ErrorNode)'
+      parameters:
+        - id: errorNode
+          type:
+            - ErrorNode
+          description: ''
+      return:
+        type:
+          - ErrorNode
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.addErrorNode_1
     name: addErrorNode(Token)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon badToken. It
+
+      creates a ErrorNode rather than using
+
+      [Token)](xref:Parser%23createErrorNode(ParserRuleContext%2C). I'm leaving
+      this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addErrorNode(badToken: Token)'
       parameters:
@@ -203,6 +275,36 @@ items:
           - 'ParseTree[]'
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.CloseBrace
+    name: CloseBrace()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function CloseBrace()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.Comma
+    name: Comma()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function Comma()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.copyFrom
     name: copyFrom(ParserRuleContext)
     children: []
@@ -211,7 +313,8 @@ items:
       - typeScript
     summary: |
       COPY a ctx (I'm deliberately not using copy constructor) to avoid
-      confusion with creating node with parent. Does not copy children.
+      confusion with creating node with parent. Does not copy children
+      (except error leaves).
       This is used in the generated parser code to flip a generic XContext
       node for rule X to a YContext for alt label Y. In that sense, it is not
       really a generic copy function.
@@ -281,7 +384,7 @@ items:
     type: property
     summary: |-
       The exception that forced this rule to return. If the rule successfully
-      completed, this is {@code null}.
+      completed, this is `undefined`.
     optional: true
     syntax:
       content: 'exception?: RecognitionException'
@@ -522,6 +625,21 @@ items:
           - adaptive-expressions.NumberContext
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.OpenBrace
+    name: OpenBrace()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function OpenBrace()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.parent
     name: parent
     fullName: parent
@@ -550,6 +668,21 @@ items:
       return:
         type:
           - RuleContext
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.Plus
+    name: Plus()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function Plus()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.constructor
@@ -586,6 +719,21 @@ items:
       return:
         type:
           - adaptive-expressions.Quantifier_typeContext
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.QuestionMark
+    name: QuestionMark()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function QuestionMark()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.removeLastChild
@@ -632,6 +780,21 @@ items:
           - number
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.setParent
+    name: setParent(RuleContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function setParent(parent: RuleContext)'
+      parameters:
+        - id: parent
+          type:
+            - RuleContext
+          description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.sourceInterval
     name: sourceInterval
     fullName: sourceInterval
@@ -645,6 +808,21 @@ items:
       return:
         type:
           - Interval
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.QuantifierContext.Star
+    name: Star()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function Star()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.QuantifierContext.start
@@ -698,10 +876,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: |-
+    summary: |
       Return the combined text of all child nodes. This method only considers
        tokens which have been added to the parse tree.
-       <p>
        Since tokens on hidden channels (e.g. whitespace or comments) are not
        added to the parse trees, they will not appear in the output of this
        method.

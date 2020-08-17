@@ -97,15 +97,12 @@ items:
 
       ```
 
-      var resource = await connector.conversations.CreateConversation(new
-      ConversationParameters(){
+      const resource = await connector.conversations.createConversation({
+          bot,
+          members: [{ id: 'user1' }]
+      });
 
-      Bot = bot, members = new ChannelAccount[] { new ChannelAccount("user1") }
-      );
-
-      await connect.Conversations.SendToConversationAsync(resource.Id, new
-      Activity() ... ) ;
-
+      await connector.conversations.sendToConversation(resource.Id, ... );
 
       ```
     syntax:

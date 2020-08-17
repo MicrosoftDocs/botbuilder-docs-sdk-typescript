@@ -10,9 +10,8 @@ items:
       - botbuilder-dialogs.DialogContext.child
       - botbuilder-dialogs.DialogContext.context
       - botbuilder-dialogs.DialogContext.continueDialog
-      - botbuilder-dialogs.DialogContext.constructor
-      - botbuilder-dialogs.DialogContext.constructor_2
       - botbuilder-dialogs.DialogContext.constructor_1
+      - botbuilder-dialogs.DialogContext.constructor
       - botbuilder-dialogs.DialogContext.dialogManager
       - botbuilder-dialogs.DialogContext.dialogs
       - botbuilder-dialogs.DialogContext.emitEvent
@@ -23,6 +22,7 @@ items:
       - botbuilder-dialogs.DialogContext.prompt_1
       - botbuilder-dialogs.DialogContext.replaceDialog
       - botbuilder-dialogs.DialogContext.repromptDialog
+      - botbuilder-dialogs.DialogContext.services
       - botbuilder-dialogs.DialogContext.stack
       - botbuilder-dialogs.DialogContext.state
     langs:
@@ -287,26 +287,7 @@ items:
       }
 
       ```
-  - uid: botbuilder-dialogs.DialogContext.constructor
-    name: DialogContext(DialogContext)
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: >-
-      Creates an new instance of the
-      [DialogContext](xref:botbuilder-dialogs.DialogContext) class.
-    syntax:
-      content: 'new DialogContext(dialogContext: DialogContext)'
-      parameters:
-        - id: dialogContext
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: |
-            The dialog context to clone.
-    package: botbuilder-dialogs
-    remarks: Passing in a dialog context instance will clone the dialog context.
-  - uid: botbuilder-dialogs.DialogContext.constructor_2
+  - uid: botbuilder-dialogs.DialogContext.constructor_1
     name: 'DialogContext(DialogSet, DialogContext, DialogState)'
     children: []
     type: constructor
@@ -327,14 +308,15 @@ items:
         - id: contextOrDC
           type:
             - botbuilder-dialogs.DialogContext
-          description: ''
+          description: The context object for the current turn of the bot.
         - id: state
           type:
             - botbuilder-dialogs.DialogState
-          description: The state object to use to read and write dialog state to storage.
+          description: |
+            The state object to use to read and write dialog state to storage.
     package: botbuilder-dialogs
     remarks: Passing in a dialog context instance will clone the dialog context.
-  - uid: botbuilder-dialogs.DialogContext.constructor_1
+  - uid: botbuilder-dialogs.DialogContext.constructor
     name: 'DialogContext(DialogSet, TurnContext, DialogState)'
     children: []
     type: constructor
@@ -355,11 +337,12 @@ items:
         - id: contextOrDC
           type:
             - TurnContext
-          description: ''
+          description: The context object for the current turn of the bot.
         - id: state
           type:
             - botbuilder-dialogs.DialogState
-          description: The state object to use to read and write dialog state to storage.
+          description: |
+            The state object to use to read and write dialog state to storage.
     package: botbuilder-dialogs
     remarks: Passing in a dialog context instance will clone the dialog context.
   - uid: botbuilder-dialogs.DialogContext.dialogManager
@@ -727,6 +710,21 @@ items:
       await dc.repromptDialog();
 
       ```
+  - uid: botbuilder-dialogs.DialogContext.services
+    name: services
+    fullName: services
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets the services collection which is contextual to this dialog context.
+    syntax:
+      content: 'services: TurnContextStateCollection'
+      return:
+        type:
+          - TurnContextStateCollection
+        description: ''
+    package: botbuilder-dialogs
   - uid: botbuilder-dialogs.DialogContext.stack
     name: stack
     fullName: stack
@@ -749,7 +747,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets the DialogStateManager which manages view of all memory scopes.
     syntax:
       content: 'state: DialogStateManager'
       return:
@@ -758,12 +756,6 @@ items:
         description: ''
     package: botbuilder-dialogs
 references:
-  - uid: botbuilder-dialogs.DialogContext
-    name: DialogContext
-    spec.typeScript:
-      - name: DialogContext
-        fullName: DialogContext
-        uid: botbuilder-dialogs.DialogContext
   - uid: botbuilder-dialogs.DialogSet
     name: DialogSet
     spec.typeScript:
@@ -776,6 +768,12 @@ references:
       - name: DialogState
         fullName: DialogState
         uid: botbuilder-dialogs.DialogState
+  - uid: botbuilder-dialogs.DialogContext
+    name: DialogContext
+    spec.typeScript:
+      - name: DialogContext
+        fullName: DialogContext
+        uid: botbuilder-dialogs.DialogContext
   - uid: botbuilder-dialogs.DialogInstance | undefined
     name: DialogInstance | undefined
     spec.typeScript:

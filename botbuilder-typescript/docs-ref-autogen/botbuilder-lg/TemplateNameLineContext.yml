@@ -5,10 +5,12 @@ items:
     fullName: TemplateNameLineContext
     children:
       - botbuilder-lg.TemplateNameLineContext.accept
+      - botbuilder-lg.TemplateNameLineContext.addAnyChild
       - botbuilder-lg.TemplateNameLineContext.addChild_1
       - botbuilder-lg.TemplateNameLineContext.addChild
       - botbuilder-lg.TemplateNameLineContext.addChild_2
       - botbuilder-lg.TemplateNameLineContext.addErrorNode
+      - botbuilder-lg.TemplateNameLineContext.addErrorNode_1
       - botbuilder-lg.TemplateNameLineContext.altNumber
       - botbuilder-lg.TemplateNameLineContext.childCount
       - botbuilder-lg.TemplateNameLineContext.children
@@ -33,6 +35,7 @@ items:
       - botbuilder-lg.TemplateNameLineContext.removeLastChild
       - botbuilder-lg.TemplateNameLineContext.ruleContext
       - botbuilder-lg.TemplateNameLineContext.ruleIndex
+      - botbuilder-lg.TemplateNameLineContext.setParent
       - botbuilder-lg.TemplateNameLineContext.sourceInterval
       - botbuilder-lg.TemplateNameLineContext.start
       - botbuilder-lg.TemplateNameLineContext.stop
@@ -77,6 +80,34 @@ items:
           - Result
         description: ''
     package: botbuilder-lg
+  - uid: botbuilder-lg.TemplateNameLineContext.addAnyChild
+    name: addAnyChild(T)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |
+      Add a parse tree node to this as a child.  Works for
+       internal and leaf nodes. Does not set parent link;
+       other add methods must do that. Other addChild methods
+       call this.
+       We cannot set the parent pointer of the incoming node
+       because the existing interfaces do not have a setParent()
+       method and I don't want to break backward compatibility for this.
+
+       @since 4.7
+    syntax:
+      content: 'function addAnyChild<T>(t: T)'
+      parameters:
+        - id: t
+          type:
+            - T
+          description: ''
+      return:
+        type:
+          - T
+        description: ''
+    package: botbuilder-lg
   - uid: botbuilder-lg.TemplateNameLineContext.addChild_1
     name: addChild(RuleContext)
     children: []
@@ -98,7 +129,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add a token leaf node child and force its parent to be this node.
     syntax:
       content: 'function addChild(t: TerminalNode)'
       parameters:
@@ -113,7 +144,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon matchedToken. It
+
+      creates a TerminalNodeImpl rather than using
+
+      [Token)](xref:Parser%23createTerminalNode(ParserRuleContext%2C). I'm
+      leaving this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addChild(matchedToken: Token)'
       parameters:
@@ -127,12 +166,39 @@ items:
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateNameLineContext.addErrorNode
+    name: addErrorNode(ErrorNode)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Add an error node child and force its parent to be this node.
+    syntax:
+      content: 'function addErrorNode(errorNode: ErrorNode)'
+      parameters:
+        - id: errorNode
+          type:
+            - ErrorNode
+          description: ''
+      return:
+        type:
+          - ErrorNode
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.TemplateNameLineContext.addErrorNode_1
     name: addErrorNode(Token)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon badToken. It
+
+      creates a ErrorNode rather than using
+
+      [Token)](xref:Parser%23createErrorNode(ParserRuleContext%2C). I'm leaving
+      this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addErrorNode(badToken: Token)'
       parameters:
@@ -210,7 +276,8 @@ items:
       - typeScript
     summary: |
       COPY a ctx (I'm deliberately not using copy constructor) to avoid
-      confusion with creating node with parent. Does not copy children.
+      confusion with creating node with parent. Does not copy children
+      (except error leaves).
       This is used in the generated parser code to flip a generic XContext
       node for rule X to a YContext for alt label Y. In that sense, it is not
       really a generic copy function.
@@ -280,7 +347,7 @@ items:
     type: property
     summary: |-
       The exception that forced this rule to return. If the rule successfully
-      completed, this is {@code null}.
+      completed, this is `undefined`.
     optional: true
     syntax:
       content: 'exception?: RecognitionException'
@@ -576,6 +643,21 @@ items:
           - number
         description: ''
     package: botbuilder-lg
+  - uid: botbuilder-lg.TemplateNameLineContext.setParent
+    name: setParent(RuleContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function setParent(parent: RuleContext)'
+      parameters:
+        - id: parent
+          type:
+            - RuleContext
+          description: ''
+    package: botbuilder-lg
   - uid: botbuilder-lg.TemplateNameLineContext.sourceInterval
     name: sourceInterval
     fullName: sourceInterval
@@ -678,10 +760,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: |-
+    summary: |
       Return the combined text of all child nodes. This method only considers
        tokens which have been added to the parse tree.
-       <p>
        Since tokens on hidden channels (e.g. whitespace or comments) are not
        added to the parse trees, they will not appear in the output of this
        method.

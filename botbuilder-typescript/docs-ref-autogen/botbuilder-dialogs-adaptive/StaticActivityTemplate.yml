@@ -5,13 +5,13 @@ items:
     fullName: StaticActivityTemplate
     children:
       - botbuilder-dialogs-adaptive.StaticActivityTemplate.activity
-      - botbuilder-dialogs-adaptive.StaticActivityTemplate.bindToData
+      - botbuilder-dialogs-adaptive.StaticActivityTemplate.bind
       - botbuilder-dialogs-adaptive.StaticActivityTemplate.constructor
       - botbuilder-dialogs-adaptive.StaticActivityTemplate.toString
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: Defines a static activity as a template.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.StaticActivityTemplate.activity
     name: activity
@@ -20,7 +20,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets or sets the activity as template.
     syntax:
       content: 'activity: Partial<Activity>'
       return:
@@ -28,24 +28,25 @@ items:
           - Partial<Activity>
         description: ''
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.StaticActivityTemplate.bindToData
-    name: 'bindToData(TurnContext, object)'
+  - uid: botbuilder-dialogs-adaptive.StaticActivityTemplate.bind
+    name: 'bind(DialogContext, object)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Get predefined activity.
     syntax:
-      content: 'function bindToData(context: TurnContext, data: object)'
+      content: 'function bind(dialogContext: DialogContext, data: object)'
       parameters:
-        - id: context
+        - id: dialogContext
           type:
-            - TurnContext
-          description: ''
+            - DialogContext
+          description: DialogContext.
         - id: data
           type:
             - object
-          description: ''
+          description: |
+            Data to bind to (not working with static activity template).
       return:
         type:
           - Promise<Partial<Activity>>
@@ -57,14 +58,15 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Intialize a new instance of StaticActivityTemplate class.
     syntax:
       content: 'new StaticActivityTemplate(activity?: Partial<Activity>)'
       parameters:
         - id: activity
           type:
             - Partial<Activity>
-          description: ''
+          description: |
+            Activity as a template.
           optional: true
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.StaticActivityTemplate.toString

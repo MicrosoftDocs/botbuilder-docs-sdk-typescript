@@ -5,15 +5,18 @@ items:
     fullName: CaptureContext
     children:
       - adaptive-expressions.CaptureContext.accept
+      - adaptive-expressions.CaptureContext.addAnyChild
       - adaptive-expressions.CaptureContext.addChild_1
       - adaptive-expressions.CaptureContext.addChild
       - adaptive-expressions.CaptureContext.addChild_2
       - adaptive-expressions.CaptureContext.addErrorNode
+      - adaptive-expressions.CaptureContext.addErrorNode_1
       - adaptive-expressions.CaptureContext.alternation
       - adaptive-expressions.CaptureContext.altNumber
       - adaptive-expressions.CaptureContext.constructor
       - adaptive-expressions.CaptureContext.childCount
       - adaptive-expressions.CaptureContext.children
+      - adaptive-expressions.CaptureContext.CloseParen
       - adaptive-expressions.CaptureContext.copyFrom
       - adaptive-expressions.CaptureContext.depth
       - adaptive-expressions.CaptureContext.emptyContext
@@ -27,14 +30,19 @@ items:
       - adaptive-expressions.CaptureContext.getRuleContexts
       - adaptive-expressions.CaptureContext.getToken
       - adaptive-expressions.CaptureContext.getTokens
+      - adaptive-expressions.CaptureContext.GreaterThan
       - adaptive-expressions.CaptureContext.invokingState
       - adaptive-expressions.CaptureContext.isEmpty
+      - adaptive-expressions.CaptureContext.LessThan
       - adaptive-expressions.CaptureContext.name
+      - adaptive-expressions.CaptureContext.OpenParen
       - adaptive-expressions.CaptureContext.parent
       - adaptive-expressions.CaptureContext.payload
+      - adaptive-expressions.CaptureContext.QuestionMark
       - adaptive-expressions.CaptureContext.removeLastChild
       - adaptive-expressions.CaptureContext.ruleContext
       - adaptive-expressions.CaptureContext.ruleIndex
+      - adaptive-expressions.CaptureContext.setParent
       - adaptive-expressions.CaptureContext.sourceInterval
       - adaptive-expressions.CaptureContext.start
       - adaptive-expressions.CaptureContext.stop
@@ -77,6 +85,34 @@ items:
           - Result
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.addAnyChild
+    name: addAnyChild(T)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |
+      Add a parse tree node to this as a child.  Works for
+       internal and leaf nodes. Does not set parent link;
+       other add methods must do that. Other addChild methods
+       call this.
+       We cannot set the parent pointer of the incoming node
+       because the existing interfaces do not have a setParent()
+       method and I don't want to break backward compatibility for this.
+
+       @since 4.7
+    syntax:
+      content: 'function addAnyChild<T>(t: T)'
+      parameters:
+        - id: t
+          type:
+            - T
+          description: ''
+      return:
+        type:
+          - T
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.addChild_1
     name: addChild(RuleContext)
     children: []
@@ -98,7 +134,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add a token leaf node child and force its parent to be this node.
     syntax:
       content: 'function addChild(t: TerminalNode)'
       parameters:
@@ -113,7 +149,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon matchedToken. It
+
+      creates a TerminalNodeImpl rather than using
+
+      [Token)](xref:Parser%23createTerminalNode(ParserRuleContext%2C). I'm
+      leaving this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addChild(matchedToken: Token)'
       parameters:
@@ -127,12 +171,39 @@ items:
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.addErrorNode
+    name: addErrorNode(ErrorNode)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Add an error node child and force its parent to be this node.
+    syntax:
+      content: 'function addErrorNode(errorNode: ErrorNode)'
+      parameters:
+        - id: errorNode
+          type:
+            - ErrorNode
+          description: ''
+      return:
+        type:
+          - ErrorNode
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.addErrorNode_1
     name: addErrorNode(Token)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon badToken. It
+
+      creates a ErrorNode rather than using
+
+      [Token)](xref:Parser%23createErrorNode(ParserRuleContext%2C). I'm leaving
+      this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addErrorNode(badToken: Token)'
       parameters:
@@ -238,6 +309,21 @@ items:
           - 'ParseTree[]'
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.CloseParen
+    name: CloseParen()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function CloseParen()
+      parameters: []
+      return:
+        type:
+          - TerminalNode
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.copyFrom
     name: copyFrom(ParserRuleContext)
     children: []
@@ -246,7 +332,8 @@ items:
       - typeScript
     summary: |
       COPY a ctx (I'm deliberately not using copy constructor) to avoid
-      confusion with creating node with parent. Does not copy children.
+      confusion with creating node with parent. Does not copy children
+      (except error leaves).
       This is used in the generated parser code to flip a generic XContext
       node for rule X to a YContext for alt label Y. In that sense, it is not
       really a generic copy function.
@@ -316,7 +403,7 @@ items:
     type: property
     summary: |-
       The exception that forced this rule to return. If the rule successfully
-      completed, this is {@code null}.
+      completed, this is `undefined`.
     optional: true
     syntax:
       content: 'exception?: RecognitionException'
@@ -491,6 +578,21 @@ items:
           - 'TerminalNode[]'
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.GreaterThan
+    name: GreaterThan()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function GreaterThan()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.invokingState
     name: invokingState
     fullName: invokingState
@@ -523,6 +625,21 @@ items:
           - boolean
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.LessThan
+    name: LessThan()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function LessThan()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.name
     name: name()
     children: []
@@ -536,6 +653,21 @@ items:
       return:
         type:
           - adaptive-expressions.NameContext | undefined
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.OpenParen
+    name: OpenParen()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function OpenParen()
+      parameters: []
+      return:
+        type:
+          - TerminalNode
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.parent
@@ -566,6 +698,21 @@ items:
       return:
         type:
           - RuleContext
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.QuestionMark
+    name: QuestionMark()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function QuestionMark()
+      parameters: []
+      return:
+        type:
+          - TerminalNode | undefined
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.removeLastChild
@@ -611,6 +758,21 @@ items:
         type:
           - number
         description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.CaptureContext.setParent
+    name: setParent(RuleContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function setParent(parent: RuleContext)'
+      parameters:
+        - id: parent
+          type:
+            - RuleContext
+          description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.CaptureContext.sourceInterval
     name: sourceInterval
@@ -678,10 +840,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: |-
+    summary: |
       Return the combined text of all child nodes. This method only considers
        tokens which have been added to the parse tree.
-       <p>
        Since tokens on hidden channels (e.g. whitespace or comments) are not
        added to the parse trees, they will not appear in the output of this
        method.

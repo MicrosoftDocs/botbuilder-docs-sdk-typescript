@@ -16,11 +16,13 @@ items:
       - botbuilder-dialogs-adaptive.ForEach.getDependencies
       - botbuilder-dialogs-adaptive.ForEach.getVersion
       - botbuilder-dialogs-adaptive.ForEach.id
+      - botbuilder-dialogs-adaptive.ForEach.index
       - botbuilder-dialogs-adaptive.ForEach.itemsProperty
       - botbuilder-dialogs-adaptive.ForEach.onDialogEvent
       - botbuilder-dialogs-adaptive.ForEach.repromptDialog
       - botbuilder-dialogs-adaptive.ForEach.resumeDialog
       - botbuilder-dialogs-adaptive.ForEach.telemetryClient
+      - botbuilder-dialogs-adaptive.ForEach.value
     langs:
       - typeScript
     type: class
@@ -249,9 +251,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      An encoded string used to aid in the detection of bot changes on
-      re-deployment.
+    summary: ''
     syntax:
       content: function getVersion()
       parameters: []
@@ -260,22 +260,6 @@ items:
           - string
         description: ''
     package: botbuilder-dialogs-adaptive
-    remarks: >-
-      This defaults to returning the dialogs [id](#id) but can be overridden to
-      provide more
-
-      precise change detection logic. Any dialog on the stack that has its
-      version change will
-
-      result in a `versionChanged` event will be raised. If this event is not
-      handled by the bot,
-
-      an error will be thrown resulting in the bots error handler logic being
-      run.
-
-
-      Returning an empty string will disable version tracking for the component
-      all together.
   - uid: botbuilder-dialogs-adaptive.ForEach.id
     name: id
     fullName: id
@@ -292,6 +276,21 @@ items:
         description: ''
     package: botbuilder-dialogs-adaptive
     remarks: This will be automatically generated if not specified.
+  - uid: botbuilder-dialogs-adaptive.ForEach.index
+    name: index
+    fullName: index
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Property path expression to the item index.
+    syntax:
+      content: 'index: StringExpression'
+      return:
+        type:
+          - StringExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ForEach.itemsProperty
     name: itemsProperty
     fullName: itemsProperty
@@ -313,22 +312,26 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: The dialog context for the current turn of conversation.
         - id: e
           type:
             - DialogEvent
-          description: ''
+          description: The event being raised.
       return:
         type:
           - Promise<boolean>
-        description: ''
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ForEach.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'
@@ -417,6 +420,21 @@ items:
       return:
         type:
           - BotTelemetryClient
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.ForEach.value
+    name: value
+    fullName: value
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Property path expression to the item value.
+    syntax:
+      content: 'value: StringExpression'
+      return:
+        type:
+          - StringExpression
         description: ''
     package: botbuilder-dialogs-adaptive
 references:

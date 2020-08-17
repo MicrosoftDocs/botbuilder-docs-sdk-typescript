@@ -4,33 +4,38 @@ items:
     name: TextTemplate
     fullName: TextTemplate
     children:
-      - botbuilder-dialogs-adaptive.TextTemplate.bindToData
+      - botbuilder-dialogs-adaptive.TextTemplate.bind
       - botbuilder-dialogs-adaptive.TextTemplate.template
       - botbuilder-dialogs-adaptive.TextTemplate.constructor
       - botbuilder-dialogs-adaptive.TextTemplate.toString
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: >-
+      Defines a text template where the template expression is local aka
+      "inline"
+
+      and processed through registered language generator.
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.TextTemplate.bindToData
-    name: 'bindToData(TurnContext, object)'
+  - uid: botbuilder-dialogs-adaptive.TextTemplate.bind
+    name: 'bind(DialogContext, object)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Bind data to template.
     syntax:
-      content: 'function bindToData(context: TurnContext, data: object)'
+      content: 'function bind(dialogContext: DialogContext, data: object)'
       parameters:
-        - id: context
+        - id: dialogContext
           type:
-            - TurnContext
-          description: ''
+            - DialogContext
+          description: DialogContext.
         - id: data
           type:
             - object
-          description: ''
+          description: |
+            Data to bind to.
       return:
         type:
           - Promise<string>
@@ -43,7 +48,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets or sets the template to evaluate to create the text.
     syntax:
       content: 'template: string'
       return:
@@ -57,14 +62,15 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Initialize a new instance of TextTemplate class.
     syntax:
       content: 'new TextTemplate(template: string)'
       parameters:
         - id: template
           type:
             - string
-          description: ''
+          description: |
+            The template to evaluate to create text.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.TextTemplate.toString
     name: toString

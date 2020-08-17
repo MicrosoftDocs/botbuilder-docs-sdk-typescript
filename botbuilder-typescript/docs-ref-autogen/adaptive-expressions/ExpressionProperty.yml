@@ -4,8 +4,8 @@ items:
     name: ExpressionProperty
     fullName: ExpressionProperty<T>
     children:
-      - adaptive-expressions.ExpressionProperty.expression
       - adaptive-expressions.ExpressionProperty.constructor
+      - adaptive-expressions.ExpressionProperty.expressionText
       - adaptive-expressions.ExpressionProperty.getValue
       - adaptive-expressions.ExpressionProperty.setValue
       - adaptive-expressions.ExpressionProperty.toExpression
@@ -16,21 +16,6 @@ items:
       - typeScript
     type: class
     summary: Base class which defines a Expression or value for a property.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.expression
-    name: expression
-    fullName: expression
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'expression: Expression'
-      return:
-        type:
-          - adaptive-expressions.Expression
-        description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionProperty.constructor
     name: 'ExpressionProperty(T | string | Expression, T)'
@@ -55,6 +40,21 @@ items:
           description: ''
           optional: true
     package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionProperty.expressionText
+    name: expressionText
+    fullName: expressionText
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Getes or sets the expression text to evaluate to get the value.
+    syntax:
+      content: 'expressionText: string'
+      return:
+        type:
+          - string
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionProperty.getValue
     name: getValue(object)
     children: []
@@ -72,7 +72,7 @@ items:
       return:
         type:
           - T
-        description: the value.
+        description: The value.
     package: adaptive-expressions
     remarks: An error will be thrown if value is an invalid expression.
   - uid: adaptive-expressions.ExpressionProperty.setValue
@@ -81,14 +81,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Set the value.
     syntax:
       content: 'function setValue(value: T | string | Expression)'
       parameters:
         - id: value
           type:
             - T | string | adaptive-expressions.Expression
-          description: ''
+          description: |
+            Value to set.
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionProperty.toExpression
     name: toExpression()
@@ -96,7 +97,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: This will return the existing expression if the value is non-complex type.
     syntax:
       content: function toExpression()
       parameters: []
@@ -111,7 +112,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Convert an expression property to string.
     syntax:
       content: function toString()
       parameters: []
@@ -146,7 +147,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets or sets the raw value of the expression property.
     syntax:
       content: 'value: T'
       return:

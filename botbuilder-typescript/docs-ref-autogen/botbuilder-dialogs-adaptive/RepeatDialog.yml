@@ -5,6 +5,7 @@ items:
     fullName: RepeatDialog<O>
     children:
       - botbuilder-dialogs-adaptive.RepeatDialog.activityProcessed
+      - botbuilder-dialogs-adaptive.RepeatDialog.allowLoop
       - botbuilder-dialogs-adaptive.RepeatDialog.beginDialog
       - botbuilder-dialogs-adaptive.RepeatDialog.configure
       - botbuilder-dialogs-adaptive.RepeatDialog.continueDialog
@@ -40,6 +41,24 @@ items:
       activity.
     syntax:
       content: 'activityProcessed: BoolExpression'
+      return:
+        type:
+          - BoolExpression
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.RepeatDialog.allowLoop
+    name: allowLoop
+    fullName: allowLoop
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      An optional expression which if is true will allow loop of the repeated
+      dialog.
+    optional: true
+    syntax:
+      content: 'allowLoop?: BoolExpression'
       return:
         type:
           - BoolExpression
@@ -309,22 +328,26 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: The dialog context for the current turn of conversation.
         - id: e
           type:
             - DialogEvent
-          description: ''
+          description: The event being raised.
       return:
         type:
           - Promise<boolean>
-        description: ''
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.RepeatDialog.options
     name: options

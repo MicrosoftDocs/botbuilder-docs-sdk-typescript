@@ -8,6 +8,9 @@ items:
       - botbuilder.TeamsActivityHandler.onDialog
       - botbuilder.TeamsActivityHandler.onEndOfConversation
       - botbuilder.TeamsActivityHandler.onEvent
+      - botbuilder.TeamsActivityHandler.onInstallationUpdate
+      - botbuilder.TeamsActivityHandler.onInstallationUpdateAdd
+      - botbuilder.TeamsActivityHandler.onInstallationUpdateRemove
       - botbuilder.TeamsActivityHandler.onMembersAdded
       - botbuilder.TeamsActivityHandler.onMembersRemoved
       - botbuilder.TeamsActivityHandler.onMessage
@@ -17,9 +20,15 @@ items:
       - botbuilder.TeamsActivityHandler.onTeamsChannelCreatedEvent
       - botbuilder.TeamsActivityHandler.onTeamsChannelDeletedEvent
       - botbuilder.TeamsActivityHandler.onTeamsChannelRenamedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsChannelRestoredEvent
       - botbuilder.TeamsActivityHandler.onTeamsMembersAddedEvent
       - botbuilder.TeamsActivityHandler.onTeamsMembersRemovedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsTeamArchivedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsTeamDeletedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsTeamHardDeletedEvent
       - botbuilder.TeamsActivityHandler.onTeamsTeamRenamedEvent
+      - botbuilder.TeamsActivityHandler.onTeamsTeamRestoredEvent
+      - botbuilder.TeamsActivityHandler.onTeamsTeamUnarchivedEvent
       - botbuilder.TeamsActivityHandler.onTokenResponseEvent
       - botbuilder.TeamsActivityHandler.onTurn
       - botbuilder.TeamsActivityHandler.onTyping
@@ -184,6 +193,97 @@ items:
       sub-type
 
       event handler. To handle other named events, add logic to this handler.
+  - uid: botbuilder.TeamsActivityHandler.onInstallationUpdate
+    name: onInstallationUpdate(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Registers an activity event handler for the _installationupdate_ activity.
+    syntax:
+      content: 'function onInstallationUpdate(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - BotHandler
+          description: |
+            The event handler.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a InstallationUpdate event, use the
+
+      [onInstallationUpdate](xref:botbuilder-core.ActivityHandler.onInstallationUpdate)
+      type-specific event handler.
+  - uid: botbuilder.TeamsActivityHandler.onInstallationUpdateAdd
+    name: onInstallationUpdateAdd(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers an activity event handler for the _installationupdate add_
+      activity.
+    syntax:
+      content: 'function onInstallationUpdateAdd(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - BotHandler
+          description: |
+            The event handler.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a InstallationUpdateAdd event, use the
+
+      [onInstallationUpdateAdd](xref:botbuilder-core.ActivityHandler.onInstallationUpdateAdd)
+      type-specific event handler.
+  - uid: botbuilder.TeamsActivityHandler.onInstallationUpdateRemove
+    name: onInstallationUpdateRemove(BotHandler)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Registers an activity event handler for the _installationupdate remove_
+      activity.
+    syntax:
+      content: 'function onInstallationUpdateRemove(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type:
+            - BotHandler
+          description: |
+            The event handler.
+      return:
+        type:
+          - this
+        description: ''
+    package: botbuilder
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a InstallationUpdateRemove event, use the
+
+      [onInstallationUpdateRemove](xref:botbuilder-core.ActivityHandler.onInstallationUpdateRemove)
+      type-specific event handler.
   - uid: botbuilder.TeamsActivityHandler.onMembersAdded
     name: onMembersAdded(BotHandler)
     children: []
@@ -442,7 +542,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Override this in a derived class to provide logic for when a channel is
+      created.
     syntax:
       content: >-
         function onTeamsChannelCreatedEvent(handler: (channelInfo: ChannelInfo,
@@ -454,12 +556,11 @@ items:
             - >-
               (channelInfo: ChannelInfo, teamInfo: TeamInfo, context:
               TurnContext, next: () => Promise<void>) => Promise<void>
-          description: |+
-
+          description: ''
       return:
         type:
           - this
-        description: ''
+        description: A promise that represents the work queued.
     package: botbuilder
   - uid: botbuilder.TeamsActivityHandler.onTeamsChannelDeletedEvent
     name: >-
@@ -469,7 +570,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Override this in a derived class to provide logic for when a channel is
+      deleted.
     syntax:
       content: >-
         function onTeamsChannelDeletedEvent(handler: (channelInfo: ChannelInfo,
@@ -481,12 +584,11 @@ items:
             - >-
               (channelInfo: ChannelInfo, teamInfo: TeamInfo, context:
               TurnContext, next: () => Promise<void>) => Promise<void>
-          description: |+
-
+          description: ''
       return:
         type:
           - this
-        description: ''
+        description: A promise that represents the work queued.
     package: botbuilder
   - uid: botbuilder.TeamsActivityHandler.onTeamsChannelRenamedEvent
     name: >-
@@ -496,7 +598,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Override this in a derived class to provide logic for when a channel is
+      renamed.
     syntax:
       content: >-
         function onTeamsChannelRenamedEvent(handler: (channelInfo: ChannelInfo,
@@ -508,12 +612,39 @@ items:
             - >-
               (channelInfo: ChannelInfo, teamInfo: TeamInfo, context:
               TurnContext, next: () => Promise<void>) => Promise<void>
-          description: |+
-
+          description: ''
       return:
         type:
           - this
-        description: ''
+        description: A promise that represents the work queued.
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsChannelRestoredEvent
+    name: >-
+      onTeamsChannelRestoredEvent((channelInfo: ChannelInfo, teamInfo: TeamInfo,
+      context: TurnContext, next: () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Override this in a derived class to provide logic for when a channel is
+      restored.
+    syntax:
+      content: >-
+        function onTeamsChannelRestoredEvent(handler: (channelInfo: ChannelInfo,
+        teamInfo: TeamInfo, context: TurnContext, next: () => Promise<void>) =>
+        Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (channelInfo: ChannelInfo, teamInfo: TeamInfo, context:
+              TurnContext, next: () => Promise<void>) => Promise<void>
+          description: ''
+      return:
+        type:
+          - this
+        description: A promise that represents the work queued.
     package: botbuilder
   - uid: botbuilder.TeamsActivityHandler.onTeamsMembersAddedEvent
     name: >-
@@ -524,7 +655,11 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Override this in a derived class to provide logic for when members other
+      than the bot
+
+      join the channel, such as your bot's welcome logic.
     syntax:
       content: >-
         function onTeamsMembersAddedEvent(handler: (membersAdded:
@@ -536,12 +671,11 @@ items:
             - >-
               (membersAdded: TeamsChannelAccount[], teamInfo: TeamInfo, context:
               TurnContext, next: () => Promise<void>) => Promise<void>
-          description: |+
-
+          description: ''
       return:
         type:
           - this
-        description: ''
+        description: A promise that represents the work queued.
     package: botbuilder
   - uid: botbuilder.TeamsActivityHandler.onTeamsMembersRemovedEvent
     name: >-
@@ -552,7 +686,11 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Override this in a derived class to provide logic for when members other
+      than the bot
+
+      leave the channel, such as your bot's good-bye logic.
     syntax:
       content: >-
         function onTeamsMembersRemovedEvent(handler: (membersRemoved:
@@ -564,12 +702,92 @@ items:
             - >-
               (membersRemoved: TeamsChannelAccount[], teamInfo: TeamInfo,
               context: TurnContext, next: () => Promise<void>) => Promise<void>
-          description: |+
-
+          description: ''
       return:
         type:
           - this
-        description: ''
+        description: A promise that represents the work queued.
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsTeamArchivedEvent
+    name: >-
+      onTeamsTeamArchivedEvent((teamInfo: TeamInfo, context: TurnContext, next:
+      () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Override this in a derived class to provide logic for when a team is
+      archived.
+    syntax:
+      content: >-
+        function onTeamsTeamArchivedEvent(handler: (teamInfo: TeamInfo, context:
+        TurnContext, next: () => Promise<void>) => Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (teamInfo: TeamInfo, context: TurnContext, next: () =>
+              Promise<void>) => Promise<void>
+          description: ''
+      return:
+        type:
+          - this
+        description: A promise that represents the work queued.
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsTeamDeletedEvent
+    name: >-
+      onTeamsTeamDeletedEvent((teamInfo: TeamInfo, context: TurnContext, next:
+      () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Override this in a derived class to provide logic for when a team is
+      deleted.
+    syntax:
+      content: >-
+        function onTeamsTeamDeletedEvent(handler: (teamInfo: TeamInfo, context:
+        TurnContext, next: () => Promise<void>) => Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (teamInfo: TeamInfo, context: TurnContext, next: () =>
+              Promise<void>) => Promise<void>
+          description: ''
+      return:
+        type:
+          - this
+        description: A promise that represents the work queued.
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsTeamHardDeletedEvent
+    name: >-
+      onTeamsTeamHardDeletedEvent((teamInfo: TeamInfo, context: TurnContext,
+      next: () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Override this in a derived class to provide logic for when a team is
+      hard-deleted.
+    syntax:
+      content: >-
+        function onTeamsTeamHardDeletedEvent(handler: (teamInfo: TeamInfo,
+        context: TurnContext, next: () => Promise<void>) => Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (teamInfo: TeamInfo, context: TurnContext, next: () =>
+              Promise<void>) => Promise<void>
+          description: ''
+      return:
+        type:
+          - this
+        description: A promise that represents the work queued.
     package: botbuilder
   - uid: botbuilder.TeamsActivityHandler.onTeamsTeamRenamedEvent
     name: >-
@@ -579,7 +797,9 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Override this in a derived class to provide logic for when a team is
+      renamed.
     syntax:
       content: >-
         function onTeamsTeamRenamedEvent(handler: (teamInfo: TeamInfo, context:
@@ -590,12 +810,65 @@ items:
             - >-
               (teamInfo: TeamInfo, context: TurnContext, next: () =>
               Promise<void>) => Promise<void>
-          description: |+
-
+          description: ''
       return:
         type:
           - this
-        description: ''
+        description: A promise that represents the work queued.
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsTeamRestoredEvent
+    name: >-
+      onTeamsTeamRestoredEvent((teamInfo: TeamInfo, context: TurnContext, next:
+      () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Override this in a derived class to provide logic for when a team is
+      restored.
+    syntax:
+      content: >-
+        function onTeamsTeamRestoredEvent(handler: (teamInfo: TeamInfo, context:
+        TurnContext, next: () => Promise<void>) => Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (teamInfo: TeamInfo, context: TurnContext, next: () =>
+              Promise<void>) => Promise<void>
+          description: ''
+      return:
+        type:
+          - this
+        description: A promise that represents the work queued.
+    package: botbuilder
+  - uid: botbuilder.TeamsActivityHandler.onTeamsTeamUnarchivedEvent
+    name: >-
+      onTeamsTeamUnarchivedEvent((teamInfo: TeamInfo, context: TurnContext,
+      next: () => Promise<void>) => Promise<void>)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Override this in a derived class to provide logic for when a team is
+      unarchived.
+    syntax:
+      content: >-
+        function onTeamsTeamUnarchivedEvent(handler: (teamInfo: TeamInfo,
+        context: TurnContext, next: () => Promise<void>) => Promise<void>)
+      parameters:
+        - id: handler
+          type:
+            - >-
+              (teamInfo: TeamInfo, context: TurnContext, next: () =>
+              Promise<void>) => Promise<void>
+          description: ''
+      return:
+        type:
+          - this
+        description: A promise that represents the work queued.
     package: botbuilder
   - uid: botbuilder.TeamsActivityHandler.onTokenResponseEvent
     name: onTokenResponseEvent(BotHandler)

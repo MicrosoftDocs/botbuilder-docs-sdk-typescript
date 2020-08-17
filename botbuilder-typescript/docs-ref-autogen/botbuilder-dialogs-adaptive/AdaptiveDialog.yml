@@ -211,55 +211,29 @@ items:
     type: method
     langs:
       - typeScript
-    summary: >-
-      When overridden in a derived class, performs clean up for the dialog
-      before it ends.
+    summary: ''
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
+        function endDialog(turnContext: TurnContext, instance: DialogInstance,
         reason: DialogReason)
       parameters:
-        - id: context
+        - id: turnContext
           type:
             - TurnContext
-          description: The context object for the turn.
+          description: ''
         - id: instance
           type:
             - DialogInstance
-          description: Current state information for this dialog.
+          description: ''
         - id: reason
           type:
             - DialogReason
-          description: |
-            The reason the dialog is ending.
+          description: ''
       return:
         type:
           - Promise<void>
         description: ''
     package: botbuilder-dialogs-adaptive
-    remarks: >-
-      Derived dialogs that need to perform logging or cleanup before ending
-      should override this method.
-
-      By default, this method has no effect.
-
-
-      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
-      method when the current
-
-      dialog is ending.
-
-
-      **See also**
-
-      -
-      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
-
-      -
-      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-
-      -
-      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
   - uid: botbuilder-dialogs-adaptive.AdaptiveDialog.EndOfTurn
     name: EndOfTurn
     fullName: EndOfTurn
@@ -387,18 +361,21 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: |-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: The dialog context for the current turn of conversation.
         - id: e
           type:
             - DialogEvent
-          description: ''
+          description: |
+            The event being raised.
       return:
         type:
           - Promise<boolean>
@@ -421,7 +398,7 @@ items:
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.AdaptiveDialog.repromptDialog
-    name: 'repromptDialog(TurnContext, DialogInstance)'
+    name: 'repromptDialog(DialogContext | TurnContext, DialogInstance)'
     children: []
     type: method
     langs:
@@ -429,12 +406,12 @@ items:
     summary: ''
     syntax:
       content: >-
-        function repromptDialog(turnContext: TurnContext, instance:
+        function repromptDialog(context: DialogContext | TurnContext, instance:
         DialogInstance)
       parameters:
-        - id: turnContext
+        - id: context
           type:
-            - TurnContext
+            - DialogContext | TurnContext
           description: ''
         - id: instance
           type:
@@ -512,7 +489,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Get the current telemetry client.
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:

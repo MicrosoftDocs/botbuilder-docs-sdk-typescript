@@ -4,30 +4,14 @@ items:
     name: LanguageGeneratorManager
     fullName: LanguageGeneratorManager
     children:
-      - botbuilder-dialogs-adaptive.LanguageGeneratorManager.languageGenerator
       - botbuilder-dialogs-adaptive.LanguageGeneratorManager.constructor
-      - botbuilder-dialogs-adaptive.LanguageGeneratorManager.loadResources
+      - botbuilder-dialogs-adaptive.LanguageGeneratorManager.languageGenerators
       - >-
         botbuilder-dialogs-adaptive.LanguageGeneratorManager.resourceExplorerResolver
     langs:
       - typeScript
     type: class
-    summary: ''
-    package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.LanguageGeneratorManager.languageGenerator
-    name: languageGenerator
-    fullName: languageGenerator
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'languageGenerator: Map<string, LanguageGenerator>'
-      return:
-        type:
-          - 'Map<string, botbuilder-dialogs-adaptive.LanguageGenerator>'
-        description: ''
+    summary: Class which manages cache of all LG resources from a ResourceExplorer.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.LanguageGeneratorManager.constructor
     name: LanguageGeneratorManager(ResourceExplorer)
@@ -35,33 +19,34 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Initialize a new instance of LanguageResourceManager class.
     syntax:
       content: 'new LanguageGeneratorManager(resourceManager: ResourceExplorer)'
       parameters:
         - id: resourceManager
           type:
             - ResourceExplorer
-          description: ''
+          description: |
+            Resource explorer to manager LG files.
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.LanguageGeneratorManager.loadResources
-    name: loadResources()
+  - uid: botbuilder-dialogs-adaptive.LanguageGeneratorManager.languageGenerators
+    name: languageGenerators
+    fullName: languageGenerators
     children: []
-    type: method
     langs:
       - typeScript
-    summary: ''
+    type: property
+    summary: Gets or sets language generators.
     syntax:
-      content: function loadResources()
-      parameters: []
+      content: 'languageGenerators: Map<string, LanguageGenerator>'
       return:
         type:
-          - Promise<void>
+          - 'Map<string, botbuilder-dialogs-adaptive.LanguageGenerator>'
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: >-
       botbuilder-dialogs-adaptive.LanguageGeneratorManager.resourceExplorerResolver
-    name: 'resourceExplorerResolver(string, Map<string, IResource[]>)'
+    name: 'resourceExplorerResolver(string, Map<string, Resource[]>)'
     children: []
     type: method
     langs:
@@ -70,7 +55,7 @@ items:
     syntax:
       content: >-
         static function resourceExplorerResolver(locale: string,
-        resourceMapping: Map<string, IResource[]>)
+        resourceMapping: Map<string, Resource[]>)
       parameters:
         - id: locale
           type:
@@ -78,7 +63,7 @@ items:
           description: ''
         - id: resourceMapping
           type:
-            - 'Map<string, IResource[]>'
+            - 'Map<string, Resource[]>'
           description: ''
       return:
         type:
