@@ -21,12 +21,19 @@ items:
       - typeScript
     type: class
     summary: >-
-      Query QnAMaker knowledgebase using user utterance. The dialog will also
-      present user with appropriate multi-turn prompt or active learning
-      options.
+      A dialog that supports multi-step and adaptive-learning QnA Maker
+      services.
     extends:
       name: WaterfallDialog
     package: botbuilder-ai
+    remarks: >-
+      An instance of this class targets a specific QnA Maker knowledge base.
+
+      It supports knowledge bases that include follow-up prompt and active
+      learning features.
+
+      The dialog will also present user with appropriate multi-turn prompt or
+      active learning options.
   - uid: botbuilder-ai.QnAMakerDialog.addStep
     name: addStep(WaterfallStep<O>)
     children: []
@@ -106,24 +113,41 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Called when the dialog is started and pushed onto the dialog stack.
     syntax:
       content: 'function beginDialog(dc: DialogContext, options?: object)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type:
             - object
-          description: ''
+          description: |
+            (Optional) Initial information to pass to the dialog.
           optional: true
       return:
         type:
           - Promise<DialogTurnResult>
         description: ''
     package: botbuilder-ai
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog.
+
+
+      You can use the [options](#options) parameter to include the QnA Maker
+      context data,
+
+      which represents context from the previous query. To do so, the value
+      should include a
+
+      `context` property of type [QnAResponseContext](#QnAResponseContext).
   - uid: botbuilder-ai.QnAMakerDialog.configure
     name: configure(object)
     children: []
@@ -251,22 +275,26 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: The dialog context for the current turn of conversation.
         - id: e
           type:
             - DialogEvent
-          description: ''
+          description: The event being raised.
       return:
         type:
           - Promise<boolean>
-        description: ''
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMakerDialog.constructor
     name: >-
@@ -276,7 +304,9 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: Creates a new QnAMakerDialog instance.
+    summary: >-
+      Initializes a new instance of the [QnAMakerDialog](xref:QnAMakerDialog)
+      class.
     syntax:
       content: >-
         new QnAMakerDialog(knowledgeBaseId: string, endpointKey: string,
@@ -288,23 +318,23 @@ items:
         - id: knowledgeBaseId
           type:
             - string
-          description: The Id of the QnAMaker knowledgebase to be queried.
+          description: The ID of the QnA Maker knowledge base to query.
         - id: endpointKey
           type:
             - string
-          description: The endpoint key to use when querying the knowledgebase.
+          description: The QnA Maker endpoint key to use to query the knowledge base.
         - id: hostName
           type:
             - string
           description: >-
-            Hostname to be used to form the QnAMaker host URL, which follows the
-            following format https://{hostName}.azurewebsites.net/qnamaker
+            The QnA Maker host URL for the knowledge base, starting with
+            "https://" and ending with "/qnamaker".
         - id: noAnswer
           type:
             - Activity
           description: >-
-            (Optional) Activity to be sent in the event no answer is found
-            within the knowledgebase.
+            (Optional) The activity to send the user when QnA Maker does not
+            find an answer.
           optional: true
         - id: threshold
           type:
@@ -317,37 +347,36 @@ items:
           type:
             - string
           description: >-
-            (Optional) Title of the card displayed showing active learning
-            options if active learning is enabled.
+            (Optional) The card title to use when showing active learning
+            options to the user, if active learning is enabled.
           optional: true
         - id: cardNoMatchText
           type:
             - string
           description: >-
-            (Optional) Text to be show on a button alongside active learning
-            options, allowing a user to indicate none of the options are
-            applicable.
+            (Optional) The button text to use with active learning options,
+            allowing a user to indicate none of the options are applicable.
           optional: true
         - id: top
           type:
             - number
           description: >-
-            (Optional) Maximum number of answers to return from the
-            knowledgebase.
+            (Optional) Maximum number of answers to return from the knowledge
+            base.
           optional: true
         - id: cardNoMatchResponse
           type:
             - Activity
           description: >-
-            (Optional) Activity to be sent if the user selects the no match
+            (Optional) The activity to send the user if they select the no match
             option on an active learning card.
           optional: true
         - id: strictFilters
           type:
             - 'botbuilder-ai.QnAMakerMetadata[]'
           description: >-
-            (Optional) QnAMakerMetadata collection used to filter / boost
-            queries to the knowledgebase.
+            (Optional) QnA Maker metadata with which to filter or boost queries
+            to the knowledge base; or null to apply none.
           optional: true
         - id: dialogId
           type:

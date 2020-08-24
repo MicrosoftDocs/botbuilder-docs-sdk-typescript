@@ -15,6 +15,8 @@ items:
       - botbuilder-lg.LGFileParser.compileParseTreePattern_1
       - botbuilder-lg.LGFileParser.consume
       - botbuilder-lg.LGFileParser.context
+      - botbuilder-lg.LGFileParser.createErrorNode
+      - botbuilder-lg.LGFileParser.createTerminalNode
       - botbuilder-lg.LGFileParser.currentToken
       - botbuilder-lg.LGFileParser.dumpDFA
       - botbuilder-lg.LGFileParser.enterLeftFactoredRule
@@ -24,6 +26,7 @@ items:
       - botbuilder-lg.LGFileParser.EOF
       - botbuilder-lg.LGFileParser.errorDefinition
       - botbuilder-lg.LGFileParser.errorHandler
+      - botbuilder-lg.LGFileParser.ESCAPE_CHARACTER
       - botbuilder-lg.LGFileParser.exitRule
       - botbuilder-lg.LGFileParser.file
       - botbuilder-lg.LGFileParser.getATNWithBypassAlts
@@ -53,6 +56,9 @@ items:
       - botbuilder-lg.LGFileParser.constructor
       - botbuilder-lg.LGFileParser.match
       - botbuilder-lg.LGFileParser.matchWildcard
+      - botbuilder-lg.LGFileParser.MULTILINE_PREFIX
+      - botbuilder-lg.LGFileParser.MULTILINE_SUFFIX
+      - botbuilder-lg.LGFileParser.MULTILINE_TEXT
       - botbuilder-lg.LGFileParser.NEWLINE
       - botbuilder-lg.LGFileParser.notifyErrorListeners
       - botbuilder-lg.LGFileParser.notifyErrorListeners_1
@@ -92,7 +98,7 @@ items:
       - botbuilder-lg.LGFileParser.templateBodyLine
       - botbuilder-lg.LGFileParser.templateDefinition
       - botbuilder-lg.LGFileParser.templateNameLine
-      - botbuilder-lg.LGFileParser.TEMPLATE_BODY_LINE
+      - botbuilder-lg.LGFileParser.TEMPLATE_BODY
       - botbuilder-lg.LGFileParser.TEMPLATE_NAME_LINE
       - botbuilder-lg.LGFileParser.tokenFactory
       - botbuilder-lg.LGFileParser.unrollRecursionContexts
@@ -152,28 +158,26 @@ items:
     langs:
       - typeScript
     summary: |
-      Registers {@code listener} to receive events during the parsing process.
-      <p>To support output-preserving grammar transformations (including but not
+      Registers `listener` to receive events during the parsing process.
+      To support output-preserving grammar transformations (including but not
       limited to left-recursion removal, automated left-factoring, and
       optimized code generation), calls to listener methods during the parse
       may differ substantially from calls made by
       <xref:ParseTreeWalker%23DEFAULT> used after the parse is complete. In
       particular, rule entry and exit events may occur in a different order
       during the parse than after the parser. In addition, calls to certain
-      rule entry methods may be omitted.</p>
+      rule entry methods may be omitted.
 
-      <p>With the following specific exceptions, calls to listener events are
-      <em>deterministic</em>, i.e. for identical input the calls to listener
-      methods will be the same.</p>
+      With the following specific exceptions, calls to listener events are
+      *deterministic*, i.e. for identical input the calls to listener
+      methods will be the same.
 
-      <ul>
-      <li>Alterations to the grammar used to generate code may change the
-      behavior of the listener calls.</li>
-      <li>Alterations to the command line options passed to ANTLR 4 when
-      generating the parser may change the behavior of the listener calls.</li>
-      <li>Changing the version of the ANTLR Tool used to generate the parser
-      may change the behavior of the listener calls.</li>
-      </ul>
+      * Alterations to the grammar used to generate code may change the
+        behavior of the listener calls.
+      * Alterations to the command line options passed to ANTLR 4 when
+        generating the parser may change the behavior of the listener calls.
+      * Changing the version of the ANTLR Tool used to generate the parser
+        may change the behavior of the listener calls.
     syntax:
       content: 'function addParseListener(listener: ParseTreeListener)'
       parameters:
@@ -182,8 +186,6 @@ items:
             - ParseTreeListener
           description: |
             the listener to add
-
-            @ if {@code} listener is {@code null}
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.atn
     name: atn
@@ -212,14 +214,14 @@ items:
       them up using the <xref:ParserRuleContext%23children> list so that it
       forms a parse tree. The <xref:ParserRuleContext> returned from the start
       rule represents the root of the parse tree.
-      <p>Note that if we are not building parse trees, rule contexts only point
+      Note that if we are not building parse trees, rule contexts only point
       upwards. When a rule exits, it returns the context but that gets garbage
       collected if nobody holds a reference. It points upwards but nobody
-      points at it.</p>
+      points at it.
 
-      <p>When we build parse trees, we are adding all of these contexts to
+      When we build parse trees, we are adding all of these contexts to
       <xref:ParserRuleContext%23children> list. Contexts are then not candidates
-      for garbage collection.</p>
+      for garbage collection.
     syntax:
       content: 'buildParseTree: boolean'
       return:
@@ -338,24 +340,41 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
+    summary: >
       Consume and return the [current symbol](`currentToken`).
-      <p>E.g., given the following input with {@code A} being the current
-      lookahead symbol, this function moves the cursor to {@code B} and returns
-      {@code A}.</p>
 
-      <pre>
-       A B
-       ^
-      </pre>
+      E.g., given the following input with `A` being the current
+
+      lookahead symbol, this function moves the cursor to `B` and returns
+
+      `A`.
+
+
+      ```
+
+      A B
+
+      ^
+
+      ```
+
 
       If the parser is not in error recovery mode, the consumed symbol is added
-      to the parse tree using <xref:ParserRuleContext%23addChild(Token)>, and
+
+      to the parse tree using <xref:ParserRuleContext%23addChild(TerminalNode)>,
+      and
+
       <xref:ParseTreeListener%23visitTerminal> is called on any parse listeners.
-      If the parser <em>is</em> in error recovery mode, the consumed symbol is
+
+      If the parser *is* in error recovery mode, the consumed symbol is
+
       added to the parse tree using
-      <xref:ParserRuleContext%23addErrorNode(Token)>, and
+      [Token)](xref:%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)> and
+
       <xref:ParseTreeListener%23visitErrorNode> is called on any parse
+
       listeners.
     syntax:
       content: function consume()
@@ -378,6 +397,56 @@ items:
       return:
         type:
           - ParserRuleContext
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileParser.createErrorNode
+    name: 'createErrorNode(ParserRuleContext, Token)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      How to create an error node, given a token, associated with a parent.
+      Typically, the error node to create is not a function of the parent.
+    syntax:
+      content: 'function createErrorNode(parent: ParserRuleContext, t: Token)'
+      parameters:
+        - id: parent
+          type:
+            - ParserRuleContext
+          description: ''
+        - id: t
+          type:
+            - Token
+          description: ''
+      return:
+        type:
+          - ErrorNode
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileParser.createTerminalNode
+    name: 'createTerminalNode(ParserRuleContext, Token)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      How to create a token leaf node associated with a parent.
+      Typically, the terminal node to create is not a function of the parent.
+    syntax:
+      content: 'function createTerminalNode(parent: ParserRuleContext, t: Token)'
+      parameters:
+        - id: parent
+          type:
+            - ParserRuleContext
+          description: ''
+        - id: t
+          type:
+            - Token
+          description: ''
+      return:
+        type:
+          - TerminalNode
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.currentToken
@@ -551,6 +620,21 @@ items:
       return:
         type:
           - ANTLRErrorStrategy
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileParser.ESCAPE_CHARACTER
+    name: ESCAPE_CHARACTER
+    fullName: ESCAPE_CHARACTER
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static ESCAPE_CHARACTER: 10 = 10'
+      return:
+        type:
+          - '10'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.exitRule
@@ -738,7 +822,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: 'Get a rule''s index (i.e., {@code RULE_ruleName} field) or -1 if not found.'
+    summary: 'Get a rule''s index (i.e., `RULE_ruleName` field) or -1 if not found.'
     syntax:
       content: 'function getRuleIndex(ruleName: string)'
       parameters:
@@ -759,7 +843,7 @@ items:
       - typeScript
     summary: |
       Get a map from rule names to rule indexes.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getRuleIndexMap()
       parameters: []
@@ -820,7 +904,7 @@ items:
       - typeScript
     summary: |
       Get a map from token names to token types.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getTokenTypeMap()
       parameters: []
@@ -932,10 +1016,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static INVALID_LINE: 7 = 7'
+      content: 'static INVALID_LINE: 8 = 8'
       return:
         type:
-          - '7'
+          - '8'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.isExpectedToken
@@ -945,13 +1029,13 @@ items:
     langs:
       - typeScript
     summary: |
-      Checks whether or not {@code symbol} can follow the current state in the
+      Checks whether or not `symbol` can follow the current state in the
       ATN. The behavior of this method is equivalent to the following, but is
       implemented such that the complete context-sensitive follow set does not
       need to be explicitly constructed.
-      <pre>
+      ```
       return getExpectedTokens().contains(symbol);
-      </pre>
+      ```
     syntax:
       content: 'function isExpectedToken(symbol: number)'
       parameters:
@@ -963,8 +1047,8 @@ items:
         type:
           - boolean
         description: |-
-          if {@code symbol} can follow the current state in
-          the ATN, otherwise {@code false}.
+          `true` if `symbol` can follow the current state in
+          the ATN, otherwise `false`.
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.isMatchedEOF
     name: isMatchedEOF
@@ -1019,16 +1103,27 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
-      Match current input symbol against {@code ttype}. If the symbol type
+    summary: >
+      Match current input symbol against `ttype`. If the symbol type
+
       matches, <xref:ANTLRErrorStrategy%23reportMatch> and <xref:%23consume> are
+
       called to complete the match process.
-      <p>If the symbol type does not match,
+
+      If the symbol type does not match,
+
       <xref:ANTLRErrorStrategy%23recoverInline> is called on the current error
+
       strategy to attempt recovery. If <xref:%23getBuildParseTree> is
-      {@code true} and the token index of the symbol returned by
+
+      `true` and the token index of the symbol returned by
+
       <xref:ANTLRErrorStrategy%23recoverInline> is -1, the symbol is added to
-      the parse tree by calling <xref:ParserRuleContext%23addErrorNode>.</p>
+
+      the parse tree by calling
+      [Token)](xref:%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)>.
     syntax:
       content: 'function match(ttype: number)'
       parameters:
@@ -1042,7 +1137,7 @@ items:
         description: |-
           the matched symbol
           @ if the current input symbol did not match
-          {@code ttype} and the error strategy could not recover from the
+          `ttype` and the error strategy could not recover from the
           mismatched symbol
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.matchWildcard
@@ -1051,16 +1146,27 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
+    summary: >
       Match current input symbol as a wildcard. If the symbol type matches
+
       (i.e. has a value greater than 0), <xref:ANTLRErrorStrategy%23reportMatch>
+
       and <xref:%23consume> are called to complete the match process.
-      <p>If the symbol type does not match,
+
+      If the symbol type does not match,
+
       <xref:ANTLRErrorStrategy%23recoverInline> is called on the current error
+
       strategy to attempt recovery. If <xref:%23getBuildParseTree> is
-      {@code true} and the token index of the symbol returned by
+
+      `true` and the token index of the symbol returned by
+
       <xref:ANTLRErrorStrategy%23recoverInline> is -1, the symbol is added to
-      the parse tree by calling <xref:ParserRuleContext%23addErrorNode>.</p>
+
+      the parse tree by calling
+      [Token)](xref:Parser%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)>.
     syntax:
       content: function matchWildcard()
       parameters: []
@@ -1076,6 +1182,51 @@ items:
           mismatched
 
           symbol
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileParser.MULTILINE_PREFIX
+    name: MULTILINE_PREFIX
+    fullName: MULTILINE_PREFIX
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static MULTILINE_PREFIX: 6 = 6'
+      return:
+        type:
+          - '6'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileParser.MULTILINE_SUFFIX
+    name: MULTILINE_SUFFIX
+    fullName: MULTILINE_SUFFIX
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static MULTILINE_SUFFIX: 9 = 9'
+      return:
+        type:
+          - '9'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileParser.MULTILINE_TEXT
+    name: MULTILINE_TEXT
+    fullName: MULTILINE_TEXT
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static MULTILINE_TEXT: 11 = 11'
+      return:
+        type:
+          - '11'
+        description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.NEWLINE
     name: NEWLINE
@@ -1309,9 +1460,9 @@ items:
     langs:
       - typeScript
     summary: |
-      Remove {@code listener} from the list of parse listeners.
-      <p>If {@code listener} is {@code null} or has not been added as a parse
-      listener, this method does nothing.</p>
+      Remove `listener` from the list of parse listeners.
+      If `listener` is `undefined` or has not been added as a parse
+      listener, this method does nothing.
     syntax:
       content: 'function removeParseListener(listener: ParseTreeListener)'
       parameters:
@@ -1712,19 +1863,19 @@ items:
           - botbuilder-lg.TemplateNameLineContext
         description: ''
     package: botbuilder-lg
-  - uid: botbuilder-lg.LGFileParser.TEMPLATE_BODY_LINE
-    name: TEMPLATE_BODY_LINE
-    fullName: TEMPLATE_BODY_LINE
+  - uid: botbuilder-lg.LGFileParser.TEMPLATE_BODY
+    name: TEMPLATE_BODY
+    fullName: TEMPLATE_BODY
     children: []
     langs:
       - typeScript
     type: property
     summary: ''
     syntax:
-      content: 'static TEMPLATE_BODY_LINE: 6 = 6'
+      content: 'static TEMPLATE_BODY: 7 = 7'
       return:
         type:
-          - '6'
+          - '7'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileParser.TEMPLATE_NAME_LINE

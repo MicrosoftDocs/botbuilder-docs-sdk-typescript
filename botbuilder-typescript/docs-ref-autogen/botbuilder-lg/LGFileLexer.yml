@@ -8,6 +8,8 @@ items:
       - botbuilder-lg.LGFileLexer.addErrorListener
       - botbuilder-lg.LGFileLexer.atn
       - botbuilder-lg.LGFileLexer.channel
+      - botbuilder-lg.LGFileLexer.channelNames
+      - botbuilder-lg.LGFileLexer.channelNames
       - botbuilder-lg.LGFileLexer.charIndex
       - botbuilder-lg.LGFileLexer.charPositionInLine
       - botbuilder-lg.LGFileLexer.COMMENT
@@ -17,6 +19,7 @@ items:
       - botbuilder-lg.LGFileLexer.emit
       - botbuilder-lg.LGFileLexer.emitEOF
       - botbuilder-lg.LGFileLexer.EOF
+      - botbuilder-lg.LGFileLexer.ESCAPE_CHARACTER
       - botbuilder-lg.LGFileLexer.getAllTokens
       - botbuilder-lg.LGFileLexer.getCharErrorDisplay
       - botbuilder-lg.LGFileLexer.getErrorDisplay
@@ -41,6 +44,10 @@ items:
       - botbuilder-lg.LGFileLexer.modeNames
       - botbuilder-lg.LGFileLexer.MORE
       - botbuilder-lg.LGFileLexer.more
+      - botbuilder-lg.LGFileLexer.MULTILINE_MODE
+      - botbuilder-lg.LGFileLexer.MULTILINE_PREFIX
+      - botbuilder-lg.LGFileLexer.MULTILINE_SUFFIX
+      - botbuilder-lg.LGFileLexer.MULTILINE_TEXT
       - botbuilder-lg.LGFileLexer.NEWLINE
       - botbuilder-lg.LGFileLexer.nextToken
       - botbuilder-lg.LGFileLexer.notifyListeners
@@ -64,7 +71,7 @@ items:
       - botbuilder-lg.LGFileLexer.sourceName
       - botbuilder-lg.LGFileLexer.startTemplate
       - botbuilder-lg.LGFileLexer.state
-      - botbuilder-lg.LGFileLexer.TEMPLATE_BODY_LINE
+      - botbuilder-lg.LGFileLexer.TEMPLATE_BODY
       - botbuilder-lg.LGFileLexer.TEMPLATE_NAME_LINE
       - botbuilder-lg.LGFileLexer.text
       - botbuilder-lg.LGFileLexer.token
@@ -147,6 +154,36 @@ items:
       return:
         type:
           - number
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileLexer.channelNames
+    name: channelNames
+    fullName: channelNames
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'channelNames: string[]'
+      return:
+        type:
+          - 'string[]'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileLexer.channelNames
+    name: channelNames
+    fullName: channelNames
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static channelNames: string[]'
+      return:
+        type:
+          - 'string[]'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileLexer.charIndex
@@ -297,6 +334,21 @@ items:
           - number
         description: ''
     package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileLexer.ESCAPE_CHARACTER
+    name: ESCAPE_CHARACTER
+    fullName: ESCAPE_CHARACTER
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static ESCAPE_CHARACTER: 10 = 10'
+      return:
+        type:
+          - '10'
+        description: ''
+    package: botbuilder-lg
   - uid: botbuilder-lg.LGFileLexer.getAllTokens
     name: getAllTokens()
     children: []
@@ -409,7 +461,7 @@ items:
       - typeScript
     summary: |
       Get a map from rule names to rule indexes.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getRuleIndexMap()
       parameters: []
@@ -445,7 +497,7 @@ items:
       - typeScript
     summary: |
       Get a map from token names to token types.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getTokenTypeMap()
       parameters: []
@@ -538,10 +590,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static INVALID_LINE: 7 = 7'
+      content: 'static INVALID_LINE: 8 = 8'
       return:
         type:
-          - '7'
+          - '8'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileLexer.constructor
@@ -674,6 +726,66 @@ items:
     syntax:
       content: function more()
       parameters: []
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileLexer.MULTILINE_MODE
+    name: MULTILINE_MODE
+    fullName: MULTILINE_MODE
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static MULTILINE_MODE: 1 = 1'
+      return:
+        type:
+          - '1'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileLexer.MULTILINE_PREFIX
+    name: MULTILINE_PREFIX
+    fullName: MULTILINE_PREFIX
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static MULTILINE_PREFIX: 6 = 6'
+      return:
+        type:
+          - '6'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileLexer.MULTILINE_SUFFIX
+    name: MULTILINE_SUFFIX
+    fullName: MULTILINE_SUFFIX
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static MULTILINE_SUFFIX: 9 = 9'
+      return:
+        type:
+          - '9'
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.LGFileLexer.MULTILINE_TEXT
+    name: MULTILINE_TEXT
+    fullName: MULTILINE_TEXT
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static MULTILINE_TEXT: 11 = 11'
+      return:
+        type:
+          - '11'
+        description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileLexer.NEWLINE
     name: NEWLINE
@@ -992,7 +1104,7 @@ items:
       Instruct the lexer to skip creating a token for current lexer rule
        and look for another token.  nextToken() knows to keep looking when
        a lexer rule finishes with token set to SKIP_TOKEN.  Recall that
-       if token==null at end of any token rule, it creates one for you
+       if token==undefined at end of any token rule, it creates one for you
        and emits it.
     syntax:
       content: function skip()
@@ -1049,19 +1161,19 @@ items:
           - number
         description: ''
     package: botbuilder-lg
-  - uid: botbuilder-lg.LGFileLexer.TEMPLATE_BODY_LINE
-    name: TEMPLATE_BODY_LINE
-    fullName: TEMPLATE_BODY_LINE
+  - uid: botbuilder-lg.LGFileLexer.TEMPLATE_BODY
+    name: TEMPLATE_BODY
+    fullName: TEMPLATE_BODY
     children: []
     langs:
       - typeScript
     type: property
     summary: ''
     syntax:
-      content: 'static TEMPLATE_BODY_LINE: 6 = 6'
+      content: 'static TEMPLATE_BODY: 7 = 7'
       return:
         type:
-          - '6'
+          - '7'
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.LGFileLexer.TEMPLATE_NAME_LINE

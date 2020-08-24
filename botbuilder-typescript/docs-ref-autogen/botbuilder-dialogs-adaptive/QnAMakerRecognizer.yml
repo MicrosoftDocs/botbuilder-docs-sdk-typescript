@@ -18,12 +18,15 @@ items:
       - botbuilder-dialogs-adaptive.QnAMakerRecognizer.qnaMatchIntent
       - botbuilder-dialogs-adaptive.QnAMakerRecognizer.rankerType
       - botbuilder-dialogs-adaptive.QnAMakerRecognizer.recognize
+      - botbuilder-dialogs-adaptive.QnAMakerRecognizer.telemetryClient
       - botbuilder-dialogs-adaptive.QnAMakerRecognizer.threshold
       - botbuilder-dialogs-adaptive.QnAMakerRecognizer.top
     langs:
       - typeScript
     type: class
     summary: ''
+    extends:
+      name: botbuilder-dialogs-adaptive.Recognizer
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.QnAMakerRecognizer.context
     name: context
@@ -77,7 +80,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Id of the recognizer.
+    summary: Recognizers unique ID.
     syntax:
       content: 'id: string'
       return:
@@ -221,14 +224,19 @@ items:
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.QnAMakerRecognizer.recognize
-    name: 'recognize(DialogContext, Activity)'
+    name: >-
+      recognize(DialogContext, Activity, [key: string]: string, [key: string]:
+      number)
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function recognize(dc: DialogContext, activity: Activity)'
+      content: >-
+        function recognize(dc: DialogContext, activity: Activity,
+        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
+        string]: number)
       parameters:
         - id: dc
           type:
@@ -238,9 +246,34 @@ items:
           type:
             - Activity
           description: ''
+        - id: telemetryProperties
+          type:
+            - '[key: string]: string'
+          description: ''
+          optional: true
+        - id: telemetryMetrics
+          type:
+            - '[key: string]: number'
+          description: ''
+          optional: true
       return:
         type:
           - Promise<RecognizerResult>
+        description: ''
+    package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.QnAMakerRecognizer.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Sets the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.QnAMakerRecognizer.threshold
@@ -273,3 +306,10 @@ items:
           - IntExpression
         description: ''
     package: botbuilder-dialogs-adaptive
+references:
+  - uid: botbuilder-dialogs-adaptive.Recognizer
+    name: Recognizer
+    spec.typeScript:
+      - name: Recognizer
+        fullName: Recognizer
+        uid: botbuilder-dialogs-adaptive.Recognizer

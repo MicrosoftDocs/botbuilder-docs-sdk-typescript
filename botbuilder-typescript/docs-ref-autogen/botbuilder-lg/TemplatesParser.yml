@@ -4,8 +4,10 @@ items:
     name: TemplatesParser
     fullName: TemplatesParser
     children:
+      - botbuilder-lg.TemplatesParser.antlrParseTemplates
       - botbuilder-lg.TemplatesParser.defaultFileResolver
       - botbuilder-lg.TemplatesParser.importRegex
+      - botbuilder-lg.TemplatesParser.inlineContentId
       - botbuilder-lg.TemplatesParser.innerParseText
       - botbuilder-lg.TemplatesParser.optionRegex
       - botbuilder-lg.TemplatesParser.parseFile
@@ -15,6 +17,29 @@ items:
       - typeScript
     type: class
     summary: LG Parser
+    package: botbuilder-lg
+  - uid: botbuilder-lg.TemplatesParser.antlrParseTemplates
+    name: 'antlrParseTemplates(string, string)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Parse LG content and return the AST.
+    syntax:
+      content: 'static function antlrParseTemplates(text: string, source: string)'
+      parameters:
+        - id: text
+          type:
+            - string
+          description: LG content.
+        - id: source
+          type:
+            - string
+          description: Source id.
+      return:
+        type:
+          - botbuilder-lg.FileContext
+        description: The abstract syntax tree of lg file.
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplatesParser.defaultFileResolver
     name: 'defaultFileResolver(string, string)'
@@ -48,12 +73,27 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Import regex.
     syntax:
       content: 'static importRegex: RegExp'
       return:
         type:
           - RegExp
+        description: ''
+    package: botbuilder-lg
+  - uid: botbuilder-lg.TemplatesParser.inlineContentId
+    name: inlineContentId
+    fullName: inlineContentId
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Inline text id.
+    syntax:
+      content: 'static inlineContentId: string'
+      return:
+        type:
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplatesParser.innerParseText
@@ -217,6 +257,12 @@ items:
         description: ''
     package: botbuilder-lg
 references:
+  - uid: botbuilder-lg.FileContext
+    name: FileContext
+    spec.typeScript:
+      - name: FileContext
+        fullName: FileContext
+        uid: botbuilder-lg.FileContext
   - uid: botbuilder-lg.ImportResolverDelegate
     name: ImportResolverDelegate
     spec.typeScript:

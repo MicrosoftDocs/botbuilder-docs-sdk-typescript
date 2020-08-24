@@ -8,6 +8,7 @@ items:
       - adaptive-expressions.ExpressionAntlrParser.addErrorListener
       - adaptive-expressions.ExpressionAntlrParser.addParseListener
       - adaptive-expressions.ExpressionAntlrParser.argsList
+      - adaptive-expressions.ExpressionAntlrParser.ARROW
       - adaptive-expressions.ExpressionAntlrParser.ASTERISK
       - adaptive-expressions.ExpressionAntlrParser.atn
       - adaptive-expressions.ExpressionAntlrParser.buildParseTree
@@ -20,8 +21,9 @@ items:
       - adaptive-expressions.ExpressionAntlrParser.compileParseTreePattern_1
       - adaptive-expressions.ExpressionAntlrParser.consume
       - adaptive-expressions.ExpressionAntlrParser.context
+      - adaptive-expressions.ExpressionAntlrParser.createErrorNode
+      - adaptive-expressions.ExpressionAntlrParser.createTerminalNode
       - adaptive-expressions.ExpressionAntlrParser.currentToken
-      - adaptive-expressions.ExpressionAntlrParser.DOLLAR
       - adaptive-expressions.ExpressionAntlrParser.DOT
       - adaptive-expressions.ExpressionAntlrParser.DOUBLE_AND
       - adaptive-expressions.ExpressionAntlrParser.DOUBLE_EQUAL
@@ -66,6 +68,7 @@ items:
       - adaptive-expressions.ExpressionAntlrParser.key
       - adaptive-expressions.ExpressionAntlrParser.keyValuePair
       - adaptive-expressions.ExpressionAntlrParser.keyValuePairList
+      - adaptive-expressions.ExpressionAntlrParser.lambda
       - adaptive-expressions.ExpressionAntlrParser.LESS_OR_EQUAl
       - adaptive-expressions.ExpressionAntlrParser.LESS_THAN
       - adaptive-expressions.ExpressionAntlrParser.match
@@ -105,6 +108,7 @@ items:
       - adaptive-expressions.ExpressionAntlrParser.RULE_key
       - adaptive-expressions.ExpressionAntlrParser.RULE_keyValuePair
       - adaptive-expressions.ExpressionAntlrParser.RULE_keyValuePairList
+      - adaptive-expressions.ExpressionAntlrParser.RULE_lambda
       - adaptive-expressions.ExpressionAntlrParser.RULE_primaryExpression
       - adaptive-expressions.ExpressionAntlrParser.RULE_stringInterpolation
       - adaptive-expressions.ExpressionAntlrParser.RULE_textContent
@@ -182,28 +186,26 @@ items:
     langs:
       - typeScript
     summary: |
-      Registers {@code listener} to receive events during the parsing process.
-      <p>To support output-preserving grammar transformations (including but not
+      Registers `listener` to receive events during the parsing process.
+      To support output-preserving grammar transformations (including but not
       limited to left-recursion removal, automated left-factoring, and
       optimized code generation), calls to listener methods during the parse
       may differ substantially from calls made by
       <xref:ParseTreeWalker%23DEFAULT> used after the parse is complete. In
       particular, rule entry and exit events may occur in a different order
       during the parse than after the parser. In addition, calls to certain
-      rule entry methods may be omitted.</p>
+      rule entry methods may be omitted.
 
-      <p>With the following specific exceptions, calls to listener events are
-      <em>deterministic</em>, i.e. for identical input the calls to listener
-      methods will be the same.</p>
+      With the following specific exceptions, calls to listener events are
+      *deterministic*, i.e. for identical input the calls to listener
+      methods will be the same.
 
-      <ul>
-      <li>Alterations to the grammar used to generate code may change the
-      behavior of the listener calls.</li>
-      <li>Alterations to the command line options passed to ANTLR 4 when
-      generating the parser may change the behavior of the listener calls.</li>
-      <li>Changing the version of the ANTLR Tool used to generate the parser
-      may change the behavior of the listener calls.</li>
-      </ul>
+      * Alterations to the grammar used to generate code may change the
+        behavior of the listener calls.
+      * Alterations to the command line options passed to ANTLR 4 when
+        generating the parser may change the behavior of the listener calls.
+      * Changing the version of the ANTLR Tool used to generate the parser
+        may change the behavior of the listener calls.
     syntax:
       content: 'function addParseListener(listener: ParseTreeListener)'
       parameters:
@@ -212,8 +214,6 @@ items:
             - ParseTreeListener
           description: |
             the listener to add
-
-            @ if {@code} listener is {@code null}
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.argsList
     name: argsList()
@@ -228,6 +228,21 @@ items:
       return:
         type:
           - adaptive-expressions.ArgsListContext
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrParser.ARROW
+    name: ARROW
+    fullName: ARROW
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static ARROW: 27 = 27'
+      return:
+        type:
+          - '27'
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.ASTERISK
@@ -272,14 +287,14 @@ items:
       them up using the <xref:ParserRuleContext%23children> list so that it
       forms a parse tree. The <xref:ParserRuleContext> returned from the start
       rule represents the root of the parse tree.
-      <p>Note that if we are not building parse trees, rule contexts only point
+      Note that if we are not building parse trees, rule contexts only point
       upwards. When a rule exits, it returns the context but that gets garbage
       collected if nobody holds a reference. It points upwards but nobody
-      points at it.</p>
+      points at it.
 
-      <p>When we build parse trees, we are adding all of these contexts to
+      When we build parse trees, we are adding all of these contexts to
       <xref:ParserRuleContext%23children> list. Contexts are then not candidates
-      for garbage collection.</p>
+      for garbage collection.
     syntax:
       content: 'buildParseTree: boolean'
       return:
@@ -443,24 +458,41 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
+    summary: >
       Consume and return the [current symbol](`currentToken`).
-      <p>E.g., given the following input with {@code A} being the current
-      lookahead symbol, this function moves the cursor to {@code B} and returns
-      {@code A}.</p>
 
-      <pre>
-       A B
-       ^
-      </pre>
+      E.g., given the following input with `A` being the current
+
+      lookahead symbol, this function moves the cursor to `B` and returns
+
+      `A`.
+
+
+      ```
+
+      A B
+
+      ^
+
+      ```
+
 
       If the parser is not in error recovery mode, the consumed symbol is added
-      to the parse tree using <xref:ParserRuleContext%23addChild(Token)>, and
+
+      to the parse tree using <xref:ParserRuleContext%23addChild(TerminalNode)>,
+      and
+
       <xref:ParseTreeListener%23visitTerminal> is called on any parse listeners.
-      If the parser <em>is</em> in error recovery mode, the consumed symbol is
+
+      If the parser *is* in error recovery mode, the consumed symbol is
+
       added to the parse tree using
-      <xref:ParserRuleContext%23addErrorNode(Token)>, and
+      [Token)](xref:%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)> and
+
       <xref:ParseTreeListener%23visitErrorNode> is called on any parse
+
       listeners.
     syntax:
       content: function consume()
@@ -485,6 +517,56 @@ items:
           - ParserRuleContext
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrParser.createErrorNode
+    name: 'createErrorNode(ParserRuleContext, Token)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      How to create an error node, given a token, associated with a parent.
+      Typically, the error node to create is not a function of the parent.
+    syntax:
+      content: 'function createErrorNode(parent: ParserRuleContext, t: Token)'
+      parameters:
+        - id: parent
+          type:
+            - ParserRuleContext
+          description: ''
+        - id: t
+          type:
+            - Token
+          description: ''
+      return:
+        type:
+          - ErrorNode
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrParser.createTerminalNode
+    name: 'createTerminalNode(ParserRuleContext, Token)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |-
+      How to create a token leaf node associated with a parent.
+      Typically, the terminal node to create is not a function of the parent.
+    syntax:
+      content: 'function createTerminalNode(parent: ParserRuleContext, t: Token)'
+      parameters:
+        - id: parent
+          type:
+            - ParserRuleContext
+          description: ''
+        - id: t
+          type:
+            - Token
+          description: ''
+      return:
+        type:
+          - TerminalNode
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.currentToken
     name: currentToken
     fullName: currentToken
@@ -500,21 +582,6 @@ items:
       return:
         type:
           - Token
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionAntlrParser.DOLLAR
-    name: DOLLAR
-    fullName: DOLLAR
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'static DOLLAR: 27 = 27'
-      return:
-        type:
-          - '27'
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.DOT
@@ -968,7 +1035,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: 'Get a rule''s index (i.e., {@code RULE_ruleName} field) or -1 if not found.'
+    summary: 'Get a rule''s index (i.e., `RULE_ruleName` field) or -1 if not found.'
     syntax:
       content: 'function getRuleIndex(ruleName: string)'
       parameters:
@@ -989,7 +1056,7 @@ items:
       - typeScript
     summary: |
       Get a map from rule names to rule indexes.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getRuleIndexMap()
       parameters: []
@@ -1050,7 +1117,7 @@ items:
       - typeScript
     summary: |
       Get a map from token names to token types.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getTokenTypeMap()
       parameters: []
@@ -1160,13 +1227,13 @@ items:
     langs:
       - typeScript
     summary: |
-      Checks whether or not {@code symbol} can follow the current state in the
+      Checks whether or not `symbol` can follow the current state in the
       ATN. The behavior of this method is equivalent to the following, but is
       implemented such that the complete context-sensitive follow set does not
       need to be explicitly constructed.
-      <pre>
+      ```
       return getExpectedTokens().contains(symbol);
-      </pre>
+      ```
     syntax:
       content: 'function isExpectedToken(symbol: number)'
       parameters:
@@ -1178,8 +1245,8 @@ items:
         type:
           - boolean
         description: |-
-          if {@code symbol} can follow the current state in
-          the ATN, otherwise {@code false}.
+          `true` if `symbol` can follow the current state in
+          the ATN, otherwise `false`.
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.isMatchedEOF
     name: isMatchedEOF
@@ -1258,6 +1325,21 @@ items:
           - adaptive-expressions.KeyValuePairListContext
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrParser.lambda
+    name: lambda()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function lambda()
+      parameters: []
+      return:
+        type:
+          - adaptive-expressions.LambdaContext
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.LESS_OR_EQUAl
     name: LESS_OR_EQUAl
     fullName: LESS_OR_EQUAl
@@ -1294,16 +1376,27 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
-      Match current input symbol against {@code ttype}. If the symbol type
+    summary: >
+      Match current input symbol against `ttype`. If the symbol type
+
       matches, <xref:ANTLRErrorStrategy%23reportMatch> and <xref:%23consume> are
+
       called to complete the match process.
-      <p>If the symbol type does not match,
+
+      If the symbol type does not match,
+
       <xref:ANTLRErrorStrategy%23recoverInline> is called on the current error
+
       strategy to attempt recovery. If <xref:%23getBuildParseTree> is
-      {@code true} and the token index of the symbol returned by
+
+      `true` and the token index of the symbol returned by
+
       <xref:ANTLRErrorStrategy%23recoverInline> is -1, the symbol is added to
-      the parse tree by calling <xref:ParserRuleContext%23addErrorNode>.</p>
+
+      the parse tree by calling
+      [Token)](xref:%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)>.
     syntax:
       content: 'function match(ttype: number)'
       parameters:
@@ -1317,7 +1410,7 @@ items:
         description: |-
           the matched symbol
           @ if the current input symbol did not match
-          {@code ttype} and the error strategy could not recover from the
+          `ttype` and the error strategy could not recover from the
           mismatched symbol
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.matchWildcard
@@ -1326,16 +1419,27 @@ items:
     type: method
     langs:
       - typeScript
-    summary: |
+    summary: >
       Match current input symbol as a wildcard. If the symbol type matches
+
       (i.e. has a value greater than 0), <xref:ANTLRErrorStrategy%23reportMatch>
+
       and <xref:%23consume> are called to complete the match process.
-      <p>If the symbol type does not match,
+
+      If the symbol type does not match,
+
       <xref:ANTLRErrorStrategy%23recoverInline> is called on the current error
+
       strategy to attempt recovery. If <xref:%23getBuildParseTree> is
-      {@code true} and the token index of the symbol returned by
+
+      `true` and the token index of the symbol returned by
+
       <xref:ANTLRErrorStrategy%23recoverInline> is -1, the symbol is added to
-      the parse tree by calling <xref:ParserRuleContext%23addErrorNode>.</p>
+
+      the parse tree by calling
+      [Token)](xref:Parser%23createErrorNode(ParserRuleContext%2C) then
+
+      <xref:ParserRuleContext%23addErrorNode(ErrorNode)>.
     syntax:
       content: function matchWildcard()
       parameters: []
@@ -1723,9 +1827,9 @@ items:
     langs:
       - typeScript
     summary: |
-      Remove {@code listener} from the list of parse listeners.
-      <p>If {@code listener} is {@code null} or has not been added as a parse
-      listener, this method does nothing.</p>
+      Remove `listener` from the list of parse listeners.
+      If `listener` is `undefined` or has not been added as a parse
+      listener, this method does nothing.
     syntax:
       content: 'function removeParseListener(listener: ParseTreeListener)'
       parameters:
@@ -1871,10 +1975,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_key: 8 = 8'
+      content: 'static RULE_key: 9 = 9'
       return:
         type:
-          - '8'
+          - '9'
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.RULE_keyValuePair
@@ -1886,10 +1990,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_keyValuePair: 7 = 7'
+      content: 'static RULE_keyValuePair: 8 = 8'
       return:
         type:
-          - '7'
+          - '8'
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrParser.RULE_keyValuePairList
@@ -1901,7 +2005,22 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static RULE_keyValuePairList: 6 = 6'
+      content: 'static RULE_keyValuePairList: 7 = 7'
+      return:
+        type:
+          - '7'
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrParser.RULE_lambda
+    name: RULE_lambda
+    fullName: RULE_lambda
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static RULE_lambda: 6 = 6'
       return:
         type:
           - '6'
@@ -2313,6 +2432,12 @@ references:
       - name: KeyValuePairListContext
         fullName: KeyValuePairListContext
         uid: adaptive-expressions.KeyValuePairListContext
+  - uid: adaptive-expressions.LambdaContext
+    name: LambdaContext
+    spec.typeScript:
+      - name: LambdaContext
+        fullName: LambdaContext
+        uid: adaptive-expressions.LambdaContext
   - uid: adaptive-expressions.PrimaryExpressionContext
     name: PrimaryExpressionContext
     spec.typeScript:

@@ -4,7 +4,7 @@ items:
     name: IntExpression
     fullName: IntExpression
     children:
-      - adaptive-expressions.IntExpression.expression
+      - adaptive-expressions.IntExpression.expressionText
       - adaptive-expressions.IntExpression.getValue
       - adaptive-expressions.IntExpression.constructor
       - adaptive-expressions.IntExpression.setValue
@@ -24,19 +24,19 @@ items:
     remarks: >-
       String values are always interpreted as an expression, whether it has '='
       prefix or not.
-  - uid: adaptive-expressions.IntExpression.expression
-    name: expression
-    fullName: expression
+  - uid: adaptive-expressions.IntExpression.expressionText
+    name: expressionText
+    fullName: expressionText
     children: []
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Getes or sets the expression text to evaluate to get the value.
     syntax:
-      content: 'expression: Expression'
+      content: 'expressionText: string'
       return:
         type:
-          - adaptive-expressions.Expression
+          - string
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.IntExpression.getValue
@@ -56,7 +56,7 @@ items:
       return:
         type:
           - number
-        description: the value.
+        description: The value.
     package: adaptive-expressions
     remarks: An error will be thrown if value is an invalid expression.
   - uid: adaptive-expressions.IntExpression.constructor
@@ -81,14 +81,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Set the value.
     syntax:
       content: 'function setValue(value: number | string | Expression)'
       parameters:
         - id: value
           type:
             - number | string | adaptive-expressions.Expression
-          description: ''
+          description: |
+            Value to set.
     package: adaptive-expressions
   - uid: adaptive-expressions.IntExpression.toExpression
     name: toExpression()
@@ -96,7 +97,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: This will return the existing expression if the value is non-complex type.
     syntax:
       content: function toExpression()
       parameters: []
@@ -111,7 +112,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Convert an expression property to string.
     syntax:
       content: function toString()
       parameters: []
@@ -126,18 +127,18 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Try to get the value.
     syntax:
       content: 'function tryGetValue(data: object)'
       parameters:
         - id: data
           type:
             - object
-          description: ''
+          description: Data to use for expression binding.
       return:
         type:
           - Object
-        description: ''
+        description: Value of int number
     package: adaptive-expressions
   - uid: adaptive-expressions.IntExpression.value
     name: value
@@ -146,7 +147,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Gets or sets the raw value of the expression property.
     syntax:
       content: 'value: number'
       return:

@@ -6,9 +6,12 @@ items:
     children:
       - adaptive-expressions.ExpressionAntlrLexer.action
       - adaptive-expressions.ExpressionAntlrLexer.addErrorListener
+      - adaptive-expressions.ExpressionAntlrLexer.ARROW
       - adaptive-expressions.ExpressionAntlrLexer.ASTERISK
       - adaptive-expressions.ExpressionAntlrLexer.atn
       - adaptive-expressions.ExpressionAntlrLexer.channel
+      - adaptive-expressions.ExpressionAntlrLexer.channelNames
+      - adaptive-expressions.ExpressionAntlrLexer.channelNames
       - adaptive-expressions.ExpressionAntlrLexer.charIndex
       - adaptive-expressions.ExpressionAntlrLexer.charPositionInLine
       - adaptive-expressions.ExpressionAntlrLexer.CLOSE_BRACKET
@@ -18,7 +21,6 @@ items:
       - adaptive-expressions.ExpressionAntlrLexer.COMMA
       - adaptive-expressions.ExpressionAntlrLexer.DEFAULT_MODE
       - adaptive-expressions.ExpressionAntlrLexer.DEFAULT_TOKEN_CHANNEL
-      - adaptive-expressions.ExpressionAntlrLexer.DOLLAR
       - adaptive-expressions.ExpressionAntlrLexer.DOT
       - adaptive-expressions.ExpressionAntlrLexer.DOUBLE_AND
       - adaptive-expressions.ExpressionAntlrLexer.DOUBLE_EQUAL
@@ -149,6 +151,21 @@ items:
             - ANTLRErrorListener<number>
           description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrLexer.ARROW
+    name: ARROW
+    fullName: ARROW
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static ARROW: 27 = 27'
+      return:
+        type:
+          - '27'
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrLexer.ASTERISK
     name: ASTERISK
     fullName: ASTERISK
@@ -192,6 +209,36 @@ items:
       return:
         type:
           - number
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrLexer.channelNames
+    name: channelNames
+    fullName: channelNames
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'channelNames: string[]'
+      return:
+        type:
+          - 'string[]'
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.ExpressionAntlrLexer.channelNames
+    name: channelNames
+    fullName: channelNames
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: ''
+    syntax:
+      content: 'static channelNames: string[]'
+      return:
+        type:
+          - 'string[]'
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrLexer.charIndex
@@ -327,21 +374,6 @@ items:
       return:
         type:
           - number
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionAntlrLexer.DOLLAR
-    name: DOLLAR
-    fullName: DOLLAR
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'static DOLLAR: 27 = 27'
-      return:
-        type:
-          - '27'
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ExpressionAntlrLexer.DOT
@@ -619,7 +651,7 @@ items:
       - typeScript
     summary: |
       Get a map from rule names to rule indexes.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getRuleIndexMap()
       parameters: []
@@ -655,7 +687,7 @@ items:
       - typeScript
     summary: |
       Get a map from token names to token types.
-      <p>Used for XPath and tree pattern compilation.</p>
+      Used for XPath and tree pattern compilation.
     syntax:
       content: function getTokenTypeMap()
       parameters: []
@@ -1382,7 +1414,7 @@ items:
       Instruct the lexer to skip creating a token for current lexer rule
        and look for another token.  nextToken() knows to keep looking when
        a lexer rule finishes with token set to SKIP_TOKEN.  Recall that
-       if token==null at end of any token rule, it creates one for you
+       if token==undefined at end of any token rule, it creates one for you
        and emits it.
     syntax:
       content: function skip()

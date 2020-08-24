@@ -4,18 +4,41 @@ items:
     name: FolderResourceProvider
     fullName: FolderResourceProvider
     children:
+      - botbuilder-dialogs-declarative.FolderResourceProvider.changed
       - botbuilder-dialogs-declarative.FolderResourceProvider.directory
-      - botbuilder-dialogs-declarative.FolderResourceProvider.emitter
-      - botbuilder-dialogs-declarative.FolderResourceProvider.extensions
       - botbuilder-dialogs-declarative.FolderResourceProvider.constructor
       - botbuilder-dialogs-declarative.FolderResourceProvider.getResource
       - botbuilder-dialogs-declarative.FolderResourceProvider.getResources
       - botbuilder-dialogs-declarative.FolderResourceProvider.id
       - botbuilder-dialogs-declarative.FolderResourceProvider.includeSubFolders
+      - botbuilder-dialogs-declarative.FolderResourceProvider.refresh
+      - botbuilder-dialogs-declarative.FolderResourceProvider.resourceExplorer
+      - botbuilder-dialogs-declarative.FolderResourceProvider.watcher
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: >-
+      Class which gives resource explorer access to resources which are stored
+      in file system.
+    extends:
+      name: botbuilder-dialogs-declarative.ResourceProvider
+    package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.FolderResourceProvider.changed
+    name: changed
+    fullName: changed
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: >-
+      Event which is fired if any resource managed by the resource provider
+      detects changes to the underlining resource.
+    syntax:
+      content: 'changed: (event: ResourceChangeEvent, resources: Resource[]) => void'
+      return:
+        type:
+          - '(event: ResourceChangeEvent, resources: Resource[]) => void'
+        description: ''
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.FolderResourceProvider.directory
     name: directory
@@ -24,7 +47,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Folder to enumerate.
     syntax:
       content: 'directory: string'
       return:
@@ -32,61 +55,36 @@ items:
           - string
         description: ''
     package: botbuilder-dialogs-declarative
-  - uid: botbuilder-dialogs-declarative.FolderResourceProvider.emitter
-    name: emitter
-    fullName: emitter
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'emitter: EventEmitter'
-      return:
-        type:
-          - EventEmitter
-        description: ''
-    package: botbuilder-dialogs-declarative
-  - uid: botbuilder-dialogs-declarative.FolderResourceProvider.extensions
-    name: extensions
-    fullName: extensions
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'extensions: Set<string>'
-      return:
-        type:
-          - Set<string>
-        description: ''
-    package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.FolderResourceProvider.constructor
-    name: 'FolderResourceProvider(string, boolean, boolean)'
+    name: 'FolderResourceProvider(ResourceExplorer, string, boolean, boolean)'
     children: []
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Initializes a new instance of the `FolderResourceProvider` class.
     syntax:
       content: >-
-        new FolderResourceProvider(folder: string, includeSubFolders?: boolean,
-        monitorChanges?: boolean)
+        new FolderResourceProvider(resourceExplorer: ResourceExplorer, folder:
+        string, includeSubFolders?: boolean, monitorChanges?: boolean)
       parameters:
+        - id: resourceExplorer
+          type:
+            - botbuilder-dialogs-declarative.ResourceExplorer
+          description: Resource explorer.
         - id: folder
           type:
             - string
-          description: ''
+          description: Root folder.
         - id: includeSubFolders
           type:
             - boolean
-          description: ''
+          description: Whether include its sub folders.
           optional: true
         - id: monitorChanges
           type:
             - boolean
-          description: ''
+          description: |
+            Whether monitor changes.
           optional: true
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.FolderResourceProvider.getResource
@@ -95,17 +93,18 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Gets resource by its id.
     syntax:
       content: 'function getResource(id: string)'
       parameters:
         - id: id
           type:
             - string
-          description: ''
+          description: |
+            Resource id.
       return:
         type:
-          - botbuilder-dialogs-declarative.IResource
+          - botbuilder-dialogs-declarative.Resource
         description: ''
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.FolderResourceProvider.getResources
@@ -114,29 +113,30 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Gets resources by extension.
     syntax:
       content: 'function getResources(extension: string)'
       parameters:
         - id: extension
           type:
             - string
-          description: ''
+          description: |
+            Resource extension.
       return:
         type:
-          - 'botbuilder-dialogs-declarative.IResource[]'
+          - 'botbuilder-dialogs-declarative.Resource[]'
         description: ''
     package: botbuilder-dialogs-declarative
   - uid: botbuilder-dialogs-declarative.FolderResourceProvider.id
-    name: id()
+    name: id
+    fullName: id
     children: []
-    type: method
     langs:
       - typeScript
-    summary: ''
+    type: property
+    summary: Gets the ID for this resource provider.
     syntax:
-      content: function id()
-      parameters: []
+      content: 'id: string'
       return:
         type:
           - string
@@ -149,7 +149,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: A value indicating whether to include subfolders.
     syntax:
       content: 'includeSubFolders: boolean'
       return:
@@ -157,18 +157,71 @@ items:
           - boolean
         description: ''
     package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.FolderResourceProvider.refresh
+    name: refresh()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Refresh any cached content and look for new content.
+    syntax:
+      content: function refresh()
+      parameters: []
+    package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.FolderResourceProvider.resourceExplorer
+    name: resourceExplorer
+    fullName: resourceExplorer
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets the resource explorer.
+    syntax:
+      content: 'resourceExplorer: ResourceExplorer'
+      return:
+        type:
+          - botbuilder-dialogs-declarative.ResourceExplorer
+        description: ''
+    package: botbuilder-dialogs-declarative
+  - uid: botbuilder-dialogs-declarative.FolderResourceProvider.watcher
+    name: watcher
+    fullName: watcher
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Gets attached file watcher.
+    syntax:
+      content: 'watcher: FSWatcher'
+      return:
+        type:
+          - FSWatcher
+        description: ''
+    package: botbuilder-dialogs-declarative
 references:
-  - uid: botbuilder-dialogs-declarative.IResource
-    name: IResource
+  - uid: botbuilder-dialogs-declarative.ResourceProvider
+    name: ResourceProvider
     spec.typeScript:
-      - name: IResource
-        fullName: IResource
-        uid: botbuilder-dialogs-declarative.IResource
-  - uid: 'botbuilder-dialogs-declarative.IResource[]'
-    name: 'IResource[]'
+      - name: ResourceProvider
+        fullName: ResourceProvider
+        uid: botbuilder-dialogs-declarative.ResourceProvider
+  - uid: botbuilder-dialogs-declarative.ResourceExplorer
+    name: ResourceExplorer
     spec.typeScript:
-      - name: IResource
-        fullName: IResource
-        uid: botbuilder-dialogs-declarative.IResource
+      - name: ResourceExplorer
+        fullName: ResourceExplorer
+        uid: botbuilder-dialogs-declarative.ResourceExplorer
+  - uid: botbuilder-dialogs-declarative.Resource
+    name: Resource
+    spec.typeScript:
+      - name: Resource
+        fullName: Resource
+        uid: botbuilder-dialogs-declarative.Resource
+  - uid: 'botbuilder-dialogs-declarative.Resource[]'
+    name: 'Resource[]'
+    spec.typeScript:
+      - name: Resource
+        fullName: Resource
+        uid: botbuilder-dialogs-declarative.Resource
       - name: '[]'
         fullName: '[]'

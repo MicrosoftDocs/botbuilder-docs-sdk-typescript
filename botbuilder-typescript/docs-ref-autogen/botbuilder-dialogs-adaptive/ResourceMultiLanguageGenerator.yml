@@ -14,34 +14,35 @@ items:
     langs:
       - typeScript
     type: class
-    summary: Initializes a new instance of the ResourceMultiLanguageGenerator class.
+    summary: ''
     extends:
       name: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.generate
-    name: 'generate(TurnContext, string, object)'
+    name: 'generate(DialogContext, string, object)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Find a language generator that matches the current context locale.
     syntax:
       content: >-
-        function generate(turnContext: TurnContext, template: string, data:
+        function generate(dialogContext: DialogContext, template: string, data:
         object)
       parameters:
-        - id: turnContext
+        - id: dialogContext
           type:
-            - TurnContext
-          description: ''
+            - DialogContext
+          description: Context for the current turn of conversation.
         - id: template
           type:
             - string
-          description: ''
+          description: Template to use.
         - id: data
           type:
             - object
-          description: ''
+          description: |
+            Data to bind to.
       return:
         type:
           - Promise<string>
@@ -54,12 +55,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Language policy required by language generator.
     syntax:
-      content: 'languagePolicy: any'
+      content: 'languagePolicy: LanguagePolicy'
       return:
         type:
-          - any
+          - botbuilder-dialogs-adaptive.LanguagePolicy
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.resourceId
@@ -69,7 +70,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Resource id of LG file.
     syntax:
       content: 'resourceId: string'
       return:
@@ -83,34 +84,36 @@ items:
     type: constructor
     langs:
       - typeScript
-    summary: ''
+    summary: Initializes a new instance of the ResourceMultiLanguageGenerator class.
     syntax:
       content: 'new ResourceMultiLanguageGenerator(resourceId?: string)'
       parameters:
         - id: resourceId
           type:
             - string
-          description: ''
+          description: |
+            Resource id of LG file.
           optional: true
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.tryGetGenerator
-    name: 'tryGetGenerator(TurnContext, string)'
+    name: 'tryGetGenerator(DialogContext, string)'
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Implementation of lookup by locale.
     syntax:
-      content: 'function tryGetGenerator(context: TurnContext, locale: string)'
+      content: 'function tryGetGenerator(dialogContext: DialogContext, locale: string)'
       parameters:
-        - id: context
+        - id: dialogContext
           type:
-            - TurnContext
-          description: ''
+            - DialogContext
+          description: Context for the current turn of conversation.
         - id: locale
           type:
             - string
-          description: ''
+          description: |
+            Locale to lookup.
       return:
         type:
           - Object
@@ -123,3 +126,9 @@ references:
       - name: MultiLanguageGeneratorBase
         fullName: MultiLanguageGeneratorBase
         uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
+  - uid: botbuilder-dialogs-adaptive.LanguagePolicy
+    name: LanguagePolicy
+    spec.typeScript:
+      - name: LanguagePolicy
+        fullName: LanguagePolicy
+        uid: botbuilder-dialogs-adaptive.LanguagePolicy

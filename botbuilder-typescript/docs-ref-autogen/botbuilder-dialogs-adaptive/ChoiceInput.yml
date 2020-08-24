@@ -150,10 +150,10 @@ items:
     type: property
     summary: List of choices to present to user.
     syntax:
-      content: 'choices: ArrayExpression<Choice>'
+      content: 'choices: ObjectExpression<ChoiceSet>'
       return:
         type:
-          - ArrayExpression<Choice>
+          - ObjectExpression<botbuilder-dialogs-adaptive.ChoiceSet>
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ChoiceInput.configure
@@ -426,22 +426,26 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
           type:
             - DialogContext
-          description: ''
+          description: The dialog context for the current turn of conversation.
         - id: e
           type:
             - DialogEvent
-          description: ''
+          description: The event being raised.
       return:
         type:
           - Promise<boolean>
-        description: ''
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.ChoiceInput.OPTIONS_PROPERTY
     name: OPTIONS_PROPERTY
@@ -706,6 +710,16 @@ references:
       - name: InputDialog
         fullName: InputDialog
         uid: botbuilder-dialogs-adaptive.InputDialog
+  - uid: ObjectExpression<botbuilder-dialogs-adaptive.ChoiceSet>
+    name: ChoiceSet>
+    spec.typeScript:
+      - name: ObjectExpression<
+        fullName: ObjectExpression<
+      - name: ChoiceSet
+        fullName: ChoiceSet
+        uid: botbuilder-dialogs-adaptive.ChoiceSet
+      - name: '>'
+        fullName: '>'
   - uid: botbuilder-dialogs-adaptive.TemplateInterface<Partial<Activity>>
     name: TemplateInterface<Partial<Activity>>
     spec.typeScript:

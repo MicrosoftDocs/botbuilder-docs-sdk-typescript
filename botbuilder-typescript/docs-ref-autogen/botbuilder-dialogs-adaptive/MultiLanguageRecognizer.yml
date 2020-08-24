@@ -8,10 +8,13 @@ items:
       - botbuilder-dialogs-adaptive.MultiLanguageRecognizer.languagePolicy
       - botbuilder-dialogs-adaptive.MultiLanguageRecognizer.recognize
       - botbuilder-dialogs-adaptive.MultiLanguageRecognizer.recognizers
+      - botbuilder-dialogs-adaptive.MultiLanguageRecognizer.telemetryClient
     langs:
       - typeScript
     type: class
     summary: ''
+    extends:
+      name: botbuilder-dialogs-adaptive.Recognizer
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.id
     name: id
@@ -20,7 +23,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: Recognizers unique ID.
     syntax:
       content: 'id: string'
       return:
@@ -37,21 +40,26 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'languagePolicy: any'
+      content: 'languagePolicy: LanguagePolicy'
       return:
         type:
-          - any
+          - botbuilder-dialogs-adaptive.LanguagePolicy
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.recognize
-    name: 'recognize(DialogContext, Activity)'
+    name: >-
+      recognize(DialogContext, Activity, [key: string]: string, [key: string]:
+      number)
     children: []
     type: method
     langs:
       - typeScript
     summary: ''
     syntax:
-      content: 'function recognize(dialogContext: DialogContext, activity: Activity)'
+      content: >-
+        function recognize(dialogContext: DialogContext, activity: Activity,
+        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
+        string]: number)
       parameters:
         - id: dialogContext
           type:
@@ -61,6 +69,16 @@ items:
           type:
             - Activity
           description: ''
+        - id: telemetryProperties
+          type:
+            - '[key: string]: string'
+          description: ''
+          optional: true
+        - id: telemetryMetrics
+          type:
+            - '[key: string]: number'
+          description: ''
+          optional: true
       return:
         type:
           - Promise<RecognizerResult>
@@ -81,7 +99,34 @@ items:
           - '[key: string]: botbuilder-dialogs-adaptive.Recognizer'
         description: ''
     package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.telemetryClient
+    name: telemetryClient
+    fullName: telemetryClient
+    children: []
+    langs:
+      - typeScript
+    type: property
+    summary: Sets the telemetry client for this dialog.
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type:
+          - BotTelemetryClient
+        description: ''
+    package: botbuilder-dialogs-adaptive
 references:
+  - uid: botbuilder-dialogs-adaptive.Recognizer
+    name: Recognizer
+    spec.typeScript:
+      - name: Recognizer
+        fullName: Recognizer
+        uid: botbuilder-dialogs-adaptive.Recognizer
+  - uid: botbuilder-dialogs-adaptive.LanguagePolicy
+    name: LanguagePolicy
+    spec.typeScript:
+      - name: LanguagePolicy
+        fullName: LanguagePolicy
+        uid: botbuilder-dialogs-adaptive.LanguagePolicy
   - uid: '[key: string]: botbuilder-dialogs-adaptive.Recognizer'
     name: Recognizer
     spec.typeScript:

@@ -7,11 +7,12 @@ items:
       - botbuilder-dialogs-adaptive.Result.content
       - botbuilder-dialogs-adaptive.Result.headers
       - botbuilder-dialogs-adaptive.Result.reasonPhrase
+      - botbuilder-dialogs-adaptive.Result.constructor
       - botbuilder-dialogs-adaptive.Result.statusCode
     langs:
       - typeScript
     type: class
-    summary: ''
+    summary: Result data of HTTP operation.
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.Result.content
     name: content
@@ -20,13 +21,13 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The content body from the response to HTTP operation.
     optional: true
     syntax:
-      content: 'content?: object'
+      content: 'content?: any'
       return:
         type:
-          - object
+          - any
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.Result.headers
@@ -36,13 +37,13 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The headers from the response to HTTP operation.
     optional: true
     syntax:
-      content: 'headers?: any'
+      content: 'headers?: [key: string]: string'
       return:
         type:
-          - any
+          - '[key: string]: string'
         description: ''
     package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.Result.reasonPhrase
@@ -52,7 +53,7 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The reason phrase from the response to HTTP operation.
     optional: true
     syntax:
       content: 'reasonPhrase?: string'
@@ -61,6 +62,23 @@ items:
           - string
         description: ''
     package: botbuilder-dialogs-adaptive
+  - uid: botbuilder-dialogs-adaptive.Result.constructor
+    name: Result(Headers)
+    children: []
+    type: constructor
+    langs:
+      - typeScript
+    summary: Initialize a new instance of Result class.
+    syntax:
+      content: 'new Result(headers?: Headers)'
+      parameters:
+        - id: headers
+          type:
+            - Headers
+          description: |
+            Response headers.
+          optional: true
+    package: botbuilder-dialogs-adaptive
   - uid: botbuilder-dialogs-adaptive.Result.statusCode
     name: statusCode
     fullName: statusCode
@@ -68,12 +86,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: The status code from the response to HTTP operation.
     optional: true
     syntax:
-      content: 'statusCode?: Number'
+      content: 'statusCode?: number'
       return:
         type:
-          - Number
+          - number
         description: ''
     package: botbuilder-dialogs-adaptive

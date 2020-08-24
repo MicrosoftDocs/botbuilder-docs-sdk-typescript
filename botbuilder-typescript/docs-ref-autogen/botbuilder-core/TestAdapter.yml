@@ -13,6 +13,7 @@ items:
       - botbuilder-core.TestAdapter.getAadTokens
       - botbuilder-core.TestAdapter.getSignInLink
       - botbuilder-core.TestAdapter.getSignInResource
+      - botbuilder-core.TestAdapter.getTokenStatus
       - botbuilder-core.TestAdapter.getUserToken
       - botbuilder-core.TestAdapter.OAuthScopeKey
       - botbuilder-core.TestAdapter.onTurnError
@@ -320,6 +321,52 @@ items:
         type:
           - Promise<SignInUrlResponse>
         description: ''
+    package: botbuilder-core
+  - uid: botbuilder-core.TestAdapter.getTokenStatus
+    name: 'getTokenStatus(TurnContext, string, string, any)'
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: >-
+      Asynchronously retrieves the token status for each configured connection
+      for the given user.
+
+      In testAdapter, retrieves tokens which were previously added via
+      addUserToken.
+    syntax:
+      content: >-
+        function getTokenStatus(context: TurnContext, userId: string,
+        includeFilter?: string, oAuthAppCredentials?: any)
+      parameters:
+        - id: context
+          type:
+            - botbuilder-core.TurnContext
+          description: The context object for the turn.
+        - id: userId
+          type:
+            - string
+          description: The ID of the user to retrieve the token status for.
+        - id: includeFilter
+          type:
+            - string
+          description: >-
+            Optional. A comma-separated list of connection's to include. If
+            present,
+                 the `includeFilter` parameter limits the tokens this method returns.
+          optional: true
+        - id: oAuthAppCredentials
+          type:
+            - any
+          description: |
+            AppCredentials for OAuth.
+          optional: true
+      return:
+        type:
+          - 'Promise<any[]>'
+        description: >-
+          The [TokenStatus](xref:botframework-connector.TokenStatus) objects
+          retrieved.
     package: botbuilder-core
   - uid: botbuilder-core.TestAdapter.getUserToken
     name: 'getUserToken(TurnContext, string, string)'

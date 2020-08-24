@@ -5,10 +5,12 @@ items:
     fullName: ArgsListContext
     children:
       - adaptive-expressions.ArgsListContext.accept
+      - adaptive-expressions.ArgsListContext.addAnyChild
       - adaptive-expressions.ArgsListContext.addChild_1
       - adaptive-expressions.ArgsListContext.addChild
       - adaptive-expressions.ArgsListContext.addChild_2
       - adaptive-expressions.ArgsListContext.addErrorNode
+      - adaptive-expressions.ArgsListContext.addErrorNode_1
       - adaptive-expressions.ArgsListContext.altNumber
       - adaptive-expressions.ArgsListContext.constructor
       - adaptive-expressions.ArgsListContext.childCount
@@ -32,11 +34,14 @@ items:
       - adaptive-expressions.ArgsListContext.getTokens
       - adaptive-expressions.ArgsListContext.invokingState
       - adaptive-expressions.ArgsListContext.isEmpty
+      - adaptive-expressions.ArgsListContext.lambda
+      - adaptive-expressions.ArgsListContext.lambda_1
       - adaptive-expressions.ArgsListContext.parent
       - adaptive-expressions.ArgsListContext.payload
       - adaptive-expressions.ArgsListContext.removeLastChild
       - adaptive-expressions.ArgsListContext.ruleContext
       - adaptive-expressions.ArgsListContext.ruleIndex
+      - adaptive-expressions.ArgsListContext.setParent
       - adaptive-expressions.ArgsListContext.sourceInterval
       - adaptive-expressions.ArgsListContext.start
       - adaptive-expressions.ArgsListContext.stop
@@ -79,6 +84,34 @@ items:
           - Result
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.ArgsListContext.addAnyChild
+    name: addAnyChild(T)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: |
+      Add a parse tree node to this as a child.  Works for
+       internal and leaf nodes. Does not set parent link;
+       other add methods must do that. Other addChild methods
+       call this.
+       We cannot set the parent pointer of the incoming node
+       because the existing interfaces do not have a setParent()
+       method and I don't want to break backward compatibility for this.
+
+       @since 4.7
+    syntax:
+      content: 'function addAnyChild<T>(t: T)'
+      parameters:
+        - id: t
+          type:
+            - T
+          description: ''
+      return:
+        type:
+          - T
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.ArgsListContext.addChild_1
     name: addChild(RuleContext)
     children: []
@@ -100,7 +133,7 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: Add a token leaf node child and force its parent to be this node.
     syntax:
       content: 'function addChild(t: TerminalNode)'
       parameters:
@@ -115,7 +148,15 @@ items:
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon matchedToken. It
+
+      creates a TerminalNodeImpl rather than using
+
+      [Token)](xref:Parser%23createTerminalNode(ParserRuleContext%2C). I'm
+      leaving this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addChild(matchedToken: Token)'
       parameters:
@@ -129,12 +170,39 @@ items:
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.ArgsListContext.addErrorNode
+    name: addErrorNode(ErrorNode)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: Add an error node child and force its parent to be this node.
+    syntax:
+      content: 'function addErrorNode(errorNode: ErrorNode)'
+      parameters:
+        - id: errorNode
+          type:
+            - ErrorNode
+          description: ''
+      return:
+        type:
+          - ErrorNode
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.ArgsListContext.addErrorNode_1
     name: addErrorNode(Token)
     children: []
     type: method
     langs:
       - typeScript
-    summary: ''
+    summary: >-
+      Add a child to this node based upon badToken. It
+
+      creates a ErrorNode rather than using
+
+      [Token)](xref:Parser%23createErrorNode(ParserRuleContext%2C). I'm leaving
+      this
+
+      in for compatibility but the parser doesn't use this anymore.
     syntax:
       content: 'function addErrorNode(badToken: Token)'
       parameters:
@@ -267,7 +335,8 @@ items:
       - typeScript
     summary: |
       COPY a ctx (I'm deliberately not using copy constructor) to avoid
-      confusion with creating node with parent. Does not copy children.
+      confusion with creating node with parent. Does not copy children
+      (except error leaves).
       This is used in the generated parser code to flip a generic XContext
       node for rule X to a YContext for alt label Y. In that sense, it is not
       really a generic copy function.
@@ -337,7 +406,7 @@ items:
     type: property
     summary: |-
       The exception that forced this rule to return. If the rule successfully
-      completed, this is {@code null}.
+      completed, this is `undefined`.
     optional: true
     syntax:
       content: 'exception?: RecognitionException'
@@ -578,6 +647,40 @@ items:
           - boolean
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.ArgsListContext.lambda
+    name: lambda()
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: function lambda()
+      parameters: []
+      return:
+        type:
+          - 'adaptive-expressions.LambdaContext[]'
+        description: ''
+    package: adaptive-expressions
+  - uid: adaptive-expressions.ArgsListContext.lambda_1
+    name: lambda(number)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function lambda(i: number)'
+      parameters:
+        - id: i
+          type:
+            - number
+          description: ''
+      return:
+        type:
+          - adaptive-expressions.LambdaContext
+        description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.ArgsListContext.parent
     name: parent
     fullName: parent
@@ -652,6 +755,21 @@ items:
           - number
         description: ''
     package: adaptive-expressions
+  - uid: adaptive-expressions.ArgsListContext.setParent
+    name: setParent(RuleContext)
+    children: []
+    type: method
+    langs:
+      - typeScript
+    summary: ''
+    syntax:
+      content: 'function setParent(parent: RuleContext)'
+      parameters:
+        - id: parent
+          type:
+            - RuleContext
+          description: ''
+    package: adaptive-expressions
   - uid: adaptive-expressions.ArgsListContext.sourceInterval
     name: sourceInterval
     fullName: sourceInterval
@@ -718,10 +836,9 @@ items:
     langs:
       - typeScript
     type: property
-    summary: |-
+    summary: |
       Return the combined text of all child nodes. This method only considers
        tokens which have been added to the parse tree.
-       <p>
        Since tokens on hidden channels (e.g. whitespace or comments) are not
        added to the parse trees, they will not appear in the output of this
        method.
@@ -1012,3 +1129,17 @@ references:
       - name: ExpressionContext
         fullName: ExpressionContext
         uid: adaptive-expressions.ExpressionContext
+  - uid: 'adaptive-expressions.LambdaContext[]'
+    name: 'LambdaContext[]'
+    spec.typeScript:
+      - name: LambdaContext
+        fullName: LambdaContext
+        uid: adaptive-expressions.LambdaContext
+      - name: '[]'
+        fullName: '[]'
+  - uid: adaptive-expressions.LambdaContext
+    name: LambdaContext
+    spec.typeScript:
+      - name: LambdaContext
+        fullName: LambdaContext
+        uid: adaptive-expressions.LambdaContext
