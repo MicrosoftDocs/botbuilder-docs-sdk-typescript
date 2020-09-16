@@ -8,7 +8,6 @@ items:
       - botbuilder-dialogs.Prompt.configure
       - botbuilder-dialogs.Prompt.continueDialog
       - botbuilder-dialogs.Prompt.endDialog
-      - botbuilder-dialogs.Prompt.EndOfTurn
       - botbuilder-dialogs.Prompt.getVersion
       - botbuilder-dialogs.Prompt.id
       - botbuilder-dialogs.Prompt.onDialogEvent
@@ -139,27 +138,6 @@ items:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-  - uid: botbuilder-dialogs.Prompt.EndOfTurn
-    name: EndOfTurn
-    fullName: EndOfTurn
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets a default end-of-turn result.
-    syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
-      return:
-        type:
-          - botbuilder-dialogs.DialogTurnResult
-        description: ''
-    package: botbuilder-dialogs
-    remarks: >-
-      This result indicates that a dialog (or a logical step within a dialog)
-      has completed
-
-      processing for the current turn, is still active, and is waiting for more
-      input.
   - uid: botbuilder-dialogs.Prompt.getVersion
     name: getVersion()
     children: []
@@ -202,7 +180,7 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: 'id: string'
+      content: string id
       return:
         type:
           - string
@@ -296,9 +274,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Sets the telemetry client for this dialog.
+    summary: |-
+      Gets the telemetry client for this dialog.
+      Sets the telemetry client for this dialog.
     syntax:
-      content: 'telemetryClient: BotTelemetryClient'
+      content: BotTelemetryClient telemetryClient
       return:
         type:
           - BotTelemetryClient
@@ -311,12 +291,6 @@ references:
       - name: Dialog
         fullName: Dialog
         uid: botbuilder-dialogs.Dialog
-  - uid: botbuilder-dialogs.DialogTurnResult
-    name: DialogTurnResult
-    spec.typeScript:
-      - name: DialogTurnResult
-        fullName: DialogTurnResult
-        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:

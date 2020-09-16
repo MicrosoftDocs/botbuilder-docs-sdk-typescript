@@ -232,7 +232,9 @@ items:
     type: property
     summary: The default date time format string.
     syntax:
-      content: 'static DefaultDateTimeFormat: string'
+      content: >-
+        public static DefaultDateTimeFormat: string =
+        "YYYY-MM-DDTHH:mm:ss.SSS[Z]"
       return:
         type:
           - string
@@ -369,7 +371,7 @@ items:
     type: property
     summary: Constant to convert between ticks and ms.
     syntax:
-      content: 'static MillisecondToTickConstant: BigInteger'
+      content: 'public static MillisecondToTickConstant: BigInteger = bigInt(''10000'')'
       return:
         type:
           - BigInteger
@@ -630,7 +632,9 @@ items:
     type: property
     summary: Constant for converting unix timestamp to ticks.
     syntax:
-      content: 'static UnixMilliSecondToTicksConstant: BigInteger'
+      content: >-
+        public static UnixMilliSecondToTicksConstant: BigInteger =
+        bigInt('621355968000000000')
       return:
         type:
           - BigInteger
@@ -648,7 +652,7 @@ items:
     syntax:
       content: >-
         static function validateArityAndAnyType(expression: Expression,
-        minArity: number, maxArity: number, returnType?: ReturnType)
+        minArity: number, maxArity: number, returnType: ReturnType)
       parameters:
         - id: expression
           type:
@@ -670,7 +674,6 @@ items:
 
             If a child has a return type of Object then validation will happen
             at runtime.
-          optional: true
     package: adaptive-expressions
   - uid: adaptive-expressions.FunctionUtils.validateAtLeastOne
     name: validateAtLeastOne(Expression)

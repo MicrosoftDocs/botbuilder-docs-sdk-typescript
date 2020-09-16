@@ -75,7 +75,7 @@ items:
     type: property
     summary: All diagnostics from current lg file and reference lg files.
     syntax:
-      content: 'allDiagnostics: Diagnostic[]'
+      content: 'Diagnostic[] allDiagnostics'
       return:
         type:
           - 'botbuilder-lg.Diagnostic[]'
@@ -90,7 +90,7 @@ items:
     type: property
     summary: All templates from current lg file and reference lg files.
     syntax:
-      content: 'allTemplates: Template[]'
+      content: 'Template[] allTemplates'
       return:
         type:
           - 'botbuilder-lg.Template[]'
@@ -126,7 +126,7 @@ items:
     type: property
     summary: LG content.
     syntax:
-      content: 'content: string'
+      content: 'public content: string'
       return:
         type:
           - string
@@ -160,7 +160,7 @@ items:
     type: property
     summary: diagnostics.
     syntax:
-      content: 'diagnostics: Diagnostic[]'
+      content: 'public diagnostics: Diagnostic[]'
       return:
         type:
           - 'botbuilder-lg.Diagnostic[]'
@@ -175,7 +175,7 @@ items:
     summary: Evaluate a template with given name and scope.
     syntax:
       content: >-
-        function evaluate(templateName: string, scope?: object, opt?:
+        function evaluate(templateName: string, scope?: object, opt:
         EvaluationOptions)
       parameters:
         - id: templateName
@@ -191,7 +191,6 @@ items:
           type:
             - botbuilder-lg.EvaluationOptions
           description: ''
-          optional: true
       return:
         type:
           - any
@@ -206,7 +205,7 @@ items:
     summary: Use to evaluate an inline template str.
     syntax:
       content: >-
-        function evaluateText(inlineStr: string, scope?: object, opt?:
+        function evaluateText(inlineStr: string, scope?: object, opt:
         EvaluationOptions)
       parameters:
         - id: inlineStr
@@ -223,7 +222,6 @@ items:
           type:
             - botbuilder-lg.EvaluationOptions
           description: ''
-          optional: true
       return:
         type:
           - any
@@ -240,7 +238,7 @@ items:
       Return all possible responses instead of random one.
     syntax:
       content: >-
-        function expandTemplate(templateName: string, scope?: object, opt?:
+        function expandTemplate(templateName: string, scope?: object, opt:
         EvaluationOptions)
       parameters:
         - id: templateName
@@ -256,7 +254,6 @@ items:
           type:
             - botbuilder-lg.EvaluationOptions
           description: ''
-          optional: true
       return:
         type:
           - 'any[]'
@@ -271,7 +268,7 @@ items:
     type: property
     summary: expression parser.
     syntax:
-      content: 'expressionParser: ExpressionParser'
+      content: 'public expressionParser: ExpressionParser'
       return:
         type:
           - ExpressionParser
@@ -286,7 +283,7 @@ items:
     type: property
     summary: 'id of this lg source. For file, is full path.'
     syntax:
-      content: 'id: string'
+      content: 'public id: string'
       return:
         type:
           - string
@@ -301,7 +298,7 @@ items:
     type: property
     summary: Delegate for resolving resource id of imported lg file.
     syntax:
-      content: 'importResolver: ImportResolverDelegate'
+      content: 'public importResolver: ImportResolverDelegate'
       return:
         type:
           - botbuilder-lg.ImportResolverDelegate
@@ -316,7 +313,7 @@ items:
     type: property
     summary: import elements that this LG file contains directly.
     syntax:
-      content: 'imports: TemplateImport[]'
+      content: 'public imports: TemplateImport[]'
       return:
         type:
           - 'botbuilder-lg.TemplateImport[]'
@@ -331,7 +328,7 @@ items:
     type: property
     summary: Temp Template ID for inline content.
     syntax:
-      content: 'static inlineTemplateIdPrefix: string'
+      content: 'public static inlineTemplateIdPrefix: string = "__temp__"'
       return:
         type:
           - string
@@ -346,7 +343,7 @@ items:
     type: property
     summary: A value indicating whether the options when evaluation LG templates.
     syntax:
-      content: 'lgOptions: EvaluationOptions'
+      content: EvaluationOptions lgOptions
       return:
         type:
           - botbuilder-lg.EvaluationOptions
@@ -361,7 +358,7 @@ items:
     type: property
     summary: A string value represents the namespace to register for current LG file.
     syntax:
-      content: 'namespace: string'
+      content: string namespace
       return:
         type:
           - string
@@ -376,7 +373,7 @@ items:
     type: property
     summary: LG file options.
     syntax:
-      content: 'options: string[]'
+      content: 'public options: string[]'
       return:
         type:
           - 'string[]'
@@ -422,7 +419,7 @@ items:
     summary: Parser to turn lg content into a Templates.
     syntax:
       content: >-
-        static function parseText(content: string, id?: string, importResolver?:
+        static function parseText(content: string, id: string, importResolver?:
         ImportResolverDelegate, expressionParser?: ExpressionParser)
       parameters:
         - id: content
@@ -435,7 +432,6 @@ items:
           description: >-
             Id is the identifier of content. If importResolver is undefined, id
             must be a full path string.
-          optional: true
         - id: importResolver
           type:
             - botbuilder-lg.ImportResolverDelegate
@@ -480,7 +476,7 @@ items:
       not only the children belong to this lgfile directly.
       so, reference count may >= imports count.
     syntax:
-      content: 'references: Templates[]'
+      content: 'public references: Templates[]'
       return:
         type:
           - 'botbuilder-lg.Templates[]'

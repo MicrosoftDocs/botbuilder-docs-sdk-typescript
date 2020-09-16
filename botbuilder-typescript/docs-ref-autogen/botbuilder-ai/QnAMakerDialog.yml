@@ -310,10 +310,10 @@ items:
     syntax:
       content: >-
         new QnAMakerDialog(knowledgeBaseId: string, endpointKey: string,
-        hostName: string, noAnswer?: Activity, threshold?: number,
-        activeLearningCardTitle?: string, cardNoMatchText?: string, top?:
-        number, cardNoMatchResponse?: Activity, strictFilters?:
-        QnAMakerMetadata[], dialogId?: string)
+        hostName: string, noAnswer?: Activity, threshold: number,
+        activeLearningCardTitle: string, cardNoMatchText: string, top: number,
+        cardNoMatchResponse?: Activity, strictFilters?: QnAMakerMetadata[],
+        dialogId: string)
       parameters:
         - id: knowledgeBaseId
           type:
@@ -342,28 +342,24 @@ items:
           description: >-
             (Optional) The threshold above which to treat answers found from the
             knowledgebase as a match.
-          optional: true
         - id: activeLearningCardTitle
           type:
             - string
           description: >-
             (Optional) The card title to use when showing active learning
             options to the user, if active learning is enabled.
-          optional: true
         - id: cardNoMatchText
           type:
             - string
           description: >-
             (Optional) The button text to use with active learning options,
             allowing a user to indicate none of the options are applicable.
-          optional: true
         - id: top
           type:
             - number
           description: >-
             (Optional) Maximum number of answers to return from the knowledge
             base.
-          optional: true
         - id: cardNoMatchResponse
           type:
             - Activity
@@ -383,7 +379,6 @@ items:
             - string
           description: |
             (Optional) Id of the created dialog. Default is 'QnAMakerDialog'.
-          optional: true
     package: botbuilder-ai
   - uid: botbuilder-ai.QnAMakerDialog.repromptDialog
     name: 'repromptDialog(TurnContext, DialogInstance)'

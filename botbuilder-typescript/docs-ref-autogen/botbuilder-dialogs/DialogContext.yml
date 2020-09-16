@@ -70,7 +70,7 @@ items:
 
       the stack is empty.
     syntax:
-      content: 'activeDialog: DialogInstance | undefined'
+      content: DialogInstance | undefined activeDialog
       return:
         type:
           - botbuilder-dialogs.DialogInstance | undefined
@@ -149,14 +149,13 @@ items:
     summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
     syntax:
       content: >-
-        function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
+        function cancelAllDialogs(cancelParents: boolean, eventName?: string,
         eventValue?: any)
       parameters:
         - id: cancelParents
           type:
             - boolean
           description: Optional. If `true` all parent dialogs will be cancelled as well.
-          optional: true
         - id: eventName
           type:
             - string
@@ -217,7 +216,7 @@ items:
     type: property
     summary: Returns dialog context for child if the active dialog is a container.
     syntax:
-      content: 'child: DialogContext | undefined'
+      content: DialogContext | undefined child
       return:
         type:
           - botbuilder-dialogs.DialogContext | undefined
@@ -232,7 +231,7 @@ items:
     type: property
     summary: Gets the context object for the turn.
     syntax:
-      content: 'context: TurnContext'
+      content: 'public context: TurnContext'
       return:
         type:
           - TurnContext
@@ -354,7 +353,7 @@ items:
     type: property
     summary: Returns the current dialog manager instance.
     syntax:
-      content: 'dialogManager: DialogManager'
+      content: DialogManager dialogManager
       return:
         type:
           - botbuilder-dialogs.DialogManager
@@ -369,7 +368,7 @@ items:
     type: property
     summary: Gets the dialogs that can be called directly from this context.
     syntax:
-      content: 'dialogs: DialogSet'
+      content: 'public dialogs: DialogSet'
       return:
         type:
           - botbuilder-dialogs.DialogSet
@@ -384,8 +383,8 @@ items:
     summary: Searches for a dialog with a given ID.
     syntax:
       content: >-
-        function emitEvent(name: string, value?: any, bubble?: boolean,
-        fromLeaf?: boolean)
+        function emitEvent(name: string, value?: any, bubble: boolean, fromLeaf:
+        boolean)
       parameters:
         - id: name
           type:
@@ -402,12 +401,10 @@ items:
           description: >-
             Optional. Flag to control whether the event should be bubbled to its
             parent if not handled locally. Defaults to a value of `true`.
-          optional: true
         - id: fromLeaf
           type:
             - boolean
           description: Optional. Whether the event is emitted from a leaf node.
-          optional: true
       return:
         type:
           - Promise<boolean>
@@ -532,7 +529,7 @@ items:
       The parent dialog context for this dialog context, or `undefined` if this
       context doesn't have a parent.
     syntax:
-      content: 'parent: DialogContext | undefined'
+      content: 'public parent: DialogContext | undefined'
       return:
         type:
           - botbuilder-dialogs.DialogContext | undefined
@@ -719,7 +716,9 @@ items:
     type: property
     summary: Gets the services collection which is contextual to this dialog context.
     syntax:
-      content: 'services: TurnContextStateCollection'
+      content: >-
+        public services: TurnContextStateCollection = new
+        TurnContextStateCollection()
       return:
         type:
           - TurnContextStateCollection
@@ -734,7 +733,7 @@ items:
     type: property
     summary: Gets the current dialog stack.
     syntax:
-      content: 'stack: DialogInstance[]'
+      content: 'public stack: DialogInstance[]'
       return:
         type:
           - 'botbuilder-dialogs.DialogInstance[]'
@@ -749,7 +748,7 @@ items:
     type: property
     summary: Gets the DialogStateManager which manages view of all memory scopes.
     syntax:
-      content: 'state: DialogStateManager'
+      content: 'public state: DialogStateManager'
       return:
         type:
           - botbuilder-dialogs.DialogStateManager
@@ -774,14 +773,6 @@ references:
       - name: DialogContext
         fullName: DialogContext
         uid: botbuilder-dialogs.DialogContext
-  - uid: botbuilder-dialogs.DialogInstance | undefined
-    name: DialogInstance | undefined
-    spec.typeScript:
-      - name: DialogInstance
-        fullName: DialogInstance
-        uid: botbuilder-dialogs.DialogInstance
-      - name: ' | undefined'
-        fullName: ' | undefined'
   - uid: botbuilder-dialogs.DialogContext | undefined
     name: DialogContext | undefined
     spec.typeScript:
@@ -790,12 +781,6 @@ references:
         uid: botbuilder-dialogs.DialogContext
       - name: ' | undefined'
         fullName: ' | undefined'
-  - uid: botbuilder-dialogs.DialogManager
-    name: DialogManager
-    spec.typeScript:
-      - name: DialogManager
-        fullName: DialogManager
-        uid: botbuilder-dialogs.DialogManager
   - uid: 'botbuilder-dialogs.DialogInstance[]'
     name: 'DialogInstance[]'
     spec.typeScript:
@@ -810,6 +795,20 @@ references:
       - name: DialogStateManager
         fullName: DialogStateManager
         uid: botbuilder-dialogs.DialogStateManager
+  - uid: botbuilder-dialogs.DialogInstance | undefined
+    name: DialogInstance | undefined
+    spec.typeScript:
+      - name: DialogInstance
+        fullName: DialogInstance
+        uid: botbuilder-dialogs.DialogInstance
+      - name: ' | undefined'
+        fullName: ' | undefined'
+  - uid: botbuilder-dialogs.DialogManager
+    name: DialogManager
+    spec.typeScript:
+      - name: DialogManager
+        fullName: DialogManager
+        uid: botbuilder-dialogs.DialogManager
   - uid: Promise<botbuilder-dialogs.DialogTurnResult>
     name: DialogTurnResult>
     spec.typeScript:

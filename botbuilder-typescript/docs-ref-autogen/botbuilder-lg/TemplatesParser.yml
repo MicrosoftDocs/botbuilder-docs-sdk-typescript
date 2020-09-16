@@ -75,7 +75,9 @@ items:
     type: property
     summary: Import regex.
     syntax:
-      content: 'static importRegex: RegExp'
+      content: >-
+        public static importRegex: RegExp = new
+        RegExp(/\[([^\]]*)\]\(([^\)]*)\)/)
       return:
         type:
           - RegExp
@@ -90,7 +92,7 @@ items:
     type: property
     summary: Inline text id.
     syntax:
-      content: 'static inlineContentId: string'
+      content: 'public static inlineContentId: string = "inline content"'
       return:
         type:
           - string
@@ -107,7 +109,7 @@ items:
     summary: Parser to turn lg content into a Templates.
     syntax:
       content: >-
-        static function innerParseText(content: string, id?: string,
+        static function innerParseText(content: string, id: string,
         importResolver?: ImportResolverDelegate, expressionParser?:
         ExpressionParser, cachedTemplates?: Map<string, Templates>)
       parameters:
@@ -121,7 +123,6 @@ items:
           description: >-
             Id is the identifier of content. If importResolver is undefined, id
             must be a full path string.
-          optional: true
         - id: importResolver
           type:
             - botbuilder-lg.ImportResolverDelegate
@@ -153,7 +154,7 @@ items:
     type: property
     summary: option regex.
     syntax:
-      content: 'static optionRegex: RegExp'
+      content: 'public static optionRegex: RegExp = new RegExp(/>\s*!#(.*)$/)'
       return:
         type:
           - RegExp
@@ -199,7 +200,7 @@ items:
     summary: Parser to turn lg content into a Templates.
     syntax:
       content: >-
-        static function parseText(content: string, id?: string, importResolver?:
+        static function parseText(content: string, id: string, importResolver?:
         ImportResolverDelegate, expressionParser?: ExpressionParser)
       parameters:
         - id: content
@@ -212,7 +213,6 @@ items:
           description: >-
             Id is the identifier of content. If importResolver is undefined, id
             must be a full path string.
-          optional: true
         - id: importResolver
           type:
             - botbuilder-lg.ImportResolverDelegate

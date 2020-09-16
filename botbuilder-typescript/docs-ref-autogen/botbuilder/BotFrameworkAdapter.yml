@@ -175,7 +175,7 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'ConnectorClientKey: Symbol'
+      content: 'public ConnectorClientKey: Symbol = Symbol(''ConnectorClient'')'
       return:
         type:
           - Symbol
@@ -1244,7 +1244,7 @@ items:
       Used in streaming contexts to check if the streaming connection is still
       open for the bot to send activities.
     syntax:
-      content: 'isStreamingConnectionOpen: boolean'
+      content: boolean isStreamingConnectionOpen
       return:
         type:
           - boolean
@@ -1600,7 +1600,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'TokenApiClientCredentialsKey: Symbol'
+      content: >-
+        public TokenApiClientCredentialsKey: Symbol =
+        Symbol('TokenApiClientCredentials')
       return:
         type:
           - Symbol
@@ -1688,7 +1690,7 @@ items:
     syntax:
       content: >-
         function useNamedPipe(logic: (context: TurnContext) => Promise<any>,
-        pipeName?: string)
+        pipeName: string)
       parameters:
         - id: logic
           type:
@@ -1699,7 +1701,6 @@ items:
           type:
             - string
           description: The name of the named pipe to use when creating the server.
-          optional: true
       return:
         type:
           - Promise<void>

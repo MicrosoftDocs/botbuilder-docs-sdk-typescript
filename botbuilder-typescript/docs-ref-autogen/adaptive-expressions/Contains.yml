@@ -40,29 +40,40 @@ items:
     type: property
     summary: Type expected by evaluating the expression.
     syntax:
-      content: 'returnType: ReturnType'
+      content: 'public returnType: ReturnType'
       return:
         type:
           - adaptive-expressions.ReturnType
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.Contains.tryEvaluate
-    name: tryEvaluate
-    fullName: tryEvaluate
+    name: 'tryEvaluate(Expression, MemoryInterface, Options)'
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: Evaluate an expression.
     syntax:
       content: >-
-        tryEvaluate: (expression: Expression, state: MemoryInterface, options:
-        Options) => ValueWithError
+        function tryEvaluate(expression: Expression, state: MemoryInterface,
+        options: Options)
+      parameters:
+        - id: expression
+          type:
+            - adaptive-expressions.Expression
+          description: Expression to evaluate.
+        - id: state
+          type:
+            - adaptive-expressions.MemoryInterface
+          description: |
+            Global state information.
+        - id: options
+          type:
+            - adaptive-expressions.Options
+          description: ''
       return:
         type:
-          - >-
-            (expression: Expression, state: MemoryInterface, options: Options)
-            => ValueWithError
+          - adaptive-expressions.ValueWithError
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.Contains.type
@@ -74,26 +85,27 @@ items:
     type: property
     summary: Gets the expression type for evaluator.
     syntax:
-      content: 'type: string'
+      content: 'public type: string'
       return:
         type:
           - string
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.Contains.validateExpression
-    name: validateExpression
-    fullName: validateExpression
+    name: validateExpression(Expression)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: Validate an expression.
     syntax:
-      content: 'validateExpression: (expression: Expression) => void'
-      return:
-        type:
-          - '(expression: Expression) => void'
-        description: ''
+      content: 'function validateExpression(expression: Expression)'
+      parameters:
+        - id: expression
+          type:
+            - adaptive-expressions.Expression
+          description: |
+            Expression to validate.
     package: adaptive-expressions
 references:
   - uid: adaptive-expressions.ExpressionEvaluator
@@ -108,3 +120,27 @@ references:
       - name: ReturnType
         fullName: ReturnType
         uid: adaptive-expressions.ReturnType
+  - uid: adaptive-expressions.Expression
+    name: Expression
+    spec.typeScript:
+      - name: Expression
+        fullName: Expression
+        uid: adaptive-expressions.Expression
+  - uid: adaptive-expressions.MemoryInterface
+    name: MemoryInterface
+    spec.typeScript:
+      - name: MemoryInterface
+        fullName: MemoryInterface
+        uid: adaptive-expressions.MemoryInterface
+  - uid: adaptive-expressions.Options
+    name: Options
+    spec.typeScript:
+      - name: Options
+        fullName: Options
+        uid: adaptive-expressions.Options
+  - uid: adaptive-expressions.ValueWithError
+    name: ValueWithError
+    spec.typeScript:
+      - name: ValueWithError
+        fullName: ValueWithError
+        uid: adaptive-expressions.ValueWithError
