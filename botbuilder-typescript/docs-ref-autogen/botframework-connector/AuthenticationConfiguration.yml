@@ -21,14 +21,13 @@ items:
     summary: General configuration settings for authentication.
     syntax:
       content: >-
-        new AuthenticationConfiguration(requiredEndorsements?: string[],
+        new AuthenticationConfiguration(requiredEndorsements: string[],
         validateClaims?: ValidateClaims)
       parameters:
         - id: requiredEndorsements
           type:
             - 'string[]'
           description: ''
-          optional: true
         - id: validateClaims
           type:
             - botframework-connector.ValidateClaims
@@ -46,7 +45,7 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'requiredEndorsements: string[]'
+      content: 'public requiredEndorsements: string[]'
       return:
         type:
           - 'string[]'
@@ -59,10 +58,12 @@ items:
     langs:
       - typeScript
     type: property
-    summary: ''
+    summary: >-
+      Function that validates a list of Claims and should throw an exception if
+      the validation fails.
     optional: true
     syntax:
-      content: 'validateClaims?: ValidateClaims'
+      content: 'public validateClaims?: ValidateClaims'
       return:
         type:
           - botframework-connector.ValidateClaims

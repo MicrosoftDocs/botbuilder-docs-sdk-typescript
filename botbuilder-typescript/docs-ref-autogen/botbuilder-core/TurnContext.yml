@@ -45,7 +45,7 @@ items:
     type: property
     summary: Gets the activity associated with this turn.
     syntax:
-      content: 'activity: Activity'
+      content: Activity activity
       return:
         type:
           - Activity
@@ -70,7 +70,7 @@ items:
     type: property
     summary: Gets the bot adapter that created this context object.
     syntax:
-      content: 'adapter: BotAdapter'
+      content: BotAdapter adapter
       return:
         type:
           - botbuilder-core.BotAdapter
@@ -90,7 +90,7 @@ items:
     syntax:
       content: >-
         static function applyConversationReference(activity: Partial<Activity>,
-        reference: Partial<ConversationReference>, isIncoming?: boolean)
+        reference: Partial<ConversationReference>, isIncoming: boolean)
       parameters:
         - id: activity
           type:
@@ -108,7 +108,6 @@ items:
             where the
                  bot is the recipient; otherwise, `false`. Default is `false`, and the activity will show
                  the bot as the sender.
-          optional: true
       return:
         type:
           - Partial<Activity>
@@ -133,7 +132,7 @@ items:
       List of activities to send when `context.activity.deliveryMode ==
       'expectReplies'`.
     syntax:
-      content: 'bufferedReplyActivities: Partial<Activity>[]'
+      content: 'public bufferedReplyActivities: Partial<Activity>[] = []'
       return:
         type:
           - 'Partial<Activity>[]'
@@ -604,24 +603,38 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Sets the response flag on the current turn context.
+    summary: |-
+      Indicates whether the bot has replied to the user this turn.
+      Sets the response flag on the current turn context.
     syntax:
-      content: 'responded: boolean'
+      content: boolean responded
       return:
         type:
           - boolean
         description: ''
     package: botbuilder-core
     remarks: >-
-      The [sendActivity](xref:botbuilder-core.TurnContext.sendActivity) and
+      **true** if at least one response was sent for the current turn;
+      otherwise, **false**.
 
-      [sendActivities](xref:botbuilder-core.TurnContext.sendActivities) methods
-      call this method to
+      Use this to determine if your bot needs to run fallback logic after other
+      normal processing.
 
-      update the responded flag. You can call this method directly to indicate
-      that your bot has
 
-      responded appropriately to the incoming activity.
+      Trace activities do not set this flag.
+
+
+      for example:
+
+      ```JavaScript
+
+      await routeActivity(context);
+
+      if (!context.responded) {
+         await context.sendActivity(`I'm sorry. I didn't understand.`);
+      }
+
+      ```
   - uid: botbuilder-core.TurnContext.sendActivities
     name: 'sendActivities(Partial<Activity>[])'
     children: []
@@ -865,7 +878,7 @@ items:
     type: property
     summary: Gets the services registered on this context object.
     syntax:
-      content: 'turnState: TurnContextStateCollection'
+      content: TurnContextStateCollection turnState
       return:
         type:
           - botbuilder-core.TurnContextStateCollection

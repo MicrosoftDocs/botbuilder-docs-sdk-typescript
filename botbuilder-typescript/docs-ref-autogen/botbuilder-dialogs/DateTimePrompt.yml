@@ -10,7 +10,6 @@ items:
       - botbuilder-dialogs.DateTimePrompt.constructor
       - botbuilder-dialogs.DateTimePrompt.defaultLocale
       - botbuilder-dialogs.DateTimePrompt.endDialog
-      - botbuilder-dialogs.DateTimePrompt.EndOfTurn
       - botbuilder-dialogs.DateTimePrompt.getVersion
       - botbuilder-dialogs.DateTimePrompt.id
       - botbuilder-dialogs.DateTimePrompt.onDialogEvent
@@ -132,7 +131,7 @@ items:
     type: property
     summary: The prompts default locale that should be recognized.
     syntax:
-      content: 'defaultLocale: string | undefined'
+      content: 'public defaultLocale: string | undefined'
       return:
         type:
           - string | undefined
@@ -193,27 +192,6 @@ items:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-  - uid: botbuilder-dialogs.DateTimePrompt.EndOfTurn
-    name: EndOfTurn
-    fullName: EndOfTurn
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets a default end-of-turn result.
-    syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
-      return:
-        type:
-          - botbuilder-dialogs.DialogTurnResult
-        description: ''
-    package: botbuilder-dialogs
-    remarks: >-
-      This result indicates that a dialog (or a logical step within a dialog)
-      has completed
-
-      processing for the current turn, is still active, and is waiting for more
-      input.
   - uid: botbuilder-dialogs.DateTimePrompt.getVersion
     name: getVersion()
     children: []
@@ -256,7 +234,7 @@ items:
     type: property
     summary: Unique ID of the dialog.
     syntax:
-      content: 'id: string'
+      content: string id
       return:
         type:
           - string
@@ -350,9 +328,11 @@ items:
     langs:
       - typeScript
     type: property
-    summary: Sets the telemetry client for this dialog.
+    summary: |-
+      Gets the telemetry client for this dialog.
+      Sets the telemetry client for this dialog.
     syntax:
-      content: 'telemetryClient: BotTelemetryClient'
+      content: BotTelemetryClient telemetryClient
       return:
         type:
           - BotTelemetryClient
@@ -386,12 +366,6 @@ references:
         uid: botbuilder-dialogs.DateTimeResolution
       - name: '[]>'
         fullName: '[]>'
-  - uid: botbuilder-dialogs.DialogTurnResult
-    name: DialogTurnResult
-    spec.typeScript:
-      - name: DialogTurnResult
-        fullName: DialogTurnResult
-        uid: botbuilder-dialogs.DialogTurnResult
   - uid: botbuilder-dialogs.DialogContext
     name: DialogContext
     spec.typeScript:

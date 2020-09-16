@@ -51,56 +51,76 @@ items:
     summary: Centralized LG errors.
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.argumentMismatch
-    name: argumentMismatch
-    fullName: argumentMismatch
+    name: 'argumentMismatch(string, number, number)'
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
       content: >-
-        static argumentMismatch: (templateName: string, expectedCount: number,
-        actualCount: number) => string
+        static function argumentMismatch(templateName: string, expectedCount:
+        number, actualCount: number)
+      parameters:
+        - id: templateName
+          type:
+            - string
+          description: ''
+        - id: expectedCount
+          type:
+            - number
+          description: ''
+        - id: actualCount
+          type:
+            - number
+          description: ''
       return:
         type:
-          - >-
-            (templateName: string, expectedCount: number, actualCount: number)
-            => string
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.duplicatedTemplateInDiffTemplate
-    name: duplicatedTemplateInDiffTemplate
-    fullName: duplicatedTemplateInDiffTemplate
+    name: 'duplicatedTemplateInDiffTemplate(string, string)'
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
       content: >-
-        static duplicatedTemplateInDiffTemplate: (templateName: string, source:
-        string) => string
+        static function duplicatedTemplateInDiffTemplate(templateName: string,
+        source: string)
+      parameters:
+        - id: templateName
+          type:
+            - string
+          description: ''
+        - id: source
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(templateName: string, source: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.duplicatedTemplateInSameTemplate
-    name: duplicatedTemplateInSameTemplate
-    fullName: duplicatedTemplateInSameTemplate
+    name: duplicatedTemplateInSameTemplate(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: >-
-        static duplicatedTemplateInSameTemplate: (templateName: string) =>
-        string
+      content: 'static function duplicatedTemplateInSameTemplate(templateName: string)'
+      parameters:
+        - id: templateName
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(templateName: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.emptyStrucContent
@@ -112,44 +132,60 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static emptyStrucContent: string'
+      content: >-
+        public static emptyStrucContent: string = `Invalid structure body. Body
+        cannot be empty.`
       return:
         type:
           - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.errorExpression
-    name: errorExpression
-    fullName: errorExpression
+    name: 'errorExpression(string, string, string)'
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
       content: >-
-        static errorExpression: (refFullText: string, templateName: string,
-        prefixText: string) => string
+        static function errorExpression(refFullText: string, templateName:
+        string, prefixText: string)
+      parameters:
+        - id: refFullText
+          type:
+            - string
+          description: ''
+        - id: templateName
+          type:
+            - string
+          description: ''
+        - id: prefixText
+          type:
+            - string
+          description: ''
       return:
         type:
-          - >-
-            (refFullText: string, templateName: string, prefixText: string) =>
-            string
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.expressionParseError
-    name: expressionParseError
-    fullName: expressionParseError
+    name: expressionParseError(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static expressionParseError: (exp: string) => string'
+      content: 'static function expressionParseError(exp: string)'
+      parameters:
+        - id: exp
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(exp: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.extraExpressionInCondition
@@ -161,7 +197,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static extraExpressionInCondition: string'
+      content: >-
+        public static extraExpressionInCondition: string = `Invalid condition.
+        'ELSE' definition cannot include an expression.`
       return:
         type:
           - string
@@ -176,7 +214,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static extraExpressionInSwitchCase: string'
+      content: >-
+        public static extraExpressionInSwitchCase: string = `Invalid condition.
+        'DEFAULT' statement cannot include an expression.`
       return:
         type:
           - string
@@ -191,7 +231,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidExpressionInCondition: string'
+      content: >-
+        public static invalidExpressionInCondition: string = `Invalid condition.
+        'IF', 'ELSEIF' definitions must include a valid expression.`
       return:
         type:
           - string
@@ -206,7 +248,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidExpressionInSwiathCase: string'
+      content: >-
+        public static invalidExpressionInSwiathCase: string = `Invalid
+        condition. 'SWITCH' and 'CASE' statements must include a valid
+        expression.`
       return:
         type:
           - string
@@ -221,7 +266,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidMemory: string'
+      content: >-
+        public static invalidMemory: string = `Scope is not a LG customized
+        memory.`
       return:
         type:
           - string
@@ -236,25 +283,31 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidMiddleInCondition: string'
+      content: >-
+        public static invalidMiddleInCondition: string = `Invalid template body.
+        Expecting 'ELSEIF'.`
       return:
         type:
           - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.invalidParameter
-    name: invalidParameter
-    fullName: invalidParameter
+    name: invalidParameter(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static invalidParameter: (invalidParameter: string) => string'
+      content: 'static function invalidParameter(invalidParameter: string)'
+      parameters:
+        - id: invalidParameter
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(invalidParameter: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.invalidStatementInMiddlerOfSwitchCase
@@ -266,40 +319,50 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidStatementInMiddlerOfSwitchCase: string'
+      content: >-
+        public static invalidStatementInMiddlerOfSwitchCase: string = `Invalid
+        template body. Expecting a 'CASE' statement.`
       return:
         type:
           - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.invalidStrucBody
-    name: invalidStrucBody
-    fullName: invalidStrucBody
+    name: invalidStrucBody(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static invalidStrucBody: (invalidBody: string) => string'
+      content: 'static function invalidStrucBody(invalidBody: string)'
+      parameters:
+        - id: invalidBody
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(invalidBody: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.invalidStrucName
-    name: invalidStrucName
-    fullName: invalidStrucName
+    name: invalidStrucName(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static invalidStrucName: (invalidName: string) => string'
+      content: 'static function invalidStrucName(invalidName: string)'
+      parameters:
+        - id: invalidName
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(invalidName: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.invalidTemplateBody
@@ -311,25 +374,31 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidTemplateBody: string'
+      content: >-
+        public static invalidTemplateBody: string = `Invalid template body.
+        Expecting '-' prefix.`
       return:
         type:
           - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.invalidTemplateName
-    name: invalidTemplateName
-    fullName: invalidTemplateName
+    name: invalidTemplateName(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static invalidTemplateName: (invalidTemplateName: string) => string'
+      content: 'static function invalidTemplateName(invalidTemplateName: string)'
+      parameters:
+        - id: invalidTemplateName
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(invalidTemplateName: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.invalidTemplateNameType
@@ -341,7 +410,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidTemplateNameType: string'
+      content: >-
+        public static invalidTemplateNameType: string = "Expected string type
+        for the parameter of template function."
       return:
         type:
           - string
@@ -356,7 +427,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidWhitespaceInCondition: string'
+      content: >-
+        public static invalidWhitespaceInCondition: string = `Invalid condition:
+        At most 1 whitespace allowed between 'IF/ELSEIF/ELSE' and ':'.`
       return:
         type:
           - string
@@ -371,7 +444,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static invalidWhitespaceInSwitchCase: string'
+      content: >-
+        public static invalidWhitespaceInSwitchCase: string = `Invalid
+        condition: At most 1 whitespace allowed between 'SWITCH/CASE/DEFAULT'
+        and ':'.`
       return:
         type:
           - string
@@ -386,7 +462,7 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static loopDetected: string'
+      content: 'public static loopDetected: string = `Loop detected:`'
       return:
         type:
           - string
@@ -401,7 +477,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static missingCaseInSwitchCase: string'
+      content: >-
+        public static missingCaseInSwitchCase: string = `Invalid template body.
+        Expecting at least one 'CASE' statement.`
       return:
         type:
           - string
@@ -416,7 +494,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static missingStrucEnd: string'
+      content: >-
+        public static missingStrucEnd: string = `Invalid structure body.
+        Expecting ']' at the end of the body.`
       return:
         type:
           - string
@@ -431,7 +511,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static missingTemplateBodyInCondition: string'
+      content: >-
+        public static missingTemplateBodyInCondition: string = `Invalid
+        condition body. Conditions must include a valid body.`
       return:
         type:
           - string
@@ -446,7 +528,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static missingTemplateBodyInSwitchCase: string'
+      content: >-
+        public static missingTemplateBodyInSwitchCase: string = `Invalid
+        condition body. Expecing valid body inside a 'CASE' or 'DEFAULT' block.`
       return:
         type:
           - string
@@ -461,7 +545,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static multipleIfInCondition: string'
+      content: >-
+        public static multipleIfInCondition: string = `Invalid template body.
+        There cannot be more than one 'IF' condition. Expecting 'IFELSE' or
+        'ELSE' statement.`
       return:
         type:
           - string
@@ -476,7 +563,10 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static multipleSwithStatementInSwitchCase: string'
+      content: >-
+        public static multipleSwithStatementInSwitchCase: string = `Invalid
+        template body. There cannot be more than one 'SWITCH' statement.
+        Expecting 'CASE' or 'DEFAULT' statement.`
       return:
         type:
           - string
@@ -491,7 +581,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static noCloseBracket: string'
+      content: >-
+        public static noCloseBracket: string = `Close } is missing in
+        Expression.`
       return:
         type:
           - string
@@ -506,7 +598,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static noEndingInMultiline: string'
+      content: >-
+        public static noEndingInMultiline: string = "Expecting "```" to close
+        the multi-line block."
       return:
         type:
           - string
@@ -521,25 +615,31 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static noTemplate: string'
+      content: >-
+        public static noTemplate: string = `LG file must have at least one
+        template definition.`
       return:
         type:
           - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.noTemplateBody
-    name: noTemplateBody
-    fullName: noTemplateBody
+    name: noTemplateBody(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static noTemplateBody: (templateName: string) => string'
+      content: 'static function noTemplateBody(templateName: string)'
+      parameters:
+        - id: templateName
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(templateName: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.notEndWithDefaultInSwitchCase
@@ -551,7 +651,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static notEndWithDefaultInSwitchCase: string'
+      content: >-
+        public static notEndWithDefaultInSwitchCase: string = `Conditional
+        response template does not end with 'DEFAULT' condition.`
       return:
         type:
           - string
@@ -566,7 +668,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static notEndWithElseInCondition: string'
+      content: >-
+        public static notEndWithElseInCondition: string = `Conditional response
+        template does not end with 'ELSE' condition.`
       return:
         type:
           - string
@@ -581,7 +685,9 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static notStartWithIfInCondition: string'
+      content: >-
+        public static notStartWithIfInCondition: string = `Invalid condition:
+        Conditions must start with 'IF/ELSEIF/ELSE' prefix.`
       return:
         type:
           - string
@@ -596,25 +702,31 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static notStartWithSwitchInSwitchCase: string'
+      content: >-
+        public static notStartWithSwitchInSwitchCase: string = `Invalid
+        conditional response template. Expecting a 'SWITCH' statement?`
       return:
         type:
           - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.nullExpression
-    name: nullExpression
-    fullName: nullExpression
+    name: nullExpression(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static nullExpression: (expression: string) => string'
+      content: 'static function nullExpression(expression: string)'
+      parameters:
+        - id: expression
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(expression: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.staticFailure
@@ -626,54 +738,68 @@ items:
     type: property
     summary: ''
     syntax:
-      content: 'static staticFailure: string'
+      content: >-
+        public static staticFailure: string = `Static failure with the following
+        error.`
       return:
         type:
           - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.syntaxError
-    name: syntaxError
-    fullName: syntaxError
+    name: syntaxError(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static syntaxError: (unexpectedContent: string) => string'
+      content: 'static function syntaxError(unexpectedContent: string)'
+      parameters:
+        - id: unexpectedContent
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(unexpectedContent: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.templateExist
-    name: templateExist
-    fullName: templateExist
+    name: templateExist(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static templateExist: (templateName: string) => string'
+      content: 'static function templateExist(templateName: string)'
+      parameters:
+        - id: templateName
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(templateName: string) => string'
+          - string
         description: ''
     package: botbuilder-lg
   - uid: botbuilder-lg.TemplateErrors.templateNotExist
-    name: templateNotExist
-    fullName: templateNotExist
+    name: templateNotExist(string)
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: ''
     syntax:
-      content: 'static templateNotExist: (templateName: string) => string'
+      content: 'static function templateNotExist(templateName: string)'
+      parameters:
+        - id: templateName
+          type:
+            - string
+          description: ''
       return:
         type:
-          - '(templateName: string) => string'
+          - string
         description: ''
     package: botbuilder-lg

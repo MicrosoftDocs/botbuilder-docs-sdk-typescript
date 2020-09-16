@@ -62,7 +62,7 @@ items:
     type: property
     summary: Children expressions.
     syntax:
-      content: 'children: Expression[]'
+      content: 'public children: Expression[]'
       return:
         type:
           - 'adaptive-expressions.Expression[]'
@@ -137,7 +137,7 @@ items:
       replace builtin functions.  If you clear the dictionary, it will be reset
       to the built in functions.
     syntax:
-      content: 'static functions: FunctionTable'
+      content: 'public static functions: FunctionTable = new FunctionTable()'
       return:
         type:
           - adaptive-expressions.FunctionTable
@@ -355,7 +355,7 @@ items:
     type: property
     summary: Expected result of evaluating expression.
     syntax:
-      content: 'returnType: ReturnType'
+      content: ReturnType returnType
       return:
         type:
           - adaptive-expressions.ReturnType
@@ -411,7 +411,7 @@ items:
       Global state to evaluate accessor expressions against.  Can Dictionary be
       otherwise reflection is used to access property and then indexer.
     syntax:
-      content: 'function tryEvaluate(state: MemoryInterface | any, options?: Options)'
+      content: 'function tryEvaluate(state: MemoryInterface | any, options: Options)'
       parameters:
         - id: state
           type:
@@ -422,7 +422,6 @@ items:
           type:
             - adaptive-expressions.Options
           description: ''
-          optional: true
       return:
         type:
           - adaptive-expressions.ValueWithError
@@ -437,26 +436,22 @@ items:
     type: property
     summary: Type of expression.
     syntax:
-      content: 'type: string'
+      content: string type
       return:
         type:
           - string
         description: ''
     package: adaptive-expressions
   - uid: adaptive-expressions.Constant.validate
-    name: validate
-    fullName: validate
+    name: validate()
     children: []
+    type: method
     langs:
       - typeScript
-    type: property
     summary: Validate immediate expression.
     syntax:
-      content: 'validate: () => void'
-      return:
-        type:
-          - () => void
-        description: ''
+      content: function validate()
+      parameters: []
     package: adaptive-expressions
   - uid: adaptive-expressions.Constant.validateTree
     name: validateTree()
@@ -478,7 +473,7 @@ items:
     type: property
     summary: Constant value.
     syntax:
-      content: 'value: any'
+      content: any value
       return:
         type:
           - any
@@ -499,18 +494,18 @@ references:
         uid: adaptive-expressions.Expression
       - name: '[]'
         fullName: '[]'
-  - uid: adaptive-expressions.ReturnType
-    name: ReturnType
-    spec.typeScript:
-      - name: ReturnType
-        fullName: ReturnType
-        uid: adaptive-expressions.ReturnType
   - uid: adaptive-expressions.FunctionTable
     name: FunctionTable
     spec.typeScript:
       - name: FunctionTable
         fullName: FunctionTable
         uid: adaptive-expressions.FunctionTable
+  - uid: adaptive-expressions.ReturnType
+    name: ReturnType
+    spec.typeScript:
+      - name: ReturnType
+        fullName: ReturnType
+        uid: adaptive-expressions.ReturnType
   - uid: adaptive-expressions.MemoryInterface | any
     name: MemoryInterface | any
     spec.typeScript:
