@@ -1,154 +1,96 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.TranscriptStore
-    name: TranscriptStore
-    fullName: TranscriptStore
-    children:
-      - botbuilder-core.TranscriptStore.deleteTranscript
-      - botbuilder-core.TranscriptStore.getTranscriptActivities
-      - botbuilder-core.TranscriptStore.listTranscripts
-      - botbuilder-core.TranscriptStore.logActivity
-    langs:
-      - typeScript
-    type: interface
-    summary: Transcript logger stores activities for conversations for recall.
-    extends:
-      name: botbuilder-core.TranscriptLogger
+### YamlMime:TSType
+name: TranscriptStore
+uid: botbuilder-core.TranscriptStore
+package: botbuilder-core
+summary: Transcript logger stores activities for conversations for recall.
+fullName: TranscriptStore
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+  - name: 'deleteTranscript(string, string)'
+    uid: botbuilder-core.TranscriptStore.deleteTranscript
     package: botbuilder-core
-  - uid: botbuilder-core.TranscriptStore.deleteTranscript
-    name: 'deleteTranscript(string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Delete a specific conversation and all of it's activities.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function deleteTranscript(channelId: string, conversationId: string)'
       parameters:
         - id: channelId
-          type:
-            - string
+          type: string
           description: Channel Id where conversation took place.
         - id: conversationId
-          type:
-            - string
+          type: string
           description: |
             Id of the conversation to delete.
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: 'getTranscriptActivities(string, string, string, Date)'
+    uid: botbuilder-core.TranscriptStore.getTranscriptActivities
     package: botbuilder-core
-  - uid: botbuilder-core.TranscriptStore.getTranscriptActivities
-    name: 'getTranscriptActivities(string, string, string, Date)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Get activities for a conversation (Aka the transcript)
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function getTranscriptActivities(channelId: string, conversationId:
         string, continuationToken?: string, startDate?: Date)
       parameters:
         - id: channelId
-          type:
-            - string
+          type: string
           description: Channel Id.
         - id: conversationId
-          type:
-            - string
+          type: string
           description: Conversation Id.
         - id: continuationToken
-          type:
-            - string
+          type: string
           description: Continuation token to page through results.
-          optional: true
         - id: startDate
-          type:
-            - Date
+          type: Date
           description: |
             Earliest time to include.
-          optional: true
       return:
-        type:
-          - Promise<botbuilder-core.PagedResult<Activity>>
+        type: >-
+          Promise&lt;<xref uid="botbuilder-core.PagedResult"
+          />&lt;Activity&gt;&gt;
         description: ''
+  - name: 'listTranscripts(string, string)'
+    uid: botbuilder-core.TranscriptStore.listTranscripts
     package: botbuilder-core
-  - uid: botbuilder-core.TranscriptStore.listTranscripts
-    name: 'listTranscripts(string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: List conversations in the channelId.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function listTranscripts(channelId: string, continuationToken?: string)'
       parameters:
         - id: channelId
-          type:
-            - string
+          type: string
           description: Channel Id.
         - id: continuationToken
-          type:
-            - string
+          type: string
           description: |
             Continuation token to page through results.
-          optional: true
       return:
-        type:
-          - Promise<botbuilder-core.PagedResult<botbuilder-core.TranscriptInfo>>
+        type: >-
+          Promise&lt;<xref uid="botbuilder-core.PagedResult" />&lt;<xref
+          uid="botbuilder-core.TranscriptInfo" />&gt;&gt;
         description: ''
+  - name: logActivity(Activity)
+    uid: botbuilder-core.TranscriptStore.logActivity
     package: botbuilder-core
-  - uid: botbuilder-core.TranscriptStore.logActivity
-    name: logActivity(Activity)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Log an activity to the transcript.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function logActivity(activity: Activity)'
       parameters:
         - id: activity
-          type:
-            - Activity
+          type: Activity
           description: |
             Activity being logged.
       return:
-        type:
-          - void | Promise<void>
+        type: void | Promise&lt;void&gt;
         description: ''
-    package: botbuilder-core
-references:
-  - uid: botbuilder-core.TranscriptLogger
-    name: TranscriptLogger
-    spec.typeScript:
-      - name: TranscriptLogger
-        fullName: TranscriptLogger
-        uid: botbuilder-core.TranscriptLogger
-  - uid: Promise<botbuilder-core.PagedResult<Activity>>
-    name: PagedResult<Activity>>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: PagedResult
-        fullName: PagedResult
-        uid: botbuilder-core.PagedResult
-      - name: <Activity>>
-        fullName: <Activity>>
-  - uid: Promise<botbuilder-core.PagedResult<botbuilder-core.TranscriptInfo>>
-    name: TranscriptInfo>>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: PagedResult
-        fullName: PagedResult
-        uid: botbuilder-core.PagedResult
-      - name: <
-        fullName: <
-      - name: TranscriptInfo
-        fullName: TranscriptInfo
-        uid: botbuilder-core.TranscriptInfo
-      - name: '>>'
-        fullName: '>>'
+extends: <xref uid="botbuilder-core.TranscriptLogger" />

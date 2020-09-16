@@ -1,333 +1,189 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-dialogs.Prompt
-    name: Prompt
-    fullName: Prompt<T>
-    children:
-      - botbuilder-dialogs.Prompt.beginDialog
-      - botbuilder-dialogs.Prompt.configure
-      - botbuilder-dialogs.Prompt.continueDialog
-      - botbuilder-dialogs.Prompt.endDialog
-      - botbuilder-dialogs.Prompt.getVersion
-      - botbuilder-dialogs.Prompt.id
-      - botbuilder-dialogs.Prompt.onDialogEvent
-      - botbuilder-dialogs.Prompt.repromptDialog
-      - botbuilder-dialogs.Prompt.resumeDialog
-      - botbuilder-dialogs.Prompt.telemetryClient
-    langs:
-      - typeScript
-    type: class
-    summary: Base class for all prompts.
-    extends:
-      name: botbuilder-dialogs.Dialog
+### YamlMime:TSType
+name: Prompt
+uid: botbuilder-dialogs.Prompt
+package: botbuilder-dialogs
+summary: Base class for all prompts.
+fullName: Prompt<T>
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: id
+    uid: botbuilder-dialogs.Prompt.id
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.beginDialog
-    name: 'beginDialog(DialogContext, PromptOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Unique ID of the dialog.
+    fullName: id
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: string id
+      return:
+        type: string
+        description: ''
+  - name: telemetryClient
+    uid: botbuilder-dialogs.Prompt.telemetryClient
+    package: botbuilder-dialogs
+    summary: |-
+      Gets the telemetry client for this dialog.
+      Sets the telemetry client for this dialog.
+    fullName: telemetryClient
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: BotTelemetryClient telemetryClient
+      return:
+        type: BotTelemetryClient
+        description: ''
+methods:
+  - name: 'beginDialog(DialogContext, PromptOptions)'
+    uid: botbuilder-dialogs.Prompt.beginDialog
+    package: botbuilder-dialogs
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function beginDialog(dc: DialogContext, options: PromptOptions)'
       parameters:
         - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: ''
         - id: options
-          type:
-            - botbuilder-dialogs.PromptOptions
+          type: <xref uid="botbuilder-dialogs.PromptOptions" />
           description: ''
       return:
-        type:
-          - Promise<botbuilder-dialogs.DialogTurnResult>
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+  - name: configure(object)
+    uid: botbuilder-dialogs.Prompt.configure
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.configure
-    name: configure(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Fluent method for configuring the object.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function configure(config: object)'
       parameters:
         - id: config
-          type:
-            - object
+          type: object
           description: |
             Configuration settings to apply.
       return:
-        type:
-          - this
+        type: this
         description: ''
+  - name: continueDialog(DialogContext)
+    uid: botbuilder-dialogs.Prompt.continueDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.continueDialog
-    name: continueDialog(DialogContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function continueDialog(dc: DialogContext)'
       parameters:
         - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: ''
       return:
-        type:
-          - Promise<botbuilder-dialogs.DialogTurnResult>
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    uid: botbuilder-dialogs.Prompt.endDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.endDialog
-    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       When overridden in a derived class, performs clean up for the dialog
       before it ends.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
         reason: DialogReason)
       parameters:
         - id: context
-          type:
-            - TurnContext
+          type: TurnContext
           description: The context object for the turn.
         - id: instance
-          type:
-            - botbuilder-dialogs.DialogInstance
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />
           description: Current state information for this dialog.
         - id: reason
-          type:
-            - botbuilder-dialogs.DialogReason
+          type: <xref uid="botbuilder-dialogs.DialogReason" />
           description: |
             The reason the dialog is ending.
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: getVersion()
+    uid: botbuilder-dialogs.Prompt.getVersion
     package: botbuilder-dialogs
-    remarks: >-
-      Derived dialogs that need to perform logging or cleanup before ending
-      should override this method.
-
-      By default, this method has no effect.
-
-
-      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
-      method when the current
-
-      dialog is ending.
-
-
-      **See also**
-
-      -
-      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
-
-      -
-      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-
-      -
-      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-  - uid: botbuilder-dialogs.Prompt.getVersion
-    name: getVersion()
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       An encoded string used to aid in the detection of bot changes on
       re-deployment.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: function getVersion()
-      parameters: []
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+    uid: botbuilder-dialogs.Prompt.onDialogEvent
     package: botbuilder-dialogs
-    remarks: >-
-      This defaults to returning the dialogs [id](#id) but can be overridden to
-      provide more
-
-      precise change detection logic. Any dialog on the stack that has its
-      version change will
-
-      result in a `versionChanged` event will be raised. If this event is not
-      handled by the bot,
-
-      an error will be thrown resulting in the bots error handler logic being
-      run.
-
-
-      Returning an empty string will disable version tracking for the component
-      all together.
-  - uid: botbuilder-dialogs.Prompt.id
-    name: id
-    fullName: id
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Unique ID of the dialog.
-    syntax:
-      content: string id
-      return:
-        type:
-          - string
-        description: ''
-    package: botbuilder-dialogs
-    remarks: This will be automatically generated if not specified.
-  - uid: botbuilder-dialogs.Prompt.onDialogEvent
-    name: 'onDialogEvent(DialogContext, DialogEvent)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: The dialog context for the current turn of conversation.
         - id: e
-          type:
-            - botbuilder-dialogs.DialogEvent
+          type: <xref uid="botbuilder-dialogs.DialogEvent" />
           description: The event being raised.
       return:
-        type:
-          - Promise<boolean>
+        type: Promise&lt;boolean&gt;
         description: >-
           True if the event is handled by the current dialog and bubbling should
           stop.
+  - name: 'repromptDialog(TurnContext, DialogInstance)'
+    uid: botbuilder-dialogs.Prompt.repromptDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.repromptDialog
-    name: 'repromptDialog(TurnContext, DialogInstance)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
       parameters:
         - id: context
-          type:
-            - TurnContext
+          type: TurnContext
           description: ''
         - id: instance
-          type:
-            - botbuilder-dialogs.DialogInstance
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />
           description: ''
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: 'resumeDialog(DialogContext, DialogReason, any)'
+    uid: botbuilder-dialogs.Prompt.resumeDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.resumeDialog
-    name: 'resumeDialog(DialogContext, DialogReason, any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
         any)
       parameters:
         - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: ''
         - id: reason
-          type:
-            - botbuilder-dialogs.DialogReason
+          type: <xref uid="botbuilder-dialogs.DialogReason" />
           description: ''
         - id: result
-          type:
-            - any
+          type: any
           description: ''
-          optional: true
       return:
-        type:
-          - Promise<botbuilder-dialogs.DialogTurnResult>
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.Prompt.telemetryClient
-    name: telemetryClient
-    fullName: telemetryClient
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: |-
-      Gets the telemetry client for this dialog.
-      Sets the telemetry client for this dialog.
-    syntax:
-      content: BotTelemetryClient telemetryClient
-      return:
-        type:
-          - BotTelemetryClient
-        description: ''
-    package: botbuilder-dialogs
-references:
-  - uid: botbuilder-dialogs.Dialog
-    name: Dialog
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder-dialogs.Dialog
-  - uid: botbuilder-dialogs.DialogContext
-    name: DialogContext
-    spec.typeScript:
-      - name: DialogContext
-        fullName: DialogContext
-        uid: botbuilder-dialogs.DialogContext
-  - uid: botbuilder-dialogs.PromptOptions
-    name: PromptOptions
-    spec.typeScript:
-      - name: PromptOptions
-        fullName: PromptOptions
-        uid: botbuilder-dialogs.PromptOptions
-  - uid: Promise<botbuilder-dialogs.DialogTurnResult>
-    name: DialogTurnResult>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: DialogTurnResult
-        fullName: DialogTurnResult
-        uid: botbuilder-dialogs.DialogTurnResult
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder-dialogs.DialogInstance
-    name: DialogInstance
-    spec.typeScript:
-      - name: DialogInstance
-        fullName: DialogInstance
-        uid: botbuilder-dialogs.DialogInstance
-  - uid: botbuilder-dialogs.DialogReason
-    name: DialogReason
-    spec.typeScript:
-      - name: DialogReason
-        fullName: DialogReason
-        uid: botbuilder-dialogs.DialogReason
-  - uid: botbuilder-dialogs.DialogEvent
-    name: DialogEvent
-    spec.typeScript:
-      - name: DialogEvent
-        fullName: DialogEvent
-        uid: botbuilder-dialogs.DialogEvent
+extends: <xref uid="botbuilder-dialogs.Dialog" />

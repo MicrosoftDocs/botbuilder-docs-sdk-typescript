@@ -1,160 +1,74 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.AutoSaveStateMiddleware
-    name: AutoSaveStateMiddleware
-    fullName: AutoSaveStateMiddleware
-    children:
-      - botbuilder-core.AutoSaveStateMiddleware.add
-      - botbuilder-core.AutoSaveStateMiddleware.constructor
-      - botbuilder-core.AutoSaveStateMiddleware.botStateSet
-      - botbuilder-core.AutoSaveStateMiddleware.onTurn
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      Middleware that will automatically save any state changes at the end of
-      the turn.
+### YamlMime:TSType
+name: AutoSaveStateMiddleware
+uid: botbuilder-core.AutoSaveStateMiddleware
+package: botbuilder-core
+summary: >-
+  Middleware that will automatically save any state changes at the end of the
+  turn.
+fullName: AutoSaveStateMiddleware
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'AutoSaveStateMiddleware(BotState[])'
+    uid: botbuilder-core.AutoSaveStateMiddleware.constructor
     package: botbuilder-core
-    remarks: >-
-      The `AutoSaveStateMiddleware` class should be added towards the top of
-      your bot's middleware
-
-      stack, before any other components that use state.  Any `BotState` plugins
-      passed to the
-
-      constructor will have their `BotState.saveChanges()` method called upon
-      successful completion
-
-      of the turn.
-
-
-      This example shows boilerplate code for reading and writing conversation
-      and user state within
-
-      a bot:
-
-
-      ```JavaScript
-
-      const { AutoSaveStateMiddleware, ConversationState, UserState,
-      MemoryStorage } = require('botbuilder');
-
-
-      const storage = new MemoryStorage();
-
-      const conversationState = new ConversationState(storage);
-
-      const userState = new UserState(storage);
-
-      adapter.use(new AutoSaveStateMiddleware(conversationState, userState));
-
-
-      server.post('/api/messages', (req, res) => {
-         adapter.processActivity(req, res, async (turnContext) => {
-            // Get state
-            const convo = await conversationState.load(turnContext);
-            const user = await userState.load(turnContext);
-
-            // ... route activity ...
-            // ...make changes to state objects...
-            // ... no need to call userState.saveChanges() or conversationState.saveChanges() anymore!
-         });
-      });
-
-      ```
-  - uid: botbuilder-core.AutoSaveStateMiddleware.add
-    name: 'add(BotState[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Adds additional `BotState` plugins to be saved.
-    syntax:
-      content: 'function add(botStates: BotState[])'
-      parameters:
-        - id: botStates
-          type:
-            - 'botbuilder-core.BotState[]'
-          description: |
-            One or more BotState plugins to add.
-      return:
-        type:
-          - this
-        description: ''
-    package: botbuilder-core
-  - uid: botbuilder-core.AutoSaveStateMiddleware.constructor
-    name: 'AutoSaveStateMiddleware(BotState[])'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
     summary: Creates a new AutoSaveStateMiddleware instance.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'new AutoSaveStateMiddleware(botStates: BotState[])'
       parameters:
         - id: botStates
-          type:
-            - 'botbuilder-core.BotState[]'
+          type: '<xref uid="botbuilder-core.BotState" />[]'
           description: >
             One or more BotState plugins to automatically save at the end of the
             turn.
+properties:
+  - name: botStateSet
+    uid: botbuilder-core.AutoSaveStateMiddleware.botStateSet
     package: botbuilder-core
-  - uid: botbuilder-core.AutoSaveStateMiddleware.botStateSet
-    name: botStateSet
-    fullName: botStateSet
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Set of `BotState` plugins being automatically saved.
+    fullName: botStateSet
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'public botStateSet: BotStateSet'
       return:
-        type:
-          - botbuilder-core.BotStateSet
+        type: <xref uid="botbuilder-core.BotStateSet" />
         description: ''
+methods:
+  - name: 'add(BotState[])'
+    uid: botbuilder-core.AutoSaveStateMiddleware.add
     package: botbuilder-core
-  - uid: botbuilder-core.AutoSaveStateMiddleware.onTurn
-    name: 'onTurn(TurnContext, () => Promise<void>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Adds additional `BotState` plugins to be saved.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function add(botStates: BotState[])'
+      parameters:
+        - id: botStates
+          type: '<xref uid="botbuilder-core.BotState" />[]'
+          description: |
+            One or more BotState plugins to add.
+      return:
+        type: this
+        description: ''
+  - name: 'onTurn(TurnContext, () => Promise<void>)'
+    uid: botbuilder-core.AutoSaveStateMiddleware.onTurn
+    package: botbuilder-core
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: ''
         - id: next
-          type:
-            - () => Promise<void>
+          type: () =&gt; Promise&lt;void&gt;
           description: ''
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
-    package: botbuilder-core
-references:
-  - uid: 'botbuilder-core.BotState[]'
-    name: 'BotState[]'
-    spec.typeScript:
-      - name: BotState
-        fullName: BotState
-        uid: botbuilder-core.BotState
-      - name: '[]'
-        fullName: '[]'
-  - uid: botbuilder-core.BotStateSet
-    name: BotStateSet
-    spec.typeScript:
-      - name: BotStateSet
-        fullName: BotStateSet
-        uid: botbuilder-core.BotStateSet
-  - uid: botbuilder-core.TurnContext
-    name: TurnContext
-    spec.typeScript:
-      - name: TurnContext
-        fullName: TurnContext
-        uid: botbuilder-core.TurnContext

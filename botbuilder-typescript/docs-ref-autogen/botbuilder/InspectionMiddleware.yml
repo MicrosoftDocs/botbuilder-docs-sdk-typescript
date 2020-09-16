@@ -1,35 +1,25 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder.InspectionMiddleware
-    name: InspectionMiddleware
-    fullName: InspectionMiddleware
-    children:
-      - botbuilder.InspectionMiddleware.constructor
-      - botbuilder.InspectionMiddleware.onTurn
-      - botbuilder.InspectionMiddleware.processCommand
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      InspectionMiddleware for emulator inspection of runtime Activities and
-      BotState.
-    extends:
-      name: InterceptionMiddleware
-    package: botbuilder
-    remarks: >-
-      InspectionMiddleware for emulator inspection of runtime Activities and
-      BotState.
-  - uid: botbuilder.InspectionMiddleware.constructor
-    name: >-
+### YamlMime:TSType
+name: InspectionMiddleware
+uid: botbuilder.InspectionMiddleware
+package: botbuilder
+summary: >-
+  InspectionMiddleware for emulator inspection of runtime Activities and
+  BotState.
+fullName: InspectionMiddleware
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
       InspectionMiddleware(InspectionState, UserState, ConversationState,
       Partial<MicrosoftAppCredentials>)
-    children: []
-    type: constructor
-    langs:
-      - typeScript
+    uid: botbuilder.InspectionMiddleware.constructor
+    package: botbuilder
     summary: >-
       Create the Inspection middleware for sending trace activities out to an
       emulator session
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new InspectionMiddleware(inspectionState: InspectionState, userState?:
@@ -37,72 +27,50 @@ items:
         Partial<MicrosoftAppCredentials>)
       parameters:
         - id: inspectionState
-          type:
-            - botbuilder.InspectionState
+          type: <xref uid="botbuilder.InspectionState" />
           description: ''
         - id: userState
-          type:
-            - UserState
+          type: UserState
           description: ''
-          optional: true
         - id: conversationState
-          type:
-            - ConversationState
+          type: ConversationState
           description: ''
-          optional: true
         - id: credentials
-          type:
-            - Partial<MicrosoftAppCredentials>
+          type: Partial&lt;MicrosoftAppCredentials&gt;
           description: ''
-          optional: true
+methods:
+  - name: 'onTurn(TurnContext, () => Promise<void>)'
+    uid: botbuilder.InspectionMiddleware.onTurn
     package: botbuilder
-  - uid: botbuilder.InspectionMiddleware.onTurn
-    name: 'onTurn(TurnContext, () => Promise<void>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Implement middleware signature
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onTurn(turnContext: TurnContext, next: () => Promise<void>)'
       parameters:
         - id: turnContext
-          type:
-            - TurnContext
+          type: TurnContext
           description: ''
         - id: next
-          type:
-            - () => Promise<void>
+          type: () =&gt; Promise&lt;void&gt;
           description: |
             The next delegate function.
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: processCommand(TurnContext)
+    uid: botbuilder.InspectionMiddleware.processCommand
     package: botbuilder
-  - uid: botbuilder.InspectionMiddleware.processCommand
-    name: processCommand(TurnContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function processCommand(turnContext: TurnContext)'
       parameters:
         - id: turnContext
-          type:
-            - TurnContext
+          type: TurnContext
           description: ''
       return:
-        type:
-          - Promise<any>
+        type: Promise&lt;any&gt;
         description: ''
-    package: botbuilder
-references:
-  - uid: botbuilder.InspectionState
-    name: InspectionState
-    spec.typeScript:
-      - name: InspectionState
-        fullName: InspectionState
-        uid: botbuilder.InspectionState
+extends: InterceptionMiddleware

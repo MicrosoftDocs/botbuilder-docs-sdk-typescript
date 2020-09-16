@@ -1,112 +1,98 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-lg.TemplatesParser
-    name: TemplatesParser
-    fullName: TemplatesParser
-    children:
-      - botbuilder-lg.TemplatesParser.antlrParseTemplates
-      - botbuilder-lg.TemplatesParser.defaultFileResolver
-      - botbuilder-lg.TemplatesParser.importRegex
-      - botbuilder-lg.TemplatesParser.inlineContentId
-      - botbuilder-lg.TemplatesParser.innerParseText
-      - botbuilder-lg.TemplatesParser.optionRegex
-      - botbuilder-lg.TemplatesParser.parseFile
-      - botbuilder-lg.TemplatesParser.parseText
-      - botbuilder-lg.TemplatesParser.parseTextWithRef
-    langs:
-      - typeScript
-    type: class
-    summary: LG Parser
+### YamlMime:TSType
+name: TemplatesParser
+uid: botbuilder-lg.TemplatesParser
+package: botbuilder-lg
+summary: LG Parser
+fullName: TemplatesParser
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: importRegex
+    uid: botbuilder-lg.TemplatesParser.importRegex
     package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.antlrParseTemplates
-    name: 'antlrParseTemplates(string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Import regex.
+    fullName: importRegex
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        public static importRegex: RegExp = new
+        RegExp(/\[([^\]]*)\]\(([^\)]*)\)/)
+      return:
+        type: RegExp
+        description: ''
+  - name: inlineContentId
+    uid: botbuilder-lg.TemplatesParser.inlineContentId
+    package: botbuilder-lg
+    summary: Inline text id.
+    fullName: inlineContentId
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static inlineContentId: string = "inline content"'
+      return:
+        type: string
+        description: ''
+  - name: optionRegex
+    uid: botbuilder-lg.TemplatesParser.optionRegex
+    package: botbuilder-lg
+    summary: option regex.
+    fullName: optionRegex
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static optionRegex: RegExp = new RegExp(/>\s*!#(.*)$/)'
+      return:
+        type: RegExp
+        description: ''
+methods:
+  - name: 'antlrParseTemplates(string, string)'
+    uid: botbuilder-lg.TemplatesParser.antlrParseTemplates
+    package: botbuilder-lg
     summary: Parse LG content and return the AST.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function antlrParseTemplates(text: string, source: string)'
       parameters:
         - id: text
-          type:
-            - string
+          type: string
           description: LG content.
         - id: source
-          type:
-            - string
+          type: string
           description: Source id.
       return:
-        type:
-          - botbuilder-lg.FileContext
+        type: <xref uid="botbuilder-lg.FileContext" />
         description: The abstract syntax tree of lg file.
+  - name: 'defaultFileResolver(string, string)'
+    uid: botbuilder-lg.TemplatesParser.defaultFileResolver
     package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.defaultFileResolver
-    name: 'defaultFileResolver(string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function defaultFileResolver(sourceId: string, resourceId:
         string)
       parameters:
         - id: sourceId
-          type:
-            - string
+          type: string
           description: ''
         - id: resourceId
-          type:
-            - string
+          type: string
           description: ''
       return:
-        type:
-          - Object
+        type: Object
         description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.importRegex
-    name: importRegex
-    fullName: importRegex
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Import regex.
-    syntax:
-      content: >-
-        public static importRegex: RegExp = new
-        RegExp(/\[([^\]]*)\]\(([^\)]*)\)/)
-      return:
-        type:
-          - RegExp
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.inlineContentId
-    name: inlineContentId
-    fullName: inlineContentId
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Inline text id.
-    syntax:
-      content: 'public static inlineContentId: string = "inline content"'
-      return:
-        type:
-          - string
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.innerParseText
-    name: >-
+  - name: >-
       innerParseText(string, string, ImportResolverDelegate, ExpressionParser,
       Map<string, Templates>)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-lg.TemplatesParser.innerParseText
+    package: botbuilder-lg
     summary: Parser to turn lg content into a Templates.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function innerParseText(content: string, id: string,
@@ -114,174 +100,98 @@ items:
         ExpressionParser, cachedTemplates?: Map<string, Templates>)
       parameters:
         - id: content
-          type:
-            - string
+          type: string
           description: Text content contains lg templates.
         - id: id
-          type:
-            - string
+          type: string
           description: >-
             Id is the identifier of content. If importResolver is undefined, id
             must be a full path string.
         - id: importResolver
-          type:
-            - botbuilder-lg.ImportResolverDelegate
+          type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
           description: Resolver to resolve LG import id to template text.
-          optional: true
         - id: expressionParser
-          type:
-            - ExpressionParser
+          type: ExpressionParser
           description: Expression parser for evaluating expressions.
-          optional: true
         - id: cachedTemplates
-          type:
-            - 'Map<string, botbuilder-lg.Templates>'
+          type: 'Map&lt;string, <xref uid="botbuilder-lg.Templates" />&gt;'
           description: >-
             Give the file path and templates to avoid parsing and to improve
             performance.
-          optional: true
       return:
-        type:
-          - botbuilder-lg.Templates
+        type: <xref uid="botbuilder-lg.Templates" />
         description: Entity.
+  - name: 'parseFile(string, ImportResolverDelegate, ExpressionParser)'
+    uid: botbuilder-lg.TemplatesParser.parseFile
     package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.optionRegex
-    name: optionRegex
-    fullName: optionRegex
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: option regex.
-    syntax:
-      content: 'public static optionRegex: RegExp = new RegExp(/>\s*!#(.*)$/)'
-      return:
-        type:
-          - RegExp
-        description: ''
-    package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.parseFile
-    name: 'parseFile(string, ImportResolverDelegate, ExpressionParser)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: parse a file and return LG file.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function parseFile(filePath: string, importResolver?:
         ImportResolverDelegate, expressionParser?: ExpressionParser)
       parameters:
         - id: filePath
-          type:
-            - string
+          type: string
           description: LG absolute file path..
         - id: importResolver
-          type:
-            - botbuilder-lg.ImportResolverDelegate
+          type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
           description: Resolver to resolve LG import id to template text.
-          optional: true
         - id: expressionParser
-          type:
-            - ExpressionParser
+          type: ExpressionParser
           description: Expression parser for evaluating expressions.
-          optional: true
       return:
-        type:
-          - botbuilder-lg.Templates
+        type: <xref uid="botbuilder-lg.Templates" />
         description: New lg file.
+  - name: 'parseText(string, string, ImportResolverDelegate, ExpressionParser)'
+    uid: botbuilder-lg.TemplatesParser.parseText
     package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.parseText
-    name: 'parseText(string, string, ImportResolverDelegate, ExpressionParser)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Parser to turn lg content into a Templates.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function parseText(content: string, id: string, importResolver?:
         ImportResolverDelegate, expressionParser?: ExpressionParser)
       parameters:
         - id: content
-          type:
-            - string
+          type: string
           description: Text content contains lg templates.
         - id: id
-          type:
-            - string
+          type: string
           description: >-
             Id is the identifier of content. If importResolver is undefined, id
             must be a full path string.
         - id: importResolver
-          type:
-            - botbuilder-lg.ImportResolverDelegate
+          type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
           description: Resolver to resolve LG import id to template text.
-          optional: true
         - id: expressionParser
-          type:
-            - ExpressionParser
+          type: ExpressionParser
           description: Expression parser for evaluating expressions.
-          optional: true
       return:
-        type:
-          - botbuilder-lg.Templates
+        type: <xref uid="botbuilder-lg.Templates" />
         description: Entity.
+  - name: 'parseTextWithRef(string, Templates)'
+    uid: botbuilder-lg.TemplatesParser.parseTextWithRef
     package: botbuilder-lg
-  - uid: botbuilder-lg.TemplatesParser.parseTextWithRef
-    name: 'parseTextWithRef(string, Templates)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Parser to turn lg content into a Templates based on the original
       Templates.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function parseTextWithRef(content: string, originalTemplates:
         Templates)
       parameters:
         - id: content
-          type:
-            - string
+          type: string
           description: Text content contains lg templates.
         - id: originalTemplates
-          type:
-            - botbuilder-lg.Templates
+          type: <xref uid="botbuilder-lg.Templates" />
           description: |
             Original templates
       return:
-        type:
-          - botbuilder-lg.Templates
+        type: <xref uid="botbuilder-lg.Templates" />
         description: ''
-    package: botbuilder-lg
-references:
-  - uid: botbuilder-lg.FileContext
-    name: FileContext
-    spec.typeScript:
-      - name: FileContext
-        fullName: FileContext
-        uid: botbuilder-lg.FileContext
-  - uid: botbuilder-lg.ImportResolverDelegate
-    name: ImportResolverDelegate
-    spec.typeScript:
-      - name: ImportResolverDelegate
-        fullName: ImportResolverDelegate
-        uid: botbuilder-lg.ImportResolverDelegate
-  - uid: 'Map<string, botbuilder-lg.Templates>'
-    name: Templates>
-    spec.typeScript:
-      - name: 'Map<string, '
-        fullName: 'Map<string, '
-      - name: Templates
-        fullName: Templates
-        uid: botbuilder-lg.Templates
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder-lg.Templates
-    name: Templates
-    spec.typeScript:
-      - name: Templates
-        fullName: Templates
-        uid: botbuilder-lg.Templates

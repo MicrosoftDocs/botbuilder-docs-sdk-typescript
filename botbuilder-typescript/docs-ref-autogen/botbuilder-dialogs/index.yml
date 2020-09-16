@@ -1,268 +1,274 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-dialogs
-    name: botbuilder-dialogs
+### YamlMime:TSPackage
+uid: botbuilder-dialogs
+name: botbuilder-dialogs
+summary: ''
+type: package
+interfaces:
+  - botbuilder-dialogs.BeginSkillDialogOptions
+  - botbuilder-dialogs.ChoiceFactoryOptions
+  - botbuilder-dialogs.Choice
+  - botbuilder-dialogs.FindChoicesOptions
+  - botbuilder-dialogs.FoundChoice
+  - botbuilder-dialogs.FindValuesOptions
+  - botbuilder-dialogs.FoundValue
+  - botbuilder-dialogs.SortedValue
+  - botbuilder-dialogs.ModelResult
+  - botbuilder-dialogs.Token
+  - botbuilder-dialogs.DialogConfiguration
+  - botbuilder-dialogs.DialogEvent
+  - botbuilder-dialogs.DialogInstance
+  - botbuilder-dialogs.DialogTurnResult
+  - botbuilder-dialogs.DialogState
+  - botbuilder-dialogs.DialogManagerConfiguration
+  - botbuilder-dialogs.DialogManagerResult
+  - botbuilder-dialogs.DialogDependencies
+  - botbuilder-dialogs.DialogStateManagerConfiguration
+  - botbuilder-dialogs.PathResolver
+  - botbuilder-dialogs.DateTimeResolution
+  - botbuilder-dialogs.OAuthPromptSettings
+  - botbuilder-dialogs.PromptOptions
+  - botbuilder-dialogs.PromptRecognizerResult
+  - botbuilder-dialogs.PromptValidatorContext
+  - botbuilder-dialogs.PromptCultureModel
+  - botbuilder-dialogs.SkillDialogOptions
+  - botbuilder-dialogs.WaterfallStepInfo
+classes:
+  - botbuilder-dialogs.ChoiceFactory
+  - botbuilder-dialogs.ComponentDialog
+  - botbuilder-dialogs.Configurable
+  - botbuilder-dialogs.Dialog
+  - botbuilder-dialogs.DialogContainer
+  - botbuilder-dialogs.DialogContext
+  - botbuilder-dialogs.DialogEvents
+  - botbuilder-dialogs.DialogManager
+  - botbuilder-dialogs.DialogSet
+  - botbuilder-dialogs.DialogTurnStateConstants
+  - botbuilder-dialogs.DialogPath
+  - botbuilder-dialogs.DialogStateManager
+  - botbuilder-dialogs.AliasPathResolver
+  - botbuilder-dialogs.AtAtPathResolver
+  - botbuilder-dialogs.AtPathResolver
+  - botbuilder-dialogs.DollarPathResolver
+  - botbuilder-dialogs.HashPathResolver
+  - botbuilder-dialogs.PercentPathResolver
+  - botbuilder-dialogs.ScopePath
+  - botbuilder-dialogs.BotStateMemoryScope
+  - botbuilder-dialogs.ClassMemoryScope
+  - botbuilder-dialogs.ConversationMemoryScope
+  - botbuilder-dialogs.DialogClassMemoryScope
+  - botbuilder-dialogs.DialogMemoryScope
+  - botbuilder-dialogs.MemoryScope
+  - botbuilder-dialogs.SettingsMemoryScope
+  - botbuilder-dialogs.ThisMemoryScope
+  - botbuilder-dialogs.TurnMemoryScope
+  - botbuilder-dialogs.UserMemoryScope
+  - botbuilder-dialogs.ThisPath
+  - botbuilder-dialogs.TurnPath
+  - botbuilder-dialogs.ActivityPrompt
+  - botbuilder-dialogs.AttachmentPrompt
+  - botbuilder-dialogs.ChoicePrompt
+  - botbuilder-dialogs.ConfirmPrompt
+  - botbuilder-dialogs.DateTimePrompt
+  - botbuilder-dialogs.NumberPrompt
+  - botbuilder-dialogs.OAuthPrompt
+  - botbuilder-dialogs.Prompt
+  - botbuilder-dialogs.PromptCultureModels
+  - botbuilder-dialogs.TextPrompt
+  - botbuilder-dialogs.SkillDialog
+  - botbuilder-dialogs.WaterfallDialog
+  - botbuilder-dialogs.WaterfallStepContext
+functions:
+  - name: 'findChoices(string, string | Choice[], FindChoicesOptions)'
+    uid: botbuilder-dialogs.findChoices
+    package: botbuilder-dialogs
+    summary: Mid-level search function for recognizing a choice in an utterance.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function findChoices(utterance: string, choices: string | Choice[],
+        options?: FindChoicesOptions)
+      parameters:
+        - id: utterance
+          type: string
+          description: >-
+            The text or user utterance to search over. For an incoming 'message'
+            activity you can simply use `context.activity.text`.
+        - id: choices
+          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          description: List of choices to search over.
+        - id: options
+          type: <xref uid="botbuilder-dialogs.FindChoicesOptions" />
+          description: |
+            (Optional) options used to tweak the search that's performed.
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.ModelResult" />&lt;<xref
+          uid="botbuilder-dialogs.FoundChoice" />&gt;[]
+        description: ''
+  - name: 'findValues(string, SortedValue[], FindValuesOptions)'
+    uid: botbuilder-dialogs.findValues
+    package: botbuilder-dialogs
+    summary: >-
+      INTERNAL: Low-level function that searches for a set of values within an
+      utterance. Higher level
+
+      functions like `findChoices()` and `recognizeChoices()` are layered above
+      this function.  In most
+
+      cases its easier to just call one of the higher level functions instead
+      but this function contains
+
+      the fuzzy search algorithm that drives choice recognition.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function findValues(utterance: string, values: SortedValue[], options?:
+        FindValuesOptions)
+      parameters:
+        - id: utterance
+          type: string
+          description: The text or user utterance to search over.
+        - id: values
+          type: '<xref uid="botbuilder-dialogs.SortedValue" />[]'
+          description: List of values to search over.
+        - id: options
+          type: <xref uid="botbuilder-dialogs.FindValuesOptions" />
+          description: |
+            (Optional) options used to tweak the search that's performed.
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.ModelResult" />&lt;<xref
+          uid="botbuilder-dialogs.FoundValue" />&gt;[]
+        description: ''
+  - name: 'recognizeChoices(string, string | Choice[], FindChoicesOptions)'
+    uid: botbuilder-dialogs.recognizeChoices
+    package: botbuilder-dialogs
+    summary: High level function for recognizing a choice in a users utterance.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function recognizeChoices(utterance: string, choices: string | Choice[],
+        options?: FindChoicesOptions)
+      parameters:
+        - id: utterance
+          type: string
+          description: >-
+            The text or user utterance to search over. For an incoming 'message'
+            activity you can simply use `context.activity.text`.
+        - id: choices
+          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          description: List of choices to search over.
+        - id: options
+          type: <xref uid="botbuilder-dialogs.FindChoicesOptions" />
+          description: |
+            (Optional) options used to tweak the search that's performed.
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.ModelResult" />&lt;<xref
+          uid="botbuilder-dialogs.FoundChoice" />&gt;[]
+        description: ''
+  - name: 'defaultTokenizer(string, string)'
+    uid: botbuilder-dialogs.defaultTokenizer
+    package: botbuilder-dialogs
+    summary: Simple tokenizer that breaks on spaces and punctuation.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function defaultTokenizer(text: string, locale?: string)'
+      parameters:
+        - id: text
+          type: string
+          description: ''
+        - id: locale
+          type: string
+          description: ''
+      return:
+        type: '<xref uid="botbuilder-dialogs.Token" />[]'
+        description: ''
+  - name: getActiveDialogContext(DialogContext)
+    uid: botbuilder-dialogs.getActiveDialogContext
+    package: botbuilder-dialogs
     summary: ''
-    children:
-      - botbuilder-dialogs.BeginSkillDialogOptions
-      - botbuilder-dialogs.ChoiceFactory
-      - botbuilder-dialogs.ChoiceFactoryOptions
-      - botbuilder-dialogs.Choice
-      - botbuilder-dialogs.FindChoicesOptions
-      - botbuilder-dialogs.FoundChoice
-      - botbuilder-dialogs.findChoices
-      - botbuilder-dialogs.FindValuesOptions
-      - botbuilder-dialogs.FoundValue
-      - botbuilder-dialogs.SortedValue
-      - botbuilder-dialogs.findValues
-      - botbuilder-dialogs.ModelResult
-      - botbuilder-dialogs.recognizeChoices
-      - botbuilder-dialogs.Token
-      - botbuilder-dialogs.TokenizerFunction
-      - botbuilder-dialogs.defaultTokenizer
-      - botbuilder-dialogs.ComponentDialog
-      - botbuilder-dialogs.Configurable
-      - botbuilder-dialogs.DialogReason
-      - botbuilder-dialogs.DialogTurnStatus
-      - botbuilder-dialogs.Dialog
-      - botbuilder-dialogs.DialogConfiguration
-      - botbuilder-dialogs.DialogEvent
-      - botbuilder-dialogs.DialogInstance
-      - botbuilder-dialogs.DialogTurnResult
-      - botbuilder-dialogs.DialogContainer
-      - botbuilder-dialogs.DialogContext
-      - botbuilder-dialogs.DialogState
-      - botbuilder-dialogs.DialogEvents
-      - botbuilder-dialogs.getActiveDialogContext
-      - botbuilder-dialogs.isFromParentToSkill
-      - botbuilder-dialogs.runDialog
-      - botbuilder-dialogs.shouldSendEndOfConversationToParent
-      - botbuilder-dialogs.DialogManager
-      - botbuilder-dialogs.DialogManagerConfiguration
-      - botbuilder-dialogs.DialogManagerResult
-      - botbuilder-dialogs.DialogSet
-      - botbuilder-dialogs.DialogDependencies
-      - botbuilder-dialogs.DialogTurnStateConstants
-      - botbuilder-dialogs.DialogPath
-      - botbuilder-dialogs.DialogStateManager
-      - botbuilder-dialogs.DialogStateManagerConfiguration
-      - botbuilder-dialogs.AliasPathResolver
-      - botbuilder-dialogs.AtAtPathResolver
-      - botbuilder-dialogs.AtPathResolver
-      - botbuilder-dialogs.DollarPathResolver
-      - botbuilder-dialogs.HashPathResolver
-      - botbuilder-dialogs.PathResolver
-      - botbuilder-dialogs.PercentPathResolver
-      - botbuilder-dialogs.ScopePath
-      - botbuilder-dialogs.BotStateMemoryScope
-      - botbuilder-dialogs.ClassMemoryScope
-      - botbuilder-dialogs.ConversationMemoryScope
-      - botbuilder-dialogs.DialogClassMemoryScope
-      - botbuilder-dialogs.DialogMemoryScope
-      - botbuilder-dialogs.MemoryScope
-      - botbuilder-dialogs.SettingsMemoryScope
-      - botbuilder-dialogs.ThisMemoryScope
-      - botbuilder-dialogs.TurnMemoryScope
-      - botbuilder-dialogs.UserMemoryScope
-      - botbuilder-dialogs.ThisPath
-      - botbuilder-dialogs.TurnPath
-      - botbuilder-dialogs.ActivityPrompt
-      - botbuilder-dialogs.AttachmentPrompt
-      - botbuilder-dialogs.ChoicePrompt
-      - botbuilder-dialogs.ConfirmPrompt
-      - botbuilder-dialogs.DateTimePrompt
-      - botbuilder-dialogs.DateTimeResolution
-      - botbuilder-dialogs.NumberPrompt
-      - botbuilder-dialogs.OAuthPrompt
-      - botbuilder-dialogs.OAuthPromptSettings
-      - botbuilder-dialogs.ListStyle
-      - botbuilder-dialogs.Prompt
-      - botbuilder-dialogs.PromptOptions
-      - botbuilder-dialogs.PromptRecognizerResult
-      - botbuilder-dialogs.PromptValidatorContext
-      - botbuilder-dialogs.PromptValidator
-      - botbuilder-dialogs.PromptCultureModels
-      - botbuilder-dialogs.PromptCultureModel
-      - botbuilder-dialogs.TextPrompt
-      - botbuilder-dialogs.SkillDialog
-      - botbuilder-dialogs.SkillDialogOptions
-      - botbuilder-dialogs.WaterfallDialog
-      - botbuilder-dialogs.WaterfallStep
-      - botbuilder-dialogs.WaterfallStepContext
-      - botbuilder-dialogs.WaterfallStepInfo
-    type: package
-    langs:
-      - typeScript
-references:
-  - uid: botbuilder-dialogs.BeginSkillDialogOptions
-    name: BeginSkillDialogOptions
-  - uid: botbuilder-dialogs.ChoiceFactory
-    name: ChoiceFactory
-  - uid: botbuilder-dialogs.ChoiceFactoryOptions
-    name: ChoiceFactoryOptions
-  - uid: botbuilder-dialogs.Choice
-    name: Choice
-  - uid: botbuilder-dialogs.FindChoicesOptions
-    name: FindChoicesOptions
-  - uid: botbuilder-dialogs.FoundChoice
-    name: FoundChoice
-  - uid: botbuilder-dialogs.findChoices
-    name: 'findChoices(string, string | Choice[], FindChoicesOptions)'
-  - uid: botbuilder-dialogs.FindValuesOptions
-    name: FindValuesOptions
-  - uid: botbuilder-dialogs.FoundValue
-    name: FoundValue
-  - uid: botbuilder-dialogs.SortedValue
-    name: SortedValue
-  - uid: botbuilder-dialogs.findValues
-    name: 'findValues(string, SortedValue[], FindValuesOptions)'
-  - uid: botbuilder-dialogs.ModelResult
-    name: ModelResult
-  - uid: botbuilder-dialogs.recognizeChoices
-    name: 'recognizeChoices(string, string | Choice[], FindChoicesOptions)'
-  - uid: botbuilder-dialogs.Token
-    name: Token
-  - uid: botbuilder-dialogs.TokenizerFunction
-    name: TokenizerFunction
-  - uid: botbuilder-dialogs.defaultTokenizer
-    name: 'defaultTokenizer(string, string)'
-  - uid: botbuilder-dialogs.ComponentDialog
-    name: ComponentDialog
-  - uid: botbuilder-dialogs.Configurable
-    name: Configurable
-  - uid: botbuilder-dialogs.DialogReason
-    name: DialogReason
-  - uid: botbuilder-dialogs.DialogTurnStatus
-    name: DialogTurnStatus
-  - uid: botbuilder-dialogs.Dialog
-    name: Dialog
-  - uid: botbuilder-dialogs.DialogConfiguration
-    name: DialogConfiguration
-  - uid: botbuilder-dialogs.DialogEvent
-    name: DialogEvent
-  - uid: botbuilder-dialogs.DialogInstance
-    name: DialogInstance
-  - uid: botbuilder-dialogs.DialogTurnResult
-    name: DialogTurnResult
-  - uid: botbuilder-dialogs.DialogContainer
-    name: DialogContainer
-  - uid: botbuilder-dialogs.DialogContext
-    name: DialogContext
-  - uid: botbuilder-dialogs.DialogState
-    name: DialogState
-  - uid: botbuilder-dialogs.DialogEvents
-    name: DialogEvents
-  - uid: botbuilder-dialogs.getActiveDialogContext
-    name: getActiveDialogContext(DialogContext)
-  - uid: botbuilder-dialogs.isFromParentToSkill
-    name: isFromParentToSkill(TurnContext)
-  - uid: botbuilder-dialogs.runDialog
-    name: 'runDialog(Dialog, TurnContext, StatePropertyAccessor<DialogState>)'
-  - uid: botbuilder-dialogs.shouldSendEndOfConversationToParent
-    name: 'shouldSendEndOfConversationToParent(TurnContext, DialogTurnResult)'
-  - uid: botbuilder-dialogs.DialogManager
-    name: DialogManager
-  - uid: botbuilder-dialogs.DialogManagerConfiguration
-    name: DialogManagerConfiguration
-  - uid: botbuilder-dialogs.DialogManagerResult
-    name: DialogManagerResult
-  - uid: botbuilder-dialogs.DialogSet
-    name: DialogSet
-  - uid: botbuilder-dialogs.DialogDependencies
-    name: DialogDependencies
-  - uid: botbuilder-dialogs.DialogTurnStateConstants
-    name: DialogTurnStateConstants
-  - uid: botbuilder-dialogs.DialogPath
-    name: DialogPath
-  - uid: botbuilder-dialogs.DialogStateManager
-    name: DialogStateManager
-  - uid: botbuilder-dialogs.DialogStateManagerConfiguration
-    name: DialogStateManagerConfiguration
-  - uid: botbuilder-dialogs.AliasPathResolver
-    name: AliasPathResolver
-  - uid: botbuilder-dialogs.AtAtPathResolver
-    name: AtAtPathResolver
-  - uid: botbuilder-dialogs.AtPathResolver
-    name: AtPathResolver
-  - uid: botbuilder-dialogs.DollarPathResolver
-    name: DollarPathResolver
-  - uid: botbuilder-dialogs.HashPathResolver
-    name: HashPathResolver
-  - uid: botbuilder-dialogs.PathResolver
-    name: PathResolver
-  - uid: botbuilder-dialogs.PercentPathResolver
-    name: PercentPathResolver
-  - uid: botbuilder-dialogs.ScopePath
-    name: ScopePath
-  - uid: botbuilder-dialogs.BotStateMemoryScope
-    name: BotStateMemoryScope
-  - uid: botbuilder-dialogs.ClassMemoryScope
-    name: ClassMemoryScope
-  - uid: botbuilder-dialogs.ConversationMemoryScope
-    name: ConversationMemoryScope
-  - uid: botbuilder-dialogs.DialogClassMemoryScope
-    name: DialogClassMemoryScope
-  - uid: botbuilder-dialogs.DialogMemoryScope
-    name: DialogMemoryScope
-  - uid: botbuilder-dialogs.MemoryScope
-    name: MemoryScope
-  - uid: botbuilder-dialogs.SettingsMemoryScope
-    name: SettingsMemoryScope
-  - uid: botbuilder-dialogs.ThisMemoryScope
-    name: ThisMemoryScope
-  - uid: botbuilder-dialogs.TurnMemoryScope
-    name: TurnMemoryScope
-  - uid: botbuilder-dialogs.UserMemoryScope
-    name: UserMemoryScope
-  - uid: botbuilder-dialogs.ThisPath
-    name: ThisPath
-  - uid: botbuilder-dialogs.TurnPath
-    name: TurnPath
-  - uid: botbuilder-dialogs.ActivityPrompt
-    name: ActivityPrompt
-  - uid: botbuilder-dialogs.AttachmentPrompt
-    name: AttachmentPrompt
-  - uid: botbuilder-dialogs.ChoicePrompt
-    name: ChoicePrompt
-  - uid: botbuilder-dialogs.ConfirmPrompt
-    name: ConfirmPrompt
-  - uid: botbuilder-dialogs.DateTimePrompt
-    name: DateTimePrompt
-  - uid: botbuilder-dialogs.DateTimeResolution
-    name: DateTimeResolution
-  - uid: botbuilder-dialogs.NumberPrompt
-    name: NumberPrompt
-  - uid: botbuilder-dialogs.OAuthPrompt
-    name: OAuthPrompt
-  - uid: botbuilder-dialogs.OAuthPromptSettings
-    name: OAuthPromptSettings
-  - uid: botbuilder-dialogs.ListStyle
-    name: ListStyle
-  - uid: botbuilder-dialogs.Prompt
-    name: Prompt
-  - uid: botbuilder-dialogs.PromptOptions
-    name: PromptOptions
-  - uid: botbuilder-dialogs.PromptRecognizerResult
-    name: PromptRecognizerResult
-  - uid: botbuilder-dialogs.PromptValidatorContext
-    name: PromptValidatorContext
-  - uid: botbuilder-dialogs.PromptValidator
-    name: PromptValidator
-  - uid: botbuilder-dialogs.PromptCultureModels
-    name: PromptCultureModels
-  - uid: botbuilder-dialogs.PromptCultureModel
-    name: PromptCultureModel
-  - uid: botbuilder-dialogs.TextPrompt
-    name: TextPrompt
-  - uid: botbuilder-dialogs.SkillDialog
-    name: SkillDialog
-  - uid: botbuilder-dialogs.SkillDialogOptions
-    name: SkillDialogOptions
-  - uid: botbuilder-dialogs.WaterfallDialog
-    name: WaterfallDialog
-  - uid: botbuilder-dialogs.WaterfallStep
-    name: WaterfallStep
-  - uid: botbuilder-dialogs.WaterfallStepContext
-    name: WaterfallStepContext
-  - uid: botbuilder-dialogs.WaterfallStepInfo
-    name: WaterfallStepInfo
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getActiveDialogContext(dialogContext: DialogContext)'
+      parameters:
+        - id: dialogContext
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: ''
+      return:
+        type: <xref uid="botbuilder-dialogs.DialogContext" />
+        description: ''
+  - name: isFromParentToSkill(TurnContext)
+    uid: botbuilder-dialogs.isFromParentToSkill
+    package: botbuilder-dialogs
+    summary: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isFromParentToSkill(context: TurnContext)'
+      parameters:
+        - id: context
+          type: TurnContext
+          description: ''
+      return:
+        type: boolean
+        description: ''
+  - name: 'runDialog(Dialog, TurnContext, StatePropertyAccessor<DialogState>)'
+    uid: botbuilder-dialogs.runDialog
+    package: botbuilder-dialogs
+    summary: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function runDialog(dialog: Dialog, context: TurnContext, accessor:
+        StatePropertyAccessor<DialogState>)
+      parameters:
+        - id: dialog
+          type: <xref uid="botbuilder-dialogs.Dialog" />
+          description: ''
+        - id: context
+          type: TurnContext
+          description: ''
+        - id: accessor
+          type: >-
+            StatePropertyAccessor&lt;<xref uid="botbuilder-dialogs.DialogState"
+            />&gt;
+          description: ''
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: 'shouldSendEndOfConversationToParent(TurnContext, DialogTurnResult)'
+    uid: botbuilder-dialogs.shouldSendEndOfConversationToParent
+    package: botbuilder-dialogs
+    summary: Helper to determine if we should send an EoC to the parent or not.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function shouldSendEndOfConversationToParent(context: TurnContext,
+        turnResult: DialogTurnResult)
+      parameters:
+        - id: context
+          type: TurnContext
+          description: |+
+
+        - id: turnResult
+          type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
+          description: ''
+      return:
+        type: boolean
+        description: ''
+typeAliases:
+  - botbuilder-dialogs.TokenizerFunction
+  - botbuilder-dialogs.PromptValidator
+  - botbuilder-dialogs.WaterfallStep
+enums:
+  - botbuilder-dialogs.DialogReason
+  - botbuilder-dialogs.DialogTurnStatus
+  - botbuilder-dialogs.ListStyle
