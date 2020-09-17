@@ -1,42 +1,21 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder.TextBot
-    name: TextBot
-    fullName: TextBot
-    children:
-      - botbuilder.TextBot.addDialogTrigger
-      - botbuilder.TextBot.begin
-      - botbuilder.TextBot.beginDialogAction
-      - botbuilder.TextBot.cancelAction
-      - botbuilder.TextBot.clone
-      - botbuilder.TextBot.customAction
-      - botbuilder.TextBot.dialogInterrupted
-      - botbuilder.TextBot.dialogResumed
-      - botbuilder.TextBot.endConversationAction
-      - botbuilder.TextBot.findActionRoutes
-      - botbuilder.TextBot.recognize
-      - botbuilder.TextBot.reloadAction
-      - botbuilder.TextBot.replyReceived
-      - botbuilder.TextBot.selectActionRoute
-      - botbuilder.TextBot.triggerAction
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      __DEPRECATED__ use
-      [UniversalBot](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot)
-      and a
-      [ConsoleConnector](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.consoleconnector)
-      instead.
-    extends:
-      name: botbuilder.Dialog
+### YamlMime:TSType
+name: TextBot
+uid: botbuilder.TextBot
+package: botbuilder
+summary: >-
+  __DEPRECATED__ use
+  [UniversalBot](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot)
+  and a
+  [ConsoleConnector](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.consoleconnector)
+  instead.
+fullName: TextBot
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'addDialogTrigger(ActionSet, string)'
+    uid: botbuilder.TextBot.addDialogTrigger
     package: botbuilder
-  - uid: botbuilder.TextBot.addDialogTrigger
-    name: 'addDialogTrigger(ActionSet, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Called once for each dialog within a library to give the dialog a chance
       to add its
@@ -46,46 +25,37 @@ items:
 
       a `beginDialogAction()` that starts the dialog when the trigger condition
       is met.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function addDialogTrigger(actions: ActionSet, dialogId: string)'
       parameters:
         - id: actions
-          type:
-            - botbuilder.ActionSet
+          type: <xref uid="botbuilder.ActionSet" />
           description: Libraries global action set.
         - id: dialogId
-          type:
-            - string
+          type: string
           description: |
             The fully qualified ID of the dialog to trigger.
+  - name: 'begin<T>(Session, T)'
+    uid: botbuilder.TextBot.begin
     package: botbuilder
-  - uid: botbuilder.TextBot.begin
-    name: 'begin(Session, T)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Called when a new dialog session is being started.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function begin<T>(session: Session, args?: T)'
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: args
-          type:
-            - T
+          type: T
           description: |
             (Optional) arguments passed to the dialog by its parent.
-          optional: true
+  - name: 'beginDialogAction(string, string, IBeginDialogActionOptions)'
+    uid: botbuilder.TextBot.beginDialogAction
     package: botbuilder
-  - uid: botbuilder.TextBot.beginDialogAction
-    name: 'beginDialogAction(string, string, IBeginDialogActionOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Binds an action to the dialog that will start another dialog anytime it's
       triggered. The new
@@ -101,22 +71,21 @@ items:
       [promptAfterAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ipromptoptions#promptafteraction)
 
       flag when calling a built-in prompt.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function beginDialogAction(name: string, id: string, options?:
         IBeginDialogActionOptions)
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: Unique name to assign the action.
         - id: id
-          type:
-            - string
+          type: string
           description: ID of the dialog to start.
         - id: options
-          type:
-            - botbuilder.IBeginDialogActionOptions
+          type: <xref uid="botbuilder.IBeginDialogActionOptions" />
           description: >
             (Optional) options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -129,18 +98,12 @@ items:
             to trigger the action. You can also use
             [dialogArgs](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs)
             to pass additional params to the dialog being started.
-          optional: true
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
+  - name: 'cancelAction(string, TextOrMessageType, ICancelActionOptions)'
+    uid: botbuilder.TextBot.cancelAction
     package: botbuilder
-  - uid: botbuilder.TextBot.cancelAction
-    name: 'cancelAction(string, TextOrMessageType, ICancelActionOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Binds an action to the dialog that will cancel the dialog anytime it's
       triggered. When canceled, the
@@ -149,23 +112,21 @@ items:
       [resumed](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogresult#resumed)
       code indicating that it was
       [canceled](/en-us/node/builder/chat-reference/enums/_botbuilder_d_.resumereason#canceled).
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function cancelAction(name: string, msg?: TextOrMessageType, options?:
         ICancelActionOptions)
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: Unique name to assign the action.
         - id: msg
-          type:
-            - botbuilder.TextOrMessageType
+          type: <xref uid="botbuilder.TextOrMessageType" />
           description: (Optional) message to send the user prior to canceling the dialog.
-          optional: true
         - id: options
-          type:
-            - botbuilder.ICancelActionOptions
+          type: <xref uid="botbuilder.ICancelActionOptions" />
           description: >
             (Optional) options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -176,51 +137,41 @@ items:
             [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
 
             to trigger the action.
-          optional: true
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
+  - name: clone(ActionSet)
+    uid: botbuilder.TextBot.clone
     package: botbuilder
-  - uid: botbuilder.TextBot.clone
-    name: clone(ActionSet)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns a clone of an existing ActionSet.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function clone(copyTo?: ActionSet)'
       parameters:
         - id: copyTo
-          type:
-            - botbuilder.ActionSet
+          type: <xref uid="botbuilder.ActionSet" />
           description: >
             (Optional) instance to copy the current object to. If missing a new
             instance will be created.
-          optional: true
       return:
-        type:
-          - botbuilder.ActionSet
+        type: <xref uid="botbuilder.ActionSet" />
         description: ''
+  - name: customAction(IDialogActionOptions)
+    uid: botbuilder.TextBot.customAction
     package: botbuilder
-  - uid: botbuilder.TextBot.customAction
-    name: customAction(IDialogActionOptions)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Binds a custom action to the dialog that will call the passed in
       [onSelectAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onselectaction)
 
       handler when triggered.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function customAction(options: IDialogActionOptions)'
       parameters:
         - id: options
-          type:
-            - botbuilder.IDialogActionOptions
+          type: <xref uid="botbuilder.IDialogActionOptions" />
           description: >
             The options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -230,16 +181,11 @@ items:
             Custom matching logic can be provided using
             [onFindAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onfindaction).
       return:
-        type:
-          - botbuilder.Library
+        type: <xref uid="botbuilder.Library" />
         description: ''
+  - name: 'dialogInterrupted(Session, string, any)'
+    uid: botbuilder.TextBot.dialogInterrupted
     package: botbuilder
-  - uid: botbuilder.TextBot.dialogInterrupted
-    name: 'dialogInterrupted(Session, string, any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Called when a root dialog is being interrupted by another dialog. This
       gives the dialog
@@ -249,73 +195,62 @@ items:
 
       The dialog itself is responsible for clearing the dialog stack and
       starting the new dialog.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function dialogInterrupted(session: Session, dialogId: string,
         dialogArgs: any)
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: dialogId
-          type:
-            - string
+          type: string
           description: ID of the dialog that should be started.
         - id: dialogArgs
-          type:
-            - any
+          type: any
           description: |
             Arguments that should be passed to the new dialog.
+  - name: 'dialogResumed<T>(Session, IDialogResult<T>)'
+    uid: botbuilder.TextBot.dialogResumed
     package: botbuilder
-  - uid: botbuilder.TextBot.dialogResumed
-    name: 'dialogResumed(Session, IDialogResult<T>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: A child dialog has ended and the current one is being resumed.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function dialogResumed<T>(session: Session, result: IDialogResult<T>)'
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: result
-          type:
-            - botbuilder.IDialogResult<T>
+          type: <xref uid="botbuilder.IDialogResult" />&lt;T&gt;
           description: |
             Result returned by the child dialog.
+  - name: 'endConversationAction(string, TextOrMessageType, ICancelActionOptions)'
+    uid: botbuilder.TextBot.endConversationAction
     package: botbuilder
-  - uid: botbuilder.TextBot.endConversationAction
-    name: 'endConversationAction(string, TextOrMessageType, ICancelActionOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Binds an action that will end the conversation with the user when
       triggered.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function endConversationAction(name: string, msg?: TextOrMessageType,
         options?: ICancelActionOptions)
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: Unique name to assign the action.
         - id: msg
-          type:
-            - botbuilder.TextOrMessageType
+          type: <xref uid="botbuilder.TextOrMessageType" />
           description: >-
             (Optional) message to send the user prior to ending the
             conversation.
-          optional: true
         - id: options
-          type:
-            - botbuilder.ICancelActionOptions
+          type: <xref uid="botbuilder.ICancelActionOptions" />
           description: >
             (Optional) options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -326,20 +261,14 @@ items:
             [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
 
             to trigger the action.
-          optional: true
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
-    package: botbuilder
-  - uid: botbuilder.TextBot.findActionRoutes
-    name: >-
+  - name: >-
       findActionRoutes(IRecognizeDialogContext, (err: Error, results:
       IRouteResult[]) => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.TextBot.findActionRoutes
+    package: botbuilder
     summary: >-
       Called during the
       [Library.findRoutes()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#findroutes)
@@ -348,32 +277,28 @@ items:
       actions are triggered
 
       by the users utterance.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function findActionRoutes(context: IRecognizeDialogContext, callback:
         (err: Error, results: IRouteResult[]) => void)
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeDialogContext
+          type: <xref uid="botbuilder.IRecognizeDialogContext" />
           description: >-
             The context of the incoming message as well as the
             [dialogData](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#dialogdata)
             for the evaluated dialog.
         - id: callback
-          type:
-            - '(err: Error, results: IRouteResult[]) => void'
+          type: '(err: Error, results: IRouteResult[]) =&gt; void'
           description: |
             Function to invoke with the top candidate route(s).
-    package: botbuilder
-  - uid: botbuilder.TextBot.recognize
-    name: >-
+  - name: >-
       recognize(IRecognizeDialogContext, (err: Error, result: IRecognizeResult)
       => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.TextBot.recognize
+    package: botbuilder
     summary: >-
       Parses the users utterance and assigns a score from 0.0 - 1.0 indicating
       how confident the
@@ -416,49 +341,43 @@ items:
       prepare for unexpected calls
 
       to [dialogResumed()](#dialogresumed).
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function recognize(context: IRecognizeDialogContext, callback: (err:
         Error, result: IRecognizeResult) => void)
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeDialogContext
+          type: <xref uid="botbuilder.IRecognizeDialogContext" />
           description: The context of the request.
         - id: callback
-          type:
-            - '(err: Error, result: IRecognizeResult) => void'
+          type: '(err: Error, result: IRecognizeResult) =&gt; void'
           description: |
             Function to invoke with the recognition results.
+  - name: 'reloadAction(string, TextOrMessageType, IBeginDialogActionOptions)'
+    uid: botbuilder.TextBot.reloadAction
     package: botbuilder
-  - uid: botbuilder.TextBot.reloadAction
-    name: 'reloadAction(string, TextOrMessageType, IBeginDialogActionOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Binds an action to the dialog that will cause the dialog to be reloaded
       anytime it's triggered. This is
 
       useful to implement logic that handle user utterances like "start over".
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function reloadAction(name: string, msg?: TextOrMessageType, options?:
         IBeginDialogActionOptions)
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: Unique name to assign the action.
         - id: msg
-          type:
-            - botbuilder.TextOrMessageType
+          type: <xref uid="botbuilder.TextOrMessageType" />
           description: (Optional) message to send the user prior to reloading the dialog.
-          optional: true
         - id: options
-          type:
-            - botbuilder.IBeginDialogActionOptions
+          type: <xref uid="botbuilder.IBeginDialogActionOptions" />
           description: >
             (Optional) options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -471,61 +390,46 @@ items:
             to trigger the action. You can also use
             [dialogArgs](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs)
             to pass additional params to the dialog when reloaded.
-          optional: true
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
+  - name: 'replyReceived(Session, IRecognizeResult)'
+    uid: botbuilder.TextBot.replyReceived
     package: botbuilder
-  - uid: botbuilder.TextBot.replyReceived
-    name: 'replyReceived(Session, IRecognizeResult)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function replyReceived(session: Session, recognizeResult?:
         IRecognizeResult)
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: ''
         - id: recognizeResult
-          type:
-            - botbuilder.IRecognizeResult
+          type: <xref uid="botbuilder.IRecognizeResult" />
           description: ''
-          optional: true
+  - name: 'selectActionRoute(Session, IRouteResult)'
+    uid: botbuilder.TextBot.selectActionRoute
     package: botbuilder
-  - uid: botbuilder.TextBot.selectActionRoute
-    name: 'selectActionRoute(Session, IRouteResult)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Selects the route that had the highest confidence score for the utterance.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function selectActionRoute(session: Session, route: IRouteResult)'
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: route
-          type:
-            - botbuilder.IRouteResult
+          type: <xref uid="botbuilder.IRouteResult" />
           description: >
             Results returned from the call to
             [findActionRoutes()](#findactionroute).
+  - name: triggerAction(ITriggerActionOptions)
+    uid: botbuilder.TextBot.triggerAction
     package: botbuilder
-  - uid: botbuilder.TextBot.triggerAction
-    name: triggerAction(ITriggerActionOptions)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Binds an action to the dialog that will make it the active dialog anytime
       it's triggered.
@@ -546,97 +450,16 @@ items:
       [onSelectAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ibegindialogactionsoptions#onselectaction)
 
       handler to your trigger action options.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function triggerAction(options: ITriggerActionOptions)'
       parameters:
         - id: options
-          type:
-            - botbuilder.ITriggerActionOptions
+          type: <xref uid="botbuilder.ITriggerActionOptions" />
           description: |
             Options used to configure the action.
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
-    package: botbuilder
-references:
-  - uid: botbuilder.Dialog
-    name: Dialog
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder.Dialog
-  - uid: botbuilder.ActionSet
-    name: ActionSet
-    spec.typeScript:
-      - name: ActionSet
-        fullName: ActionSet
-        uid: botbuilder.ActionSet
-  - uid: botbuilder.Session
-    name: Session
-    spec.typeScript:
-      - name: Session
-        fullName: Session
-        uid: botbuilder.Session
-  - uid: botbuilder.IBeginDialogActionOptions
-    name: IBeginDialogActionOptions
-    spec.typeScript:
-      - name: IBeginDialogActionOptions
-        fullName: IBeginDialogActionOptions
-        uid: botbuilder.IBeginDialogActionOptions
-  - uid: botbuilder.TextOrMessageType
-    name: TextOrMessageType
-    spec.typeScript:
-      - name: TextOrMessageType
-        fullName: TextOrMessageType
-        uid: botbuilder.TextOrMessageType
-  - uid: botbuilder.ICancelActionOptions
-    name: ICancelActionOptions
-    spec.typeScript:
-      - name: ICancelActionOptions
-        fullName: ICancelActionOptions
-        uid: botbuilder.ICancelActionOptions
-  - uid: botbuilder.IDialogActionOptions
-    name: IDialogActionOptions
-    spec.typeScript:
-      - name: IDialogActionOptions
-        fullName: IDialogActionOptions
-        uid: botbuilder.IDialogActionOptions
-  - uid: botbuilder.Library
-    name: Library
-    spec.typeScript:
-      - name: Library
-        fullName: Library
-        uid: botbuilder.Library
-  - uid: botbuilder.IDialogResult<T>
-    name: IDialogResult<T>
-    spec.typeScript:
-      - name: IDialogResult
-        fullName: IDialogResult
-        uid: botbuilder.IDialogResult
-      - name: <T>
-        fullName: <T>
-  - uid: botbuilder.IRecognizeDialogContext
-    name: IRecognizeDialogContext
-    spec.typeScript:
-      - name: IRecognizeDialogContext
-        fullName: IRecognizeDialogContext
-        uid: botbuilder.IRecognizeDialogContext
-  - uid: botbuilder.IRecognizeResult
-    name: IRecognizeResult
-    spec.typeScript:
-      - name: IRecognizeResult
-        fullName: IRecognizeResult
-        uid: botbuilder.IRecognizeResult
-  - uid: botbuilder.IRouteResult
-    name: IRouteResult
-    spec.typeScript:
-      - name: IRouteResult
-        fullName: IRouteResult
-        uid: botbuilder.IRouteResult
-  - uid: botbuilder.ITriggerActionOptions
-    name: ITriggerActionOptions
-    spec.typeScript:
-      - name: ITriggerActionOptions
-        fullName: ITriggerActionOptions
-        uid: botbuilder.ITriggerActionOptions
+extends: <xref uid="botbuilder.Dialog" />

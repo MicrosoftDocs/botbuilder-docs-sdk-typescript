@@ -1,118 +1,100 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder.LocalizedRegExpRecognizer
-    name: LocalizedRegExpRecognizer
-    fullName: LocalizedRegExpRecognizer
-    children:
-      - botbuilder.LocalizedRegExpRecognizer.constructor
-      - botbuilder.LocalizedRegExpRecognizer.onEnabled
-      - botbuilder.LocalizedRegExpRecognizer.onFilter
-      - botbuilder.LocalizedRegExpRecognizer.onRecognize
-      - botbuilder.LocalizedRegExpRecognizer.recognize
-    langs:
-      - typeScript
-    type: class
-    summary: >
-      Version of the
-      [RegExpRecognizer](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.regexprecognizer)
+### YamlMime:TSType
+name: LocalizedRegExpRecognizer
+uid: botbuilder.LocalizedRegExpRecognizer
+package: botbuilder
+summary: >
+  Version of the
+  [RegExpRecognizer](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.regexprecognizer)
 
-      that uses the frameworks localization system to retrieve a localized
-      regular expression.
+  that uses the frameworks localization system to retrieve a localized regular
+  expression.
 
-      The lookup key in the index.json file should be provided and upon
-      receiving a message for
+  The lookup key in the index.json file should be provided and upon receiving a
+  message for
 
-      a new locale, the recognizer will retrieve the localized expression and a
-      new case insensitive
+  a new locale, the recognizer will retrieve the localized expression and a new
+  case insensitive
 
-      `RegExp` will be created and used to recognize the intent.
+  `RegExp` will be created and used to recognize the intent.
 
-      Libraries can use this feature to let a bot override their default
-      matching expressions. just
+  Libraries can use this feature to let a bot override their default matching
+  expressions. just
 
-      create instances of the recognizer using the namespace of your library and
-      bot developers can
+  create instances of the recognizer using the namespace of your library and bot
+  developers can
 
-      customize your matching expressions by using a `<namespace>.json` file in
-      their locale directory.
-    extends:
-      name: botbuilder.IntentRecognizer
+  customize your matching expressions by using a `<namespace>.json` file in
+  their locale directory.
+fullName: LocalizedRegExpRecognizer
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'LocalizedRegExpRecognizer(string, string, string)'
+    uid: botbuilder.LocalizedRegExpRecognizer.constructor
     package: botbuilder
-  - uid: botbuilder.LocalizedRegExpRecognizer.constructor
-    name: 'LocalizedRegExpRecognizer(string, string, string)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
     summary: Constructs a new instance of the recognizer.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new LocalizedRegExpRecognizer(intent: string, key: string, namespace?:
         string)
       parameters:
         - id: intent
-          type:
-            - string
+          type: string
           description: The name of the intent to return when the expression is matched.
         - id: key
-          type:
-            - string
+          type: string
           description: >-
             Key for the expression in the `index.json` or `<namespace>.json`
             file.
         - id: namespace
-          type:
-            - string
+          type: string
           description: >
             (Optional) library namespace to lookup `key` from. The expression
             should be a string in the `<namespace>.json` locale file.
-          optional: true
-    package: botbuilder
-  - uid: botbuilder.LocalizedRegExpRecognizer.onEnabled
-    name: >-
+methods:
+  - name: >-
       onEnabled((context: IRecognizeContext, callback: (err: Error, enabled:
       boolean) => void) => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.LocalizedRegExpRecognizer.onEnabled
+    package: botbuilder
     summary: >-
       Registers a function to conditionally enable/disable the recognizer.
       Multiple handlers can
 
       be registered and the new handler will be executed before any other
       handlers.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function onEnabled(handler: (context: IRecognizeContext, callback: (err:
         Error, enabled: boolean) => void) => void)
       parameters:
         - id: handler
-          type:
-            - >-
-              (context: IRecognizeContext, callback: (err: Error, enabled:
-              boolean) => void) => void
+          type: >-
+            (context: IRecognizeContext, callback: (err: Error, enabled:
+            boolean) =&gt; void) =&gt; void
           description: >
             Function called for every message. You should call `callback(null,
             true)` for every message that should be recognized.
       return:
-        type:
-          - botbuilder.IntentRecognizer
+        type: <xref uid="botbuilder.IntentRecognizer" />
         description: ''
-    package: botbuilder
-  - uid: botbuilder.LocalizedRegExpRecognizer.onFilter
-    name: >-
+  - name: >-
       onFilter((context: IRecognizeContext, result: IIntentRecognizerResult,
       callback: (err: Error, result: IIntentRecognizerResult) => void) => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.LocalizedRegExpRecognizer.onFilter
+    package: botbuilder
     summary: >-
       Registers a function to filter the output from the recognizer. Multiple
       handlers can be
 
       registered and the new handler will be executed after any other handlers.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function onFilter(handler: (context: IRecognizeContext, result:
@@ -120,79 +102,56 @@ items:
         IIntentRecognizerResult) => void) => void)
       parameters:
         - id: handler
-          type:
-            - >-
-              (context: IRecognizeContext, result: IIntentRecognizerResult,
-              callback: (err: Error, result: IIntentRecognizerResult) => void)
-              => void
+          type: >-
+            (context: IRecognizeContext, result: IIntentRecognizerResult,
+            callback: (err: Error, result: IIntentRecognizerResult) =&gt; void)
+            =&gt; void
           description: >
             Function called for every message that results in an intent with a
             score greater then 0.0. You should call `callback(null, { score:
             0.0, intent: null })` to block an intent from being returned.
       return:
-        type:
-          - botbuilder.IntentRecognizer
+        type: <xref uid="botbuilder.IntentRecognizer" />
         description: ''
-    package: botbuilder
-  - uid: botbuilder.LocalizedRegExpRecognizer.onRecognize
-    name: >-
+  - name: >-
       onRecognize(IRecognizeContext, (err: Error, result:
       IIntentRecognizerResult) => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.LocalizedRegExpRecognizer.onRecognize
+    package: botbuilder
     summary: Implements the actual recognition logic.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function onRecognize(context: IRecognizeContext, callback: (err: Error,
         result: IIntentRecognizerResult) => void)
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeContext
+          type: <xref uid="botbuilder.IRecognizeContext" />
           description: ''
         - id: callback
-          type:
-            - '(err: Error, result: IIntentRecognizerResult) => void'
+          type: '(err: Error, result: IIntentRecognizerResult) =&gt; void'
           description: ''
-    package: botbuilder
-  - uid: botbuilder.LocalizedRegExpRecognizer.recognize
-    name: >-
+  - name: >-
       recognize(IRecognizeContext, (err: Error, result: IIntentRecognizerResult)
       => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.LocalizedRegExpRecognizer.recognize
+    package: botbuilder
     summary: Attempts to match a users text utterance to an intent.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function recognize(context: IRecognizeContext, callback: (err: Error,
         result: IIntentRecognizerResult) => void)
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeContext
+          type: <xref uid="botbuilder.IRecognizeContext" />
           description: >-
             Contextual information for a received message that's being
             recognized.
         - id: callback
-          type:
-            - '(err: Error, result: IIntentRecognizerResult) => void'
+          type: '(err: Error, result: IIntentRecognizerResult) =&gt; void'
           description: |
             Function to invoke with the results of the recognition operation.
-    package: botbuilder
-references:
-  - uid: botbuilder.IntentRecognizer
-    name: IntentRecognizer
-    spec.typeScript:
-      - name: IntentRecognizer
-        fullName: IntentRecognizer
-        uid: botbuilder.IntentRecognizer
-  - uid: botbuilder.IRecognizeContext
-    name: IRecognizeContext
-    spec.typeScript:
-      - name: IRecognizeContext
-        fullName: IRecognizeContext
-        uid: botbuilder.IRecognizeContext
+extends: <xref uid="botbuilder.IntentRecognizer" />

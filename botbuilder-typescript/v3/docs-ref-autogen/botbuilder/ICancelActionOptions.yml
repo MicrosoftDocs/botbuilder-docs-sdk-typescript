@@ -1,66 +1,46 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder.ICancelActionOptions
-    name: ICancelActionOptions
-    fullName: ICancelActionOptions
-    children:
-      - botbuilder.ICancelActionOptions.confirmPrompt
-      - botbuilder.ICancelActionOptions.intentThreshold
-      - botbuilder.ICancelActionOptions.matches
-      - botbuilder.ICancelActionOptions.onFindAction
-      - botbuilder.ICancelActionOptions.onSelectAction
-    langs:
-      - typeScript
-    type: interface
-    summary: Options passed when defining a `cancelAction()`.
-    extends:
-      name: botbuilder.IDialogActionOptions
+### YamlMime:TSType
+name: ICancelActionOptions
+uid: botbuilder.ICancelActionOptions
+package: botbuilder
+summary: Options passed when defining a `cancelAction()`.
+fullName: ICancelActionOptions
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+  - name: confirmPrompt
+    uid: botbuilder.ICancelActionOptions.confirmPrompt
     package: botbuilder
-  - uid: botbuilder.ICancelActionOptions.confirmPrompt
-    name: confirmPrompt
-    fullName: confirmPrompt
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       If specified the user will be asked to confirm that they truly would like
       to cancel an
 
       action when triggered.
-    optional: true
+    fullName: confirmPrompt
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'confirmPrompt?: TextOrMessageType'
       return:
-        type:
-          - botbuilder.TextOrMessageType
+        type: <xref uid="botbuilder.TextOrMessageType" />
         description: ''
+  - name: intentThreshold
+    uid: botbuilder.ICancelActionOptions.intentThreshold
     package: botbuilder
-  - uid: botbuilder.ICancelActionOptions.intentThreshold
-    name: intentThreshold
-    fullName: intentThreshold
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       (Optional) minimum score needed to trigger the action using the value of
       [matches](#matches). The default value is 0.1.
-    optional: true
+    fullName: intentThreshold
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'intentThreshold?: number'
       return:
-        type:
-          - number
+        type: number
         description: ''
+  - name: matches
+    uid: botbuilder.ICancelActionOptions.matches
     package: botbuilder
-  - uid: botbuilder.ICancelActionOptions.matches
-    name: matches
-    fullName: matches
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >
       (Optional) intent(s) used to trigger the action. Either a regular
       expression or a named
@@ -77,21 +57,17 @@ items:
       an [onFindAction](#onfindaction)
 
       handler is provided.
-    optional: true
+    fullName: matches
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'matches?: MatchType'
       return:
-        type:
-          - botbuilder.MatchType
+        type: <xref uid="botbuilder.MatchType" />
         description: ''
+  - name: onFindAction
+    uid: botbuilder.ICancelActionOptions.onFindAction
     package: botbuilder
-  - uid: botbuilder.ICancelActionOptions.onFindAction
-    name: onFindAction
-    fullName: onFindAction
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       (Optional) custom handler that's invoked whenever the action is being
       checked to see if it
@@ -103,25 +79,21 @@ items:
       0.0 to 1.0 and
 
       routeData that should be passed in during the `selectActionRoute` call.
-    optional: true
+    fullName: onFindAction
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         onFindAction?: (context: IFindActionRouteContext, callback: (err: Error,
         score: number, routeData?: IActionRouteData) => void) => void
       return:
-        type:
-          - >-
-            (context: IFindActionRouteContext, callback: (err: Error, score:
-            number, routeData?: IActionRouteData) => void) => void
+        type: >-
+          (context: IFindActionRouteContext, callback: (err: Error, score:
+          number, routeData?: IActionRouteData) =&gt; void) =&gt; void
         description: ''
+  - name: onSelectAction
+    uid: botbuilder.ICancelActionOptions.onSelectAction
     package: botbuilder
-  - uid: botbuilder.ICancelActionOptions.onSelectAction
-    name: onSelectAction
-    fullName: onSelectAction
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >
       (Optional) custom handler that's invoked whenever the action is
       triggered.  This lets you
@@ -138,32 +110,16 @@ items:
       `next()` if you
 
       would like the actions default behavior to run.
-    optional: true
+    fullName: onSelectAction
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         onSelectAction?: (session: Session, args?: IActionRouteData, next?:
         Function) => void
       return:
-        type:
-          - '(session: Session, args?: IActionRouteData, next?: Function) => void'
+        type: >-
+          (session: Session, args?: IActionRouteData, next?: Function) =&gt;
+          void
         description: ''
-    package: botbuilder
-references:
-  - uid: botbuilder.IDialogActionOptions
-    name: IDialogActionOptions
-    spec.typeScript:
-      - name: IDialogActionOptions
-        fullName: IDialogActionOptions
-        uid: botbuilder.IDialogActionOptions
-  - uid: botbuilder.TextOrMessageType
-    name: TextOrMessageType
-    spec.typeScript:
-      - name: TextOrMessageType
-        fullName: TextOrMessageType
-        uid: botbuilder.TextOrMessageType
-  - uid: botbuilder.MatchType
-    name: MatchType
-    spec.typeScript:
-      - name: MatchType
-        fullName: MatchType
-        uid: botbuilder.MatchType
+extends: <xref uid="botbuilder.IDialogActionOptions" />

@@ -1,43 +1,54 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-calling.UniversalCallBot
-    name: UniversalCallBot
-    fullName: UniversalCallBot
-    children:
-      - botbuilder-calling.UniversalCallBot.dialog
-      - botbuilder-calling.UniversalCallBot.get
-      - botbuilder-calling.UniversalCallBot.library
-      - botbuilder-calling.UniversalCallBot.on
-      - botbuilder-calling.UniversalCallBot.set
-      - botbuilder-calling.UniversalCallBot.constructor
-      - botbuilder-calling.UniversalCallBot.use
-    langs:
-      - typeScript
-    type: class
-    summary: Manages your bots conversations with users across multiple channels.
+### YamlMime:TSType
+name: UniversalCallBot
+uid: botbuilder-calling.UniversalCallBot
+package: botbuilder-calling
+summary: Manages your bots conversations with users across multiple channels.
+fullName: UniversalCallBot
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'UniversalCallBot(ICallConnector, IUniversalCallBotSettings)'
+    uid: botbuilder-calling.UniversalCallBot.constructor
     package: botbuilder-calling
-  - uid: botbuilder-calling.UniversalCallBot.dialog
-    name: 'dialog(string, Dialog | IDialogWaterfallStep[] | IDialogWaterfallStep)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Creates a new instance of the UniversalCallBot.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new UniversalCallBot(connector: ICallConnector, settings?:
+        IUniversalCallBotSettings)
+      parameters:
+        - id: connector
+          type: <xref uid="botbuilder-calling.ICallConnector" />
+          description: >-
+            (Optional) the default connector to use for requests. If there's not
+            a more specific connector registered for a channel then this
+            connector will be used./**
+        - id: settings
+          type: <xref uid="botbuilder-calling.IUniversalCallBotSettings" />
+          description: |
+            (Optional) settings to configure the bot with.
+methods:
+  - name: 'dialog(string, Dialog | IDialogWaterfallStep[] | IDialogWaterfallStep)'
+    uid: botbuilder-calling.UniversalCallBot.dialog
+    package: botbuilder-calling
     summary: Registers or returns a dialog for the bot.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function dialog(id: string, dialog?: Dialog | IDialogWaterfallStep[] |
         IDialogWaterfallStep)
       parameters:
         - id: id
-          type:
-            - string
+          type: string
           description: Unique ID of the dialog being regsitered or retrieved.
         - id: dialog
-          type:
-            - >-
-              botbuilder-calling.Dialog |
-              botbuilder-calling.IDialogWaterfallStep[] |
-              botbuilder-calling.IDialogWaterfallStep
+          type: >-
+            <xref uid="botbuilder-calling.Dialog" /> | <xref
+            uid="botbuilder-calling.IDialogWaterfallStep" />[] | <xref
+            uid="botbuilder-calling.IDialogWaterfallStep" />
           description: >
             (Optional) dialog or waterfall to register.
 
@@ -52,46 +63,37 @@ items:
             Calling a built-in prompt or starting a new dialog will result in
             the current dialog ending upon completion of the child
             prompt/dialog.
-          optional: true
       return:
-        type:
-          - botbuilder-calling.Dialog
+        type: <xref uid="botbuilder-calling.Dialog" />
         description: ''
+  - name: get(string)
+    uid: botbuilder-calling.UniversalCallBot.get
     package: botbuilder-calling
-  - uid: botbuilder-calling.UniversalCallBot.get
-    name: get(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns the current value of a setting.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function get(name: string)'
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: >
             Name of the property to return. Valid names are properties on
             [IUniversalCallBotSettings](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iUniversalCallBotsettings.html).
       return:
-        type:
-          - any
+        type: any
         description: ''
+  - name: library(Library | string)
+    uid: botbuilder-calling.UniversalCallBot.library
     package: botbuilder-calling
-  - uid: botbuilder-calling.UniversalCallBot.library
-    name: library(Library | string)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Registers or returns a library dependency.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function library(lib: Library | string)'
       parameters:
         - id: lib
-          type:
-            - botbuilder-calling.Library | string
+          type: <xref uid="botbuilder-calling.Library" /> | string
           description: >
 
             * __lib:__ _{Library}_ - Library to register as a dependency.
@@ -99,170 +101,64 @@ items:
             * __lib:__ _{string}_ - Unique name of the library to lookup. All
             dependencies will be searched as well.
       return:
-        type:
-          - botbuilder-calling.Library
+        type: <xref uid="botbuilder-calling.Library" />
         description: ''
+  - name: 'on(string, Function)'
+    uid: botbuilder-calling.UniversalCallBot.on
     package: botbuilder-calling
-  - uid: botbuilder-calling.UniversalCallBot.on
-    name: 'on(string, Function)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Registers an event listener.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function on(event: string, listener: Function)'
       parameters:
         - id: event
-          type:
-            - string
+          type: string
           description: >-
             Name of the event. Event types:
 
             - __error:__ An error occured.
             [IErrorEvent](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.ierrorevent.html)
         - id: listener
-          type:
-            - Function
+          type: Function
           description: |
             Function to invoke.
+  - name: 'set(string, any)'
+    uid: botbuilder-calling.UniversalCallBot.set
     package: botbuilder-calling
-  - uid: botbuilder-calling.UniversalCallBot.set
-    name: 'set(string, any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Sets a setting on the bot.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function set(name: string, value: any)'
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: >-
             Name of the property to set. Valid names are properties on
             [IUniversalCallBotSettings](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iUniversalCallBotsettings.html).
         - id: value
-          type:
-            - any
+          type: any
           description: |
             The value to assign to the setting.
       return:
-        type:
-          - botbuilder-calling.UniversalCallBot
+        type: <xref uid="botbuilder-calling.UniversalCallBot" />
         description: ''
+  - name: 'use(IMiddlewareMap[])'
+    uid: botbuilder-calling.UniversalCallBot.use
     package: botbuilder-calling
-  - uid: botbuilder-calling.UniversalCallBot.constructor
-    name: 'UniversalCallBot(ICallConnector, IUniversalCallBotSettings)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: Creates a new instance of the UniversalCallBot.
-    syntax:
-      content: >-
-        new UniversalCallBot(connector: ICallConnector, settings?:
-        IUniversalCallBotSettings)
-      parameters:
-        - id: connector
-          type:
-            - botbuilder-calling.ICallConnector
-          description: >-
-            (Optional) the default connector to use for requests. If there's not
-            a more specific connector registered for a channel then this
-            connector will be used./**
-        - id: settings
-          type:
-            - botbuilder-calling.IUniversalCallBotSettings
-          description: |
-            (Optional) settings to configure the bot with.
-          optional: true
-    package: botbuilder-calling
-  - uid: botbuilder-calling.UniversalCallBot.use
-    name: 'use(IMiddlewareMap[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Installs middleware for the bot. Middleware lets you intercept incoming
       and outgoing events/messages.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function use(args: IMiddlewareMap[])'
       parameters:
         - id: args
-          type:
-            - 'botbuilder-calling.IMiddlewareMap[]'
+          type: '<xref uid="botbuilder-calling.IMiddlewareMap" />[]'
           description: |
             One or more sets of middleware hooks to install.
       return:
-        type:
-          - botbuilder-calling.UniversalCallBot
+        type: <xref uid="botbuilder-calling.UniversalCallBot" />
         description: ''
-    package: botbuilder-calling
-references:
-  - uid: botbuilder-calling.ICallConnector
-    name: ICallConnector
-    spec.typeScript:
-      - name: ICallConnector
-        fullName: ICallConnector
-        uid: botbuilder-calling.ICallConnector
-  - uid: botbuilder-calling.IUniversalCallBotSettings
-    name: IUniversalCallBotSettings
-    spec.typeScript:
-      - name: IUniversalCallBotSettings
-        fullName: IUniversalCallBotSettings
-        uid: botbuilder-calling.IUniversalCallBotSettings
-  - uid: >-
-      botbuilder-calling.Dialog | botbuilder-calling.IDialogWaterfallStep[] |
-      botbuilder-calling.IDialogWaterfallStep
-    name: IDialogWaterfallStep
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder-calling.Dialog
-      - name: ' | '
-        fullName: ' | '
-      - name: IDialogWaterfallStep
-        fullName: IDialogWaterfallStep
-        uid: botbuilder-calling.IDialogWaterfallStep
-      - name: '[] | '
-        fullName: '[] | '
-      - name: IDialogWaterfallStep
-        fullName: IDialogWaterfallStep
-        uid: botbuilder-calling.IDialogWaterfallStep
-  - uid: botbuilder-calling.Dialog
-    name: Dialog
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder-calling.Dialog
-  - uid: botbuilder-calling.Library | string
-    name: Library | string
-    spec.typeScript:
-      - name: Library
-        fullName: Library
-        uid: botbuilder-calling.Library
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: botbuilder-calling.Library
-    name: Library
-    spec.typeScript:
-      - name: Library
-        fullName: Library
-        uid: botbuilder-calling.Library
-  - uid: botbuilder-calling.UniversalCallBot
-    name: UniversalCallBot
-    spec.typeScript:
-      - name: UniversalCallBot
-        fullName: UniversalCallBot
-        uid: botbuilder-calling.UniversalCallBot
-  - uid: 'botbuilder-calling.IMiddlewareMap[]'
-    name: 'IMiddlewareMap[]'
-    spec.typeScript:
-      - name: IMiddlewareMap
-        fullName: IMiddlewareMap
-        uid: botbuilder-calling.IMiddlewareMap
-      - name: '[]'
-        fullName: '[]'

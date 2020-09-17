@@ -1,210 +1,146 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder.RemoteSessionLogger
-    name: RemoteSessionLogger
-    fullName: RemoteSessionLogger
-    children:
-      - botbuilder.RemoteSessionLogger.dump
-      - botbuilder.RemoteSessionLogger.error
-      - botbuilder.RemoteSessionLogger.flush
-      - botbuilder.RemoteSessionLogger.isEnabled
-      - botbuilder.RemoteSessionLogger.log
-      - botbuilder.RemoteSessionLogger.constructor
-      - botbuilder.RemoteSessionLogger.warn
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      Logs session activity to a remote endpoint using debug events. The remote
-      debugger
+### YamlMime:TSType
+name: RemoteSessionLogger
+uid: botbuilder.RemoteSessionLogger
+package: botbuilder
+summary: >-
+  Logs session activity to a remote endpoint using debug events. The remote
+  debugger
 
-      is automatically used when the emulator connects to your bot. Non-emulator
-      channels
+  is automatically used when the emulator connects to your bot. Non-emulator
+  channels
 
-      can stream their activity to the emulator by saving the address of the
-      emulator
+  can stream their activity to the emulator by saving the address of the
+  emulator
 
-      session to
-      `session.privateConversationData["BotBuilder.Data.DebugSession"]`.
-    extends:
-      name: botbuilder.SessionLogger
+  session to `session.privateConversationData["BotBuilder.Data.DebugSession"]`.
+fullName: RemoteSessionLogger
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'RemoteSessionLogger(IConnector, IAddress, IAddress)'
+    uid: botbuilder.RemoteSessionLogger.constructor
     package: botbuilder
-  - uid: botbuilder.RemoteSessionLogger.dump
-    name: 'dump(string, any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Logs the state of a variable to the output.
-    syntax:
-      content: 'function dump(name: string, value: any)'
-      parameters:
-        - id: name
-          type:
-            - string
-          description: Name of the variable being logged.
-        - id: value
-          type:
-            - any
-          description: |
-            Variables current state.
-    package: botbuilder
-  - uid: botbuilder.RemoteSessionLogger.error
-    name: 'error(IDialogState[], Error)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Logs an error to the output.
-    syntax:
-      content: 'function error(dialogStack: IDialogState[], err: Error)'
-      parameters:
-        - id: dialogStack
-          type:
-            - 'botbuilder.IDialogState[]'
-          description: >-
-            (Optional) dialog stack for the session. This is used to provide
-            context for where the event occured.
-        - id: err
-          type:
-            - Error
-          description: >
-            Error object to log. The errors message plus stack trace will be
-            logged.
-    package: botbuilder
-  - uid: botbuilder.RemoteSessionLogger.flush
-    name: 'flush((err: Error) => void)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Flushes any buffered entries to the output.
-    syntax:
-      content: 'function flush(callback: (err: Error) => void)'
-      parameters:
-        - id: callback
-          type:
-            - '(err: Error) => void'
-          description: |
-            Function to call when the operation is completed.
-    package: botbuilder
-  - uid: botbuilder.RemoteSessionLogger.isEnabled
-    name: isEnabled
-    fullName: isEnabled
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: If true the logger is enabled and will log the sessions activity.
-    syntax:
-      content: 'isEnabled: boolean'
-      return:
-        type:
-          - boolean
-        description: ''
-    package: botbuilder
-  - uid: botbuilder.RemoteSessionLogger.log
-    name: 'log(IDialogState[], string, any[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Logs an informational level message to the output.
-    syntax:
-      content: 'function log(dialogStack: IDialogState[], msg: string, args: any[])'
-      parameters:
-        - id: dialogStack
-          type:
-            - 'botbuilder.IDialogState[]'
-          description: >-
-            (Optional) dialog stack for the session. This is used to provide
-            context for where the event occured.
-        - id: msg
-          type:
-            - string
-          description: Message to log.
-        - id: args
-          type:
-            - 'any[]'
-          description: |
-            (Optional) arguments to log with the message.
-    package: botbuilder
-  - uid: botbuilder.RemoteSessionLogger.constructor
-    name: 'RemoteSessionLogger(IConnector, IAddress, IAddress)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
     summary: Creates an instance of the remote session logger.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new RemoteSessionLogger(connector: IConnector, address: IAddress,
         relatesTo: IAddress)
       parameters:
         - id: connector
-          type:
-            - botbuilder.IConnector
+          type: <xref uid="botbuilder.IConnector" />
           description: Connector used to communicate with the remote endpoint.
         - id: address
-          type:
-            - botbuilder.IAddress
+          type: <xref uid="botbuilder.IAddress" />
           description: Address to deliver debug events to.
         - id: relatesTo
-          type:
-            - botbuilder.IAddress
+          type: <xref uid="botbuilder.IAddress" />
           description: |
             Address of the conversation the debug events are for.
+properties:
+  - name: isEnabled
+    uid: botbuilder.RemoteSessionLogger.isEnabled
     package: botbuilder
-  - uid: botbuilder.RemoteSessionLogger.warn
-    name: 'warn(IDialogState[], string, any[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Logs a warning to the output.
+    summary: If true the logger is enabled and will log the sessions activity.
+    fullName: isEnabled
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function warn(dialogStack: IDialogState[], msg: string, args: any[])'
+      content: 'isEnabled: boolean'
+      return:
+        type: boolean
+        description: ''
+methods:
+  - name: 'dump(string, any)'
+    uid: botbuilder.RemoteSessionLogger.dump
+    package: botbuilder
+    summary: Logs the state of a variable to the output.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function dump(name: string, value: any)'
+      parameters:
+        - id: name
+          type: string
+          description: Name of the variable being logged.
+        - id: value
+          type: any
+          description: |
+            Variables current state.
+  - name: 'error(IDialogState[], Error)'
+    uid: botbuilder.RemoteSessionLogger.error
+    package: botbuilder
+    summary: Logs an error to the output.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function error(dialogStack: IDialogState[], err: Error)'
       parameters:
         - id: dialogStack
-          type:
-            - 'botbuilder.IDialogState[]'
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: >-
+            (Optional) dialog stack for the session. This is used to provide
+            context for where the event occured.
+        - id: err
+          type: Error
+          description: >
+            Error object to log. The errors message plus stack trace will be
+            logged.
+  - name: 'flush((err: Error) => void)'
+    uid: botbuilder.RemoteSessionLogger.flush
+    package: botbuilder
+    summary: Flushes any buffered entries to the output.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function flush(callback: (err: Error) => void)'
+      parameters:
+        - id: callback
+          type: '(err: Error) =&gt; void'
+          description: |
+            Function to call when the operation is completed.
+  - name: 'log(IDialogState[], string, any[])'
+    uid: botbuilder.RemoteSessionLogger.log
+    package: botbuilder
+    summary: Logs an informational level message to the output.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function log(dialogStack: IDialogState[], msg: string, args: any[])'
+      parameters:
+        - id: dialogStack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
           description: >-
             (Optional) dialog stack for the session. This is used to provide
             context for where the event occured.
         - id: msg
-          type:
-            - string
+          type: string
           description: Message to log.
         - id: args
-          type:
-            - 'any[]'
+          type: 'any[]'
           description: |
             (Optional) arguments to log with the message.
+  - name: 'warn(IDialogState[], string, any[])'
+    uid: botbuilder.RemoteSessionLogger.warn
     package: botbuilder
-references:
-  - uid: botbuilder.SessionLogger
-    name: SessionLogger
-    spec.typeScript:
-      - name: SessionLogger
-        fullName: SessionLogger
-        uid: botbuilder.SessionLogger
-  - uid: botbuilder.IConnector
-    name: IConnector
-    spec.typeScript:
-      - name: IConnector
-        fullName: IConnector
-        uid: botbuilder.IConnector
-  - uid: botbuilder.IAddress
-    name: IAddress
-    spec.typeScript:
-      - name: IAddress
-        fullName: IAddress
-        uid: botbuilder.IAddress
-  - uid: 'botbuilder.IDialogState[]'
-    name: 'IDialogState[]'
-    spec.typeScript:
-      - name: IDialogState
-        fullName: IDialogState
-        uid: botbuilder.IDialogState
-      - name: '[]'
-        fullName: '[]'
+    summary: Logs a warning to the output.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function warn(dialogStack: IDialogState[], msg: string, args: any[])'
+      parameters:
+        - id: dialogStack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: >-
+            (Optional) dialog stack for the session. This is used to provide
+            context for where the event occured.
+        - id: msg
+          type: string
+          description: Message to log.
+        - id: args
+          type: 'any[]'
+          description: |
+            (Optional) arguments to log with the message.
+extends: <xref uid="botbuilder.SessionLogger" />

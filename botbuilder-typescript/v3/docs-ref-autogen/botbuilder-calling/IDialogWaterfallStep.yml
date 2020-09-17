@@ -1,92 +1,90 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-calling.IDialogWaterfallStep
-    name: IDialogWaterfallStep
-    fullName: IDialogWaterfallStep
-    children: []
-    langs:
-      - typeScript
-    type: interface
-    summary: >-
-      Signature for functions passed as steps to
-      [DialogAction.waterfall()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.dialogaction.html#waterfall).
+### YamlMime:TSType
+name: IDialogWaterfallStep
+uid: botbuilder-calling.IDialogWaterfallStep
+package: botbuilder-calling
+summary: >-
+  Signature for functions passed as steps to
+  [DialogAction.waterfall()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.dialogaction.html#waterfall).
 
-      Waterfalls let you prompt a user for information using a sequence of
-      questions. Each step of the
+  Waterfalls let you prompt a user for information using a sequence of
+  questions. Each step of the
 
-      waterfall can either execute one of the built-in
-      [Prompts](en-us/node/builder/calling-reference/classes/_botbuilder_d_.prompts.html),
+  waterfall can either execute one of the built-in
+  [Prompts](en-us/node/builder/calling-reference/classes/_botbuilder_d_.prompts.html),
 
-      start a new dialog by calling
-      [session.beginDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#begindialog),
+  start a new dialog by calling
+  [session.beginDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#begindialog),
 
-      advance to the next step of the waterfall manually using `skip()`, or
-      terminate the waterfall.
+  advance to the next step of the waterfall manually using `skip()`, or
+  terminate the waterfall.
 
 
-      When either a dialog or built-in prompt is called from a waterfall step,
-      the results from that
+  When either a dialog or built-in prompt is called from a waterfall step, the
+  results from that
 
-      dialog or prompt will be passed via the `results` parameter to the next
-      step of the waterfall.
+  dialog or prompt will be passed via the `results` parameter to the next step
+  of the waterfall.
 
-      Users can say things like "nevermind" to cancel the built-in prompts so
-      you should guard against
+  Users can say things like "nevermind" to cancel the built-in prompts so you
+  should guard against
 
-      that by at least checking for
-      [results.response](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogresult.html#response)
+  that by at least checking for
+  [results.response](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogresult.html#response)
 
-      before proceeding. A more detailed explination of why the waterfall is
-      being continued can be
+  before proceeding. A more detailed explination of why the waterfall is being
+  continued can be
 
-      determined by looking at the
-      [code](en-us/node/builder/calling-reference/enums/_botbuilder_d_.resumereason.html)
+  determined by looking at the
+  [code](en-us/node/builder/calling-reference/enums/_botbuilder_d_.resumereason.html)
 
-      returned for
-      [results.resumed](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogresult.html#resumed).
-
-
-      You can manually advance to the next step of the waterfall using the
-      `skip()` function passed
-
-      in. Calling `skip({ response: "some text" })` with an
-      [IDialogResult](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogresult.html)
-
-      lets you more accurately mimic the results from a built-in prompt and can
-      simplify your overall
-
-      waterfall logic.
+  returned for
+  [results.resumed](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogresult.html#resumed).
 
 
-      You can terminate a waterfall early by either falling through every step
-      of the waterfall using
+  You can manually advance to the next step of the waterfall using the `skip()`
+  function passed
 
-      calls to `skip()` or simply not starting another prompt or dialog.
+  in. Calling `skip({ response: "some text" })` with an
+  [IDialogResult](en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.idialogresult.html)
+
+  lets you more accurately mimic the results from a built-in prompt and can
+  simplify your overall
+
+  waterfall logic.
 
 
-      __note:__ Waterfalls have a hidden last step which will automatically end
-      the current dialog if
+  You can terminate a waterfall early by either falling through every step of
+  the waterfall using
 
-      if you call a prompt or dialog from the last step. This is useful where
-      you have a deep stack of
+  calls to `skip()` or simply not starting another prompt or dialog.
 
-      dialogs and want a call to
-      [session.endDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#enddialog)
 
-      from the last child on the stack to end the entire stack. The close of the
-      last child will trigger
+  __note:__ Waterfalls have a hidden last step which will automatically end the
+  current dialog if
 
-      all of its parents to move to this hidden step which will cascade the
-      close all the way up the stack.
+  if you call a prompt or dialog from the last step. This is useful where you
+  have a deep stack of
 
-      This is typically a desired behaviour but if you want to avoid it or stop
-      it somewhere in the
+  dialogs and want a call to
+  [session.endDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#enddialog)
 
-      middle you'll need to add a step to the end of your waterfall that either
-      does nothing or calls
+  from the last child on the stack to end the entire stack. The close of the
+  last child will trigger
 
-      something liek
-      [session.send()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#send)
+  all of its parents to move to this hidden step which will cascade the close
+  all the way up the stack.
 
-      which isn't going to advance the waterfall forward.
-    package: botbuilder-calling
+  This is typically a desired behaviour but if you want to avoid it or stop it
+  somewhere in the
+
+  middle you'll need to add a step to the end of your waterfall that either does
+  nothing or calls
+
+  something liek
+  [session.send()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#send)
+
+  which isn't going to advance the waterfall forward.
+fullName: IDialogWaterfallStep
+isPreview: false
+isDeprecated: false
+type: interface
