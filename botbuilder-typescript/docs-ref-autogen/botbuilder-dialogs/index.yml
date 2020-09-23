@@ -82,6 +82,44 @@ functions:
     uid: botbuilder-dialogs.findChoices
     package: botbuilder-dialogs
     summary: Mid-level search function for recognizing a choice in an utterance.
+    remarks: >-
+      This function is layered above `findValues()` and simply determines all of
+      the synonyms that
+
+      should be searched for before calling `findValues()` to perform the actual
+      search. The
+
+      `recognizeChoices()` function is layered above this function and adds the
+      ability to select a
+
+      choice by index or ordinal position in the list. Calling this particular
+      function is useful
+
+      when you don't want the index and ordinal position recognition done by
+      `recognizeChoices()`.
+
+
+      ```JavaScript
+
+      const { findChoices } = require('botbuilder-choices');
+
+
+      const choices = ['red', 'green', 'blue'];
+
+      const utterance = context.activity.text;
+
+      const results = findChoices(utterance, choices);
+
+      if (results.length == 1) {
+          await context.sendActivity(`I like ${results[0].resolution.value} too!`);
+      } else if (results.length > 1) {
+          const ambiguous = results.map((r) => r.resolution.value);
+          await context.sendActivity(ChoiceFactory.forChannel(context, ambiguous, `Which one?`));
+      } else {
+          await context.sendActivity(ChoiceFactory.forChannel(context, choices, `I didn't get that... Which color?`));
+      }
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -120,6 +158,7 @@ functions:
       but this function contains
 
       the fuzzy search algorithm that drives choice recognition.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -146,6 +185,45 @@ functions:
     uid: botbuilder-dialogs.recognizeChoices
     package: botbuilder-dialogs
     summary: High level function for recognizing a choice in a users utterance.
+    remarks: >-
+      This is layered above the `findChoices()` function and adds logic to let
+      the user specify their
+
+      choice by index (they can say "one" to pick `choice[0]`) or ordinal
+      position (they can say "the
+
+      second one" to pick `choice[1]`.) The users utterance is recognized in the
+      following order:
+
+
+      - By name using `findChoices()`.
+
+      - By 1's based ordinal position.
+
+      - By 1's based index position.
+
+
+      ```JavaScript
+
+      const { recognizeChoices } = require('botbuilder-choices');
+
+
+      const choices = ['red', 'green', 'blue'];
+
+      const utterance = context.activity.text;
+
+      const results = recognizeChoices(utterance, choices);
+
+      if (results.length == 1) {
+          await context.sendActivity(`I like ${results[0].resolution.value} too!`);
+      } else if (results.length > 1) {
+          const ambiguous = results.map((r) => r.resolution.value);
+          await context.sendActivity(ChoiceFactory.forChannel(context, ambiguous, `Which one?`));
+      } else {
+          await context.sendActivity(ChoiceFactory.forChannel(context, choices, `I didn't get that... Which color?`));
+      }
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -174,6 +252,39 @@ functions:
     uid: botbuilder-dialogs.defaultTokenizer
     package: botbuilder-dialogs
     summary: Simple tokenizer that breaks on spaces and punctuation.
+    remarks: >-
+      The only normalization done is to lowercase the tokens. Developers can
+      wrap this tokenizer with
+
+      their own function to perform additional normalization like
+      [stemming](https://github.com/words/stemmer).
+
+
+      ```JavaScript
+
+      const { recognizeChoices, defaultTokenizer } =
+      require('botbuilder-choices');
+
+      const stemmer = require('stemmer');
+
+
+      function customTokenizer(text, locale) {
+          const tokens = defaultTokenizer(text, locale);
+          tokens.forEach((t) => {
+              t.normalized = stemmer(t.normalized);
+          });
+          return tokens;
+      }
+
+
+      const choices = ['red', 'green', 'blue'];
+
+      const utterance = context.activity.text;
+
+      const results = recognizeChoices(utterance, choices, { tokenizer:
+      customTokenizer });
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -192,6 +303,7 @@ functions:
     uid: botbuilder-dialogs.getActiveDialogContext
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -207,6 +319,7 @@ functions:
     uid: botbuilder-dialogs.isFromParentToSkill
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -222,6 +335,7 @@ functions:
     uid: botbuilder-dialogs.runDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -247,6 +361,7 @@ functions:
     uid: botbuilder-dialogs.shouldSendEndOfConversationToParent
     package: botbuilder-dialogs
     summary: Helper to determine if we should send an EoC to the parent or not.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

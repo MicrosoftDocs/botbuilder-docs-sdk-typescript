@@ -4,6 +4,38 @@ uid: botbuilder-core.CardFactory
 package: botbuilder-core
 summary: Provides methods for formatting the various card types a bot can return.
 fullName: CardFactory
+remarks: >-
+  All of these functions return an
+  [Attachment](xref:botframework-schema.Attachment) object,
+
+  which can be added to an existing activity's
+  [attachments](xref:botframework-schema.Activity.attachments) collection
+  directly or
+
+  passed as input to one of the
+  [MessageFactory](xref:botbuilder-core.MessageFactory) methods to generate a
+  new activity.
+
+
+  This example sends a message that contains a single hero card.
+
+
+  ```javascript
+
+  const { MessageFactory, CardFactory } = require('botbuilder');
+
+
+  const card = CardFactory.heroCard(
+       'White T-Shirt',
+       ['https://example.com/whiteShirt.jpg'],
+       ['buy']
+  );
+
+  const message = MessageFactory.attachment(card);
+
+  await context.sendActivity(message);
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +44,7 @@ methods:
     uid: botbuilder-core.CardFactory.actions
     package: botbuilder-core
     summary: Returns a properly formatted array of actions.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -30,6 +63,52 @@ methods:
     uid: botbuilder-core.CardFactory.adaptiveCard
     package: botbuilder-core
     summary: Returns an attachment for an Adaptive Card.
+    remarks: >-
+      Adaptive Cards are an open card exchange format enabling developers to
+      exchange UI content in a common and consistent way.
+
+      For channels that don't yet support Adaptive Cards natively, the Bot
+      Framework will
+
+      down-render the card to an image that's been styled to look good on the
+      target channel. For
+
+      channels that support [hero cards](#herocards) you can continue to include
+      Adaptive Card
+
+      actions and they will be sent as buttons along with the rendered version
+      of the card.
+
+
+      For more information about Adaptive Cards and to download the latest SDK,
+      visit
+
+      [adaptivecards.io](http://adaptivecards.io/).
+
+
+      For example:
+
+      ```JavaScript
+
+      const card = CardFactory.adaptiveCard({
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.0",
+        "body": [
+            {
+               "type": "TextBlock",
+               "text": "Default text input"
+            }
+        ],
+        "actions": [
+            {
+               "type": "Action.Submit",
+               "title": "OK"
+            }
+        ]
+      });
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -48,6 +127,7 @@ methods:
     uid: botbuilder-core.CardFactory.animationCard
     package: botbuilder-core
     summary: Returns an attachment for an animation card.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -80,6 +160,7 @@ methods:
     uid: botbuilder-core.CardFactory.audioCard
     package: botbuilder-core
     summary: Returns an attachment for an audio card.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -112,6 +193,18 @@ methods:
     uid: botbuilder-core.CardFactory.heroCard
     package: botbuilder-core
     summary: Returns an attachment for a hero card.
+    remarks: |-
+      Hero cards tend to have one dominant, full-width image.
+      Channels typically render the card's text and buttons below the image.
+
+      For example:
+      ```javascript
+      const card = CardFactory.heroCard(
+           'White T-Shirt',
+           ['https://example.com/whiteShirt.jpg'],
+           ['buy']
+      );
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -147,6 +240,18 @@ methods:
     uid: botbuilder-core.CardFactory.heroCard_1
     package: botbuilder-core
     summary: ''
+    remarks: |-
+      Hero cards tend to have one dominant, full-width image.
+      Channels typically render the card's text and buttons below the image.
+
+      For example:
+      ```javascript
+      const card = CardFactory.heroCard(
+           'White T-Shirt',
+           ['https://example.com/whiteShirt.jpg'],
+           ['buy']
+      );
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -176,6 +281,7 @@ methods:
     uid: botbuilder-core.CardFactory.images
     package: botbuilder-core
     summary: Returns a properly formatted array of card images.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -193,6 +299,7 @@ methods:
     uid: botbuilder-core.CardFactory.media
     package: botbuilder-core
     summary: Returns a properly formatted array of media URL objects.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -209,6 +316,23 @@ methods:
     uid: botbuilder-core.CardFactory.o365ConnectorCard
     package: botbuilder-core
     summary: Returns an attachment for an Office 365 connector card.
+    remarks: |-
+      For example:
+      ```JavaScript
+      const card = CardFactory.o365ConnectorCard({
+        "title": "card title",
+        "text": "card text",
+        "summary": "O365 card summary",
+        "themeColor": "#E67A9E",
+        "sections": [
+            {
+                "title": "**section title**",
+                "text": "section text",
+                "activityTitle": "activity title",
+            }
+        ]
+      });
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -225,6 +349,7 @@ methods:
     uid: botbuilder-core.CardFactory.oauthCard
     package: botbuilder-core
     summary: Returns an attachment for an OAuth card.
+    remarks: OAuth cards support the Bot Framework's single sign on (SSO) service.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -255,6 +380,7 @@ methods:
     uid: botbuilder-core.CardFactory.receiptCard
     package: botbuilder-core
     summary: Returns an attachment for a receipt card.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -271,6 +397,9 @@ methods:
     uid: botbuilder-core.CardFactory.signinCard
     package: botbuilder-core
     summary: Returns an attachment for a sign-in card.
+    remarks: >-
+      For channels that don't natively support sign-in cards, an alternative
+      message is rendered.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -295,6 +424,15 @@ methods:
     uid: botbuilder-core.CardFactory.thumbnailCard
     package: botbuilder-core
     summary: Returns an attachment for a thumbnail card.
+    remarks: >-
+      Thumbnail cards are similar to hero cards but instead of a full width
+      image,
+
+      they're typically rendered with a smaller thumbnail version of the image.
+
+      Channels typically render the card's text to one side of the image,
+
+      with any buttons displayed below the card.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -331,6 +469,15 @@ methods:
     uid: botbuilder-core.CardFactory.thumbnailCard_1
     package: botbuilder-core
     summary: ''
+    remarks: >-
+      Thumbnail cards are similar to hero cards but instead of a full width
+      image,
+
+      they're typically rendered with a smaller thumbnail version of the image.
+
+      Channels typically render the card's text to one side of the image,
+
+      with any buttons displayed below the card.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -363,6 +510,7 @@ methods:
     uid: botbuilder-core.CardFactory.videoCard
     package: botbuilder-core
     summary: Returns an attachment for a video card.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

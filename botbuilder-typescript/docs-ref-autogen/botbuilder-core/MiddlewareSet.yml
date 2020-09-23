@@ -4,6 +4,30 @@ uid: botbuilder-core.MiddlewareSet
 package: botbuilder-core
 summary: A set of `Middleware` plugins.
 fullName: MiddlewareSet
+remarks: >-
+  The set itself is middleware so you can easily package up a set of middleware
+  that can be composed
+
+  into an adapter with a single `adapter.use(mySet)` call or even into another
+  middleware set using
+
+  `set.use(mySet)`.
+
+
+  ```JavaScript
+
+  const { MiddlewareSet } = require('botbuilder');
+
+
+  const set = new MiddlewareSet();
+
+  set.use(async (context, next) => {
+     console.log(`Leading Edge`);
+     await next();
+     console.log(`Trailing Edge`);
+  });
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -14,6 +38,7 @@ constructors:
     uid: botbuilder-core.MiddlewareSet.constructor
     package: botbuilder-core
     summary: Creates a new MiddlewareSet instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -32,6 +57,7 @@ methods:
     uid: botbuilder-core.MiddlewareSet.onTurn
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -50,6 +76,7 @@ methods:
     uid: botbuilder-core.MiddlewareSet.run
     package: botbuilder-core
     summary: Executes a set of middleware in series.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -71,6 +98,16 @@ methods:
     uid: botbuilder-core.MiddlewareSet.use
     package: botbuilder-core
     summary: Registers middleware handlers(s) with the set.
+    remarks: |-
+      This example adds a new piece of middleware to a set:
+
+      ```JavaScript
+      set.use(async (context, next) => {
+         console.log(`Leading Edge`);
+         await next();
+         console.log(`Trailing Edge`);
+      });
+      ```
     isPreview: false
     isDeprecated: false
     syntax:

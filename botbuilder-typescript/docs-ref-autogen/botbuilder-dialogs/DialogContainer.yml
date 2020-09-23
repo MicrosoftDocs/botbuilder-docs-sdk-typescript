@@ -4,6 +4,7 @@ uid: botbuilder-dialogs.DialogContainer
 package: botbuilder-dialogs
 summary: ''
 fullName: DialogContainer<O>
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
@@ -14,6 +15,7 @@ constructors:
     summary: >-
       Creates a new instance of the [Dialog](xref:botbuilder-dialogs.Dialog)
       class.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -29,6 +31,7 @@ properties:
     package: botbuilder-dialogs
     summary: The containers dialog set.
     fullName: dialogs
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -41,6 +44,7 @@ properties:
     package: botbuilder-dialogs
     summary: Unique ID of the dialog.
     fullName: id
+    remarks: This will be automatically generated if not specified.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -56,6 +60,7 @@ properties:
       Future dialogs added to the component will also inherit this client.
       Get the current telemetry client.
     fullName: telemetryClient
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -68,6 +73,32 @@ methods:
     uid: botbuilder-dialogs.DialogContainer.beginDialog
     package: botbuilder-dialogs
     summary: 'When overridden in a derived class, starts the dialog.'
+    remarks: >-
+      Derived dialogs must override this method.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when it creates
+
+      a new [DialogInstance](xref:botbuilder-dialogs.DialogInstance) for this
+      dialog, pushes it
+
+      onto the dialog stack, and starts the dialog.
+
+
+      A dialog that represents a single-turn conversation should await
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+      before exiting this method.
+
+
+      **See also**
+
+      -
+      [DialogContext.beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
+
+      -
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -87,6 +118,7 @@ methods:
     uid: botbuilder-dialogs.DialogContainer.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -103,6 +135,29 @@ methods:
     uid: botbuilder-dialogs.DialogContainer.continueDialog
     package: botbuilder-dialogs
     summary: 'When overridden in a derived class, continues the dialog.'
+    remarks: >-
+      Derived dialogs that support multiple-turn conversations should override
+      this method.
+
+      By default, this method signals that the dialog is complete and returns.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when it continues
+
+      the dialog.
+
+
+      To signal to the dialog context that this dialog has completed, await
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+      before exiting this method.
+
+
+      **See also**
+
+      -
+      [DialogContext.continueDialog](xref:botbuilder-dialogs.DialogContext.continueDialog)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -119,6 +174,7 @@ methods:
     uid: botbuilder-dialogs.DialogContainer.createChildContext
     package: botbuilder-dialogs
     summary: Creates an inner dialog context for the containers active child.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -138,6 +194,29 @@ methods:
     summary: >-
       When overridden in a derived class, performs clean up for the dialog
       before it ends.
+    remarks: >-
+      Derived dialogs that need to perform logging or cleanup before ending
+      should override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog is ending.
+
+
+      **See also**
+
+      -
+      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+
+      -
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -162,6 +241,7 @@ methods:
     uid: botbuilder-dialogs.DialogContainer.findDialog
     package: botbuilder-dialogs
     summary: Finds a child dialog that was previously added to the container.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -180,6 +260,22 @@ methods:
     summary: >-
       An encoded string used to aid in the detection of bot changes on
       re-deployment.
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -193,6 +289,7 @@ methods:
     summary: |-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -212,6 +309,26 @@ methods:
     uid: botbuilder-dialogs.DialogContainer.repromptDialog
     package: botbuilder-dialogs
     summary: 'When overridden in a derived class, reprompts the user for input.'
+    remarks: >-
+      Derived dialogs that support validation and re-prompt logic should
+      override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog should re-request input from the user. This method is implemented
+      for prompt dialogs.
+
+
+      **See also**
+
+      -
+      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
+
+      - [Prompt](xref:botbuilder-dialogs.Prompt)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -233,6 +350,40 @@ methods:
     summary: >-
       When overridden in a derived class, resumes the dialog after the dialog
       above it on the stack completes.
+    remarks: >-
+      Derived dialogs that support multiple-turn conversations should override
+      this method.
+
+      By default, this method signals that the dialog is complete and returns.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when it resumes
+
+      the dialog. If the previous dialog on the stack returned a value, that
+      value is in the `result`
+
+      parameter.
+
+
+      To start a _child_ dialog, use
+      [DialogContext.beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
+
+      or [DialogContext.prompt](xref:botbuilder-dialogs.DialogContext.prompt);
+      however, this dialog will not
+
+      necessarily be the one that started the child dialog.
+
+      To signal to the dialog context that this dialog has completed, await
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+      before exiting this method.
+
+
+      **See also**
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
     isPreview: false
     isDeprecated: false
     syntax:

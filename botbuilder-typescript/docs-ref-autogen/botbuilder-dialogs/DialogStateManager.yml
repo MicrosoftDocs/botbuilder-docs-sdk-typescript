@@ -4,6 +4,14 @@ uid: botbuilder-dialogs.DialogStateManager
 package: botbuilder-dialogs
 summary: The DialogStateManager manages memory scopes and path resolvers.
 fullName: DialogStateManager
+remarks: >-
+  MemoryScopes are named root level objects, which can exist either in the
+  dialog context or off
+
+  of turn state. Path resolvers allow for shortcut behavior for mapping things
+  like
+
+  $foo -> dialog.foo
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +20,7 @@ constructors:
     uid: botbuilder-dialogs.DialogStateManager.constructor
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -33,6 +42,14 @@ properties:
       Gets or sets the configured path resolvers and memory scopes for the
       dialog state manager.
     fullName: configuration
+    remarks: >-
+      There is a single set of configuration information for a given chain of
+      dialog contexts.
+
+      Assigning a new configuration to any DialogStateManager within the chain
+      will update the
+
+      configuration for the entire chain.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -45,6 +62,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.anyPathChanged
     package: botbuilder-dialogs
     summary: Check to see if any path has changed since watermark.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -63,6 +81,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.createStandardConfiguration
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -74,6 +93,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.deleteScopesMemory
     package: botbuilder-dialogs
     summary: Deletes all of the backing memory for a given scope.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -89,6 +109,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.deleteValue
     package: botbuilder-dialogs
     summary: Delete property from memory
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -101,6 +122,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.getMemorySnapshot
     package: botbuilder-dialogs
     summary: Gets all memory scopes suitable for logging.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -112,6 +134,9 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.getValue
     package: botbuilder-dialogs
     summary: Get the value from memory using path expression.
+    remarks: >-
+      This always returns a CLONE of the memory, any modifications to the result
+      will not affect memory.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -134,6 +159,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.loadAllScopes
     package: botbuilder-dialogs
     summary: Ensures that all memory scopes have been loaded for the current turn.
+    remarks: This should be called at the beginning of the turn.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -145,6 +171,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.parsePath
     package: botbuilder-dialogs
     summary: Normalizes the path segments of a passed in path.
+    remarks: 'A path of `profile.address[0]` will be normalized to `profile.address.0`.'
     isPreview: false
     isDeprecated: false
     syntax:
@@ -165,6 +192,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.saveAllChanges
     package: botbuilder-dialogs
     summary: Saves any changes made to memory scopes.
+    remarks: This should be called at the end of the turn.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -176,6 +204,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.setValue
     package: botbuilder-dialogs
     summary: Set memory to value.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -192,6 +221,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.trackPaths
     package: botbuilder-dialogs
     summary: Track when specific paths are changed.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -207,6 +237,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.transformPath
     package: botbuilder-dialogs
     summary: Transform the path using the registered path transformers.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -222,6 +253,7 @@ methods:
     uid: botbuilder-dialogs.DialogStateManager.version
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

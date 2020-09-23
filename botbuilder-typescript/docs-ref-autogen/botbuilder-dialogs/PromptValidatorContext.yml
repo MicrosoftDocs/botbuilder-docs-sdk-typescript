@@ -4,6 +4,7 @@ uid: botbuilder-dialogs.PromptValidatorContext
 package: botbuilder-dialogs
 summary: Contextual information passed to a custom `PromptValidator`.
 fullName: PromptValidatorContext<T>
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: interface
@@ -17,6 +18,7 @@ properties:
       A number indicating how many times the prompt was invoked (starting at 1
       for the first time it was invoked).
     fullName: attemptCount
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -29,6 +31,7 @@ properties:
     package: botbuilder-dialogs
     summary: The context for the current turn of conversation with the user.
     fullName: context
+    remarks: The validator can use this to re-prompt the user.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -41,6 +44,9 @@ properties:
     package: botbuilder-dialogs
     summary: Original set of options passed to the prompt by the calling dialog.
     fullName: options
+    remarks: >-
+      The validator can extend this interface to support additional prompt
+      options.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -53,6 +59,12 @@ properties:
     package: botbuilder-dialogs
     summary: Result returned from the prompts recognizer function.
     fullName: recognized
+    remarks: >-
+      The `prompt.recognized.succeeded` field can be checked to determine of the
+      recognizer found
+
+      anything and then the value can be retrieved from
+      `prompt.recognized.value`.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -67,6 +79,9 @@ properties:
       A dictionary of values persisted for each conversational turn while the
       prompt is active.
     fullName: state
+    remarks: >-
+      The validator can use this to persist things like turn counts or other
+      state information.
     isPreview: false
     isDeprecated: false
     syntax:

@@ -8,6 +8,24 @@ summary: >-
 
   of choices.
 fullName: ChoiceFactory
+remarks: >-
+  This example shows creating a message containing a list of choices that has
+  been conditionally
+
+  formatted based on the capabilities of the underlying channel:
+
+
+  ```JavaScript
+
+  const { ChoiceFactory } = require('botbuilder-choices');
+
+
+  const message = ChoiceFactory.forChannel(context, ['red', 'green', 'blue'],
+  `Pick a color.`);
+
+  await context.sendActivity(message);
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -22,6 +40,35 @@ methods:
       automatically
 
       formatted based on the capabilities of a given channel.
+    remarks: >-
+      The algorithm prefers to format the supplied list of choices as suggested
+      actions but can
+
+      decide to use a text based list if suggested actions aren't natively
+      supported by the
+
+      channel, there are too many choices for the channel to display, or the
+      title of any choice
+
+      is too long.
+
+
+      If the algorithm decides to use a list it will use an inline list if there
+      are 3 or less
+
+      choices and all have short titles. Otherwise, a numbered list is used.
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.forChannel(context, [
+         { value: 'red', action: { type: 'imBack', title: 'The Red Pill', value: 'red pill' } },
+         { value: 'blue', action: { type: 'imBack', title: 'The Blue Pill', value: 'blue pill' } },
+      ], `Which do you choose?`);
+
+      await context.sendActivity(message);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -53,6 +100,7 @@ methods:
     uid: botbuilder-dialogs.ChoiceFactory.heroCard
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -80,6 +128,19 @@ methods:
       formatted as an
 
       inline list.
+    remarks: >-
+      This example generates a message text of "Pick a color: (1. red, 2. green,
+      or 3. blue)":
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.inline(['red', 'green', 'blue'], `Pick a
+      color:`);
+
+      await context.sendActivity(message);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -111,6 +172,19 @@ methods:
       formatted as an
 
       numbered or bulleted list.
+    remarks: >-
+      This example generates a message with the choices presented as a numbered
+      list:
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.list(['red', 'green', 'blue'], `Pick a
+      color:`);
+
+      await context.sendActivity(message);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -142,6 +216,19 @@ methods:
       added as suggested
 
       actions.
+    remarks: >-
+      This example generates a message with the choices presented as suggested
+      action buttons:
+
+
+      ```JavaScript
+
+      const message = ChoiceFactory.suggestedAction(['red', 'green', 'blue'],
+      `Pick a color:`);
+
+      await context.sendActivity(message);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -168,6 +255,22 @@ methods:
     summary: >-
       Takes a mixed list of `string` and `Choice` based choices and returns them
       as a `Choice[]`.
+    remarks: >-
+      This example converts a simple array of string based choices to a properly
+      formated `Choice[]`.
+
+
+      If the `Choice` has a `Partial<CardAction>` for `Choice.action`,
+      `.toChoices()` will attempt to
+
+      fill the `Choice.action`.
+
+
+      ```JavaScript
+
+      const choices = ChoiceFactory.toChoices(['red', 'green', 'blue']);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:

@@ -4,6 +4,76 @@ uid: botbuilder-dialogs.ComponentDialog
 package: botbuilder-dialogs
 summary: Base class for a dialog that contains other child dialogs.
 fullName: ComponentDialog<O>
+remarks: >-
+  Component dialogs let you break your bot's logic up into components that can
+  themselves be added
+
+  as a dialog to another `ComponentDialog` or `DialogSet`. Components can also
+  be exported as part
+
+  of a node package and used within other bots.
+
+
+  To define a new component derive a class from ComponentDialog and add your
+  child dialogs within
+
+  the classes constructor:
+
+
+  ```JavaScript
+
+  const { ComponentDialog, WaterfallDialog, TextPrompt, NumberPrompt } =
+  require('botbuilder-dialogs');
+
+
+  class FillProfileDialog extends ComponentDialog {
+      constructor(dialogId) {
+          super(dialogId);
+
+          // Add control flow dialogs
+          this.addDialog(new WaterfallDialog('start', [
+              async (step) => {
+                  // Ask user their name
+                  return await step.prompt('namePrompt', `What's your name?`);
+              },
+              async (step) => {
+                  // Remember the users answer
+                  step.values['name'] = step.result;
+
+                  // Ask user their age.
+                  return await step.prompt('agePrompt', `Hi ${step.values['name']}. How old are you?`);
+              },
+              async (step) => {
+                  // Remember the users answer
+                  step.values['age'] = step.result;
+
+                  // End the component and return the completed profile.
+                  return await step.endDialog(step.values);
+              }
+          ]));
+
+          // Add prompts
+          this.addDialog(new TextPrompt('namePrompt'));
+          this.addDialog(new NumberPrompt('agePrompt'))
+      }
+  }
+
+  module.exports.FillProfileDialog = FillProfileDialog;
+
+  ```
+
+
+  You can then add new instances of your component to another `DialogSet` or
+  `ComponentDialog`:
+
+
+  ```JavaScript
+
+  const dialogs = new DialogSet(dialogState);
+
+  dialogs.add(new FillProfileDialog('fillProfile'));
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -14,6 +84,7 @@ constructors:
     summary: >-
       Creates a new instance of the [Dialog](xref:botbuilder-dialogs.Dialog)
       class.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -29,6 +100,7 @@ properties:
     package: botbuilder-dialogs
     summary: The containers dialog set.
     fullName: dialogs
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -41,6 +113,7 @@ properties:
     package: botbuilder-dialogs
     summary: Unique ID of the dialog.
     fullName: id
+    remarks: This will be automatically generated if not specified.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -56,6 +129,7 @@ properties:
       Future dialogs added to the component will also inherit this client.
       Get the current telemetry client.
     fullName: telemetryClient
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -68,6 +142,11 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.addDialog
     package: botbuilder-dialogs
     summary: Adds a child dialog or prompt to the components internal `DialogSet`.
+    remarks: >-
+      The `Dialog.id` of the first child added to the component will be assigned
+      to the [initialDialogId](#initialdialogid)
+
+      property.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -84,6 +163,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.beginDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -102,6 +182,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -118,6 +199,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.continueDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -133,6 +215,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.createChildContext
     package: botbuilder-dialogs
     summary: Creates the inner dialog context
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -149,6 +232,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.endDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -172,6 +256,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.findDialog
     package: botbuilder-dialogs
     summary: Finds a child dialog that was previously added to the container.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -190,6 +275,22 @@ methods:
     summary: >-
       An encoded string used to aid in the detection of bot changes on
       re-deployment.
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -203,6 +304,7 @@ methods:
     summary: |-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -222,6 +324,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.repromptDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -240,6 +343,7 @@ methods:
     uid: botbuilder-dialogs.ComponentDialog.resumeDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

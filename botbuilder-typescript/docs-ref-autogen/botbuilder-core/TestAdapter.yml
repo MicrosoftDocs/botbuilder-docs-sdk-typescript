@@ -8,6 +8,24 @@ summary: >-
 
   user to the bot.
 fullName: TestAdapter
+remarks: >-
+  The following example sets up the test adapter and then executes a simple
+  test:
+
+
+  ```JavaScript
+
+  const { TestAdapter } = require('botbuilder');
+
+
+  const adapter = new TestAdapter(async (context) => {
+       await context.sendActivity(`Hello World`);
+  });
+
+
+  adapter.test(`hi`, `Hello World`)
+         .then(() => done());
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -18,6 +36,7 @@ constructors:
     uid: botbuilder-core.TestAdapter.constructor
     package: botbuilder-core
     summary: Creates a new TestAdapter instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -42,6 +61,7 @@ properties:
     package: botbuilder-core
     summary: ''
     fullName: BotIdentityKey
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -58,6 +78,16 @@ properties:
 
       turn completes.
     fullName: deletedActivities
+    remarks: |-
+      This example shows how to test that expected deletes have been preformed:
+
+      ```JavaScript
+      adapter.test('delete', '1 deleted').then(() => {
+         assert(adapter.deletedActivities.length === 1);
+         assert(adapter.deletedActivities[0].activityId === '12345');
+         done();
+      });
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -70,6 +100,7 @@ properties:
     package: botbuilder-core
     summary: ''
     fullName: OAuthScopeKey
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -84,6 +115,18 @@ properties:
       Gets or sets an error handler that can catch exceptions in the middleware
       or application.
     fullName: onTurnError
+    remarks: >-
+      The error handler is called with these parameters:
+
+
+      | Name | Type | Description |
+
+      | :--- | :--- | :--- |
+
+      | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The
+      context object for the turn. |
+
+      | `error` | `Error` | The Node.js error thrown. |
     isPreview: false
     isDeprecated: false
     syntax:
@@ -98,6 +141,7 @@ properties:
       `Activity` template that will be merged with all activities sent to the
       logic under test.
     fullName: template
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -114,6 +158,16 @@ properties:
 
       turn completes.
     fullName: updatedActivities
+    remarks: |-
+      This example shows how to test that expected updates have been preformed:
+
+      ```JavaScript
+      adapter.test('update', '1 updated').then(() => {
+         assert(adapter.updatedActivities.length === 1);
+         assert(adapter.updatedActivities[0].id === '12345');
+         done();
+      });
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -126,6 +180,7 @@ methods:
     uid: botbuilder-core.TestAdapter.addExchangeableToken
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -152,6 +207,7 @@ methods:
     uid: botbuilder-core.TestAdapter.addUserToken
     package: botbuilder-core
     summary: Adds a fake user token so it can later be retrieved.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -185,6 +241,7 @@ methods:
       return an error if it's
 
       called.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -205,6 +262,7 @@ methods:
     uid: botbuilder-core.TestAdapter.exchangeToken
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -231,6 +289,7 @@ methods:
     uid: botbuilder-core.TestAdapter.getAadTokens
     package: botbuilder-core
     summary: Signs the user out with the token server.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -257,6 +316,7 @@ methods:
     summary: >-
       Gets a signin link from the token server that can be sent as part of a
       SigninCard.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -276,6 +336,7 @@ methods:
     uid: botbuilder-core.TestAdapter.getSignInResource
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -307,6 +368,7 @@ methods:
 
       In testAdapter, retrieves tokens which were previously added via
       addUserToken.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -339,6 +401,7 @@ methods:
     uid: botbuilder-core.TestAdapter.getUserToken
     package: botbuilder-core
     summary: Retrieves the OAuth token for a user that is in a sign-in flow.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -368,6 +431,17 @@ methods:
 
       additional steps for inspecting the bots reply and then sending additional
       activities.
+    remarks: >-
+      This example shows how to send a message and then verify that the response
+      was as expected:
+
+
+      ```JavaScript
+
+      adapter.send('hi')
+             .assertReply('Hello World')
+             .then(() => done());
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -384,6 +458,7 @@ methods:
     uid: botbuilder-core.TestAdapter.signOutUser
     package: botbuilder-core
     summary: Signs the user out with the token server.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -407,6 +482,18 @@ methods:
     summary: >-
       Send something to the bot and expects the bot to return with a given
       reply.
+    remarks: >-
+      This is simply a wrapper around calls to `send()` and `assertReply()`.
+      This is such a
+
+      common pattern that a helper is provided.
+
+
+      ```JavaScript
+
+      adapter.test('hi', 'Hello World')
+             .then(() => done());
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -440,6 +527,11 @@ methods:
     uid: botbuilder-core.TestAdapter.testActivities
     package: botbuilder-core
     summary: Test a list of activities.
+    remarks: >-
+      Each activity with the "bot" role will be processed with assertReply() and
+      every other
+
+      activity will be processed as a user message with send().
     isPreview: false
     isDeprecated: false
     syntax:
@@ -467,6 +559,7 @@ methods:
     uid: botbuilder-core.TestAdapter.throwOnExchangeRequest
     package: botbuilder-core
     summary: Adds an instruction to throw an exception during exchange requests.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -493,6 +586,11 @@ methods:
     uid: botbuilder-core.TestAdapter.use
     package: botbuilder-core
     summary: Adds middleware to the adapter's pipeline.
+    remarks: >-
+      Middleware is added to the adapter at initialization time.
+
+      Each turn, the adapter calls its middleware in the order in which you
+      added it.
     isPreview: false
     isDeprecated: false
     syntax:

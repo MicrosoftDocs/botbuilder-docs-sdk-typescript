@@ -6,6 +6,60 @@ summary: >-
   A waterfall is a dialog that's optimized for prompting a user with a series of
   questions.
 fullName: WaterfallDialog<O>
+remarks: >-
+  Waterfalls accept a stack of functions which will be executed in sequence.
+  Each waterfall step
+
+  can ask a question of the user and the user's response will be passed to the
+  next step in the
+
+  waterfall via `step.result`. A special `step.value` object can be used to
+  persist values between
+
+  steps:
+
+
+  ```JavaScript
+
+  const { ComponentDialog, WaterfallDialog, TextPrompt, NumberPrompt } =
+  require('botbuilder-dialogs);
+
+
+  class FillProfileDialog extends ComponentDialog {
+      constructor(dialogId) {
+          super(dialogId);
+
+          // Add control flow dialogs
+          this.addDialog(new WaterfallDialog('start', [
+              async (step) => {
+                  // Ask user their name
+                  return await step.prompt('namePrompt', `What's your name?`);
+              },
+              async (step) => {
+                  // Remember the users answer
+                  step.values['name'] = step.result;
+
+                  // Ask user their age.
+                  return await step.prompt('agePrompt', `Hi ${step.values['name']}. How old are you?`);
+              },
+              async (step) => {
+                  // Remember the users answer
+                  step.values['age'] = step.result;
+
+                  // End the component and return the completed profile.
+                  return await step.endDialog(step.values);
+              }
+          ]));
+
+          // Add prompts
+          this.addDialog(new TextPrompt('namePrompt'));
+          this.addDialog(new NumberPrompt('agePrompt'))
+      }
+  }
+
+  module.exports.FillProfileDialog = FillProfileDialog;
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -14,6 +68,9 @@ constructors:
     uid: botbuilder-dialogs.WaterfallDialog.constructor
     package: botbuilder-dialogs
     summary: Creates a new waterfall dialog containing the given array of steps.
+    remarks: >-
+      See the [addStep()](#addstep) function for details on creating a valid
+      step function.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -34,6 +91,7 @@ properties:
     package: botbuilder-dialogs
     summary: Unique ID of the dialog.
     fullName: id
+    remarks: This will be automatically generated if not specified.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -48,6 +106,7 @@ properties:
       Gets the telemetry client for this dialog.
       Sets the telemetry client for this dialog.
     fullName: telemetryClient
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -60,6 +119,59 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.addStep
     package: botbuilder-dialogs
     summary: Adds a new step to the waterfall.
+    remarks: >-
+      All step functions should be asynchronous and return a `DialogTurnResult`.
+      The
+
+      `WaterfallStepContext` passed into your function derives from
+      `DialogContext` and contains
+
+      numerous stack manipulation methods which return a `DialogTurnResult` so
+      you can typically
+
+      just return the result from the DialogContext method you call.
+
+
+      The step function itself can be either an asynchronous closure:
+
+
+      ```JavaScript
+
+      const helloDialog = new WaterfallDialog('hello');
+
+
+      helloDialog.addStep(async (step) => {
+          await step.context.sendActivity(`Hello World!`);
+          return await step.endDialog();
+      });
+
+      ```
+
+
+      A named async function:
+
+
+      ```JavaScript
+
+      async function helloWorldStep(step) {
+          await step.context.sendActivity(`Hello World!`);
+          return await step.endDialog();
+      }
+
+
+      helloDialog.addStep(helloWorldStep);
+
+      ```
+
+
+      Or a class method that's been bound to its `this` pointer:
+
+
+      ```JavaScript
+
+      helloDialog.addStep(this.helloWorldStep.bind(this));
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -76,6 +188,7 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.beginDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -94,6 +207,7 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -110,6 +224,7 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.continueDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -125,6 +240,7 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.endDialog
     package: botbuilder-dialogs
     summary: Called when the dialog is ending.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -149,6 +265,7 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.getVersion
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -162,6 +279,7 @@ methods:
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -182,6 +300,26 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.repromptDialog
     package: botbuilder-dialogs
     summary: 'When overridden in a derived class, reprompts the user for input.'
+    remarks: >-
+      Derived dialogs that support validation and re-prompt logic should
+      override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog should re-request input from the user. This method is implemented
+      for prompt dialogs.
+
+
+      **See also**
+
+      -
+      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
+
+      - [Prompt](xref:botbuilder-dialogs.Prompt)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -201,6 +339,7 @@ methods:
     uid: botbuilder-dialogs.WaterfallDialog.resumeDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

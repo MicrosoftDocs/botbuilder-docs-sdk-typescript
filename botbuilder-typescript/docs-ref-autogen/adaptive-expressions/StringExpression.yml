@@ -4,6 +4,22 @@ uid: adaptive-expressions.StringExpression
 package: adaptive-expressions
 summary: Represents a property which is either a string value or a string expression.
 fullName: StringExpression
+remarks: >-
+  If the value is
+
+  - a string with '=' prefix then the string is treated as an expression to
+  resolve to a string.
+
+  - a string without '=' then value is treated as string with string
+  interpolation.
+
+  - You can escape the '=' prefix by putting a backslash.
+
+  Examples:
+      prop = "Hello @{user.name}" => "Hello Joe"
+      prop = "=length(user.name)" => "3"
+      prop = "=user.name" => "Joe"
+      prop = "\=user" => "=user".
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +28,7 @@ constructors:
     uid: adaptive-expressions.StringExpression.constructor
     package: adaptive-expressions
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -26,6 +43,7 @@ properties:
     package: adaptive-expressions
     summary: Getes or sets the expression text to evaluate to get the value.
     fullName: expressionText
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -38,6 +56,7 @@ properties:
     package: adaptive-expressions
     summary: Gets or sets the raw value of the expression property.
     fullName: value
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -50,6 +69,7 @@ methods:
     uid: adaptive-expressions.StringExpression.getValue
     package: adaptive-expressions
     summary: Get the value.
+    remarks: An error will be thrown if value is an invalid expression.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -65,6 +85,7 @@ methods:
     uid: adaptive-expressions.StringExpression.setValue
     package: adaptive-expressions
     summary: Set a string value.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -78,6 +99,7 @@ methods:
     uid: adaptive-expressions.StringExpression.toExpression
     package: adaptive-expressions
     summary: This will return the existing expression if the value is non-complex type.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -89,6 +111,7 @@ methods:
     uid: adaptive-expressions.StringExpression.toString
     package: adaptive-expressions
     summary: Convert an expression property to string.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -100,6 +123,7 @@ methods:
     uid: adaptive-expressions.StringExpression.tryGetValue
     package: adaptive-expressions
     summary: Try to Get the value.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

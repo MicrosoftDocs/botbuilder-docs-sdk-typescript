@@ -4,6 +4,7 @@ uid: botbuilder-dialogs-adaptive.AdaptiveDialog
 package: botbuilder-dialogs-adaptive
 summary: ''
 fullName: AdaptiveDialog<O>
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +13,7 @@ constructors:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.constructor
     package: botbuilder-dialogs-adaptive
     summary: Creates a new `AdaptiveDialog` instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -27,6 +29,14 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Whether to end the dialog when there are no actions to execute.
     fullName: autoEndDialog
+    remarks: >-
+      If true, when there are no actions to execute, the current dialog will
+      end.
+
+      If false, when there are no actions to execute, the current dialog will
+      simply end the turn and still be active.
+
+      Defaults to a value of true.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -39,6 +49,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: ''
     fullName: conditionTracker
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -53,6 +64,7 @@ properties:
       The property to return as the result when the dialog ends when there are
       no more Actions and `AutoEndDialog = true`.
     fullName: defaultResultProperty
+    remarks: Defaults to a value of `dialog.result`.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -65,6 +77,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: The containers dialog set.
     fullName: dialogs
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -77,6 +90,12 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Gets a default end-of-turn result.
     fullName: EndOfTurn
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -89,6 +108,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Optional. Language Generator override.
     fullName: generator
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -101,6 +121,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Unique ID of the dialog.
     fullName: id
+    remarks: This will be automatically generated if not specified.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -113,6 +134,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Optional. Recognizer used to analyze any message utterances.
     fullName: recognizer
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -125,6 +147,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: JSON Schema for the dialog.
     fullName: schema
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -137,6 +160,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Optional. The selector for picking the possible events to execute.
     fullName: selector
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -149,6 +173,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Get the current telemetry client.
     fullName: telemetryClient
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -161,6 +186,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Trigger handlers to respond to conditions which modify the executing plan.
     fullName: triggers
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -173,6 +199,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.beginDialog
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -191,6 +218,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -207,6 +235,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.continueDialog
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -222,6 +251,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.createChildContext
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -237,6 +267,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.endDialog
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -260,6 +291,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.findDialog
     package: botbuilder-dialogs-adaptive
     summary: Finds a child dialog that was previously added to the container.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -276,6 +308,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.getDependencies
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -289,6 +322,22 @@ methods:
     summary: >-
       An encoded string used to aid in the detection of bot changes on
       re-deployment.
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -302,6 +351,7 @@ methods:
     summary: |-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -321,6 +371,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.repromptDialog
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -341,6 +392,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.resumeDialog
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

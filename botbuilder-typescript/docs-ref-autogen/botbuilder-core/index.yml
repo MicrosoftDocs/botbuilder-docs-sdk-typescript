@@ -82,6 +82,7 @@ functions:
     uid: botbuilder-core.telemetryTrackDialogView
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -106,6 +107,7 @@ functions:
     uid: botbuilder-core.getTopScoringIntent
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -121,6 +123,32 @@ functions:
     uid: botbuilder-core.calculateChangeHash
     package: botbuilder-core
     summary: Utility function to calculate a change hash for a `StoreItem`.
+    remarks: >-
+      This example calculates a change hash for an object that's been read in
+      and then only writes it
+
+      back out if it's been modified:
+
+
+      ```JavaScript
+
+      // Calculate state objects initial hash
+
+      const hash = calculateChangeHash(state);
+
+
+      // Process the received activity
+
+      await processActivity(context, state);
+
+
+      // Save state if changed
+
+      if (calculateChangeHash(state) !== hash) {
+         await storage.write({ 'botState': state });
+      }
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:

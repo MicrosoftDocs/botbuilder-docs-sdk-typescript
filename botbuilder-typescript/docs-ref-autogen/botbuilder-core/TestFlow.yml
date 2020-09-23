@@ -6,6 +6,31 @@ summary: >-
   Support class for `TestAdapter` that allows for the simple construction of a
   sequence of tests.
 fullName: TestFlow
+remarks: >-
+  Calling `adapter.send()` or `adapter.test()` will create a new test flow which
+  you can chain
+
+  together additional tests using a fluent syntax.
+
+
+  ```JavaScript
+
+  const { TestAdapter } = require('botbuilder');
+
+
+  const adapter = new TestAdapter(async (context) => {
+     if (context.text === 'hi') {
+        await context.sendActivity(`Hello World`);
+     } else if (context.text === 'bye') {
+        await context.sendActivity(`Goodbye`);
+     }
+  });
+
+
+  adapter.test(`hi`, `Hello World`)
+         .test(`bye`, `Goodbye`)
+         .then(() => done());
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -15,6 +40,7 @@ properties:
     package: botbuilder-core
     summary: Promise chain for the current test sequence.
     fullName: previous
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -29,6 +55,7 @@ methods:
     summary: >-
       Generates an assertion that the turn processing logic did not generate a
       reply from the bot, as expected.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -55,6 +82,7 @@ methods:
     summary: >-
       Generates an assertion if the bots response doesn't match the expected
       text/activity.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -88,6 +116,7 @@ methods:
     summary: >-
       Generates an assertion if the bots response is not one of the candidate
       strings.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -115,6 +144,7 @@ methods:
     uid: botbuilder-core.TestFlow.catch
     package: botbuilder-core
     summary: Adds a `catch()` clause to the tests promise chain.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -131,6 +161,7 @@ methods:
     uid: botbuilder-core.TestFlow.delay
     package: botbuilder-core
     summary: Inserts a delay before continuing.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -147,6 +178,7 @@ methods:
     uid: botbuilder-core.TestFlow.send
     package: botbuilder-core
     summary: Sends something to the bot.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -163,6 +195,7 @@ methods:
     uid: botbuilder-core.TestFlow.startTest
     package: botbuilder-core
     summary: 'Start the test sequence, returning a promise to await'
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -183,6 +216,7 @@ methods:
       common pattern that a
 
       helper is provided.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -216,6 +250,7 @@ methods:
     uid: botbuilder-core.TestFlow.then
     package: botbuilder-core
     summary: Adds a `then()` step to the tests promise chain.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

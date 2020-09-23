@@ -4,6 +4,13 @@ uid: botbuilder-ai.QnAMaker
 package: botbuilder-ai
 summary: Query a QnA Maker knowledge base for answers and provide feedbacks.
 fullName: QnAMaker
+remarks: >-
+  This class is used to make queries to a single QnA Maker knowledge base and
+  return the result.
+
+
+  Use this to process incoming messages with the [getAnswers()](#getAnswers)
+  method.
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +19,7 @@ constructors:
     uid: botbuilder-ai.QnAMaker.constructor
     package: botbuilder-ai
     summary: Creates a new QnAMaker instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -41,6 +49,7 @@ properties:
       Gets a value indicating whether determines whether to log personal
       information that came from the user.
     fullName: logPersonalInformation
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -53,6 +62,7 @@ properties:
     package: botbuilder-ai
     summary: Gets the currently configured botTelemetryClient that logs the events.
     fullName: telemetryClient
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -67,6 +77,11 @@ methods:
     summary: >-
       Calls [generateAnswer()](#generateanswer) and sends the resulting answer
       as a reply to the user.
+    remarks: >-
+      Returns a value of `true` if an answer was found and sent. If multiple
+      answers are
+
+      returned the first one will be delivered.
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: >-
@@ -86,6 +101,7 @@ methods:
     uid: botbuilder-ai.QnAMaker.callTrainAsync
     package: botbuilder-ai
     summary: Send feedback to the knowledge base.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -102,6 +118,9 @@ methods:
     uid: botbuilder-ai.QnAMaker.generateAnswer
     package: botbuilder-ai
     summary: Calls the QnA Maker service to generate answer(s) for a question.
+    remarks: >-
+      Returns an array of answers sorted by score with the top scoring answer
+      returned first.
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: >-
@@ -132,6 +151,15 @@ methods:
     uid: botbuilder-ai.QnAMaker.getAnswers
     package: botbuilder-ai
     summary: Calls the QnA Maker service to generate answer(s) for a question.
+    remarks: >-
+      Returns an array of answers sorted by score with the top scoring answer
+      returned first.
+
+
+      In addition to returning the results from QnA Maker,
+      [getAnswers()](#getAnswers) will also
+
+      emit a trace activity that contains the QnA Maker results.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -169,6 +197,7 @@ methods:
     uid: botbuilder-ai.QnAMaker.getAnswersRaw
     package: botbuilder-ai
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -196,6 +225,7 @@ methods:
     uid: botbuilder-ai.QnAMaker.getLowScoreVariation
     package: botbuilder-ai
     summary: Filters the ambiguous question for active learning.
+    remarks: Returns a filtered array of ambiguous question.
     isPreview: false
     isDeprecated: false
     syntax:

@@ -13,6 +13,7 @@ functions:
     summary: >-
       Authenticates the request and sets the service url in the set of trusted
       urls.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -43,6 +44,21 @@ functions:
     uid: botframework-connector.JwtTokenValidation.getAppIdFromClaims
     package: botframework-connector
     summary: Gets the AppId from a claims list.
+    remarks: >-
+      In v1 tokens the AppId is in the "ver" AuthenticationConstants.AppIdClaim
+      claim.
+
+      In v2 tokens the AppId is in the "azp"
+      AuthenticationConstants.AuthorizedParty claim.
+
+      If the AuthenticationConstants.VersionClaim is not present, this method
+      will attempt to
+
+      obtain the attribute from the AuthenticationConstants.AppIdClaim or if
+      present.
+
+
+      Throws a TypeError if claims is falsy.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -59,6 +75,7 @@ functions:
     uid: botframework-connector.JwtTokenValidation.isGovernment
     package: botframework-connector
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -76,6 +93,7 @@ functions:
     summary: >-
       Internal helper to check if the token has the shape we expect "Bearer [big
       long string]".
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -93,6 +111,7 @@ functions:
     uid: botframework-connector.JwtTokenValidation.validateAuthHeader
     package: botframework-connector
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

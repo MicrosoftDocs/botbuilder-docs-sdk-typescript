@@ -6,6 +6,28 @@ summary: >-
   The file transcript store stores transcripts in file system with each activity
   as a file.
 fullName: FileTranscriptStore
+remarks: >-
+  This class provides an interface to log all incoming and outgoing activities
+  to the filesystem.
+
+  It implements the features necessary to work alongside the
+  TranscriptLoggerMiddleware plugin.
+
+  When used in concert, your bot will automatically log all conversations.
+
+
+  Below is the boilerplate code needed to use this in your app:
+
+  ```javascript
+
+  const { FileTranscriptStore, TranscriptLoggerMiddleware } =
+  require('botbuilder');
+
+
+  adapter.use(new TranscriptLoggerMiddleware(new FileTranscriptStore(__dirname +
+  '/transcripts/')));
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -14,6 +36,7 @@ constructors:
     uid: botbuilder.FileTranscriptStore.constructor
     package: botbuilder
     summary: Creates an instance of FileTranscriptStore.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -28,6 +51,7 @@ methods:
     uid: botbuilder.FileTranscriptStore.deleteTranscript
     package: botbuilder
     summary: Delete a conversation and all of it's activities.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -49,6 +73,7 @@ methods:
     summary: >-
       Get all activities associated with a conversation id (aka get the
       transcript).
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -76,6 +101,7 @@ methods:
     uid: botbuilder.FileTranscriptStore.listTranscripts
     package: botbuilder
     summary: List all the logged conversations for a given channelId.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -95,6 +121,7 @@ methods:
     uid: botbuilder.FileTranscriptStore.logActivity
     package: botbuilder
     summary: Log an activity to the transcript.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

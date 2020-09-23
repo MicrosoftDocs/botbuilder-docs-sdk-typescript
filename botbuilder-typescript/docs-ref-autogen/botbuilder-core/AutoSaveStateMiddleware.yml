@@ -6,6 +6,53 @@ summary: >-
   Middleware that will automatically save any state changes at the end of the
   turn.
 fullName: AutoSaveStateMiddleware
+remarks: >-
+  The `AutoSaveStateMiddleware` class should be added towards the top of your
+  bot's middleware
+
+  stack, before any other components that use state.  Any `BotState` plugins
+  passed to the
+
+  constructor will have their `BotState.saveChanges()` method called upon
+  successful completion
+
+  of the turn.
+
+
+  This example shows boilerplate code for reading and writing conversation and
+  user state within
+
+  a bot:
+
+
+  ```JavaScript
+
+  const { AutoSaveStateMiddleware, ConversationState, UserState, MemoryStorage }
+  = require('botbuilder');
+
+
+  const storage = new MemoryStorage();
+
+  const conversationState = new ConversationState(storage);
+
+  const userState = new UserState(storage);
+
+  adapter.use(new AutoSaveStateMiddleware(conversationState, userState));
+
+
+  server.post('/api/messages', (req, res) => {
+     adapter.processActivity(req, res, async (turnContext) => {
+        // Get state
+        const convo = await conversationState.load(turnContext);
+        const user = await userState.load(turnContext);
+
+        // ... route activity ...
+        // ...make changes to state objects...
+        // ... no need to call userState.saveChanges() or conversationState.saveChanges() anymore!
+     });
+  });
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -14,6 +61,7 @@ constructors:
     uid: botbuilder-core.AutoSaveStateMiddleware.constructor
     package: botbuilder-core
     summary: Creates a new AutoSaveStateMiddleware instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -30,6 +78,7 @@ properties:
     package: botbuilder-core
     summary: Set of `BotState` plugins being automatically saved.
     fullName: botStateSet
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -42,6 +91,7 @@ methods:
     uid: botbuilder-core.AutoSaveStateMiddleware.add
     package: botbuilder-core
     summary: Adds additional `BotState` plugins to be saved.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -58,6 +108,7 @@ methods:
     uid: botbuilder-core.AutoSaveStateMiddleware.onTurn
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

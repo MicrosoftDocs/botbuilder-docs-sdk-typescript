@@ -8,6 +8,38 @@ summary: >-
 
   user picked.
 fullName: Choice
+remarks: >-
+  The [value](#value) will be rendered to a user unless an [action](#action) is
+  provided in which
+
+  case the actions `title` will be rendered to the user.
+
+
+  At recognition time the `value` will always be what gets returned by
+  `findChoices()` and
+
+  `recognizeChoices()`. By default, the users utterance will be compared against
+  all of the
+
+  strings provided in the choice. You can disable using the `value` and/or
+  `action.title` during
+
+  recognition using the `FindChoicesOptions` structure.
+
+
+  ```JavaScript
+
+  const choice = {
+      value: 'red',
+      action: {
+          type: 'imBack',
+          title: 'The Red Pill',
+          value: 'red pill'
+      },
+      synonyms: ['crimson', 'scarlet', 'ruby', 'cherry']
+  };
+
+  ```
 isPreview: false
 isDeprecated: false
 type: interface
@@ -25,6 +57,7 @@ properties:
       `imBack` action will be generated based on the choices [value](#value)
       field.
     fullName: action
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -41,6 +74,7 @@ properties:
 
       [action](#action) fields.
     fullName: synonyms
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -57,6 +91,7 @@ properties:
 
       to the user if no [action](#action) is provided.
     fullName: value
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

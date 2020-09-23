@@ -4,6 +4,7 @@ uid: botbuilder-dialogs-adaptive.ReplaceDialog
 package: botbuilder-dialogs-adaptive
 summary: ''
 fullName: ReplaceDialog<O>
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +13,7 @@ constructors:
     uid: botbuilder-dialogs-adaptive.ReplaceDialog.constructor
     package: botbuilder-dialogs-adaptive
     summary: Creates a new `ReplaceWithDialog` instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -20,6 +22,7 @@ constructors:
     uid: botbuilder-dialogs-adaptive.ReplaceDialog.constructor_1
     package: botbuilder-dialogs-adaptive
     summary: Creates a new `ReplaceWithDialog` instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -40,6 +43,7 @@ properties:
       A value indicating whether to have the new dialog should process the
       activity.
     fullName: activityProcessed
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -52,6 +56,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: The dialog to call.
     fullName: dialog
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -64,6 +69,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: An optional expression which if is true will disable this action.
     fullName: disabled
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -76,6 +82,12 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Gets a default end-of-turn result.
     fullName: EndOfTurn
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -88,6 +100,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Unique ID of the dialog.
     fullName: id
+    remarks: This will be automatically generated if not specified.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -100,6 +113,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Configurable options for the dialog.
     fullName: options
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -112,6 +126,7 @@ properties:
     package: botbuilder-dialogs-adaptive
     summary: Sets the telemetry client for this dialog.
     fullName: telemetryClient
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -124,6 +139,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.ReplaceDialog.beginDialog
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -142,6 +158,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.ReplaceDialog.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -158,6 +175,29 @@ methods:
     uid: botbuilder-dialogs-adaptive.ReplaceDialog.continueDialog
     package: botbuilder-dialogs-adaptive
     summary: 'When overridden in a derived class, continues the dialog.'
+    remarks: >-
+      Derived dialogs that support multiple-turn conversations should override
+      this method.
+
+      By default, this method signals that the dialog is complete and returns.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when it continues
+
+      the dialog.
+
+
+      To signal to the dialog context that this dialog has completed, await
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+      before exiting this method.
+
+
+      **See also**
+
+      -
+      [DialogContext.continueDialog](xref:botbuilder-dialogs.DialogContext.continueDialog)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -176,6 +216,29 @@ methods:
     summary: >-
       When overridden in a derived class, performs clean up for the dialog
       before it ends.
+    remarks: >-
+      Derived dialogs that need to perform logging or cleanup before ending
+      should override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog is ending.
+
+
+      **See also**
+
+      -
+      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+
+      -
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -200,6 +263,7 @@ methods:
     uid: botbuilder-dialogs-adaptive.ReplaceDialog.getDependencies
     package: botbuilder-dialogs-adaptive
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -213,6 +277,22 @@ methods:
     summary: >-
       An encoded string used to aid in the detection of bot changes on
       re-deployment.
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -226,6 +306,7 @@ methods:
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -246,6 +327,26 @@ methods:
     uid: botbuilder-dialogs-adaptive.ReplaceDialog.repromptDialog
     package: botbuilder-dialogs-adaptive
     summary: 'When overridden in a derived class, reprompts the user for input.'
+    remarks: >-
+      Derived dialogs that support validation and re-prompt logic should
+      override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog should re-request input from the user. This method is implemented
+      for prompt dialogs.
+
+
+      **See also**
+
+      -
+      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
+
+      - [Prompt](xref:botbuilder-dialogs.Prompt)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -267,6 +368,40 @@ methods:
     summary: >-
       When overridden in a derived class, resumes the dialog after the dialog
       above it on the stack completes.
+    remarks: >-
+      Derived dialogs that support multiple-turn conversations should override
+      this method.
+
+      By default, this method signals that the dialog is complete and returns.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when it resumes
+
+      the dialog. If the previous dialog on the stack returned a value, that
+      value is in the `result`
+
+      parameter.
+
+
+      To start a _child_ dialog, use
+      [DialogContext.beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
+
+      or [DialogContext.prompt](xref:botbuilder-dialogs.DialogContext.prompt);
+      however, this dialog will not
+
+      necessarily be the one that started the child dialog.
+
+      To signal to the dialog context that this dialog has completed, await
+
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+      before exiting this method.
+
+
+      **See also**
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
     isPreview: false
     isDeprecated: false
     syntax:

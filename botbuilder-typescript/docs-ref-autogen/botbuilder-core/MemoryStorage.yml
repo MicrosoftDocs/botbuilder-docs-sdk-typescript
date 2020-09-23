@@ -4,6 +4,32 @@ uid: botbuilder-core.MemoryStorage
 package: botbuilder-core
 summary: Memory based storage provider for a bot.
 fullName: MemoryStorage
+remarks: >-
+  This provider is most useful for simulating production storage when running
+  locally against the
+
+  emulator or as part of a unit test. It has the following characteristics:
+
+
+  - Starts off completely empty when the bot is run.
+
+  - Anything written to the store will be forgotten when the process exits.
+
+  - Objects that are read and written to the store are cloned to properly
+  simulate network based
+    storage providers.
+  - Cloned objects are serialized using `JSON.stringify()` to catch any possible
+  serialization
+    related issues that might occur when using a network based storage provider.
+
+  ```JavaScript
+
+  const { MemoryStorage } = require('botbuilder');
+
+
+  const storage = new MemoryStorage();
+
+  ```
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +38,7 @@ constructors:
     uid: botbuilder-core.MemoryStorage.constructor
     package: botbuilder-core
     summary: Creates a new MemoryStorage instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -27,6 +54,7 @@ methods:
     uid: botbuilder-core.MemoryStorage.delete
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -42,6 +70,7 @@ methods:
     uid: botbuilder-core.MemoryStorage.read
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -57,6 +86,7 @@ methods:
     uid: botbuilder-core.MemoryStorage.write
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

@@ -4,6 +4,7 @@ uid: botbuilder.TeamsActivityHandler
 package: botbuilder
 summary: ''
 fullName: TeamsActivityHandler
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
@@ -16,6 +17,24 @@ methods:
       emitted for every incoming
 
       conversation update activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      Conversation update activities describe a changes to a conversation's
+      metadata, such as title, participants,
+
+      or other channel-specific information.
+
+
+      To handle when members are added to or removed from the conversation, use
+      the
+
+      [onMembersAdded](xref:botbuilder-core.ActivityHandler.onMembersAdded) and
+
+      [onMembersRemoved](xref:botbuilder-core.ActivityHandler.onMembersRemoved)
+      sub-type event handlers.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -34,6 +53,9 @@ methods:
     summary: >-
       Registers an activity event handler for the _dialog_ event, emitted as the
       last event for an incoming activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -52,6 +74,19 @@ methods:
     summary: >-
       Registers an activity event handler for the _end of conversation_
       activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      This activity is typically send from a Skill to a Skill caller indicating
+      the end of that particular child conversation.
+
+
+      To handle an End of Conversation, use the
+
+      [onEndOfConversation](xref:botbuilder-core.ActivityHandler.onEndOfConversation)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -70,6 +105,34 @@ methods:
     summary: >-
       Registers an activity event handler for the _event_ event, emitted for
       every incoming event activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      Event activities communicate programmatic information from a client or
+      channel to a bot.
+
+      The meaning of an event activity is defined by the activity's
+
+      [name](xref:botframework-schema.Activity.name) property, which is
+      meaningful within the scope
+
+      of a channel. Event activities are designed to carry both interactive
+      information (such as
+
+      button clicks) and non-interactive information (such as a notification of
+      a client
+
+      automatically updating an embedded speech model).
+
+
+      To handle a `tokens/response` event event, use the
+
+      [onTokenResponseEvent](xref:botbuilder-core.ActivityHandler.onTokenResponseEvent)
+      sub-type
+
+      event handler. To handle other named events, add logic to this handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -86,6 +149,15 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onInstallationUpdate
     package: botbuilder
     summary: Registers an activity event handler for the _installationupdate_ activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a InstallationUpdate event, use the
+
+      [onInstallationUpdate](xref:botbuilder-core.ActivityHandler.onInstallationUpdate)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -104,6 +176,15 @@ methods:
     summary: >-
       Registers an activity event handler for the _installationupdate add_
       activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a InstallationUpdateAdd event, use the
+
+      [onInstallationUpdateAdd](xref:botbuilder-core.ActivityHandler.onInstallationUpdateAdd)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -122,6 +203,15 @@ methods:
     summary: >-
       Registers an activity event handler for the _installationupdate remove_
       activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a InstallationUpdateRemove event, use the
+
+      [onInstallationUpdateRemove](xref:botbuilder-core.ActivityHandler.onInstallationUpdateRemove)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -143,6 +233,21 @@ methods:
 
       conversation update activity that includes members added to the
       conversation.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [membersAdded](xref:botframework-schema.Activity.membersAdded) property
+
+      contains the members added to the conversation, which can include the bot.
+
+
+      To handle conversation update events in general, use the
+
+      [onConversationUpdate](xref:botbuilder-core.ActivityHandler.onConversationUpdate)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -164,6 +269,23 @@ methods:
 
       conversation update activity that includes members removed from the
       conversation.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [membersRemoved](xref:botframework-schema.Activity.membersRemoved)
+      property
+
+      contains the members removed from the conversation, which can include the
+      bot.
+
+
+      To handle conversation update events in general, use the
+
+      [onConversationUpdate](xref:botbuilder-core.ActivityHandler.onConversationUpdate)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -182,6 +304,21 @@ methods:
     summary: >-
       Registers an activity event handler for the _message_ event, emitted for
       every incoming message activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      Message activities represent content intended to be shown within a
+      conversational interface
+
+      and can contain text, speech, interactive cards, and binary or unknown
+      attachments.
+
+      Not all message activities contain text, the activity's
+      [text](xref:botframework-schema.Activity.text)
+
+      property can be `null` or `undefined`.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -202,6 +339,33 @@ methods:
       emitted for every incoming
 
       message reaction activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      Message reaction activities represent a social interaction on an existing
+      message activity
+
+      within a conversation. The original activity is referred to by the message
+      reaction activity's
+
+      [replyToId](xref:botframework-schema.Activity.replyToId) property. The
+
+      [from](xref:botframework-schema.Activity.from) property represents the
+      source of the reaction,
+
+      such as the user that reacted to the message.
+
+
+      To handle when reactions are added to or removed from messages in the
+      conversation, use the
+
+      [onReactionsAdded](xref:botbuilder-core.ActivityHandler.onReactionsAdded)
+      and
+
+      [onReactionsRemoved](xref:botbuilder-core.ActivityHandler.onReactionsRemoved)
+      sub-type event handlers.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -222,6 +386,22 @@ methods:
       emitted for any incoming
 
       message reaction activity that describes reactions added to a message.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [reactionsAdded](xref:botframework-schema.Activity.reactionsAdded)
+      property
+
+      includes one or more reactions that were added.
+
+
+      To handle message reaction events in general, use the
+
+      [onMessageReaction](xref:botbuilder-core.ActivityHandler.onMessageReaction)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -242,6 +422,22 @@ methods:
       emitted for any incoming
 
       message reaction activity that describes reactions removed from a message.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's
+      [reactionsRemoved](xref:botframework-schema.Activity.reactionsRemoved)
+      property
+
+      includes one or more reactions that were removed.
+
+
+      To handle message reaction events in general, use the
+
+      [onMessageReaction](xref:botbuilder-core.ActivityHandler.onMessageReaction)
+      type-specific event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -262,6 +458,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a channel is
       created.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -286,6 +483,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a channel is
       deleted.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -310,6 +508,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a channel is
       renamed.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -334,6 +533,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a channel is
       restored.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -361,6 +561,7 @@ methods:
       than the bot
 
       join the channel, such as your bot's welcome logic.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -389,6 +590,7 @@ methods:
       than the bot
 
       leave the channel, such as your bot's good-bye logic.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -414,6 +616,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a team is
       archived.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -437,6 +640,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a team is
       deleted.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -460,6 +664,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a team is
       hard-deleted.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -483,6 +688,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a team is
       renamed.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -506,6 +712,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a team is
       restored.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -529,6 +736,7 @@ methods:
     summary: >-
       Override this in a derived class to provide logic for when a team is
       unarchived.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -553,6 +761,26 @@ methods:
 
       `tokens/response` event activity. These are generated as part of the OAuth
       authentication flow.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The activity's [value](xref:botframework-schema.Activity.value) property
+      contains the user token.
+
+
+      If your bot handles authentication using an
+      [OAuthPrompt](xref:botbuilder-dialogs.OAuthPrompt)
+
+      within a dialog, then the dialog will need to receive this activity to
+      complete the authentication flow.
+
+
+      To handle other named events and event events in general, use the
+
+      [onEvent](xref:botbuilder-core.ActivityHandler.onEvent) type-specific
+      event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -571,6 +799,9 @@ methods:
     summary: >-
       Registers an activity event handler for the _turn_ event, emitted for
       every incoming activity, regardless of type.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -587,6 +818,15 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTyping
     package: botbuilder
     summary: Registers an activity event handler for the _typing_ activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a Typing event, use the
+
+      [onTyping](xref:botbuilder-core.ActivityHandler.onTyping) type-specific
+      event handler.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -610,6 +850,26 @@ methods:
       [ActivityHandler](xref:botbuilder-core.ActivityHandler)
 
       doesn't provide an event handler.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      The `ActivityHandler` does not define events for all activity types
+      defined in the
+
+      [Bot Framework Activity schema](http://aka.ms/botSpecs-activitySchema). In
+      addition,
+
+      channels and custom adapters can create
+      [Activities](xref:botframework-schema.Activity) with
+
+      types not in the schema. When the activity handler receives such an event,
+      it emits an unrecognized activity type event.
+
+
+      The activity's [type](xref:botframework-schema.Activity.type) property
+      contains the activity type.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -626,6 +886,33 @@ methods:
     uid: botbuilder.TeamsActivityHandler.run
     package: botbuilder
     summary: Called to initiate the event emission process.
+    remarks: >-
+      Typically, you would provide this method as the function handler that the
+      adapter calls
+
+      to perform the bot's logic after the received activity has been
+      pre-processed by the adapter
+
+      and routed through any middleware.
+
+
+      For example:
+
+      ```javascript
+       server.post('/api/messages', (req, res) => {
+           adapter.processActivity(req, res, async (context) => {
+               // Route to bot's activity logic.
+               await bot.run(context);
+           });
+      });
+
+      ```
+
+
+      **See also**
+
+      -
+      [BotFrameworkAdapter.processActivity](xref:botbuilder.BotFrameworkAdapter.processActivity)
     isPreview: false
     isDeprecated: false
     syntax:

@@ -4,6 +4,12 @@ uid: botbuilder-core.TurnContext
 package: botbuilder-core
 summary: Provides context for a turn of a bot.
 fullName: TurnContext
+remarks: >-
+  Context provides information needed to process an incoming activity. The
+  context object is
+
+  created by a [BotAdapter](xref:botbuilder-core.BotAdapter) and persists for
+  the length of the turn.
 isPreview: false
 isDeprecated: false
 type: class
@@ -14,6 +20,7 @@ constructors:
     summary: >-
       Creates an new instance of the
       [TurnContext](xref:xref:botbuilder-core.TurnContext) class.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -34,6 +41,7 @@ constructors:
     summary: >-
       Creates an new instance of the
       [TurnContext](xref:xref:botbuilder-core.TurnContext) class.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -48,6 +56,16 @@ properties:
     package: botbuilder-core
     summary: Gets the activity associated with this turn.
     fullName: activity
+    remarks: >-
+      This example shows how to get the users trimmed utterance from the
+      activity:
+
+
+      ```JavaScript
+
+      const utterance = (context.activity.text || '').trim();
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -60,6 +78,7 @@ properties:
     package: botbuilder-core
     summary: Gets the bot adapter that created this context object.
     fullName: adapter
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -74,6 +93,7 @@ properties:
       List of activities to send when `context.activity.deliveryMode ==
       'expectReplies'`.
     fullName: bufferedReplyActivities
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -88,6 +108,28 @@ properties:
       Indicates whether the bot has replied to the user this turn.
       Sets the response flag on the current turn context.
     fullName: responded
+    remarks: >-
+      **true** if at least one response was sent for the current turn;
+      otherwise, **false**.
+
+      Use this to determine if your bot needs to run fallback logic after other
+      normal processing.
+
+
+      Trace activities do not set this flag.
+
+
+      for example:
+
+      ```JavaScript
+
+      await routeActivity(context);
+
+      if (!context.responded) {
+         await context.sendActivity(`I'm sorry. I didn't understand.`);
+      }
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -100,6 +142,36 @@ properties:
     package: botbuilder-core
     summary: Gets the services registered on this context object.
     fullName: turnState
+    remarks: >-
+      Middleware, other components, and services will typically use this to
+      cache information
+
+      that could be asked for by a bot multiple times during a turn. You can use
+      this cache to
+
+      pass information between components of your bot.
+
+
+      For example:
+
+      ```JavaScript
+
+      const cartKey = Symbol();
+
+      const cart = await loadUsersShoppingCart(context);
+
+      context.turnState.set(cartKey, cart);
+
+      ```
+
+
+      > [!TIP]
+
+      > When creating middleware or a third-party component, use a unique symbol
+      for your cache key
+
+      > to avoid state naming collisions with the bot or other middleware or
+      components.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -116,6 +188,14 @@ methods:
     summary: >-
       Updates an activity with the delivery information from an existing
       conversation reference.
+    remarks: >-
+      Call the
+      [getConversationReference](xref:botbuilder-core.TurnContext.getConversationReference)
+
+      method on an incoming activity to get a conversation reference that you
+      can then use
+
+      to update an outgoing activity with the correct delivery information.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -143,6 +223,36 @@ methods:
     uid: botbuilder-core.TurnContext.deleteActivity
     package: botbuilder-core
     summary: Asynchronously deletes a previously sent activity.
+    remarks: >-
+      If an ID is specified, the conversation reference for the current request
+      is used
+
+      to get the rest of the information needed.
+
+
+      For example:
+
+      ```JavaScript
+
+      const matched = /approve (.*)/i.exec(context.activity.text);
+
+      if (matched) {
+         const savedId = await approveExpenseReport(matched[1]);
+         await context.deleteActivity(savedId);
+      }
+
+      ```
+
+
+      **See also**
+
+
+      - [sendActivity](xref:botbuilder-core.TurnContext.sendActivity)
+
+      - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
+
+      -
+      [getReplyConversationReference](xref:botbuilder-core.TurnContext.getReplyConversationReference)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -161,6 +271,25 @@ methods:
     uid: botbuilder-core.TurnContext.getConversationReference
     package: botbuilder-core
     summary: Copies conversation reference information from an activity.
+    remarks: >-
+      You can save the conversation reference as a JSON object and use it later
+      to proactively message the user.
+
+
+      For example:
+
+      ```JavaScript
+
+      const reference = TurnContext.getConversationReference(context.request);
+
+      ```
+
+
+      **See also**
+
+
+      -
+      [BotAdapter.continueConversation](xref:botbuilder-core.BotAdapter.continueConversation)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -177,6 +306,25 @@ methods:
     uid: botbuilder-core.TurnContext.getMentions
     package: botbuilder-core
     summary: Gets all at-mention entities included in an activity.
+    remarks: >-
+      The activity's [entities](xref:botframework-schema.Activity.entities)
+      property contains a flat
+
+      list of metadata objects pertaining to this activity and can contain
+
+      [mention](xref:botframework-schema.Mention) entities. This method returns
+      all such entities
+
+      for a given activity.
+
+
+      For example:
+
+      ```JavaScript
+
+      const mentions = TurnContext.getMentions(turnContext.request);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -195,6 +343,29 @@ methods:
     summary: >-
       Copies conversation reference information from a resource response for a
       sent activity.
+    remarks: >-
+      You can save the conversation reference as a JSON object and use it later
+      to update or delete the message.
+
+
+      For example:
+
+      ```javascript
+
+      var reply = await context.sendActivity('Hi');
+
+      var reference =
+      TurnContext.getReplyConversationReference(context.activity, reply);
+
+      ```
+
+
+      **See also**
+
+
+      - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
+
+      - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -218,6 +389,33 @@ methods:
     uid: botbuilder-core.TurnContext.onDeleteActivity
     package: botbuilder-core
     summary: Adds a response handler for delete activity operations.
+    remarks: >-
+      This method returns a reference to the turn context object.
+
+
+      When the [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
+      method is called,
+
+      the registered handlers are called in the order in which they were added
+      to the context object
+
+      before the activity is deleted.
+
+
+      This example shows how to listen for and log activity deletions.
+
+
+      ```JavaScript
+
+      context.onDeleteActivity(async (ctx, reference, next) => {
+         // Delete activity
+         await next();
+
+         // Log delete
+         logDelete(activity);
+      });
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -234,6 +432,36 @@ methods:
     uid: botbuilder-core.TurnContext.onSendActivities
     package: botbuilder-core
     summary: Adds a response handler for send activity operations.
+    remarks: >-
+      This method returns a reference to the turn context object.
+
+
+      When the [sendActivity](xref:botbuilder-core.TurnContext.sendActivity) or
+
+      [sendActivities](xref:botbuilder-core.TurnContext.sendActivities) method
+      is called,
+
+      the registered handlers are called in the order in which they were added
+      to the context object
+
+      before the activities are sent.
+
+
+      This example shows how to listen for and log outgoing `message`
+      activities.
+
+
+      ```JavaScript
+
+      context.onSendActivities(async (ctx, activities, next) => {
+         // Log activities before sending them.
+         activities.filter(a => a.type === 'message').forEach(a => logSend(a));
+
+         // Allow the send process to continue.
+         next();
+      });
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -250,6 +478,33 @@ methods:
     uid: botbuilder-core.TurnContext.onUpdateActivity
     package: botbuilder-core
     summary: Adds a response handler for update activity operations.
+    remarks: >-
+      This method returns a reference to the turn context object.
+
+
+      When the [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
+      method is called,
+
+      the registered handlers are called in the order in which they were added
+      to the context object
+
+      before the activity is updated.
+
+
+      This example shows how to listen for and log activity updates.
+
+
+      ```JavaScript
+
+      context.onUpdateActivity(async (ctx, activity, next) => {
+         // Replace activity
+         await next();
+
+         // Log update
+         logUpdate(activity);
+      });
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -271,6 +526,53 @@ methods:
 
       Use with caution; this function alters the activity's
       [text](xref:botframework-schema.Activity.text) property.
+    remarks: >-
+      Some channels, for example Microsoft Teams, add at mentions to the text of
+      a message activity.
+
+
+      Use this helper method to modify the activity's
+      [text](xref:botframework-schema.Activity.text) property.
+
+      It removes all at mentions for the given bot or user ID and then returns
+      the updated property value.
+
+
+      For example, when you remove mentions of **echoBot** from an activity
+      containing the text "@echoBot Hi Bot",
+
+      the activity text is updated, and the method returns "Hi Bot".
+
+
+      The format of a mention [entity](xref:botframework-schema.Entity) is
+      channel-dependent.
+
+      However, the mention's [text](xref:botframework-schema.Mention.text)
+      property should contain
+
+      the exact text for the user as it appears in the activity text.
+
+
+      For example, whether the channel uses "<at>username</at>" or "@username",
+      this string is in
+
+      the activity's text, and this method will remove all occurrences of that
+      string from the text.
+
+
+      For example:
+
+      ```JavaScript
+
+      const updatedText = TurnContext.removeMentionText(activity,
+      activity.recipient.id);
+
+      ```
+
+      **See also**
+
+      -
+      [removeRecipientMention](xref:botbuilder-core.TurnContext.removeRecipientMention)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -299,6 +601,32 @@ methods:
 
       Use with caution; this function alters the activity's
       [text](xref:botframework-schema.Activity.text) property.
+    remarks: >-
+      Some channels, for example Microsoft Teams, add at-mention details to the
+      text of a message activity.
+
+
+      Use this helper method to modify the activity's
+      [text](xref:botframework-schema.Activity.text) property.
+
+      It removes all at mentions of the activity's
+      [recipient](xref:botframework-schema.Activity.recipient)
+
+      and then returns the updated property value.
+
+
+      For example:
+
+      ```JavaScript
+
+      const updatedText =
+      TurnContext.removeRecipientMention(turnContext.request);
+
+      ```
+
+      **See also**
+
+      - [removeMentionText](xref:botbuilder-core.TurnContext.removeMentionText)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -317,6 +645,42 @@ methods:
     summary: >-
       Asynchronously sends a set of activities to the sender of the incoming
       activity.
+    remarks: >-
+      If the activities are successfully sent, results in an array of
+
+      [ResourceResponse](xref:botframework-schema.ResourceResponse) objects
+      containing the IDs that
+
+      the receiving channel assigned to the activities.
+
+
+      Before they are sent, the delivery information of each outbound activity
+      is updated based on the
+
+      delivery information of the inbound inbound activity.
+
+
+      For example:
+
+      ```JavaScript
+
+      await context.sendActivities([
+         { type: 'typing' },
+         { type: 'delay', value: 2000 },
+         { type: 'message', text: 'Hello... How are you?' }
+      ]);
+
+      ```
+
+
+      **See also**
+
+
+      - [sendActivity](xref:botbuilder-core.TurnContext.sendActivity)
+
+      - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
+
+      - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -333,6 +697,43 @@ methods:
     uid: botbuilder-core.TurnContext.sendActivity
     package: botbuilder-core
     summary: Asynchronously sends an activity to the sender of the incoming activity.
+    remarks: >-
+      If the activity is successfully sent, results in a
+
+      [ResourceResponse](xref:botframework-schema.ResourceResponse) object
+      containing the ID that the
+
+      receiving channel assigned to the activity.
+
+
+      See the channel's documentation for limits imposed upon the contents of
+      the **activityOrText** parameter.
+
+
+      To control various characteristics of your bot's speech such as voice,
+      rate, volume, pronunciation,
+
+      and pitch, specify **speak** in Speech Synthesis Markup Language (SSML)
+      format.
+
+
+      For example:
+
+      ```JavaScript
+
+      await context.sendActivity(`Hello World`);
+
+      ```
+
+
+      **See also**
+
+
+      - [sendActivities](xref:botbuilder-core.TurnContext.sendActivities)
+
+      - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
+
+      - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -362,6 +763,25 @@ methods:
     uid: botbuilder-core.TurnContext.sendTraceActivity
     package: botbuilder-core
     summary: Asynchronously sends an activity to the sender of the incoming activity.
+    remarks: >-
+      Creates and sends a Trace activity. Trace activities are only sent when
+      the channel is the emulator.
+
+
+      For example:
+
+      ```JavaScript
+
+      await context.sendTraceActivity(`The following exception was thrown
+      ${msg}`);
+
+      ```
+
+
+      **See also**
+
+
+      - [sendActivities](xref:botbuilder-core.TurnContext.sendActivities)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -394,6 +814,36 @@ methods:
     uid: botbuilder-core.TurnContext.updateActivity
     package: botbuilder-core
     summary: Asynchronously updates a previously sent activity.
+    remarks: >-
+      The [id](xref:botframework-schema.Activity.id) of the replacement activity
+      indicates the activity
+
+      in the conversation to replace.
+
+
+      For example:
+
+      ```JavaScript
+
+      const matched = /approve (.*)/i.exec(context.activity.text);
+
+      if (matched) {
+         const update = await approveExpenseReport(matched[1]);
+         await context.updateActivity(update);
+      }
+
+      ```
+
+
+      **See also**
+
+
+      - [sendActivity](xref:botbuilder-core.TurnContext.sendActivity)
+
+      - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
+
+      -
+      [getReplyConversationReference](xref:botbuilder-core.TurnContext.getReplyConversationReference)
     isPreview: false
     isDeprecated: false
     syntax:

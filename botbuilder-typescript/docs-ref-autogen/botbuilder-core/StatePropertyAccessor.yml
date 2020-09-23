@@ -6,6 +6,9 @@ summary: |-
   Defines methods for accessing a state property created in a
   [BotState](xref:botbuilder-core.BotState) object.
 fullName: StatePropertyAccessor<T>
+remarks: |-
+  To create a state property in a state management objet, use the
+  [createProperty\<T>](xref:botbuilder-core.BotState.createProperty) method.
 isPreview: false
 isDeprecated: false
 type: interface
@@ -14,6 +17,16 @@ methods:
     uid: botbuilder-core.StatePropertyAccessor.delete
     package: botbuilder-core
     summary: Deletes the persisted property from its backing storage object.
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      ```JavaScript
+
+      await myProperty.delete(context);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -30,6 +43,26 @@ methods:
     uid: botbuilder-core.StatePropertyAccessor.get
     package: botbuilder-core
     summary: Reads a persisted property from its backing storage object.
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      If the property does not currently exist on the storage object and a
+      `defaultValue` has been
+
+      specified, a clone of the `defaultValue` SHOULD be copied to the storage
+      object. If a
+
+      `defaultValue` has not been specified then a value of `undefined` SHOULD
+      be returned.
+
+
+      ```JavaScript
+
+      const value = await myProperty.get(context, { count: 0 });
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -45,6 +78,26 @@ methods:
     uid: botbuilder-core.StatePropertyAccessor.get_1
     package: botbuilder-core
     summary: ''
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      If the property does not currently exist on the storage object and a
+      `defaultValue` has been
+
+      specified, a clone of the `defaultValue` SHOULD be copied to the storage
+      object. If a
+
+      `defaultValue` has not been specified then a value of `undefined` SHOULD
+      be returned.
+
+
+      ```JavaScript
+
+      const value = await myProperty.get(context, { count: 0 });
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:
@@ -63,6 +116,22 @@ methods:
     uid: botbuilder-core.StatePropertyAccessor.set
     package: botbuilder-core
     summary: Assigns a new value to the properties backing storage object.
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      Depending on the state systems implementation, an additional step may be
+      required to
+
+      persist the actual changes to disk.
+
+
+      ```JavaScript
+
+      await myProperty.set(context, value);
+
+      ```
     isPreview: false
     isDeprecated: false
     syntax:

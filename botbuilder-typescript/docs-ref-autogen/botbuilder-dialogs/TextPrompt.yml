@@ -4,6 +4,9 @@ uid: botbuilder-dialogs.TextPrompt
 package: botbuilder-dialogs
 summary: Prompts a user to enter some text.
 fullName: TextPrompt<O>
+remarks: >-
+  By default the prompt will return to the calling dialog a `string`
+  representing the users reply.
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,6 +15,7 @@ constructors:
     uid: botbuilder-dialogs.TextPrompt.constructor
     package: botbuilder-dialogs
     summary: Creates a new TextPrompt instance.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -33,6 +37,7 @@ properties:
     package: botbuilder-dialogs
     summary: Unique ID of the dialog.
     fullName: id
+    remarks: This will be automatically generated if not specified.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -47,6 +52,7 @@ properties:
       Gets the telemetry client for this dialog.
       Sets the telemetry client for this dialog.
     fullName: telemetryClient
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -59,6 +65,7 @@ methods:
     uid: botbuilder-dialogs.TextPrompt.beginDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -77,6 +84,7 @@ methods:
     uid: botbuilder-dialogs.TextPrompt.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -93,6 +101,7 @@ methods:
     uid: botbuilder-dialogs.TextPrompt.continueDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -110,6 +119,29 @@ methods:
     summary: >-
       When overridden in a derived class, performs clean up for the dialog
       before it ends.
+    remarks: >-
+      Derived dialogs that need to perform logging or cleanup before ending
+      should override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog is ending.
+
+
+      **See also**
+
+      -
+      [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
+
+      -
+      [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
+
+      -
+      [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
     isPreview: false
     isDeprecated: false
     syntax:
@@ -136,6 +168,22 @@ methods:
     summary: >-
       An encoded string used to aid in the detection of bot changes on
       re-deployment.
+    remarks: >-
+      This defaults to returning the dialogs [id](#id) but can be overridden to
+      provide more
+
+      precise change detection logic. Any dialog on the stack that has its
+      version change will
+
+      result in a `versionChanged` event will be raised. If this event is not
+      handled by the bot,
+
+      an error will be thrown resulting in the bots error handler logic being
+      run.
+
+
+      Returning an empty string will disable version tracking for the component
+      all together.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -149,6 +197,7 @@ methods:
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -169,6 +218,7 @@ methods:
     uid: botbuilder-dialogs.TextPrompt.repromptDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -187,6 +237,7 @@ methods:
     uid: botbuilder-dialogs.TextPrompt.resumeDialog
     package: botbuilder-dialogs
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

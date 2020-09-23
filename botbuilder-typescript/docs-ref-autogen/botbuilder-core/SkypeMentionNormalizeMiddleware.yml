@@ -8,6 +8,15 @@ summary: >-
 
   Bots that interact with Skype should use this middleware if mentions are used.
 fullName: SkypeMentionNormalizeMiddleware
+remarks: >-
+  A Skype mention "text" field is of the format:
+    <at id="28:2bc5b54d-5d48-4ff1-bd25-03dcbb5ce918">botname</at>
+  But Activity.Text doesn't contain those tags and RemoveMentionText can't
+  remove
+
+  the entity from Activity.Text.
+
+  This will remove the <at> nodes, leaving just the name.
 isPreview: false
 isDeprecated: false
 type: class
@@ -16,6 +25,7 @@ methods:
     uid: botbuilder-core.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -28,6 +38,7 @@ methods:
     uid: botbuilder-core.SkypeMentionNormalizeMiddleware.onTurn
     package: botbuilder-core
     summary: ''
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

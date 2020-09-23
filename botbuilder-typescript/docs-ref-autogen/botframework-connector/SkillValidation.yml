@@ -13,6 +13,7 @@ functions:
     summary: >-
       Validates that the incoming Auth Header is a token sent from a bot to a
       skill or from a skill to a bot.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -45,6 +46,15 @@ functions:
     uid: botframework-connector.SkillValidation.isSkillClaim
     package: botframework-connector
     summary: Checks if the given object of claims represents a skill.
+    remarks: >-
+      A skill claim should contain:
+          An "AuthenticationConstants.VersionClaim" claim.
+          An "AuthenticationConstants.AudienceClaim" claim.
+          An "AuthenticationConstants.AppIdClaim" claim (v1) or an a "AuthenticationConstants.AuthorizedParty" claim (v2).
+      And the appId claim should be different than the audience claim.
+
+      The audience claim should be a guid, indicating that it is from another
+      bot/skill.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -62,6 +72,7 @@ functions:
     summary: >-
       Determines if a given Auth header is from a skill to bot or bot to skill
       request.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
