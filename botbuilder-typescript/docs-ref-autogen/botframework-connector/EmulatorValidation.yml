@@ -1,30 +1,24 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botframework-connector.EmulatorValidation
-    name: EmulatorValidation
-    langs:
-      - typeScript
-    fullName: EmulatorValidation
-    children:
-      - botframework-connector.EmulatorValidation.authenticateEmulatorToken
-      - botframework-connector.EmulatorValidation.isTokenFromEmulator
-    type: module
-    summary: Validates and Examines JWT tokens from the Bot Framework Emulator
-    package: botframework-connector
-  - uid: botframework-connector.EmulatorValidation.authenticateEmulatorToken
-    name: >-
+### YamlMime:TSPackage
+uid: botframework-connector.EmulatorValidation
+name: EmulatorValidation
+type: module
+package: botframework-connector
+summary: Validates and Examines JWT tokens from the Bot Framework Emulator
+functions:
+  - name: >-
       authenticateEmulatorToken(string, ICredentialProvider, string, string,
       AuthenticationConfiguration)
-    children: []
-    type: function
-    langs:
-      - typeScript
+    uid: botframework-connector.EmulatorValidation.authenticateEmulatorToken
+    package: botframework-connector
     summary: >-
       Validate the incoming Auth Header as a token sent from the Bot Framework
       Emulator.
 
       A token issued by the Bot Framework will FAIL this check. Only Emulator
       tokens will pass.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function authenticateEmulatorToken(authHeader: string, credentials:
@@ -32,75 +26,38 @@ items:
         authConfig: AuthenticationConfiguration)
       parameters:
         - id: authHeader
-          type:
-            - string
+          type: string
           description: 'The raw HTTP header in the format: "Bearer [longString]"'
         - id: credentials
-          type:
-            - botframework-connector.ICredentialProvider
+          type: <xref uid="botframework-connector.ICredentialProvider" />
           description: 'The user defined set of valid credentials, such as the AppId.'
         - id: channelService
-          type:
-            - string
+          type: string
           description: >-
             The channelService value that distinguishes public Azure from US
             Government Azure.
         - id: channelId
-          type:
-            - string
+          type: string
           description: ''
         - id: authConfig
-          type:
-            - botframework-connector.AuthenticationConfiguration
+          type: <xref uid="botframework-connector.AuthenticationConfiguration" />
           description: ''
       return:
-        type:
-          - Promise<botframework-connector.ClaimsIdentity>
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: A valid ClaimsIdentity.
+  - name: isTokenFromEmulator(string)
+    uid: botframework-connector.EmulatorValidation.isTokenFromEmulator
     package: botframework-connector
-  - uid: botframework-connector.EmulatorValidation.isTokenFromEmulator
-    name: isTokenFromEmulator(string)
-    children: []
-    type: function
-    langs:
-      - typeScript
     summary: Determines if a given Auth header is from the Bot Framework Emulator
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function isTokenFromEmulator(authHeader: string)'
       parameters:
         - id: authHeader
-          type:
-            - string
+          type: string
           description: 'Bearer Token, in the "Bearer [Long String]" Format.'
       return:
-        type:
-          - boolean
+        type: boolean
         description: 'True, if the token was issued by the Emulator. Otherwise, false.'
-    package: botframework-connector
-references:
-  - uid: botframework-connector.ICredentialProvider
-    name: ICredentialProvider
-    spec.typeScript:
-      - name: ICredentialProvider
-        fullName: ICredentialProvider
-        uid: botframework-connector.ICredentialProvider
-  - uid: botframework-connector.AuthenticationConfiguration
-    name: AuthenticationConfiguration
-    spec.typeScript:
-      - name: AuthenticationConfiguration
-        fullName: AuthenticationConfiguration
-        uid: botframework-connector.AuthenticationConfiguration
-  - uid: Promise<botframework-connector.ClaimsIdentity>
-    name: ClaimsIdentity>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: ClaimsIdentity
-        fullName: ClaimsIdentity
-        uid: botframework-connector.ClaimsIdentity
-      - name: '>'
-        fullName: '>'
-  - uid: botframework-connector.EmulatorValidation.authenticateEmulatorToken
-    name: authenticateEmulatorToken
-  - uid: botframework-connector.EmulatorValidation.isTokenFromEmulator
-    name: isTokenFromEmulator

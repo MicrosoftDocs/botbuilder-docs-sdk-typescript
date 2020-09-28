@@ -1,99 +1,68 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-calling.Dialog
-    name: Dialog
-    fullName: Dialog
-    children:
-      - botbuilder-calling.Dialog.begin
-      - botbuilder-calling.Dialog.dialogResumed
-      - botbuilder-calling.Dialog.replyReceived
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      Base class for all dialogs. Dialogs are the core component of the
-      BotBuilder
-
-      framework. Bots use Dialogs to manage arbitrarily complex conversations
-      with
-
-      a user.
+### YamlMime:TSType
+name: Dialog
+uid: botbuilder-calling.Dialog
+package: botbuilder-calling
+summary: |-
+  Base class for all dialogs. Dialogs are the core component of the BotBuilder
+  framework. Bots use Dialogs to manage arbitrarily complex conversations with
+  a user.
+fullName: Dialog
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'begin<T>(CallSession, T)'
+    uid: botbuilder-calling.Dialog.begin
     package: botbuilder-calling
-  - uid: botbuilder-calling.Dialog.begin
-    name: 'begin(CallSession, T)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Called when a new dialog session is being started.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function begin<T>(session: CallSession, args?: T)'
       parameters:
         - id: session
-          type:
-            - botbuilder-calling.CallSession
+          type: <xref uid="botbuilder-calling.CallSession" />
           description: Session object for the current conversation.
         - id: args
-          type:
-            - T
+          type: T
           description: |
             (Optional) arguments passed to the dialog by its parent.
-          optional: true
+  - name: 'dialogResumed<T>(CallSession, IDialogResult<T>)'
+    uid: botbuilder-calling.Dialog.dialogResumed
     package: botbuilder-calling
-  - uid: botbuilder-calling.Dialog.dialogResumed
-    name: 'dialogResumed(CallSession, IDialogResult<T>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: A child dialog has ended and the current one is being resumed.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function dialogResumed<T>(session: CallSession, result:
         IDialogResult<T>)
       parameters:
         - id: session
-          type:
-            - botbuilder-calling.CallSession
+          type: <xref uid="botbuilder-calling.CallSession" />
           description: Session object for the current conversation.
         - id: result
-          type:
-            - botbuilder-calling.IDialogResult<T>
+          type: <xref uid="botbuilder-calling.IDialogResult" />&lt;T&gt;
           description: |
             Result returned by the child dialog.
+  - name: replyReceived(CallSession)
+    uid: botbuilder-calling.Dialog.replyReceived
     package: botbuilder-calling
-  - uid: botbuilder-calling.Dialog.replyReceived
-    name: replyReceived(CallSession)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Called when a new reply message has been recieved from a user.
 
       Derived classes should implement this to process the message recieved from
       the user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function replyReceived(session: CallSession)'
       parameters:
         - id: session
-          type:
-            - botbuilder-calling.CallSession
+          type: <xref uid="botbuilder-calling.CallSession" />
           description: |
             Session object for the current conversation.
-    package: botbuilder-calling
-references:
-  - uid: botbuilder-calling.CallSession
-    name: CallSession
-    spec.typeScript:
-      - name: CallSession
-        fullName: CallSession
-        uid: botbuilder-calling.CallSession
-  - uid: botbuilder-calling.IDialogResult<T>
-    name: IDialogResult<T>
-    spec.typeScript:
-      - name: IDialogResult
-        fullName: IDialogResult
-        uid: botbuilder-calling.IDialogResult
-      - name: <T>
-        fullName: <T>

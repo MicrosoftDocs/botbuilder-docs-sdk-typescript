@@ -1,138 +1,92 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botframework-streaming.WebSocketServer
-    name: WebSocketServer
-    fullName: WebSocketServer
-    children:
-      - botframework-streaming.WebSocketServer.disconnect
-      - botframework-streaming.WebSocketServer.isConnected
-      - botframework-streaming.WebSocketServer.send
-      - botframework-streaming.WebSocketServer.start
-      - botframework-streaming.WebSocketServer.constructor
-    langs:
-      - typeScript
-    type: class
-    summary: Web socket based server to be used as streaming transport.
+### YamlMime:TSType
+name: WebSocketServer
+uid: botframework-streaming.WebSocketServer
+package: botframework-streaming
+summary: Web socket based server to be used as streaming transport.
+fullName: WebSocketServer
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'WebSocketServer(ISocket, RequestHandler)'
+    uid: botframework-streaming.WebSocketServer.constructor
     package: botframework-streaming
-  - uid: botframework-streaming.WebSocketServer.disconnect
-    name: disconnect()
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Stop this server.
-    syntax:
-      content: function disconnect()
-      parameters: []
-    package: botframework-streaming
-  - uid: botframework-streaming.WebSocketServer.isConnected
-    name: isConnected
-    fullName: isConnected
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: >-
-      Examines the stored ISocket and returns true if the socket connection is
-      open.
-    syntax:
-      content: boolean isConnected
-      return:
-        type:
-          - boolean
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.WebSocketServer.send
-    name: send(StreamingRequest)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Task used to send data over this server connection.
-    syntax:
-      content: 'function send(request: StreamingRequest)'
-      parameters:
-        - id: request
-          type:
-            - botframework-streaming.StreamingRequest
-          description: The streaming request to send.
-      return:
-        type:
-          - Promise<botframework-streaming.IReceiveResponse>
-        description: >-
-          A promise that will produce an instance of receive response on
-          completion of the send operation.
-    package: botframework-streaming
-  - uid: botframework-streaming.WebSocketServer.start
-    name: start()
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: >-
-      Used to establish the connection used by this server and begin listening
-      for incoming messages.
-    syntax:
-      content: function start()
-      parameters: []
-      return:
-        type:
-          - Promise<string>
-        description: >-
-          A promise to handle the server listen operation. This task will not
-          resolve as long as the server is running.
-    package: botframework-streaming
-  - uid: botframework-streaming.WebSocketServer.constructor
-    name: 'WebSocketServer(ISocket, RequestHandler)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
     summary: >-
       Creates a new instance of the
       [WebSocketServer](xref:botframework-streaming.WebSocketServer) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'new WebSocketServer(socket: ISocket, requestHandler?: RequestHandler)'
       parameters:
         - id: socket
-          type:
-            - botframework-streaming.ISocket
+          type: <xref uid="botframework-streaming.ISocket" />
           description: The underlying web socket.
         - id: requestHandler
-          type:
-            - botframework-streaming.RequestHandler
+          type: <xref uid="botframework-streaming.RequestHandler" />
           description: >
             Optional
             [RequestHandler](xref:botframework-streaming.RequestHandler) to
             process incoming messages received by this server.
-          optional: true
+properties:
+  - name: isConnected
+    uid: botframework-streaming.WebSocketServer.isConnected
     package: botframework-streaming
-references:
-  - uid: botframework-streaming.ISocket
-    name: ISocket
-    spec.typeScript:
-      - name: ISocket
-        fullName: ISocket
-        uid: botframework-streaming.ISocket
-  - uid: botframework-streaming.RequestHandler
-    name: RequestHandler
-    spec.typeScript:
-      - name: RequestHandler
-        fullName: RequestHandler
-        uid: botframework-streaming.RequestHandler
-  - uid: botframework-streaming.StreamingRequest
-    name: StreamingRequest
-    spec.typeScript:
-      - name: StreamingRequest
-        fullName: StreamingRequest
-        uid: botframework-streaming.StreamingRequest
-  - uid: Promise<botframework-streaming.IReceiveResponse>
-    name: IReceiveResponse>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: IReceiveResponse
-        fullName: IReceiveResponse
-        uid: botframework-streaming.IReceiveResponse
-      - name: '>'
-        fullName: '>'
+    summary: >-
+      Examines the stored ISocket and returns true if the socket connection is
+      open.
+    fullName: isConnected
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: boolean isConnected
+      return:
+        type: boolean
+        description: ''
+methods:
+  - name: disconnect()
+    uid: botframework-streaming.WebSocketServer.disconnect
+    package: botframework-streaming
+    summary: Stop this server.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function disconnect()
+  - name: send(StreamingRequest)
+    uid: botframework-streaming.WebSocketServer.send
+    package: botframework-streaming
+    summary: Task used to send data over this server connection.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function send(request: StreamingRequest)'
+      parameters:
+        - id: request
+          type: <xref uid="botframework-streaming.StreamingRequest" />
+          description: The streaming request to send.
+      return:
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
+        description: >-
+          A promise that will produce an instance of receive response on
+          completion of the send operation.
+  - name: start()
+    uid: botframework-streaming.WebSocketServer.start
+    package: botframework-streaming
+    summary: >-
+      Used to establish the connection used by this server and begin listening
+      for incoming messages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function start()
+      return:
+        type: Promise&lt;string&gt;
+        description: >-
+          A promise to handle the server listen operation. This task will not
+          resolve as long as the server is running.

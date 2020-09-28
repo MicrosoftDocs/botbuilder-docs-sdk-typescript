@@ -1,128 +1,90 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator
-    name: MultiLanguageGenerator
-    fullName: MultiLanguageGenerator
-    children:
-      - botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
-      - botbuilder-dialogs-adaptive.MultiLanguageGenerator.languageGenerators
-      - botbuilder-dialogs-adaptive.MultiLanguageGenerator.languagePolicy
-      - botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      LanguageGenerator which uses implements a map of locale->LanguageGenerator
-      for the locale
+### YamlMime:TSType
+name: MultiLanguageGenerator
+uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator
+package: botbuilder-dialogs-adaptive
+summary: >-
+  LanguageGenerator which uses implements a map of locale->LanguageGenerator for
+  the locale
 
-      and has a policy which controls fallback (try en-us -> en -> default).
-    extends:
-      name: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
+  and has a policy which controls fallback (try en-us -> en -> default).
+fullName: MultiLanguageGenerator
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: languageGenerators
+    uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languageGenerators
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
-    name: 'generate(DialogContext, string, object)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Gets or sets the language generators for multiple languages.
+    fullName: languageGenerators
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'languageGenerators: Map<string, LanguageGenerator>'
+      return:
+        type: >-
+          Map&lt;string, <xref
+          uid="botbuilder-dialogs-adaptive.LanguageGenerator" />&gt;
+        description: ''
+  - name: languagePolicy
+    uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languagePolicy
+    package: botbuilder-dialogs-adaptive
+    summary: Language policy required by language generator.
+    fullName: languagePolicy
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'languagePolicy: LanguagePolicy'
+      return:
+        type: <xref uid="botbuilder-dialogs-adaptive.LanguagePolicy" />
+        description: ''
+methods:
+  - name: 'generate(DialogContext, string, object)'
+    uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
+    package: botbuilder-dialogs-adaptive
     summary: Find a language generator that matches the current context locale.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function generate(dialogContext: DialogContext, template: string, data:
         object)
       parameters:
         - id: dialogContext
-          type:
-            - DialogContext
+          type: DialogContext
           description: Context for the current turn of conversation.
         - id: template
-          type:
-            - string
+          type: string
           description: Template to use.
         - id: data
-          type:
-            - object
+          type: object
           description: |
             Data to bind to.
       return:
-        type:
-          - Promise<string>
+        type: Promise&lt;string&gt;
         description: ''
+  - name: 'tryGetGenerator(DialogContext, string)'
+    uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languageGenerators
-    name: languageGenerators
-    fullName: languageGenerators
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets or sets the language generators for multiple languages.
-    syntax:
-      content: 'languageGenerators: Map<string, LanguageGenerator>'
-      return:
-        type:
-          - 'Map<string, botbuilder-dialogs-adaptive.LanguageGenerator>'
-        description: ''
-    package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languagePolicy
-    name: languagePolicy
-    fullName: languagePolicy
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Language policy required by language generator.
-    syntax:
-      content: 'languagePolicy: LanguagePolicy'
-      return:
-        type:
-          - botbuilder-dialogs-adaptive.LanguagePolicy
-        description: ''
-    package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
-    name: 'tryGetGenerator(DialogContext, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Implementation of lookup by locale.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function tryGetGenerator(dialogContext: DialogContext, locale: string)'
       parameters:
         - id: dialogContext
-          type:
-            - DialogContext
+          type: DialogContext
           description: Context for the current turn of conversation with the user.
         - id: locale
-          type:
-            - string
+          type: string
           description: |
             Locale to lookup.
       return:
-        type:
-          - Object
+        type: Object
         description: ''
-    package: botbuilder-dialogs-adaptive
-references:
-  - uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
-    name: MultiLanguageGeneratorBase
-    spec.typeScript:
-      - name: MultiLanguageGeneratorBase
-        fullName: MultiLanguageGeneratorBase
-        uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
-  - uid: 'Map<string, botbuilder-dialogs-adaptive.LanguageGenerator>'
-    name: LanguageGenerator>
-    spec.typeScript:
-      - name: 'Map<string, '
-        fullName: 'Map<string, '
-      - name: LanguageGenerator
-        fullName: LanguageGenerator
-        uid: botbuilder-dialogs-adaptive.LanguageGenerator
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder-dialogs-adaptive.LanguagePolicy
-    name: LanguagePolicy
-    spec.typeScript:
-      - name: LanguagePolicy
-        fullName: LanguagePolicy
-        uid: botbuilder-dialogs-adaptive.LanguagePolicy
+extends: <xref uid="botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase" />
