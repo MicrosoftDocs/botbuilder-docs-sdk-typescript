@@ -1,104 +1,68 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.CardFactory
-    name: CardFactory
-    fullName: CardFactory
-    children:
-      - botbuilder-core.CardFactory.actions
-      - botbuilder-core.CardFactory.adaptiveCard
-      - botbuilder-core.CardFactory.animationCard
-      - botbuilder-core.CardFactory.audioCard
-      - botbuilder-core.CardFactory.contentTypes
-      - botbuilder-core.CardFactory.heroCard
-      - botbuilder-core.CardFactory.heroCard_1
-      - botbuilder-core.CardFactory.images
-      - botbuilder-core.CardFactory.media
-      - botbuilder-core.CardFactory.o365ConnectorCard
-      - botbuilder-core.CardFactory.oauthCard
-      - botbuilder-core.CardFactory.receiptCard
-      - botbuilder-core.CardFactory.signinCard
-      - botbuilder-core.CardFactory.thumbnailCard
-      - botbuilder-core.CardFactory.thumbnailCard_1
-      - botbuilder-core.CardFactory.videoCard
-    langs:
-      - typeScript
-    type: class
-    summary: Provides methods for formatting the various card types a bot can return.
+### YamlMime:TSType
+name: CardFactory
+uid: botbuilder-core.CardFactory
+package: botbuilder-core
+summary: Provides methods for formatting the various card types a bot can return.
+fullName: CardFactory
+remarks: >-
+  All of these functions return an
+  [Attachment](xref:botframework-schema.Attachment) object,
+
+  which can be added to an existing activity's
+  [attachments](xref:botframework-schema.Activity.attachments) collection
+  directly or
+
+  passed as input to one of the
+  [MessageFactory](xref:botbuilder-core.MessageFactory) methods to generate a
+  new activity.
+
+
+  This example sends a message that contains a single hero card.
+
+
+  ```javascript
+
+  const { MessageFactory, CardFactory } = require('botbuilder');
+
+
+  const card = CardFactory.heroCard(
+       'White T-Shirt',
+       ['https://example.com/whiteShirt.jpg'],
+       ['buy']
+  );
+
+  const message = MessageFactory.attachment(card);
+
+  await context.sendActivity(message);
+
+  ```
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'actions(string | CardAction[] | undefined)'
+    uid: botbuilder-core.CardFactory.actions
     package: botbuilder-core
-    remarks: >-
-      All of these functions return an
-      [Attachment](xref:botframework-schema.Attachment) object,
-
-      which can be added to an existing activity's
-      [attachments](xref:botframework-schema.Activity.attachments) collection
-      directly or
-
-      passed as input to one of the
-      [MessageFactory](xref:botbuilder-core.MessageFactory) methods to generate
-      a new activity.
-
-
-      This example sends a message that contains a single hero card.
-
-
-      ```javascript
-
-      const { MessageFactory, CardFactory } = require('botbuilder');
-
-
-      const card = CardFactory.heroCard(
-           'White T-Shirt',
-           ['https://example.com/whiteShirt.jpg'],
-           ['buy']
-      );
-
-      const message = MessageFactory.attachment(card);
-
-      await context.sendActivity(message);
-
-      ```
-  - uid: botbuilder-core.CardFactory.actions
-    name: 'actions(string | CardAction[] | undefined)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns a properly formatted array of actions.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function actions(actions: string | CardAction[] | undefined)'
       parameters:
         - id: actions
-          type:
-            - 'string | CardAction[] | undefined'
+          type: 'string | CardAction[] | undefined'
           description: >
             The array of action to include on the card. Each `string` in the
             array
                  is converted to an `imBack` button with a title and value set to the value of the string.
       return:
-        type:
-          - 'CardAction[]'
+        type: 'CardAction[]'
         description: ''
+  - name: adaptiveCard(any)
+    uid: botbuilder-core.CardFactory.adaptiveCard
     package: botbuilder-core
-  - uid: botbuilder-core.CardFactory.adaptiveCard
-    name: adaptiveCard(any)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns an attachment for an Adaptive Card.
-    syntax:
-      content: 'static function adaptiveCard(card: any)'
-      parameters:
-        - id: card
-          type:
-            - any
-          description: |
-            A description of the Adaptive Card to return.
-      return:
-        type:
-          - Attachment
-        description: ''
-    package: botbuilder-core
     remarks: >-
       Adaptive Cards are an open card exchange format enabling developers to
       exchange UI content in a common and consistent way.
@@ -145,148 +109,137 @@ items:
       });
 
       ```
-  - uid: botbuilder-core.CardFactory.animationCard
-    name: >-
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function adaptiveCard(card: any)'
+      parameters:
+        - id: card
+          type: any
+          description: |
+            A description of the Adaptive Card to return.
+      return:
+        type: Attachment
+        description: ''
+  - name: >-
       animationCard(string, string | MediaUrl[], string | CardAction[],
       Partial<AnimationCard>)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-core.CardFactory.animationCard
+    package: botbuilder-core
     summary: Returns an attachment for an animation card.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function animationCard(title: string, media: string | MediaUrl[],
         buttons?: string | CardAction[], other?: Partial<AnimationCard>)
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: The card title.
         - id: media
-          type:
-            - 'string | MediaUrl[]'
+          type: 'string | MediaUrl[]'
           description: The media URLs for the card.
         - id: buttons
-          type:
-            - 'string | CardAction[]'
+          type: 'string | CardAction[]'
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
-          optional: true
         - id: other
-          type:
-            - Partial<AnimationCard>
+          type: Partial&lt;AnimationCard&gt;
           description: |
             Optional. Any additional properties to include on the card.
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
-    package: botbuilder-core
-  - uid: botbuilder-core.CardFactory.audioCard
-    name: >-
+  - name: >-
       audioCard(string, string | MediaUrl[], string | CardAction[],
       Partial<AudioCard>)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-core.CardFactory.audioCard
+    package: botbuilder-core
     summary: Returns an attachment for an audio card.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function audioCard(title: string, media: string | MediaUrl[],
         buttons?: string | CardAction[], other?: Partial<AudioCard>)
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: The card title.
         - id: media
-          type:
-            - 'string | MediaUrl[]'
+          type: 'string | MediaUrl[]'
           description: The media URL for the card.
         - id: buttons
-          type:
-            - 'string | CardAction[]'
+          type: 'string | CardAction[]'
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
-          optional: true
         - id: other
-          type:
-            - Partial<AudioCard>
+          type: Partial&lt;AudioCard&gt;
           description: |
             Optional. Any additional properties to include on the card.
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
-    package: botbuilder-core
-  - uid: botbuilder-core.CardFactory.contentTypes
-    name: contentTypes
-    fullName: contentTypes
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Lists the content type schema for each card style.
-    syntax:
-      content: 'static contentTypes: any'
-      return:
-        type:
-          - any
-        description: ''
-    package: botbuilder-core
-  - uid: botbuilder-core.CardFactory.heroCard
-    name: >-
+  - name: >-
       heroCard(string, string | CardImage[], string | CardAction[],
       Partial<HeroCard>)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-core.CardFactory.heroCard
+    package: botbuilder-core
     summary: Returns an attachment for a hero card.
+    remarks: |-
+      Hero cards tend to have one dominant, full-width image.
+      Channels typically render the card's text and buttons below the image.
+
+      For example:
+      ```javascript
+      const card = CardFactory.heroCard(
+           'White T-Shirt',
+           ['https://example.com/whiteShirt.jpg'],
+           ['buy']
+      );
+      ```
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function heroCard(title: string, images?: string | CardImage[],
         buttons?: string | CardAction[], other?: Partial<HeroCard>)
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: The card title.
         - id: images
-          type:
-            - 'string | CardImage[]'
+          type: 'string | CardImage[]'
           description: >-
             Optional. The array of images to include on the card. Each element
             can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
-          optional: true
         - id: buttons
-          type:
-            - 'string | CardAction[]'
+          type: 'string | CardAction[]'
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
-          optional: true
         - id: other
-          type:
-            - Partial<HeroCard>
+          type: Partial&lt;HeroCard&gt;
           description: |
             Optional. Any additional properties to include on the card.
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
+  - name: >-
+      heroCard(string, string, string | CardImage[], string | CardAction[],
+      Partial<HeroCard>)
+    uid: botbuilder-core.CardFactory.heroCard_1
     package: botbuilder-core
+    summary: ''
     remarks: |-
       Hero cards tend to have one dominant, full-width image.
       Channels typically render the card's text and buttons below the image.
@@ -299,121 +252,70 @@ items:
            ['buy']
       );
       ```
-  - uid: botbuilder-core.CardFactory.heroCard_1
-    name: >-
-      heroCard(string, string, string | CardImage[], string | CardAction[],
-      Partial<HeroCard>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function heroCard(title: string, text: string, images?: string |
         CardImage[], buttons?: string | CardAction[], other?: Partial<HeroCard>)
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: ''
         - id: text
-          type:
-            - string
+          type: string
           description: ''
         - id: images
-          type:
-            - 'string | CardImage[]'
+          type: 'string | CardImage[]'
           description: ''
-          optional: true
         - id: buttons
-          type:
-            - 'string | CardAction[]'
+          type: 'string | CardAction[]'
           description: ''
-          optional: true
         - id: other
-          type:
-            - Partial<HeroCard>
+          type: Partial&lt;HeroCard&gt;
           description: ''
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
+  - name: 'images(string | CardImage[] | undefined)'
+    uid: botbuilder-core.CardFactory.images
     package: botbuilder-core
-    remarks: |-
-      Hero cards tend to have one dominant, full-width image.
-      Channels typically render the card's text and buttons below the image.
-
-      For example:
-      ```javascript
-      const card = CardFactory.heroCard(
-           'White T-Shirt',
-           ['https://example.com/whiteShirt.jpg'],
-           ['buy']
-      );
-      ```
-  - uid: botbuilder-core.CardFactory.images
-    name: 'images(string | CardImage[] | undefined)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns a properly formatted array of card images.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function images(images: string | CardImage[] | undefined)'
       parameters:
         - id: images
-          type:
-            - 'string | CardImage[] | undefined'
+          type: 'string | CardImage[] | undefined'
           description: |
             The array of images to include on the card. Each element can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
       return:
-        type:
-          - 'CardImage[]'
+        type: 'CardImage[]'
         description: ''
+  - name: 'media(string | MediaUrl[] | undefined)'
+    uid: botbuilder-core.CardFactory.media
     package: botbuilder-core
-  - uid: botbuilder-core.CardFactory.media
-    name: 'media(string | MediaUrl[] | undefined)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns a properly formatted array of media URL objects.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function media(links: string | MediaUrl[] | undefined)'
       parameters:
         - id: links
-          type:
-            - 'string | MediaUrl[] | undefined'
+          type: 'string | MediaUrl[] | undefined'
           description: |
             The media URLs. Each `string` is converted to a media URL object.
       return:
-        type:
-          - 'MediaUrl[]'
+        type: 'MediaUrl[]'
         description: ''
+  - name: o365ConnectorCard(O365ConnectorCard)
+    uid: botbuilder-core.CardFactory.o365ConnectorCard
     package: botbuilder-core
-  - uid: botbuilder-core.CardFactory.o365ConnectorCard
-    name: o365ConnectorCard(O365ConnectorCard)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns an attachment for an Office 365 connector card.
-    syntax:
-      content: 'static function o365ConnectorCard(card: O365ConnectorCard)'
-      parameters:
-        - id: card
-          type:
-            - O365ConnectorCard
-          description: |
-            a description of the Office 365 connector card to return.
-      return:
-        type:
-          - Attachment
-        description: ''
-    package: botbuilder-core
     remarks: |-
       For example:
       ```JavaScript
@@ -431,109 +333,108 @@ items:
         ]
       });
       ```
-  - uid: botbuilder-core.CardFactory.oauthCard
-    name: 'oauthCard(string, string, string, string, TokenExchangeResource)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function o365ConnectorCard(card: O365ConnectorCard)'
+      parameters:
+        - id: card
+          type: O365ConnectorCard
+          description: |
+            a description of the Office 365 connector card to return.
+      return:
+        type: Attachment
+        description: ''
+  - name: 'oauthCard(string, string, string, string, TokenExchangeResource)'
+    uid: botbuilder-core.CardFactory.oauthCard
+    package: botbuilder-core
     summary: Returns an attachment for an OAuth card.
+    remarks: OAuth cards support the Bot Framework's single sign on (SSO) service.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function oauthCard(connectionName: string, title: string, text?:
         string, link?: string, tokenExchangeResource?: TokenExchangeResource)
       parameters:
         - id: connectionName
-          type:
-            - string
+          type: string
           description: The name of the OAuth connection to use.
         - id: title
-          type:
-            - string
+          type: string
           description: The title for the card's sign-in button.
         - id: text
-          type:
-            - string
+          type: string
           description: Optional. Additional text to include on the card.
-          optional: true
         - id: link
-          type:
-            - string
+          type: string
           description: |
             Optional. The sign-in link to use.
-          optional: true
         - id: tokenExchangeResource
-          type:
-            - TokenExchangeResource
+          type: TokenExchangeResource
           description: ''
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
+  - name: receiptCard(ReceiptCard)
+    uid: botbuilder-core.CardFactory.receiptCard
     package: botbuilder-core
-    remarks: OAuth cards support the Bot Framework's single sign on (SSO) service.
-  - uid: botbuilder-core.CardFactory.receiptCard
-    name: receiptCard(ReceiptCard)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns an attachment for a receipt card.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function receiptCard(card: ReceiptCard)'
       parameters:
         - id: card
-          type:
-            - ReceiptCard
+          type: ReceiptCard
           description: |
             A description of the receipt card to return.
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
+  - name: 'signinCard(string, string, string)'
+    uid: botbuilder-core.CardFactory.signinCard
     package: botbuilder-core
-  - uid: botbuilder-core.CardFactory.signinCard
-    name: 'signinCard(string, string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns an attachment for a sign-in card.
+    remarks: >-
+      For channels that don't natively support sign-in cards, an alternative
+      message is rendered.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function signinCard(title: string, url: string, text?: string)'
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: The title for the card's sign-in button.
         - id: url
-          type:
-            - string
+          type: string
           description: The URL of the sign-in page to use.
         - id: text
-          type:
-            - string
+          type: string
           description: |
             Optional. Additional text to include on the card.
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
-    package: botbuilder-core
-    remarks: >-
-      For channels that don't natively support sign-in cards, an alternative
-      message is rendered.
-  - uid: botbuilder-core.CardFactory.thumbnailCard
-    name: >-
+  - name: >-
       thumbnailCard(string, string | CardImage[], string | CardAction[],
       Partial<ThumbnailCard>)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-core.CardFactory.thumbnailCard
+    package: botbuilder-core
     summary: Returns an attachment for a thumbnail card.
+    remarks: >-
+      Thumbnail cards are similar to hero cards but instead of a full width
+      image,
+
+      they're typically rendered with a smaller thumbnail version of the image.
+
+      Channels typically render the card's text to one side of the image,
+
+      with any buttons displayed below the card.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function thumbnailCard(title: string, images?: string |
@@ -541,36 +442,33 @@ items:
         Partial<ThumbnailCard>)
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: The card title.
         - id: images
-          type:
-            - 'string | CardImage[]'
+          type: 'string | CardImage[]'
           description: >-
             Optional. The array of images to include on the card. Each element
             can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
-          optional: true
         - id: buttons
-          type:
-            - 'string | CardAction[]'
+          type: 'string | CardAction[]'
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
-          optional: true
         - id: other
-          type:
-            - Partial<ThumbnailCard>
+          type: Partial&lt;ThumbnailCard&gt;
           description: |
             Optional. Any additional properties to include on the card.
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
+  - name: >-
+      thumbnailCard(string, string, string | CardImage[], string | CardAction[],
+      Partial<ThumbnailCard>)
+    uid: botbuilder-core.CardFactory.thumbnailCard_1
     package: botbuilder-core
+    summary: ''
     remarks: >-
       Thumbnail cards are similar to hero cards but instead of a full width
       image,
@@ -580,15 +478,8 @@ items:
       Channels typically render the card's text to one side of the image,
 
       with any buttons displayed below the card.
-  - uid: botbuilder-core.CardFactory.thumbnailCard_1
-    name: >-
-      thumbnailCard(string, string, string | CardImage[], string | CardAction[],
-      Partial<ThumbnailCard>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function thumbnailCard(title: string, text: string, images?:
@@ -596,80 +487,53 @@ items:
         Partial<ThumbnailCard>)
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: ''
         - id: text
-          type:
-            - string
+          type: string
           description: ''
         - id: images
-          type:
-            - 'string | CardImage[]'
+          type: 'string | CardImage[]'
           description: ''
-          optional: true
         - id: buttons
-          type:
-            - 'string | CardAction[]'
+          type: 'string | CardAction[]'
           description: ''
-          optional: true
         - id: other
-          type:
-            - Partial<ThumbnailCard>
+          type: Partial&lt;ThumbnailCard&gt;
           description: ''
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
-    package: botbuilder-core
-    remarks: >-
-      Thumbnail cards are similar to hero cards but instead of a full width
-      image,
-
-      they're typically rendered with a smaller thumbnail version of the image.
-
-      Channels typically render the card's text to one side of the image,
-
-      with any buttons displayed below the card.
-  - uid: botbuilder-core.CardFactory.videoCard
-    name: >-
+  - name: >-
       videoCard(string, string | MediaUrl[], string | CardAction[],
       Partial<VideoCard>)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-core.CardFactory.videoCard
+    package: botbuilder-core
     summary: Returns an attachment for a video card.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function videoCard(title: string, media: string | MediaUrl[],
         buttons?: string | CardAction[], other?: Partial<VideoCard>)
       parameters:
         - id: title
-          type:
-            - string
+          type: string
           description: The card title.
         - id: media
-          type:
-            - 'string | MediaUrl[]'
+          type: 'string | MediaUrl[]'
           description: The media URLs for the card.
         - id: buttons
-          type:
-            - 'string | CardAction[]'
+          type: 'string | CardAction[]'
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
-          optional: true
         - id: other
-          type:
-            - Partial<VideoCard>
+          type: Partial&lt;VideoCard&gt;
           description: |
             Optional. Any additional properties to include on the card.
-          optional: true
       return:
-        type:
-          - Attachment
+        type: Attachment
         description: ''
-    package: botbuilder-core

@@ -1,280 +1,232 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-azure.IMessage
-    name: IMessage
-    fullName: IMessage
-    children:
-      - botbuilder-azure.IMessage.address
-      - botbuilder-azure.IMessage.agent
-      - botbuilder-azure.IMessage.attachmentLayout
-      - botbuilder-azure.IMessage.attachments
-      - botbuilder-azure.IMessage.entities
-      - botbuilder-azure.IMessage.source
-      - botbuilder-azure.IMessage.sourceEvent
-      - botbuilder-azure.IMessage.summary
-      - botbuilder-azure.IMessage.text
-      - botbuilder-azure.IMessage.textFormat
-      - botbuilder-azure.IMessage.textLocale
-      - botbuilder-azure.IMessage.timestamp
-      - botbuilder-azure.IMessage.type
-      - botbuilder-azure.IMessage.user
-    langs:
-      - typeScript
-    type: interface
-    summary: >
-      A chat message sent between a User and a Bot. Messages from the bot to the
-      user come in two flavors:
+### YamlMime:TSType
+name: IMessage
+uid: botbuilder-azure.IMessage
+package: botbuilder-azure
+summary: >
+  A chat message sent between a User and a Bot. Messages from the bot to the
+  user come in two flavors:
 
-      * __reactive messages__ are messages sent from the Bot to the User as a
-      reply to an incoming message from the user.
+  * __reactive messages__ are messages sent from the Bot to the User as a reply
+  to an incoming message from the user.
 
-      * __proactive messages__ are messages sent from the Bot to the User in
-      response to some external event like an alarm triggering.
+  * __proactive messages__ are messages sent from the Bot to the User in
+  response to some external event like an alarm triggering.
 
 
-      In the reactive case the you should copy the [address](#address) field
-      from the incoming message to the outgoing message (if you use the
-      [Message](
-      /en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html)
-      builder class and initialize it with the
+  In the reactive case the you should copy the [address](#address) field from
+  the incoming message to the outgoing message (if you use the [Message](
+  /en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html)
+  builder class and initialize it with the
 
-      [session](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html)
-      this will happen automatically) and then set the [text](#text) or
-      [attachments](#attachments).  For proactive messages you’ll need save the
-      [address](#address) from the incoming message to
+  [session](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html)
+  this will happen automatically) and then set the [text](#text) or
+  [attachments](#attachments).  For proactive messages you’ll need save the
+  [address](#address) from the incoming message to
 
-      an external storage somewhere. You can then later pass this in to
-      [UniversalBot.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#begindialog)
-      or copy it to an outgoing message passed to
+  an external storage somewhere. You can then later pass this in to
+  [UniversalBot.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#begindialog)
+  or copy it to an outgoing message passed to
 
-      [UniversalBot.send()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#send).
+  [UniversalBot.send()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#send).
 
 
-      Composing a message to the user using the incoming address object will by
-      default send a reply to the user in the context of the current
-      conversation. Some channels allow for the starting of new conversations
-      with the user. To start a new proactive conversation with the user simply
-      delete
+  Composing a message to the user using the incoming address object will by
+  default send a reply to the user in the context of the current conversation.
+  Some channels allow for the starting of new conversations with the user. To
+  start a new proactive conversation with the user simply delete
 
-      the
-      [conversation](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html#conversation)
-      field from the address object before composing the outgoing message.
-    extends:
-      name: botbuilder-azure.IEvent
+  the
+  [conversation](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress.html#conversation)
+  field from the address object before composing the outgoing message.
+fullName: IMessage
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+  - name: address
+    uid: botbuilder-azure.IMessage.address
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.address
-    name: address
-    fullName: address
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       Address routing information for the event. Save this field to external
       storage somewhere to later compose a proactive message to the user.
+    fullName: address
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'address: IAddress'
       return:
-        type:
-          - botbuilder-azure.IAddress
+        type: <xref uid="botbuilder-azure.IAddress" />
         description: ''
+  - name: agent
+    uid: botbuilder-azure.IMessage.agent
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.agent
-    name: agent
-    fullName: agent
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: SDK thats processing the event. Will always be 'botbuilder'.
+    fullName: agent
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'agent: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: attachmentLayout
+    uid: botbuilder-azure.IMessage.attachmentLayout
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.attachmentLayout
-    name: attachmentLayout
-    fullName: attachmentLayout
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       Hint for how clients should layout multiple attachments. The default value
       is 'list'.
+    fullName: attachmentLayout
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'attachmentLayout: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: attachments
+    uid: botbuilder-azure.IMessage.attachments
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.attachments
-    name: attachments
-    fullName: attachments
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       For incoming messages contains attachments like images sent from the user.
       For outgoing messages contains objects like cards or images to send to the
       user.
+    fullName: attachments
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'attachments: IAttachment[]'
       return:
-        type:
-          - 'botbuilder-azure.IAttachment[]'
+        type: '<xref uid="botbuilder-azure.IAttachment" />[]'
         description: ''
+  - name: entities
+    uid: botbuilder-azure.IMessage.entities
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.entities
-    name: entities
-    fullName: entities
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Structured objects passed to the bot or user.
+    fullName: entities
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'entities: any[]'
       return:
-        type:
-          - 'any[]'
+        type: 'any[]'
         description: ''
+  - name: source
+    uid: botbuilder-azure.IMessage.source
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.source
-    name: source
-    fullName: source
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: 'The original source of the event (i.e. ''facebook'', ''skype'', ''slack'', etc.)'
+    fullName: source
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'source: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: sourceEvent
+    uid: botbuilder-azure.IMessage.sourceEvent
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.sourceEvent
-    name: sourceEvent
-    fullName: sourceEvent
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       The original event in the sources native schema. For outgoing messages can
       be used to pass source specific event data like custom attachments.
+    fullName: sourceEvent
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'sourceEvent: any'
       return:
-        type:
-          - any
+        type: any
         description: ''
+  - name: summary
+    uid: botbuilder-azure.IMessage.summary
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.summary
-    name: summary
-    fullName: summary
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       Text to be displayed by as fall-back and as short description of the
       message content in e.g. list of recent conversations.
+    fullName: summary
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'summary: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: text
+    uid: botbuilder-azure.IMessage.text
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.text
-    name: text
-    fullName: text
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Message text.
+    fullName: text
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'text: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: textFormat
+    uid: botbuilder-azure.IMessage.textFormat
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.textFormat
-    name: textFormat
-    fullName: textFormat
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Format of text fields. The default value is 'markdown'.
+    fullName: textFormat
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'textFormat: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: textLocale
+    uid: botbuilder-azure.IMessage.textLocale
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.textLocale
-    name: textLocale
-    fullName: textLocale
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Identified language of the message text if known.
+    fullName: textLocale
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'textLocale: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: timestamp
+    uid: botbuilder-azure.IMessage.timestamp
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.timestamp
-    name: timestamp
-    fullName: timestamp
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Timestamp of message given by chat service for incoming messages.
+    fullName: timestamp
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'timestamp: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: type
+    uid: botbuilder-azure.IMessage.type
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.type
-    name: type
-    fullName: type
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Defines type of event. Should be 'message' for an IMessage.
+    fullName: type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'type: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: user
+    uid: botbuilder-azure.IMessage.user
     package: botbuilder-azure
-  - uid: botbuilder-azure.IMessage.user
-    name: user
-    fullName: user
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       For incoming messages this is the user that sent the message. By default
       this is a copy of
@@ -283,37 +235,13 @@ items:
 
       [lookupUser](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html#lookupuser)
       function that lets map the incoming user to an internal user id.
+    fullName: user
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'user: IIdentity'
       return:
-        type:
-          - botbuilder-azure.IIdentity
+        type: <xref uid="botbuilder-azure.IIdentity" />
         description: ''
-    package: botbuilder-azure
-references:
-  - uid: botbuilder-azure.IEvent
-    name: IEvent
-    spec.typeScript:
-      - name: IEvent
-        fullName: IEvent
-        uid: botbuilder-azure.IEvent
-  - uid: botbuilder-azure.IAddress
-    name: IAddress
-    spec.typeScript:
-      - name: IAddress
-        fullName: IAddress
-        uid: botbuilder-azure.IAddress
-  - uid: 'botbuilder-azure.IAttachment[]'
-    name: 'IAttachment[]'
-    spec.typeScript:
-      - name: IAttachment
-        fullName: IAttachment
-        uid: botbuilder-azure.IAttachment
-      - name: '[]'
-        fullName: '[]'
-  - uid: botbuilder-azure.IIdentity
-    name: IIdentity
-    spec.typeScript:
-      - name: IIdentity
-        fullName: IIdentity
-        uid: botbuilder-azure.IIdentity
+extends: <xref uid="botbuilder-azure.IEvent" />

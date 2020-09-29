@@ -1,168 +1,156 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-ai.QnAMaker
-    name: QnAMaker
-    fullName: QnAMaker
-    children:
-      - botbuilder-ai.QnAMaker.answer
-      - botbuilder-ai.QnAMaker.callTrainAsync
-      - botbuilder-ai.QnAMaker.generateAnswer
-      - botbuilder-ai.QnAMaker.getAnswers
-      - botbuilder-ai.QnAMaker.getAnswersRaw
-      - botbuilder-ai.QnAMaker.getLowScoreVariation
-      - botbuilder-ai.QnAMaker.logPersonalInformation
-      - botbuilder-ai.QnAMaker.constructor
-      - botbuilder-ai.QnAMaker.telemetryClient
-    langs:
-      - typeScript
-    type: class
-    summary: Query a QnA Maker knowledge base for answers and provide feedbacks.
+### YamlMime:TSType
+name: QnAMaker
+uid: botbuilder-ai.QnAMaker
+package: botbuilder-ai
+summary: Query a QnA Maker knowledge base for answers and provide feedbacks.
+fullName: QnAMaker
+remarks: >-
+  This class is used to make queries to a single QnA Maker knowledge base and
+  return the result.
+
+
+  Use this to process incoming messages with the [getAnswers()](#getAnswers)
+  method.
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'QnAMaker(QnAMakerEndpoint, QnAMakerOptions, BotTelemetryClient, boolean)'
+    uid: botbuilder-ai.QnAMaker.constructor
     package: botbuilder-ai
-    remarks: >-
-      This class is used to make queries to a single QnA Maker knowledge base
-      and return the result.
-
-
-      Use this to process incoming messages with the [getAnswers()](#getAnswers)
-      method.
-  - uid: botbuilder-ai.QnAMaker.answer
-    name: answer(TurnContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Creates a new QnAMaker instance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new QnAMaker(endpoint: QnAMakerEndpoint, options: QnAMakerOptions,
+        telemetryClient?: BotTelemetryClient, logPersonalInformation?: boolean)
+      parameters:
+        - id: endpoint
+          type: <xref uid="botbuilder-ai.QnAMakerEndpoint" />
+          description: The endpoint of the knowledge base to query.
+        - id: options
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
+          description: (Optional) additional settings used to configure the instance.
+        - id: telemetryClient
+          type: BotTelemetryClient
+          description: The BotTelemetryClient used for logging telemetry events.
+        - id: logPersonalInformation
+          type: boolean
+          description: >
+            Set to true to include personally indentifiable information in
+            telemetry events.
+properties:
+  - name: logPersonalInformation
+    uid: botbuilder-ai.QnAMaker.logPersonalInformation
+    package: botbuilder-ai
+    summary: >-
+      Gets a value indicating whether determines whether to log personal
+      information that came from the user.
+    fullName: logPersonalInformation
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: boolean logPersonalInformation
+      return:
+        type: boolean
+        description: ''
+  - name: telemetryClient
+    uid: botbuilder-ai.QnAMaker.telemetryClient
+    package: botbuilder-ai
+    summary: Gets the currently configured botTelemetryClient that logs the events.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: BotTelemetryClient telemetryClient
+      return:
+        type: BotTelemetryClient
+        description: ''
+methods:
+  - name: answer(TurnContext)
+    uid: botbuilder-ai.QnAMaker.answer
+    package: botbuilder-ai
     summary: >-
       Calls [generateAnswer()](#generateanswer) and sends the resulting answer
       as a reply to the user.
-    syntax:
-      content: 'function answer(context: TurnContext)'
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: |
-            Context for the current turn of conversation with the user.
-      return:
-        type:
-          - Promise<boolean>
-        description: ''
-    package: botbuilder-ai
-    deprecated:
-      content: >-
-        Instead, favor using [QnAMaker.getAnswers()](#getAnswers) to generate
-        answers for a question.
     remarks: >-
       Returns a value of `true` if an answer was found and sent. If multiple
       answers are
 
       returned the first one will be delivered.
-  - uid: botbuilder-ai.QnAMaker.callTrainAsync
-    name: callTrainAsync(FeedbackRecords)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    isPreview: false
+    isDeprecated: true
+    customDeprecatedMessage: >-
+      Instead, favor using [QnAMaker.getAnswers()](#getAnswers) to generate
+      answers for a question.
+    syntax:
+      content: 'function answer(context: TurnContext)'
+      parameters:
+        - id: context
+          type: TurnContext
+          description: |
+            Context for the current turn of conversation with the user.
+      return:
+        type: Promise&lt;boolean&gt;
+        description: ''
+  - name: callTrainAsync(FeedbackRecords)
+    uid: botbuilder-ai.QnAMaker.callTrainAsync
+    package: botbuilder-ai
     summary: Send feedback to the knowledge base.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function callTrainAsync(feedbackRecords: FeedbackRecords)'
       parameters:
         - id: feedbackRecords
-          type:
-            - botbuilder-ai.FeedbackRecords
+          type: <xref uid="botbuilder-ai.FeedbackRecords" />
           description: |
             Feedback records.
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: 'generateAnswer(string | undefined, number, number)'
+    uid: botbuilder-ai.QnAMaker.generateAnswer
     package: botbuilder-ai
-  - uid: botbuilder-ai.QnAMaker.generateAnswer
-    name: 'generateAnswer(string | undefined, number, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Calls the QnA Maker service to generate answer(s) for a question.
+    remarks: >-
+      Returns an array of answers sorted by score with the top scoring answer
+      returned first.
+    isPreview: false
+    isDeprecated: true
+    customDeprecatedMessage: >-
+      Instead, favor using [QnAMaker.getAnswers()](#getAnswers) to generate
+      answers for a question.
     syntax:
       content: >-
         function generateAnswer(question: string | undefined, top?: number,
         scoreThreshold?: number)
       parameters:
         - id: question
-          type:
-            - string | undefined
+          type: string | undefined
           description: The question to answer.
         - id: top
-          type:
-            - number
+          type: number
           description: (Optional) number of answers to return. Defaults to a value of `1`.
-          optional: true
         - id: scoreThreshold
-          type:
-            - number
+          type: number
           description: >
             (Optional) minimum answer score needed to be considered a match to
             questions. Defaults to a value of `0.001`.
-          optional: true
       return:
-        type:
-          - 'Promise<botbuilder-ai.QnAMakerResult[]>'
+        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
         description: ''
-    package: botbuilder-ai
-    deprecated:
-      content: >-
-        Instead, favor using [QnAMaker.getAnswers()](#getAnswers) to generate
-        answers for a question.
-    remarks: >-
-      Returns an array of answers sorted by score with the top scoring answer
-      returned first.
-  - uid: botbuilder-ai.QnAMaker.getAnswers
-    name: >-
+  - name: >-
       getAnswers(TurnContext, QnAMakerOptions, [key: string]: string, [key:
       string]: number)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Calls the QnA Maker service to generate answer(s) for a question.
-    syntax:
-      content: >-
-        function getAnswers(context: TurnContext, options?: QnAMakerOptions,
-        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number)
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: >-
-            The Turn Context that contains the user question to be queried
-            against your knowledge base.
-        - id: options
-          type:
-            - botbuilder-ai.QnAMakerOptions
-          description: >-
-            (Optional) The options for the QnA Maker knowledge base. If null,
-            constructor option is used for this instance.
-          optional: true
-        - id: telemetryProperties
-          type:
-            - '[key: string]: string'
-          description: >-
-            Additional properties to be logged to telemetry with the QnaMessage
-            event.
-          optional: true
-        - id: telemetryMetrics
-          type:
-            - '[key: string]: number'
-          description: >
-            Additional metrics to be logged to telemetry with the QnaMessage
-            event.
-          optional: true
-      return:
-        type:
-          - 'Promise<botbuilder-ai.QnAMakerResult[]>'
-        description: ''
+    uid: botbuilder-ai.QnAMaker.getAnswers
     package: botbuilder-ai
+    summary: Calls the QnA Maker service to generate answer(s) for a question.
     remarks: >-
       Returns an array of answers sorted by score with the top scoring answer
       returned first.
@@ -172,15 +160,46 @@ items:
       [getAnswers()](#getAnswers) will also
 
       emit a trace activity that contains the QnA Maker results.
-  - uid: botbuilder-ai.QnAMaker.getAnswersRaw
-    name: >-
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getAnswers(context: TurnContext, options?: QnAMakerOptions,
+        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
+        string]: number)
+      parameters:
+        - id: context
+          type: TurnContext
+          description: >-
+            The Turn Context that contains the user question to be queried
+            against your knowledge base.
+        - id: options
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
+          description: >-
+            (Optional) The options for the QnA Maker knowledge base. If null,
+            constructor option is used for this instance.
+        - id: telemetryProperties
+          type: '[key: string]\: string'
+          description: >-
+            Additional properties to be logged to telemetry with the QnaMessage
+            event.
+        - id: telemetryMetrics
+          type: '[key: string]\: number'
+          description: >
+            Additional metrics to be logged to telemetry with the QnaMessage
+            event.
+      return:
+        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
+        description: ''
+  - name: >-
       getAnswersRaw(TurnContext, QnAMakerOptions, [key: string]: string, [key:
       string]: number)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-ai.QnAMaker.getAnswersRaw
+    package: botbuilder-ai
     summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function getAnswersRaw(context: TurnContext, options?: QnAMakerOptions,
@@ -188,160 +207,34 @@ items:
         string]: number)
       parameters:
         - id: context
-          type:
-            - TurnContext
+          type: TurnContext
           description: ''
         - id: options
-          type:
-            - botbuilder-ai.QnAMakerOptions
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
           description: ''
-          optional: true
         - id: telemetryProperties
-          type:
-            - '[key: string]: string'
+          type: '[key: string]\: string'
           description: ''
-          optional: true
         - id: telemetryMetrics
-          type:
-            - '[key: string]: number'
+          type: '[key: string]\: number'
           description: ''
-          optional: true
       return:
-        type:
-          - Promise<botbuilder-ai.QnAMakerResults>
+        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
         description: ''
+  - name: 'getLowScoreVariation(QnAMakerResult[])'
+    uid: botbuilder-ai.QnAMaker.getLowScoreVariation
     package: botbuilder-ai
-  - uid: botbuilder-ai.QnAMaker.getLowScoreVariation
-    name: 'getLowScoreVariation(QnAMakerResult[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Filters the ambiguous question for active learning.
+    remarks: Returns a filtered array of ambiguous question.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function getLowScoreVariation(queryResult: QnAMakerResult[])'
       parameters:
         - id: queryResult
-          type:
-            - 'botbuilder-ai.QnAMakerResult[]'
+          type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
           description: |
             User query output.
       return:
-        type:
-          - 'botbuilder-ai.QnAMakerResult[]'
+        type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
         description: ''
-    package: botbuilder-ai
-    remarks: Returns a filtered array of ambiguous question.
-  - uid: botbuilder-ai.QnAMaker.logPersonalInformation
-    name: logPersonalInformation
-    fullName: logPersonalInformation
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: >-
-      Gets a value indicating whether determines whether to log personal
-      information that came from the user.
-    syntax:
-      content: 'logPersonalInformation: boolean'
-      return:
-        type:
-          - boolean
-        description: ''
-    package: botbuilder-ai
-  - uid: botbuilder-ai.QnAMaker.constructor
-    name: 'QnAMaker(QnAMakerEndpoint, QnAMakerOptions, BotTelemetryClient, boolean)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: Creates a new QnAMaker instance.
-    syntax:
-      content: >-
-        new QnAMaker(endpoint: QnAMakerEndpoint, options?: QnAMakerOptions,
-        telemetryClient?: BotTelemetryClient, logPersonalInformation?: boolean)
-      parameters:
-        - id: endpoint
-          type:
-            - botbuilder-ai.QnAMakerEndpoint
-          description: The endpoint of the knowledge base to query.
-        - id: options
-          type:
-            - botbuilder-ai.QnAMakerOptions
-          description: (Optional) additional settings used to configure the instance.
-          optional: true
-        - id: telemetryClient
-          type:
-            - BotTelemetryClient
-          description: The BotTelemetryClient used for logging telemetry events.
-          optional: true
-        - id: logPersonalInformation
-          type:
-            - boolean
-          description: >
-            Set to true to include personally indentifiable information in
-            telemetry events.
-          optional: true
-    package: botbuilder-ai
-  - uid: botbuilder-ai.QnAMaker.telemetryClient
-    name: telemetryClient
-    fullName: telemetryClient
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets the currently configured botTelemetryClient that logs the events.
-    syntax:
-      content: 'telemetryClient: BotTelemetryClient'
-      return:
-        type:
-          - BotTelemetryClient
-        description: ''
-    package: botbuilder-ai
-references:
-  - uid: botbuilder-ai.QnAMakerEndpoint
-    name: QnAMakerEndpoint
-    spec.typeScript:
-      - name: QnAMakerEndpoint
-        fullName: QnAMakerEndpoint
-        uid: botbuilder-ai.QnAMakerEndpoint
-  - uid: botbuilder-ai.QnAMakerOptions
-    name: QnAMakerOptions
-    spec.typeScript:
-      - name: QnAMakerOptions
-        fullName: QnAMakerOptions
-        uid: botbuilder-ai.QnAMakerOptions
-  - uid: botbuilder-ai.FeedbackRecords
-    name: FeedbackRecords
-    spec.typeScript:
-      - name: FeedbackRecords
-        fullName: FeedbackRecords
-        uid: botbuilder-ai.FeedbackRecords
-  - uid: 'Promise<botbuilder-ai.QnAMakerResult[]>'
-    name: 'QnAMakerResult[]>'
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: QnAMakerResult
-        fullName: QnAMakerResult
-        uid: botbuilder-ai.QnAMakerResult
-      - name: '[]>'
-        fullName: '[]>'
-  - uid: Promise<botbuilder-ai.QnAMakerResults>
-    name: QnAMakerResults>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: QnAMakerResults
-        fullName: QnAMakerResults
-        uid: botbuilder-ai.QnAMakerResults
-      - name: '>'
-        fullName: '>'
-  - uid: 'botbuilder-ai.QnAMakerResult[]'
-    name: 'QnAMakerResult[]'
-    spec.typeScript:
-      - name: QnAMakerResult
-        fullName: QnAMakerResult
-        uid: botbuilder-ai.QnAMakerResult
-      - name: '[]'
-        fullName: '[]'

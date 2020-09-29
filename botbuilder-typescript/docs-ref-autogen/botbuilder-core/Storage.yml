@@ -1,65 +1,42 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.Storage
-    name: Storage
-    fullName: Storage
-    children:
-      - botbuilder-core.Storage.delete
-      - botbuilder-core.Storage.read
-      - botbuilder-core.Storage.write
-    langs:
-      - typeScript
-    type: interface
-    summary: >-
-      Interface for a storage provider that stores and retrieves plain old JSON
-      objects.
+### YamlMime:TSType
+name: Storage
+uid: botbuilder-core.Storage
+package: botbuilder-core
+summary: >-
+  Interface for a storage provider that stores and retrieves plain old JSON
+  objects.
+fullName: Storage
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+  - name: 'delete(string[])'
+    uid: botbuilder-core.Storage.delete
     package: botbuilder-core
-  - uid: botbuilder-core.Storage.delete
-    name: 'delete(string[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Removes store items from storage
-    syntax:
-      content: 'function delete(keys: string[])'
-      parameters:
-        - id: keys
-          type:
-            - 'string[]'
-          description: |
-            Array of item keys to remove from the store.
-      return:
-        type:
-          - Promise<void>
-        description: ''
-    package: botbuilder-core
     remarks: |-
       This example deletes an object from storage:
 
       ```JavaScript
       await storage.delete(['botState']);
       ```
-  - uid: botbuilder-core.Storage.read
-    name: 'read(string[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Loads store items from storage
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function read(keys: string[])'
+      content: 'function delete(keys: string[])'
       parameters:
         - id: keys
-          type:
-            - 'string[]'
+          type: 'string[]'
           description: |
-            Array of item keys to read from the store.
+            Array of item keys to remove from the store.
       return:
-        type:
-          - Promise<botbuilder-core.StoreItems>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: 'read(string[])'
+    uid: botbuilder-core.Storage.read
     package: botbuilder-core
+    summary: Loads store items from storage
     remarks: |-
       This example reads in a single object from storage:
 
@@ -67,26 +44,22 @@ items:
       const items = await storage.read(['botState']);
       const state = items['botState'] || {};
       ```
-  - uid: botbuilder-core.Storage.write
-    name: write(StoreItems)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Saves store items to storage.
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function write(changes: StoreItems)'
+      content: 'function read(keys: string[])'
       parameters:
-        - id: changes
-          type:
-            - botbuilder-core.StoreItems
+        - id: keys
+          type: 'string[]'
           description: |
-            Map of items to write to storage.
+            Array of item keys to read from the store.
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;<xref uid="botbuilder-core.StoreItems" />&gt;
         description: ''
+  - name: write(StoreItems)
+    uid: botbuilder-core.Storage.write
     package: botbuilder-core
+    summary: Saves store items to storage.
     remarks: |-
       This example writes an object to storage after its been modified:
 
@@ -94,20 +67,15 @@ items:
       state.topic = 'someTopic';
       await storage.write({ 'botState': state });
       ```
-references:
-  - uid: Promise<botbuilder-core.StoreItems>
-    name: StoreItems>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: StoreItems
-        fullName: StoreItems
-        uid: botbuilder-core.StoreItems
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder-core.StoreItems
-    name: StoreItems
-    spec.typeScript:
-      - name: StoreItems
-        fullName: StoreItems
-        uid: botbuilder-core.StoreItems
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function write(changes: StoreItems)'
+      parameters:
+        - id: changes
+          type: <xref uid="botbuilder-core.StoreItems" />
+          description: |
+            Map of items to write to storage.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''

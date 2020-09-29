@@ -1,114 +1,95 @@
-### YamlMime:UniversalReference
-items:
-  - uid: adaptive-expressions.NumericEvaluator
-    name: NumericEvaluator
-    fullName: NumericEvaluator
-    children:
-      - adaptive-expressions.NumericEvaluator.constructor
-      - adaptive-expressions.NumericEvaluator.returnType
-      - adaptive-expressions.NumericEvaluator.tryEvaluate
-      - adaptive-expressions.NumericEvaluator.type
-      - adaptive-expressions.NumericEvaluator.validateExpression
-    langs:
-      - typeScript
-    type: class
-    summary: Numeric operators that can have 1 or more args.
-    extends:
-      name: adaptive-expressions.ExpressionEvaluator
+### YamlMime:TSType
+name: NumericEvaluator
+uid: adaptive-expressions.NumericEvaluator
+package: adaptive-expressions
+summary: Numeric operators that can have 1 or more args.
+fullName: NumericEvaluator
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'NumericEvaluator(string, (args: any[]) => any)'
+    uid: adaptive-expressions.NumericEvaluator.constructor
     package: adaptive-expressions
-  - uid: adaptive-expressions.NumericEvaluator.constructor
-    name: 'NumericEvaluator(string, (args: any[]) => any)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
     summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'new NumericEvaluator(type: string, func: (args: any[]) => any)'
       parameters:
         - id: type
-          type:
-            - string
+          type: string
           description: ''
         - id: func
-          type:
-            - '(args: any[]) => any'
+          type: '(args: any[]) =&gt; any'
           description: ''
+properties:
+  - name: returnType
+    uid: adaptive-expressions.NumericEvaluator.returnType
     package: adaptive-expressions
-  - uid: adaptive-expressions.NumericEvaluator.returnType
-    name: returnType
-    fullName: returnType
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Type expected by evaluating the expression.
+    fullName: returnType
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'returnType: ReturnType'
+      content: 'public returnType: ReturnType'
       return:
-        type:
-          - adaptive-expressions.ReturnType
+        type: <xref uid="adaptive-expressions.ReturnType" />
         description: ''
+  - name: type
+    uid: adaptive-expressions.NumericEvaluator.type
     package: adaptive-expressions
-  - uid: adaptive-expressions.NumericEvaluator.tryEvaluate
-    name: tryEvaluate
-    fullName: tryEvaluate
-    children: []
-    langs:
-      - typeScript
-    type: property
+    summary: Gets the expression type for evaluator.
+    fullName: type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public type: string'
+      return:
+        type: string
+        description: ''
+methods:
+  - name: 'tryEvaluate(Expression, MemoryInterface, Options)'
+    uid: adaptive-expressions.NumericEvaluator.tryEvaluate
+    package: adaptive-expressions
     summary: Evaluate an expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
-        tryEvaluate: (expression: Expression, state: MemoryInterface, options:
-        Options) => ValueWithError
+        function tryEvaluate(expression: Expression, state: MemoryInterface,
+        options: Options)
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: Expression to evaluate.
+        - id: state
+          type: <xref uid="adaptive-expressions.MemoryInterface" />
+          description: |
+            Global state information.
+        - id: options
+          type: <xref uid="adaptive-expressions.Options" />
+          description: ''
       return:
-        type:
-          - >-
-            (expression: Expression, state: MemoryInterface, options: Options)
-            => ValueWithError
+        type: <xref uid="adaptive-expressions.ValueWithError" />
         description: ''
+  - name: validateExpression(Expression)
+    uid: adaptive-expressions.NumericEvaluator.validateExpression
     package: adaptive-expressions
-  - uid: adaptive-expressions.NumericEvaluator.type
-    name: type
-    fullName: type
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets the expression type for evaluator.
-    syntax:
-      content: 'type: string'
-      return:
-        type:
-          - string
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.NumericEvaluator.validateExpression
-    name: validateExpression
-    fullName: validateExpression
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Validate an expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'validateExpression: (expression: Expression) => void'
-      return:
-        type:
-          - '(expression: Expression) => void'
-        description: ''
-    package: adaptive-expressions
-references:
-  - uid: adaptive-expressions.ExpressionEvaluator
-    name: ExpressionEvaluator
-    spec.typeScript:
-      - name: ExpressionEvaluator
-        fullName: ExpressionEvaluator
-        uid: adaptive-expressions.ExpressionEvaluator
-  - uid: adaptive-expressions.ReturnType
-    name: ReturnType
-    spec.typeScript:
-      - name: ReturnType
-        fullName: ReturnType
-        uid: adaptive-expressions.ReturnType
+      content: 'function validateExpression(expression: Expression)'
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: |
+            Expression to validate.
+extends: <xref uid="adaptive-expressions.ExpressionEvaluator" />
