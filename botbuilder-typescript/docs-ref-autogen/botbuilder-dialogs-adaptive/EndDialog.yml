@@ -2,14 +2,16 @@
 name: EndDialog
 uid: botbuilder-dialogs-adaptive.EndDialog
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: >-
+  Command to end the current [Dialog](xref:botbuilder-dialogs.Dialog), returning
+  the `resultProperty` as the result of the dialog.
 fullName: EndDialog<O>
 remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: EndDialog()
+  - name: EndDialog(any)
     uid: botbuilder-dialogs-adaptive.EndDialog.constructor
     package: botbuilder-dialogs-adaptive
     summary: Creates a new `EndDialog` instance.
@@ -17,8 +19,27 @@ constructors:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: new EndDialog()
+      content: 'new EndDialog(value?: any)'
+      parameters:
+        - id: value
+          type: any
+          description: >
+            Optional, a value expression for the result to be returned to the
+            caller.
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.EndDialog.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.EndDialog"'
+      return:
+        type: string
+        description: ''
   - name: disabled
     uid: botbuilder-dialogs-adaptive.EndDialog.disabled
     package: botbuilder-dialogs-adaptive
@@ -28,7 +49,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'disabled?: BoolExpression'
+      content: 'public disabled?: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -53,9 +74,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs-adaptive.EndDialog.id
     package: botbuilder-dialogs-adaptive
-    summary: Unique ID of the dialog.
+    summary: Sets the unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -85,7 +106,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'value: ValueExpression'
+      content: 'public value: ValueExpression'
       return:
         type: ValueExpression
         description: ''
@@ -93,7 +114,9 @@ methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.EndDialog.beginDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
+      the dialog stack.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -102,14 +125,16 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: O
-          description: ''
+          description: Optional. Initial information to pass to the dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
-  - name: configure(object)
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.EndDialog.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
@@ -117,10 +142,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -213,6 +238,22 @@ methods:
             The reason the dialog is ending.
       return:
         type: Promise&lt;void&gt;
+        description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.EndDialog.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
         description: ''
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.EndDialog.getVersion

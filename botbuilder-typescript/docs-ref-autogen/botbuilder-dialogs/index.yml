@@ -14,6 +14,7 @@ interfaces:
   - botbuilder-dialogs.SortedValue
   - botbuilder-dialogs.ModelResult
   - botbuilder-dialogs.Token
+  - botbuilder-dialogs.Converter
   - botbuilder-dialogs.DialogConfiguration
   - botbuilder-dialogs.DialogEvent
   - botbuilder-dialogs.DialogInstance
@@ -30,7 +31,10 @@ interfaces:
   - botbuilder-dialogs.PromptRecognizerResult
   - botbuilder-dialogs.PromptValidatorContext
   - botbuilder-dialogs.PromptCultureModel
+  - botbuilder-dialogs.IntentMap
+  - botbuilder-dialogs.RecognizerConfiguration
   - botbuilder-dialogs.SkillDialogOptions
+  - botbuilder-dialogs.TemplateInterface
   - botbuilder-dialogs.WaterfallStepInfo
 classes:
   - botbuilder-dialogs.ChoiceFactory
@@ -39,6 +43,7 @@ classes:
   - botbuilder-dialogs.Dialog
   - botbuilder-dialogs.DialogContainer
   - botbuilder-dialogs.DialogContext
+  - botbuilder-dialogs.DialogContextError
   - botbuilder-dialogs.DialogEvents
   - botbuilder-dialogs.DialogManager
   - botbuilder-dialogs.DialogSet
@@ -56,6 +61,7 @@ classes:
   - botbuilder-dialogs.ClassMemoryScope
   - botbuilder-dialogs.ConversationMemoryScope
   - botbuilder-dialogs.DialogClassMemoryScope
+  - botbuilder-dialogs.DialogContextMemoryScope
   - botbuilder-dialogs.DialogMemoryScope
   - botbuilder-dialogs.MemoryScope
   - botbuilder-dialogs.SettingsMemoryScope
@@ -74,6 +80,7 @@ classes:
   - botbuilder-dialogs.Prompt
   - botbuilder-dialogs.PromptCultureModels
   - botbuilder-dialogs.TextPrompt
+  - botbuilder-dialogs.Recognizer
   - botbuilder-dialogs.SkillDialog
   - botbuilder-dialogs.WaterfallDialog
   - botbuilder-dialogs.WaterfallStepContext
@@ -302,7 +309,7 @@ functions:
   - name: getActiveDialogContext(DialogContext)
     uid: botbuilder-dialogs.getActiveDialogContext
     package: botbuilder-dialogs
-    summary: ''
+    summary: Recursively walk up the DC stack to find the active DC.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -311,14 +318,16 @@ functions:
       parameters:
         - id: dialogContext
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            (xref:botbuilder-dialogs.DialogContext) for the current turn of
+            conversation with the user.
       return:
         type: <xref uid="botbuilder-dialogs.DialogContext" />
-        description: ''
+        description: 'Active [DialogContext](xref:botbuilder-dialogs.DialogContext).'
   - name: isFromParentToSkill(TurnContext)
     uid: botbuilder-dialogs.isFromParentToSkill
     package: botbuilder-dialogs
-    summary: ''
+    summary: Determines if the skill is acting as a skill parent.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -327,14 +336,16 @@ functions:
       parameters:
         - id: context
           type: TurnContext
-          description: ''
+          description: >-
+            (xref:botbuilder-core.TurnContext) object for the current turn of
+            conversation with the user.
       return:
         type: boolean
-        description: ''
+        description: A boolean representing if the skill is acting as a skill parent.
   - name: 'runDialog(Dialog, TurnContext, StatePropertyAccessor<DialogState>)'
     uid: botbuilder-dialogs.runDialog
     package: botbuilder-dialogs
-    summary: ''
+    summary: Runs a dialog from a given context and accesor.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -345,15 +356,19 @@ functions:
       parameters:
         - id: dialog
           type: <xref uid="botbuilder-dialogs.Dialog" />
-          description: ''
+          description: 'The [Dialog](xref:botbuilder-dialogs.Dialog) to run.'
         - id: context
           type: TurnContext
-          description: ''
+          description: >-
+            (xref:botbuilder-core.TurnContext) object for the current turn of
+            conversation with the user.
         - id: accessor
           type: >-
             StatePropertyAccessor&lt;<xref uid="botbuilder-dialogs.DialogState"
             />&gt;
-          description: ''
+          description: >
+            Defined methods for accessing the state property created in a
+            BotState object.
       return:
         type: Promise&lt;void&gt;
         description: ''
@@ -379,8 +394,33 @@ functions:
       return:
         type: boolean
         description: ''
+  - name: 'createRecognizerResult(string, IntentMap, object)'
+    uid: botbuilder-dialogs.createRecognizerResult
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function createRecognizerResult(text: string, intents?: IntentMap,
+        entities?: object)
+      parameters:
+        - id: text
+          type: string
+          description: ''
+        - id: intents
+          type: <xref uid="botbuilder-dialogs.IntentMap" />
+          description: ''
+        - id: entities
+          type: object
+          description: ''
+      return:
+        type: RecognizerResult
+        description: ''
 typeAliases:
   - botbuilder-dialogs.TokenizerFunction
+  - botbuilder-dialogs.ConverterFactory
   - botbuilder-dialogs.PromptValidator
   - botbuilder-dialogs.WaterfallStep
 enums:

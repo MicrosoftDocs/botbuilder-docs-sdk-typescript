@@ -2,7 +2,9 @@
 name: RepeatDialog
 uid: botbuilder-dialogs-adaptive.RepeatDialog
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: >-
+  Action which repeats the active [Dialog](xref:botbuilder-dialogs.Dialog)
+  (restarting it).
 fullName: RepeatDialog<O>
 remarks: ''
 isPreview: false
@@ -12,13 +14,31 @@ constructors:
   - name: RepeatDialog()
     uid: botbuilder-dialogs-adaptive.RepeatDialog.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [RepeatDialog](xref:botbuilder-dialogs-adaptive.RepeatDialog) class.
+
+      Initializes a new instance of the
+      [RepeatDialog](xref:botbuilder-dialogs-adaptive.RepeatDialog) class.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: new RepeatDialog()
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.RepeatDialog.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.RepeatDialog"'
+      return:
+        type: string
+        description: ''
   - name: activityProcessed
     uid: botbuilder-dialogs-adaptive.RepeatDialog.activityProcessed
     package: botbuilder-dialogs-adaptive
@@ -30,7 +50,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'activityProcessed: BoolExpression'
+      content: 'public activityProcessed: BoolExpression = new BoolExpression(true)'
       return:
         type: BoolExpression
         description: ''
@@ -45,7 +65,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'allowLoop?: BoolExpression'
+      content: 'public allowLoop?: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -58,7 +78,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'dialog: DialogExpression'
+      content: 'public dialog: DialogExpression'
       return:
         type: <xref uid="botbuilder-dialogs-adaptive.DialogExpression" />
         description: ''
@@ -71,7 +91,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'disabled?: BoolExpression'
+      content: 'public disabled?: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -96,9 +116,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs-adaptive.RepeatDialog.id
     package: botbuilder-dialogs-adaptive
-    summary: Unique ID of the dialog.
+    summary: Sets the unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -115,7 +135,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'options: ObjectExpression<object>'
+      content: >-
+        public options: ObjectExpression<object> = new
+        ObjectExpression<object>()
       return:
         type: ObjectExpression&lt;object&gt;
         description: ''
@@ -136,7 +158,9 @@ methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.RepeatDialog.beginDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
+      the dialog stack.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -145,14 +169,16 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: O
-          description: ''
+          description: Optional. Initial information to pass to the dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
-  - name: configure(object)
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.RepeatDialog.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
@@ -160,10 +186,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -257,10 +283,29 @@ methods:
       return:
         type: Promise&lt;void&gt;
         description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.RepeatDialog.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
+        description: ''
   - name: getDependencies()
     uid: botbuilder-dialogs-adaptive.RepeatDialog.getDependencies
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Gets the child [Dialog](xref:botbuilder-dialogs.Dialog) dependencies so
+      they can be added to the containers
+      [Dialog](xref:botbuilder-dialogs.Dialog) set.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -268,7 +313,7 @@ methods:
       content: function getDependencies()
       return:
         type: 'Dialog&lt;__type&gt;[]'
-        description: ''
+        description: 'The child [Dialog](xref:botbuilder-dialogs.Dialog) dependencies.'
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.RepeatDialog.getVersion
     package: botbuilder-dialogs-adaptive

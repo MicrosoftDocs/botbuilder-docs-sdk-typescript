@@ -2,7 +2,7 @@
 name: Case
 uid: botbuilder-dialogs-adaptive.Case
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: Cases of action scope.
 fullName: Case<O>
 remarks: ''
 isPreview: false
@@ -12,19 +12,23 @@ constructors:
   - name: 'Case(string, Dialog[])'
     uid: botbuilder-dialogs-adaptive.Case.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [Case](xref:botbuilder-dialogs-adaptive.Case) class.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new Case(value?: string, actions?: Dialog[])'
+      content: 'new Case(value?: string, actions: Dialog[])'
       parameters:
         - id: value
           type: string
-          description: ''
+          description: Optional. Case's string value.
         - id: actions
           type: 'Dialog[]'
-          description: ''
+          description: >
+            Optional. Numerable list of [Dialog](xref:botbuilder-dialogs.Dialog)
+            actions.
 properties:
   - name: actions
     uid: botbuilder-dialogs-adaptive.Case.actions
@@ -35,7 +39,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'actions: Dialog[]'
+      content: 'public actions: Dialog[] = []'
       return:
         type: 'Dialog[]'
         description: ''
@@ -60,9 +64,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs-adaptive.Case.id
     package: botbuilder-dialogs-adaptive
-    summary: Unique ID of the dialog.
+    summary: Sets the unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -92,7 +96,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'value: string'
+      content: 'public value: string'
       return:
         type: string
         description: ''
@@ -100,7 +104,9 @@ methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.Case.beginDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is started and
+      pushed onto the dialog stack.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -109,14 +115,16 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: O
-          description: ''
+          description: Optional. Initial information to pass to the dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
-  - name: configure(object)
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.Case.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
@@ -124,10 +132,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -136,7 +144,11 @@ methods:
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.Case.continueDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is _continued_,
+      where it is the active dialog and the
+
+      user replies with a new activity.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -145,28 +157,12 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
-  - name: createValueExpression()
-    uid: botbuilder-dialogs-adaptive.Case.createValueExpression
-    package: botbuilder-dialogs-adaptive
-    summary: >-
-      Creates an expression that returns the value in its primitive type. Still
-
-      assumes that switch case values are compile time constants and not
-      expressions
-
-      that can be evaluated against state.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function createValueExpression()
-      return:
-        type: Expression
-        description: ''
+        description: A `Promise` representing the asynchronous operation.
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs-adaptive.Case.endDialog
     package: botbuilder-dialogs-adaptive
@@ -216,10 +212,29 @@ methods:
       return:
         type: Promise&lt;void&gt;
         description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.Case.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
+        description: ''
   - name: getDependencies()
     uid: botbuilder-dialogs-adaptive.Case.getDependencies
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Gets the child [Dialog](xref:botbuilder-dialogs.Dialog) dependencies so
+      they can be added to the containers
+      [Dialog](xref:botbuilder-dialogs.Dialog) set.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -227,11 +242,15 @@ methods:
       content: function getDependencies()
       return:
         type: 'Dialog[]'
-        description: ''
+        description: 'The child [Dialog](xref:botbuilder-dialogs.Dialog) dependencies.'
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.Case.getVersion
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Gets a unique `string` which represents the version of this dialog. If the
+      version
+
+      changes between turns the dialog system will emit a DialogChanged event.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -239,7 +258,9 @@ methods:
       content: function getVersion()
       return:
         type: string
-        description: ''
+        description: |-
+          Unique `string` which should only change when dialog has changed in a
+          way that should restart the dialog.
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs-adaptive.Case.onDialogEvent
     package: botbuilder-dialogs-adaptive
@@ -305,7 +326,9 @@ methods:
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs-adaptive.Case.resumeDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Called when a child [Dialog](xref:botbuilder-dialogs.Dialog) completed its
+      turn, returning control to this dialog.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -316,14 +339,20 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: _reason
           type: DialogReason
-          description: ''
+          description: >-
+            (xref:botbuilder-dialogs.DialogReason), reason why the dialog
+            resumed.
         - id: result
           type: any
-          description: ''
+          description: |-
+            Optional. Value returned from the dialog that was called. The type
+            of the value returned is dependent on the child dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
+        description: A `Promise` representing the asynchronous operation.
 extends: <xref uid="botbuilder-dialogs-adaptive.ActionScope" />

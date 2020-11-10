@@ -5,7 +5,7 @@ package: botbuilder-dialogs-adaptive
 summary: |-
   Defines a text template where the template expression is local aka "inline"
   and processed through registered language generator.
-fullName: TextTemplate
+fullName: TextTemplate<D>
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -35,25 +35,12 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'template: string'
+      content: 'public template: string'
       return:
         type: string
         description: ''
-  - name: toString
-    uid: botbuilder-dialogs-adaptive.TextTemplate.toString
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    fullName: toString
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'toString: () => string'
-      return:
-        type: () =&gt; string
-        description: ''
 methods:
-  - name: 'bind(DialogContext, object)'
+  - name: 'bind(DialogContext, D)'
     uid: botbuilder-dialogs-adaptive.TextTemplate.bind
     package: botbuilder-dialogs-adaptive
     summary: Bind data to template.
@@ -61,15 +48,27 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function bind(dialogContext: DialogContext, data: object)'
+      content: 'function bind(dialogContext: DialogContext, data: D)'
       parameters:
         - id: dialogContext
           type: DialogContext
           description: DialogContext.
         - id: data
-          type: object
+          type: D
           description: |
             Data to bind to.
       return:
         type: Promise&lt;string&gt;
+        description: ''
+  - name: toString()
+    uid: botbuilder-dialogs-adaptive.TextTemplate.toString
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function toString()
+      return:
+        type: string
         description: ''

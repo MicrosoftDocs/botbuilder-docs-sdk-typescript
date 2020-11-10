@@ -2,26 +2,19 @@
 name: LogAction
 uid: botbuilder-dialogs-adaptive.LogAction
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: Write entry into application trace logs.
 fullName: LogAction<O>
 remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: LogAction()
+  - name: LogAction(string)
     uid: botbuilder-dialogs-adaptive.LogAction.constructor
     package: botbuilder-dialogs-adaptive
-    summary: Creates a new `SendActivity` instance.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: new LogAction()
-  - name: LogAction(string)
-    uid: botbuilder-dialogs-adaptive.LogAction.constructor_1
-    package: botbuilder-dialogs-adaptive
-    summary: Creates a new `SendActivity` instance.
+    summary: >-
+      Creates a new [LogAction](xref:botbuilder-dialogs-adaptive.LogAction)
+      instance.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -30,8 +23,22 @@ constructors:
       parameters:
         - id: text
           type: string
-          description: ''
+          description: |
+            Optional. The text template to log.
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.LogAction.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.LogAction"'
+      return:
+        type: string
+        description: ''
   - name: disabled
     uid: botbuilder-dialogs-adaptive.LogAction.disabled
     package: botbuilder-dialogs-adaptive
@@ -41,7 +48,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'disabled?: BoolExpression'
+      content: 'public disabled?: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -66,9 +73,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs-adaptive.LogAction.id
     package: botbuilder-dialogs-adaptive
-    summary: Unique ID of the dialog.
+    summary: Sets the unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -85,7 +92,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'label: StringExpression'
+      content: 'public label: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -111,11 +118,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'text: TemplateInterface<string>'
+      content: 'public text: TemplateInterface<string, DialogStateManager>'
       return:
-        type: >-
-          <xref uid="botbuilder-dialogs-adaptive.TemplateInterface"
-          />&lt;string&gt;
+        type: 'TemplateInterface&lt;string, DialogStateManager&gt;'
         description: ''
   - name: traceActivity
     uid: botbuilder-dialogs-adaptive.LogAction.traceActivity
@@ -130,7 +135,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'traceActivity: BoolExpression'
+      content: 'public traceActivity: BoolExpression = new BoolExpression(false)'
       return:
         type: BoolExpression
         description: ''
@@ -138,7 +143,9 @@ methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.LogAction.beginDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
+      the dialog stack.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -147,14 +154,16 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: O
-          description: ''
+          description: Optional. Initial information to pass to the dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
-  - name: configure(object)
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.LogAction.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
@@ -162,10 +171,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -258,6 +267,22 @@ methods:
             The reason the dialog is ending.
       return:
         type: Promise&lt;void&gt;
+        description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.LogAction.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
         description: ''
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.LogAction.getVersion

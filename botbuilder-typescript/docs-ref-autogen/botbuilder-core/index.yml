@@ -16,12 +16,14 @@ classes:
   - botbuilder-core.BrowserLocalStorage
   - botbuilder-core.BrowserSessionStorage
   - botbuilder-core.CardFactory
+  - botbuilder-core.ComponentRegistration
   - botbuilder-core.ConversationState
   - botbuilder-core.MemoryStorage
   - botbuilder-core.MemoryTranscriptStore
   - botbuilder-core.MessageFactory
   - botbuilder-core.MiddlewareSet
   - botbuilder-core.PrivateConversationState
+  - botbuilder-core.RegisterClassMiddleware
   - botbuilder-core.ShowTypingMiddleware
   - botbuilder-core.SkillConversationIdFactoryBase
   - botbuilder-core.SkypeMentionNormalizeMiddleware
@@ -43,45 +45,46 @@ typeAliases:
   - botbuilder-core.DeleteActivityHandler
   - botbuilder-core.SendActivitiesHandler
   - botbuilder-core.UpdateActivityHandler
-interfaces:
-  - botbuilder-core.CachedBotState
-  - botbuilder-core.StatePropertyAccessor
-  - botbuilder-core.BotPageViewTelemetryClient
-  - botbuilder-core.BotTelemetryClient
-  - botbuilder-core.TelemetryDependency
-  - botbuilder-core.TelemetryEvent
-  - botbuilder-core.TelemetryException
-  - botbuilder-core.TelemetryPageView
-  - botbuilder-core.TelemetryTrace
-  - botbuilder-core.CoreAppCredentials
-  - botbuilder-core.ExtendedUserTokenProvider
-  - botbuilder-core.InvokeResponse
-  - botbuilder-core.Middleware
-  - botbuilder-core.PropertyManager
-  - botbuilder-core.RecognizerResult
-  - botbuilder-core.BotFrameworkClient
-  - botbuilder-core.BotFrameworkSkill
-  - botbuilder-core.SkillConversationIdFactoryOptions
-  - botbuilder-core.SkillConversationReference
-  - botbuilder-core.Storage
-  - botbuilder-core.StoreItem
-  - botbuilder-core.StoreItems
-  - botbuilder-core.PagedResult
-  - botbuilder-core.TranscriptInfo
-  - botbuilder-core.TranscriptLogger
-  - botbuilder-core.TranscriptStore
-  - botbuilder-core.IUserTokenProvider
-  - botbuilder-core.TokenPollingSettings
-enums:
-  - botbuilder-core.Severity
-  - botbuilder-core.StatusCodes
 functions:
+  - name: 'useBotState(BotAdapter, BotState[])'
+    uid: botbuilder-core.useBotState
+    package: botbuilder-core
+    summary: >-
+      Adds middleware to the adapter to register one or more BotState objects on
+      the turn context.
+
+      The middleware registers the state objects on the turn context at the
+      start of each turn.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function useBotState(botAdapter: BotAdapter, botStates: BotState[])'
+      parameters:
+        - id: botAdapter
+          type: <xref uid="botbuilder-core.BotAdapter" />
+          description: The adapter on which to register the state objects.
+        - id: botStates
+          type: '<xref uid="botbuilder-core.BotState" />[]'
+          description: |
+            The state objects to register.
+      return:
+        type: <xref uid="botbuilder-core.BotAdapter" />
+        description: ''
   - name: >-
       telemetryTrackDialogView(BotTelemetryClient, string, [key: string]: any,
       [key: string]: number)
     uid: botbuilder-core.telemetryTrackDialogView
     package: botbuilder-core
-    summary: ''
+    summary: >-
+      Logs a DialogView using the
+      [trackPageView](xref:botbuilder-core.BotTelemetryClient.trackPageView)
+      method on the
+      [BotTelemetryClient](xref:botbuilder-core.BotTelemetryClient) if
+      [BotPageViewTelemetryClient](xref:botbuilder-core.BotPageViewTelemetryClient)
+      has been implemented.
+
+      Alternatively logs the information out via TrackTrace.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -93,16 +96,19 @@ functions:
       parameters:
         - id: telemetryClient
           type: <xref uid="botbuilder-core.BotTelemetryClient" />
-          description: ''
+          description: >-
+            TelemetryClient that implements
+            [BotTelemetryClient](xref:botbuilder-core.BotTelemetryClient).
         - id: dialogName
           type: string
-          description: ''
+          description: Name of the dialog to log the entry / start for.
         - id: properties
           type: '[key: string]\: any'
-          description: ''
+          description: Named string values you can use to search and classify events.
         - id: metrics
           type: '[key: string]\: number'
-          description: ''
+          description: |
+            Measurements associated with this event.
   - name: getTopScoringIntent(RecognizerResult)
     uid: botbuilder-core.getTopScoringIntent
     package: botbuilder-core
@@ -161,3 +167,35 @@ functions:
       return:
         type: string
         description: ''
+interfaces:
+  - botbuilder-core.CachedBotState
+  - botbuilder-core.StatePropertyAccessor
+  - botbuilder-core.BotPageViewTelemetryClient
+  - botbuilder-core.BotTelemetryClient
+  - botbuilder-core.TelemetryDependency
+  - botbuilder-core.TelemetryEvent
+  - botbuilder-core.TelemetryException
+  - botbuilder-core.TelemetryPageView
+  - botbuilder-core.TelemetryTrace
+  - botbuilder-core.CoreAppCredentials
+  - botbuilder-core.ExtendedUserTokenProvider
+  - botbuilder-core.InvokeResponse
+  - botbuilder-core.Middleware
+  - botbuilder-core.PropertyManager
+  - botbuilder-core.RecognizerResult
+  - botbuilder-core.BotFrameworkClient
+  - botbuilder-core.BotFrameworkSkill
+  - botbuilder-core.SkillConversationIdFactoryOptions
+  - botbuilder-core.SkillConversationReference
+  - botbuilder-core.Storage
+  - botbuilder-core.StoreItem
+  - botbuilder-core.StoreItems
+  - botbuilder-core.PagedResult
+  - botbuilder-core.TranscriptInfo
+  - botbuilder-core.TranscriptLogger
+  - botbuilder-core.TranscriptStore
+  - botbuilder-core.IUserTokenProvider
+  - botbuilder-core.TokenPollingSettings
+enums:
+  - botbuilder-core.Severity
+  - botbuilder-core.StatusCodes

@@ -9,6 +9,19 @@ isPreview: false
 isDeprecated: false
 type: class
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.RandomSelector.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.RandomSelector"'
+      return:
+        type: string
+        description: ''
   - name: parser
     uid: botbuilder-dialogs-adaptive.RandomSelector.parser
     package: botbuilder-dialogs-adaptive
@@ -18,15 +31,48 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'parser: ExpressionParserInterface'
+      content: 'public parser: ExpressionParserInterface = new ExpressionParser()'
       return:
         type: ExpressionParserInterface
         description: ''
 methods:
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive.RandomSelector.configure
+    package: botbuilder-dialogs-adaptive
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>)'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        type: this
+        description: ''
+  - name: getConverter(string)
+    uid: botbuilder-dialogs-adaptive.RandomSelector.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        type: Converter | ConverterFactory
+        description: ''
   - name: 'initialize(OnCondition[], boolean)'
     uid: botbuilder-dialogs-adaptive.RandomSelector.initialize
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: Initialize the selector with the set of rules.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -35,14 +81,15 @@ methods:
       parameters:
         - id: conditionals
           type: '<xref uid="botbuilder-dialogs-adaptive.OnCondition" />[]'
-          description: ''
+          description: Possible rules to match.
         - id: evaluate
           type: boolean
-          description: ''
+          description: |
+            A boolean representing if rules should be evaluated on select.
   - name: select(ActionContext)
     uid: botbuilder-dialogs-adaptive.RandomSelector.select
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: Select the best rule to execute.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -51,7 +98,10 @@ methods:
       parameters:
         - id: actionContext
           type: <xref uid="botbuilder-dialogs-adaptive.ActionContext" />
-          description: ''
+          description: Dialog context for evaluation.
       return:
-        type: 'Promise&lt;number[]&gt;'
-        description: ''
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs-adaptive.OnCondition"
+          />[]&gt;
+        description: A Promise with a number array.
+extends: <xref uid="botbuilder-dialogs-adaptive.TriggerSelector" />

@@ -2,7 +2,7 @@
 name: HttpRequest
 uid: botbuilder-dialogs-adaptive.HttpRequest
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: Action for performing an `HttpRequest`.
 fullName: HttpRequest<O>
 remarks: ''
 isPreview: false
@@ -12,7 +12,15 @@ constructors:
   - name: HttpRequest()
     uid: botbuilder-dialogs-adaptive.HttpRequest.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [HttpRequest](xref:botbuilder-dialogs-adaptive.HttpRequest) class.
+
+      Initializes a new instance of the
+      [HttpRequest](xref:botbuilder-dialogs-adaptive.HttpRequest) class.
+
+      Initializes a new instance of the
+      [HttpRequest](xref:botbuilder-dialogs-adaptive.HttpRequest) class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -21,7 +29,9 @@ constructors:
   - name: 'HttpRequest(HttpMethod, string, [key: string]: string, any)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.constructor_1
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [HttpRequest](xref:botbuilder-dialogs-adaptive.HttpRequest) class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -32,17 +42,33 @@ constructors:
       parameters:
         - id: method
           type: <xref uid="botbuilder-dialogs-adaptive.HttpMethod" />
-          description: ''
+          description: >-
+            The [HttpMethod](xref:botbuilder-dialogs-adaptive.HttpMethod), for
+            example POST, GET, DELETE or PUT.
         - id: url
           type: string
-          description: ''
+          description: URL for the request.
         - id: headers
           type: '[key: string]\: string'
-          description: ''
+          description: The headers of the request.
         - id: body
           type: any
-          description: ''
+          description: |
+            The raw body of the request.
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.HttpRequest.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.HttpRequest"'
+      return:
+        type: string
+        description: ''
   - name: body
     uid: botbuilder-dialogs-adaptive.HttpRequest.body
     package: botbuilder-dialogs-adaptive
@@ -52,7 +78,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'body?: ValueExpression'
+      content: 'public body?: ValueExpression'
       return:
         type: ValueExpression
         description: ''
@@ -65,7 +91,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'contentType?: StringExpression'
+      content: >-
+        public contentType?: StringExpression = new
+        StringExpression('application/json')
       return:
         type: StringExpression
         description: ''
@@ -78,7 +106,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'disabled?: BoolExpression'
+      content: 'public disabled?: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -109,16 +137,16 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'headers?: [key: string]: StringExpression'
+      content: 'public headers?: [key: string]: StringExpression'
       return:
         type: '[key: string]\: StringExpression'
         description: ''
   - name: id
     uid: botbuilder-dialogs-adaptive.HttpRequest.id
     package: botbuilder-dialogs-adaptive
-    summary: Unique ID of the dialog.
+    summary: Sets the unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -135,7 +163,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'method?: HttpMethod'
+      content: 'public method?: HttpMethod = HttpMethod.GET'
       return:
         type: <xref uid="botbuilder-dialogs-adaptive.HttpMethod" />
         description: ''
@@ -148,7 +176,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'responseType?: EnumExpression<ResponsesTypes>'
+      content: >-
+        public responseType?: EnumExpression<ResponsesTypes> = new
+        EnumExpression<ResponsesTypes>(ResponsesTypes.Json)
       return:
         type: >-
           EnumExpression&lt;<xref
@@ -163,7 +193,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'resultProperty?: StringExpression'
+      content: 'public resultProperty?: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -189,7 +219,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'url?: StringExpression'
+      content: 'public url?: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -197,7 +227,9 @@ methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.beginDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
+      the dialog stack.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -206,14 +238,16 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: O
-          description: ''
+          description: Optional. Initial information to pass to the dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
-  - name: configure(object)
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
@@ -221,10 +255,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -317,6 +351,22 @@ methods:
             The reason the dialog is ending.
       return:
         type: Promise&lt;void&gt;
+        description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.HttpRequest.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
         description: ''
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.HttpRequest.getVersion

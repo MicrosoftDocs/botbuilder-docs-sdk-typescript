@@ -18,7 +18,7 @@ type: class
 constructors:
   - name: >-
       QnAMakerDialog(string, string, string, Activity, number, string, string,
-      number, Activity, QnAMakerMetadata[], string)
+      number, Activity, QnAMakerMetadata[], string, JoinOperator)
     uid: botbuilder-ai.QnAMakerDialog.constructor
     package: botbuilder-ai
     summary: >-
@@ -29,11 +29,11 @@ constructors:
     isDeprecated: false
     syntax:
       content: >-
-        new QnAMakerDialog(knowledgeBaseId: string, endpointKey: string,
-        hostName: string, noAnswer?: Activity, threshold: number,
+        new QnAMakerDialog(knowledgeBaseId?: string, endpointKey?: string,
+        hostname?: string, noAnswer?: Activity, threshold: number,
         activeLearningCardTitle: string, cardNoMatchText: string, top: number,
         cardNoMatchResponse?: Activity, strictFilters?: QnAMakerMetadata[],
-        dialogId: string)
+        dialogId: string, strictFiltersJoinOperator: JoinOperator)
       parameters:
         - id: knowledgeBaseId
           type: string
@@ -41,11 +41,9 @@ constructors:
         - id: endpointKey
           type: string
           description: The QnA Maker endpoint key to use to query the knowledge base.
-        - id: hostName
+        - id: hostname
           type: string
-          description: >-
-            The QnA Maker host URL for the knowledge base, starting with
-            "https://" and ending with "/qnamaker".
+          description: ''
         - id: noAnswer
           type: Activity
           description: >-
@@ -85,7 +83,66 @@ constructors:
           type: string
           description: |
             (Optional) Id of the created dialog. Default is 'QnAMakerDialog'.
+        - id: strictFiltersJoinOperator
+          type: <xref uid="botbuilder-ai.JoinOperator" />
+          description: ''
 properties:
+  - name: $kind
+    uid: botbuilder-ai.QnAMakerDialog.$kind
+    package: botbuilder-ai
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.QnAMakerDialog"'
+      return:
+        type: string
+        description: ''
+  - name: activeLearningCardTitle
+    uid: botbuilder-ai.QnAMakerDialog.activeLearningCardTitle
+    package: botbuilder-ai
+    summary: ''
+    fullName: activeLearningCardTitle
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public activeLearningCardTitle: StringExpression'
+      return:
+        type: StringExpression
+        description: ''
+  - name: cardNoMatchResponse
+    uid: botbuilder-ai.QnAMakerDialog.cardNoMatchResponse
+    package: botbuilder-ai
+    summary: ''
+    fullName: cardNoMatchResponse
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        public cardNoMatchResponse: TemplateInterface<Partial<Activity>,
+        DialogStateManager> = new BindToActivity(
+                MessageFactory.text(this.defaultCardNoMatchResponse) as Activity
+            )
+      return:
+        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
+        description: ''
+  - name: cardNoMatchText
+    uid: botbuilder-ai.QnAMakerDialog.cardNoMatchText
+    package: botbuilder-ai
+    summary: ''
+    fullName: cardNoMatchText
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public cardNoMatchText: StringExpression'
+      return:
+        type: StringExpression
+        description: ''
   - name: EndOfTurn
     uid: botbuilder-ai.QnAMakerDialog.EndOfTurn
     package: botbuilder-ai
@@ -104,18 +161,132 @@ properties:
       return:
         type: DialogTurnResult
         description: ''
+  - name: endpointKey
+    uid: botbuilder-ai.QnAMakerDialog.endpointKey
+    package: botbuilder-ai
+    summary: ''
+    fullName: endpointKey
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public endpointKey: StringExpression'
+      return:
+        type: StringExpression
+        description: ''
+  - name: hostname
+    uid: botbuilder-ai.QnAMakerDialog.hostname
+    package: botbuilder-ai
+    summary: ''
+    fullName: hostname
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public hostname: StringExpression'
+      return:
+        type: StringExpression
+        description: ''
   - name: id
     uid: botbuilder-ai.QnAMakerDialog.id
     package: botbuilder-ai
-    summary: Unique ID of the dialog.
+    summary: Sets the unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
       return:
         type: string
+        description: ''
+  - name: isTest
+    uid: botbuilder-ai.QnAMakerDialog.isTest
+    package: botbuilder-ai
+    summary: ''
+    fullName: isTest
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public isTest: boolean = false'
+      return:
+        type: boolean
+        description: ''
+  - name: knowledgeBaseId
+    uid: botbuilder-ai.QnAMakerDialog.knowledgeBaseId
+    package: botbuilder-ai
+    summary: ''
+    fullName: knowledgeBaseId
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public knowledgeBaseId: StringExpression'
+      return:
+        type: StringExpression
+        description: ''
+  - name: logPersonalInformation
+    uid: botbuilder-ai.QnAMakerDialog.logPersonalInformation
+    package: botbuilder-ai
+    summary: Log personal information flag.
+    fullName: logPersonalInformation
+    remarks: |-
+      Defauls to a value of `=settings.logPersonalInformation`, which retrieves
+      `logPersonalInformation` flag from settings.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        public logPersonalInformation: BoolExpression = new
+        BoolExpression('=settings.logPersonalInformation')
+      return:
+        type: BoolExpression
+        description: ''
+  - name: noAnswer
+    uid: botbuilder-ai.QnAMakerDialog.noAnswer
+    package: botbuilder-ai
+    summary: ''
+    fullName: noAnswer
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        public noAnswer: TemplateInterface<Partial<Activity>,
+        DialogStateManager> = new BindToActivity(
+                MessageFactory.text(this.defaultNoAnswer) as Activity
+            )
+      return:
+        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
+        description: ''
+  - name: rankerType
+    uid: botbuilder-ai.QnAMakerDialog.rankerType
+    package: botbuilder-ai
+    summary: ''
+    fullName: rankerType
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        public rankerType: EnumExpression<RankerTypes> = new
+        EnumExpression(RankerTypes.default)
+      return:
+        type: EnumExpression&lt;<xref uid="botbuilder-ai.RankerTypes" />&gt;
+        description: ''
+  - name: strictFilters
+    uid: botbuilder-ai.QnAMakerDialog.strictFilters
+    package: botbuilder-ai
+    summary: ''
+    fullName: strictFilters
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public strictFilters: ArrayExpression<QnAMakerMetadata>'
+      return:
+        type: ArrayExpression&lt;<xref uid="botbuilder-ai.QnAMakerMetadata" />&gt;
         description: ''
   - name: telemetryClient
     uid: botbuilder-ai.QnAMakerDialog.telemetryClient
@@ -129,6 +300,32 @@ properties:
       content: 'telemetryClient: BotTelemetryClient'
       return:
         type: BotTelemetryClient
+        description: ''
+  - name: threshold
+    uid: botbuilder-ai.QnAMakerDialog.threshold
+    package: botbuilder-ai
+    summary: ''
+    fullName: threshold
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public threshold: NumberExpression = new NumberExpression(0.3)'
+      return:
+        type: NumberExpression
+        description: ''
+  - name: top
+    uid: botbuilder-ai.QnAMakerDialog.top
+    package: botbuilder-ai
+    summary: ''
+    fullName: top
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public top: IntExpression = new IntExpression(3)'
+      return:
+        type: IntExpression
         description: ''
 methods:
   - name: addStep(WaterfallStep<O>)
@@ -235,7 +432,7 @@ methods:
       return:
         type: Promise&lt;DialogTurnResult&gt;
         description: ''
-  - name: configure(object)
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-ai.QnAMakerDialog.configure
     package: botbuilder-ai
     summary: Fluent method for configuring the object.
@@ -243,10 +440,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -255,8 +452,19 @@ methods:
   - name: continueDialog(DialogContext)
     uid: botbuilder-ai.QnAMakerDialog.continueDialog
     package: botbuilder-ai
-    summary: ''
-    remarks: ''
+    summary: >-
+      Called when the [WaterfallDialog](xref:botbuilder-dialogs.WaterfallDialog)
+      is _continued_, where it is the active dialog and the
+
+      user replies with a new [Activity](xref:botframework-schema.Activity).
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog. The result may
+      also contain a
+
+      return value.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -264,10 +472,12 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
+        description: A Promise representing the asynchronous operation.
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-ai.QnAMakerDialog.endDialog
     package: botbuilder-ai
@@ -293,10 +503,26 @@ methods:
       return:
         type: Promise&lt;void&gt;
         description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-ai.QnAMakerDialog.getConverter
+    package: botbuilder-ai
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
+        description: ''
   - name: getVersion()
     uid: botbuilder-ai.QnAMakerDialog.getVersion
     package: botbuilder-ai
-    summary: ''
+    summary: 'Gets the dialog version, composed of the ID and number of steps.'
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -304,7 +530,7 @@ methods:
       content: function getVersion()
       return:
         type: string
-        description: ''
+        description: 'Dialog version, composed of the ID and number of steps.'
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-ai.QnAMakerDialog.onDialogEvent
     package: botbuilder-ai
@@ -370,7 +596,10 @@ methods:
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-ai.QnAMakerDialog.resumeDialog
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Called when a child
+      [WaterfallDialog](xref:botbuilder-dialogs.WaterfallDialog) completed its
+      turn, returning control to this dialog.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -381,14 +610,18 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of the conversation.
         - id: reason
           type: DialogReason
-          description: ''
+          description: '(xref:botbuilder-dialogs.DialogReason) why the dialog resumed.'
         - id: result
           type: any
-          description: ''
+          description: |-
+            Optional, value returned from the dialog that was called. The type
+            of the value returned is dependent on the child dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
+        description: A Promise representing the asynchronous operation.
 extends: WaterfallDialog

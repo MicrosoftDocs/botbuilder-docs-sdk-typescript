@@ -41,7 +41,9 @@ constructors:
     summary: >-
       Creates an new instance of the
       [DialogContext](xref:botbuilder-dialogs.DialogContext) class.
-    remarks: Passing in a dialog context instance will clone the dialog context.
+    remarks: >-
+      Passing in a [DialogContext](xref:botbuilder-dialogs.DialogContext)
+      instance will clone the dialog context.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -51,21 +53,28 @@ constructors:
       parameters:
         - id: dialogs
           type: <xref uid="botbuilder-dialogs.DialogSet" />
-          description: The dialog set for which to create the dialog context.
+          description: >-
+            The [DialogSet](xref:botbuilder-dialogs.DialogSet) for which to
+            create the dialog context.
         - id: contextOrDC
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: The context object for the current turn of the bot.
+          description: >-
+            The [TurnContext](xref:botbuilder-core.TurnContext) object for the
+            current turn of the bot.
         - id: state
           type: <xref uid="botbuilder-dialogs.DialogState" />
-          description: |
-            The state object to use to read and write dialog state to storage.
+          description: >-
+            The state object to use to read and write
+            [DialogState](xref:botbuilder-dialogs.DialogState) to storage.
   - name: 'DialogContext(DialogSet, TurnContext, DialogState)'
     uid: botbuilder-dialogs.DialogContext.constructor
     package: botbuilder-dialogs
     summary: >-
       Creates an new instance of the
       [DialogContext](xref:botbuilder-dialogs.DialogContext) class.
-    remarks: Passing in a dialog context instance will clone the dialog context.
+    remarks: >-
+      Passing in a [DialogContext](xref:botbuilder-dialogs.DialogContext)
+      instance will clone the dialog context.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -75,14 +84,19 @@ constructors:
       parameters:
         - id: dialogs
           type: <xref uid="botbuilder-dialogs.DialogSet" />
-          description: The dialog set for which to create the dialog context.
+          description: >-
+            The [DialogSet](xref:botbuilder-dialogs.DialogSet) for which to
+            create the dialog context.
         - id: contextOrDC
           type: TurnContext
-          description: The context object for the current turn of the bot.
+          description: >-
+            The [TurnContext](xref:botbuilder-core.TurnContext) object for the
+            current turn of the bot.
         - id: state
           type: <xref uid="botbuilder-dialogs.DialogState" />
-          description: |
-            The state object to use to read and write dialog state to storage.
+          description: >-
+            The state object to use to read and write
+            [DialogState](xref:botbuilder-dialogs.DialogState) to storage.
 properties:
   - name: activeDialog
     uid: botbuilder-dialogs.DialogContext.activeDialog
@@ -507,6 +521,18 @@ methods:
       return:
         type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
         description: ''
+  - name: getLocale()
+    uid: botbuilder-dialogs.DialogContext.getLocale
+    package: botbuilder-dialogs
+    summary: Obtain the CultureInfo in DialogContext.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getLocale()
+      return:
+        type: string
+        description: a locale string.
   - name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
     uid: botbuilder-dialogs.DialogContext.prompt
     package: botbuilder-dialogs
@@ -517,8 +543,7 @@ methods:
       This helper method formats the object to use as the `options` parameter,
       and then calls
 
-      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
-      the specified prompt dialog.
+      beginDialog to start the specified prompt dialog.
 
 
       ```JavaScript
@@ -541,10 +566,11 @@ methods:
           type: >-
             string | Partial&lt;Activity&gt; | <xref
             uid="botbuilder-dialogs.PromptOptions" />
-          description: |-
+          description: >-
             The text of the initial prompt to send the user,
-                 the activity to send as the initial prompt, or
-                 the object with which to format the prompt dialog.
+
+            or the [Activity](xref:botframework-schema.Activity) to send as the
+            initial prompt.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
@@ -553,13 +579,14 @@ methods:
       Choice[])
     uid: botbuilder-dialogs.DialogContext.prompt_1
     package: botbuilder-dialogs
-    summary: ''
+    summary: >-
+      Helper function to simplify formatting the options for calling a prompt
+      dialog.
     remarks: >-
       This helper method formats the object to use as the `options` parameter,
       and then calls
 
-      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
-      the specified prompt dialog.
+      beginDialog to start the specified prompt dialog.
 
 
       ```JavaScript
@@ -577,15 +604,21 @@ methods:
       parameters:
         - id: dialogId
           type: string
-          description: ''
+          description: ID of the prompt dialog to start.
         - id: promptOrOptions
           type: >-
             string | Partial&lt;Activity&gt; | <xref
             uid="botbuilder-dialogs.PromptOptions" />
-          description: ''
+          description: >-
+            The text of the initial prompt to send the user,
+
+            or the [Activity](xref:botframework-schema.Activity) to send as the
+            initial prompt.
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
-          description: ''
+          description: |-
+            Optional. Array of choices for the user to choose from,
+            for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''

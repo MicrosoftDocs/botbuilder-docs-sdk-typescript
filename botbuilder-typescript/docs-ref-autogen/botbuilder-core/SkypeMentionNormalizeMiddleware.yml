@@ -24,7 +24,7 @@ methods:
   - name: normalizeSkypeMentionText(Activity)
     uid: botbuilder-core.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
     package: botbuilder-core
-    summary: ''
+    summary: Performs the normalization of Skype mention Entities.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -33,11 +33,17 @@ methods:
       parameters:
         - id: activity
           type: Activity
-          description: ''
+          description: >
+            (xref:botframework-schema.Activity) containing the mentions to
+            normalize.
   - name: 'onTurn(TurnContext, () => Promise<void>)'
     uid: botbuilder-core.SkypeMentionNormalizeMiddleware.onTurn
     package: botbuilder-core
-    summary: ''
+    summary: >-
+      Middleware implementation which corrects the Entity text of type
+      [Mention](xref:botframework-schema.Mention) to a value that
+      [removeMentionText](xref:botbuilder-core.TurnContext.removeMentionText)
+      can work with.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -46,10 +52,13 @@ methods:
       parameters:
         - id: turnContext
           type: <xref uid="botbuilder-core.TurnContext" />
-          description: ''
+          description: >-
+            (xref:botbuilder-core.TurnContext) for the current turn of
+            conversation.
         - id: next
           type: () =&gt; Promise&lt;void&gt;
-          description: ''
+          description: |
+            Delegate to call to continue the bot middleware pipeline.
       return:
         type: Promise&lt;void&gt;
         description: ''

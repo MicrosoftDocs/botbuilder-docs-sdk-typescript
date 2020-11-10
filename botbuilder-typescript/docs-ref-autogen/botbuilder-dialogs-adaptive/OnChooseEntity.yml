@@ -12,28 +12,47 @@ constructors:
   - name: 'OnChooseEntity(string, string, Dialog[], string)'
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [OnChooseEntity](xref:botbuilder-dialogs-adaptive.OnChooseEntity) class.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        new OnChooseEntity(property?: string, entity?: string, actions?:
+        new OnChooseEntity(property?: string, entity?: string, actions:
         Dialog[], condition?: string)
       parameters:
         - id: property
           type: string
-          description: ''
+          description: Optional. Property to be assigned for filtering events.
         - id: entity
           type: string
-          description: ''
+          description: Optional. Entity name being assigned for filtering events.
         - id: actions
           type: 'Dialog[]'
-          description: ''
+          description: >-
+            Optional. A [Dialog](xref:botbuilder-dialogs.Dialog) list containing
+            the actions to add to the plan when the rule constraints are met.
         - id: condition
           type: string
-          description: ''
+          description: >
+            Optional. Condition which needs to be met for the actions to be
+            executed.
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.OnChooseEntity.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.OnChooseEntity"'
+      return:
+        type: string
+        description: ''
   - name: actions
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.actions
     package: botbuilder-dialogs-adaptive
@@ -45,7 +64,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'actions: Dialog[]'
+      content: 'public actions: Dialog[] = []'
       return:
         type: 'Dialog[]'
         description: ''
@@ -60,7 +79,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'condition: BoolExpression'
+      content: 'public condition: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -73,7 +92,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'entity: string'
+      content: 'public entity: string'
       return:
         type: string
         description: ''
@@ -86,7 +105,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'event: string'
+      content: 'public event: string'
       return:
         type: string
         description: ''
@@ -99,7 +118,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'id: string'
+      content: 'public id: string'
       return:
         type: string
         description: ''
@@ -114,7 +133,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'priority: IntExpression'
+      content: 'public priority: IntExpression = new IntExpression(0)'
       return:
         type: IntExpression
         description: ''
@@ -127,7 +146,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'property: string'
+      content: 'public property: string'
       return:
         type: string
         description: ''
@@ -142,7 +161,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'runOnce: boolean'
+      content: 'public runOnce: boolean'
       return:
         type: boolean
         description: ''
@@ -162,6 +181,23 @@ methods:
           description: >
             External constraint to add, it will be AND'ed to all other
             constraints.
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive.OnChooseEntity.configure
+    package: botbuilder-dialogs-adaptive
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>)'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        type: this
+        description: ''
   - name: currentPriority(ActionContext)
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.currentPriority
     package: botbuilder-dialogs-adaptive
@@ -196,6 +232,22 @@ methods:
           Promise&lt;<xref uid="botbuilder-dialogs-adaptive.ActionChangeList"
           />[]&gt;
         description: A promise with plan change list.
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.OnChooseEntity.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
+        description: ''
   - name: getDependencies()
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.getDependencies
     package: botbuilder-dialogs-adaptive
@@ -213,7 +265,7 @@ methods:
   - name: getExpression(ExpressionParserInterface)
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.getExpression
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: Get the expression for this rule.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -222,8 +274,12 @@ methods:
       parameters:
         - id: parser
           type: ExpressionParserInterface
-          description: ''
+          description: >-
+            (xref:adaptive-expressions.ExpressionParserInterface) used to parse
+            a string into an [Expression](xref:adaptive-expressions.Expression).
       return:
         type: Expression
-        description: ''
+        description: >-
+          (xref:adaptive-expressions.Expression) which will be cached and used
+          to evaluate this rule.
 extends: <xref uid="botbuilder-dialogs-adaptive.OnDialogEvent" />

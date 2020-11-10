@@ -2,9 +2,21 @@
 name: TeamsActivityHandler
 uid: botbuilder.TeamsActivityHandler
 package: botbuilder
-summary: ''
+summary: Adds support for Microsoft Teams specific events and interactions.
 fullName: TeamsActivityHandler
-remarks: ''
+remarks: >-
+  Developers may handle Conversation Update activities sent from Microsoft Teams
+  via two methods:
+   1. Overriding methods starting with `on..` and *not* ending in `..Event()` (e.g. `onTeamsMembersAdded()`), or instead
+   2. Passing callbacks to methods starting with `on..` *and* ending in `...Event()` (e.g. `onTeamsMembersAddedEvent()`),
+       to stay in line with older <xref:ActivityHandler> implementation.
+
+  Developers should use either #1 or #2, above for all Conversation Update
+  activities and not *both* #2 and #3 for the same activity. Meaning,
+    developers should override `onTeamsMembersAdded()` and not use both `onTeamsMembersAdded()` and `onTeamsMembersAddedEvent()`.
+
+  Developers wanting to handle Invoke activities *must* override methods
+  starting with `handle...()` (e.g. `handleTeamsTaskModuleFetch()`).
 isPreview: false
 isDeprecated: false
 type: class
@@ -456,8 +468,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsChannelCreatedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a channel is
-      created.
+      Registers a handler for TeamsChannelCreated events, such as for when a
+      channel is created.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -481,8 +493,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsChannelDeletedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a channel is
-      deleted.
+      Registers a handler for TeamsChannelDeleted events, such as for when a
+      channel is deleted.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -506,8 +518,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsChannelRenamedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a channel is
-      renamed.
+      Registers a handler for TeamsChannelRenamed events, such as for when a
+      channel is renamed.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -531,8 +543,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsChannelRestoredEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a channel is
-      restored.
+      Registers a handler for TeamsChannelRestored events, such as for when a
+      channel is restored.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -557,8 +569,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsMembersAddedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when members other
-      than the bot
+      Registers a handler for TeamsMembersAdded events, such as for when members
+      other than the bot
 
       join the channel, such as your bot's welcome logic.
     remarks: ''
@@ -586,8 +598,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsMembersRemovedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when members other
-      than the bot
+      Registers a handler for TeamsMembersRemoved events, such as for when
+      members other than the bot
 
       leave the channel, such as your bot's good-bye logic.
     remarks: ''
@@ -614,8 +626,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsTeamArchivedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a team is
-      archived.
+      Registers a handler for TeamsTeamArchived events, such as for when a team
+      is archived.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -638,8 +650,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsTeamDeletedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a team is
-      deleted.
+      Registers a handler for TeamsTeamDeleted events, such as for when a team
+      is deleted.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -662,8 +674,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsTeamHardDeletedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a team is
-      hard-deleted.
+      Registers a handler for TeamsTeamHardDeleted events, such as for when a
+      team is hard-deleted.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -686,8 +698,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsTeamRenamedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a team is
-      renamed.
+      Registers a handler for TeamsTeamRenamed events, such as for when a team
+      is renamed.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -710,8 +722,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsTeamRestoredEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a team is
-      restored.
+      Registers a handler for TeamsTeamRestored events, such as for when a team
+      is restored.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -734,8 +746,8 @@ methods:
     uid: botbuilder.TeamsActivityHandler.onTeamsTeamUnarchivedEvent
     package: botbuilder
     summary: >-
-      Override this in a derived class to provide logic for when a team is
-      unarchived.
+      Registers a handler for TeamsTeamUnarchived events, such as for when a
+      team is unarchived.
     remarks: ''
     isPreview: false
     isDeprecated: false

@@ -2,7 +2,10 @@
 name: EntityRecognizerSet
 uid: botbuilder-dialogs-adaptive.EntityRecognizerSet
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: >-
+  EntityRecognizerSet - Implements a workflow against a pool of
+  [EntityRecognizer](xref:botbuilder-dialogs-adaptive.EntityRecognizer)
+  instances, iterating until nobody has anything new to add.
 fullName: EntityRecognizerSet
 remarks: ''
 isPreview: false
@@ -553,30 +556,38 @@ methods:
   - name: 'recognizeEntities(DialogContext, string, string, Entity[])'
     uid: botbuilder-dialogs-adaptive.EntityRecognizerSet.recognizeEntities
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Implement
+      [EntityRecognizer.recognizeEntities](xref:botbuilder-dialogs-adaptive.EntityRecognizer.recognizeEntities)
+      by iterating against the Recognizer pool.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function recognizeEntities(dialogContext: DialogContext, text: string,
-        locale: string, entities?: Entity[])
+        locale: string, entities: Entity[])
       parameters:
         - id: dialogContext
           type: DialogContext
-          description: ''
+          description: >-
+            (xref:botbuilder-dialogs.DialogContext) for the current turn of
+            conversation.
         - id: text
           type: string
-          description: ''
+          description: Text to recognize.
         - id: locale
           type: string
-          description: ''
+          description: Locale to use.
         - id: entities
           type: 'Entity[]'
-          description: ''
+          description: >-
+            The [Entity](xref:botframework-schema.Entity) array to be
+            recognized. If no entities are passed in, it will generate a
+            [TextEntity](xref:botbuilder-dialogs-adaptive.TextEntity).
       return:
         type: 'Promise&lt;Entity[]&gt;'
-        description: ''
+        description: 'Recognized [Entity](xref:botframework-schema.Entity) list Promise.'
   - name: >-
       reduce((previousValue: EntityRecognizer, currentValue: EntityRecognizer,
       currentIndex: number, array: EntityRecognizer[]) => EntityRecognizer)

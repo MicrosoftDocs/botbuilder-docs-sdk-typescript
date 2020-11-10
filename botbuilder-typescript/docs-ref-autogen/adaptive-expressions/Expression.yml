@@ -52,6 +52,19 @@ properties:
       return:
         type: '<xref uid="adaptive-expressions.Expression" />[]'
         description: ''
+  - name: evaluator
+    uid: adaptive-expressions.Expression.evaluator
+    package: adaptive-expressions
+    summary: Evaluator of expression.
+    fullName: evaluator
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public evaluator: ExpressionEvaluator'
+      return:
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
+        description: ''
   - name: functions
     uid: adaptive-expressions.Expression.functions
     package: adaptive-expressions
@@ -185,7 +198,10 @@ methods:
   - name: lookup(string)
     uid: adaptive-expressions.Expression.lookup
     package: adaptive-expressions
-    summary: Lookup a ExpressionEvaluator (function) by name.
+    summary: >-
+      Lookup an
+      [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+      function by name.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -194,10 +210,13 @@ methods:
       parameters:
         - id: functionName
           type: string
-          description: name of function to lookup
+          description: Name of function to lookup.
       return:
         type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
-        description: a ExpressionEvaluator that corresponding to the funtion name
+        description: >-
+          An
+          [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+          corresponding to the function name.
   - name: 'makeExpression(string, ExpressionEvaluator, Expression[])'
     uid: adaptive-expressions.Expression.makeExpression
     package: adaptive-expressions
@@ -212,7 +231,7 @@ methods:
       parameters:
         - id: type
           type: string
-          description: Type of expression from ExpressionType
+          description: Type of expression from ExpressionType.
         - id: evaluator
           type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
           description: Information about how to validate and evaluate expression.
@@ -258,7 +277,9 @@ methods:
   - name: 'parse(string, EvaluatorLookup)'
     uid: adaptive-expressions.Expression.parse
     package: adaptive-expressions
-    summary: ''
+    summary: >-
+      Parse an expression string into an
+      [Expression](xref:adaptive-expressions.Expression) object.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -267,13 +288,20 @@ methods:
       parameters:
         - id: expression
           type: string
-          description: ''
+          description: Expression string.
         - id: lookup
           type: <xref uid="adaptive-expressions.EvaluatorLookup" />
-          description: ''
+          description: >-
+            Optional.
+            [EvaluatorLookup](xref:adaptive-expressions.EvaluatorLookup)
+            function lookup when parsing the expression. Default is
+            [Expression.lookup](xref:adaptive-expressions.Expression.lookup)
+            which uses
+            [Expression.functions](xref:adaptive-expressions.Expression.functions)
+            table.
       return:
         type: <xref uid="adaptive-expressions.Expression" />
-        description: ''
+        description: The expression object.
   - name: references()
     uid: adaptive-expressions.Expression.references
     package: adaptive-expressions
@@ -339,7 +367,9 @@ methods:
   - name: toString()
     uid: adaptive-expressions.Expression.toString
     package: adaptive-expressions
-    summary: ''
+    summary: >-
+      Returns a string that represents the current
+      [Expression](xref:adaptive-expressions.Expression) object.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -347,7 +377,9 @@ methods:
       content: function toString()
       return:
         type: string
-        description: ''
+        description: >-
+          A string that represents the current
+          [Expression](xref:adaptive-expressions.Expression) object.
   - name: 'tryEvaluate(MemoryInterface | any, Options)'
     uid: adaptive-expressions.Expression.tryEvaluate
     package: adaptive-expressions

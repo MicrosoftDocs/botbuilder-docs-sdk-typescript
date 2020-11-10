@@ -12,7 +12,11 @@ constructors:
   - name: Constant(any)
     uid: adaptive-expressions.Constant.constructor
     package: adaptive-expressions
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [Constant](xref:adaptive-expressions.Constant) class.
+
+      Constructs an expression constant.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -21,7 +25,8 @@ constructors:
       parameters:
         - id: value
           type: any
-          description: ''
+          description: |
+            Constant value.
 properties:
   - name: children
     uid: adaptive-expressions.Constant.children
@@ -35,6 +40,19 @@ properties:
       content: 'public children: Expression[]'
       return:
         type: '<xref uid="adaptive-expressions.Expression" />[]'
+        description: ''
+  - name: evaluator
+    uid: adaptive-expressions.Constant.evaluator
+    package: adaptive-expressions
+    summary: Evaluator of expression.
+    fullName: evaluator
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public evaluator: ExpressionEvaluator'
+      return:
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
         description: ''
   - name: functions
     uid: adaptive-expressions.Constant.functions
@@ -85,7 +103,9 @@ properties:
   - name: value
     uid: adaptive-expressions.Constant.value
     package: adaptive-expressions
-    summary: Constant value.
+    summary: |-
+      Constant value.
+      Sets constant value.
     fullName: value
     remarks: ''
     isPreview: false
@@ -115,7 +135,10 @@ methods:
   - name: deepEquals(Expression)
     uid: adaptive-expressions.Constant.deepEquals
     package: adaptive-expressions
-    summary: ''
+    summary: >-
+      Determines if the current
+      [Expression](xref:adaptive-expressions.Expression) instance is deep equal
+      to another one.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -124,10 +147,14 @@ methods:
       parameters:
         - id: other
           type: <xref uid="adaptive-expressions.Expression" />
-          description: ''
+          description: >-
+            The other [Expression](xref:adaptive-expressions.Expression)
+            instance to compare.
       return:
         type: boolean
-        description: ''
+        description: >-
+          A boolean value indicating whether the two expressions are deep equal
+          (`true`) or not (`false`).
   - name: 'equalsExpression(Expression[])'
     uid: adaptive-expressions.Constant.equalsExpression
     package: adaptive-expressions
@@ -182,7 +209,10 @@ methods:
   - name: lookup(string)
     uid: adaptive-expressions.Constant.lookup
     package: adaptive-expressions
-    summary: Lookup a ExpressionEvaluator (function) by name.
+    summary: >-
+      Lookup an
+      [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+      function by name.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -191,10 +221,13 @@ methods:
       parameters:
         - id: functionName
           type: string
-          description: name of function to lookup
+          description: Name of function to lookup.
       return:
         type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
-        description: a ExpressionEvaluator that corresponding to the funtion name
+        description: >-
+          An
+          [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+          corresponding to the function name.
   - name: 'makeExpression(string, ExpressionEvaluator, Expression[])'
     uid: adaptive-expressions.Constant.makeExpression
     package: adaptive-expressions
@@ -209,7 +242,7 @@ methods:
       parameters:
         - id: type
           type: string
-          description: Type of expression from ExpressionType
+          description: Type of expression from ExpressionType.
         - id: evaluator
           type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
           description: Information about how to validate and evaluate expression.
@@ -255,7 +288,9 @@ methods:
   - name: 'parse(string, EvaluatorLookup)'
     uid: adaptive-expressions.Constant.parse
     package: adaptive-expressions
-    summary: ''
+    summary: >-
+      Parse an expression string into an
+      [Expression](xref:adaptive-expressions.Expression) object.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -264,13 +299,20 @@ methods:
       parameters:
         - id: expression
           type: string
-          description: ''
+          description: Expression string.
         - id: lookup
           type: <xref uid="adaptive-expressions.EvaluatorLookup" />
-          description: ''
+          description: >-
+            Optional.
+            [EvaluatorLookup](xref:adaptive-expressions.EvaluatorLookup)
+            function lookup when parsing the expression. Default is
+            [Expression.lookup](xref:adaptive-expressions.Expression.lookup)
+            which uses
+            [Expression.functions](xref:adaptive-expressions.Expression.functions)
+            table.
       return:
         type: <xref uid="adaptive-expressions.Expression" />
-        description: ''
+        description: The expression object.
   - name: references()
     uid: adaptive-expressions.Constant.references
     package: adaptive-expressions
@@ -336,7 +378,7 @@ methods:
   - name: toString()
     uid: adaptive-expressions.Constant.toString
     package: adaptive-expressions
-    summary: ''
+    summary: Returns a string that represents the current constant object.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -344,7 +386,7 @@ methods:
       content: function toString()
       return:
         type: string
-        description: ''
+        description: A string that represents the current constant object.
   - name: 'tryEvaluate(MemoryInterface | any, Options)'
     uid: adaptive-expressions.Constant.tryEvaluate
     package: adaptive-expressions

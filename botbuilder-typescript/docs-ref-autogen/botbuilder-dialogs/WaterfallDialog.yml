@@ -89,7 +89,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs.WaterfallDialog.id
     package: botbuilder-dialogs
-    summary: Unique ID of the dialog.
+    summary: |-
+      Unique ID of the dialog.
+      Sets the unique ID of the dialog.
     fullName: id
     remarks: This will be automatically generated if not specified.
     isPreview: false
@@ -187,8 +189,14 @@ methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs.WaterfallDialog.beginDialog
     package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
+    summary: >-
+      Called when the [WaterfallDialog](xref:botbuilder-dialogs.WaterfallDialog)
+      is started and pushed onto the dialog stack.
+    remarks: >-
+      If the task is successful, the result indicates whether the
+      [Dialog](xref:botbuilder-dialogs.Dialog) is still
+
+      active after the turn has been processed by the dialog.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -196,14 +204,18 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: O
-          description: ''
+          description: >-
+            Optional, initial information to pass to the
+            [Dialog](xref:botbuilder-dialogs.Dialog).
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
-  - name: configure(object)
+        description: A Promise representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.WaterfallDialog.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
@@ -211,10 +223,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -223,8 +235,19 @@ methods:
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.WaterfallDialog.continueDialog
     package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
+    summary: >-
+      Called when the [WaterfallDialog](xref:botbuilder-dialogs.WaterfallDialog)
+      is _continued_, where it is the active dialog and the
+
+      user replies with a new [Activity](xref:botframework-schema.Activity).
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog. The result may
+      also contain a
+
+      return value.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -232,10 +255,12 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
+        description: A Promise representing the asynchronous operation.
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.WaterfallDialog.endDialog
     package: botbuilder-dialogs
@@ -261,10 +286,28 @@ methods:
       return:
         type: Promise&lt;void&gt;
         description: ''
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.WaterfallDialog.getConverter
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
+        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs.WaterfallDialog.getVersion
     package: botbuilder-dialogs
-    summary: ''
+    summary: 'Gets the dialog version, composed of the ID and number of steps.'
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -272,7 +315,7 @@ methods:
       content: function getVersion()
       return:
         type: string
-        description: ''
+        description: 'Dialog version, composed of the ID and number of steps.'
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.WaterfallDialog.onDialogEvent
     package: botbuilder-dialogs
@@ -338,7 +381,10 @@ methods:
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.WaterfallDialog.resumeDialog
     package: botbuilder-dialogs
-    summary: ''
+    summary: >-
+      Called when a child
+      [WaterfallDialog](xref:botbuilder-dialogs.WaterfallDialog) completed its
+      turn, returning control to this dialog.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -349,14 +395,18 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of the conversation.
         - id: reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: ''
+          description: '(xref:botbuilder-dialogs.DialogReason) why the dialog resumed.'
         - id: result
           type: any
-          description: ''
+          description: |-
+            Optional, value returned from the dialog that was called. The type
+            of the value returned is dependent on the child dialog.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
+        description: A Promise representing the asynchronous operation.
 extends: <xref uid="botbuilder-dialogs.Dialog" />&lt;O&gt;

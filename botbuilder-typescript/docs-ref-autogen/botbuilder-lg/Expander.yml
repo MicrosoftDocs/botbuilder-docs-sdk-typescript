@@ -12,7 +12,7 @@ constructors:
   - name: 'Expander(Template[], ExpressionParser, EvaluationOptions)'
     uid: botbuilder-lg.Expander.constructor
     package: botbuilder-lg
-    summary: ''
+    summary: Creates a new instance of the Expander class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -23,13 +23,14 @@ constructors:
       parameters:
         - id: templates
           type: '<xref uid="botbuilder-lg.Template" />[]'
-          description: ''
+          description: Template list.
         - id: expressionParser
           type: ExpressionParser
-          description: ''
+          description: Given expression parser.
         - id: opt
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
-          description: ''
+          description: |
+            Options for LG.
 properties:
   - name: templateMap
     uid: botbuilder-lg.Expander.templateMap
@@ -61,7 +62,9 @@ methods:
   - name: 'constructScope(string, any[])'
     uid: botbuilder-lg.Expander.constructScope
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Constructs the scope for mapping the values of arguments to the parameters
+      of the template.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -70,13 +73,18 @@ methods:
       parameters:
         - id: templateName
           type: string
-          description: ''
+          description: The template name to evaluate.
         - id: args
           type: 'any[]'
-          description: ''
+          description: Arguments to map to the template parameters.
       return:
         type: any
-        description: ''
+        description: >-
+          The current scope if the number of arguments is 0, otherwise, returns
+          a CustomizedMemory
+
+          with the mapping of the parameter name to the argument value added to
+          the scope.
   - name: 'expandTemplate(string, any)'
     uid: botbuilder-lg.Expander.expandTemplate
     package: botbuilder-lg
@@ -165,7 +173,9 @@ methods:
   - name: visitIfElseBody(IfElseBodyContext)
     uid: botbuilder-lg.Expander.visitIfElseBody
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Visit a parse tree produced by the ifElseBody labeled alternative in
+      LGTemplateParser.body.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -174,14 +184,17 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.IfElseBodyContext" />
-          description: ''
+          description: |
+            The parse tree.
       return:
         type: 'any[]'
         description: ''
   - name: visitNormalBody(NormalBodyContext)
     uid: botbuilder-lg.Expander.visitNormalBody
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Visit a parse tree produced by the normalBody labeled alternative in
+      LGTemplateParser.body.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -190,14 +203,14 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: 'any[]'
-        description: ''
+        description: The result of visiting the normal body.
   - name: visitNormalTemplateBody(NormalTemplateBodyContext)
     uid: botbuilder-lg.Expander.visitNormalTemplateBody
     package: botbuilder-lg
-    summary: ''
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateBody.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -206,14 +219,14 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: 'any[]'
-        description: ''
+        description: The result of visiting the normal template body.
   - name: visitNormalTemplateString(NormalTemplateStringContext)
     uid: botbuilder-lg.Expander.visitNormalTemplateString
     package: botbuilder-lg
-    summary: ''
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateString.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -222,14 +235,15 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
-          description: ''
+          description: |
+            The parse tree.
       return:
         type: 'any[]'
         description: ''
   - name: visitStructuredBody(StructuredBodyContext)
     uid: botbuilder-lg.Expander.visitStructuredBody
     package: botbuilder-lg
-    summary: ''
+    summary: Visit a parse tree produced by LGTemplateParser.structuredBody.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -238,14 +252,16 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.StructuredBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: 'any[]'
-        description: ''
+        description: The result of visiting the structured body.
   - name: visitSwitchCaseBody(SwitchCaseBodyContext)
     uid: botbuilder-lg.Expander.visitSwitchCaseBody
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Visit a parse tree produced by the switchCaseBody labeled alternative in
+      LGTemplateParser.body.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -254,10 +270,10 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: 'any[]'
-        description: ''
+        description: The result of visiting the switch case body.
   - name: visitTerminal(TerminalNode)
     uid: botbuilder-lg.Expander.visitTerminal
     package: botbuilder-lg

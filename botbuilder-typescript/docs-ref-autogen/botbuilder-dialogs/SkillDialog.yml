@@ -2,9 +2,13 @@
 name: SkillDialog
 uid: botbuilder-dialogs.SkillDialog
 package: botbuilder-dialogs
-summary: ''
+summary: A specialized Dialog that can wrap remote calls to a skill.
 fullName: SkillDialog
-remarks: ''
+remarks: >-
+  The options parameter in beginDialog must be a BeginSkillDialogOptions
+  instance
+
+  with the initial parameters for the dialog.
 isPreview: false
 isDeprecated: false
 type: class
@@ -34,7 +38,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs.SkillDialog.id
     package: botbuilder-dialogs
-    summary: Unique ID of the dialog.
+    summary: |-
+      Unique ID of the dialog.
+      Sets the unique ID of the dialog.
     fullName: id
     remarks: This will be automatically generated if not specified.
     isPreview: false
@@ -63,8 +69,10 @@ methods:
   - name: 'beginDialog(DialogContext, BeginSkillDialogOptions)'
     uid: botbuilder-dialogs.SkillDialog.beginDialog
     package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
+    summary: Called when the skill dialog is started and pushed onto the dialog stack.
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still active after the turn has been processed by the dialog.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -74,14 +82,16 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: <xref uid="botbuilder-dialogs.BeginSkillDialogOptions" />
-          description: ''
+          description: Initial information to pass to the dialog.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
-  - name: configure(object)
+        description: A Promise representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.SkillDialog.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
@@ -89,10 +99,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -101,8 +111,19 @@ methods:
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.SkillDialog.continueDialog
     package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
+    summary: >-
+      Called when the skill dialog is _continued_, where it is the active dialog
+      and the
+
+      user replies with a new [Activity](xref:botframework-schema.Activity).
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog. The result may
+      also contain a
+
+      return value.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -110,14 +131,16 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
+        description: A Promise representing the asynchronous operation.
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.SkillDialog.endDialog
     package: botbuilder-dialogs
-    summary: ''
+    summary: Called when the skill dialog is ending.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -128,15 +151,37 @@ methods:
       parameters:
         - id: context
           type: TurnContext
-          description: ''
+          description: >-
+            The [TurnContext](xref:botbuilder-core.TurnContext) object for this
+            turn.
         - id: instance
           type: <xref uid="botbuilder-dialogs.DialogInstance" />
-          description: ''
+          description: >-
+            State information associated with the instance of this dialog on the
+            dialog stack.
         - id: reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: ''
+          description: '(xref:botbuilder-dialogs.DialogReason) why the dialog ended.'
       return:
         type: Promise&lt;void&gt;
+        description: A Promise representing the asynchronous operation.
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.SkillDialog.getConverter
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
         description: ''
   - name: getVersion()
     uid: botbuilder-dialogs.SkillDialog.getVersion
@@ -193,7 +238,7 @@ methods:
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs.SkillDialog.repromptDialog
     package: botbuilder-dialogs
-    summary: ''
+    summary: Called when the skill dialog should re-prompt the user for input.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -202,17 +247,21 @@ methods:
       parameters:
         - id: context
           type: TurnContext
-          description: ''
+          description: >-
+            The [TurnContext](xref:botbuilder-core.TurnContext) object for this
+            turn.
         - id: instance
           type: <xref uid="botbuilder-dialogs.DialogInstance" />
-          description: ''
+          description: State information for this dialog.
       return:
         type: Promise&lt;void&gt;
-        description: ''
+        description: A Promise representing the asynchronous operation.
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.SkillDialog.resumeDialog
     package: botbuilder-dialogs
-    summary: ''
+    summary: >-
+      Called when a child skill dialog completed its turn, returning control to
+      this dialog.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -223,16 +272,20 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of the conversation.
         - id: reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: ''
+          description: '(xref:botbuilder-dialogs.DialogReason) why the dialog resumed.'
         - id: result
           type: any
-          description: ''
+          description: |-
+            Optional, value returned from the dialog that was called. The type
+            of the value returned is dependent on the child dialog.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
+        description: A Promise representing the asynchronous operation.
 extends: >-
   <xref uid="botbuilder-dialogs.Dialog" />&lt;Partial&lt;<xref
   uid="botbuilder-dialogs.BeginSkillDialogOptions" />&gt;&gt;
