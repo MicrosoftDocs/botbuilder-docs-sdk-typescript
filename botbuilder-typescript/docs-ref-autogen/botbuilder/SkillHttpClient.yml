@@ -1,0 +1,151 @@
+### YamlMime:TSType
+name: SkillHttpClient
+uid: botbuilder.SkillHttpClient
+package: botbuilder
+summary: >-
+  A BotFrameworkHttpClient specialized for Skills that encapsulates Conversation
+  ID generation.
+fullName: SkillHttpClient
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
+      SkillHttpClient(ICredentialProvider, SkillConversationIdFactoryBase,
+      string)
+    uid: botbuilder.SkillHttpClient.constructor
+    package: botbuilder
+    summary: >-
+      Creates a new instance of the
+      [SkillHttpClient](xref:botbuilder-core.SkillHttpClient) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new SkillHttpClient(credentialProvider: ICredentialProvider,
+        conversationIdFactory: SkillConversationIdFactoryBase, channelService?:
+        string)
+      parameters:
+        - id: credentialProvider
+          type: ICredentialProvider
+          description: >-
+            An instance of
+            [ICredentialProvider](xref:botframework-connector.ICredentialProvider).
+        - id: conversationIdFactory
+          type: SkillConversationIdFactoryBase
+          description: >-
+            An instance of a class derived from
+            [SkillConversationIdFactoryBase](xref:botbuilder-core.SkillConversationIdFactoryBase).
+        - id: channelService
+          type: string
+          description: |
+            Optional. The channel service.
+methods:
+  - name: 'postActivity<T>(string, string, string, string, string, Activity)'
+    uid: botbuilder.SkillHttpClient.postActivity
+    package: botbuilder
+    summary: Forwards an activity to another bot.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function postActivity<T>(fromBotId: string, toBotId: string, toUrl:
+        string, serviceUrl: string, conversationId: string, activity: Activity)
+      parameters:
+        - id: fromBotId
+          type: string
+          description: The MicrosoftAppId of the bot sending the activity.
+        - id: toBotId
+          type: string
+          description: The MicrosoftAppId of the bot receiving the activity.
+        - id: toUrl
+          type: string
+          description: The URL of the bot receiving the activity.
+        - id: serviceUrl
+          type: string
+          description: The callback Url for the skill host.
+        - id: conversationId
+          type: string
+          description: A conversation ID to use for the conversation with the skill.
+        - id: activity
+          type: Activity
+          description: |
+            Activity to forward.
+      return:
+        type: Promise&lt;InvokeResponse&lt;T&gt;&gt;
+        description: ''
+  - name: 'postToSkill(string, BotFrameworkSkill, string, Activity)'
+    uid: botbuilder.SkillHttpClient.postToSkill_1
+    package: botbuilder
+    summary: >-
+      Uses the SkillConversationIdFactory to create or retrieve a Skill
+      Conversation Id, and sends the activity.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function postToSkill(fromBotId: string, toSkill: BotFrameworkSkill,
+        callbackUrl: string, activity: Activity)
+      parameters:
+        - id: fromBotId
+          type: string
+          description: The MicrosoftAppId of the bot sending the activity.
+        - id: toSkill
+          type: BotFrameworkSkill
+          description: The skill to create the Conversation Id for.
+        - id: callbackUrl
+          type: string
+          description: The callback Url for the skill host.
+        - id: activity
+          type: Activity
+          description: |
+            The activity to send.
+      return:
+        type: Promise&lt;InvokeResponse&gt;
+        description: >-
+          A `Promise` representing the
+          [InvokeResponse](xref:botbuilder-core.InvokeResponse) for the
+          operation.
+  - name: 'postToSkill<T>(string, string, BotFrameworkSkill, string, Activity)'
+    uid: botbuilder.SkillHttpClient.postToSkill
+    package: botbuilder
+    summary: >-
+      Uses the SkillConversationIdFactory to create or retrieve a Skill
+      Conversation Id, and sends the activity.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function postToSkill<T>(originatingAudience: string, fromBotId: string,
+        toSkill: BotFrameworkSkill, callbackUrl: string, activity: Activity)
+      parameters:
+        - id: originatingAudience
+          type: string
+          description: >-
+            The OAuth audience scope, used during token retrieval. (Either
+            https://api.botframework.com or bot app id.)
+        - id: fromBotId
+          type: string
+          description: The MicrosoftAppId of the bot sending the activity.
+        - id: toSkill
+          type: BotFrameworkSkill
+          description: The skill to create the Conversation Id for.
+        - id: callbackUrl
+          type: string
+          description: The callback Url for the skill host.
+        - id: activity
+          type: Activity
+          description: |
+            The activity to send.
+      return:
+        type: Promise&lt;InvokeResponse&lt;T&gt;&gt;
+        description: >-
+          A `Promise` representing the
+          [InvokeResponse](xref:botbuilder-core.InvokeResponse) for the
+          operation.
+extends: <xref uid="botbuilder.BotFrameworkHttpClient" />

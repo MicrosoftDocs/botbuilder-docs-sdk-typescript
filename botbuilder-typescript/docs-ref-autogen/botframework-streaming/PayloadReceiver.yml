@@ -1,0 +1,97 @@
+### YamlMime:TSType
+name: PayloadReceiver
+uid: botframework-streaming.PayloadReceiver
+package: botframework-streaming
+summary: Payload receiver for streaming.
+fullName: PayloadReceiver
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: isConnected
+    uid: botframework-streaming.PayloadReceiver.isConnected
+    package: botframework-streaming
+    summary: ''
+    fullName: isConnected
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public isConnected: boolean'
+      return:
+        type: boolean
+        description: ''
+methods:
+  - name: connect(ITransportReceiver)
+    uid: botframework-streaming.PayloadReceiver.connect
+    package: botframework-streaming
+    summary: Connects to a transport receiver
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function connect(receiver: ITransportReceiver)'
+      parameters:
+        - id: receiver
+          type: <xref uid="botframework-streaming.ITransportReceiver" />
+          description: >
+            The
+            [ITransportReceiver](xref:botframework-streaming.ITransportReceiver)
+            object to pull incoming data from.
+  - name: disconnect(TransportDisconnectedEvent)
+    uid: botframework-streaming.PayloadReceiver.disconnect
+    package: botframework-streaming
+    summary: Force this receiver to disconnect.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function disconnect(e?: TransportDisconnectedEvent)'
+      parameters:
+        - id: e
+          type: <xref uid="botframework-streaming.TransportDisconnectedEvent" />
+          description: |
+            Event arguments to include when broadcasting disconnection event.
+  - name: 'disconnected(any, TransportDisconnectedEvent)'
+    uid: botframework-streaming.PayloadReceiver.disconnected
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function disconnected(sender: any, events: TransportDisconnectedEvent)'
+      parameters:
+        - id: sender
+          type: any
+          description: ''
+        - id: events
+          type: <xref uid="botframework-streaming.TransportDisconnectedEvent" />
+          description: ''
+  - name: >-
+      subscribe((header: IHeader) => SubscribableStream, (header: IHeader,
+      stream: SubscribableStream, count: number) => void)
+    uid: botframework-streaming.PayloadReceiver.subscribe
+    package: botframework-streaming
+    summary: >-
+      Allows subscribing to this receiver in order to be notified when new data
+      comes in.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function subscribe(getStream: (header: IHeader) => SubscribableStream,
+        receiveAction: (header: IHeader, stream: SubscribableStream, count:
+        number) => void)
+      parameters:
+        - id: getStream
+          type: '(header: IHeader) =&gt; SubscribableStream'
+          description: Callback when a new stream has been received.
+        - id: receiveAction
+          type: >-
+            (header: IHeader, stream: SubscribableStream, count: number) =&gt;
+            void
+          description: |
+            Callback when a new message has been received.

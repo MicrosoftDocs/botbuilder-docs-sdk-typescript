@@ -1,0 +1,196 @@
+### YamlMime:TSType
+name: DialogTestClient
+uid: botbuilder-testing.DialogTestClient
+package: botbuilder-testing
+summary: A client for testing dialogs in isolation.
+fullName: DialogTestClient
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'DialogTestClient(string, Dialog, any, Middleware[], ConversationState)'
+    uid: botbuilder-testing.DialogTestClient.constructor
+    package: botbuilder-testing
+    summary: >-
+      Creates a [DialogTestClient](xref:botbuilder-testing.DialogTestClient) to
+      test a [Dialog](xref:botbuilder-dialogs.Dialog) without having to create a
+      full-fledged adapter.
+
+      ```javascript
+
+      let client = new DialogTestClient('test', MY_DIALOG, MY_OPTIONS);
+
+      let reply = await client.sendActivity('first message');
+
+      assert.strictEqual(reply.text, 'first reply', 'reply failed');
+
+      ```
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new DialogTestClient(channelId: string, targetDialog: Dialog,
+        initialDialogOptions?: any, middlewares?: Middleware[],
+        conversationState?: ConversationState)
+      parameters:
+        - id: channelId
+          type: string
+          description: >-
+            The `channelId` to be used for the test.
+
+            Use 'emulator' or 'test' if you are uncertain of the channel you are
+            targeting.
+
+            Otherwise, it is recommended that you use the id for the channel(s)
+            your bot will be using and write a test case for each channel.
+        - id: targetDialog
+          type: Dialog
+          description: >-
+            The [Dialog](xref:botbuilder-dialogs.Dialog) to be tested. This will
+            be the root dialog for the test client.
+        - id: initialDialogOptions
+          type: any
+          description: >-
+            Optional. Additional argument(s) to pass to the
+            [Dialog](xref:botbuilder-dialogs.Dialog) being started.
+        - id: middlewares
+          type: 'Middleware[]'
+          description: >-
+            Optional. A [Middleware](xref:botbuilder-core.Middleware) list to be
+            added to the test adapter.
+        - id: conversationState
+          type: ConversationState
+          description: >
+            Optional. A
+            [ConversationState](xref:botbuilder-core.ConversationState) instance
+            to use in the test client.
+  - name: >-
+      DialogTestClient(TestAdapter, Dialog, any, Middleware[],
+      ConversationState)
+    uid: botbuilder-testing.DialogTestClient.constructor_1
+    package: botbuilder-testing
+    summary: >-
+      Creates a [DialogTestClient](xref:botbuilder-testing.DialogTestClient) to
+      test a [Dialog](xref:botbuilder-dialogs.Dialog) without having to create a
+      full-fledged adapter.
+
+      ```javascript
+
+      let client = new DialogTestClient(MY_DIALOG, MY_OPTIONS);
+
+      let reply = await client.sendActivity('first message');
+
+      assert.strictEqual(reply.text, 'first reply', 'reply failed');
+
+      ```
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new DialogTestClient(testAdapter: TestAdapter, targetDialog: Dialog,
+        initialDialogOptions?: any, middlewares?: Middleware[],
+        conversationState?: ConversationState)
+      parameters:
+        - id: testAdapter
+          type: TestAdapter
+          description: 'The [TestAdapter](xref:botbuilder-core.TestAdapter) to use.'
+        - id: targetDialog
+          type: Dialog
+          description: >-
+            The [Dialog](xref:botbuilder-dialogs.Dialog) to be tested. This will
+            be the root dialog for the test client.
+        - id: initialDialogOptions
+          type: any
+          description: >-
+            Optional. Additional argument(s) to pass to the
+            [Dialog](xref:botbuilder-dialogs.Dialog) being started.
+        - id: middlewares
+          type: 'Middleware[]'
+          description: >-
+            Optional. A [Middleware](xref:botbuilder-core.Middleware) list to be
+            added to the test adapter.
+        - id: conversationState
+          type: ConversationState
+          description: >
+            Optional. A
+            [ConversationState](xref:botbuilder-core.ConversationState) instance
+            to use in the test client.
+properties:
+  - name: conversationState
+    uid: botbuilder-testing.DialogTestClient.conversationState
+    package: botbuilder-testing
+    summary: A ConversationState instance for the current test client.
+    fullName: conversationState
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public conversationState: ConversationState'
+      return:
+        type: ConversationState
+        description: ''
+  - name: dialogContext
+    uid: botbuilder-testing.DialogTestClient.dialogContext
+    package: botbuilder-testing
+    summary: Gets a reference for the DialogContext.
+    fullName: dialogContext
+    remarks: >-
+      This property will be null until at least one activity is sent to
+      DialogTestClient.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: DialogContext dialogContext
+      return:
+        type: DialogContext
+        description: ''
+  - name: dialogTurnResult
+    uid: botbuilder-testing.DialogTestClient.dialogTurnResult
+    package: botbuilder-testing
+    summary: A DialogTurnResult instance with the result of the last turn.
+    fullName: dialogTurnResult
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public dialogTurnResult: DialogTurnResult'
+      return:
+        type: DialogTurnResult
+        description: ''
+methods:
+  - name: getNextReply()
+    uid: botbuilder-testing.DialogTestClient.getNextReply
+    package: botbuilder-testing
+    summary: Get the next reply waiting to be delivered (if one exists)
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getNextReply()
+      return:
+        type: Partial&lt;Activity&gt;
+        description: ''
+  - name: sendActivity(Partial<Activity> | string)
+    uid: botbuilder-testing.DialogTestClient.sendActivity
+    package: botbuilder-testing
+    summary: Send an activity into the dialog.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function sendActivity(activity: Partial<Activity> | string)'
+      parameters:
+        - id: activity
+          type: Partial&lt;Activity&gt; | string
+          description: |
+            an activity potentially with text
+
+            ```javascript
+            DialogTest.send('hello').assertReply('hello yourself').then(done);
+            ```
+      return:
+        type: Promise&lt;any&gt;
+        description: a TestFlow that can be used to assert replies etc

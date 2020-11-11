@@ -1,0 +1,296 @@
+### YamlMime:TSType
+name: Expander
+uid: botbuilder-lg.Expander
+package: botbuilder-lg
+summary: LG template expander.
+fullName: Expander
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'Expander(Template[], ExpressionParser, EvaluationOptions)'
+    uid: botbuilder-lg.Expander.constructor
+    package: botbuilder-lg
+    summary: Creates a new instance of the Expander class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new Expander(templates: Template[], expressionParser: ExpressionParser,
+        opt: EvaluationOptions)
+      parameters:
+        - id: templates
+          type: '<xref uid="botbuilder-lg.Template" />[]'
+          description: Template list.
+        - id: expressionParser
+          type: ExpressionParser
+          description: Given expression parser.
+        - id: opt
+          type: <xref uid="botbuilder-lg.EvaluationOptions" />
+          description: |
+            Options for LG.
+properties:
+  - name: templateMap
+    uid: botbuilder-lg.Expander.templateMap
+    package: botbuilder-lg
+    summary: TemplateMap.
+    fullName: templateMap
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public templateMap: [key: string]: Template'
+      return:
+        type: '[key: string]\: <xref uid="botbuilder-lg.Template" />'
+        description: ''
+  - name: templates
+    uid: botbuilder-lg.Expander.templates
+    package: botbuilder-lg
+    summary: Templates.
+    fullName: templates
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public templates: Template[]'
+      return:
+        type: '<xref uid="botbuilder-lg.Template" />[]'
+        description: ''
+methods:
+  - name: 'constructScope(string, any[])'
+    uid: botbuilder-lg.Expander.constructScope
+    package: botbuilder-lg
+    summary: >-
+      Constructs the scope for mapping the values of arguments to the parameters
+      of the template.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function constructScope(templateName: string, args: any[])'
+      parameters:
+        - id: templateName
+          type: string
+          description: The template name to evaluate.
+        - id: args
+          type: 'any[]'
+          description: Arguments to map to the template parameters.
+      return:
+        type: any
+        description: >-
+          The current scope if the number of arguments is 0, otherwise, returns
+          a CustomizedMemory
+
+          with the mapping of the parameter name to the argument value added to
+          the scope.
+  - name: 'expandTemplate(string, any)'
+    uid: botbuilder-lg.Expander.expandTemplate
+    package: botbuilder-lg
+    summary: Expand the results of a template with given name and scope.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function expandTemplate(templateName: string, scope: any)'
+      parameters:
+        - id: templateName
+          type: string
+          description: Given template name.
+        - id: scope
+          type: any
+          description: Given scope.
+      return:
+        type: 'any[]'
+        description: All possiable results.
+  - name: visit(ParseTree)
+    uid: botbuilder-lg.Expander.visit
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation calls <xref:ParseTree%23accept> on the
+      specified tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visit(tree: ParseTree)'
+      parameters:
+        - id: tree
+          type: ParseTree
+          description: ''
+      return:
+        type: 'string[]'
+        description: ''
+  - name: visitChildren(RuleNode)
+    uid: botbuilder-lg.Expander.visitChildren
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation initializes the aggregate result to
+      [defaultResult()](xref:%23defaultResult). Before visiting each child, it
+      calls [shouldVisitNextChild](xref:%23shouldVisitNextChild); if the result
+      is `false` no more children are visited and the current aggregate
+      result is returned. After visiting a child, the aggregate result is
+      updated by calling [aggregateResult](xref:%23aggregateResult) with the
+      previous aggregate result and the result of visiting the child.
+
+      The default implementation is not safe for use in visitors that modify
+      the tree structure. Visitors that modify the tree should override this
+      method to behave properly in respect to the specific algorithm in use.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitChildren(node: RuleNode)'
+      parameters:
+        - id: node
+          type: RuleNode
+          description: ''
+      return:
+        type: 'string[]'
+        description: ''
+  - name: visitErrorNode(ErrorNode)
+    uid: botbuilder-lg.Expander.visitErrorNode
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitErrorNode(node: ErrorNode)'
+      parameters:
+        - id: node
+          type: ErrorNode
+          description: ''
+      return:
+        type: 'string[]'
+        description: ''
+  - name: visitIfElseBody(IfElseBodyContext)
+    uid: botbuilder-lg.Expander.visitIfElseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the ifElseBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitIfElseBody(ctx: IfElseBodyContext)'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.IfElseBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        type: 'any[]'
+        description: ''
+  - name: visitNormalBody(NormalBodyContext)
+    uid: botbuilder-lg.Expander.visitNormalBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the normalBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitNormalBody(ctx: NormalBodyContext)'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.NormalBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'any[]'
+        description: The result of visiting the normal body.
+  - name: visitNormalTemplateBody(NormalTemplateBodyContext)
+    uid: botbuilder-lg.Expander.visitNormalTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateBody.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitNormalTemplateBody(ctx: NormalTemplateBodyContext)'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'any[]'
+        description: The result of visiting the normal template body.
+  - name: visitNormalTemplateString(NormalTemplateStringContext)
+    uid: botbuilder-lg.Expander.visitNormalTemplateString
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateString.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitNormalTemplateString(ctx: NormalTemplateStringContext)'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
+          description: |
+            The parse tree.
+      return:
+        type: 'any[]'
+        description: ''
+  - name: visitStructuredBody(StructuredBodyContext)
+    uid: botbuilder-lg.Expander.visitStructuredBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.structuredBody.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitStructuredBody(ctx: StructuredBodyContext)'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.StructuredBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'any[]'
+        description: The result of visiting the structured body.
+  - name: visitSwitchCaseBody(SwitchCaseBodyContext)
+    uid: botbuilder-lg.Expander.visitSwitchCaseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the switchCaseBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitSwitchCaseBody(ctx: SwitchCaseBodyContext)'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'any[]'
+        description: The result of visiting the switch case body.
+  - name: visitTerminal(TerminalNode)
+    uid: botbuilder-lg.Expander.visitTerminal
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitTerminal(node: TerminalNode)'
+      parameters:
+        - id: node
+          type: TerminalNode
+          description: ''
+      return:
+        type: 'string[]'
+        description: ''
+extends: 'AbstractParseTreeVisitor&lt;string[]&gt;'

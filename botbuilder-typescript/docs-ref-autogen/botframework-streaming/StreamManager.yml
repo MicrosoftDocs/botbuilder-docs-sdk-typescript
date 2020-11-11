@@ -1,0 +1,128 @@
+### YamlMime:TSType
+name: StreamManager
+uid: botframework-streaming.StreamManager
+package: botframework-streaming
+summary: Orchestrates and manages streams.
+fullName: StreamManager
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: StreamManager(Function)
+    uid: botframework-streaming.StreamManager.constructor
+    package: botframework-streaming
+    summary: >-
+      Initializes a new instance of the
+      [StreamManager](xref:botframework-streaming.StreamManager) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new StreamManager(onCancelStream: Function)'
+      parameters:
+        - id: onCancelStream
+          type: Function
+          description: |
+            Function to trigger if the managed stream is cancelled.
+methods:
+  - name: closeStream(string)
+    uid: botframework-streaming.StreamManager.closeStream
+    package: botframework-streaming
+    summary: >-
+      Closes the
+      [PayloadAssembler](xref:botframework-streaming.PayloadAssembler) assigned
+      to the
+      [SubscribableStream](xref:botframework-streaming.SubscribableStream) with
+      the given ID.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function closeStream(id: string)'
+      parameters:
+        - id: id
+          type: string
+          description: >
+            The ID of the
+            [SubscribableStream](xref:botframework-streaming.SubscribableStream)
+            to close.
+  - name: getPayloadAssembler(string)
+    uid: botframework-streaming.StreamManager.getPayloadAssembler
+    package: botframework-streaming
+    summary: >-
+      Retrieves a
+      [PayloadAssembler](xref:botframework-streaming.PayloadAssembler) with the
+      given ID if one exists, otherwise a new instance is created and assigned
+      the given ID.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getPayloadAssembler(id: string)'
+      parameters:
+        - id: id
+          type: string
+          description: >-
+            The ID of the
+            [PayloadAssembler](xref:botframework-streaming.PayloadAssembler) to
+            retrieve or create.
+      return:
+        type: <xref uid="botframework-streaming.PayloadAssembler" />
+        description: >-
+          The [PayloadAssembler](xref:botframework-streaming.PayloadAssembler)
+          with the given ID.
+  - name: getPayloadStream(IHeader)
+    uid: botframework-streaming.StreamManager.getPayloadStream
+    package: botframework-streaming
+    summary: >-
+      Retrieves the
+      [SubscribableStream](xref:botframework-streaming.SubscribableStream) from
+      the [PayloadAssembler](xref:botframework-streaming.PayloadAssembler) this
+      manager manages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getPayloadStream(header: IHeader)'
+      parameters:
+        - id: header
+          type: <xref uid="botframework-streaming.IHeader" />
+          description: >-
+            The Header of the
+            [SubscribableStream](xref:botframework-streaming.SubscribableStream)
+            to retrieve.
+      return:
+        type: <xref uid="botframework-streaming.SubscribableStream" />
+        description: >-
+          The
+          [SubscribableStream](xref:botframework-streaming.SubscribableStream)
+          with the given header.
+  - name: 'onReceive(IHeader, SubscribableStream, number)'
+    uid: botframework-streaming.StreamManager.onReceive
+    package: botframework-streaming
+    summary: >-
+      Used to set the behavior of the managed
+      [PayloadAssembler](xref:botframework-streaming.PayloadAssembler) when data
+      is received.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onReceive(header: IHeader, contentStream: SubscribableStream,
+        contentLength: number)
+      parameters:
+        - id: header
+          type: <xref uid="botframework-streaming.IHeader" />
+          description: The Header of the stream.
+        - id: contentStream
+          type: <xref uid="botframework-streaming.SubscribableStream" />
+          description: >-
+            The
+            [SubscribableStream](xref:botframework-streaming.SubscribableStream)
+            to write incoming data to.
+        - id: contentLength
+          type: number
+          description: |
+            The amount of data to write to the contentStream.

@@ -1,0 +1,265 @@
+### YamlMime:TSType
+name: TestFlow
+uid: botbuilder-core.TestFlow
+package: botbuilder-core
+summary: >-
+  Support class for `TestAdapter` that allows for the simple construction of a
+  sequence of tests.
+fullName: TestFlow
+remarks: >-
+  Calling `adapter.send()` or `adapter.test()` will create a new test flow which
+  you can chain
+
+  together additional tests using a fluent syntax.
+
+
+  ```JavaScript
+
+  const { TestAdapter } = require('botbuilder');
+
+
+  const adapter = new TestAdapter(async (context) => {
+     if (context.text === 'hi') {
+        await context.sendActivity(`Hello World`);
+     } else if (context.text === 'bye') {
+        await context.sendActivity(`Goodbye`);
+     }
+  });
+
+
+  adapter.test(`hi`, `Hello World`)
+         .test(`bye`, `Goodbye`)
+         .then(() => done());
+  ```
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: previous
+    uid: botbuilder-core.TestFlow.previous
+    package: botbuilder-core
+    summary: Promise chain for the current test sequence.
+    fullName: previous
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public previous: Promise<void>'
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+methods:
+  - name: 'assertNoReply(string, number)'
+    uid: botbuilder-core.TestFlow.assertNoReply
+    package: botbuilder-core
+    summary: >-
+      Generates an assertion that the turn processing logic did not generate a
+      reply from the bot, as expected.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function assertNoReply(description?: string, timeout?: number)'
+      parameters:
+        - id: description
+          type: string
+          description: >-
+            (Optional) Description of the test case. If not provided one will be
+            generated.
+        - id: timeout
+          type: number
+          description: >
+            (Optional) number of milliseconds to wait for a response from bot.
+            Defaults to a value of `3000`.
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
+  - name: >-
+      assertReply(string | Partial<Activity> | TestActivityInspector, string,
+      number)
+    uid: botbuilder-core.TestFlow.assertReply
+    package: botbuilder-core
+    summary: >-
+      Generates an assertion if the bots response doesn't match the expected
+      text/activity.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function assertReply(expected: string | Partial<Activity> |
+        TestActivityInspector, description?: string, timeout?: number)
+      parameters:
+        - id: expected
+          type: >-
+            string | Partial&lt;Activity&gt; | <xref
+            uid="botbuilder-core.TestActivityInspector" />
+          description: >-
+            Expected text or activity from the bot. Can be a callback to inspect
+            the response using custom logic.
+        - id: description
+          type: string
+          description: >-
+            (Optional) Description of the test case. If not provided one will be
+            generated.
+        - id: timeout
+          type: number
+          description: >
+            (Optional) number of milliseconds to wait for a response from bot.
+            Defaults to a value of `3000`.
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
+  - name: 'assertReplyOneOf(string[], string, number)'
+    uid: botbuilder-core.TestFlow.assertReplyOneOf
+    package: botbuilder-core
+    summary: >-
+      Generates an assertion if the bots response is not one of the candidate
+      strings.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function assertReplyOneOf(candidates: string[], description?: string,
+        timeout?: number)
+      parameters:
+        - id: candidates
+          type: 'string[]'
+          description: List of candidate responses.
+        - id: description
+          type: string
+          description: >-
+            (Optional) Description of the test case. If not provided one will be
+            generated.
+        - id: timeout
+          type: number
+          description: >
+            (Optional) number of milliseconds to wait for a response from bot.
+            Defaults to a value of `3000`.
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
+  - name: 'catch((reason: any) => void)'
+    uid: botbuilder-core.TestFlow.catch
+    package: botbuilder-core
+    summary: Adds a `catch()` clause to the tests promise chain.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function catch(onRejected?: (reason: any) => void)'
+      parameters:
+        - id: onRejected
+          type: '(reason: any) =&gt; void'
+          description: |
+            Code to run if the test has thrown an error.
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
+  - name: delay(number)
+    uid: botbuilder-core.TestFlow.delay
+    package: botbuilder-core
+    summary: Inserts a delay before continuing.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delay(ms: number)'
+      parameters:
+        - id: ms
+          type: number
+          description: |
+            ms to wait
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
+  - name: send(string | Partial<Activity>)
+    uid: botbuilder-core.TestFlow.send
+    package: botbuilder-core
+    summary: Sends something to the bot.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function send(userSays: string | Partial<Activity>)'
+      parameters:
+        - id: userSays
+          type: string | Partial&lt;Activity&gt;
+          description: |
+            Text or activity simulating user input.
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
+  - name: startTest()
+    uid: botbuilder-core.TestFlow.startTest
+    package: botbuilder-core
+    summary: 'Start the test sequence, returning a promise to await'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function startTest()
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: >-
+      test(string | Partial<Activity>, string | Partial<Activity> | (activity:
+      Partial<Activity>, description?: string) => void, string, number)
+    uid: botbuilder-core.TestFlow.test
+    package: botbuilder-core
+    summary: >-
+      Send something to the bot and expects the bot to return with a given
+      reply. This is simply a
+
+      wrapper around calls to `send()` and `assertReply()`. This is such a
+      common pattern that a
+
+      helper is provided.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function test(userSays: string | Partial<Activity>, expected: string |
+        Partial<Activity> | (activity: Partial<Activity>, description?: string)
+        => void, description?: string, timeout?: number)
+      parameters:
+        - id: userSays
+          type: string | Partial&lt;Activity&gt;
+          description: Text or activity simulating user input.
+        - id: expected
+          type: >-
+            string | Partial&lt;Activity&gt; | (activity:
+            Partial&lt;Activity&gt;, description?: string) =&gt; void
+          description: Expected text or activity of the reply sent by the bot.
+        - id: description
+          type: string
+          description: >-
+            (Optional) Description of the test case. If not provided one will be
+            generated.
+        - id: timeout
+          type: number
+          description: >
+            (Optional) number of milliseconds to wait for a response from bot.
+            Defaults to a value of `3000`.
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
+  - name: then(() => void)
+    uid: botbuilder-core.TestFlow.then
+    package: botbuilder-core
+    summary: Adds a `then()` step to the tests promise chain.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function then(onFulfilled?: () => void)'
+      parameters:
+        - id: onFulfilled
+          type: () =&gt; void
+          description: |
+            Code to run if the test is currently passing.
+      return:
+        type: <xref uid="botbuilder-core.TestFlow" />
+        description: ''
