@@ -1,0 +1,1034 @@
+### YamlMime:TSType
+name: Session
+uid: botbuilder.Session
+package: botbuilder
+summary: Manages the bots conversation with a user.
+fullName: Session
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: Session(ISessionOptions)
+    uid: botbuilder.Session.constructor
+    package: botbuilder
+    summary: Creates an instance of the session.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new Session(options: ISessionOptions)'
+      parameters:
+        - id: options
+          type: <xref uid="botbuilder.ISessionOptions" />
+          description: |
+            Sessions configuration options.
+properties:
+  - name: connector
+    uid: botbuilder.Session.connector
+    package: botbuilder
+    summary: The connector being used for this session.
+    fullName: connector
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'connector: IConnector'
+      return:
+        type: <xref uid="botbuilder.IConnector" />
+        description: ''
+  - name: conversationData
+    uid: botbuilder.Session.conversationData
+    package: botbuilder
+    summary: >-
+      Shared conversation data that's visible to all members of the
+      conversation.
+    fullName: conversationData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'conversationData: any'
+      return:
+        type: any
+        description: ''
+  - name: dialogData
+    uid: botbuilder.Session.dialogData
+    package: botbuilder
+    summary: Data that's only visible to the current dialog.
+    fullName: dialogData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'dialogData: any'
+      return:
+        type: any
+        description: ''
+  - name: library
+    uid: botbuilder.Session.library
+    package: botbuilder
+    summary: The bots root library of dialogs.
+    fullName: library
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'library: Library'
+      return:
+        type: <xref uid="botbuilder.Library" />
+        description: ''
+  - name: localizer
+    uid: botbuilder.Session.localizer
+    package: botbuilder
+    summary: The localizer for the current session.
+    fullName: localizer
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'localizer: ILocalizer'
+      return:
+        type: <xref uid="botbuilder.ILocalizer" />
+        description: ''
+  - name: message
+    uid: botbuilder.Session.message
+    package: botbuilder
+    summary: >-
+      The message received from the user. For bot originated messages this may
+      only contain the "to" & "from" fields.
+    fullName: message
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'message: IMessage'
+      return:
+        type: <xref uid="botbuilder.IMessage" />
+        description: ''
+  - name: privateConversationData
+    uid: botbuilder.Session.privateConversationData
+    package: botbuilder
+    summary: Private conversation data that's only visible to the user.
+    fullName: privateConversationData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'privateConversationData: any'
+      return:
+        type: any
+        description: ''
+  - name: sessionState
+    uid: botbuilder.Session.sessionState
+    package: botbuilder
+    summary: Sessions current state information.
+    fullName: sessionState
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'sessionState: ISessionState'
+      return:
+        type: <xref uid="botbuilder.ISessionState" />
+        description: ''
+  - name: userData
+    uid: botbuilder.Session.userData
+    package: botbuilder
+    summary: Data for the user that's persisted across all conversations with the bot.
+    fullName: userData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'userData: any'
+      return:
+        type: any
+        description: ''
+methods:
+  - name: 'activeDialogStackEntry(IDialogState[])'
+    uid: botbuilder.Session.activeDialogStackEntry
+    package: botbuilder
+    summary: Returns a stacks active dialog or null.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function activeDialogStackEntry(stack: IDialogState[])'
+      parameters:
+        - id: stack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: |
+            The dialog stack to return the entry for.
+      return:
+        type: <xref uid="botbuilder.IDialogState" />
+        description: ''
+  - name: 'beginDialog<T>(string, T)'
+    uid: botbuilder.Session.beginDialog
+    package: botbuilder
+    summary: >-
+      Passes control of the conversation to a new dialog. The current dialog
+      will be suspended
+
+      until the child dialog completes. Once the child ends the current dialog
+      will receive a
+
+      call to
+      [dialogResumed()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#dialogresumed)
+
+      where it can inspect any results returned from the child.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function beginDialog<T>(id: string, args?: T)'
+      parameters:
+        - id: id
+          type: string
+          description: Unique ID of the dialog to start.
+        - id: args
+          type: T
+          description: >
+            (Optional) arguments to pass to the dialogs
+            [begin()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#begin)
+            method.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'cancelDialog(string | number, string, any)'
+    uid: botbuilder.Session.cancelDialog
+    package: botbuilder
+    summary: >-
+      Cancels an existing dialog and optionally starts a new one it its place. 
+      Unlike [endDialog()](#enddialog)
+
+      and [replaceDialog()](#replacedialog) which affect the current dialog,
+      this method lets you end a
+
+      parent dialog anywhere on the stack. The parent of the canceled dialog
+      will be continued as if the
+
+      dialog had called endDialog(). A special
+      [ResumeReason.canceled](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.resumereason#canceled)
+
+      will be returned to indicate that the dialog was canceled.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function cancelDialog(dialogId: string | number, replaceWithId?: string,
+        replaceWithArgs?: any)
+      parameters:
+        - id: dialogId
+          type: string | number
+          description: >-
+
+            * __dialogId:__ _{string}_ - ID of the dialog to end. If multiple
+            occurences of the dialog exist on the dialog stack, the last
+            occurance will be canceled.
+
+            * __dialogId:__ _{number}_ - Index of the dialog on the stack to
+            cancel. This is the preferred way to cancel a dialog from an action
+            handler as it ensures that the correct instance is canceled.
+        - id: replaceWithId
+          type: string
+          description: >-
+            (Optional) specifies an ID to start in the canceled dialogs place.
+            This prevents the dialogs parent from being resumed.
+        - id: replaceWithArgs
+          type: any
+          description: |
+            (Optional) arguments to pass to the new dialog.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: clearDialogStack()
+    uid: botbuilder.Session.clearDialogStack
+    package: botbuilder
+    summary: Clears the current dialog stack.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function clearDialogStack()
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: delay(number)
+    uid: botbuilder.Session.delay
+    package: botbuilder
+    summary: Inserts a delay between outgoing messages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delay(delay: number)'
+      parameters:
+        - id: delay
+          type: number
+          description: |
+            Number of milliseconds to pause for.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'dialogStack(IDialogState[])'
+    uid: botbuilder.Session.dialogStack
+    package: botbuilder
+    summary: >-
+      Gets/sets the current dialog stack. A copy of the current dialog is
+      returned so if any
+
+      changes are made to the returned stack they will need to be copied back to
+      the session
+
+      via a second call to `session.dialogStack()`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function dialogStack(newStack?: IDialogState[])'
+      parameters:
+        - id: newStack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: >
+            (Optional) dialog stack to assign to session. The sessions
+            [dialogData](#dialogdata) will be updated to reflect the state of
+            the new active dialog.
+      return:
+        type: '<xref uid="botbuilder.IDialogState" />[]'
+        description: ''
+  - name: 'dispatch(ISessionState, IMessage, Function)'
+    uid: botbuilder.Session.dispatch
+    package: botbuilder
+    summary: >-
+      Finalizes the initialization of the session object and then routes the
+      session through all
+
+      installed middleware. The passed in `next()` function will be called as
+      the last step of the
+
+      middleware chain.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function dispatch(sessionState: ISessionState, message: IMessage, next:
+        Function)
+      parameters:
+        - id: sessionState
+          type: <xref uid="botbuilder.ISessionState" />
+          description: >-
+            The current session state. If `null` a new conversation will be
+            started beginning with the configured [dialogId](#dialogid).
+        - id: message
+          type: <xref uid="botbuilder.IMessage" />
+          description: The message to route through middleware.
+        - id: next
+          type: Function
+          description: |
+            The function to invoke as the last step of the middleware chain.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'endConversation(TextOrMessageType, any[])'
+    uid: botbuilder.Session.endConversation
+    package: botbuilder
+    summary: Ends the current conversation and optionally sends a message to the user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function endConversation(message?: TextOrMessageType, args: any[])'
+      parameters:
+        - id: message
+          type: <xref uid="botbuilder.TextOrMessageType" />
+          description: >-
+            (Optional) text/message to send the user before ending the
+            conversation.
+        - id: args
+          type: 'any[]'
+          description: >
+            (Optional) arguments used to format the final output text when
+            __message__ is a _{string|string[]}_.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'endDialog(TextOrMessageType, any[])'
+    uid: botbuilder.Session.endDialog
+    package: botbuilder
+    summary: >-
+      Ends the current dialog and optionally sends a message to the user. The
+      parent will be resumed with an
+      [IDialogResult.resumed](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogresult.html#resumed)
+
+      reason of
+      [completed](/en-us/node/builder/chat-reference/enums/_botbuilder_d_.resumereason.html#completed).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function endDialog(message?: TextOrMessageType, args: any[])'
+      parameters:
+        - id: message
+          type: <xref uid="botbuilder.TextOrMessageType" />
+          description: (Optional) text/message to send the user before ending the dialog.
+        - id: args
+          type: 'any[]'
+          description: >
+            (Optional) arguments used to format the final output text when
+            __message__ is a _{string|string[]}_.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: endDialogWithResult(IDialogResult<any>)
+    uid: botbuilder.Session.endDialogWithResult
+    package: botbuilder
+    summary: >-
+      Ends the current dialog and optionally returns a result to the dialogs
+      parent.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function endDialogWithResult(result?: IDialogResult<any>)'
+      parameters:
+        - id: result
+          type: <xref uid="botbuilder.IDialogResult" />&lt;any&gt;
+          description: >
+            (Optional) result to send the user. The value you'd like to return
+            should be in the
+            [response](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogresult#response)
+            field.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: error(Error)
+    uid: botbuilder.Session.error
+    package: botbuilder
+    summary: >-
+      Signals that an error occured. The bot will signal the error via an
+      on('error', err) event.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function error(err: Error)'
+      parameters:
+        - id: err
+          type: Error
+          description: Error that occured.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'findDialogStackEntry(IDialogState[], string, boolean)'
+    uid: botbuilder.Session.findDialogStackEntry
+    package: botbuilder
+    summary: >-
+      Searches a dialog stack for a specific dialog, in either a forward or
+      reverse direction,
+
+      returning its index.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function findDialogStackEntry(stack: IDialogState[], dialogId:
+        string, reverse?: boolean)
+      parameters:
+        - id: stack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: The dialog stack to search.
+        - id: dialogId
+          type: string
+          description: >-
+            The unique ID of the dialog, in `<namespace>:<dialog>` format, to
+            search for.
+        - id: reverse
+          type: boolean
+          description: >
+            (Optional) if true the stack will be searched starting with the
+            active dialog and working its way up to the root.
+      return:
+        type: number
+        description: ''
+  - name: >-
+      forEachDialogStackEntry(IDialogState[], boolean, (entry: IDialogState,
+      index: number) => void)
+    uid: botbuilder.Session.forEachDialogStackEntry
+    package: botbuilder
+    summary: >-
+      Enumerates all a stacks dialog entries in either a forward or reverse
+      direction.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function forEachDialogStackEntry(stack: IDialogState[], reverse:
+        boolean, fn: (entry: IDialogState, index: number) => void)
+      parameters:
+        - id: stack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: The dialog stack to enumerate.
+        - id: reverse
+          type: boolean
+          description: >-
+            If true the entries will be enumerated starting with the active
+            dialog and working up to the root dialog.
+        - id: fn
+          type: '(entry: IDialogState, index: number) =&gt; void'
+          description: Function to invoke with each entry on the stack.
+  - name: 'gettext(string, any[])'
+    uid: botbuilder.Session.gettext
+    package: botbuilder
+    summary: >-
+      Loads a localized string for the messages language. If arguments are
+      passed the localized string
+
+      will be treated as a template and formatted using
+      [sprintf-js](https://github.com/alexei/sprintf.js) (see their docs for
+      details.)
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function gettext(msgid: string, args: any[])'
+      parameters:
+        - id: msgid
+          type: string
+          description: >-
+            String to use as a key in the localized string table. Typically this
+            will just be the english version of the string.
+        - id: args
+          type: 'any[]'
+          description: (Optional) arguments used to format the final output string.
+      return:
+        type: string
+        description: ''
+  - name: isReset()
+    uid: botbuilder.Session.isReset
+    package: botbuilder
+    summary: Returns true if the session has been reset.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function isReset()
+      return:
+        type: boolean
+        description: ''
+  - name: messageSent()
+    uid: botbuilder.Session.messageSent
+    package: botbuilder
+    summary: Returns true if a message has been sent for this session.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function messageSent()
+      return:
+        type: boolean
+        description: ''
+  - name: 'ngettext(string, string, number)'
+    uid: botbuilder.Session.ngettext
+    package: botbuilder
+    summary: >-
+      Loads the plural form of a localized string for the messages language. The
+      output string will be formatted to
+
+      include the count by replacing %d in the string with the count.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function ngettext(msgid: string, msgid_plural: string, count: number)'
+      parameters:
+        - id: msgid
+          type: string
+          description: >-
+            Singular form of the string to use as a key in the localized string
+            table. Use %d to specify where the count should go.
+        - id: msgid_plural
+          type: string
+          description: >-
+            Plural form of the string to use as a key in the localized string
+            table. Use %d to specify where the count should go.
+        - id: count
+          type: number
+          description: >
+            Count to use when determining whether the singular or plural form of
+            the string should be used.
+      return:
+        type: string
+        description: ''
+  - name: 'on(string, (data: any) => void)'
+    uid: botbuilder.Session.on
+    package: botbuilder
+    summary: Registers an event listener.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function on(event: string, listener: (data: any) => void)'
+      parameters:
+        - id: event
+          type: string
+          description: |-
+            Name of the event. Event types:
+            - __error:__ An error occured. Passes a JavaScript `Error` object.
+        - id: listener
+          type: '(data: any) =&gt; void'
+          description: Function to invoke.
+  - name: 'popDialogStackEntry(IDialogState[])'
+    uid: botbuilder.Session.popDialogStackEntry
+    package: botbuilder
+    summary: >-
+      Pops the active dialog off a stack and returns the new one if the stack
+      isn't empty.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function popDialogStackEntry(stack: IDialogState[])'
+      parameters:
+        - id: stack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: |
+            The dialog stack to update.
+      return:
+        type: <xref uid="botbuilder.IDialogState" />
+        description: ''
+  - name: 'preferredLocale(string, (err: Error) => void)'
+    uid: botbuilder.Session.preferredLocale
+    package: botbuilder
+    summary: >-
+      Returns the preferred locale when no parameters are supplied, otherwise
+      sets the preferred locale.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function preferredLocale(locale?: string, callback?: (err: Error) =>
+        void)
+      parameters:
+        - id: locale
+          type: string
+          description: (Optional) the locale to use for localizing messages.
+        - id: callback
+          type: '(err: Error) =&gt; void'
+          description: >-
+            (Optional) function called when the localization table has been
+            loaded for the supplied locale.
+      return:
+        type: string
+        description: ''
+  - name: 'pruneDialogStack(IDialogState[], number)'
+    uid: botbuilder.Session.pruneDialogStack
+    package: botbuilder
+    summary: >-
+      Deletes all dialog stack entries starting with the specified index and
+      returns the new
+
+      active dialog.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function pruneDialogStack(stack: IDialogState[], start: number)'
+      parameters:
+        - id: stack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: The dialog stack to update.
+        - id: start
+          type: number
+          description: |
+            Index of the first element to remove.
+      return:
+        type: <xref uid="botbuilder.IDialogState" />
+        description: ''
+  - name: 'pushDialogStackEntry(IDialogState[], IDialogState)'
+    uid: botbuilder.Session.pushDialogStackEntry
+    package: botbuilder
+    summary: Pushes a new dialog onto a stack and returns it as the active dialog.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function pushDialogStackEntry(stack: IDialogState[], entry:
+        IDialogState)
+      parameters:
+        - id: stack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: The dialog stack to update.
+        - id: entry
+          type: <xref uid="botbuilder.IDialogState" />
+          description: |
+            Dialog entry to push onto the stack.
+      return:
+        type: <xref uid="botbuilder.IDialogState" />
+        description: ''
+  - name: 'replaceDialog<T>(string, T)'
+    uid: botbuilder.Session.replaceDialog
+    package: botbuilder
+    summary: >-
+      Ends the current dialog and starts a new one its place. The parent dialog
+      will not be
+
+      resumed until the new dialog completes.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function replaceDialog<T>(id: string, args?: T)'
+      parameters:
+        - id: id
+          type: string
+          description: Unique ID of the dialog to start.
+        - id: args
+          type: T
+          description: >
+            (Optional) arguments to pass to the dialogs
+            [begin()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#begin)
+            method.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'reset(string, any)'
+    uid: botbuilder.Session.reset
+    package: botbuilder
+    summary: >-
+      Clears the sessions callstack and restarts the conversation with the
+      configured dialogId.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function reset(dialogId?: string, dialogArgs?: any)'
+      parameters:
+        - id: dialogId
+          type: string
+          description: (Optional) ID of the dialog to start.
+        - id: dialogArgs
+          type: any
+          description: >
+            (Optional) arguments to pass to the dialogs
+            [begin()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#begin)
+            method.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: routeToActiveDialog(IRecognizeResult)
+    uid: botbuilder.Session.routeToActiveDialog
+    package: botbuilder
+    summary: >-
+      Dispatches the session to either the active dialog or the default dialog
+      for processing.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function routeToActiveDialog(recognizeResult?: IRecognizeResult)'
+      parameters:
+        - id: recognizeResult
+          type: <xref uid="botbuilder.IRecognizeResult" />
+          description: >
+            (Optional) results returned from calling
+            [Library.findRoutes()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#findroutes),
+            [Library.findActiveDialogRoutes()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.library#findactivedialogroutes),
+            * or
+            [Dialog.recognize()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog#recognize).
+  - name: save()
+    uid: botbuilder.Session.save
+    package: botbuilder
+    summary: >-
+      Triggers saving of changes made to [dialogData](#dialogdata),
+      [userData](#userdata), [conversationdata](#conversationdata), or
+      [privateConversationData'(#privateconversationdata).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function save()
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'say(TextType, IMessageOptions)'
+    uid: botbuilder.Session.say_1
+    package: botbuilder
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function say(text: TextType, options?: IMessageOptions)'
+      parameters:
+        - id: text
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: options
+          type: <xref uid="botbuilder.IMessageOptions" />
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'say(TextType, TextType, IMessageOptions)'
+    uid: botbuilder.Session.say
+    package: botbuilder
+    summary: 'Sends a text, and optional SSML, message to the user.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function say(text: TextType, speak?: TextType, options?:
+        IMessageOptions)
+      parameters:
+        - id: text
+          type: <xref uid="botbuilder.TextType" />
+          description: >-
+            Text to send to the user. This can be null to send only SSML or
+            attachments.
+        - id: speak
+          type: <xref uid="botbuilder.TextType" />
+          description: >-
+            (Optional) message that should be spoken to the user. The message
+            should be formatted as [Speech Synthesis Markup Language
+            (SSML)](https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx).
+
+            If an array is passed a response will be chosen at random.
+        - id: options
+          type: <xref uid="botbuilder.IMessageOptions" />
+          description: >
+            (Optional) properties that should be included on the outgoing
+            message.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'sayLocalized(string, TextType, TextType, IMessageOptions)'
+    uid: botbuilder.Session.sayLocalized
+    package: botbuilder
+    summary: >-
+      Sends a text, and optional SSML, message to the user using a specific
+      localization namespace.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sayLocalized(libraryNamespace: string, text: TextType, speak?:
+        TextType, options?: IMessageOptions)
+      parameters:
+        - id: libraryNamespace
+          type: string
+          description: Namespace to use for localizing the message.
+        - id: text
+          type: <xref uid="botbuilder.TextType" />
+          description: >-
+            Text to send to the user. This can be null to send only SSML or
+            attachments.
+        - id: speak
+          type: <xref uid="botbuilder.TextType" />
+          description: >-
+            (Optional) message that should be spoken to the user. The message
+            should be formatted as [Speech Synthesis Markup Language
+            (SSML)](https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx).
+
+            If an array is passed a response will be chosen at random.
+        - id: options
+          type: <xref uid="botbuilder.IMessageOptions" />
+          description: >
+            (Optional) properties that should be included on the outgoing
+            message.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'send(TextOrMessageType, any[])'
+    uid: botbuilder.Session.send
+    package: botbuilder
+    summary: Sends a message to the user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function send(message: TextOrMessageType, args: any[])'
+      parameters:
+        - id: message
+          type: <xref uid="botbuilder.TextOrMessageType" />
+          description: >-
+            Text/message to send to user. If an array is passed a response will
+            be chosen at random.
+        - id: args
+          type: 'any[]'
+          description: >
+            (Optional) arguments used to format the final output text when
+            __message__ is a _{string|string[]}_.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'sendBatch((err: Error, addresses?: IAddress[]) => void)'
+    uid: botbuilder.Session.sendBatch
+    package: botbuilder
+    summary: Immediately ends the current batch and delivers any queued up messages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function sendBatch(done?: (err: Error, addresses?: IAddress[]) => void)'
+      parameters:
+        - id: done
+          type: '(err: Error, addresses?: IAddress[]) =&gt; void'
+          description: >-
+            (Optional) function called when the batch was either successfully
+            delievered or failed for some reason.
+  - name: 'sendLocalized(string, TextOrMessageType, any[])'
+    uid: botbuilder.Session.sendLocalized
+    package: botbuilder
+    summary: Sends a message to a user using a specific localization namespace.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendLocalized(libraryNamespace: string, message:
+        TextOrMessageType, args: any[])
+      parameters:
+        - id: libraryNamespace
+          type: string
+          description: Namespace to use for localizing the message.
+        - id: message
+          type: <xref uid="botbuilder.TextOrMessageType" />
+          description: Text/message to send to user.
+        - id: args
+          type: 'any[]'
+          description: >
+            (Optional) arguments used to format the final output text when
+            __message__ is a _{string|string[]}_.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: sendTyping()
+    uid: botbuilder.Session.sendTyping
+    package: botbuilder
+    summary: >-
+      Sends the user an indication that the bot is typing. For long running
+      operations this should be called every few seconds.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function sendTyping()
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: toRecognizeContext()
+    uid: botbuilder.Session.toRecognizeContext
+    package: botbuilder
+    summary: Returns the session object as a read only context object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function toRecognizeContext()
+      return:
+        type: <xref uid="botbuilder.IRecognizeContext" />
+        description: ''
+  - name: 'validateDialogStack(IDialogState[], Library)'
+    uid: botbuilder.Session.validateDialogStack
+    package: botbuilder
+    summary: >-
+      Ensures that all of the entries on a dialog stack reference valid dialogs
+      within a library
+
+      hierarchy.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function validateDialogStack(stack: IDialogState[], root:
+        Library)
+      parameters:
+        - id: stack
+          type: '<xref uid="botbuilder.IDialogState" />[]'
+          description: The dialog stack to validate.
+        - id: root
+          type: <xref uid="botbuilder.Library" />
+          description: |
+            The root of the library hierarchy, typically the bot.
+      return:
+        type: boolean
+        description: ''
+  - name: 'watch(string, boolean)'
+    uid: botbuilder.Session.watch
+    package: botbuilder
+    summary: Enables/disables a watch for the current session.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function watch(variable: string, enable?: boolean)'
+      parameters:
+        - id: variable
+          type: string
+          description: Name of the variable to watch/unwatch.
+        - id: enable
+          type: boolean
+          description: >
+            (Optional) If true the variable will be watched, otherwise it will
+            be unwatched. The default value is true.
+      return:
+        type: <xref uid="botbuilder.Session" />
+        description: ''
+  - name: 'watchable(string, IWatchableHandler)'
+    uid: botbuilder.Session.watchable
+    package: botbuilder
+    summary: Adds or retrieves a variable that can be watched.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function watchable(variable: string, handler?: IWatchableHandler)'
+      parameters:
+        - id: variable
+          type: string
+          description: >-
+            Name of the variable that can be watched. Case is used for display
+            only.
+        - id: handler
+          type: <xref uid="botbuilder.IWatchableHandler" />
+          description: >
+            (Optional) Function used to retrieve the variables current value. If
+            specified a new handler will be registered, otherwise the existing
+            handler will be retrieved.
+      return:
+        type: <xref uid="botbuilder.IWatchableHandler" />
+        description: ''
+  - name: watchableList()
+    uid: botbuilder.Session.watchableList
+    package: botbuilder
+    summary: Returns a list of watchable variables.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: static function watchableList()
+      return:
+        type: 'string[]'
+        description: ''
+  - name: watchList()
+    uid: botbuilder.Session.watchList
+    package: botbuilder
+    summary: Returns the current list of watched variables for the session.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function watchList()
+      return:
+        type: 'string[]'
+        description: ''

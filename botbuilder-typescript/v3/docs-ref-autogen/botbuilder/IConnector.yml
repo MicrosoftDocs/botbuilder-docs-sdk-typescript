@@ -1,0 +1,175 @@
+### YamlMime:TSType
+name: IConnector
+uid: botbuilder.IConnector
+package: botbuilder
+summary: Implemented by connector plugins for the UniversalBot.
+fullName: IConnector
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+  - name: 'delete(IAddress, (err: Error) => void)'
+    uid: botbuilder.IConnector.delete
+    package: botbuilder
+    summary: >-
+      (Optional) method that can be called to delete a message that was
+      previously sent using [send()](#send).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delete(address: IAddress, callback: (err: Error) => void)'
+      parameters:
+        - id: address
+          type: <xref uid="botbuilder.IAddress" />
+          description: The address of the message to delete.
+        - id: callback
+          type: '(err: Error) =&gt; void'
+          description: Function to invoke once the operation is completed.
+  - name: 'onEvent((events: IEvent[], callback?: (err: Error) => void) => void)'
+    uid: botbuilder.IConnector.onEvent
+    package: botbuilder
+    summary: >-
+      Called by the UniversalBot at registration time to register a handler for
+      receiving incoming
+
+      events from a channel.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onEvent(handler: (events: IEvent[], callback?: (err: Error) =>
+        void) => void)
+      parameters:
+        - id: handler
+          type: '(events: IEvent[], callback?: (err: Error) =&gt; void) =&gt; void'
+          description: >
+            The function that should be called anytime an event is received that
+            is not of type "invoke".
+  - name: >-
+      onInvoke((event: IEvent, callback?: (err: Error, body: any, status?:
+      number) => void) => void)
+    uid: botbuilder.IConnector.onInvoke
+    package: botbuilder
+    summary: >-
+      (Optional) Called by the UniversalBot at registration time to register a
+      handler for
+
+      receiving incoming invoke events. Invoke events are special events which
+      are expected to
+
+      return a body inline as part of the response to the received request.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onInvoke(handler: (event: IEvent, callback?: (err: Error, body:
+        any, status?: number) => void) => void)
+      parameters:
+        - id: handler
+          type: >-
+            (event: IEvent, callback?: (err: Error, body: any, status?: number)
+            =&gt; void) =&gt; void
+          description: >
+            The function that should be called anytime an "invoke" event is
+            received.
+  - name: 'send(IMessage[], (err: Error, addresses?: IAddress[]) => void)'
+    uid: botbuilder.IConnector.send
+    package: botbuilder
+    summary: >-
+      Sends outgoing message(s) to a user. This method will ultimately get
+      called anytime you call
+
+      [UniversalBot.send()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot#send)
+      or
+      [Session.send()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#send).
+
+      You can manually call this method using `session.connector.send()` as a
+      convenient way of
+
+      getting the address of the message that was sent. You can then store this
+      address and use
+
+      it at a later point in time to either update or delete the message. The
+      one thing to keep
+
+      in mind is that if you manually call `session.connector.send()` you will
+      bypass any
+
+      middleware that the outgoing message would normally run through. Calling
+
+      `session.send(msg).sendBatch(function (err, addresses) { })` does the same
+      thing but ensures
+
+      that the outgoing message is sent through middleware.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function send(messages: IMessage[], callback: (err: Error, addresses?:
+        IAddress[]) => void)
+      parameters:
+        - id: messages
+          type: '<xref uid="botbuilder.IMessage" />[]'
+          description: Array of message(s) to send the user.
+        - id: callback
+          type: '(err: Error, addresses?: IAddress[]) =&gt; void'
+          description: Function to invoke once the operation is completed.
+  - name: 'startConversation(IAddress, (err: Error, address?: IAddress) => void)'
+    uid: botbuilder.IConnector.startConversation
+    package: botbuilder
+    summary: >-
+      Called when a UniversalBot wants to start a new proactive conversation
+      with a user. The
+
+      connector should return an address with a properly formated
+      [IAddress.conversation](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iaddress#conversation)
+
+      field. This will typically be called when you call
+      [UniversalBot.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot#begindialog)
+
+      but will also be called anytime `IAddress.conversation` is null for a
+      message being sent.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function startConversation(address: IAddress, callback: (err: Error,
+        address?: IAddress) => void)
+      parameters:
+        - id: address
+          type: <xref uid="botbuilder.IAddress" />
+          description: >-
+            The address of the user to start the conversation for. The
+            `IAddress.conversation` field should be null.
+        - id: callback
+          type: '(err: Error, address?: IAddress) =&gt; void'
+          description: Function to invoke once the operation is completed.
+  - name: 'update(IMessage, (err: Error, address?: IAddress) => void)'
+    uid: botbuilder.IConnector.update
+    package: botbuilder
+    summary: >-
+      (Optional) method that can be called to replace a message that was
+      previously sent using [send()](#send).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function update(message: IMessage, callback: (err: Error, address?:
+        IAddress) => void)
+      parameters:
+        - id: message
+          type: <xref uid="botbuilder.IMessage" />
+          description: >-
+            The message to overwrite an existing message with. The
+            `message.address` field should contain an address returned from a
+            previous call to [send()](#send).
+        - id: callback
+          type: '(err: Error, address?: IAddress) =&gt; void'
+          description: Function to invoke once the operation is completed.

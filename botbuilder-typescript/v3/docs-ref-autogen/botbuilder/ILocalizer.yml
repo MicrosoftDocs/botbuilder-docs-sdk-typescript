@@ -1,0 +1,118 @@
+### YamlMime:TSType
+name: ILocalizer
+uid: botbuilder.ILocalizer
+package: botbuilder
+summary: Plugin for localizing messages sent to the user by a bot.
+fullName: ILocalizer
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+  - name: 'gettext(string, string, string)'
+    uid: botbuilder.ILocalizer.gettext
+    package: botbuilder
+    summary: Loads a localized string for the specified language.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function gettext(locale: string, msgid: string, namespace?: string)'
+      parameters:
+        - id: locale
+          type: string
+          description: Desired locale of the string to return.
+        - id: msgid
+          type: string
+          description: >-
+            String to use as a key in the localized string table. Typically this
+            will just be the english version of the string.
+        - id: namespace
+          type: string
+          description: |
+            (Optional) namespace for the msgid keys.
+      return:
+        type: string
+        description: ''
+  - name: 'load(string, (err: Error) => void)'
+    uid: botbuilder.ILocalizer.load
+    package: botbuilder
+    summary: >-
+      Loads the localized table for the supplied locale, and call's the supplied
+      callback once the load is complete.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function load(locale: string, callback: (err: Error) => void)'
+      parameters:
+        - id: locale
+          type: string
+          description: The locale to load.
+        - id: callback
+          type: '(err: Error) =&gt; void'
+          description: >
+            callback that is called once the supplied locale has been loaded, or
+            an error if the load fails.
+  - name: 'ngettext(string, string, string, number, string)'
+    uid: botbuilder.ILocalizer.ngettext
+    package: botbuilder
+    summary: Loads the plural form of a localized string for the specified language.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function ngettext(locale: string, msgid: string, msgid_plural: string,
+        count: number, namespace?: string)
+      parameters:
+        - id: locale
+          type: string
+          description: Desired locale of the string to return.
+        - id: msgid
+          type: string
+          description: >-
+            Singular form of the string to use as a key in the localized string
+            table.
+        - id: msgid_plural
+          type: string
+          description: >-
+            Plural form of the string to use as a key in the localized string
+            table.
+        - id: count
+          type: number
+          description: >-
+            Count to use when determining whether the singular or plural form of
+            the string should be used.
+        - id: namespace
+          type: string
+          description: |
+            (Optional) namespace for the msgid and msgid_plural keys.
+      return:
+        type: string
+        description: ''
+  - name: 'trygettext(string, string, string)'
+    uid: botbuilder.ILocalizer.trygettext
+    package: botbuilder
+    summary: Loads a localized string for the specified language.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function trygettext(locale: string, msgid: string, namespace?: string)'
+      parameters:
+        - id: locale
+          type: string
+          description: Desired locale of the string to return.
+        - id: msgid
+          type: string
+          description: >-
+            String to use as a key in the localized string table. Typically this
+            will just be the english version of the string.
+        - id: namespace
+          type: string
+          description: |
+            (Optional) namespace for the msgid keys.
+      return:
+        type: string
+        description: ''

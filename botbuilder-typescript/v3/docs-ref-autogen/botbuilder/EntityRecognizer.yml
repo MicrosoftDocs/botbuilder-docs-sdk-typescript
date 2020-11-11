@@ -1,0 +1,248 @@
+### YamlMime:TSType
+name: EntityRecognizer
+uid: botbuilder.EntityRecognizer
+package: botbuilder
+summary: >-
+  Utility class used to parse & resolve common entities like datetimes received
+  from LUIS.
+fullName: EntityRecognizer
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'expandChoices(string | Object | string[])'
+    uid: botbuilder.EntityRecognizer.expandChoices
+    package: botbuilder
+    summary: Converts a set of choices into an expanded array.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function expandChoices(choices: string | Object | string[])'
+      parameters:
+        - id: choices
+          type: 'string | Object | string[]'
+          description: >
+
+            * __choices:__ _{string}_ - Pipe ('|') delimited list of values.
+
+            * __choices:__ _{Object}_ - Object used to generate the list of
+            choices. The objects field names will be used to build the list of
+            choices.
+
+            * __choices:__ _{string[]}_ - Array of strings. This will just be
+            echoed back as the output.
+      return:
+        type: 'string[]'
+        description: ''
+  - name: 'findAllEntities(IEntity[], string)'
+    uid: botbuilder.EntityRecognizer.findAllEntities
+    package: botbuilder
+    summary: Finds all occurrences of a specific entity type within a set.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function findAllEntities(entities: IEntity[], type: string)'
+      parameters:
+        - id: entities
+          type: '<xref uid="botbuilder.IEntity" />[]'
+          description: Set of entities to search over.
+        - id: type
+          type: string
+          description: |
+            Type of entity to find.
+      return:
+        type: '<xref uid="botbuilder.IEntity" />[]'
+        description: ''
+  - name: 'findAllMatches(string | Object | string[], string, number)'
+    uid: botbuilder.EntityRecognizer.findAllMatches
+    package: botbuilder
+    summary: Finds all possible matches for a users utterance given a list of choices.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function findAllMatches(choices: string | Object | string[],
+        utterance: string, threshold?: number)
+      parameters:
+        - id: choices
+          type: 'string | Object | string[]'
+          description: >-
+
+            * __choices:__ _{string}_ - Pipe ('|') delimited list of values to
+            compare against the users utterance.
+
+            * __choices:__ _{Object}_ - Object used to generate the list of
+            choices. The objects field names will be used to build the list of
+            choices.
+
+            * __choices:__ _{string[]}_ - Array of strings to compare against
+            the users utterance.
+        - id: utterance
+          type: string
+          description: Text utterance to parse.
+        - id: threshold
+          type: number
+          description: >
+            (Optional) minimum score needed for a match to be considered. The
+            default value is 0.6.
+      return:
+        type: '<xref uid="botbuilder.IFindMatchResult" />[]'
+        description: ''
+  - name: 'findBestMatch(string | Object | string[], string, number)'
+    uid: botbuilder.EntityRecognizer.findBestMatch
+    package: botbuilder
+    summary: Finds the best match for a users utterance given a list of choices.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function findBestMatch(choices: string | Object | string[],
+        utterance: string, threshold?: number)
+      parameters:
+        - id: choices
+          type: 'string | Object | string[]'
+          description: >-
+
+            * __choices:__ _{string}_ - Pipe ('|') delimited list of values to
+            compare against the users utterance.
+
+            * __choices:__ _{Object}_ - Object used to generate the list of
+            choices. The objects field names will be used to build the list of
+            choices.
+
+            * __choices:__ _{string[]}_ - Array of strings to compare against
+            the users utterance.
+        - id: utterance
+          type: string
+          description: Text utterance to parse.
+        - id: threshold
+          type: number
+          description: >
+            (Optional) minimum score needed for a match to be considered. The
+            default value is 0.6.
+      return:
+        type: <xref uid="botbuilder.IFindMatchResult" />
+        description: ''
+  - name: 'findEntity(IEntity[], string)'
+    uid: botbuilder.EntityRecognizer.findEntity
+    package: botbuilder
+    summary: Searches for the first occurance of a specific entity type within a set.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function findEntity(entities: IEntity[], type: string)'
+      parameters:
+        - id: entities
+          type: '<xref uid="botbuilder.IEntity" />[]'
+          description: Set of entities to search over.
+        - id: type
+          type: string
+          description: |
+            Type of entity to find.
+      return:
+        type: <xref uid="botbuilder.IEntity" />
+        description: ''
+  - name: parseBoolean(string)
+    uid: botbuilder.EntityRecognizer.parseBoolean
+    package: botbuilder
+    summary: Parses a boolean from a users utterance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function parseBoolean(value: string)'
+      parameters:
+        - id: value
+          type: string
+          description: Text utterance to parse.
+      return:
+        type: boolean
+        description: A valid boolean otherwise _undefined_.
+  - name: 'parseNumber(string | IEntity[])'
+    uid: botbuilder.EntityRecognizer.parseNumber
+    package: botbuilder
+    summary: Parses a number from either a users text utterance or a set of entities.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function parseNumber(value: string | IEntity[])'
+      parameters:
+        - id: value
+          type: 'string | <xref uid="botbuilder.IEntity" />[]'
+          description: |-
+
+            * __value:__ _{string}_ - Text utterance to parse.
+            * __value:__ _{IEntity[]}_ - Set of entities to resolve.
+      return:
+        type: number
+        description: A valid number otherwise _Number.NaN_.
+  - name: 'parseTime(string | IEntity[])'
+    uid: botbuilder.EntityRecognizer.parseTime
+    package: botbuilder
+    summary: Parses a date from either a users text utterance or a set of entities.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function parseTime(value: string | IEntity[])'
+      parameters:
+        - id: value
+          type: 'string | <xref uid="botbuilder.IEntity" />[]'
+          description: >-
+
+            * __value:__ _{string}_ - Text utterance to parse. The utterance is
+            parsed using the [Chrono](http://wanasit.github.io/pages/chrono/)
+            library.
+
+            * __value:__ _{IEntity[]}_ - Set of entities to resolve.
+      return:
+        type: Date
+        description: A valid Date object if the user spoke a time otherwise _null_.
+  - name: 'recognizeTime(string, Date)'
+    uid: botbuilder.EntityRecognizer.recognizeTime
+    package: botbuilder
+    summary: >-
+      Recognizes a time from a users utterance. The utterance is parsed using
+      the [Chrono](http://wanasit.github.io/pages/chrono/) library.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function recognizeTime(utterance: string, refDate?: Date)'
+      parameters:
+        - id: utterance
+          type: string
+          description: Text utterance to parse.
+        - id: refDate
+          type: Date
+          description: (Optional) reference date used to calculate the final date.
+      return:
+        type: <xref uid="botbuilder.IEntity" />
+        description: >-
+          An entity containing the resolved date if successful or _null_ if a
+          date couldn't be determined.
+  - name: 'resolveTime(IEntity[])'
+    uid: botbuilder.EntityRecognizer.resolveTime
+    package: botbuilder
+    summary: Calculates a Date from a set of datetime entities.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function resolveTime(entities: IEntity[])'
+      parameters:
+        - id: entities
+          type: '<xref uid="botbuilder.IEntity" />[]'
+          description: List of entities to extract date from.
+      return:
+        type: Date
+        description: >-
+          The successfully calculated Date or _null_ if a date couldn't be
+          determined.

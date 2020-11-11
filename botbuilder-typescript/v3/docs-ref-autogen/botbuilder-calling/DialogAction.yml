@@ -1,0 +1,75 @@
+### YamlMime:TSType
+name: DialogAction
+uid: botbuilder-calling.DialogAction
+package: botbuilder-calling
+summary: Dialog actions offer shortcuts to implementing common actions.
+fullName: DialogAction
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'beginDialog<T>(string, T)'
+    uid: botbuilder-calling.DialogAction.beginDialog
+    package: botbuilder-calling
+    summary: >-
+      Returns a closure that will passes control of the conversation to a new
+      dialog.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function beginDialog<T>(id: string, args?: T)'
+      parameters:
+        - id: id
+          type: string
+          description: Unique ID of the dialog to start.
+        - id: args
+          type: T
+          description: |
+            (Optional) arguments to pass to the dialogs begin() method.
+      return:
+        type: <xref uid="botbuilder-calling.IDialogWaterfallStep" />
+        description: ''
+  - name: endDialog(any)
+    uid: botbuilder-calling.DialogAction.endDialog
+    package: botbuilder-calling
+    summary: Returns a closure that will end the current dialog.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function endDialog(result?: any)'
+      parameters:
+        - id: result
+          type: any
+          description: |
+            (Optional) results to pass to the parent dialog.
+      return:
+        type: <xref uid="botbuilder-calling.IDialogWaterfallStep" />
+        description: ''
+  - name: 'send(string, any[])'
+    uid: botbuilder-calling.DialogAction.send
+    package: botbuilder-calling
+    summary: Returns a closure that will send a simple text message to the user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function send(msg: string, args: any[])'
+      parameters:
+        - id: msg
+          type: string
+          description: >-
+            Text of the message to send. The message will be localized using the
+            sessions configured [localizer](#localizer). If arguments are passed
+            in the message will be formatted using
+            [sprintf-js](https://github.com/alexei/sprintf.js) (see the docs for
+            details.)
+        - id: args
+          type: 'any[]'
+          description: |
+            (Optional) arguments used to format the final output string.
+      return:
+        type: <xref uid="botbuilder-calling.IDialogWaterfallStep" />
+        description: ''

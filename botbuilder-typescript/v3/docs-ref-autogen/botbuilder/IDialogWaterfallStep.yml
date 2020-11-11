@@ -1,0 +1,91 @@
+### YamlMime:TSType
+name: IDialogWaterfallStep
+uid: botbuilder.IDialogWaterfallStep
+package: botbuilder
+summary: >-
+  Signature for functions passed as steps to
+  [DialogAction.waterfall()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialogaction.html#waterfall).
+
+  Waterfalls let you prompt a user for information using a sequence of
+  questions. Each step of the
+
+  waterfall can either execute one of the built-in
+  [Prompts](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.__global.iprompts.html),
+
+  start a new dialog by calling
+  [session.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#begindialog),
+
+  advance to the next step of the waterfall manually using `skip()`, or
+  terminate the waterfall.
+
+
+  When either a dialog or built-in prompt is called from a waterfall step, the
+  results from that
+
+  dialog or prompt will be passed via the `results` parameter to the next step
+  of the waterfall.
+
+  Users can say things like "never mind" to cancel the built-in prompts so you
+  should guard against
+
+  that by at least checking for
+  [results.response](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogresult.html#response)
+
+  before proceeding. A more detailed explanation of why the waterfall is being
+  continued can be
+
+  determined by looking at the
+  [code](/en-us/node/builder/chat-reference/enums/_botbuilder_d_.resumereason.html)
+
+  returned for
+  [results.resumed](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogresult.html#resumed).
+
+
+  You can manually advance to the next step of the waterfall using the `skip()`
+  function passed
+
+  in. Calling `skip({ response: "some text" })` with an
+  [IDialogResult](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogresult.html)
+
+  lets you more accurately mimic the results from a built-in prompt and can
+  simplify your overall
+
+  waterfall logic.
+
+
+  You can terminate a waterfall early by either falling through every step of
+  the waterfall using
+
+  calls to `skip()` or simply not starting another prompt or dialog.
+
+
+  __note:__ Waterfalls have a hidden last step which will automatically end the
+  current dialog if
+
+  if you call a prompt or dialog from the last step. This is useful where you
+  have a deep stack of
+
+  dialogs and want a call to
+  [session.endDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#enddialog)
+
+  from the last child on the stack to end the entire stack. The close of the
+  last child will trigger
+
+  all of its parents to move to this hidden step which will cascade the close
+  all the way up the stack.
+
+  This is typically a desired behavior but if you want to avoid it or stop it
+  somewhere in the
+
+  middle you'll need to add a step to the end of your waterfall that either does
+  nothing or calls
+
+  something like
+  [session.send()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#send)
+
+  which isn't going to advance the waterfall forward.
+fullName: IDialogWaterfallStep
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface

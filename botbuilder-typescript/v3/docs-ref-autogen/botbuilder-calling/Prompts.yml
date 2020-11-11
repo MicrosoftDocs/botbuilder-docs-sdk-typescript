@@ -1,0 +1,243 @@
+### YamlMime:TSType
+name: Prompts
+uid: botbuilder-calling.Prompts
+package: botbuilder-calling
+summary: Built in built-in prompts that can be called from any dialog.
+fullName: Prompts
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'action(CallSession, IAction | IIsAction)'
+    uid: botbuilder-calling.Prompts.action
+    package: botbuilder-calling
+    summary: >-
+      Sends a wrokflow action as a prompt to the user. Lets you process the raw
+      outcome
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function action(session: CallSession, action: IAction |
+        IIsAction)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: action
+          type: >-
+            <xref uid="botbuilder-calling.IAction" /> | <xref
+            uid="botbuilder-calling.IIsAction" />
+          description: |
+            The workflow action to send.
+  - name: 'begin<T>(CallSession, T)'
+    uid: botbuilder-calling.Prompts.begin
+    package: botbuilder-calling
+    summary: Called when a new dialog session is being started.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function begin<T>(session: CallSession, args?: T)'
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: args
+          type: T
+          description: |
+            (Optional) arguments passed to the dialog by its parent.
+  - name: >-
+      choice(CallSession, string | string[] | IAction | IIsAction,
+      IRecognitionChoice[], IRecognizerPromptOptions)
+    uid: botbuilder-calling.Prompts.choice
+    package: botbuilder-calling
+    summary: Prompts the user to choose from a list of options.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function choice(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, choices: IRecognitionChoice[], options?:
+        IRecognizerPromptOptions)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type: >-
+            string | string[] | <xref uid="botbuilder-calling.IAction" /> |
+            <xref uid="botbuilder-calling.IIsAction" />
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: choices
+          type: '<xref uid="botbuilder-calling.IRecognitionChoice" />[]'
+          description: List of choices to prompt user with.
+        - id: options
+          type: <xref uid="botbuilder-calling.IRecognizerPromptOptions" />
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+  - name: configure(IPromptsSettings)
+    uid: botbuilder-calling.Prompts.configure
+    package: botbuilder-calling
+    summary: Updates global options for the Prompts dialog.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function configure(settings: IPromptsSettings)'
+      parameters:
+        - id: settings
+          type: <xref uid="botbuilder-calling.IPromptsSettings" />
+          description: |
+            Options to set.
+  - name: >-
+      confirm(CallSession, string | string[] | IAction | IIsAction,
+      IConfirmPromptOptions)
+    uid: botbuilder-calling.Prompts.confirm
+    package: botbuilder-calling
+    summary: Prompts the user to confirm an action with a yes/no response.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function confirm(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, options?: IConfirmPromptOptions)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type: >-
+            string | string[] | <xref uid="botbuilder-calling.IAction" /> |
+            <xref uid="botbuilder-calling.IIsAction" />
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: options
+          type: <xref uid="botbuilder-calling.IConfirmPromptOptions" />
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+  - name: 'dialogResumed<T>(CallSession, IDialogResult<T>)'
+    uid: botbuilder-calling.Prompts.dialogResumed
+    package: botbuilder-calling
+    summary: A child dialog has ended and the current one is being resumed.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function dialogResumed<T>(session: CallSession, result:
+        IDialogResult<T>)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: result
+          type: <xref uid="botbuilder-calling.IDialogResult" />&lt;T&gt;
+          description: |
+            Result returned by the child dialog.
+  - name: >-
+      digits(CallSession, string | string[] | IAction | IIsAction, number,
+      IDigitsPromptOptions)
+    uid: botbuilder-calling.Prompts.digits
+    package: botbuilder-calling
+    summary: Prompts the user to input a sequence of digits.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function digits(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, maxDigits: number, options?:
+        IDigitsPromptOptions)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type: >-
+            string | string[] | <xref uid="botbuilder-calling.IAction" /> |
+            <xref uid="botbuilder-calling.IIsAction" />
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: maxDigits
+          type: number
+          description: Maximum number of digits allowed.
+        - id: options
+          type: <xref uid="botbuilder-calling.IDigitsPromptOptions" />
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+  - name: >-
+      record(CallSession, string | string[] | IAction | IIsAction,
+      IRecordPromptOptions)
+    uid: botbuilder-calling.Prompts.record
+    package: botbuilder-calling
+    summary: Prompts the user to record a message.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function record(session: CallSession, playPrompt: string |
+        string[] | IAction | IIsAction, options?: IRecordPromptOptions)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: playPrompt
+          type: >-
+            string | string[] | <xref uid="botbuilder-calling.IAction" /> |
+            <xref uid="botbuilder-calling.IIsAction" />
+          description: >-
+
+            * __playPrompt:__ _{string}_ - Initial message to send the user.
+
+            * __playPrompt:__ _{string[]}_ - Array of possible messages to send
+            user. One will be chosen at random.
+
+            * __playPrompt:__ _{IAction|IIsAction}_ - Initial PlayPrompt action
+            to send the user.
+        - id: options
+          type: <xref uid="botbuilder-calling.IRecordPromptOptions" />
+          description: |
+            (Optional) parameters to control the behaviour of the prompt.
+  - name: replyReceived(CallSession)
+    uid: botbuilder-calling.Prompts.replyReceived
+    package: botbuilder-calling
+    summary: Processes messages received from the user. Called by the dialog system.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function replyReceived(session: CallSession)'
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: |
+            Session object for the current conversation.
+extends: <xref uid="botbuilder-calling.Dialog" />

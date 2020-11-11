@@ -1,0 +1,230 @@
+### YamlMime:TSType
+name: IRecognizeContext
+uid: botbuilder.IRecognizeContext
+package: botbuilder
+summary: Context of the received message passed to various recognition methods.
+fullName: IRecognizeContext
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+  - name: conversationData
+    uid: botbuilder.IRecognizeContext.conversationData
+    package: botbuilder
+    summary: >-
+      Shared conversation data that's visible to all members of the
+      conversation.
+    fullName: conversationData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'conversationData: any'
+      return:
+        type: any
+        description: ''
+  - name: dialogData
+    uid: botbuilder.IRecognizeContext.dialogData
+    package: botbuilder
+    summary: Data for the active dialog.
+    fullName: dialogData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'dialogData: any'
+      return:
+        type: any
+        description: ''
+  - name: intent
+    uid: botbuilder.IRecognizeContext.intent
+    package: botbuilder
+    summary: (Optional) The top intent identified for the message.
+    fullName: intent
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'intent?: IIntentRecognizerResult'
+      return:
+        type: <xref uid="botbuilder.IIntentRecognizerResult" />
+        description: ''
+  - name: libraryName
+    uid: botbuilder.IRecognizeContext.libraryName
+    package: botbuilder
+    summary: (Optional) The name of the library passing the context is from.
+    fullName: libraryName
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'libraryName?: string'
+      return:
+        type: string
+        description: ''
+  - name: locale
+    uid: botbuilder.IRecognizeContext.locale
+    package: botbuilder
+    summary: '__DEPRECATED__ use [preferredLocale()](#preferredlocale) instead.'
+    fullName: locale
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'locale: string'
+      return:
+        type: string
+        description: ''
+  - name: localizer
+    uid: botbuilder.IRecognizeContext.localizer
+    package: botbuilder
+    summary: The localizer for the session.
+    fullName: localizer
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'localizer: ILocalizer'
+      return:
+        type: <xref uid="botbuilder.ILocalizer" />
+        description: ''
+  - name: logger
+    uid: botbuilder.IRecognizeContext.logger
+    package: botbuilder
+    summary: The current session logger.
+    fullName: logger
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'logger: SessionLogger'
+      return:
+        type: <xref uid="botbuilder.SessionLogger" />
+        description: ''
+  - name: message
+    uid: botbuilder.IRecognizeContext.message
+    package: botbuilder
+    summary: >-
+      The message received from the user. For bot originated messages this may
+      only contain the "to" & "from" fields.
+    fullName: message
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'message: IMessage'
+      return:
+        type: <xref uid="botbuilder.IMessage" />
+        description: ''
+  - name: privateConversationData
+    uid: botbuilder.IRecognizeContext.privateConversationData
+    package: botbuilder
+    summary: Private conversation data that's only visible to the user.
+    fullName: privateConversationData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'privateConversationData: any'
+      return:
+        type: any
+        description: ''
+  - name: userData
+    uid: botbuilder.IRecognizeContext.userData
+    package: botbuilder
+    summary: Data for the user that's persisted across all conversations with the bot.
+    fullName: userData
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'userData: any'
+      return:
+        type: any
+        description: ''
+methods:
+  - name: dialogStack()
+    uid: botbuilder.IRecognizeContext.dialogStack
+    package: botbuilder
+    summary: Returns a copy of the current dialog stack for the session.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function dialogStack()
+      return:
+        type: '<xref uid="botbuilder.IDialogState" />[]'
+        description: ''
+  - name: 'gettext(string, any[])'
+    uid: botbuilder.IRecognizeContext.gettext
+    package: botbuilder
+    summary: >-
+      Loads a localized string for the messages language. If arguments are
+      passed the localized string
+
+      will be treated as a template and formatted using
+      [sprintf-js](https://github.com/alexei/sprintf.js) (see their docs for
+      details.)
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function gettext(msgid: string, args: any[])'
+      parameters:
+        - id: msgid
+          type: string
+          description: >-
+            String to use as a key in the localized string table. Typically this
+            will just be the english version of the string.
+        - id: args
+          type: 'any[]'
+          description: |
+            (Optional) arguments used to format the final output string.
+      return:
+        type: string
+        description: ''
+  - name: 'ngettext(string, string, number)'
+    uid: botbuilder.IRecognizeContext.ngettext
+    package: botbuilder
+    summary: >-
+      Loads the plural form of a localized string for the messages language. The
+      output string will be formatted to
+
+      include the count by replacing %d in the string with the count.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function ngettext(msgid: string, msgid_plural: string, count: number)'
+      parameters:
+        - id: msgid
+          type: string
+          description: >-
+            Singular form of the string to use as a key in the localized string
+            table. Use %d to specify where the count should go.
+        - id: msgid_plural
+          type: string
+          description: >-
+            Plural form of the string to use as a key in the localized string
+            table. Use %d to specify where the count should go.
+        - id: count
+          type: number
+          description: >
+            Count to use when determining whether the singular or plural form of
+            the string should be used.
+      return:
+        type: string
+        description: ''
+  - name: preferredLocale()
+    uid: botbuilder.IRecognizeContext.preferredLocale
+    package: botbuilder
+    summary: Returns the users preferred locale.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function preferredLocale()
+      return:
+        type: string
+        description: ''

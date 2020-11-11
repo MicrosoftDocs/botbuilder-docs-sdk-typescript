@@ -1,0 +1,635 @@
+### YamlMime:TSType
+name: Message
+uid: botbuilder.Message
+package: botbuilder
+summary: >-
+  Message builder class that simplifies building complex messages with
+  attachments.
+fullName: Message
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: Message(Session)
+    uid: botbuilder.Message.constructor
+    package: botbuilder
+    summary: Creates a new Message builder.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new Message(session?: Session)'
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder.Session" />
+          description: >
+            (Optional) will be used to populate the messages address and
+            localize any text.
+methods:
+  - name: addAttachment(AttachmentType)
+    uid: botbuilder.Message.addAttachment
+    package: botbuilder
+    summary: >-
+      Adds an attachment to the message. See
+      [IAttachment](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iattachment.html)
+      for examples.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function addAttachment(attachment: AttachmentType)'
+      parameters:
+        - id: attachment
+          type: <xref uid="botbuilder.AttachmentType" />
+          description: |
+            The attachment to add.
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: addEntity(Object)
+    uid: botbuilder.Message.addEntity
+    package: botbuilder
+    summary: Adds an entity to the message.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function addEntity(obj: Object)'
+      parameters:
+        - id: obj
+          type: Object
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: address(IAddress)
+    uid: botbuilder.Message.address
+    package: botbuilder
+    summary: >-
+      Address routing information for the message. Save this field to external
+      storage somewhere to later compose a proactive message to the user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function address(adr: IAddress)'
+      parameters:
+        - id: adr
+          type: <xref uid="botbuilder.IAddress" />
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: attachmentLayout(string)
+    uid: botbuilder.Message.attachmentLayout
+    package: botbuilder
+    summary: >-
+      Hint for how clients should layout multiple attachments. The default value
+      is 'list'.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function attachmentLayout(style: string)'
+      parameters:
+        - id: style
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'attachments(AttachmentType[])'
+    uid: botbuilder.Message.attachments
+    package: botbuilder
+    summary: Cards or images to send to the user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function attachments(list: AttachmentType[])'
+      parameters:
+        - id: list
+          type: '<xref uid="botbuilder.AttachmentType" />[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: code(string)
+    uid: botbuilder.Message.code
+    package: botbuilder
+    summary: Code indicating why the conversation has ended.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function code(value: string)'
+      parameters:
+        - id: value
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'compose(string[][], any[])'
+    uid: botbuilder.Message.compose
+    package: botbuilder
+    summary: Composes a complex and randomized reply to the user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function compose(prompts: string[][], args: any[])'
+      parameters:
+        - id: prompts
+          type: 'string[][]'
+          description: ''
+        - id: args
+          type: 'any[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'composePrompt(Session, string[][], any[])'
+    uid: botbuilder.Message.composePrompt
+    package: botbuilder
+    summary: '__DEPRECATED__ use [compose()](#compose) instead.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function composePrompt(session: Session, prompts: string[][], args:
+        any[])
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder.Session" />
+          description: ''
+        - id: prompts
+          type: 'string[][]'
+          description: ''
+        - id: args
+          type: 'any[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'composePrompt(Session, string[][], any[])'
+    uid: botbuilder.Message.composePrompt
+    package: botbuilder
+    summary: >-
+      Combines an array of prompts into a single localized prompt and then
+      optionally fills the
+
+      prompts template slots with the passed in arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function composePrompt(session: Session, prompts: string[][],
+        args?: any[])
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder.Session" />
+          description: Session object used to localize the individual prompt parts.
+        - id: prompts
+          type: 'string[][]'
+          description: >-
+            Array of prompt lists. Each entry in the array is another array of
+            prompts
+                           which will be chosen at random.  The combined output text will be space delimited.
+        - id: args
+          type: 'any[]'
+          description: >
+            (Optional) array of arguments used to format the output text when
+            the prompt is a template.
+      return:
+        type: string
+        description: ''
+  - name: 'entities(Object[])'
+    uid: botbuilder.Message.entities
+    package: botbuilder
+    summary: Structured objects passed to the bot or user.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function entities(list: Object[])'
+      parameters:
+        - id: list
+          type: 'Object[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: inputHint(string)
+    uid: botbuilder.Message.inputHint
+    package: botbuilder
+    summary: >-
+      Hint for clients letting them know if the bot is expecting further input
+      or not. The built-in prompts will automatically populate this value for
+      outgoing messages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function inputHint(hint: string)'
+      parameters:
+        - id: hint
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: localTimestamp(string)
+    uid: botbuilder.Message.localTimestamp
+    package: botbuilder
+    summary: >-
+      Local time when message was sent (set by client or bot, Ex:
+      2016-09-23T13:07:49.4714686-07:00.)
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function localTimestamp(time?: string)'
+      parameters:
+        - id: time
+          type: string
+          description: >
+            (Optional) time expressed as an ISO string. Defaults to `new
+            Date().toISOString()`.
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: name(string)
+    uid: botbuilder.Message.name
+    package: botbuilder
+    summary: Name of the operation to invoke or the name of the event.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function name(name: string)'
+      parameters:
+        - id: name
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'nspeak(TextType, TextType, number)'
+    uid: botbuilder.Message.nspeak
+    package: botbuilder
+    summary: Conditionally set the speak field of the message given a specified count.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function nspeak(ssml: TextType, ssml_plural: TextType, count: number)'
+      parameters:
+        - id: ssml
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: ssml_plural
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: count
+          type: number
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'ntext(TextType, TextType, number)'
+    uid: botbuilder.Message.ntext
+    package: botbuilder
+    summary: Conditionally set the message text given a specified count.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function ntext(msg: TextType, msg_plural: TextType, count: number)'
+      parameters:
+        - id: msg
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: msg_plural
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: count
+          type: number
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: originalEvent(any)
+    uid: botbuilder.Message.originalEvent
+    package: botbuilder
+    summary: Message in original/native format of the channel for incoming messages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function originalEvent(event: any)'
+      parameters:
+        - id: event
+          type: any
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: randomPrompt(TextType)
+    uid: botbuilder.Message.randomPrompt
+    package: botbuilder
+    summary: Selects a prompt at random.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function randomPrompt(prompts: TextType)'
+      parameters:
+        - id: prompts
+          type: <xref uid="botbuilder.TextType" />
+          description: >
+            Array of prompts to choose from. When prompts is type _string_ the
+            prompt will simply be returned unmodified.
+      return:
+        type: string
+        description: ''
+  - name: relatesTo(IAddress)
+    uid: botbuilder.Message.relatesTo
+    package: botbuilder
+    summary: Reference to another conversation or message.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function relatesTo(adr: IAddress)'
+      parameters:
+        - id: adr
+          type: <xref uid="botbuilder.IAddress" />
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: setChannelData(any)
+    uid: botbuilder.Message.setChannelData
+    package: botbuilder
+    summary: '__DEPRECATED__ use [sourceEvent()](#sourceevent) instead.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setChannelData(data: any)'
+      parameters:
+        - id: data
+          type: any
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: setLanguage(string)
+    uid: botbuilder.Message.setLanguage
+    package: botbuilder
+    summary: '__DEPRECATED__ use [local()](#local) instead.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setLanguage(language: string)'
+      parameters:
+        - id: language
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'setNText(Session, string, string, number)'
+    uid: botbuilder.Message.setNText
+    package: botbuilder
+    summary: '__DEPRECATED__ use [ntext()](#ntext) instead.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function setNText(session: Session, msg: string, msg_plural: string,
+        count: number)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder.Session" />
+          description: ''
+        - id: msg
+          type: string
+          description: ''
+        - id: msg_plural
+          type: string
+          description: ''
+        - id: count
+          type: number
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'setText(Session, TextType, any[])'
+    uid: botbuilder.Message.setText
+    package: botbuilder
+    summary: '__DEPRECATED__ use [text()](#text) instead.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setText(session: Session, prompt: TextType, args: any[])'
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder.Session" />
+          description: ''
+        - id: prompt
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: args
+          type: 'any[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: sourceEvent(ISourceEventMap)
+    uid: botbuilder.Message.sourceEvent
+    package: botbuilder
+    summary: >-
+      For outgoing messages can be used to pass source specific event data like
+      custom attachments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function sourceEvent(map: ISourceEventMap)'
+      parameters:
+        - id: map
+          type: <xref uid="botbuilder.ISourceEventMap" />
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'speak(TextType, any[])'
+    uid: botbuilder.Message.speak
+    package: botbuilder
+    summary: >-
+      Sets the speak field of the message as [Speech Synthesis Markup Language
+      (SSML)](https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx).
+      This will be spoken to the user on supported devices.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function speak(ssml: TextType, args: any[])'
+      parameters:
+        - id: ssml
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: args
+          type: 'any[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: suggestedActions(ISuggestedActions | IIsSuggestedActions)
+    uid: botbuilder.Message.suggestedActions
+    package: botbuilder
+    summary: >-
+      Optional suggested actions to send to the user. Suggested actions will be
+      displayed only on the channels that support suggested actions.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function suggestedActions(suggestedActions: ISuggestedActions |
+        IIsSuggestedActions)
+      parameters:
+        - id: suggestedActions
+          type: >-
+            <xref uid="botbuilder.ISuggestedActions" /> | <xref
+            uid="botbuilder.IIsSuggestedActions" />
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'summary(TextType, any[])'
+    uid: botbuilder.Message.summary
+    package: botbuilder
+    summary: >-
+      Text to be displayed by as fall-back and as short description of the
+      message content in e.g. list of recent conversations.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function summary(text: TextType, args: any[])'
+      parameters:
+        - id: text
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: args
+          type: 'any[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: 'text(TextType, any[])'
+    uid: botbuilder.Message.text
+    package: botbuilder
+    summary: Sets the message text.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function text(text: TextType, args: any[])'
+      parameters:
+        - id: text
+          type: <xref uid="botbuilder.TextType" />
+          description: ''
+        - id: args
+          type: 'any[]'
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: textFormat(string)
+    uid: botbuilder.Message.textFormat
+    package: botbuilder
+    summary: Format of text fields.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function textFormat(style: string)'
+      parameters:
+        - id: style
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: textLocale(string)
+    uid: botbuilder.Message.textLocale
+    package: botbuilder
+    summary: Language of the message.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function textLocale(locale: string)'
+      parameters:
+        - id: locale
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: timestamp(string)
+    uid: botbuilder.Message.timestamp
+    package: botbuilder
+    summary: >-
+      Set by connectors service. Use [localTimestamp()](#localtimestamp)
+      instead.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function timestamp(time?: string)'
+      parameters:
+        - id: time
+          type: string
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''
+  - name: toMessage()
+    uid: botbuilder.Message.toMessage
+    package: botbuilder
+    summary: Returns the JSON for the message.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function toMessage()
+      return:
+        type: <xref uid="botbuilder.IMessage" />
+        description: ''
+  - name: value(any)
+    uid: botbuilder.Message.value
+    package: botbuilder
+    summary: Open-ended value.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function value(param: any)'
+      parameters:
+        - id: param
+          type: any
+          description: ''
+      return:
+        type: <xref uid="botbuilder.Message" />
+        description: ''

@@ -1,0 +1,139 @@
+### YamlMime:TSType
+name: RegExpRecognizer
+uid: botbuilder.RegExpRecognizer
+package: botbuilder
+summary: >-
+  Intent recognizer plugin that detects a users intent using a regular
+  expression. Multiple
+
+  expressions can be passed in to support recognizing across multiple languages.
+fullName: RegExpRecognizer
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'RegExpRecognizer(string, RegExp | IRegExpMap)'
+    uid: botbuilder.RegExpRecognizer.constructor
+    package: botbuilder
+    summary: Constructs a new instance of the recognizer.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new RegExpRecognizer(intent: string, expressions: RegExp | IRegExpMap)'
+      parameters:
+        - id: intent
+          type: string
+          description: The name of the intent to return when the expression is matched.
+        - id: expressions
+          type: RegExp | <xref uid="botbuilder.IRegExpMap" />
+          description: >
+            Either an individual expression used for all utterances or a map of
+            per/locale expressions conditionally used depending on the locale of
+            the utterance.
+methods:
+  - name: >-
+      onEnabled((context: IRecognizeContext, callback: (err: Error, enabled:
+      boolean) => void) => void)
+    uid: botbuilder.RegExpRecognizer.onEnabled
+    package: botbuilder
+    summary: >-
+      Registers a function to conditionally enable/disable the recognizer.
+      Multiple handlers can
+
+      be registered and the new handler will be executed before any other
+      handlers.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onEnabled(handler: (context: IRecognizeContext, callback: (err:
+        Error, enabled: boolean) => void) => void)
+      parameters:
+        - id: handler
+          type: >-
+            (context: IRecognizeContext, callback: (err: Error, enabled:
+            boolean) =&gt; void) =&gt; void
+          description: >
+            Function called for every message. You should call `callback(null,
+            true)` for every message that should be recognized.
+      return:
+        type: <xref uid="botbuilder.IntentRecognizer" />
+        description: ''
+  - name: >-
+      onFilter((context: IRecognizeContext, result: IIntentRecognizerResult,
+      callback: (err: Error, result: IIntentRecognizerResult) => void) => void)
+    uid: botbuilder.RegExpRecognizer.onFilter
+    package: botbuilder
+    summary: >-
+      Registers a function to filter the output from the recognizer. Multiple
+      handlers can be
+
+      registered and the new handler will be executed after any other handlers.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onFilter(handler: (context: IRecognizeContext, result:
+        IIntentRecognizerResult, callback: (err: Error, result:
+        IIntentRecognizerResult) => void) => void)
+      parameters:
+        - id: handler
+          type: >-
+            (context: IRecognizeContext, result: IIntentRecognizerResult,
+            callback: (err: Error, result: IIntentRecognizerResult) =&gt; void)
+            =&gt; void
+          description: >
+            Function called for every message that results in an intent with a
+            score greater then 0.0. You should call `callback(null, { score:
+            0.0, intent: null })` to block an intent from being returned.
+      return:
+        type: <xref uid="botbuilder.IntentRecognizer" />
+        description: ''
+  - name: >-
+      onRecognize(IRecognizeContext, (err: Error, result:
+      IIntentRecognizerResult) => void)
+    uid: botbuilder.RegExpRecognizer.onRecognize
+    package: botbuilder
+    summary: Implements the actual recognition logic.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onRecognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.IRecognizeContext" />
+          description: ''
+        - id: callback
+          type: '(err: Error, result: IIntentRecognizerResult) =&gt; void'
+          description: ''
+  - name: >-
+      recognize(IRecognizeContext, (err: Error, result: IIntentRecognizerResult)
+      => void)
+    uid: botbuilder.RegExpRecognizer.recognize
+    package: botbuilder
+    summary: Attempts to match a users text utterance to an intent.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function recognize(context: IRecognizeContext, callback: (err: Error,
+        result: IIntentRecognizerResult) => void)
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.IRecognizeContext" />
+          description: >-
+            Contextual information for a received message that's being
+            recognized.
+        - id: callback
+          type: '(err: Error, result: IIntentRecognizerResult) =&gt; void'
+          description: |
+            Function to invoke with the results of the recognition operation.
+extends: <xref uid="botbuilder.IntentRecognizer" />
