@@ -1,0 +1,180 @@
+### YamlMime:TSType
+name: ApplicationInsightsTelemetryClient
+uid: botbuilder-applicationinsights.ApplicationInsightsTelemetryClient
+package: botbuilder-applicationinsights
+summary: >
+  This is a wrapper class around the Application Insights node client.
+
+  This is primarily designed to be used alongside the WaterfallDialog telemetry
+  collection.
+
+  It provides a pre-configured App Insights client, and wrappers around
+
+  the major tracking functions, allowing it to conform to Botbuilder's generic
+  BotTelemetryClient interface.
+
+  To use it, create pass in an instrumentation key:
+
+  ```
+
+  const myDialog = new WaterfallDialog('my_dialog', steps);
+
+  const appInsightsClient = new
+  ApplicationInsightsTelemetryClient(my_instrumentation_key);
+
+  myDialog.telemetryClient = appInsightsClient;
+
+  ```
+fullName: ApplicationInsightsTelemetryClient
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: ApplicationInsightsTelemetryClient(string)
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.constructor
+    package: botbuilder-applicationinsights
+    summary: >-
+      Creates a new instance of the
+      [ApplicationInsightsTelemetryClient](xref:botbuilder-applicationinsights.ApplicationInsightsTelemetryClient)
+      class.
+    remarks: |-
+      The settings parameter is passed directly into appInsights.setup().
+      https://www.npmjs.com/package/applicationinsights#basic-usage
+      This function currently takes an app insights instrumentation key only.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new ApplicationInsightsTelemetryClient(instrumentationKey: string)'
+      parameters:
+        - id: instrumentationKey
+          type: string
+          description: The ApplicationInsights instrumentation key.
+properties:
+  - name: configuration
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.configuration
+    package: botbuilder-applicationinsights
+    summary: >-
+      Provides access to the Application Insights configuration that is running
+      here.
+
+      Allows developers to adjust the options, for example:
+
+      `appInsightsClient.configuration.setAutoCollectDependencies(false)`
+    fullName: configuration
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: Configuration configuration
+      return:
+        type: Configuration
+        description: ''
+  - name: defaultClient
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.defaultClient
+    package: botbuilder-applicationinsights
+    summary: >-
+      Provides direct access to the telemetry client object, which might be
+      necessary for some operations.
+    fullName: defaultClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: appInsights.TelemetryClient defaultClient
+      return:
+        type: <xref uid="appInsights.TelemetryClient" />
+        description: ''
+methods:
+  - name: flush()
+    uid: botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.flush
+    package: botbuilder-applicationinsights
+    summary: Flushes the in-memory buffer and any metrics being pre-aggregated.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function flush()
+  - name: trackDependency(TelemetryDependency)
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.trackDependency
+    package: botbuilder-applicationinsights
+    summary: >-
+      Sends information about an external dependency (outgoing call) in the
+      application.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function trackDependency(telemetry: TelemetryDependency)'
+      parameters:
+        - id: telemetry
+          type: TelemetryDependency
+          description: >
+            The [TelemetryDependency](xref:botbuilder-core.TelemetryDependency)
+            to track.
+  - name: trackEvent(TelemetryEvent)
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.trackEvent
+    package: botbuilder-applicationinsights
+    summary: Logs custom events with extensible named fields.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function trackEvent(telemetry: TelemetryEvent)'
+      parameters:
+        - id: telemetry
+          type: TelemetryEvent
+          description: |
+            The [TelemetryEvent](xref:botbuilder-core.TelemetryEvent) to track.
+  - name: trackException(TelemetryException)
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.trackException
+    package: botbuilder-applicationinsights
+    summary: Logs a system exception.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function trackException(telemetry: TelemetryException)'
+      parameters:
+        - id: telemetry
+          type: TelemetryException
+          description: >
+            The [TelemetryException](xref:botbuilder-core.TelemetryException) to
+            track.
+  - name: trackPageView(TelemetryPageView)
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.trackPageView
+    package: botbuilder-applicationinsights
+    summary: Logs a dialog entry as an Application Insights page view.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function trackPageView(telemetry: TelemetryPageView)'
+      parameters:
+        - id: telemetry
+          type: TelemetryPageView
+          description: >
+            The [TelemetryPageView](xref:botbuilder-core.TelemetryPageView) to
+            track.
+  - name: trackTrace(TelemetryTrace)
+    uid: >-
+      botbuilder-applicationinsights.ApplicationInsightsTelemetryClient.trackTrace
+    package: botbuilder-applicationinsights
+    summary: Sends a trace message.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function trackTrace(telemetry: TelemetryTrace)'
+      parameters:
+        - id: telemetry
+          type: TelemetryTrace
+          description: |
+            The [TelemetryTrace](xref:botbuilder-core.TelemetryTrace) to track.

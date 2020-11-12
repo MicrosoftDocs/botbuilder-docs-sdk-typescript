@@ -1,0 +1,120 @@
+### YamlMime:TSPackage
+uid: botbuilder-azure-blobs
+name: botbuilder-azure-blobs
+summary: ''
+type: package
+functions:
+  - name: 'assert(any, string, Newable<Error>)'
+    uid: botbuilder-azure-blobs.assert
+    package: botbuilder-azure-blobs
+    summary: Assert a condition to the typescript compiler
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function assert(condition: any, message: string, errorCtor?:
+        Newable<Error>)
+      parameters:
+        - id: condition
+          type: any
+          description: condition to assert
+        - id: message
+          type: string
+          description: error message if condition fails
+        - id: errorCtor
+          type: Newable&lt;Error&gt;
+          description: |
+            a reference to an Error constructor
+      return:
+        type: asserts
+        description: ''
+  - name: 'ignoreError<T>(Promise<T>, IgnoreError)'
+    uid: botbuilder-azure-blobs.ignoreError
+    package: botbuilder-azure-blobs
+    summary: >-
+      Wrap a promise and provide a function to decide whether to ignore a type
+      of error
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function ignoreError<T>(promise: Promise<T>, ignore: IgnoreError)'
+      parameters:
+        - id: promise
+          type: Promise&lt;T&gt;
+          description: promise to await
+        - id: ignore
+          type: <xref uid="botbuilder-azure-blobs.IgnoreError" />
+          description: |
+            method that returns true if an error should be ignored
+      return:
+        type: Promise&lt;T | null&gt;
+        description: ''
+  - name: 'isStatusCodeError(number[])'
+    uid: botbuilder-azure-blobs.isStatusCodeError
+    package: botbuilder-azure-blobs
+    summary: Ignore RestErrors that match a set of status codes.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isStatusCodeError(codes: number[])'
+      parameters:
+        - id: codes
+          type: 'number[]'
+          description: |
+            HTTP status codes that should not be considered errors
+      return:
+        type: <xref uid="botbuilder-azure-blobs.IgnoreError" />
+        description: ''
+  - name: 'maybeCast<T>(unknown, Newable<T>)'
+    uid: botbuilder-azure-blobs.maybeCast
+    package: botbuilder-azure-blobs
+    summary: Maybe cast value to a particular type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeCast<T>(value: unknown, ctor?: Newable<T>)'
+      parameters:
+        - id: value
+          type: unknown
+          description: value to maybe cast
+        - id: ctor
+          type: Newable&lt;T&gt;
+          description: |
+            optional class to perform instanceof check
+      return:
+        type: T
+        description: ''
+  - name: sanitizeBlobKey(string)
+    uid: botbuilder-azure-blobs.sanitizeBlobKey
+    package: botbuilder-azure-blobs
+    summary: >-
+      Ensures that `key` is a properly sanitized Azure Blob Storage key. It
+      should be URI encoded,
+
+      no longer than 1024 characters, and contain no more than 254 slash ("/")
+      chars.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function sanitizeBlobKey(key: string)'
+      parameters:
+        - id: key
+          type: string
+          description: |
+            blob key to sanitize
+      return:
+        type: string
+        description: ''
+classes:
+  - botbuilder-azure-blobs.BlobsStorage
+  - botbuilder-azure-blobs.BlobsTranscriptStore
+interfaces:
+  - botbuilder-azure-blobs.BlobsStorageOptions
+  - botbuilder-azure-blobs.BlobsTranscriptStoreOptions
+typeAliases:
+  - botbuilder-azure-blobs.IgnoreError

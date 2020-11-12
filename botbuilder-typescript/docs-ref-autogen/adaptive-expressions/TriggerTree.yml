@@ -1,0 +1,172 @@
+### YamlMime:TSType
+name: TriggerTree
+uid: adaptive-expressions.TriggerTree
+package: adaptive-expressions
+summary: >-
+  A trigger tree organizes evaluators according to generalization/specialization
+  in order to make it easier to use rules.
+fullName: TriggerTree
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: TriggerTree()
+    uid: adaptive-expressions.TriggerTree.constructor
+    package: adaptive-expressions
+    summary: Intializes a new instance of the `TriggerTree` class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: new TriggerTree()
+properties:
+  - name: comparers
+    uid: adaptive-expressions.TriggerTree.comparers
+    package: adaptive-expressions
+    summary: 'A dictionary of `PredicateComparer` values, with string keys.'
+    fullName: comparers
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public comparers: PredicateComparers'
+      return:
+        type: <xref uid="adaptive-expressions.PredicateComparers" />
+        description: ''
+  - name: optimizers
+    uid: adaptive-expressions.TriggerTree.optimizers
+    package: adaptive-expressions
+    summary: A list of `Optimizer` for optimizing claues.
+    fullName: optimizers
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public optimizers: Optimizer[] = []'
+      return:
+        type: '<xref uid="adaptive-expressions.Optimizer" />[]'
+        description: ''
+  - name: root
+    uid: adaptive-expressions.TriggerTree.root
+    package: adaptive-expressions
+    summary: The root node instance.
+    fullName: root
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public root: Node'
+      return:
+        type: <xref uid="adaptive-expressions.Node" />
+        description: ''
+  - name: totalTriggers
+    uid: adaptive-expressions.TriggerTree.totalTriggers
+    package: adaptive-expressions
+    summary: The total number of triggers.
+    fullName: totalTriggers
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public totalTriggers: number = 0'
+      return:
+        type: number
+        description: ''
+methods:
+  - name: 'addTrigger(string | Expression, any, Quantifier[])'
+    uid: adaptive-expressions.TriggerTree.addTrigger
+    package: adaptive-expressions
+    summary: Add a trigger expression to the tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function addTrigger(stringOrExpression: string | Expression, action:
+        any, quantifiers: Quantifier[])
+      parameters:
+        - id: stringOrExpression
+          type: string | <xref uid="adaptive-expressions.Expression" />
+          description: Trigger to add.
+        - id: action
+          type: any
+          description: Action when triggered.
+        - id: quantifiers
+          type: '<xref uid="adaptive-expressions.Quantifier" />[]'
+          description: Quantifiers to use when expanding expressions.
+      return:
+        type: <xref uid="adaptive-expressions.Trigger" />
+        description: New trigger.
+  - name: matches(MemoryInterface | any)
+    uid: adaptive-expressions.TriggerTree.matches
+    package: adaptive-expressions
+    summary: Return the possible matches given the current state.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function matches(state: MemoryInterface | any)'
+      parameters:
+        - id: state
+          type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
+          description: State to evaluate against.
+      return:
+        type: '<xref uid="adaptive-expressions.Trigger" />[]'
+        description: List of possible matches.
+  - name: removeTrigger(Trigger)
+    uid: adaptive-expressions.TriggerTree.removeTrigger
+    package: adaptive-expressions
+    summary: Remove trigger from tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function removeTrigger(trigger: Trigger)'
+      parameters:
+        - id: trigger
+          type: <xref uid="adaptive-expressions.Trigger" />
+          description: Trigger to remove.
+      return:
+        type: boolean
+        description: True if removed trigger.
+  - name: toString()
+    uid: adaptive-expressions.TriggerTree.toString
+    package: adaptive-expressions
+    summary: Returns a string the represents the current object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function toString()
+      return:
+        type: string
+        description: ''
+  - name: treeToString(number)
+    uid: adaptive-expressions.TriggerTree.treeToString
+    package: adaptive-expressions
+    summary: Generates a string describing the tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function treeToString(indent: number)'
+      parameters:
+        - id: indent
+          type: number
+          description: Current indent level.
+      return:
+        type: string
+        description: String describing the tree.
+  - name: verifyTree()
+    uid: adaptive-expressions.TriggerTree.verifyTree
+    package: adaptive-expressions
+    summary: Verify the tree meets specialization/generalization invariants.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function verifyTree()
+      return:
+        type: <xref uid="adaptive-expressions.Node" />
+        description: Bad node if found.
