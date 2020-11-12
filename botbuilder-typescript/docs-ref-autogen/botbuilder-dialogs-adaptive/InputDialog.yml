@@ -2,7 +2,7 @@
 name: InputDialog
 uid: botbuilder-dialogs-adaptive.InputDialog
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: Defines input dialogs.
 fullName: InputDialog<O>
 remarks: ''
 isPreview: false
@@ -12,7 +12,9 @@ constructors:
   - name: 'InputDialog(string, Partial<Activity> | string)'
     uid: botbuilder-dialogs-adaptive.InputDialog.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [InputDialog](xref:botbuilder-dialogs-adaptive.InputDialog) class
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -21,10 +23,15 @@ constructors:
       parameters:
         - id: property
           type: string
-          description: ''
+          description: Optional. The value expression which the input will be bound to.
         - id: prompt
           type: Partial&lt;Activity&gt; | string
-          description: ''
+          description: >
+            Optional. The [Activity](xref:botframework-schema.Activity) to send
+            to the user,
+
+            if a string is specified it will instantiates an
+            [ActivityTemplate](xref:botbuilder-dialogs-adaptive.ActivityTemplate).
 properties:
   - name: allowInterruptions
     uid: botbuilder-dialogs-adaptive.InputDialog.allowInterruptions
@@ -35,7 +42,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'allowInterruptions: BoolExpression'
+      content: 'public allowInterruptions: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -50,7 +57,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'alwaysPrompt: BoolExpression'
+      content: 'public alwaysPrompt: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -63,7 +70,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'defaultValue?: ValueExpression'
+      content: 'public defaultValue?: ValueExpression'
       return:
         type: ValueExpression
         description: ''
@@ -78,11 +85,11 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'defaultValueResponse: TemplateInterface<Partial<Activity>>'
+      content: >-
+        public defaultValueResponse: TemplateInterface<Partial<Activity>,
+        DialogStateManager>
       return:
-        type: >-
-          <xref uid="botbuilder-dialogs-adaptive.TemplateInterface"
-          />&lt;Partial&lt;Activity&gt;&gt;
+        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
         description: ''
   - name: disabled
     uid: botbuilder-dialogs-adaptive.InputDialog.disabled
@@ -93,7 +100,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'disabled?: BoolExpression'
+      content: 'public disabled?: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -118,9 +125,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs-adaptive.InputDialog.id
     package: botbuilder-dialogs-adaptive
-    summary: Unique ID of the dialog.
+    summary: Sets the unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -139,11 +146,11 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'invalidPrompt: TemplateInterface<Partial<Activity>>'
+      content: >-
+        public invalidPrompt: TemplateInterface<Partial<Activity>,
+        DialogStateManager>
       return:
-        type: >-
-          <xref uid="botbuilder-dialogs-adaptive.TemplateInterface"
-          />&lt;Partial&lt;Activity&gt;&gt;
+        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
         description: ''
   - name: maxTurnCount
     uid: botbuilder-dialogs-adaptive.InputDialog.maxTurnCount
@@ -156,7 +163,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'maxTurnCount?: IntExpression'
+      content: 'public maxTurnCount?: IntExpression'
       return:
         type: IntExpression
         description: ''
@@ -169,7 +176,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static OPTIONS_PROPERTY: string'
+      content: 'public static OPTIONS_PROPERTY: string = "this.options"'
       return:
         type: string
         description: ''
@@ -182,11 +189,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'prompt: TemplateInterface<Partial<Activity>>'
+      content: 'public prompt: TemplateInterface<Partial<Activity>, DialogStateManager>'
       return:
-        type: >-
-          <xref uid="botbuilder-dialogs-adaptive.TemplateInterface"
-          />&lt;Partial&lt;Activity&gt;&gt;
+        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
         description: ''
   - name: property
     uid: botbuilder-dialogs-adaptive.InputDialog.property
@@ -197,7 +202,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'property: StringExpression'
+      content: 'public property: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -223,7 +228,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static TURN_COUNT_PROPERTY: string'
+      content: 'public static TURN_COUNT_PROPERTY: string = "this.turnCount"'
       return:
         type: string
         description: ''
@@ -236,11 +241,11 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'unrecognizedPrompt: TemplateInterface<Partial<Activity>>'
+      content: >-
+        public unrecognizedPrompt: TemplateInterface<Partial<Activity>,
+        DialogStateManager>
       return:
-        type: >-
-          <xref uid="botbuilder-dialogs-adaptive.TemplateInterface"
-          />&lt;Partial&lt;Activity&gt;&gt;
+        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
         description: ''
   - name: validations
     uid: botbuilder-dialogs-adaptive.InputDialog.validations
@@ -251,7 +256,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'validations: string[]'
+      content: 'public validations: string[] = []'
       return:
         type: 'string[]'
         description: ''
@@ -264,7 +269,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'value: ValueExpression'
+      content: 'public value: ValueExpression'
       return:
         type: ValueExpression
         description: ''
@@ -277,7 +282,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static VALUE_PROPERTY: string'
+      content: 'public static VALUE_PROPERTY: string = "this.value"'
       return:
         type: string
         description: ''
@@ -285,7 +290,9 @@ methods:
   - name: 'beginDialog(DialogContext, any)'
     uid: botbuilder-dialogs-adaptive.InputDialog.beginDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is started and
+      pushed onto the dialog stack.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -294,14 +301,20 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: options
           type: any
-          description: ''
+          description: >-
+            Optional. Initial information to pass to the
+            [Dialog](xref:botbuilder-dialogs.Dialog).
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
-  - name: configure(object)
+        description: >-
+          A [DialogTurnResult](xref:botbuilder-dialogs.DialogTurnResult)
+          `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.InputDialog.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
@@ -309,10 +322,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -321,7 +334,9 @@ methods:
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.InputDialog.continueDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is _continued_,
+      where it is the active dialog and the user replies with a new activity.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -330,10 +345,14 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
+        description: >-
+          A [DialogTurnResult](xref:botbuilder-dialogs.DialogTurnResult)
+          `Promise` representing the asynchronous operation.
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs-adaptive.InputDialog.endDialog
     package: botbuilder-dialogs-adaptive
@@ -382,6 +401,22 @@ methods:
             The reason the dialog is ending.
       return:
         type: Promise&lt;void&gt;
+        description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.InputDialog.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
         description: ''
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.InputDialog.getVersion
@@ -477,7 +512,9 @@ methods:
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs-adaptive.InputDialog.resumeDialog
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Called when a child [Dialog](xref:botbuilder-dialogs.Dialog) completes its
+      turn, returning control to this dialog.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -488,14 +525,24 @@ methods:
       parameters:
         - id: dc
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: reason
           type: DialogReason
-          description: ''
+          description: >-
+            (xref:botbuilder-dialogs.DialogReason), reason why the dialog
+            resumed.
         - id: result
           type: any
-          description: ''
+          description: >-
+            Optional. Value returned from the
+            [Dialog](xref:botbuilder-dialogs.Dialog) that was called.
+
+            The type of the value returned is dependent on the child dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
+        description: >-
+          A [DialogTurnResult](xref:botbuilder-dialogs.DialogTurnResult)
+          `Promise` representing the asynchronous operation.
 extends: Dialog

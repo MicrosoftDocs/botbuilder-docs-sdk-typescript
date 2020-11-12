@@ -2,37 +2,57 @@
 name: TemplateEngineLanguageGenerator
 uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator
 package: botbuilder-dialogs-adaptive
-summary: LanguageGenerator implementation which uses LGFile.
-fullName: TemplateEngineLanguageGenerator
+summary: >-
+  [LanguageGenerator](xref:botbuilder-dialogs-adaptive.LanguageGenerator)
+  implementation which uses LGFile.
+fullName: TemplateEngineLanguageGenerator<T>
 remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
 constructors:
   - name: >-
-      TemplateEngineLanguageGenerator(Templates | string, string | Map<string,
-      Resource[]>, Map<string, Resource[]>)
+      TemplateEngineLanguageGenerator(Templates | Resource, Map<string,
+      Resource[]>)
     uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [TemplateEngineLanguageGenerator](xref:botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator)
+      class.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        new TemplateEngineLanguageGenerator(arg1?: Templates | string, arg2?:
-        string | Map<string, Resource[]>, arg3?: Map<string, Resource[]>)
+        new TemplateEngineLanguageGenerator(arg1?: Templates | Resource, arg2?:
+        Map<string, Resource[]>)
       parameters:
         - id: arg1
-          type: Templates | string
-          description: ''
+          type: Templates | Resource
+          description: >-
+            Optional. An LG [Templates](xref:botbuilder-lg.Templates) or a
+            [Resource](xref:botbuilder-dialogs-declarative.Resource).
         - id: arg2
-          type: 'string | Map&lt;string, Resource[]&gt;'
-          description: ''
-        - id: arg3
           type: 'Map&lt;string, Resource[]&gt;'
-          description: ''
+          description: |
+            Optional. A `Map` object with a `Resource` array for each key.
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        public static $kind: string =
+        "Microsoft.TemplateEngineLanguageGenerator"
+      return:
+        type: string
+        description: ''
   - name: id
     uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.id
     package: botbuilder-dialogs-adaptive
@@ -42,32 +62,66 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'id: string'
+      content: 'public id: string = ""'
       return:
         type: string
         description: ''
 methods:
-  - name: 'generate(DialogContext, string, object)'
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.configure
+    package: botbuilder-dialogs-adaptive
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>)'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        type: this
+        description: ''
+  - name: 'generate(DialogContext, string, D)'
     uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.generate
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: Method to generate text from given template and data.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function generate(dialogContext: DialogContext, template: string, data:
-        object)
+        D)
       parameters:
         - id: dialogContext
           type: DialogContext
-          description: ''
+          description: Context for the current turn of conversation.
         - id: template
           type: string
-          description: ''
+          description: Template to evaluate.
         - id: data
-          type: object
+          type: D
+          description: Data to bind to.
+      return:
+        type: Promise&lt;T&gt;
+        description: A Promise string with the evaluated result.
+  - name: getConverter(string)
+    uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
           description: ''
       return:
-        type: Promise&lt;string&gt;
+        type: Converter | ConverterFactory
         description: ''
+extends: Configurable

@@ -2,7 +2,7 @@
 name: ProtocolAdapter
 uid: botframework-streaming.ProtocolAdapter
 package: botframework-streaming
-summary: ''
+summary: Creates a protocol adapter for Streaming.
 fullName: ProtocolAdapter
 remarks: ''
 isPreview: false
@@ -39,7 +39,7 @@ methods:
   - name: onCancelStream(PayloadAssembler)
     uid: botframework-streaming.ProtocolAdapter.onCancelStream
     package: botframework-streaming
-    summary: ''
+    summary: Executes the receive pipeline when a cancellation comes in.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -48,11 +48,13 @@ methods:
       parameters:
         - id: contentStreamAssembler
           type: <xref uid="botframework-streaming.PayloadAssembler" />
-          description: ''
+          description: >
+            The payload assembler processing the incoming data that this
+            cancellation request targets.
   - name: 'onReceiveRequest(string, IReceiveRequest)'
     uid: botframework-streaming.ProtocolAdapter.onReceiveRequest
     package: botframework-streaming
-    summary: ''
+    summary: Executes the receive pipeline when a request comes in.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -61,17 +63,18 @@ methods:
       parameters:
         - id: id
           type: string
-          description: ''
+          description: The id the resources created for the response will be assigned.
         - id: request
           type: <xref uid="botframework-streaming.IReceiveRequest" />
-          description: ''
+          description: |
+            The incoming request to process.
       return:
         type: Promise&lt;void&gt;
         description: ''
   - name: 'onReceiveResponse(string, IReceiveResponse)'
     uid: botframework-streaming.ProtocolAdapter.onReceiveResponse
     package: botframework-streaming
-    summary: ''
+    summary: Executes the receive pipeline when a response comes in.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -80,17 +83,18 @@ methods:
       parameters:
         - id: id
           type: string
-          description: ''
+          description: The id the resources created for the response will be assigned.
         - id: response
           type: <xref uid="botframework-streaming.IReceiveResponse" />
-          description: ''
+          description: |
+            The incoming response to process.
       return:
         type: Promise&lt;void&gt;
         description: ''
   - name: sendRequest(StreamingRequest)
     uid: botframework-streaming.ProtocolAdapter.sendRequest
     package: botframework-streaming
-    summary: ''
+    summary: Sends a request over the attached request manager.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -99,7 +103,7 @@ methods:
       parameters:
         - id: request
           type: <xref uid="botframework-streaming.StreamingRequest" />
-          description: ''
+          description: The outgoing request to send.
       return:
         type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
-        description: ''
+        description: The response to the specified request.

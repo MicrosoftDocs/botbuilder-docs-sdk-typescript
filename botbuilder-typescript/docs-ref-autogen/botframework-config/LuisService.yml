@@ -6,7 +6,8 @@ summary: Defines a LUIS service connection.
 fullName: LuisService
 remarks: ''
 isPreview: false
-isDeprecated: false
+isDeprecated: true
+customDeprecatedMessage: 'See https://aka.ms/bot-file-basics for more information.'
 type: class
 constructors:
   - name: 'LuisService(ILuisService, ServiceTypes)'
@@ -152,7 +153,7 @@ methods:
   - name: 'decrypt(string, (value: string, secret: string) => string)'
     uid: botframework-config.LuisService.decrypt
     package: botframework-config
-    summary: ''
+    summary: Decrypt properties on this service.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -163,14 +164,15 @@ methods:
       parameters:
         - id: secret
           type: string
-          description: ''
+          description: Secret to use to decrypt.
         - id: decryptString
           type: '(value: string, secret: string) =&gt; string'
-          description: ''
+          description: |
+            Function called to decrypt an individual value.
   - name: 'encrypt(string, (value: string, secret: string) => string)'
     uid: botframework-config.LuisService.encrypt
     package: botframework-config
-    summary: ''
+    summary: Encrypt properties on this service.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -181,10 +183,11 @@ methods:
       parameters:
         - id: secret
           type: string
-          description: ''
+          description: Secret to use to encrypt.
         - id: encryptString
           type: '(value: string, secret: string) =&gt; string'
-          description: ''
+          description: |
+            Function called to encrypt an individual value.
   - name: getEndpoint()
     uid: botframework-config.LuisService.getEndpoint
     package: botframework-config

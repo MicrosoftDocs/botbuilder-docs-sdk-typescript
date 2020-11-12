@@ -12,20 +12,40 @@ constructors:
   - name: 'OnMessageReactionActivity(Dialog[], string)'
     uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [OnMessageReactionActivity](xref:botbuilder-dialogs-adaptive.OnMessageReactionActivity)
+      class.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new OnMessageReactionActivity(actions?: Dialog[], condition?: string)'
+      content: 'new OnMessageReactionActivity(actions: Dialog[], condition?: string)'
       parameters:
         - id: actions
           type: 'Dialog[]'
-          description: ''
+          description: >-
+            Optional. A [Dialog](xref:botbuilder-dialogs.Dialog) list containing
+            the actions to add to the plan when the rule constraints are met.
         - id: condition
           type: string
-          description: ''
+          description: >
+            Optional. Condition which needs to be met for the actions to be
+            executed.
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.OnMessageReactionActivity"'
+      return:
+        type: string
+        description: ''
   - name: actions
     uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.actions
     package: botbuilder-dialogs-adaptive
@@ -37,7 +57,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'actions: Dialog[]'
+      content: 'public actions: Dialog[] = []'
       return:
         type: 'Dialog[]'
         description: ''
@@ -52,7 +72,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'condition: BoolExpression'
+      content: 'public condition: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -65,7 +85,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'event: string'
+      content: 'public event: string'
       return:
         type: string
         description: ''
@@ -78,7 +98,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'id: string'
+      content: 'public id: string'
       return:
         type: string
         description: ''
@@ -93,7 +113,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'priority: IntExpression'
+      content: 'public priority: IntExpression = new IntExpression(0)'
       return:
         type: IntExpression
         description: ''
@@ -108,7 +128,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'runOnce: boolean'
+      content: 'public runOnce: boolean'
       return:
         type: boolean
         description: ''
@@ -121,7 +141,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'type: string'
+      content: 'public type: string'
       return:
         type: string
         description: ''
@@ -141,6 +161,23 @@ methods:
           description: >
             External constraint to add, it will be AND'ed to all other
             constraints.
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.configure
+    package: botbuilder-dialogs-adaptive
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>)'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        type: this
+        description: ''
   - name: currentPriority(ActionContext)
     uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.currentPriority
     package: botbuilder-dialogs-adaptive
@@ -175,6 +212,22 @@ methods:
           Promise&lt;<xref uid="botbuilder-dialogs-adaptive.ActionChangeList"
           />[]&gt;
         description: A promise with plan change list.
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
+        description: ''
   - name: getDependencies()
     uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.getDependencies
     package: botbuilder-dialogs-adaptive
@@ -192,7 +245,7 @@ methods:
   - name: getExpression(ExpressionParserInterface)
     uid: botbuilder-dialogs-adaptive.OnMessageReactionActivity.getExpression
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: Gets this activity representing expression.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -201,8 +254,12 @@ methods:
       parameters:
         - id: parser
           type: ExpressionParserInterface
-          description: ''
+          description: >-
+            (xref:adaptive-expressions.ExpressionParserInterface) used to parse
+            a string into an [Expression](xref:adaptive-expressions.Expression).
       return:
         type: Expression
-        description: ''
+        description: >-
+          An [Expression](xref:adaptive-expressions.Expression) representing the
+          [Activity](xref:botframework-schema.Activity).
 extends: <xref uid="botbuilder-dialogs-adaptive.OnActivity" />

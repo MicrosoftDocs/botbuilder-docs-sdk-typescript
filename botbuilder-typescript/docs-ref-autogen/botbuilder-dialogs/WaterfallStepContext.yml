@@ -519,6 +519,18 @@ methods:
       return:
         type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
         description: ''
+  - name: getLocale()
+    uid: botbuilder-dialogs.WaterfallStepContext.getLocale
+    package: botbuilder-dialogs
+    summary: Obtain the CultureInfo in DialogContext.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getLocale()
+      return:
+        type: string
+        description: a locale string.
   - name: next(any)
     uid: botbuilder-dialogs.WaterfallStepContext.next
     package: botbuilder-dialogs
@@ -549,8 +561,7 @@ methods:
       This helper method formats the object to use as the `options` parameter,
       and then calls
 
-      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
-      the specified prompt dialog.
+      beginDialog to start the specified prompt dialog.
 
 
       ```JavaScript
@@ -573,10 +584,11 @@ methods:
           type: >-
             string | Partial&lt;Activity&gt; | <xref
             uid="botbuilder-dialogs.PromptOptions" />
-          description: |-
+          description: >-
             The text of the initial prompt to send the user,
-                 the activity to send as the initial prompt, or
-                 the object with which to format the prompt dialog.
+
+            or the [Activity](xref:botframework-schema.Activity) to send as the
+            initial prompt.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
@@ -585,13 +597,14 @@ methods:
       Choice[])
     uid: botbuilder-dialogs.WaterfallStepContext.prompt_1
     package: botbuilder-dialogs
-    summary: ''
+    summary: >-
+      Helper function to simplify formatting the options for calling a prompt
+      dialog.
     remarks: >-
       This helper method formats the object to use as the `options` parameter,
       and then calls
 
-      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
-      the specified prompt dialog.
+      beginDialog to start the specified prompt dialog.
 
 
       ```JavaScript
@@ -609,15 +622,21 @@ methods:
       parameters:
         - id: dialogId
           type: string
-          description: ''
+          description: ID of the prompt dialog to start.
         - id: promptOrOptions
           type: >-
             string | Partial&lt;Activity&gt; | <xref
             uid="botbuilder-dialogs.PromptOptions" />
-          description: ''
+          description: >-
+            The text of the initial prompt to send the user,
+
+            or the [Activity](xref:botframework-schema.Activity) to send as the
+            initial prompt.
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
-          description: ''
+          description: |-
+            Optional. Array of choices for the user to choose from,
+            for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''

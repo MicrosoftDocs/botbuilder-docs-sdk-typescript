@@ -152,7 +152,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs.OAuthPrompt.id
     package: botbuilder-dialogs
-    summary: Unique ID of the dialog.
+    summary: |-
+      Unique ID of the dialog.
+      Sets the unique ID of the dialog.
     fullName: id
     remarks: This will be automatically generated if not specified.
     isPreview: false
@@ -181,8 +183,14 @@ methods:
   - name: 'beginDialog(DialogContext, PromptOptions)'
     uid: botbuilder-dialogs.OAuthPrompt.beginDialog
     package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
+    summary: >-
+      Called when a prompt dialog is pushed onto the dialog stack and is being
+      activated.
+    remarks: >-
+      If the task is successful, the result indicates whether the prompt is
+      still
+
+      active after the turn has been processed by the prompt.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -190,14 +198,20 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current
+
+            turn of the conversation.
         - id: options
           type: <xref uid="botbuilder-dialogs.PromptOptions" />
-          description: ''
+          description: |-
+            Optional. [PromptOptions](xref:botbuilder-dialogs.PromptOptions),
+            additional information to pass to the prompt being started.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
-  - name: configure(object)
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.OAuthPrompt.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
@@ -205,10 +219,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type: object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
@@ -217,8 +231,19 @@ methods:
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.OAuthPrompt.continueDialog
     package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
+    summary: >-
+      Called when a prompt dialog is the active dialog and the user replied with
+      a new activity.
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog.
+
+      The prompt generally continues to receive the user's replies until it
+      accepts the
+
+      user's reply as valid input for the prompt.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -226,10 +251,14 @@ methods:
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn
+
+            of the conversation.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
+        description: A `Promise` representing the asynchronous operation.
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.OAuthPrompt.endDialog
     package: botbuilder-dialogs
@@ -278,6 +307,24 @@ methods:
             The reason the dialog is ending.
       return:
         type: Promise&lt;void&gt;
+        description: ''
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.OAuthPrompt.getConverter
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
         description: ''
   - name: 'getUserToken(TurnContext, string)'
     uid: botbuilder-dialogs.OAuthPrompt.getUserToken

@@ -2,7 +2,7 @@
 name: FunctionUtils
 uid: adaptive-expressions.FunctionUtils
 package: adaptive-expressions
-summary: ''
+summary: Utility functions in AdaptiveExpression.
 fullName: FunctionUtils
 remarks: ''
 isPreview: false
@@ -24,73 +24,7 @@ properties:
       return:
         type: string
         description: ''
-  - name: MillisecondToTickConstant
-    uid: adaptive-expressions.FunctionUtils.MillisecondToTickConstant
-    package: adaptive-expressions
-    summary: Constant to convert between ticks and ms.
-    fullName: MillisecondToTickConstant
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'public static MillisecondToTickConstant: BigInteger = bigInt(''10000'')'
-      return:
-        type: BigInteger
-        description: ''
-  - name: UnixMilliSecondToTicksConstant
-    uid: adaptive-expressions.FunctionUtils.UnixMilliSecondToTicksConstant
-    package: adaptive-expressions
-    summary: Constant for converting unix timestamp to ticks.
-    fullName: UnixMilliSecondToTicksConstant
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        public static UnixMilliSecondToTicksConstant: BigInteger =
-        bigInt('621355968000000000')
-      return:
-        type: BigInteger
-        description: ''
 methods:
-  - name: 'accessIndex(any, number)'
-    uid: adaptive-expressions.FunctionUtils.accessIndex
-    package: adaptive-expressions
-    summary: Lookup a string or number index of an Object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function accessIndex(instance: any, index: number)'
-      parameters:
-        - id: instance
-          type: any
-          description: Instance with property.
-        - id: index
-          type: number
-          description: ''
-      return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: Value and error information if any.
-  - name: 'accessProperty(any, string)'
-    uid: adaptive-expressions.FunctionUtils.accessProperty
-    package: adaptive-expressions
-    summary: Lookup a property in Map or Object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function accessProperty(instance: any, property: string)'
-      parameters:
-        - id: instance
-          type: any
-          description: Instance with property.
-        - id: property
-          type: string
-          description: Property to lookup.
-      return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: Value and error information if any.
   - name: 'apply((arg0: any[]) => any, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.apply
     package: adaptive-expressions
@@ -183,6 +117,56 @@ methods:
       return:
         type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+  - name: >-
+      applyWithOptionsAndError((arg0: unknown[], options: Options) => Object,
+      VerifyExpression)
+    uid: adaptive-expressions.FunctionUtils.applyWithOptionsAndError
+    package: adaptive-expressions
+    summary: >-
+      Generate an expression delegate that applies function after verifying all
+      children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function applyWithOptionsAndError(func: (arg0: unknown[],
+        options: Options) => Object, verify?: VerifyExpression)
+      parameters:
+        - id: func
+          type: '(arg0: unknown[], options: Options) =&gt; Object'
+          description: Function to apply.
+        - id: verify
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
+          description: Function to check each arg for validity.
+      return:
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
+        description: Delegate for evaluating an expression.
+  - name: 'determineLocale(unknown[], number, string)'
+    uid: adaptive-expressions.FunctionUtils.determineLocale
+    package: adaptive-expressions
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function determineLocale(args: unknown[], maxArgsLength: number,
+        locale: string)
+      parameters:
+        - id: args
+          type: 'unknown[]'
+          description: An array of arguments.
+        - id: maxArgsLength
+          type: number
+          description: |
+            The max length of a given function.
+        - id: locale
+          type: string
+          description: A locale string
+      return:
+        type: string
+        description: ''
   - name: 'evaluateChildren(Expression, MemoryInterface, Options, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.evaluateChildren
     package: adaptive-expressions
@@ -210,64 +194,6 @@ methods:
       return:
         type: Object
         description: List of child values or error message.
-  - name: 'foreach(Expression, MemoryInterface, Options)'
-    uid: adaptive-expressions.FunctionUtils.foreach
-    package: adaptive-expressions
-    summary: Evaluator for foreach and select functions.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        static function foreach(expression: Expression, state: MemoryInterface,
-        options: Options)
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: Expression.
-        - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" />
-          description: Memory scope.
-        - id: options
-          type: <xref uid="adaptive-expressions.Options" />
-          description: |
-            Options.
-      return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
-  - name: 'isEqual(any[])'
-    uid: adaptive-expressions.FunctionUtils.isEqual
-    package: adaptive-expressions
-    summary: Equal helper function.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function isEqual(args: any[])'
-      parameters:
-        - id: args
-          type: 'any[]'
-          description: |
-            Input args. Compare the first param and second param.
-      return:
-        type: boolean
-        description: ''
-  - name: isLogicTrue(any)
-    uid: adaptive-expressions.FunctionUtils.isLogicTrue
-    package: adaptive-expressions
-    summary: Test result to see if True in logical comparison functions.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function isLogicTrue(instance: any)'
-      parameters:
-        - id: instance
-          type: any
-          description: Computed value.
-      return:
-        type: boolean
-        description: True if boolean true or non-null.
   - name: isNumber(any)
     uid: adaptive-expressions.FunctionUtils.isNumber
     package: adaptive-expressions
@@ -284,133 +210,6 @@ methods:
       return:
         type: boolean
         description: True if the input is a number.
-  - name: parseStringOrUndefined(string | undefined)
-    uid: adaptive-expressions.FunctionUtils.parseStringOrUndefined
-    package: adaptive-expressions
-    summary: Wrap string or undefined into string. Default to empty string.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function parseStringOrUndefined(input: string | undefined)'
-      parameters:
-        - id: input
-          type: string | undefined
-          description: |
-            Input string
-      return:
-        type: string
-        description: ''
-  - name: 'parseTimestamp(string, (arg0: Date) => any)'
-    uid: adaptive-expressions.FunctionUtils.parseTimestamp
-    package: adaptive-expressions
-    summary: Transform a timestamp into another with customized function.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        static function parseTimestamp(timeStamp: string, transform?: (arg0:
-        Date) => any)
-      parameters:
-        - id: timeStamp
-          type: string
-          description: Original time stamp.
-        - id: transform
-          type: '(arg0: Date) =&gt; any'
-          description: Transform function.
-      return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: New timestamp and error.
-  - name: parseTimexProperty(any)
-    uid: adaptive-expressions.FunctionUtils.parseTimexProperty
-    package: adaptive-expressions
-    summary: Parse timex funcition.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function parseTimexProperty(timexExpr: any)'
-      parameters:
-        - id: timexExpr
-          type: any
-          description: String or TimexProperty input.
-      return:
-        type: Object
-        description: TimexProperty and error.
-  - name: parseUri(string)
-    uid: adaptive-expressions.FunctionUtils.parseUri
-    package: adaptive-expressions
-    summary: Parse string into URL object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function parseUri(uri: string)'
-      parameters:
-        - id: uri
-          type: string
-          description: |
-            Input string uri.
-      return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
-  - name: 'returnFormattedTimeStampStr(Moment, string)'
-    uid: adaptive-expressions.FunctionUtils.returnFormattedTimeStampStr
-    package: adaptive-expressions
-    summary: Format datetime.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        static function returnFormattedTimeStampStr(timedata: Moment, format:
-        string)
-      parameters:
-        - id: timedata
-          type: Moment
-          description: Input date time.
-        - id: format
-          type: string
-          description: |
-            Format flag.
-      return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
-  - name: sortBy(boolean)
-    uid: adaptive-expressions.FunctionUtils.sortBy
-    package: adaptive-expressions
-    summary: Sort helper function.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function sortBy(isDescending: boolean)'
-      parameters:
-        - id: isDescending
-          type: boolean
-          description: |
-            Descending flag.
-      return:
-        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
-        description: ''
-  - name: ticks(string)
-    uid: adaptive-expressions.FunctionUtils.ticks
-    package: adaptive-expressions
-    summary: Convert a string input to ticks number.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function ticks(timeStamp: string)'
-      parameters:
-        - id: timeStamp
-          type: string
-          description: |
-            String timestamp input.
-      return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
   - name: timestampFormatter(string)
     uid: adaptive-expressions.FunctionUtils.timestampFormatter
     package: adaptive-expressions
@@ -427,43 +226,6 @@ methods:
             C# datetime format
       return:
         type: string
-        description: ''
-  - name: 'timeUnitTransformer(number, string)'
-    uid: adaptive-expressions.FunctionUtils.timeUnitTransformer
-    package: adaptive-expressions
-    summary: Transform C# period and unit into js period and unit
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function timeUnitTransformer(duration: number, cSharpStr: string)'
-      parameters:
-        - id: duration
-          type: number
-          description: C# duration
-        - id: cSharpStr
-          type: string
-          description: |
-            C# unit.
-      return:
-        type: Object
-        description: ''
-  - name: toBinary(string)
-    uid: adaptive-expressions.FunctionUtils.toBinary
-    package: adaptive-expressions
-    summary: Convert string into Uint8Array object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function toBinary(stringToConvert: string)'
-      parameters:
-        - id: stringToConvert
-          type: string
-          description: |
-            Input string.
-      return:
-        type: Uint8Array
         description: ''
   - name: 'tryAccumulatePath(Expression, MemoryInterface, Options)'
     uid: adaptive-expressions.FunctionUtils.tryAccumulatePath
@@ -577,20 +339,6 @@ methods:
           type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
-  - name: validateForeach(Expression)
-    uid: adaptive-expressions.FunctionUtils.validateForeach
-    package: adaptive-expressions
-    summary: 'Validator for foreach, select, and where functions.'
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function validateForeach(expression: Expression)'
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: |+
-
   - name: validateNumber(Expression)
     uid: adaptive-expressions.FunctionUtils.validateNumber
     package: adaptive-expressions
@@ -811,22 +559,6 @@ methods:
       return:
         type: string | undefined
         description: Error or undefined if invalid.
-  - name: verifyISOTimestamp(any)
-    uid: adaptive-expressions.FunctionUtils.verifyISOTimestamp
-    package: adaptive-expressions
-    summary: Verify a timestamp string is valid ISO timestamp format.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function verifyISOTimestamp(value: any)'
-      parameters:
-        - id: value
-          type: any
-          description: Timestamp string to check.
-      return:
-        type: string | undefined
-        description: Error or undefined if invalid.
   - name: 'verifyList(any, Expression)'
     uid: adaptive-expressions.FunctionUtils.verifyList
     package: adaptive-expressions
@@ -1038,44 +770,3 @@ methods:
       return:
         type: string | undefined
         description: Error or undefined if invalid.
-  - name: verifyTimestamp(any)
-    uid: adaptive-expressions.FunctionUtils.verifyTimestamp
-    package: adaptive-expressions
-    summary: Verify a timestamp string is valid timestamp format.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function verifyTimestamp(value: any)'
-      parameters:
-        - id: value
-          type: any
-          description: Timestamp string to check.
-      return:
-        type: string | undefined
-        description: Error or undefined if invalid.
-  - name: 'wrapGetValue(MemoryInterface, string, Options)'
-    uid: adaptive-expressions.FunctionUtils.wrapGetValue
-    package: adaptive-expressions
-    summary: Get the value of a path from a memory
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        static function wrapGetValue(state: MemoryInterface, path: string,
-        options: Options)
-      parameters:
-        - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" />
-          description: Memory.
-        - id: path
-          type: string
-          description: Path string.
-        - id: options
-          type: <xref uid="adaptive-expressions.Options" />
-          description: |
-            Options.
-      return:
-        type: any
-        description: ''

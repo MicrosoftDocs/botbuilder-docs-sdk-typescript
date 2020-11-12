@@ -2,7 +2,9 @@
 name: JwtTokenExtractor
 uid: botframework-connector.JwtTokenExtractor
 package: botframework-connector
-summary: ''
+summary: >-
+  A JWT token processing class that gets identity information and performs
+  security token validation.
 fullName: JwtTokenExtractor
 remarks: ''
 isPreview: false
@@ -12,7 +14,10 @@ constructors:
   - name: 'JwtTokenExtractor(VerifyOptions, string, string[])'
     uid: botframework-connector.JwtTokenExtractor.constructor
     package: botframework-connector
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [JwtTokenExtractor](xref:botframework-connector.JwtTokenExtractor) class.
+      Extracts relevant data from JWT Tokens.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -23,13 +28,14 @@ constructors:
       parameters:
         - id: tokenValidationParameters
           type: VerifyOptions
-          description: ''
+          description: Token validation parameters.
         - id: metadataUrl
           type: string
-          description: ''
+          description: Metadata Url.
         - id: allowedSigningAlgorithms
           type: 'string[]'
-          description: ''
+          description: |
+            Allowed signing algorithms.
 properties:
   - name: openIdMetadata
     uid: botframework-connector.JwtTokenExtractor.openIdMetadata
@@ -61,7 +67,7 @@ methods:
   - name: 'getIdentity(string, string, string, string[])'
     uid: botframework-connector.JwtTokenExtractor.getIdentity
     package: botframework-connector
-    summary: ''
+    summary: Gets the claims identity associated with a request.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -72,25 +78,28 @@ methods:
       parameters:
         - id: scheme
           type: string
-          description: ''
+          description: The associated scheme.
         - id: parameter
           type: string
-          description: ''
+          description: The token.
         - id: channelId
           type: string
-          description: ''
+          description: The Id of the channel being validated in the original request.
         - id: requiredEndorsements
           type: 'string[]'
-          description: ''
+          description: The required JWT endorsements.
       return:
         type: >-
           Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
           null&gt;
-        description: ''
+        description: >-
+          A `Promise` representation for either a
+          [ClaimsIdentity](botframework-connector:module.ClaimsIdentity) or
+          `null`.
   - name: 'getIdentityFromAuthHeader(string, string, string[])'
     uid: botframework-connector.JwtTokenExtractor.getIdentityFromAuthHeader
     package: botframework-connector
-    summary: ''
+    summary: Gets the claims identity associated with a request.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -101,15 +110,18 @@ methods:
       parameters:
         - id: authorizationHeader
           type: string
-          description: ''
+          description: 'The raw HTTP header in the format: "Bearer [longString]".'
         - id: channelId
           type: string
-          description: ''
+          description: The Id of the channel being validated in the original request.
         - id: requiredEndorsements
           type: 'string[]'
-          description: ''
+          description: The required JWT endorsements.
       return:
         type: >-
           Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
           null&gt;
-        description: ''
+        description: >-
+          A `Promise` representation for either a
+          [ClaimsIdentity](botframework-connector:module.ClaimsIdentity) or
+          `null`.

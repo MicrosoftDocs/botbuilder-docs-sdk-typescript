@@ -2,7 +2,12 @@
 name: ActionContext
 uid: botbuilder-dialogs-adaptive.ActionContext
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: >-
+  Extends the [DialogContext](xref:botbuilder-dialogs.DialogContext) with
+  additional methods for manipulating the
+
+  executing sequence of actions for an
+  [AdaptiveDialog](xref:botbuilder-dialogs-adaptive.AdaptiveDialog).
 fullName: ActionContext
 remarks: ''
 isPreview: false
@@ -14,7 +19,9 @@ constructors:
       symbol)
     uid: botbuilder-dialogs-adaptive.ActionContext.constructor
     package: botbuilder-dialogs-adaptive
-    summary: Initializes a new instance of the `ActionContext` class
+    summary: >-
+      Initializes a new instance of the
+      [ActionContext](xref:botbuilder-dialogs-adaptive.ActionContext) class
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -50,7 +57,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'actions: ActionState[]'
+      content: 'public actions: ActionState[]'
       return:
         type: '<xref uid="botbuilder-dialogs-adaptive.ActionState" />[]'
         description: ''
@@ -80,7 +87,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'changes: ActionChangeList[]'
+      content: 'ActionChangeList[] changes'
       return:
         type: '<xref uid="botbuilder-dialogs-adaptive.ActionChangeList" />[]'
         description: ''
@@ -500,6 +507,18 @@ methods:
       return:
         type: Dialog | undefined
         description: ''
+  - name: getLocale()
+    uid: botbuilder-dialogs-adaptive.ActionContext.getLocale
+    package: botbuilder-dialogs-adaptive
+    summary: Obtain the CultureInfo in DialogContext.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getLocale()
+      return:
+        type: string
+        description: a locale string.
   - name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
     uid: botbuilder-dialogs-adaptive.ActionContext.prompt
     package: botbuilder-dialogs-adaptive
@@ -544,7 +563,9 @@ methods:
       Choice[])
     uid: botbuilder-dialogs-adaptive.ActionContext.prompt_1
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Helper function to simplify formatting the options for calling a prompt
+      dialog.
     remarks: >-
       This helper method formats the object to use as the `options` parameter,
       and then calls
@@ -568,13 +589,21 @@ methods:
       parameters:
         - id: dialogId
           type: string
-          description: ''
+          description: ID of the prompt dialog to start.
         - id: promptOrOptions
           type: string | Partial&lt;Activity&gt; | PromptOptions
-          description: ''
+          description: >-
+            The text of the initial prompt to send the user,
+
+            the [Activity](xref:botframework-schema.Activity) to send as the
+            initial prompt, or
+
+            the object with which to format the prompt dialog.
         - id: choices
           type: 'string | Choice[]'
-          description: ''
+          description: |-
+            Optional. Array of choices for the user to choose from,
+            for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
         type: Promise&lt;DialogTurnResult&gt;
         description: ''

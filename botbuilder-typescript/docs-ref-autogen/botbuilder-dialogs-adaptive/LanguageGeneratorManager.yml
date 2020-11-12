@@ -2,8 +2,10 @@
 name: LanguageGeneratorManager
 uid: botbuilder-dialogs-adaptive.LanguageGeneratorManager
 package: botbuilder-dialogs-adaptive
-summary: Class which manages cache of all LG resources from a ResourceExplorer.
-fullName: LanguageGeneratorManager
+summary: >-
+  Class which manages cache of all LG resources from a
+  [ResourceExplorer](xref:botbuilder-dialogs-declarative.ResourceExplorer).
+fullName: LanguageGeneratorManager<T>
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -12,7 +14,10 @@ constructors:
   - name: LanguageGeneratorManager(ResourceExplorer)
     uid: botbuilder-dialogs-adaptive.LanguageGeneratorManager.constructor
     package: botbuilder-dialogs-adaptive
-    summary: Initialize a new instance of LanguageResourceManager class.
+    summary: >-
+      Initialize a new instance of
+      [LanguageResourceManager](xref:botbuilder-dialogs-adaptive.LanguageResourceManager)
+      class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -33,18 +38,22 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'languageGenerators: Map<string, LanguageGenerator>'
+      content: >-
+        public languageGenerators: Map<string, LanguageGenerator<T, D>> = new
+        Map<string, LanguageGenerator<T, D>>()
       return:
         type: >-
           Map&lt;string, <xref
-          uid="botbuilder-dialogs-adaptive.LanguageGenerator" />&gt;
+          uid="botbuilder-dialogs-adaptive.LanguageGenerator" />&lt;T, D&gt;&gt;
         description: ''
 methods:
   - name: 'resourceExplorerResolver(string, Map<string, Resource[]>)'
     uid: >-
       botbuilder-dialogs-adaptive.LanguageGeneratorManager.resourceExplorerResolver
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Returns the resolver to resolve LG import id to template text based on
+      language and a template resource loader delegate.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -55,10 +64,10 @@ methods:
       parameters:
         - id: locale
           type: string
-          description: ''
+          description: Locale to identify language.
         - id: resourceMapping
           type: 'Map&lt;string, Resource[]&gt;'
-          description: ''
+          description: Template resource loader delegate.
       return:
         type: ImportResolverDelegate
-        description: ''
+        description: The delegate to resolve the resource.

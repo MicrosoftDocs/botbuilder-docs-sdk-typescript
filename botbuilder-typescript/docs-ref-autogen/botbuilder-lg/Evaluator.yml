@@ -12,7 +12,9 @@ constructors:
   - name: 'Evaluator(Template[], ExpressionParser, EvaluationOptions)'
     uid: botbuilder-lg.Evaluator.constructor
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Creates a new instance of the [Evaluator](xref:botbuilder-lg.Evaluator)
+      class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -23,13 +25,14 @@ constructors:
       parameters:
         - id: templates
           type: '<xref uid="botbuilder-lg.Template" />[]'
-          description: ''
+          description: Template list.
         - id: expressionParser
           type: ExpressionParser
-          description: ''
+          description: Expression parser.
         - id: opt
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
-          description: ''
+          description: |
+            Options for LG.
 properties:
   - name: activityAttachmentFunctionName
     uid: botbuilder-lg.Evaluator.activityAttachmentFunctionName
@@ -167,7 +170,7 @@ methods:
   - name: 'checkExpressionResult(string, string, any, string, string, string)'
     uid: botbuilder-lg.Evaluator.checkExpressionResult
     package: botbuilder-lg
-    summary: ''
+    summary: Checks an expression result and throws the corresponding error.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -179,26 +182,27 @@ methods:
       parameters:
         - id: exp
           type: string
-          description: ''
+          description: Expression text.
         - id: error
           type: string
-          description: ''
+          description: Error message.
         - id: result
           type: any
-          description: ''
+          description: Result.
         - id: templateName
           type: string
-          description: ''
+          description: Template name.
         - id: inlineContent
           type: string
-          description: ''
+          description: Optional. In line content.
         - id: errorPrefix
           type: string
-          description: ''
+          description: |
+            Optional. Error prefix.
   - name: 'concatErrorMsg(string, string)'
     uid: botbuilder-lg.Evaluator.concatErrorMsg
     package: botbuilder-lg
-    summary: ''
+    summary: Concatenates two error messages.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -207,17 +211,22 @@ methods:
       parameters:
         - id: firstError
           type: string
-          description: ''
+          description: First error message to concatenate.
         - id: secondError
           type: string
-          description: ''
+          description: Second error message to concatenate.
       return:
         type: string
-        description: ''
+        description: The concatenated error messages.
   - name: 'constructScope(string, any[])'
     uid: botbuilder-lg.Evaluator.constructScope
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Constructs the scope for mapping the values of arguments to the parameters
+      of the template.
+
+      Throws errors if certain errors detected
+      [TemplateErrors](xref:botbuilder-lg.TemplateErrors).
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -226,13 +235,18 @@ methods:
       parameters:
         - id: inputTemplateName
           type: string
-          description: ''
+          description: Template name to evaluate.
         - id: args
           type: 'any[]'
-          description: ''
+          description: Arguments to map to the template parameters.
       return:
         type: any
-        description: ''
+        description: >-
+          The current scope if the number of arguments is 0, otherwise, returns
+          a [CustomizedMemory](xref:botbuilder-lg.CustomizedMemory)
+
+          with the mapping of the parameter name to the argument value added to
+          the scope.
   - name: 'evaluateTemplate(string, any)'
     uid: botbuilder-lg.Evaluator.evaluateTemplate
     package: botbuilder-lg
@@ -321,7 +335,9 @@ methods:
   - name: visitIfElseBody(IfElseBodyContext)
     uid: botbuilder-lg.Evaluator.visitIfElseBody
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Visit a parse tree produced by the ifElseBody labeled alternative in
+      LGTemplateParser.body.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -330,14 +346,17 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.IfElseBodyContext" />
-          description: ''
+          description: |
+            The parse tree.
       return:
         type: any
         description: ''
   - name: visitNormalBody(NormalBodyContext)
     uid: botbuilder-lg.Evaluator.visitNormalBody
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Visit a parse tree produced by the normalBody labeled alternative in
+      LGTemplateParser.body.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -346,14 +365,14 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: any
-        description: ''
+        description: The result of visiting the normal body.
   - name: visitNormalTemplateBody(NormalTemplateBodyContext)
     uid: botbuilder-lg.Evaluator.visitNormalTemplateBody
     package: botbuilder-lg
-    summary: ''
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateBody.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -362,14 +381,14 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: any
-        description: ''
+        description: The result of visiting the normal template body.
   - name: visitNormalTemplateString(NormalTemplateStringContext)
     uid: botbuilder-lg.Evaluator.visitNormalTemplateString
     package: botbuilder-lg
-    summary: ''
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateString.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -378,14 +397,14 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: string
-        description: ''
+        description: The string result of visiting the normal template string.
   - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
     uid: botbuilder-lg.Evaluator.visitStructuredTemplateBody
     package: botbuilder-lg
-    summary: ''
+    summary: Visit a parse tree produced by LGTemplateParser.structuredTemplateBody.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -394,14 +413,16 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: any
-        description: ''
+        description: The result of visiting the structured template body.
   - name: visitSwitchCaseBody(SwitchCaseBodyContext)
     uid: botbuilder-lg.Evaluator.visitSwitchCaseBody
     package: botbuilder-lg
-    summary: ''
+    summary: >-
+      Visit a parse tree produced by the switchCaseBody labeled alternative in
+      LGTemplateParser.body.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -410,10 +431,10 @@ methods:
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
-          description: ''
+          description: The parse tree.
       return:
         type: string
-        description: ''
+        description: The string result of visiting the switch case body.
   - name: visitTerminal(TerminalNode)
     uid: botbuilder-lg.Evaluator.visitTerminal
     package: botbuilder-lg
@@ -436,7 +457,7 @@ methods:
   - name: 'wrappedEvalTextContainsExpression(string, RegExp)'
     uid: botbuilder-lg.Evaluator.wrappedEvalTextContainsExpression
     package: botbuilder-lg
-    summary: ''
+    summary: Replaces an expression contained in text.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -445,10 +466,11 @@ methods:
       parameters:
         - id: exp
           type: string
-          description: ''
+          description: Expression Text.
         - id: regex
           type: RegExp
-          description: ''
+          description: |
+            Regex to select the text to replace.
       return:
         type: string
         description: ''

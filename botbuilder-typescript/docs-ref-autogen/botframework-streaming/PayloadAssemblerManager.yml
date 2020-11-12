@@ -12,7 +12,10 @@ constructors:
   - name: 'PayloadAssemblerManager(StreamManager, Function, Function)'
     uid: botframework-streaming.PayloadAssemblerManager.constructor
     package: botframework-streaming
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [PayloadAssemblerManager](xref:botframework-streaming.PayloadAssemblerManager)
+      class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -23,18 +26,24 @@ constructors:
       parameters:
         - id: streamManager
           type: <xref uid="botframework-streaming.StreamManager" />
-          description: ''
+          description: >-
+            The [StreamManager](xref:botframework-streaming.StreamManager)
+            managing the stream being assembled.
         - id: onReceiveResponse
           type: Function
-          description: ''
+          description: >-
+            Function that executes when new bytes are received on a `response`
+            stream.
         - id: onReceiveRequest
           type: Function
-          description: ''
+          description: >
+            Function that executes when new bytes are received on a `request`
+            stream.
 methods:
   - name: getPayloadStream(IHeader)
     uid: botframework-streaming.PayloadAssemblerManager.getPayloadStream
     package: botframework-streaming
-    summary: ''
+    summary: Retrieves the assembler's payload as a stream.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -43,14 +52,18 @@ methods:
       parameters:
         - id: header
           type: <xref uid="botframework-streaming.IHeader" />
-          description: ''
+          description: The Header of the Stream to retrieve.
       return:
         type: <xref uid="botframework-streaming.SubscribableStream" />
-        description: ''
+        description: >-
+          A [SubscribableStream](xref:botframework-streaming.SubscribableStream)
+          of the assembler's payload.
   - name: 'onReceive(IHeader, SubscribableStream, number)'
     uid: botframework-streaming.PayloadAssemblerManager.onReceive
     package: botframework-streaming
-    summary: ''
+    summary: >-
+      The action the assembler executes when new bytes are received on the
+      incoming stream.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -61,10 +74,11 @@ methods:
       parameters:
         - id: header
           type: <xref uid="botframework-streaming.IHeader" />
-          description: ''
+          description: The stream's Header.
         - id: contentStream
           type: <xref uid="botframework-streaming.SubscribableStream" />
-          description: ''
+          description: The incoming stream being assembled.
         - id: contentLength
           type: number
-          description: ''
+          description: |
+            The length of the stream, if finite.

@@ -7,12 +7,25 @@ summary: >-
   the locale
 
   and has a policy which controls fallback (try en-us -> en -> default).
-fullName: MultiLanguageGenerator
+fullName: MultiLanguageGenerator<T>
 remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
 properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.$kind
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.MultiLanguageGenerator"'
+      return:
+        type: string
+        description: ''
   - name: languageGenerators
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languageGenerators
     package: botbuilder-dialogs-adaptive
@@ -22,7 +35,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'languageGenerators: Map<string, LanguageGenerator>'
+      content: >-
+        public languageGenerators: Map<string, LanguageGenerator> = new
+        Map<string, LanguageGenerator>()
       return:
         type: >-
           Map&lt;string, <xref
@@ -37,12 +52,29 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'languagePolicy: LanguagePolicy'
+      content: 'public languagePolicy: LanguagePolicy'
       return:
         type: <xref uid="botbuilder-dialogs-adaptive.LanguagePolicy" />
         description: ''
 methods:
-  - name: 'generate(DialogContext, string, object)'
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.configure
+    package: botbuilder-dialogs-adaptive
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>)'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        type: this
+        description: ''
+  - name: 'generate(DialogContext, string, D)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
     package: botbuilder-dialogs-adaptive
     summary: Find a language generator that matches the current context locale.
@@ -52,7 +84,7 @@ methods:
     syntax:
       content: >-
         function generate(dialogContext: DialogContext, template: string, data:
-        object)
+        D)
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -61,11 +93,27 @@ methods:
           type: string
           description: Template to use.
         - id: data
-          type: object
+          type: D
           description: |
             Data to bind to.
       return:
-        type: Promise&lt;string&gt;
+        type: Promise&lt;T&gt;
+        description: ''
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object)'
+      parameters:
+        - id: property
+          type: Object
+          description: ''
+      return:
+        type: Converter | ConverterFactory
         description: ''
   - name: 'tryGetGenerator(DialogContext, string)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
