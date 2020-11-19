@@ -1,241 +1,191 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-dialogs.DialogManager
-    name: DialogManager
-    fullName: DialogManager
-    children:
-      - botbuilder-dialogs.DialogManager.configure
-      - botbuilder-dialogs.DialogManager.conversationState
-      - botbuilder-dialogs.DialogManager.constructor
-      - botbuilder-dialogs.DialogManager.dialogs
-      - botbuilder-dialogs.DialogManager.expireAfter
-      - botbuilder-dialogs.DialogManager.initialTurnState
-      - botbuilder-dialogs.DialogManager.onTurn
-      - botbuilder-dialogs.DialogManager.rootDialog
-      - botbuilder-dialogs.DialogManager.stateConfiguration
-      - botbuilder-dialogs.DialogManager.userState
-    langs:
-      - typeScript
-    type: class
-    summary: ''
-    extends:
-      name: botbuilder-dialogs.Configurable
+### YamlMime:TSType
+name: DialogManager
+uid: botbuilder-dialogs.DialogManager
+package: botbuilder-dialogs
+summary: Class which runs the dialog system.
+fullName: DialogManager
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'DialogManager(Dialog, string)'
+    uid: botbuilder-dialogs.DialogManager.constructor
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.configure
-    name: configure(Partial<DialogManagerConfiguration>)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function configure(config: Partial<DialogManagerConfiguration>)'
-      parameters:
-        - id: config
-          type:
-            - Partial<botbuilder-dialogs.DialogManagerConfiguration>
-          description: ''
-      return:
-        type:
-          - this
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.conversationState
-    name: conversationState
-    fullName: conversationState
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Bots persisted conversation state.
-    syntax:
-      content: 'conversationState: ConversationState'
-      return:
-        type:
-          - ConversationState
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.constructor
-    name: 'DialogManager(Dialog, string)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Creates an instance of the
+      [DialogSet](xref:botbuilder-dialogs.DialogManager) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'new DialogManager(rootDialog?: Dialog, dialogStateProperty?: string)'
       parameters:
         - id: rootDialog
-          type:
-            - botbuilder-dialogs.Dialog
-          description: ''
-          optional: true
+          type: <xref uid="botbuilder-dialogs.Dialog" />
+          description: 'Optional, root [Dialog](xref:botbuilder-dialogs.Dialog) to use.'
         - id: dialogStateProperty
-          type:
-            - string
-          description: ''
-          optional: true
+          type: string
+          description: >
+            Optional, alternate name for the dialogState property. (Default is
+            "DialogStateProperty")
+properties:
+  - name: conversationState
+    uid: botbuilder-dialogs.DialogManager.conversationState
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.dialogs
-    name: dialogs
-    fullName: dialogs
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Global dialogs that you want to have be callable.
+    summary: Bots persisted conversation state.
+    fullName: conversationState
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'dialogs: DialogSet'
+      content: 'public conversationState: ConversationState'
       return:
-        type:
-          - botbuilder-dialogs.DialogSet
+        type: ConversationState
         description: ''
+  - name: dialogs
+    uid: botbuilder-dialogs.DialogManager.dialogs
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.expireAfter
-    name: expireAfter
-    fullName: expireAfter
-    children: []
-    langs:
-      - typeScript
-    type: property
+    summary: Global dialogs that you want to have be callable.
+    fullName: dialogs
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public dialogs: DialogSet = new DialogSet()'
+      return:
+        type: <xref uid="botbuilder-dialogs.DialogSet" />
+        description: ''
+  - name: expireAfter
+    uid: botbuilder-dialogs.DialogManager.expireAfter
+    package: botbuilder-dialogs
     summary: >-
       Optional. Number of milliseconds to expire the bots conversation state
       after.
-    optional: true
+    fullName: expireAfter
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'expireAfter?: number'
+      content: 'public expireAfter?: number'
       return:
-        type:
-          - number
+        type: number
         description: ''
+  - name: initialTurnState
+    uid: botbuilder-dialogs.DialogManager.initialTurnState
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.initialTurnState
-    name: initialTurnState
-    fullName: initialTurnState
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       Values that will be copied to the `TurnContext.turnState` at the beginning
       of each turn.
+    fullName: initialTurnState
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'initialTurnState: TurnContextStateCollection'
+      content: TurnContextStateCollection initialTurnState
       return:
-        type:
-          - TurnContextStateCollection
+        type: TurnContextStateCollection
         description: ''
+  - name: rootDialog
+    uid: botbuilder-dialogs.DialogManager.rootDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.onTurn
-    name: onTurn(TurnContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: |-
+      Root dialog to start from [onTurn()](#onturn) method.
+      Gets the root [Dialog](xref:botbuilder-dialogs.Dialog) ID.
+    fullName: rootDialog
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: Dialog rootDialog
+      return:
+        type: <xref uid="botbuilder-dialogs.Dialog" />
+        description: 'The root [Dialog](xref:botbuilder-dialogs.Dialog) ID.'
+  - name: stateConfiguration
+    uid: botbuilder-dialogs.DialogManager.stateConfiguration
+    package: botbuilder-dialogs
+    summary: >-
+      Optional. Path resolvers and memory scopes used for conversations with the
+      bot.
+    fullName: stateConfiguration
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public stateConfiguration?: DialogStateManagerConfiguration'
+      return:
+        type: <xref uid="botbuilder-dialogs.DialogStateManagerConfiguration" />
+        description: ''
+  - name: userState
+    uid: botbuilder-dialogs.DialogManager.userState
+    package: botbuilder-dialogs
+    summary: Optional. Bots persisted user state.
+    fullName: userState
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public userState?: UserState'
+      return:
+        type: UserState
+        description: ''
+methods:
+  - name: configure(Partial<DialogManagerConfiguration>)
+    uid: botbuilder-dialogs.DialogManager.configure
+    package: botbuilder-dialogs
+    summary: Set configuration settings.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Partial<DialogManagerConfiguration>)'
+      parameters:
+        - id: config
+          type: >-
+            Partial&lt;<xref uid="botbuilder-dialogs.DialogManagerConfiguration"
+            />&gt;
+          description: Configuration settings to apply.
+      return:
+        type: this
+        description: >-
+          The cofigured [DialogManager](xref:botbuilder-dialogs.DialogManager)
+          context.
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.DialogManager.getConverter
+    package: botbuilder-dialogs
     summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
+        description: ''
+  - name: onTurn(TurnContext)
+    uid: botbuilder-dialogs.DialogManager.onTurn
+    package: botbuilder-dialogs
+    summary: >-
+      Runs dialog system in the context of a
+      [TurnContext](xref:botbuilder-core.TurnContext).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onTurn(context: TurnContext)'
       parameters:
         - id: context
-          type:
-            - TurnContext
-          description: ''
+          type: TurnContext
+          description: >-
+            (xref:botbuilder-core.TurnContext) for the current turn of
+            conversation with the user.
       return:
-        type:
-          - Promise<botbuilder-dialogs.DialogManagerResult>
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.rootDialog
-    name: rootDialog
-    fullName: rootDialog
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: 'Root dialog to start from [onTurn()](#onturn) method.'
-    syntax:
-      content: 'rootDialog: Dialog'
-      return:
-        type:
-          - botbuilder-dialogs.Dialog
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.stateConfiguration
-    name: stateConfiguration
-    fullName: stateConfiguration
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: >-
-      Optional. Path resolvers and memory scopes used for conversations with the
-      bot.
-    optional: true
-    syntax:
-      content: 'stateConfiguration?: DialogStateManagerConfiguration'
-      return:
-        type:
-          - botbuilder-dialogs.DialogStateManagerConfiguration
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.DialogManager.userState
-    name: userState
-    fullName: userState
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Optional. Bots persisted user state.
-    optional: true
-    syntax:
-      content: 'userState?: UserState'
-      return:
-        type:
-          - UserState
-        description: ''
-    package: botbuilder-dialogs
-references:
-  - uid: botbuilder-dialogs.Configurable
-    name: Configurable
-    spec.typeScript:
-      - name: Configurable
-        fullName: Configurable
-        uid: botbuilder-dialogs.Configurable
-  - uid: botbuilder-dialogs.Dialog
-    name: Dialog
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder-dialogs.Dialog
-  - uid: botbuilder-dialogs.DialogSet
-    name: DialogSet
-    spec.typeScript:
-      - name: DialogSet
-        fullName: DialogSet
-        uid: botbuilder-dialogs.DialogSet
-  - uid: botbuilder-dialogs.DialogStateManagerConfiguration
-    name: DialogStateManagerConfiguration
-    spec.typeScript:
-      - name: DialogStateManagerConfiguration
-        fullName: DialogStateManagerConfiguration
-        uid: botbuilder-dialogs.DialogStateManagerConfiguration
-  - uid: Partial<botbuilder-dialogs.DialogManagerConfiguration>
-    name: DialogManagerConfiguration>
-    spec.typeScript:
-      - name: Partial<
-        fullName: Partial<
-      - name: DialogManagerConfiguration
-        fullName: DialogManagerConfiguration
-        uid: botbuilder-dialogs.DialogManagerConfiguration
-      - name: '>'
-        fullName: '>'
-  - uid: Promise<botbuilder-dialogs.DialogManagerResult>
-    name: DialogManagerResult>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: DialogManagerResult
-        fullName: DialogManagerResult
-        uid: botbuilder-dialogs.DialogManagerResult
-      - name: '>'
-        fullName: '>'
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogManagerResult" />&gt;
+        description: Result of running the logic against the activity.
+extends: <xref uid="botbuilder-dialogs.Configurable" />

@@ -1,133 +1,62 @@
-### YamlMime:UniversalReference
-items:
-  - uid: adaptive-expressions.Constant
-    name: Constant
-    fullName: Constant
-    children:
-      - adaptive-expressions.Constant.andExpression
-      - adaptive-expressions.Constant.children
-      - adaptive-expressions.Constant.constructor
-      - adaptive-expressions.Constant.deepEquals
-      - adaptive-expressions.Constant.equalsExpression
-      - adaptive-expressions.Constant.functions
-      - adaptive-expressions.Constant.lambaExpression
-      - adaptive-expressions.Constant.lambda
-      - adaptive-expressions.Constant.lookup
-      - adaptive-expressions.Constant.makeExpression
-      - adaptive-expressions.Constant.notExpression
-      - adaptive-expressions.Constant.orExpression
-      - adaptive-expressions.Constant.parse
-      - adaptive-expressions.Constant.references
-      - adaptive-expressions.Constant.referenceWalk
-      - adaptive-expressions.Constant.returnType
-      - adaptive-expressions.Constant.setPathToValue
-      - adaptive-expressions.Constant.toString
-      - adaptive-expressions.Constant.tryEvaluate
-      - adaptive-expressions.Constant.type
-      - adaptive-expressions.Constant.validate
-      - adaptive-expressions.Constant.validateTree
-      - adaptive-expressions.Constant.value
-    langs:
-      - typeScript
-    type: class
-    summary: Construct an expression constant.
-    extends:
-      name: adaptive-expressions.Expression
+### YamlMime:TSType
+name: Constant
+uid: adaptive-expressions.Constant
+package: adaptive-expressions
+summary: Construct an expression constant.
+fullName: Constant
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: Constant(any)
+    uid: adaptive-expressions.Constant.constructor
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.andExpression
-    name: 'andExpression(Expression[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Construct and validate an And expression.
-    syntax:
-      content: 'static function andExpression(children: Expression[])'
-      parameters:
-        - id: children
-          type:
-            - 'adaptive-expressions.Expression[]'
-          description: Child clauses.
-      return:
-        type:
-          - adaptive-expressions.Expression
-        description: New expression.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.children
-    name: children
-    fullName: children
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Children expressions.
-    syntax:
-      content: 'children: Expression[]'
-      return:
-        type:
-          - 'adaptive-expressions.Expression[]'
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.constructor
-    name: Constant(any)
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [Constant](xref:adaptive-expressions.Constant) class.
+
+      Constructs an expression constant.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'new Constant(value: any)'
       parameters:
         - id: value
-          type:
-            - any
-          description: ''
+          type: any
+          description: |
+            Constant value.
+properties:
+  - name: children
+    uid: adaptive-expressions.Constant.children
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.deepEquals
-    name: deepEquals(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: Children expressions.
+    fullName: children
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function deepEquals(other: Expression)'
-      parameters:
-        - id: other
-          type:
-            - adaptive-expressions.Expression
-          description: ''
+      content: 'public children: Expression[]'
       return:
-        type:
-          - boolean
+        type: '<xref uid="adaptive-expressions.Expression" />[]'
         description: ''
+  - name: evaluator
+    uid: adaptive-expressions.Constant.evaluator
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.equalsExpression
-    name: 'equalsExpression(Expression[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Construct and validate an Equals expression.
+    summary: Evaluator of expression.
+    fullName: evaluator
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'static function equalsExpression(children: Expression[])'
-      parameters:
-        - id: children
-          type:
-            - 'adaptive-expressions.Expression[]'
-          description: Child clauses.
+      content: 'public evaluator: ExpressionEvaluator'
       return:
-        type:
-          - adaptive-expressions.Expression
-        description: New expression.
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
+        description: ''
+  - name: functions
+    uid: adaptive-expressions.Constant.functions
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.functions
-    name: functions
-    fullName: functions
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: >-
       Dictionary of function => ExpressionEvaluator.
 
@@ -136,171 +65,257 @@ items:
 
       replace builtin functions.  If you clear the dictionary, it will be reset
       to the built in functions.
+    fullName: functions
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'static functions: FunctionTable'
+      content: 'public static functions: FunctionTable = new FunctionTable()'
       return:
-        type:
-          - adaptive-expressions.FunctionTable
+        type: <xref uid="adaptive-expressions.FunctionTable" />
         description: ''
+  - name: returnType
+    uid: adaptive-expressions.Constant.returnType
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.lambaExpression
-    name: lambaExpression(EvaluateExpressionDelegate)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Expected result of evaluating expression.
+    fullName: returnType
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: ReturnType returnType
+      return:
+        type: <xref uid="adaptive-expressions.ReturnType" />
+        description: ''
+  - name: type
+    uid: adaptive-expressions.Constant.type
+    package: adaptive-expressions
+    summary: Type of expression.
+    fullName: type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: string type
+      return:
+        type: string
+        description: ''
+  - name: value
+    uid: adaptive-expressions.Constant.value
+    package: adaptive-expressions
+    summary: |-
+      Constant value.
+      Sets constant value.
+    fullName: value
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: any value
+      return:
+        type: any
+        description: ''
+methods:
+  - name: 'andExpression(Expression[])'
+    uid: adaptive-expressions.Constant.andExpression
+    package: adaptive-expressions
+    summary: Construct and validate an And expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function andExpression(children: Expression[])'
+      parameters:
+        - id: children
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          description: Child clauses.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: deepEquals(Expression)
+    uid: adaptive-expressions.Constant.deepEquals
+    package: adaptive-expressions
+    summary: >-
+      Determines if the current
+      [Expression](xref:adaptive-expressions.Expression) instance is deep equal
+      to another one.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function deepEquals(other: Expression)'
+      parameters:
+        - id: other
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: >-
+            The other [Expression](xref:adaptive-expressions.Expression)
+            instance to compare.
+      return:
+        type: boolean
+        description: >-
+          A boolean value indicating whether the two expressions are deep equal
+          (`true`) or not (`false`).
+  - name: 'equalsExpression(Expression[])'
+    uid: adaptive-expressions.Constant.equalsExpression
+    package: adaptive-expressions
+    summary: Construct and validate an Equals expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function equalsExpression(children: Expression[])'
+      parameters:
+        - id: children
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          description: Child clauses.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: lambaExpression(EvaluateExpressionDelegate)
+    uid: adaptive-expressions.Constant.lambaExpression
+    package: adaptive-expressions
     summary: Construct an expression from a EvaluateExpressionDelegate
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function lambaExpression(func: EvaluateExpressionDelegate)'
       parameters:
         - id: func
-          type:
-            - adaptive-expressions.EvaluateExpressionDelegate
+          type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
           description: |
             Function to create an expression from.
       return:
-        type:
-          - adaptive-expressions.Expression
+        type: <xref uid="adaptive-expressions.Expression" />
         description: ''
+  - name: 'lambda((arg0: any) => any)'
+    uid: adaptive-expressions.Constant.lambda
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.lambda
-    name: 'lambda((arg0: any) => any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: |-
       Construct an expression from a lamba expression over the state.
       Exceptions will be caught and surfaced as an error string.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function lambda(func: (arg0: any) => any)'
       parameters:
         - id: func
-          type:
-            - '(arg0: any) => any'
+          type: '(arg0: any) =&gt; any'
           description: ambda expression to evaluate.
       return:
-        type:
-          - adaptive-expressions.Expression
+        type: <xref uid="adaptive-expressions.Expression" />
         description: New expression.
+  - name: lookup(string)
+    uid: adaptive-expressions.Constant.lookup
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.lookup
-    name: lookup(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Lookup a ExpressionEvaluator (function) by name.
+    summary: >-
+      Lookup an
+      [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+      function by name.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function lookup(functionName: string)'
       parameters:
         - id: functionName
-          type:
-            - string
-          description: name of function to lookup
+          type: string
+          description: Name of function to lookup.
       return:
-        type:
-          - adaptive-expressions.ExpressionEvaluator
-        description: a ExpressionEvaluator that corresponding to the funtion name
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
+        description: >-
+          An
+          [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+          corresponding to the function name.
+  - name: 'makeExpression(string, ExpressionEvaluator, Expression[])'
+    uid: adaptive-expressions.Constant.makeExpression
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.makeExpression
-    name: 'makeExpression(string, ExpressionEvaluator, Expression[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Make an expression and validate it.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function makeExpression(type: string, evaluator:
         ExpressionEvaluator, children: Expression[])
       parameters:
         - id: type
-          type:
-            - string
-          description: Type of expression from ExpressionType
+          type: string
+          description: Type of expression from ExpressionType.
         - id: evaluator
-          type:
-            - adaptive-expressions.ExpressionEvaluator
+          type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
           description: Information about how to validate and evaluate expression.
         - id: children
-          type:
-            - 'adaptive-expressions.Expression[]'
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
           description: |
             Child expressions.
       return:
-        type:
-          - adaptive-expressions.Expression
+        type: <xref uid="adaptive-expressions.Expression" />
         description: ''
+  - name: notExpression(Expression)
+    uid: adaptive-expressions.Constant.notExpression
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.notExpression
-    name: notExpression(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Construct and validate an Not expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function notExpression(child: Expression)'
       parameters:
         - id: child
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: ''
       return:
-        type:
-          - adaptive-expressions.Expression
+        type: <xref uid="adaptive-expressions.Expression" />
         description: New expression.
+  - name: 'orExpression(Expression[])'
+    uid: adaptive-expressions.Constant.orExpression
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.orExpression
-    name: 'orExpression(Expression[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Construct and validate an Or expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function orExpression(children: Expression[])'
       parameters:
         - id: children
-          type:
-            - 'adaptive-expressions.Expression[]'
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
           description: Child clauses.
       return:
-        type:
-          - adaptive-expressions.Expression
+        type: <xref uid="adaptive-expressions.Expression" />
         description: New expression.
+  - name: 'parse(string, EvaluatorLookup)'
+    uid: adaptive-expressions.Constant.parse
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.parse
-    name: 'parse(string, EvaluatorLookup)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Parse an expression string into an
+      [Expression](xref:adaptive-expressions.Expression) object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function parse(expression: string, lookup?: EvaluatorLookup)'
       parameters:
         - id: expression
-          type:
-            - string
-          description: ''
+          type: string
+          description: Expression string.
         - id: lookup
-          type:
-            - adaptive-expressions.EvaluatorLookup
-          description: ''
-          optional: true
+          type: <xref uid="adaptive-expressions.EvaluatorLookup" />
+          description: >-
+            Optional.
+            [EvaluatorLookup](xref:adaptive-expressions.EvaluatorLookup)
+            function lookup when parsing the expression. Default is
+            [Expression.lookup](xref:adaptive-expressions.Expression.lookup)
+            which uses
+            [Expression.functions](xref:adaptive-expressions.Expression.functions)
+            table.
       return:
-        type:
-          - adaptive-expressions.Expression
-        description: ''
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: The expression object.
+  - name: references()
+    uid: adaptive-expressions.Constant.references
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.references
-    name: references()
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Return the static reference paths to memory.
 
@@ -308,244 +323,110 @@ items:
       then the path is terminated there,
 
       but you might get other paths from the computed part as well.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: function references()
-      parameters: []
       return:
-        type:
-          - 'string[]'
+        type: 'string[]'
         description: List of the static reference paths.
+  - name: 'referenceWalk(Expression, (arg0: Expression) => boolean)'
+    uid: adaptive-expressions.Constant.referenceWalk
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.referenceWalk
-    name: 'referenceWalk(Expression, (arg0: Expression) => boolean)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Walking function for identifying static memory references in an
       expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function referenceWalk(expression: Expression, extension?: (arg0:
         Expression) => boolean)
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression to analyze.
         - id: extension
-          type:
-            - '(arg0: Expression) => boolean'
+          type: '(arg0: Expression) =&gt; boolean'
           description: >-
             If present, called to override lookup for things like template
             expansion.
-          optional: true
       return:
-        type:
-          - Object
+        type: Object
         description: Accessor path of expression.
+  - name: 'setPathToValue(Expression, any)'
+    uid: adaptive-expressions.Constant.setPathToValue
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.returnType
-    name: returnType
-    fullName: returnType
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Expected result of evaluating expression.
-    syntax:
-      content: 'returnType: ReturnType'
-      return:
-        type:
-          - adaptive-expressions.ReturnType
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.setPathToValue
-    name: 'setPathToValue(Expression, any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Construct and validate an Set a property expression to a value expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function setPathToValue(property: Expression, value: any)'
       parameters:
         - id: property
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: property expression.
         - id: value
-          type:
-            - any
+          type: any
           description: value expression.
       return:
-        type:
-          - adaptive-expressions.Expression
+        type: <xref uid="adaptive-expressions.Expression" />
         description: New expression.
+  - name: toString()
+    uid: adaptive-expressions.Constant.toString
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.toString
-    name: toString()
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: Returns a string that represents the current constant object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: function toString()
-      parameters: []
       return:
-        type:
-          - string
-        description: ''
+        type: string
+        description: A string that represents the current constant object.
+  - name: 'tryEvaluate(MemoryInterface | any, Options)'
+    uid: adaptive-expressions.Constant.tryEvaluate
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.tryEvaluate
-    name: 'tryEvaluate(MemoryInterface | any, Options)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Evaluate the expression.
 
       Global state to evaluate accessor expressions against.  Can Dictionary be
       otherwise reflection is used to access property and then indexer.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function tryEvaluate(state: MemoryInterface | any, options?: Options)'
+      content: 'function tryEvaluate(state: MemoryInterface | any, options: Options)'
       parameters:
         - id: state
-          type:
-            - adaptive-expressions.MemoryInterface | any
+          type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
           description: |+
 
         - id: options
-          type:
-            - adaptive-expressions.Options
+          type: <xref uid="adaptive-expressions.Options" />
           description: ''
-          optional: true
       return:
-        type:
-          - adaptive-expressions.ValueWithError
+        type: <xref uid="adaptive-expressions.ValueWithError" />
         description: ''
+  - name: validate()
+    uid: adaptive-expressions.Constant.validate
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.type
-    name: type
-    fullName: type
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Type of expression.
-    syntax:
-      content: 'type: string'
-      return:
-        type:
-          - string
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.validate
-    name: validate
-    fullName: validate
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Validate immediate expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'validate: () => void'
-      return:
-        type:
-          - () => void
-        description: ''
+      content: function validate()
+  - name: validateTree()
+    uid: adaptive-expressions.Constant.validateTree
     package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.validateTree
-    name: validateTree()
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Recursively validate the expression tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: function validateTree()
-      parameters: []
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Constant.value
-    name: value
-    fullName: value
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Constant value.
-    syntax:
-      content: 'value: any'
-      return:
-        type:
-          - any
-        description: ''
-    package: adaptive-expressions
-references:
-  - uid: adaptive-expressions.Expression
-    name: Expression
-    spec.typeScript:
-      - name: Expression
-        fullName: Expression
-        uid: adaptive-expressions.Expression
-  - uid: 'adaptive-expressions.Expression[]'
-    name: 'Expression[]'
-    spec.typeScript:
-      - name: Expression
-        fullName: Expression
-        uid: adaptive-expressions.Expression
-      - name: '[]'
-        fullName: '[]'
-  - uid: adaptive-expressions.ReturnType
-    name: ReturnType
-    spec.typeScript:
-      - name: ReturnType
-        fullName: ReturnType
-        uid: adaptive-expressions.ReturnType
-  - uid: adaptive-expressions.FunctionTable
-    name: FunctionTable
-    spec.typeScript:
-      - name: FunctionTable
-        fullName: FunctionTable
-        uid: adaptive-expressions.FunctionTable
-  - uid: adaptive-expressions.MemoryInterface | any
-    name: MemoryInterface | any
-    spec.typeScript:
-      - name: MemoryInterface
-        fullName: MemoryInterface
-        uid: adaptive-expressions.MemoryInterface
-      - name: ' | any'
-        fullName: ' | any'
-  - uid: adaptive-expressions.Options
-    name: Options
-    spec.typeScript:
-      - name: Options
-        fullName: Options
-        uid: adaptive-expressions.Options
-  - uid: adaptive-expressions.ValueWithError
-    name: ValueWithError
-    spec.typeScript:
-      - name: ValueWithError
-        fullName: ValueWithError
-        uid: adaptive-expressions.ValueWithError
-  - uid: adaptive-expressions.EvaluateExpressionDelegate
-    name: EvaluateExpressionDelegate
-    spec.typeScript:
-      - name: EvaluateExpressionDelegate
-        fullName: EvaluateExpressionDelegate
-        uid: adaptive-expressions.EvaluateExpressionDelegate
-  - uid: adaptive-expressions.ExpressionEvaluator
-    name: ExpressionEvaluator
-    spec.typeScript:
-      - name: ExpressionEvaluator
-        fullName: ExpressionEvaluator
-        uid: adaptive-expressions.ExpressionEvaluator
-  - uid: adaptive-expressions.EvaluatorLookup
-    name: EvaluatorLookup
-    spec.typeScript:
-      - name: EvaluatorLookup
-        fullName: EvaluatorLookup
-        uid: adaptive-expressions.EvaluatorLookup
+extends: <xref uid="adaptive-expressions.Expression" />

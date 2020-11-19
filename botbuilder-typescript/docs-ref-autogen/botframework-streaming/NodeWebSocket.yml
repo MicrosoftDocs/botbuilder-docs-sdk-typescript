@@ -1,215 +1,164 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botframework-streaming.NodeWebSocket
-    name: NodeWebSocket
-    fullName: NodeWebSocket
-    children:
-      - botframework-streaming.NodeWebSocket.close
-      - botframework-streaming.NodeWebSocket.connect
-      - botframework-streaming.NodeWebSocket.create
-      - botframework-streaming.NodeWebSocket.isConnected
-      - botframework-streaming.NodeWebSocket.constructor
-      - botframework-streaming.NodeWebSocket.setOnCloseHandler
-      - botframework-streaming.NodeWebSocket.setOnErrorHandler
-      - botframework-streaming.NodeWebSocket.setOnMessageHandler
-      - botframework-streaming.NodeWebSocket.write
-    langs:
-      - typeScript
-    type: class
-    summary: ''
+### YamlMime:TSType
+name: NodeWebSocket
+uid: botframework-streaming.NodeWebSocket
+package: botframework-streaming
+summary: >-
+  An implementation of [ISocket](xref:botframework-streaming.ISocket) to use
+  with a
+  [NodeWebSocketFactory](xref:botframework-streaming.NodeWebSocketFactory) to
+  create a WebSocket server.
+fullName: NodeWebSocket
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: NodeWebSocket(WebSocket)
+    uid: botframework-streaming.NodeWebSocket.constructor
     package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.close
-    name: 'close(number, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: >-
+      Creates a new instance of the
+      [NodeWebSocket](xref:botframework-streaming.NodeWebSocket) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new NodeWebSocket(wsSocket?: WebSocket)'
+      parameters:
+        - id: wsSocket
+          type: WebSocket
+          description: ''
+properties:
+  - name: isConnected
+    uid: botframework-streaming.NodeWebSocket.isConnected
+    package: botframework-streaming
+    summary: True if the 'ws' WebSocket is currently connected.
+    fullName: isConnected
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: boolean isConnected
+      return:
+        type: boolean
+        description: ''
+methods:
+  - name: 'close(number, string)'
+    uid: botframework-streaming.NodeWebSocket.close
+    package: botframework-streaming
     summary: Close the socket.
+    remarks: >-
+      Optionally pass in a status code and string explaining why the connection
+      is closing.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function close(code?: number, data?: string)'
       parameters:
         - id: code
-          type:
-            - number
+          type: number
           description: ''
-          optional: true
         - id: data
-          type:
-            - string
+          type: string
           description: |+
 
-          optional: true
+  - name: 'connect(any, number)'
+    uid: botframework-streaming.NodeWebSocket.connect
     package: botframework-streaming
-    remarks: >-
-      Optionally pass in a status code and string explaining why the connection
-      is closing.
-  - uid: botframework-streaming.NodeWebSocket.connect
-    name: 'connect(any, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Connects to the supporting socket using WebSocket protocol.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function connect(serverAddress: any, port?: number)'
+      content: 'function connect(serverAddress: any, port: number)'
       parameters:
         - id: serverAddress
-          type:
-            - any
+          type: any
           description: The address the server is listening on.
         - id: port
-          type:
-            - number
+          type: number
           description: |
             The port the server is listening on, defaults to 8082.
-          optional: true
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: 'create(INodeIncomingMessage, INodeSocket, INodeBuffer)'
+    uid: botframework-streaming.NodeWebSocket.create
     package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.create
-    name: 'create(INodeIncomingMessage, INodeSocket, INodeBuffer)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: 'Create and set a `ws` WebSocket with an HTTP Request, Socket and Buffer.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function create(req: INodeIncomingMessage, socket: INodeSocket, head:
         INodeBuffer)
       parameters:
         - id: req
-          type:
-            - botframework-streaming.INodeIncomingMessage
+          type: <xref uid="botframework-streaming.INodeIncomingMessage" />
           description: INodeIncomingMessage
         - id: socket
-          type:
-            - botframework-streaming.INodeSocket
+          type: <xref uid="botframework-streaming.INodeSocket" />
           description: INodeSocket
         - id: head
-          type:
-            - botframework-streaming.INodeBuffer
+          type: <xref uid="botframework-streaming.INodeBuffer" />
           description: |
             INodeBuffer
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
+  - name: 'setOnCloseHandler((x: any) => void)'
+    uid: botframework-streaming.NodeWebSocket.setOnCloseHandler
     package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.isConnected
-    name: isConnected
-    fullName: isConnected
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: True if the 'ws' WebSocket is currently connected.
-    syntax:
-      content: 'isConnected: boolean'
-      return:
-        type:
-          - boolean
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.constructor
-    name: NodeWebSocket(WebSocket)
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: >-
-      Creates a new instance of the
-      [NodeWebSocket](xref:botframework-streaming.NodeWebSocket) class.
-    syntax:
-      content: 'new NodeWebSocket(wsSocket?: WebSocket)'
-      parameters:
-        - id: wsSocket
-          type:
-            - WebSocket
-          description: ''
-          optional: true
-    package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.setOnCloseHandler
-    name: 'setOnCloseHandler((x: any) => void)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Set the callback to call when encountering socket closures.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function setOnCloseHandler(handler: (x: any) => void)'
       parameters:
         - id: handler
-          type:
-            - '(x: any) => void'
+          type: '(x: any) =&gt; void'
           description: ''
+  - name: 'setOnErrorHandler((x: any) => void)'
+    uid: botframework-streaming.NodeWebSocket.setOnErrorHandler
     package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.setOnErrorHandler
-    name: 'setOnErrorHandler((x: any) => void)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Set the callback to call when encountering errors.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function setOnErrorHandler(handler: (x: any) => void)'
       parameters:
         - id: handler
-          type:
-            - '(x: any) => void'
+          type: '(x: any) =&gt; void'
           description: ''
+  - name: 'setOnMessageHandler((x: any) => void)'
+    uid: botframework-streaming.NodeWebSocket.setOnMessageHandler
     package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.setOnMessageHandler
-    name: 'setOnMessageHandler((x: any) => void)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Set the handler for `'data'` and `'message'` events received on the
       socket.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function setOnMessageHandler(handler: (x: any) => void)'
       parameters:
         - id: handler
-          type:
-            - '(x: any) => void'
+          type: '(x: any) =&gt; void'
           description: ''
+  - name: write(INodeBuffer)
+    uid: botframework-streaming.NodeWebSocket.write
     package: botframework-streaming
-  - uid: botframework-streaming.NodeWebSocket.write
-    name: write(INodeBuffer)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Writes a buffer to the socket and sends it.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function write(buffer: INodeBuffer)'
       parameters:
         - id: buffer
-          type:
-            - botframework-streaming.INodeBuffer
+          type: <xref uid="botframework-streaming.INodeBuffer" />
           description: |
             The buffer of data to send across the connection.
-    package: botframework-streaming
-references:
-  - uid: botframework-streaming.INodeIncomingMessage
-    name: INodeIncomingMessage
-    spec.typeScript:
-      - name: INodeIncomingMessage
-        fullName: INodeIncomingMessage
-        uid: botframework-streaming.INodeIncomingMessage
-  - uid: botframework-streaming.INodeSocket
-    name: INodeSocket
-    spec.typeScript:
-      - name: INodeSocket
-        fullName: INodeSocket
-        uid: botframework-streaming.INodeSocket
-  - uid: botframework-streaming.INodeBuffer
-    name: INodeBuffer
-    spec.typeScript:
-      - name: INodeBuffer
-        fullName: INodeBuffer
-        uid: botframework-streaming.INodeBuffer

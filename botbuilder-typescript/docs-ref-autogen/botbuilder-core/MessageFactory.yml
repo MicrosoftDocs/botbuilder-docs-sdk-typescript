@@ -1,82 +1,35 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.MessageFactory
-    name: MessageFactory
-    fullName: MessageFactory
-    children:
-      - botbuilder-core.MessageFactory.attachment
-      - botbuilder-core.MessageFactory.carousel
-      - botbuilder-core.MessageFactory.contentUrl
-      - botbuilder-core.MessageFactory.list
-      - botbuilder-core.MessageFactory.suggestedActions
-      - botbuilder-core.MessageFactory.text
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      A set of utility functions to assist with the formatting of the various
-      message types a bot can
+### YamlMime:TSType
+name: MessageFactory
+uid: botbuilder-core.MessageFactory
+package: botbuilder-core
+summary: >-
+  A set of utility functions to assist with the formatting of the various
+  message types a bot can
 
-      return.
+  return.
+fullName: MessageFactory
+remarks: |-
+  The following example shows sending a message containing a single hero card:
+
+  ```javascript
+  const { MessageFactory, CardFactory } = require('botbuilder');
+
+  const card = CardFactory.heroCard(
+       'White T-Shirt',
+       ['https://example.com/whiteShirt.jpg'],
+       ['buy']
+  );
+  const message = MessageFactory.attachment(card);
+  await context.sendActivity(message);
+  ```
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'attachment(Attachment, string, string, InputHints | string)'
+    uid: botbuilder-core.MessageFactory.attachment
     package: botbuilder-core
-    remarks: >-
-      The following example shows sending a message containing a single hero
-      card:
-
-
-      ```javascript
-
-      const { MessageFactory, CardFactory } = require('botbuilder');
-
-
-      const card = CardFactory.heroCard(
-           'White T-Shirt',
-           ['https://example.com/whiteShirt.jpg'],
-           ['buy']
-      );
-
-      const message = MessageFactory.attachment(card);
-
-      await context.sendActivity(message);
-
-      ```
-  - uid: botbuilder-core.MessageFactory.attachment
-    name: 'attachment(Attachment, string, string, InputHints | string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns a single message activity containing an attachment.
-    syntax:
-      content: >-
-        static function attachment(attachment: Attachment, text?: string,
-        speak?: string, inputHint?: InputHints | string)
-      parameters:
-        - id: attachment
-          type:
-            - Attachment
-          description: Adaptive card to include in the message.
-        - id: text
-          type:
-            - string
-          description: (Optional) text of the message.
-          optional: true
-        - id: speak
-          type:
-            - string
-          description: (Optional) SSML to include with the message.
-          optional: true
-        - id: inputHint
-          type:
-            - InputHints | string
-          description: |
-            (Optional) input hint for the message. Defaults to `acceptingInput`.
-          optional: true
-      return:
-        type:
-          - Partial<Activity>
-        description: ''
-    package: botbuilder-core
     remarks: |-
       This example shows creating a message with a hero card attachment:
 
@@ -89,45 +42,35 @@ items:
            )
       );
       ```
-  - uid: botbuilder-core.MessageFactory.carousel
-    name: 'carousel(Attachment[], string, string, InputHints | string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function attachment(attachment: Attachment, text?: string,
+        speak?: string, inputHint?: InputHints | string)
+      parameters:
+        - id: attachment
+          type: Attachment
+          description: Adaptive card to include in the message.
+        - id: text
+          type: string
+          description: (Optional) text of the message.
+        - id: speak
+          type: string
+          description: (Optional) SSML to include with the message.
+        - id: inputHint
+          type: InputHints | string
+          description: |
+            (Optional) input hint for the message. Defaults to `acceptingInput`.
+      return:
+        type: Partial&lt;Activity&gt;
+        description: ''
+  - name: 'carousel(Attachment[], string, string, InputHints | string)'
+    uid: botbuilder-core.MessageFactory.carousel
+    package: botbuilder-core
     summary: >-
       Returns a message that will display a set of attachments using a carousel
       layout.
-    syntax:
-      content: >-
-        static function carousel(attachments: Attachment[], text?: string,
-        speak?: string, inputHint?: InputHints | string)
-      parameters:
-        - id: attachments
-          type:
-            - 'Attachment[]'
-          description: Array of attachments to include in the message.
-        - id: text
-          type:
-            - string
-          description: (Optional) text of the message.
-          optional: true
-        - id: speak
-          type:
-            - string
-          description: (Optional) SSML to include with the message.
-          optional: true
-        - id: inputHint
-          type:
-            - InputHints | string
-          description: |
-            (Optional) input hint for the message.
-          optional: true
-      return:
-        type:
-          - Partial<Activity>
-        description: ''
-    package: botbuilder-core
     remarks: |-
       This example shows creating a message with a carousel of hero cards:
 
@@ -138,52 +81,33 @@ items:
          CardFactory.heroCard('title3', ['imageUrl3'], ['button3'])
       ]);
       ```
-  - uid: botbuilder-core.MessageFactory.contentUrl
-    name: 'contentUrl(string, string, string, string, string, InputHints | string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Returns a message that will display a single image or video to a user.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
-        static function contentUrl(url: string, contentType: string, name?:
-        string, text?: string, speak?: string, inputHint?: InputHints | string)
+        static function carousel(attachments: Attachment[], text?: string,
+        speak?: string, inputHint?: InputHints | string)
       parameters:
-        - id: url
-          type:
-            - string
-          description: Url of the image/video to send.
-        - id: contentType
-          type:
-            - string
-          description: The MIME type of the image/video.
-        - id: name
-          type:
-            - string
-          description: (Optional) Name of the image/video file.
-          optional: true
+        - id: attachments
+          type: 'Attachment[]'
+          description: Array of attachments to include in the message.
         - id: text
-          type:
-            - string
+          type: string
           description: (Optional) text of the message.
-          optional: true
         - id: speak
-          type:
-            - string
+          type: string
           description: (Optional) SSML to include with the message.
-          optional: true
         - id: inputHint
-          type:
-            - InputHints | string
+          type: InputHints | string
           description: |
             (Optional) input hint for the message.
-          optional: true
       return:
-        type:
-          - Partial<Activity>
+        type: Partial&lt;Activity&gt;
         description: ''
+  - name: 'contentUrl(string, string, string, string, string, InputHints | string)'
+    uid: botbuilder-core.MessageFactory.contentUrl
     package: botbuilder-core
+    summary: Returns a message that will display a single image or video to a user.
     remarks: >-
       This example shows sending an image to the user:
 
@@ -195,43 +119,39 @@ items:
       'Hawaii Trip', 'A photo from our family vacation.');
 
       ```
-  - uid: botbuilder-core.MessageFactory.list
-    name: 'list(Attachment[], string, string, InputHints | string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Returns a message that will display a set of attachments in list form.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
-        static function list(attachments: Attachment[], text?: string, speak?:
-        string, inputHint?: InputHints | string)
+        static function contentUrl(url: string, contentType: string, name?:
+        string, text?: string, speak?: string, inputHint?: InputHints | string)
       parameters:
-        - id: attachments
-          type:
-            - 'Attachment[]'
-          description: Array of attachments to include in the message.
+        - id: url
+          type: string
+          description: Url of the image/video to send.
+        - id: contentType
+          type: string
+          description: The MIME type of the image/video.
+        - id: name
+          type: string
+          description: (Optional) Name of the image/video file.
         - id: text
-          type:
-            - string
+          type: string
           description: (Optional) text of the message.
-          optional: true
         - id: speak
-          type:
-            - string
+          type: string
           description: (Optional) SSML to include with the message.
-          optional: true
         - id: inputHint
-          type:
-            - InputHints | string
+          type: InputHints | string
           description: |
             (Optional) input hint for the message.
-          optional: true
       return:
-        type:
-          - Partial<Activity>
+        type: Partial&lt;Activity&gt;
         description: ''
+  - name: 'list(Attachment[], string, string, InputHints | string)'
+    uid: botbuilder-core.MessageFactory.list
     package: botbuilder-core
+    summary: Returns a message that will display a set of attachments in list form.
     remarks: |-
       This example shows creating a message with a list of hero cards:
 
@@ -242,49 +162,37 @@ items:
          CardFactory.heroCard('title3', ['imageUrl3'], ['button3'])
       ]);
       ```
-  - uid: botbuilder-core.MessageFactory.suggestedActions
-    name: >-
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function list(attachments: Attachment[], text?: string, speak?:
+        string, inputHint?: InputHints | string)
+      parameters:
+        - id: attachments
+          type: 'Attachment[]'
+          description: Array of attachments to include in the message.
+        - id: text
+          type: string
+          description: (Optional) text of the message.
+        - id: speak
+          type: string
+          description: (Optional) SSML to include with the message.
+        - id: inputHint
+          type: InputHints | string
+          description: |
+            (Optional) input hint for the message.
+      return:
+        type: Partial&lt;Activity&gt;
+        description: ''
+  - name: >-
       suggestedActions(string | CardAction[], string, string, InputHints |
       string)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder-core.MessageFactory.suggestedActions
+    package: botbuilder-core
     summary: >-
       Returns a message that includes a set of suggested actions and optional
       text.
-    syntax:
-      content: >-
-        static function suggestedActions(actions: string | CardAction[], text?:
-        string, speak?: string, inputHint?: InputHints | string)
-      parameters:
-        - id: actions
-          type:
-            - 'string | CardAction[]'
-          description: >-
-            Array of card actions or strings to include. Strings will be
-            converted to `messageBack` actions.
-        - id: text
-          type:
-            - string
-          description: (Optional) text of the message.
-          optional: true
-        - id: speak
-          type:
-            - string
-          description: (Optional) SSML to include with the message.
-          optional: true
-        - id: inputHint
-          type:
-            - InputHints | string
-          description: |
-            (Optional) input hint for the message. Defaults to `acceptingInput`.
-          optional: true
-      return:
-        type:
-          - Partial<Activity>
-        description: ''
-    package: botbuilder-core
     remarks: >-
       This example shows creating a message with suggested actions:
 
@@ -295,41 +203,58 @@ items:
       `Choose a color`);
 
       ```
-  - uid: botbuilder-core.MessageFactory.text
-    name: 'text(string, string, InputHints | string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Returns a simple text message.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
-        static function text(text: string, speak?: string, inputHint?:
-        InputHints | string)
+        static function suggestedActions(actions: string | CardAction[], text?:
+        string, speak?: string, inputHint?: InputHints | string)
       parameters:
+        - id: actions
+          type: 'string | CardAction[]'
+          description: >-
+            Array of card actions or strings to include. Strings will be
+            converted to `messageBack` actions.
         - id: text
-          type:
-            - string
-          description: Text to include in the message.
+          type: string
+          description: (Optional) text of the message.
         - id: speak
-          type:
-            - string
-          description: (Optional) SSML to include in the message.
-          optional: true
+          type: string
+          description: (Optional) SSML to include with the message.
         - id: inputHint
-          type:
-            - InputHints | string
+          type: InputHints | string
           description: |
             (Optional) input hint for the message. Defaults to `acceptingInput`.
-          optional: true
       return:
-        type:
-          - Partial<Activity>
+        type: Partial&lt;Activity&gt;
         description: ''
+  - name: 'text(string, string, InputHints | string)'
+    uid: botbuilder-core.MessageFactory.text
     package: botbuilder-core
+    summary: Returns a simple text message.
     remarks: |-
       This example shows sending a simple text message:
 
       ```JavaScript
       const message = MessageFactory.text('Greetings from example message');
       ```
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function text(text: string, speak?: string, inputHint?:
+        InputHints | string)
+      parameters:
+        - id: text
+          type: string
+          description: Text to include in the message.
+        - id: speak
+          type: string
+          description: (Optional) SSML to include in the message.
+        - id: inputHint
+          type: InputHints | string
+          description: |
+            (Optional) input hint for the message. Defaults to `acceptingInput`.
+      return:
+        type: Partial&lt;Activity&gt;
+        description: ''

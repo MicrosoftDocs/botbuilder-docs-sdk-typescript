@@ -1,63 +1,54 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.ConversationState
-    name: ConversationState
-    fullName: ConversationState
-    children:
-      - botbuilder-core.ConversationState.clear
-      - botbuilder-core.ConversationState.constructor
-      - botbuilder-core.ConversationState.createProperty
-      - botbuilder-core.ConversationState.delete
-      - botbuilder-core.ConversationState.get
-      - botbuilder-core.ConversationState.getStorageKey
-      - botbuilder-core.ConversationState.load
-      - botbuilder-core.ConversationState.saveChanges
-    langs:
-      - typeScript
-    type: class
-    summary: Reads and writes conversation state for your bot to storage.
-    extends:
-      name: botbuilder-core.BotState
+### YamlMime:TSType
+name: ConversationState
+uid: botbuilder-core.ConversationState
+package: botbuilder-core
+summary: Reads and writes conversation state for your bot to storage.
+fullName: ConversationState
+remarks: >-
+  Each conversation your bot has with a user or group will have its own isolated
+  storage object
+
+  that can be used to persist conversation tracking information between turns of
+  the conversation.
+
+  This state information can be reset at any point by calling [clear()](#clear).
+
+
+  ```JavaScript
+
+  const { ConversationState, MemoryStorage } = require('botbuilder');
+
+
+  const conversationState = new ConversationState(new MemoryStorage());
+
+  ```
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'ConversationState(Storage, string)'
+    uid: botbuilder-core.ConversationState.constructor
     package: botbuilder-core
-    remarks: >-
-      Each conversation your bot has with a user or group will have its own
-      isolated storage object
-
-      that can be used to persist conversation tracking information between
-      turns of the conversation.
-
-      This state information can be reset at any point by calling
-      [clear()](#clear).
-
-
-      ```JavaScript
-
-      const { ConversationState, MemoryStorage } = require('botbuilder');
-
-
-      const conversationState = new ConversationState(new MemoryStorage());
-
-      ```
-  - uid: botbuilder-core.ConversationState.clear
-    name: clear(TurnContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Clears the current state object for a turn.
+    summary: Creates a new ConversationState instance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function clear(context: TurnContext)'
+      content: 'new ConversationState(storage: Storage, namespace: string)'
       parameters:
-        - id: context
-          type:
-            - botbuilder-core.TurnContext
-          description: |
-            Context for current turn of conversation with the user.
-      return:
-        type:
-          - Promise<void>
-        description: ''
+        - id: storage
+          type: <xref uid="botbuilder-core.Storage" />
+          description: Storage provider to persist conversation state to.
+        - id: namespace
+          type: string
+          description: >
+            (Optional) namespace to append to storage keys. Defaults to an empty
+            string.
+methods:
+  - name: clear(TurnContext)
+    uid: botbuilder-core.ConversationState.clear
     package: botbuilder-core
+    summary: Clears the current state object for a turn.
     remarks: >-
       The cleared state object will not be persisted until
       [saveChanges()](#savechanges) has
@@ -72,72 +63,43 @@ items:
       await botState.saveChanges(context);
 
       ```
-  - uid: botbuilder-core.ConversationState.constructor
-    name: 'ConversationState(Storage, string)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: Creates a new ConversationState instance.
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'new ConversationState(storage: Storage, namespace?: string)'
+      content: 'function clear(context: TurnContext)'
       parameters:
-        - id: storage
-          type:
-            - botbuilder-core.Storage
-          description: Storage provider to persist conversation state to.
-        - id: namespace
-          type:
-            - string
-          description: >
-            (Optional) namespace to append to storage keys. Defaults to an empty
-            string.
-          optional: true
+        - id: context
+          type: <xref uid="botbuilder-core.TurnContext" />
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: createProperty<T>(string)
+    uid: botbuilder-core.ConversationState.createProperty
     package: botbuilder-core
-  - uid: botbuilder-core.ConversationState.createProperty
-    name: createProperty(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Creates a new property accessor for reading and writing an individual
       property to the bot
 
       states storage object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function createProperty<T>(name: string)'
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: |
             Name of the property to add.
       return:
-        type:
-          - botbuilder-core.StatePropertyAccessor<T>
+        type: <xref uid="botbuilder-core.StatePropertyAccessor" />&lt;T&gt;
         description: ''
+  - name: delete(TurnContext)
+    uid: botbuilder-core.ConversationState.delete
     package: botbuilder-core
-  - uid: botbuilder-core.ConversationState.delete
-    name: delete(TurnContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Delete the backing state object for the current turn.
-    syntax:
-      content: 'function delete(context: TurnContext)'
-      parameters:
-        - id: context
-          type:
-            - botbuilder-core.TurnContext
-          description: |
-            Context for current turn of conversation with the user.
-      return:
-        type:
-          - Promise<void>
-        description: ''
-    package: botbuilder-core
     remarks: >-
       The state object will be removed from storage if it exists.  If the state
       object has been
@@ -150,26 +112,22 @@ items:
       await botState.delete(context);
 
       ```
-  - uid: botbuilder-core.ConversationState.get
-    name: get(TurnContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Returns a cached state object or undefined if not cached.
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function get(context: TurnContext)'
+      content: 'function delete(context: TurnContext)'
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: |
             Context for current turn of conversation with the user.
       return:
-        type:
-          - any | undefined
+        type: Promise&lt;void&gt;
         description: ''
+  - name: get(TurnContext)
+    uid: botbuilder-core.ConversationState.get
     package: botbuilder-core
+    summary: Returns a cached state object or undefined if not cached.
     remarks: >-
       This example shows how to synchronously get an already loaded and cached
       state object:
@@ -180,52 +138,39 @@ items:
       const state = botState.get(context);
 
       ```
-  - uid: botbuilder-core.ConversationState.getStorageKey
-    name: getStorageKey(TurnContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function get(context: TurnContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-core.TurnContext" />
+          description: |
+            Context for current turn of conversation with the user.
+      return:
+        type: any | undefined
+        description: ''
+  - name: getStorageKey(TurnContext)
+    uid: botbuilder-core.ConversationState.getStorageKey
+    package: botbuilder-core
     summary: Returns the storage key for the current conversation state.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function getStorageKey(context: TurnContext)'
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: |
             Context for current turn of conversation with the user.
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: ''
+  - name: 'load(TurnContext, boolean)'
+    uid: botbuilder-core.ConversationState.load
     package: botbuilder-core
-  - uid: botbuilder-core.ConversationState.load
-    name: 'load(TurnContext, boolean)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Reads in and caches the backing state object for a turn.
-    syntax:
-      content: 'function load(context: TurnContext, force?: boolean)'
-      parameters:
-        - id: context
-          type:
-            - botbuilder-core.TurnContext
-          description: Context for current turn of conversation with the user.
-        - id: force
-          type:
-            - boolean
-          description: >
-            (Optional) If `true` the cache will be bypassed and the state will
-            always be read in directly from storage. Defaults to `false`.
-          optional: true
-      return:
-        type:
-          - Promise<any>
-        description: ''
-    package: botbuilder-core
     remarks: >-
       Subsequent reads will return the cached object unless the `force` flag is
       passed in which
@@ -242,32 +187,26 @@ items:
       const state = await botState.load(context);
 
       ```
-  - uid: botbuilder-core.ConversationState.saveChanges
-    name: 'saveChanges(TurnContext, boolean)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Saves the cached state object if it's been changed.
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function saveChanges(context: TurnContext, force?: boolean)'
+      content: 'function load(context: TurnContext, force: boolean)'
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: Context for current turn of conversation with the user.
         - id: force
-          type:
-            - boolean
+          type: boolean
           description: >
-            (Optional) if `true` the state will always be written out regardless
-            of its change state. Defaults to `false`.
-          optional: true
+            (Optional) If `true` the cache will be bypassed and the state will
+            always be read in directly from storage. Defaults to `false`.
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;any&gt;
         description: ''
+  - name: 'saveChanges(TurnContext, boolean)'
+    uid: botbuilder-core.ConversationState.saveChanges
     package: botbuilder-core
+    summary: Saves the cached state object if it's been changed.
     remarks: >-
       If the `force` flag is passed in the cached state object will be saved
       regardless of
@@ -283,30 +222,20 @@ items:
       await botState.saveChanges(context);
 
       ```
-references:
-  - uid: botbuilder-core.BotState
-    name: BotState
-    spec.typeScript:
-      - name: BotState
-        fullName: BotState
-        uid: botbuilder-core.BotState
-  - uid: botbuilder-core.Storage
-    name: Storage
-    spec.typeScript:
-      - name: Storage
-        fullName: Storage
-        uid: botbuilder-core.Storage
-  - uid: botbuilder-core.TurnContext
-    name: TurnContext
-    spec.typeScript:
-      - name: TurnContext
-        fullName: TurnContext
-        uid: botbuilder-core.TurnContext
-  - uid: botbuilder-core.StatePropertyAccessor<T>
-    name: StatePropertyAccessor<T>
-    spec.typeScript:
-      - name: StatePropertyAccessor
-        fullName: StatePropertyAccessor
-        uid: botbuilder-core.StatePropertyAccessor
-      - name: <T>
-        fullName: <T>
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function saveChanges(context: TurnContext, force: boolean)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-core.TurnContext" />
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type: boolean
+          description: >
+            (Optional) if `true` the state will always be written out regardless
+            of its change state. Defaults to `false`.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+extends: <xref uid="botbuilder-core.BotState" />

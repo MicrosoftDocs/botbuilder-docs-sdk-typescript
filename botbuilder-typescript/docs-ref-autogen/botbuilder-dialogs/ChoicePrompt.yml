@@ -1,88 +1,27 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-dialogs.ChoicePrompt
-    name: ChoicePrompt
-    fullName: ChoicePrompt<O>
-    children:
-      - botbuilder-dialogs.ChoicePrompt.beginDialog
-      - botbuilder-dialogs.ChoicePrompt.choiceOptions
-      - botbuilder-dialogs.ChoicePrompt.constructor
-      - botbuilder-dialogs.ChoicePrompt.configure
-      - botbuilder-dialogs.ChoicePrompt.continueDialog
-      - botbuilder-dialogs.ChoicePrompt.defaultLocale
-      - botbuilder-dialogs.ChoicePrompt.endDialog
-      - botbuilder-dialogs.ChoicePrompt.EndOfTurn
-      - botbuilder-dialogs.ChoicePrompt.getVersion
-      - botbuilder-dialogs.ChoicePrompt.id
-      - botbuilder-dialogs.ChoicePrompt.onDialogEvent
-      - botbuilder-dialogs.ChoicePrompt.recognizerOptions
-      - botbuilder-dialogs.ChoicePrompt.repromptDialog
-      - botbuilder-dialogs.ChoicePrompt.resumeDialog
-      - botbuilder-dialogs.ChoicePrompt.style
-      - botbuilder-dialogs.ChoicePrompt.telemetryClient
-    langs:
-      - typeScript
-    type: class
-    summary: Prompts a user to select from a list of choices.
-    extends:
-      name: botbuilder-dialogs.Prompt<botbuilder-dialogs.FoundChoice>
-    package: botbuilder-dialogs
-    remarks: >-
-      By default the prompt will return to the calling dialog a `FoundChoice`
-      object containing the
+### YamlMime:TSType
+name: ChoicePrompt
+uid: botbuilder-dialogs.ChoicePrompt
+package: botbuilder-dialogs
+summary: Prompts a user to select from a list of choices.
+fullName: ChoicePrompt<O>
+remarks: >-
+  By default the prompt will return to the calling dialog a `FoundChoice` object
+  containing the
 
-      choice that was selected.
-  - uid: botbuilder-dialogs.ChoicePrompt.beginDialog
-    name: 'beginDialog(DialogContext, PromptOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function beginDialog(dc: DialogContext, options: PromptOptions)'
-      parameters:
-        - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: ''
-        - id: options
-          type:
-            - botbuilder-dialogs.PromptOptions
-          description: ''
-      return:
-        type:
-          - Promise<botbuilder-dialogs.DialogTurnResult>
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.choiceOptions
-    name: choiceOptions
-    fullName: choiceOptions
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: >-
-      Additional options passed to the `ChoiceFactory` and used to tweak the
-      style of choices
-
-      rendered to the user.
-    syntax:
-      content: 'choiceOptions: ChoiceFactoryOptions | undefined'
-      return:
-        type:
-          - botbuilder-dialogs.ChoiceFactoryOptions | undefined
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.constructor
-    name: >-
+  choice that was selected.
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
       ChoicePrompt(string, PromptValidator<FoundChoice>, string,
       ChoiceDefaultsChoicePrompt)
-    children: []
-    type: constructor
-    langs:
-      - typeScript
+    uid: botbuilder-dialogs.ChoicePrompt.constructor
+    package: botbuilder-dialogs
     summary: Creates a new `ChoicePrompt` instance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new ChoicePrompt(dialogId: string, validator?:
@@ -90,119 +29,198 @@ items:
         ChoiceDefaultsChoicePrompt)
       parameters:
         - id: dialogId
-          type:
-            - string
+          type: string
           description: Unique ID of the dialog within its parent `DialogSet`.
         - id: validator
-          type:
-            - botbuilder-dialogs.PromptValidator<botbuilder-dialogs.FoundChoice>
+          type: >-
+            <xref uid="botbuilder-dialogs.PromptValidator" />&lt;<xref
+            uid="botbuilder-dialogs.FoundChoice" />&gt;
           description: >-
             (Optional) validator that will be called each time the user responds
             to the prompt. If the validator replies with a message no additional
             retry prompt will be sent.
-          optional: true
         - id: defaultLocale
-          type:
-            - string
+          type: string
           description: >-
             (Optional) locale to use if `dc.context.activity.locale` not
             specified. Defaults to a value of `en-us`.
-          optional: true
         - id: choiceDefaults
-          type:
-            - botbuilder-dialogs.ChoiceDefaultsChoicePrompt
+          type: ChoiceDefaultsChoicePrompt
           description: >
             (Optional) Overrides the dictionary of Bot Framework SDK-supported
             _choiceDefaults (for prompt localization).
              Must be passed in to each ConfirmPrompt that needs the custom choice defaults.
-          optional: true
+properties:
+  - name: choiceOptions
+    uid: botbuilder-dialogs.ChoicePrompt.choiceOptions
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.configure
-    name: configure(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Fluent method for configuring the object.
+    summary: >-
+      Additional options passed to the `ChoiceFactory` and used to tweak the
+      style of choices
+
+      rendered to the user.
+    fullName: choiceOptions
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'function configure(config: object)'
+      content: 'public choiceOptions: ChoiceFactoryOptions | undefined'
+      return:
+        type: <xref uid="botbuilder-dialogs.ChoiceFactoryOptions" /> | undefined
+        description: ''
+  - name: defaultLocale
+    uid: botbuilder-dialogs.ChoicePrompt.defaultLocale
+    package: botbuilder-dialogs
+    summary: The prompts default locale that should be recognized.
+    fullName: defaultLocale
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public defaultLocale: string | undefined'
+      return:
+        type: string | undefined
+        description: ''
+  - name: id
+    uid: botbuilder-dialogs.ChoicePrompt.id
+    package: botbuilder-dialogs
+    summary: |-
+      Unique ID of the dialog.
+      Sets the unique ID of the dialog.
+    fullName: id
+    remarks: This will be automatically generated if not specified.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: string id
+      return:
+        type: string
+        description: ''
+  - name: recognizerOptions
+    uid: botbuilder-dialogs.ChoicePrompt.recognizerOptions
+    package: botbuilder-dialogs
+    summary: Additional options passed to the underlying `recognizeChoices()` function.
+    fullName: recognizerOptions
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public recognizerOptions: FindChoicesOptions | undefined'
+      return:
+        type: <xref uid="botbuilder-dialogs.FindChoicesOptions" /> | undefined
+        description: ''
+  - name: style
+    uid: botbuilder-dialogs.ChoicePrompt.style
+    package: botbuilder-dialogs
+    summary: Style of the "yes" and "no" choices rendered to the user when prompting.
+    fullName: style
+    remarks: Defaults to `ListStyle.auto`.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public style: ListStyle'
+      return:
+        type: <xref uid="botbuilder-dialogs.ListStyle" />
+        description: ''
+  - name: telemetryClient
+    uid: botbuilder-dialogs.ChoicePrompt.telemetryClient
+    package: botbuilder-dialogs
+    summary: |-
+      Gets the telemetry client for this dialog.
+      Sets the telemetry client for this dialog.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: BotTelemetryClient telemetryClient
+      return:
+        type: BotTelemetryClient
+        description: ''
+methods:
+  - name: 'beginDialog(DialogContext, PromptOptions)'
+    uid: botbuilder-dialogs.ChoicePrompt.beginDialog
+    package: botbuilder-dialogs
+    summary: >-
+      Called when a prompt dialog is pushed onto the dialog stack and is being
+      activated.
+    remarks: >-
+      If the task is successful, the result indicates whether the prompt is
+      still
+
+      active after the turn has been processed by the prompt.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function beginDialog(dc: DialogContext, options: PromptOptions)'
+      parameters:
+        - id: dc
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current
+
+            turn of the conversation.
+        - id: options
+          type: <xref uid="botbuilder-dialogs.PromptOptions" />
+          description: |-
+            Optional. [PromptOptions](xref:botbuilder-dialogs.PromptOptions),
+            additional information to pass to the prompt being started.
+      return:
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs.ChoicePrompt.configure
+    package: botbuilder-dialogs
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>)'
       parameters:
         - id: config
-          type:
-            - object
+          type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type:
-          - this
+        type: this
         description: ''
+  - name: continueDialog(DialogContext)
+    uid: botbuilder-dialogs.ChoicePrompt.continueDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.continueDialog
-    name: continueDialog(DialogContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Called when a prompt dialog is the active dialog and the user replied with
+      a new activity.
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog.
+
+      The prompt generally continues to receive the user's replies until it
+      accepts the
+
+      user's reply as valid input for the prompt.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function continueDialog(dc: DialogContext)'
       parameters:
         - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: ''
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
       return:
-        type:
-          - Promise<botbuilder-dialogs.DialogTurnResult>
-        description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    uid: botbuilder-dialogs.ChoicePrompt.endDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.defaultLocale
-    name: defaultLocale
-    fullName: defaultLocale
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: The prompts default locale that should be recognized.
-    syntax:
-      content: 'defaultLocale: string | undefined'
-      return:
-        type:
-          - string | undefined
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.endDialog
-    name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       When overridden in a derived class, performs clean up for the dialog
       before it ends.
-    syntax:
-      content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
-      parameters:
-        - id: context
-          type:
-            - TurnContext
-          description: The context object for the turn.
-        - id: instance
-          type:
-            - botbuilder-dialogs.DialogInstance
-          description: Current state information for this dialog.
-        - id: reason
-          type:
-            - botbuilder-dialogs.DialogReason
-          description: |
-            The reason the dialog is ending.
-      return:
-        type:
-          - Promise<void>
-        description: ''
-    package: botbuilder-dialogs
     remarks: >-
       Derived dialogs that need to perform logging or cleanup before ending
       should override this method.
@@ -226,44 +244,50 @@ items:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-  - uid: botbuilder-dialogs.ChoicePrompt.EndOfTurn
-    name: EndOfTurn
-    fullName: EndOfTurn
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets a default end-of-turn result.
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
+      content: >-
+        function endDialog(context: TurnContext, instance: DialogInstance,
+        reason: DialogReason)
+      parameters:
+        - id: context
+          type: TurnContext
+          description: The context object for the turn.
+        - id: instance
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          description: Current state information for this dialog.
+        - id: reason
+          type: <xref uid="botbuilder-dialogs.DialogReason" />
+          description: |
+            The reason the dialog is ending.
       return:
-        type:
-          - botbuilder-dialogs.DialogTurnResult
+        type: Promise&lt;void&gt;
         description: ''
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.ChoicePrompt.getConverter
     package: botbuilder-dialogs
-    remarks: >-
-      This result indicates that a dialog (or a logical step within a dialog)
-      has completed
-
-      processing for the current turn, is still active, and is waiting for more
-      input.
-  - uid: botbuilder-dialogs.ChoicePrompt.getVersion
-    name: getVersion()
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
+        description: ''
+  - name: getVersion()
+    uid: botbuilder-dialogs.ChoicePrompt.getVersion
+    package: botbuilder-dialogs
     summary: >-
       An encoded string used to aid in the detection of bot changes on
       re-deployment.
-    syntax:
-      content: function getVersion()
-      parameters: []
-      return:
-        type:
-          - string
-        description: ''
-    package: botbuilder-dialogs
     remarks: >-
       This defaults to returning the dialogs [id](#id) but can be overridden to
       provide more
@@ -280,246 +304,95 @@ items:
 
       Returning an empty string will disable version tracking for the component
       all together.
-  - uid: botbuilder-dialogs.ChoicePrompt.id
-    name: id
-    fullName: id
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Unique ID of the dialog.
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'id: string'
+      content: function getVersion()
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+    uid: botbuilder-dialogs.ChoicePrompt.onDialogEvent
     package: botbuilder-dialogs
-    remarks: This will be automatically generated if not specified.
-  - uid: botbuilder-dialogs.ChoicePrompt.onDialogEvent
-    name: 'onDialogEvent(DialogContext, DialogEvent)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
       parameters:
         - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: The dialog context for the current turn of conversation.
         - id: e
-          type:
-            - botbuilder-dialogs.DialogEvent
+          type: <xref uid="botbuilder-dialogs.DialogEvent" />
           description: The event being raised.
       return:
-        type:
-          - Promise<boolean>
+        type: Promise&lt;boolean&gt;
         description: >-
           True if the event is handled by the current dialog and bubbling should
           stop.
+  - name: 'repromptDialog(TurnContext, DialogInstance)'
+    uid: botbuilder-dialogs.ChoicePrompt.repromptDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.recognizerOptions
-    name: recognizerOptions
-    fullName: recognizerOptions
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Additional options passed to the underlying `recognizeChoices()` function.
-    syntax:
-      content: 'recognizerOptions: FindChoicesOptions | undefined'
-      return:
-        type:
-          - botbuilder-dialogs.FindChoicesOptions | undefined
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.repromptDialog
-    name: 'repromptDialog(TurnContext, DialogInstance)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Called when a prompt dialog has been requested to re-prompt the user for
+      input.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
       parameters:
         - id: context
-          type:
-            - TurnContext
-          description: ''
+          type: TurnContext
+          description: |-
+            (xref:botbuilder-core.TurnContext), context for the current
+            turn of conversation with the user.
         - id: instance
-          type:
-            - botbuilder-dialogs.DialogInstance
-          description: ''
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          description: |-
+            (xref:botbuilder-dialogs.DialogInstance), the instance
+            of the dialog on the stack.
       return:
-        type:
-          - Promise<void>
-        description: ''
+        type: Promise&lt;void&gt;
+        description: A `Promise` representing the asynchronous operation.
+  - name: 'resumeDialog(DialogContext, DialogReason, any)'
+    uid: botbuilder-dialogs.ChoicePrompt.resumeDialog
     package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.resumeDialog
-    name: 'resumeDialog(DialogContext, DialogReason, any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Called when a prompt dialog resumes being the active dialog on the dialog
+      stack, such as
+
+      when the previous active dialog on the stack completes.
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
         any)
       parameters:
         - id: dc
-          type:
-            - botbuilder-dialogs.DialogContext
-          description: ''
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: The DialogContext for the current turn of the conversation.
         - id: reason
-          type:
-            - botbuilder-dialogs.DialogReason
-          description: ''
+          type: <xref uid="botbuilder-dialogs.DialogReason" />
+          description: An enum indicating why the dialog resumed.
         - id: result
-          type:
-            - any
-          description: ''
-          optional: true
+          type: any
+          description: |-
+            Optional, value returned from the previous dialog on the stack.
+            The type of the value returned is dependent on the previous dialog.
       return:
-        type:
-          - Promise<botbuilder-dialogs.DialogTurnResult>
-        description: ''
-    package: botbuilder-dialogs
-  - uid: botbuilder-dialogs.ChoicePrompt.style
-    name: style
-    fullName: style
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Style of the "yes" and "no" choices rendered to the user when prompting.
-    syntax:
-      content: 'style: ListStyle'
-      return:
-        type:
-          - botbuilder-dialogs.ListStyle
-        description: ''
-    package: botbuilder-dialogs
-    remarks: Defaults to `ListStyle.auto`.
-  - uid: botbuilder-dialogs.ChoicePrompt.telemetryClient
-    name: telemetryClient
-    fullName: telemetryClient
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Sets the telemetry client for this dialog.
-    syntax:
-      content: 'telemetryClient: BotTelemetryClient'
-      return:
-        type:
-          - BotTelemetryClient
-        description: ''
-    package: botbuilder-dialogs
-references:
-  - uid: botbuilder-dialogs.Prompt<botbuilder-dialogs.FoundChoice>
-    name: FoundChoice>
-    spec.typeScript:
-      - name: Prompt
-        fullName: Prompt
-        uid: botbuilder-dialogs.Prompt
-      - name: <
-        fullName: <
-      - name: FoundChoice
-        fullName: FoundChoice
-        uid: botbuilder-dialogs.FoundChoice
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder-dialogs.PromptValidator<botbuilder-dialogs.FoundChoice>
-    name: FoundChoice>
-    spec.typeScript:
-      - name: PromptValidator
-        fullName: PromptValidator
-        uid: botbuilder-dialogs.PromptValidator
-      - name: <
-        fullName: <
-      - name: FoundChoice
-        fullName: FoundChoice
-        uid: botbuilder-dialogs.FoundChoice
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder-dialogs.ChoiceDefaultsChoicePrompt
-    name: ChoiceDefaultsChoicePrompt
-    spec.typeScript:
-      - name: ChoiceDefaultsChoicePrompt
-        fullName: ChoiceDefaultsChoicePrompt
-        uid: botbuilder-dialogs.ChoiceDefaultsChoicePrompt
-  - uid: botbuilder-dialogs.ChoiceFactoryOptions | undefined
-    name: ChoiceFactoryOptions | undefined
-    spec.typeScript:
-      - name: ChoiceFactoryOptions
-        fullName: ChoiceFactoryOptions
-        uid: botbuilder-dialogs.ChoiceFactoryOptions
-      - name: ' | undefined'
-        fullName: ' | undefined'
-  - uid: botbuilder-dialogs.FindChoicesOptions | undefined
-    name: FindChoicesOptions | undefined
-    spec.typeScript:
-      - name: FindChoicesOptions
-        fullName: FindChoicesOptions
-        uid: botbuilder-dialogs.FindChoicesOptions
-      - name: ' | undefined'
-        fullName: ' | undefined'
-  - uid: botbuilder-dialogs.ListStyle
-    name: ListStyle
-    spec.typeScript:
-      - name: ListStyle
-        fullName: ListStyle
-        uid: botbuilder-dialogs.ListStyle
-  - uid: botbuilder-dialogs.DialogTurnResult
-    name: DialogTurnResult
-    spec.typeScript:
-      - name: DialogTurnResult
-        fullName: DialogTurnResult
-        uid: botbuilder-dialogs.DialogTurnResult
-  - uid: botbuilder-dialogs.DialogContext
-    name: DialogContext
-    spec.typeScript:
-      - name: DialogContext
-        fullName: DialogContext
-        uid: botbuilder-dialogs.DialogContext
-  - uid: botbuilder-dialogs.PromptOptions
-    name: PromptOptions
-    spec.typeScript:
-      - name: PromptOptions
-        fullName: PromptOptions
-        uid: botbuilder-dialogs.PromptOptions
-  - uid: Promise<botbuilder-dialogs.DialogTurnResult>
-    name: DialogTurnResult>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: DialogTurnResult
-        fullName: DialogTurnResult
-        uid: botbuilder-dialogs.DialogTurnResult
-      - name: '>'
-        fullName: '>'
-  - uid: botbuilder-dialogs.DialogInstance
-    name: DialogInstance
-    spec.typeScript:
-      - name: DialogInstance
-        fullName: DialogInstance
-        uid: botbuilder-dialogs.DialogInstance
-  - uid: botbuilder-dialogs.DialogReason
-    name: DialogReason
-    spec.typeScript:
-      - name: DialogReason
-        fullName: DialogReason
-        uid: botbuilder-dialogs.DialogReason
-  - uid: botbuilder-dialogs.DialogEvent
-    name: DialogEvent
-    spec.typeScript:
-      - name: DialogEvent
-        fullName: DialogEvent
-        uid: botbuilder-dialogs.DialogEvent
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        description: A Promise representing the asynchronous operation.
+extends: >-
+  <xref uid="botbuilder-dialogs.Prompt" />&lt;<xref
+  uid="botbuilder-dialogs.FoundChoice" />&gt;

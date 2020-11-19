@@ -1,102 +1,84 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botframework-streaming.PayloadAssemblerManager
-    name: PayloadAssemblerManager
-    fullName: PayloadAssemblerManager
-    children:
-      - botframework-streaming.PayloadAssemblerManager.getPayloadStream
-      - botframework-streaming.PayloadAssemblerManager.onReceive
-      - botframework-streaming.PayloadAssemblerManager.constructor
-    langs:
-      - typeScript
-    type: class
-    summary: Orchestrates assemly of payloads
+### YamlMime:TSType
+name: PayloadAssemblerManager
+uid: botframework-streaming.PayloadAssemblerManager
+package: botframework-streaming
+summary: Orchestrates assemly of payloads
+fullName: PayloadAssemblerManager
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'PayloadAssemblerManager(StreamManager, Function, Function)'
+    uid: botframework-streaming.PayloadAssemblerManager.constructor
     package: botframework-streaming
-  - uid: botframework-streaming.PayloadAssemblerManager.getPayloadStream
-    name: getPayloadStream(IHeader)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: 'function getPayloadStream(header: IHeader)'
-      parameters:
-        - id: header
-          type:
-            - botframework-streaming.IHeader
-          description: ''
-      return:
-        type:
-          - botframework-streaming.SubscribableStream
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.PayloadAssemblerManager.onReceive
-    name: 'onReceive(IHeader, SubscribableStream, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: >-
-        function onReceive(header: IHeader, contentStream: SubscribableStream,
-        contentLength: number)
-      parameters:
-        - id: header
-          type:
-            - botframework-streaming.IHeader
-          description: ''
-        - id: contentStream
-          type:
-            - botframework-streaming.SubscribableStream
-          description: ''
-        - id: contentLength
-          type:
-            - number
-          description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.PayloadAssemblerManager.constructor
-    name: 'PayloadAssemblerManager(StreamManager, Function, Function)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [PayloadAssemblerManager](xref:botframework-streaming.PayloadAssemblerManager)
+      class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new PayloadAssemblerManager(streamManager: StreamManager,
         onReceiveResponse: Function, onReceiveRequest: Function)
       parameters:
         - id: streamManager
-          type:
-            - botframework-streaming.StreamManager
-          description: ''
+          type: <xref uid="botframework-streaming.StreamManager" />
+          description: >-
+            The [StreamManager](xref:botframework-streaming.StreamManager)
+            managing the stream being assembled.
         - id: onReceiveResponse
-          type:
-            - Function
-          description: ''
+          type: Function
+          description: >-
+            Function that executes when new bytes are received on a `response`
+            stream.
         - id: onReceiveRequest
-          type:
-            - Function
-          description: ''
+          type: Function
+          description: >
+            Function that executes when new bytes are received on a `request`
+            stream.
+methods:
+  - name: getPayloadStream(IHeader)
+    uid: botframework-streaming.PayloadAssemblerManager.getPayloadStream
     package: botframework-streaming
-references:
-  - uid: botframework-streaming.StreamManager
-    name: StreamManager
-    spec.typeScript:
-      - name: StreamManager
-        fullName: StreamManager
-        uid: botframework-streaming.StreamManager
-  - uid: botframework-streaming.IHeader
-    name: IHeader
-    spec.typeScript:
-      - name: IHeader
-        fullName: IHeader
-        uid: botframework-streaming.IHeader
-  - uid: botframework-streaming.SubscribableStream
-    name: SubscribableStream
-    spec.typeScript:
-      - name: SubscribableStream
-        fullName: SubscribableStream
-        uid: botframework-streaming.SubscribableStream
+    summary: Retrieves the assembler's payload as a stream.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getPayloadStream(header: IHeader)'
+      parameters:
+        - id: header
+          type: <xref uid="botframework-streaming.IHeader" />
+          description: The Header of the Stream to retrieve.
+      return:
+        type: <xref uid="botframework-streaming.SubscribableStream" />
+        description: >-
+          A [SubscribableStream](xref:botframework-streaming.SubscribableStream)
+          of the assembler's payload.
+  - name: 'onReceive(IHeader, SubscribableStream, number)'
+    uid: botframework-streaming.PayloadAssemblerManager.onReceive
+    package: botframework-streaming
+    summary: >-
+      The action the assembler executes when new bytes are received on the
+      incoming stream.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onReceive(header: IHeader, contentStream: SubscribableStream,
+        contentLength: number)
+      parameters:
+        - id: header
+          type: <xref uid="botframework-streaming.IHeader" />
+          description: The stream's Header.
+        - id: contentStream
+          type: <xref uid="botframework-streaming.SubscribableStream" />
+          description: The incoming stream being assembled.
+        - id: contentLength
+          type: number
+          description: |
+            The length of the stream, if finite.

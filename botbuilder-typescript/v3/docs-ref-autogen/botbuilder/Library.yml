@@ -1,102 +1,120 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder.Library
-    name: Library
-    fullName: Library
-    children:
-      - botbuilder.Library.addRouteResult
-      - botbuilder.Library.beginDialogAction
-      - botbuilder.Library.bestRouteResult
-      - botbuilder.Library.clone
-      - botbuilder.Library.customAction
-      - botbuilder.Library.dialog
-      - botbuilder.Library.endConversationAction
-      - botbuilder.Library.findActiveDialogRoutes
-      - botbuilder.Library.findDialog
-      - botbuilder.Library.findGlobalActionRoutes
-      - botbuilder.Library.findRoutes
-      - botbuilder.Library.findStackActionRoutes
-      - botbuilder.Library.forEachDialog
-      - botbuilder.Library.forEachLibrary
-      - botbuilder.Library.library
-      - botbuilder.Library.constructor
-      - botbuilder.Library.libraryList
-      - botbuilder.Library.localePath
-      - botbuilder.Library.name
-      - botbuilder.Library.onFindRoutes
-      - botbuilder.Library.onSelectRoute
-      - botbuilder.Library.recognize
-      - botbuilder.Library.recognizer
-      - botbuilder.Library.RouteTypes
-      - botbuilder.Library.selectActiveDialogRoute
-      - botbuilder.Library.selectGlobalActionRoute
-      - botbuilder.Library.selectRoute
-      - botbuilder.Library.selectStackActionRoute
-    langs:
-      - typeScript
-    type: class
-    summary: >
-      A library of related dialogs used for routing purposes. Libraries can be
-      chained together to enable
+### YamlMime:TSType
+name: Library
+uid: botbuilder.Library
+package: botbuilder
+summary: >
+  A library of related dialogs used for routing purposes. Libraries can be
+  chained together to enable
 
-      the development of complex bots. The
-      [UniversalBot](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html)
+  the development of complex bots. The
+  [UniversalBot](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html)
 
-      class is itself a Library that forms the root of this chain.
+  class is itself a Library that forms the root of this chain.
 
-      Libraries of reusable parts can be developed by creating a new Library
-      instance and adding dialogs
+  Libraries of reusable parts can be developed by creating a new Library
+  instance and adding dialogs
 
-      just as you would to a bot. Your library should have a unique name that
-      corresponds to either your
+  just as you would to a bot. Your library should have a unique name that
+  corresponds to either your
 
-      libraries website or NPM module name.  Bots can then reuse your library by
-      simply adding your parts
+  libraries website or NPM module name.  Bots can then reuse your library by
+  simply adding your parts
 
-      Library instance to their bot using
-      [UniversalBot.library()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#library).
+  Library instance to their bot using
+  [UniversalBot.library()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#library).
 
-      If your library itself depends on other libraries you should add them to
-      your library as a dependency
+  If your library itself depends on other libraries you should add them to your
+  library as a dependency
 
-      using [Library.library()](#library). You can easily manage multiple
-      versions of your library by
+  using [Library.library()](#library). You can easily manage multiple versions
+  of your library by
 
-      adding a version number to your library name.
+  adding a version number to your library name.
 
 
-      To invoke dialogs within your library bots will need to call
-      [session.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#begindialog)
+  To invoke dialogs within your library bots will need to call
+  [session.beginDialog()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#begindialog)
 
-      with a fully qualified dialog id in the form of '<libName>:<dialogId>'.
-      You'll typically hide
+  with a fully qualified dialog id in the form of '<libName>:<dialogId>'. You'll
+  typically hide
 
-      this from the developer by exposing a function from their module that
-      starts the dialog for them.
+  this from the developer by exposing a function from their module that starts
+  the dialog for them.
 
-      So calling something like `myLib.someDialog(session, { arg: '' });` would
-      end up calling
+  So calling something like `myLib.someDialog(session, { arg: '' });` would end
+  up calling
 
-      `session.beginDialog('myLib:someDialog', args);` under the covers.
+  `session.beginDialog('myLib:someDialog', args);` under the covers.
 
 
-      It's worth noting that dialogs are always invoked within the current
-      dialog so once your within
+  It's worth noting that dialogs are always invoked within the current dialog so
+  once your within
 
-      a dialog from your library you don't need to prefix every beginDialog()
-      call your with your
+  a dialog from your library you don't need to prefix every beginDialog() call
+  your with your
 
-      libraries name. It's only when crossing from one library context to
-      another that you need to
+  libraries name. It's only when crossing from one library context to another
+  that you need to
 
-      include the library name prefix.
+  include the library name prefix.
+fullName: Library
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: Library(string)
+    uid: botbuilder.Library.constructor
     package: botbuilder
-  - uid: botbuilder.Library.addRouteResult
-    name: 'addRouteResult(IRouteResult, IRouteResult[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Creates a new instance of the library.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new Library(name: string)'
+      parameters:
+        - id: name
+          type: string
+          description: |
+            Unique namespace for the library.
+properties:
+  - name: name
+    uid: botbuilder.Library.name
+    package: botbuilder
+    summary: >-
+      The libraries unique namespace. This is used to issolate the libraries
+      dialogs and localized
+
+      prompts.
+    fullName: name
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'name: string'
+      return:
+        type: string
+        description: ''
+  - name: RouteTypes
+    uid: botbuilder.Library.RouteTypes
+    package: botbuilder
+    summary: >-
+      Supported
+      [routeType](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.irouteresult#routetype)
+      values returned by default from [findRoutes()](#findroutes).
+    fullName: RouteTypes
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static RouteTypes: Object'
+      return:
+        type: Object
+        description: ''
+methods:
+  - name: 'addRouteResult(IRouteResult, IRouteResult[])'
+    uid: botbuilder.Library.addRouteResult
+    package: botbuilder
     summary: >-
       Helper method called from the various route finding methods to manage
       adding a candidate
@@ -110,33 +128,28 @@ items:
       existing set.
 
       * If the score is less than the current best match it will be ignored.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function addRouteResult(route: IRouteResult, current?:
         IRouteResult[])
       parameters:
         - id: route
-          type:
-            - botbuilder.IRouteResult
+          type: <xref uid="botbuilder.IRouteResult" />
           description: The candidate route to add to the set.
         - id: current
-          type:
-            - 'botbuilder.IRouteResult[]'
+          type: '<xref uid="botbuilder.IRouteResult" />[]'
           description: >
             (Optional) result set to add the route too. If missing then a new
             set with just the route will be returned.
-          optional: true
       return:
-        type:
-          - 'botbuilder.IRouteResult[]'
+        type: '<xref uid="botbuilder.IRouteResult" />[]'
         description: ''
+  - name: 'beginDialogAction(string, string, IDialogActionOptions)'
+    uid: botbuilder.Library.beginDialogAction
     package: botbuilder
-  - uid: botbuilder.Library.beginDialogAction
-    name: 'beginDialogAction(string, string, IDialogActionOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Registers a global action that will start another dialog anytime it's
       triggered. The new
@@ -152,22 +165,22 @@ items:
       [promptAfterAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ipromptoptions#promptafteraction)
 
       flag when calling a built-in prompt.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function beginDialogAction(name: string, id: string, options?:
         IDialogActionOptions)
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: Unique name to assign the action.
         - id: id
-          type:
-            - string
+          type: string
           description: ID of the dialog to start.
         - id: options
-          type:
-            - botbuilder.IDialogActionOptions
+          type: <xref uid="botbuilder.IDialogActionOptions" />
           description: >
             (Optional) options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -180,18 +193,12 @@ items:
             to trigger the action. You can also use
             [dialogArgs](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs)
             to pass additional params to the dialog being started.
-          optional: true
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
+  - name: 'bestRouteResult(IRouteResult[], IDialogState[], string)'
+    uid: botbuilder.Library.bestRouteResult
     package: botbuilder
-  - uid: botbuilder.Library.bestRouteResult
-    name: 'bestRouteResult(IRouteResult[], IDialogState[], string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Finds the best route to use within a result set containing multiple
       ambiguous routes. The
@@ -210,80 +217,69 @@ items:
       4. __GlobalAction__: Global actions are the lowest priority. If a
       `dialogStack` is past in the actions from the library deepest on the stack
       will be favored. Otherwise the first one will be returned.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function bestRouteResult(routes: IRouteResult[], dialogStack?:
         IDialogState[], rootLibraryName?: string)
       parameters:
         - id: routes
-          type:
-            - 'botbuilder.IRouteResult[]'
+          type: '<xref uid="botbuilder.IRouteResult" />[]'
           description: Array of candidate routes to filter.
         - id: dialogStack
-          type:
-            - 'botbuilder.IDialogState[]'
+          type: '<xref uid="botbuilder.IDialogState" />[]'
           description: >-
             (Optional) dialog stack used to determine which libraries global
             actions to favor.
-          optional: true
         - id: rootLibraryName
-          type:
-            - string
+          type: string
           description: >
             (Optional) library namespace to prefer when disambiguating global
             actions and there's no dialogs on the stack.
-          optional: true
       return:
-        type:
-          - botbuilder.IRouteResult
+        type: <xref uid="botbuilder.IRouteResult" />
         description: ''
+  - name: 'clone(Library, string)'
+    uid: botbuilder.Library.clone
     package: botbuilder
-  - uid: botbuilder.Library.clone
-    name: 'clone(Library, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Returns a clone of an existing Library.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function clone(copyTo?: Library, newName?: string)'
       parameters:
         - id: copyTo
-          type:
-            - botbuilder.Library
+          type: <xref uid="botbuilder.Library" />
           description: >-
             (Optional) instance to copy the current object to. If missing a new
             instance will be created.
-          optional: true
         - id: newName
-          type:
-            - string
+          type: string
           description: >
             (Optional) if specified the returned copy will be renamed to a new
             name.
-          optional: true
       return:
-        type:
-          - botbuilder.Library
+        type: <xref uid="botbuilder.Library" />
         description: ''
+  - name: customAction(IDialogActionOptions)
+    uid: botbuilder.Library.customAction
     package: botbuilder
-  - uid: botbuilder.Library.customAction
-    name: customAction(IDialogActionOptions)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Registers a custom global action that will call the passed in
       [onSelectAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onselectaction)
 
       handler when triggered.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function customAction(options: IDialogActionOptions)'
       parameters:
         - id: options
-          type:
-            - botbuilder.IDialogActionOptions
+          type: <xref uid="botbuilder.IDialogActionOptions" />
           description: >
             The options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -293,33 +289,30 @@ items:
             Custom matching logic can be provided using
             [onFindAction](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#onfindaction).
       return:
-        type:
-          - botbuilder.Library
+        type: <xref uid="botbuilder.Library" />
         description: ''
-    package: botbuilder
-  - uid: botbuilder.Library.dialog
-    name: >-
+  - name: >-
       dialog(string, Dialog | IDialogWaterfallStep[] | IDialogWaterfallStep,
       boolean)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.Library.dialog
+    package: botbuilder
     summary: Registers or returns a dialog from the library.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function dialog(id: string, dialog?: Dialog | IDialogWaterfallStep[] |
         IDialogWaterfallStep, replace?: boolean)
       parameters:
         - id: id
-          type:
-            - string
+          type: string
           description: Unique ID of the dialog being regsitered or retrieved.
         - id: dialog
-          type:
-            - >-
-              botbuilder.Dialog | botbuilder.IDialogWaterfallStep[] |
-              botbuilder.IDialogWaterfallStep
+          type: >-
+            <xref uid="botbuilder.Dialog" /> | <xref
+            uid="botbuilder.IDialogWaterfallStep" />[] | <xref
+            uid="botbuilder.IDialogWaterfallStep" />
           description: >-
             (Optional) dialog or waterfall to register.
 
@@ -334,47 +327,38 @@ items:
             Calling a built-in prompt or starting a new dialog will result in
             the current dialog ending upon completion of the child
             prompt/dialog.
-          optional: true
         - id: replace
-          type:
-            - boolean
+          type: boolean
           description: >
             (Optional) if true, the dialog should replace the existing dialog if
             already registered.
-          optional: true
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
+  - name: 'endConversationAction(string, TextOrMessageType, ICancelActionOptions)'
+    uid: botbuilder.Library.endConversationAction
     package: botbuilder
-  - uid: botbuilder.Library.endConversationAction
-    name: 'endConversationAction(string, TextOrMessageType, ICancelActionOptions)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Registers a global action that will end the conversation with the user
       when triggered.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function endConversationAction(name: string, msg?: TextOrMessageType,
         options?: ICancelActionOptions)
       parameters:
         - id: name
-          type:
-            - string
+          type: string
           description: Unique name to assign the action.
         - id: msg
-          type:
-            - botbuilder.TextOrMessageType
+          type: <xref uid="botbuilder.TextOrMessageType" />
           description: >-
             (Optional) message to send the user prior to ending the
             conversation.
-          optional: true
         - id: options
-          type:
-            - botbuilder.ICancelActionOptions
+          type: <xref uid="botbuilder.ICancelActionOptions" />
           description: >
             (Optional) options used to configure the action. If
             [matches](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#matches)
@@ -385,26 +369,23 @@ items:
             [CardAction.dialogAction()](/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction)
 
             to trigger the action.
-          optional: true
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
-    package: botbuilder
-  - uid: botbuilder.Library.findActiveDialogRoutes
-    name: >-
+  - name: >-
       findActiveDialogRoutes(IRecognizeContext, (err: Error, routes:
       IRouteResult[]) => void, IDialogState[])
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.Library.findActiveDialogRoutes
+    package: botbuilder
     summary: >-
       Gets the active dialogs confidence that it understands the current
       message. The dialog
 
       must be a member of the current library, otherwise a score of 0.0 will be
       returned.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function findActiveDialogRoutes(context: IRecognizeContext, callback:
@@ -412,80 +393,65 @@ items:
         IDialogState[])
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeContext
+          type: <xref uid="botbuilder.IRecognizeContext" />
           description: Read-only recognizer context for the current conversation.
         - id: callback
-          type:
-            - '(err: Error, routes: IRouteResult[]) => void'
+          type: '(err: Error, routes: IRouteResult[]) =&gt; void'
           description: Function that should be invoked with the found routes.
         - id: dialogStack
-          type:
-            - 'botbuilder.IDialogState[]'
+          type: '<xref uid="botbuilder.IDialogState" />[]'
           description: >
             (Optional) dialog stack to search over. The default behaviour is to
             search over the sessions current dialog stack.
-          optional: true
+  - name: 'findDialog(string, string)'
+    uid: botbuilder.Library.findDialog
     package: botbuilder
-  - uid: botbuilder.Library.findDialog
-    name: 'findDialog(string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Searches the library and all of its dependencies for a specific dialog.
       Returns the dialog
 
       if found, otherwise null.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function findDialog(libName: string, dialogId: string)'
       parameters:
         - id: libName
-          type:
-            - string
+          type: string
           description: Name of the library containing the dialog.
         - id: dialogId
-          type:
-            - string
+          type: string
           description: |
             Unique ID of the dialog within the library.
       return:
-        type:
-          - botbuilder.Dialog
+        type: <xref uid="botbuilder.Dialog" />
         description: ''
-    package: botbuilder
-  - uid: botbuilder.Library.findGlobalActionRoutes
-    name: >-
+  - name: >-
       findGlobalActionRoutes(IRecognizeContext, (err: Error, routes:
       IRouteResult[]) => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.Library.findGlobalActionRoutes
+    package: botbuilder
     summary: Searches the library to see if any global actions have been triggered.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function findGlobalActionRoutes(context: IRecognizeContext, callback:
         (err: Error, routes: IRouteResult[]) => void)
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeContext
+          type: <xref uid="botbuilder.IRecognizeContext" />
           description: Read-only recognizer context for the current conversation.
         - id: callback
-          type:
-            - '(err: Error, routes: IRouteResult[]) => void'
+          type: '(err: Error, routes: IRouteResult[]) =&gt; void'
           description: Function that should be invoked with the found routes.
-    package: botbuilder
-  - uid: botbuilder.Library.findRoutes
-    name: >-
+  - name: >-
       findRoutes(IRecognizeContext, (err: Error, routes: IRouteResult[]) =>
       void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.Library.findRoutes
+    package: botbuilder
     summary: >-
       Searches for candidate routes to handle the current message. To actually
       initiate the
@@ -502,31 +468,31 @@ items:
       for each library
 
       within the hierarchy.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function findRoutes(context: IRecognizeContext, callback: (err: Error,
         routes: IRouteResult[]) => void)
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeContext
+          type: <xref uid="botbuilder.IRecognizeContext" />
           description: Read-only recognizer context for the current conversation.
         - id: callback
-          type:
-            - '(err: Error, routes: IRouteResult[]) => void'
+          type: '(err: Error, routes: IRouteResult[]) =&gt; void'
           description: Function that should be invoked with the found routes.
-    package: botbuilder
-  - uid: botbuilder.Library.findStackActionRoutes
-    name: >-
+  - name: >-
       findStackActionRoutes(IRecognizeContext, (err: Error, routes:
       IRouteResult[]) => void, IDialogState[])
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.Library.findStackActionRoutes
+    package: botbuilder
     summary: >-
       Searches the sessions dialog stack to see if any actions have been
       triggered.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function findStackActionRoutes(context: IRecognizeContext, callback:
@@ -534,42 +500,32 @@ items:
         IDialogState[])
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeContext
+          type: <xref uid="botbuilder.IRecognizeContext" />
           description: Read-only recognizer context for the current conversation.
         - id: callback
-          type:
-            - '(err: Error, routes: IRouteResult[]) => void'
+          type: '(err: Error, routes: IRouteResult[]) =&gt; void'
           description: Function that should be invoked with the found routes.
         - id: dialogStack
-          type:
-            - 'botbuilder.IDialogState[]'
+          type: '<xref uid="botbuilder.IDialogState" />[]'
           description: >
             (Optional) dialog stack to search over. The default behaviour is to
             search over the sessions current dialog stack.
-          optional: true
+  - name: 'forEachDialog((dialog: Dialog, id: string) => void)'
+    uid: botbuilder.Library.forEachDialog
     package: botbuilder
-  - uid: botbuilder.Library.forEachDialog
-    name: 'forEachDialog((dialog: Dialog, id: string) => void)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Enumerates all of the libraries dialogs.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function forEachDialog(callback: (dialog: Dialog, id: string) => void)'
       parameters:
         - id: callback
-          type:
-            - '(dialog: Dialog, id: string) => void'
+          type: '(dialog: Dialog, id: string) =&gt; void'
           description: Iterator function to call with each dialog.
+  - name: 'forEachLibrary((library: Library) => void)'
+    uid: botbuilder.Library.forEachLibrary
     package: botbuilder
-  - uid: botbuilder.Library.forEachLibrary
-    name: 'forEachLibrary((library: Library) => void)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Enumerates all of the libraries child libraries. The caller should take
       appropriate steps to
@@ -579,27 +535,27 @@ items:
 
       [libraryList()](#librarylist) is a better choice as it already contains
       logic to avoid cycles.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function forEachLibrary(callback: (library: Library) => void)'
       parameters:
         - id: callback
-          type:
-            - '(library: Library) => void'
+          type: '(library: Library) =&gt; void'
           description: Iterator function to call with each child libray.
+  - name: library(Library | string)
+    uid: botbuilder.Library.library
     package: botbuilder
-  - uid: botbuilder.Library.library
-    name: library(Library | string)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Registers or returns a library dependency.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function library(lib: Library | string)'
       parameters:
         - id: lib
-          type:
-            - botbuilder.Library | string
+          type: <xref uid="botbuilder.Library" /> | string
           description: >
 
             * __lib:__ _{Library}_ - Library to register as a dependency.
@@ -607,32 +563,11 @@ items:
             * __lib:__ _{string}_ - Unique name of the library to lookup. All
             dependencies will be searched as well.
       return:
-        type:
-          - botbuilder.Library
+        type: <xref uid="botbuilder.Library" />
         description: ''
+  - name: libraryList(boolean)
+    uid: botbuilder.Library.libraryList
     package: botbuilder
-  - uid: botbuilder.Library.constructor
-    name: Library(string)
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: Creates a new instance of the library.
-    syntax:
-      content: 'new Library(name: string)'
-      parameters:
-        - id: name
-          type:
-            - string
-          description: |
-            Unique namespace for the library.
-    package: botbuilder
-  - uid: botbuilder.Library.libraryList
-    name: libraryList(boolean)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Returns a list of unique libraries within the hierarchy. Should be called
       on the root of the
@@ -641,29 +576,25 @@ items:
       reference the same
 
       dependent library.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function libraryList(reverse?: boolean)'
       parameters:
         - id: reverse
-          type:
-            - boolean
+          type: boolean
           description: >
             (Optional) If true list will be generated from the leaves up meaning
             the root library will be listed last. The default value is false
             which means it will be generated from the roots down and the root
             library will be listed first.
-          optional: true
       return:
-        type:
-          - 'botbuilder.Library[]'
+        type: '<xref uid="botbuilder.Library" />[]'
         description: ''
+  - name: localePath(string)
+    uid: botbuilder.Library.localePath
     package: botbuilder
-  - uid: botbuilder.Library.localePath
-    name: localePath(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Gets or sets the path to the libraries "/locale/" folder containing its
       localized prompts.
@@ -675,87 +606,60 @@ items:
       for the locale and
 
       "<NAMESPACE>" is a filename matching the libraries namespace.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function localePath(path?: string)'
       parameters:
         - id: path
-          type:
-            - string
+          type: string
           description: >
             (Optional) path to the libraries "/locale/" folder. If specified
             this will update the libraries path.
-          optional: true
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: onFindRoutes(IFindRoutesHandler)
+    uid: botbuilder.Library.onFindRoutes
     package: botbuilder
-  - uid: botbuilder.Library.name
-    name: name
-    fullName: name
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: >-
-      The libraries unique namespace. This is used to issolate the libraries
-      dialogs and localized
-
-      prompts.
-    syntax:
-      content: 'name: string'
-      return:
-        type:
-          - string
-        description: ''
-    package: botbuilder
-  - uid: botbuilder.Library.onFindRoutes
-    name: onFindRoutes(IFindRoutesHandler)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Replaces [findRoutes()](#findroutes) default route searching logic with a
       custom
 
       implementation.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onFindRoutes(handler: IFindRoutesHandler)'
       parameters:
         - id: handler
-          type:
-            - botbuilder.IFindRoutesHandler
+          type: <xref uid="botbuilder.IFindRoutesHandler" />
           description: >
             Function that will be invoked anytime `findRoutes()` is called for
             the library.
+  - name: onSelectRoute(ISelectRouteHandler)
+    uid: botbuilder.Library.onSelectRoute
     package: botbuilder
-  - uid: botbuilder.Library.onSelectRoute
-    name: onSelectRoute(ISelectRouteHandler)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Replaces the default logic for [selectRoute()](#selectroute) with a custom
       implementation.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onSelectRoute(handler: ISelectRouteHandler)'
       parameters:
         - id: handler
-          type:
-            - botbuilder.ISelectRouteHandler
+          type: <xref uid="botbuilder.ISelectRouteHandler" />
           description: |
             Function that will be invoked anytime `selectRoute()` is called.
-    package: botbuilder
-  - uid: botbuilder.Library.recognize
-    name: >-
+  - name: >-
       recognize(IRecognizeContext, (err: Error, result: IIntentRecognizerResult)
       => void)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    uid: botbuilder.Library.recognize
+    package: botbuilder
     summary: >-
       Attempts to match a users text utterance to an intent using the libraries
       recognizers. See
@@ -763,290 +667,128 @@ items:
       [IIntentRecognizer.recognize()](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizer#recognize)
 
       for details.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function recognize(context: IRecognizeContext, callback: (err: Error,
         result: IIntentRecognizerResult) => void)
       parameters:
         - id: context
-          type:
-            - botbuilder.IRecognizeContext
+          type: <xref uid="botbuilder.IRecognizeContext" />
           description: Read-only recognizer context for the current conversation.
         - id: callback
-          type:
-            - '(err: Error, result: IIntentRecognizerResult) => void'
+          type: '(err: Error, result: IIntentRecognizerResult) =&gt; void'
           description: Function that should be invoked upon completion of the recognition.
+  - name: recognizer(IIntentRecognizer)
+    uid: botbuilder.Library.recognizer
     package: botbuilder
-  - uid: botbuilder.Library.recognizer
-    name: recognizer(IIntentRecognizer)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Adds a new recognizer plugin to the library.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function recognizer(plugin: IIntentRecognizer)'
       parameters:
         - id: plugin
-          type:
-            - botbuilder.IIntentRecognizer
+          type: <xref uid="botbuilder.IIntentRecognizer" />
           description: |
             The recognizer to add.
       return:
-        type:
-          - botbuilder.IntentDialog
+        type: <xref uid="botbuilder.IntentDialog" />
         description: ''
+  - name: 'selectActiveDialogRoute(Session, IRouteResult, IDialogState[])'
+    uid: botbuilder.Library.selectActiveDialogRoute
     package: botbuilder
-  - uid: botbuilder.Library.RouteTypes
-    name: RouteTypes
-    fullName: RouteTypes
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: >-
-      Supported
-      [routeType](/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.irouteresult#routetype)
-      values returned by default from [findRoutes()](#findroutes).
-    syntax:
-      content: 'static RouteTypes: Object'
-      return:
-        type:
-          - Object
-        description: ''
-    package: botbuilder
-  - uid: botbuilder.Library.selectActiveDialogRoute
-    name: 'selectActiveDialogRoute(Session, IRouteResult, IDialogState[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Routes the current message to the active dialog.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function selectActiveDialogRoute(session: Session, route: IRouteResult,
         newStack?: IDialogState[])
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: route
-          type:
-            - botbuilder.IRouteResult
+          type: <xref uid="botbuilder.IRouteResult" />
           description: >
             Route result returned from a previous call to
             [findRoutes()](#findroutes) or
             [findActiveDialogRoutes()](#findactivedialogroutes).
         - id: newStack
-          type:
-            - 'botbuilder.IDialogState[]'
+          type: '<xref uid="botbuilder.IDialogState" />[]'
           description: ''
-          optional: true
+  - name: 'selectGlobalActionRoute(Session, IRouteResult, IDialogState[])'
+    uid: botbuilder.Library.selectGlobalActionRoute
     package: botbuilder
-  - uid: botbuilder.Library.selectGlobalActionRoute
-    name: 'selectGlobalActionRoute(Session, IRouteResult, IDialogState[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Routes the current message to a triggered global action.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function selectGlobalActionRoute(session: Session, route: IRouteResult,
         newStack?: IDialogState[])
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: route
-          type:
-            - botbuilder.IRouteResult
+          type: <xref uid="botbuilder.IRouteResult" />
           description: >
             Route result returned from a previous call to
             [findRoutes()](#findroutes) or
             [findGlobalActionRoutes()](#findglobalactionroutes).
         - id: newStack
-          type:
-            - 'botbuilder.IDialogState[]'
+          type: '<xref uid="botbuilder.IDialogState" />[]'
           description: ''
-          optional: true
+  - name: 'selectRoute(Session, IRouteResult)'
+    uid: botbuilder.Library.selectRoute
     package: botbuilder
-  - uid: botbuilder.Library.selectRoute
-    name: 'selectRoute(Session, IRouteResult)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Triggers the handling of the current message using the selected route. The
       default logic can
 
       be overriden using [onSelectRoute()](#onselectroute).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function selectRoute(session: Session, route: IRouteResult)'
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: route
-          type:
-            - botbuilder.IRouteResult
+          type: <xref uid="botbuilder.IRouteResult" />
           description: >
             Route result returned from a previous call to
             [findRoutes()](#findroutes).
+  - name: 'selectStackActionRoute(Session, IRouteResult, IDialogState[])'
+    uid: botbuilder.Library.selectStackActionRoute
     package: botbuilder
-  - uid: botbuilder.Library.selectStackActionRoute
-    name: 'selectStackActionRoute(Session, IRouteResult, IDialogState[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Routes the current message to a triggered stack action.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function selectStackActionRoute(session: Session, route: IRouteResult,
         newStack?: IDialogState[])
       parameters:
         - id: session
-          type:
-            - botbuilder.Session
+          type: <xref uid="botbuilder.Session" />
           description: Session object for the current conversation.
         - id: route
-          type:
-            - botbuilder.IRouteResult
+          type: <xref uid="botbuilder.IRouteResult" />
           description: >
             Route result returned from a previous call to
             [findRoutes()](#findroutes) or
             [findStackActionRoutes()](#findstackactionroutes).
         - id: newStack
-          type:
-            - 'botbuilder.IDialogState[]'
+          type: '<xref uid="botbuilder.IDialogState" />[]'
           description: ''
-          optional: true
-    package: botbuilder
-references:
-  - uid: botbuilder.IDialogActionOptions
-    name: IDialogActionOptions
-    spec.typeScript:
-      - name: IDialogActionOptions
-        fullName: IDialogActionOptions
-        uid: botbuilder.IDialogActionOptions
-  - uid: botbuilder.Dialog
-    name: Dialog
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder.Dialog
-  - uid: botbuilder.Library
-    name: Library
-    spec.typeScript:
-      - name: Library
-        fullName: Library
-        uid: botbuilder.Library
-  - uid: >-
-      botbuilder.Dialog | botbuilder.IDialogWaterfallStep[] |
-      botbuilder.IDialogWaterfallStep
-    name: IDialogWaterfallStep
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder.Dialog
-      - name: ' | '
-        fullName: ' | '
-      - name: IDialogWaterfallStep
-        fullName: IDialogWaterfallStep
-        uid: botbuilder.IDialogWaterfallStep
-      - name: '[] | '
-        fullName: '[] | '
-      - name: IDialogWaterfallStep
-        fullName: IDialogWaterfallStep
-        uid: botbuilder.IDialogWaterfallStep
-  - uid: botbuilder.TextOrMessageType
-    name: TextOrMessageType
-    spec.typeScript:
-      - name: TextOrMessageType
-        fullName: TextOrMessageType
-        uid: botbuilder.TextOrMessageType
-  - uid: botbuilder.ICancelActionOptions
-    name: ICancelActionOptions
-    spec.typeScript:
-      - name: ICancelActionOptions
-        fullName: ICancelActionOptions
-        uid: botbuilder.ICancelActionOptions
-  - uid: botbuilder.IRecognizeContext
-    name: IRecognizeContext
-    spec.typeScript:
-      - name: IRecognizeContext
-        fullName: IRecognizeContext
-        uid: botbuilder.IRecognizeContext
-  - uid: 'botbuilder.IDialogState[]'
-    name: 'IDialogState[]'
-    spec.typeScript:
-      - name: IDialogState
-        fullName: IDialogState
-        uid: botbuilder.IDialogState
-      - name: '[]'
-        fullName: '[]'
-  - uid: botbuilder.Library | string
-    name: Library | string
-    spec.typeScript:
-      - name: Library
-        fullName: Library
-        uid: botbuilder.Library
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'botbuilder.Library[]'
-    name: 'Library[]'
-    spec.typeScript:
-      - name: Library
-        fullName: Library
-        uid: botbuilder.Library
-      - name: '[]'
-        fullName: '[]'
-  - uid: botbuilder.IFindRoutesHandler
-    name: IFindRoutesHandler
-    spec.typeScript:
-      - name: IFindRoutesHandler
-        fullName: IFindRoutesHandler
-        uid: botbuilder.IFindRoutesHandler
-  - uid: botbuilder.ISelectRouteHandler
-    name: ISelectRouteHandler
-    spec.typeScript:
-      - name: ISelectRouteHandler
-        fullName: ISelectRouteHandler
-        uid: botbuilder.ISelectRouteHandler
-  - uid: botbuilder.IIntentRecognizer
-    name: IIntentRecognizer
-    spec.typeScript:
-      - name: IIntentRecognizer
-        fullName: IIntentRecognizer
-        uid: botbuilder.IIntentRecognizer
-  - uid: botbuilder.IntentDialog
-    name: IntentDialog
-    spec.typeScript:
-      - name: IntentDialog
-        fullName: IntentDialog
-        uid: botbuilder.IntentDialog
-  - uid: botbuilder.Session
-    name: Session
-    spec.typeScript:
-      - name: Session
-        fullName: Session
-        uid: botbuilder.Session
-  - uid: botbuilder.IRouteResult
-    name: IRouteResult
-    spec.typeScript:
-      - name: IRouteResult
-        fullName: IRouteResult
-        uid: botbuilder.IRouteResult
-  - uid: 'botbuilder.IRouteResult[]'
-    name: 'IRouteResult[]'
-    spec.typeScript:
-      - name: IRouteResult
-        fullName: IRouteResult
-        uid: botbuilder.IRouteResult
-      - name: '[]'
-        fullName: '[]'

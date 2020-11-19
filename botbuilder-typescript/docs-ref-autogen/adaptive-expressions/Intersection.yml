@@ -1,115 +1,114 @@
-### YamlMime:UniversalReference
-items:
-  - uid: adaptive-expressions.Intersection
-    name: Intersection
-    fullName: Intersection
-    children:
-      - adaptive-expressions.Intersection.constructor
-      - adaptive-expressions.Intersection.returnType
-      - adaptive-expressions.Intersection.tryEvaluate
-      - adaptive-expressions.Intersection.type
-      - adaptive-expressions.Intersection.validateExpression
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      Return a collection that has only the common items across the specified
-      collections.
+### YamlMime:TSType
+name: Intersection
+uid: adaptive-expressions.Intersection
+package: adaptive-expressions
+summary: >-
+  Return a collection that has only the common items across the specified
+  collections.
 
-      To appear in the result, an item must appear in all the collections passed
-      to this function.
+  To appear in the result, an item must appear in all the collections passed to
+  this function.
 
-      If one or more items have the same name,
+  If one or more items have the same name,
 
-      the last item with that name appears in the result.
-    extends:
-      name: adaptive-expressions.ExpressionEvaluator
+  the last item with that name appears in the result.
+fullName: Intersection
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: Intersection()
+    uid: adaptive-expressions.Intersection.constructor
     package: adaptive-expressions
-  - uid: adaptive-expressions.Intersection.constructor
-    name: Intersection()
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [Intersection](xref:adaptive-expressions.Intersection) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: new Intersection()
-      parameters: []
+properties:
+  - name: negation
+    uid: adaptive-expressions.Intersection.negation
     package: adaptive-expressions
-  - uid: adaptive-expressions.Intersection.returnType
-    name: returnType
-    fullName: returnType
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Type expected by evaluating the expression.
+    summary: |-
+      Gets the evaluator that is a negation of this one.
+      Sets the evaluator that is a negation of this one.
+    fullName: negation
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'returnType: ReturnType'
+      content: ExpressionEvaluator negation
       return:
-        type:
-          - adaptive-expressions.ReturnType
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
         description: ''
+  - name: returnType
+    uid: adaptive-expressions.Intersection.returnType
     package: adaptive-expressions
-  - uid: adaptive-expressions.Intersection.tryEvaluate
-    name: tryEvaluate
-    fullName: tryEvaluate
-    children: []
-    langs:
-      - typeScript
-    type: property
+    summary: Type expected by evaluating the expression.
+    fullName: returnType
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public returnType: ReturnType'
+      return:
+        type: <xref uid="adaptive-expressions.ReturnType" />
+        description: ''
+  - name: type
+    uid: adaptive-expressions.Intersection.type
+    package: adaptive-expressions
+    summary: Gets the expression type for evaluator.
+    fullName: type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public type: string'
+      return:
+        type: string
+        description: ''
+methods:
+  - name: 'tryEvaluate(Expression, MemoryInterface, Options)'
+    uid: adaptive-expressions.Intersection.tryEvaluate
+    package: adaptive-expressions
     summary: Evaluate an expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
-        tryEvaluate: (expression: Expression, state: MemoryInterface, options:
-        Options) => ValueWithError
+        function tryEvaluate(expression: Expression, state: MemoryInterface,
+        options: Options)
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: Expression to evaluate.
+        - id: state
+          type: <xref uid="adaptive-expressions.MemoryInterface" />
+          description: |
+            Global state information.
+        - id: options
+          type: <xref uid="adaptive-expressions.Options" />
+          description: ''
       return:
-        type:
-          - >-
-            (expression: Expression, state: MemoryInterface, options: Options)
-            => ValueWithError
+        type: <xref uid="adaptive-expressions.ValueWithError" />
         description: ''
+  - name: validateExpression(Expression)
+    uid: adaptive-expressions.Intersection.validateExpression
     package: adaptive-expressions
-  - uid: adaptive-expressions.Intersection.type
-    name: type
-    fullName: type
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets the expression type for evaluator.
-    syntax:
-      content: 'type: string'
-      return:
-        type:
-          - string
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Intersection.validateExpression
-    name: validateExpression
-    fullName: validateExpression
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Validate an expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'validateExpression: (expression: Expression) => void'
-      return:
-        type:
-          - '(expression: Expression) => void'
-        description: ''
-    package: adaptive-expressions
-references:
-  - uid: adaptive-expressions.ExpressionEvaluator
-    name: ExpressionEvaluator
-    spec.typeScript:
-      - name: ExpressionEvaluator
-        fullName: ExpressionEvaluator
-        uid: adaptive-expressions.ExpressionEvaluator
-  - uid: adaptive-expressions.ReturnType
-    name: ReturnType
-    spec.typeScript:
-      - name: ReturnType
-        fullName: ReturnType
-        uid: adaptive-expressions.ReturnType
+      content: 'function validateExpression(expression: Expression)'
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: |
+            Expression to validate.
+extends: <xref uid="adaptive-expressions.ExpressionEvaluator" />

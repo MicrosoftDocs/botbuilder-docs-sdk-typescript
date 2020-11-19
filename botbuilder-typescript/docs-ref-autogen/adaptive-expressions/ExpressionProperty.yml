@@ -1,172 +1,131 @@
-### YamlMime:UniversalReference
-items:
-  - uid: adaptive-expressions.ExpressionProperty
-    name: ExpressionProperty
-    fullName: ExpressionProperty<T>
-    children:
-      - adaptive-expressions.ExpressionProperty.constructor
-      - adaptive-expressions.ExpressionProperty.expressionText
-      - adaptive-expressions.ExpressionProperty.getValue
-      - adaptive-expressions.ExpressionProperty.setValue
-      - adaptive-expressions.ExpressionProperty.toExpression
-      - adaptive-expressions.ExpressionProperty.toString
-      - adaptive-expressions.ExpressionProperty.tryGetValue
-      - adaptive-expressions.ExpressionProperty.value
-    langs:
-      - typeScript
-    type: class
-    summary: Base class which defines a Expression or value for a property.
+### YamlMime:TSType
+name: ExpressionProperty
+uid: adaptive-expressions.ExpressionProperty
+package: adaptive-expressions
+summary: Base class which defines an Expression or value for a property.
+fullName: ExpressionProperty<T>
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'ExpressionProperty(T | string | Expression, T)'
+    uid: adaptive-expressions.ExpressionProperty.constructor
     package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.constructor
-    name: 'ExpressionProperty(T | string | Expression, T)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [ExpressionProperty<T>](xref:adaptive-expressions.ExpressionProperty)
+      class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new ExpressionProperty(value?: T | string | Expression, defaultValue?:
         T)
       parameters:
         - id: value
-          type:
-            - T | string | adaptive-expressions.Expression
-          description: ''
-          optional: true
+          type: T | string | <xref uid="adaptive-expressions.Expression" />
+          description: Optional. Raw value of the expression property.
         - id: defaultValue
-          type:
-            - T
-          description: ''
-          optional: true
+          type: T
+          description: |
+            Optional. Default value for the property.
+properties:
+  - name: expressionText
+    uid: adaptive-expressions.ExpressionProperty.expressionText
     package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.expressionText
-    name: expressionText
-    fullName: expressionText
-    children: []
-    langs:
-      - typeScript
-    type: property
     summary: Getes or sets the expression text to evaluate to get the value.
+    fullName: expressionText
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'expressionText: string'
+      content: 'public expressionText: string'
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: value
+    uid: adaptive-expressions.ExpressionProperty.value
     package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.getValue
-    name: getValue(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Gets or sets the raw value of the expression property.
+    fullName: value
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public value: T'
+      return:
+        type: T
+        description: ''
+methods:
+  - name: getValue(object)
+    uid: adaptive-expressions.ExpressionProperty.getValue
+    package: adaptive-expressions
     summary: Get the value.
+    remarks: An error will be thrown if value is an invalid expression.
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function getValue(data: object)'
       parameters:
         - id: data
-          type:
-            - object
+          type: object
           description: Data to use for expression binding.
       return:
-        type:
-          - T
+        type: T
         description: The value.
+  - name: setValue(T | string | Expression)
+    uid: adaptive-expressions.ExpressionProperty.setValue
     package: adaptive-expressions
-    remarks: An error will be thrown if value is an invalid expression.
-  - uid: adaptive-expressions.ExpressionProperty.setValue
-    name: setValue(T | string | Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Set the value.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function setValue(value: T | string | Expression)'
       parameters:
         - id: value
-          type:
-            - T | string | adaptive-expressions.Expression
+          type: T | string | <xref uid="adaptive-expressions.Expression" />
           description: |
             Value to set.
+  - name: toExpression()
+    uid: adaptive-expressions.ExpressionProperty.toExpression
     package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.toExpression
-    name: toExpression()
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: This will return the existing expression if the value is non-complex type.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: function toExpression()
-      parameters: []
       return:
-        type:
-          - adaptive-expressions.Expression
+        type: <xref uid="adaptive-expressions.Expression" />
         description: ''
+  - name: toString()
+    uid: adaptive-expressions.ExpressionProperty.toString
     package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.toString
-    name: toString()
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Convert an expression property to string.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: function toString()
-      parameters: []
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: tryGetValue(object)
+    uid: adaptive-expressions.ExpressionProperty.tryGetValue
     package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.tryGetValue
-    name: tryGetValue(object)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Try to Get the value.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function tryGetValue(data: object)'
       parameters:
         - id: data
-          type:
-            - object
+          type: object
           description: Data to use for expression binding.
       return:
-        type:
-          - Object
+        type: Object
         description: the value or an error.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.ExpressionProperty.value
-    name: value
-    fullName: value
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets or sets the raw value of the expression property.
-    syntax:
-      content: 'value: T'
-      return:
-        type:
-          - T
-        description: ''
-    package: adaptive-expressions
-references:
-  - uid: T | string | adaptive-expressions.Expression
-    name: Expression
-    spec.typeScript:
-      - name: 'T | string | '
-        fullName: 'T | string | '
-      - name: Expression
-        fullName: Expression
-        uid: adaptive-expressions.Expression
-  - uid: adaptive-expressions.Expression
-    name: Expression
-    spec.typeScript:
-      - name: Expression
-        fullName: Expression
-        uid: adaptive-expressions.Expression

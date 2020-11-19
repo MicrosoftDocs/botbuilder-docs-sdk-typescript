@@ -1,181 +1,140 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.IUserTokenProvider
-    name: IUserTokenProvider
-    fullName: IUserTokenProvider
-    children:
-      - botbuilder-core.IUserTokenProvider.getAadTokens
-      - botbuilder-core.IUserTokenProvider.getSignInLink
-      - botbuilder-core.IUserTokenProvider.getTokenStatus
-      - botbuilder-core.IUserTokenProvider.getUserToken
-      - botbuilder-core.IUserTokenProvider.signOutUser
-    langs:
-      - typeScript
-    type: interface
-    summary: Interface for User Token OAuth APIs for BotAdapters
+### YamlMime:TSType
+name: IUserTokenProvider
+uid: botbuilder-core.IUserTokenProvider
+package: botbuilder-core
+summary: Interface for User Token OAuth APIs for BotAdapters
+fullName: IUserTokenProvider
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+  - name: 'getAadTokens(TurnContext, string, string[])'
+    uid: botbuilder-core.IUserTokenProvider.getAadTokens
     package: botbuilder-core
-  - uid: botbuilder-core.IUserTokenProvider.getAadTokens
-    name: 'getAadTokens(TurnContext, string, string[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Signs the user out with the token server.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function getAadTokens(context: TurnContext, connectionName: string,
         resourceUrls: string[])
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: Context for the current turn of conversation with the user.
         - id: connectionName
-          type:
-            - string
+          type: string
           description: |
             Name of the auth connection to use.
         - id: resourceUrls
-          type:
-            - 'string[]'
+          type: 'string[]'
           description: ''
       return:
-        type:
-          - 'Promise<[key: string]: TokenResponse>'
+        type: 'Promise&lt;[key: string]: TokenResponse&gt;'
         description: ''
+  - name: 'getSignInLink(TurnContext, string)'
+    uid: botbuilder-core.IUserTokenProvider.getSignInLink
     package: botbuilder-core
-  - uid: botbuilder-core.IUserTokenProvider.getSignInLink
-    name: 'getSignInLink(TurnContext, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Gets a signin link from the token server that can be sent as part of a
       SigninCard.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function getSignInLink(context: TurnContext, connectionName: string)'
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: Context for the current turn of conversation with the user.
         - id: connectionName
-          type:
-            - string
+          type: string
           description: |
             Name of the auth connection to use.
       return:
-        type:
-          - Promise<string>
+        type: Promise&lt;string&gt;
         description: ''
+  - name: 'getTokenStatus(TurnContext, string, string, any)'
+    uid: botbuilder-core.IUserTokenProvider.getTokenStatus
     package: botbuilder-core
-  - uid: botbuilder-core.IUserTokenProvider.getTokenStatus
-    name: 'getTokenStatus(TurnContext, string, string, any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Retrieves the token status for each configured connection for the given
       user, using the bot's AppCredentials.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function getTokenStatus(context: TurnContext, userId: string,
         includeFilter?: string, oAuthAppCredentials?: any)
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: Context for the current turn of conversation with the user.
         - id: userId
-          type:
-            - string
+          type: string
           description: The user Id for which token status is retrieved.
         - id: includeFilter
-          type:
-            - string
+          type: string
           description: >-
             Comma separated list of connection's to include. Blank will return
             token status for all configured connections.
-          optional: true
         - id: oAuthAppCredentials
-          type:
-            - any
+          type: any
           description: |
             The app credentials for OAuth.
-          optional: true
       return:
-        type:
-          - 'Promise<any[]>'
+        type: 'Promise&lt;any[]&gt;'
         description: ''
+  - name: 'getUserToken(TurnContext, string, string)'
+    uid: botbuilder-core.IUserTokenProvider.getUserToken
     package: botbuilder-core
-  - uid: botbuilder-core.IUserTokenProvider.getUserToken
-    name: 'getUserToken(TurnContext, string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Retrieves the OAuth token for a user that is in a sign-in flow.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function getUserToken(context: TurnContext, connectionName: string,
         magicCode?: string)
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: Context for the current turn of conversation with the user.
         - id: connectionName
-          type:
-            - string
+          type: string
           description: Name of the auth connection to use.
         - id: magicCode
-          type:
-            - string
+          type: string
           description: |
             (Optional) Optional user entered code to validate.
-          optional: true
       return:
-        type:
-          - Promise<TokenResponse>
+        type: Promise&lt;TokenResponse&gt;
         description: ''
+  - name: 'signOutUser(TurnContext, string, string)'
+    uid: botbuilder-core.IUserTokenProvider.signOutUser
     package: botbuilder-core
-  - uid: botbuilder-core.IUserTokenProvider.signOutUser
-    name: 'signOutUser(TurnContext, string, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Signs the user out with the token server.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         function signOutUser(context: TurnContext, connectionName: string,
         userId?: string)
       parameters:
         - id: context
-          type:
-            - botbuilder-core.TurnContext
+          type: <xref uid="botbuilder-core.TurnContext" />
           description: Context for the current turn of conversation with the user.
         - id: connectionName
-          type:
-            - string
+          type: string
           description: Name of the auth connection to use.
         - id: userId
-          type:
-            - string
+          type: string
           description: |
             User id of user to sign out.
-          optional: true
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
-    package: botbuilder-core
-references:
-  - uid: botbuilder-core.TurnContext
-    name: TurnContext
-    spec.typeScript:
-      - name: TurnContext
-        fullName: TurnContext
-        uid: botbuilder-core.TurnContext

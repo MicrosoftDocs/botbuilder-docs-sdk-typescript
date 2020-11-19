@@ -1,138 +1,96 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botframework-streaming.ResponseDisassembler
-    name: ResponseDisassembler
-    fullName: ResponseDisassembler
-    children:
-      - botframework-streaming.ResponseDisassembler.disassemble
-      - botframework-streaming.ResponseDisassembler.getStream
-      - botframework-streaming.ResponseDisassembler.payloadType
-      - botframework-streaming.ResponseDisassembler.response
-      - botframework-streaming.ResponseDisassembler.constructor
-    langs:
-      - typeScript
-    type: class
-    summary: Streaming response disassembler.
-    extends:
-      name: botframework-streaming.PayloadDisassembler
+### YamlMime:TSType
+name: ResponseDisassembler
+uid: botframework-streaming.ResponseDisassembler
+package: botframework-streaming
+summary: Streaming response disassembler.
+fullName: ResponseDisassembler
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'ResponseDisassembler(PayloadSender, string, StreamingResponse)'
+    uid: botframework-streaming.ResponseDisassembler.constructor
     package: botframework-streaming
-  - uid: botframework-streaming.ResponseDisassembler.disassemble
-    name: disassemble()
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: function disassemble()
-      parameters: []
-      return:
-        type:
-          - Promise<void>
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.ResponseDisassembler.getStream
-    name: getStream()
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: function getStream()
-      parameters: []
-      return:
-        type:
-          - Promise<botframework-streaming.IStreamWrapper>
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.ResponseDisassembler.payloadType
-    name: payloadType
-    fullName: payloadType
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'payloadType: PayloadTypes'
-      return:
-        type:
-          - botframework-streaming.PayloadTypes
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.ResponseDisassembler.response
-    name: response
-    fullName: response
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
-    syntax:
-      content: 'response: StreamingResponse'
-      return:
-        type:
-          - botframework-streaming.StreamingResponse
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.ResponseDisassembler.constructor
-    name: 'ResponseDisassembler(PayloadSender, string, StreamingResponse)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [ResponseDisassembler](xref:botframework-streaming.ResponseDisassembler)
+      class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new ResponseDisassembler(sender: PayloadSender, id: string, response:
         StreamingResponse)
       parameters:
         - id: sender
-          type:
-            - botframework-streaming.PayloadSender
-          description: ''
+          type: <xref uid="botframework-streaming.PayloadSender" />
+          description: >-
+            The [PayloadSender](xref:botframework-streaming.PayloadSender) to
+            send the disassembled data to.
         - id: id
-          type:
-            - string
-          description: ''
+          type: string
+          description: The ID of this disassembler.
         - id: response
-          type:
-            - botframework-streaming.StreamingResponse
-          description: ''
+          type: <xref uid="botframework-streaming.StreamingResponse" />
+          description: |
+            The response to be disassembled.
+properties:
+  - name: payloadType
+    uid: botframework-streaming.ResponseDisassembler.payloadType
     package: botframework-streaming
-references:
-  - uid: botframework-streaming.PayloadDisassembler
-    name: PayloadDisassembler
-    spec.typeScript:
-      - name: PayloadDisassembler
-        fullName: PayloadDisassembler
-        uid: botframework-streaming.PayloadDisassembler
-  - uid: botframework-streaming.PayloadSender
-    name: PayloadSender
-    spec.typeScript:
-      - name: PayloadSender
-        fullName: PayloadSender
-        uid: botframework-streaming.PayloadSender
-  - uid: botframework-streaming.StreamingResponse
-    name: StreamingResponse
-    spec.typeScript:
-      - name: StreamingResponse
-        fullName: StreamingResponse
-        uid: botframework-streaming.StreamingResponse
-  - uid: botframework-streaming.PayloadTypes
-    name: PayloadTypes
-    spec.typeScript:
-      - name: PayloadTypes
-        fullName: PayloadTypes
-        uid: botframework-streaming.PayloadTypes
-  - uid: Promise<botframework-streaming.IStreamWrapper>
-    name: IStreamWrapper>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: IStreamWrapper
-        fullName: IStreamWrapper
-        uid: botframework-streaming.IStreamWrapper
-      - name: '>'
-        fullName: '>'
+    summary: ''
+    fullName: payloadType
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public payloadType: PayloadTypes = PayloadTypes.response'
+      return:
+        type: <xref uid="botframework-streaming.PayloadTypes" />
+        description: ''
+  - name: response
+    uid: botframework-streaming.ResponseDisassembler.response
+    package: botframework-streaming
+    summary: ''
+    fullName: response
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public response: StreamingResponse'
+      return:
+        type: <xref uid="botframework-streaming.StreamingResponse" />
+        description: ''
+methods:
+  - name: disassemble()
+    uid: botframework-streaming.ResponseDisassembler.disassemble
+    package: botframework-streaming
+    summary: >-
+      Begins the process of disassembling a payload and sending the resulting
+      chunks to the [PayloadSender](xref:botframework-streaming.PayloadSender)
+      to dispatch over the transport.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function disassemble()
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: getStream()
+    uid: botframework-streaming.ResponseDisassembler.getStream
+    package: botframework-streaming
+    summary: Gets the stream this disassembler is operating on.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getStream()
+      return:
+        type: Promise&lt;<xref uid="botframework-streaming.IStreamWrapper" />&gt;
+        description: >-
+          An [IStreamWrapper](xref:botframework-streaming.IStreamWrapper) with a
+          Subscribable Stream.
+extends: <xref uid="botframework-streaming.PayloadDisassembler" />

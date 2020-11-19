@@ -1,1385 +1,772 @@
-### YamlMime:UniversalReference
-items:
-  - uid: adaptive-expressions.FunctionUtils
-    name: FunctionUtils
-    fullName: FunctionUtils
-    children:
-      - adaptive-expressions.FunctionUtils.accessIndex
-      - adaptive-expressions.FunctionUtils.accessProperty
-      - adaptive-expressions.FunctionUtils.apply
-      - adaptive-expressions.FunctionUtils.applySequence
-      - adaptive-expressions.FunctionUtils.applySequenceWithError
-      - adaptive-expressions.FunctionUtils.applyWithError
-      - adaptive-expressions.FunctionUtils.DefaultDateTimeFormat
-      - adaptive-expressions.FunctionUtils.evaluateChildren
-      - adaptive-expressions.FunctionUtils.foreach
-      - adaptive-expressions.FunctionUtils.isEqual
-      - adaptive-expressions.FunctionUtils.isLogicTrue
-      - adaptive-expressions.FunctionUtils.isNumber
-      - adaptive-expressions.FunctionUtils.MillisecondToTickConstant
-      - adaptive-expressions.FunctionUtils.parseStringOrUndefined
-      - adaptive-expressions.FunctionUtils.parseTimestamp
-      - adaptive-expressions.FunctionUtils.parseTimexProperty
-      - adaptive-expressions.FunctionUtils.parseUri
-      - adaptive-expressions.FunctionUtils.returnFormattedTimeStampStr
-      - adaptive-expressions.FunctionUtils.sortBy
-      - adaptive-expressions.FunctionUtils.ticks
-      - adaptive-expressions.FunctionUtils.timestampFormatter
-      - adaptive-expressions.FunctionUtils.timeUnitTransformer
-      - adaptive-expressions.FunctionUtils.toBinary
-      - adaptive-expressions.FunctionUtils.tryAccumulatePath
-      - adaptive-expressions.FunctionUtils.UnixMilliSecondToTicksConstant
-      - adaptive-expressions.FunctionUtils.validateArityAndAnyType
-      - adaptive-expressions.FunctionUtils.validateAtLeastOne
-      - adaptive-expressions.FunctionUtils.validateBinary
-      - adaptive-expressions.FunctionUtils.validateBinaryNumber
-      - adaptive-expressions.FunctionUtils.validateBinaryNumberOrString
-      - adaptive-expressions.FunctionUtils.validateForeach
-      - adaptive-expressions.FunctionUtils.validateNumber
-      - adaptive-expressions.FunctionUtils.validateOrder
-      - adaptive-expressions.FunctionUtils.validateString
-      - adaptive-expressions.FunctionUtils.validateTwoOrMoreThanTwoNumbers
-      - adaptive-expressions.FunctionUtils.validateUnary
-      - adaptive-expressions.FunctionUtils.validateUnaryBoolean
-      - adaptive-expressions.FunctionUtils.validateUnaryNumber
-      - adaptive-expressions.FunctionUtils.validateUnaryOrBinaryNumber
-      - adaptive-expressions.FunctionUtils.validateUnaryOrBinaryString
-      - adaptive-expressions.FunctionUtils.validateUnaryString
-      - adaptive-expressions.FunctionUtils.verifyBoolean
-      - adaptive-expressions.FunctionUtils.verifyContainer
-      - adaptive-expressions.FunctionUtils.verifyInteger
-      - adaptive-expressions.FunctionUtils.verifyISOTimestamp
-      - adaptive-expressions.FunctionUtils.verifyList
-      - adaptive-expressions.FunctionUtils.verifyNotNull
-      - adaptive-expressions.FunctionUtils.verifyNumber
-      - adaptive-expressions.FunctionUtils.verifyNumberOrNumericList
-      - adaptive-expressions.FunctionUtils.verifyNumberOrString
-      - adaptive-expressions.FunctionUtils.verifyNumberOrStringOrNull
-      - adaptive-expressions.FunctionUtils.verifyNumericList
-      - adaptive-expressions.FunctionUtils.verifyString
-      - adaptive-expressions.FunctionUtils.verifyStringOrNull
-      - adaptive-expressions.FunctionUtils.verifyTimestamp
-      - adaptive-expressions.FunctionUtils.wrapGetValue
-    langs:
-      - typeScript
-    type: class
-    summary: ''
+### YamlMime:TSType
+name: FunctionUtils
+uid: adaptive-expressions.FunctionUtils
+package: adaptive-expressions
+summary: Utility functions in AdaptiveExpression.
+fullName: FunctionUtils
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: DefaultDateTimeFormat
+    uid: adaptive-expressions.FunctionUtils.DefaultDateTimeFormat
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.accessIndex
-    name: 'accessIndex(any, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Lookup a string or number index of an Object.
+    summary: The default date time format string.
+    fullName: DefaultDateTimeFormat
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'static function accessIndex(instance: any, index: number)'
-      parameters:
-        - id: instance
-          type:
-            - any
-          description: Instance with property.
-        - id: index
-          type:
-            - number
-          description: ''
+      content: >-
+        public static DefaultDateTimeFormat: string =
+        "YYYY-MM-DDTHH:mm:ss.SSS[Z]"
       return:
-        type:
-          - adaptive-expressions.ValueWithError
-        description: Value and error information if any.
+        type: string
+        description: ''
+methods:
+  - name: 'apply((arg0: any[]) => any, VerifyExpression)'
+    uid: adaptive-expressions.FunctionUtils.apply
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.accessProperty
-    name: 'accessProperty(any, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Lookup a property in Map or Object.
-    syntax:
-      content: 'static function accessProperty(instance: any, property: string)'
-      parameters:
-        - id: instance
-          type:
-            - any
-          description: Instance with property.
-        - id: property
-          type:
-            - string
-          description: Property to lookup.
-      return:
-        type:
-          - adaptive-expressions.ValueWithError
-        description: Value and error information if any.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.apply
-    name: 'apply((arg0: any[]) => any, VerifyExpression)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Generate an expression delegate that applies function after verifying all
       children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function apply(func: (arg0: any[]) => any, verify?:
         VerifyExpression)
       parameters:
         - id: func
-          type:
-            - '(arg0: any[]) => any'
+          type: '(arg0: any[]) =&gt; any'
           description: Function to apply.
         - id: verify
-          type:
-            - adaptive-expressions.VerifyExpression
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
-          optional: true
       return:
-        type:
-          - adaptive-expressions.EvaluateExpressionDelegate
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+  - name: 'applySequence((arg0: any[]) => any, VerifyExpression)'
+    uid: adaptive-expressions.FunctionUtils.applySequence
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.applySequence
-    name: 'applySequence((arg0: any[]) => any, VerifyExpression)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Generate an expression delegate that applies function on the accumulated
       value after verifying all children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function applySequence(func: (arg0: any[]) => any, verify?:
         VerifyExpression)
       parameters:
         - id: func
-          type:
-            - '(arg0: any[]) => any'
+          type: '(arg0: any[]) =&gt; any'
           description: Function to apply.
         - id: verify
-          type:
-            - adaptive-expressions.VerifyExpression
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
-          optional: true
       return:
-        type:
-          - adaptive-expressions.EvaluateExpressionDelegate
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+  - name: 'applySequenceWithError((arg0: any[]) => any, VerifyExpression)'
+    uid: adaptive-expressions.FunctionUtils.applySequenceWithError
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.applySequenceWithError
-    name: 'applySequenceWithError((arg0: any[]) => any, VerifyExpression)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Generate an expression delegate that applies function on the accumulated
       value after verifying all children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function applySequenceWithError(func: (arg0: any[]) => any,
         verify?: VerifyExpression)
       parameters:
         - id: func
-          type:
-            - '(arg0: any[]) => any'
+          type: '(arg0: any[]) =&gt; any'
           description: Function to apply.
         - id: verify
-          type:
-            - adaptive-expressions.VerifyExpression
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
-          optional: true
       return:
-        type:
-          - adaptive-expressions.EvaluateExpressionDelegate
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+  - name: 'applyWithError((arg0: any[]) => any, VerifyExpression)'
+    uid: adaptive-expressions.FunctionUtils.applyWithError
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.applyWithError
-    name: 'applyWithError((arg0: any[]) => any, VerifyExpression)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Generate an expression delegate that applies function after verifying all
       children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function applyWithError(func: (arg0: any[]) => any, verify?:
         VerifyExpression)
       parameters:
         - id: func
-          type:
-            - '(arg0: any[]) => any'
+          type: '(arg0: any[]) =&gt; any'
           description: Function to apply.
         - id: verify
-          type:
-            - adaptive-expressions.VerifyExpression
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
-          optional: true
       return:
-        type:
-          - adaptive-expressions.EvaluateExpressionDelegate
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+  - name: >-
+      applyWithOptionsAndError((arg0: unknown[], options: Options) => Object,
+      VerifyExpression)
+    uid: adaptive-expressions.FunctionUtils.applyWithOptionsAndError
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.DefaultDateTimeFormat
-    name: DefaultDateTimeFormat
-    fullName: DefaultDateTimeFormat
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: The default date time format string.
+    summary: >-
+      Generate an expression delegate that applies function after verifying all
+      children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'static DefaultDateTimeFormat: string'
+      content: >-
+        static function applyWithOptionsAndError(func: (arg0: unknown[],
+        options: Options) => Object, verify?: VerifyExpression)
+      parameters:
+        - id: func
+          type: '(arg0: unknown[], options: Options) =&gt; Object'
+          description: Function to apply.
+        - id: verify
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
+          description: Function to check each arg for validity.
       return:
-        type:
-          - string
-        description: ''
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
+        description: Delegate for evaluating an expression.
+  - name: 'determineLocale(unknown[], number, string)'
+    uid: adaptive-expressions.FunctionUtils.determineLocale
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.evaluateChildren
-    name: 'evaluateChildren(Expression, MemoryInterface, Options, VerifyExpression)'
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function determineLocale(args: unknown[], maxArgsLength: number,
+        locale: string)
+      parameters:
+        - id: args
+          type: 'unknown[]'
+          description: An array of arguments.
+        - id: maxArgsLength
+          type: number
+          description: |
+            The max length of a given function.
+        - id: locale
+          type: string
+          description: A locale string
+      return:
+        type: string
+        description: ''
+  - name: 'evaluateChildren(Expression, MemoryInterface, Options, VerifyExpression)'
+    uid: adaptive-expressions.FunctionUtils.evaluateChildren
+    package: adaptive-expressions
     summary: Evaluate expression children and return them.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function evaluateChildren(expression: Expression, state:
         MemoryInterface, options: Options, verify?: VerifyExpression)
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression with children.
         - id: state
-          type:
-            - adaptive-expressions.MemoryInterface
+          type: <xref uid="adaptive-expressions.MemoryInterface" />
           description: Global state.
         - id: options
-          type:
-            - adaptive-expressions.Options
+          type: <xref uid="adaptive-expressions.Options" />
           description: ''
         - id: verify
-          type:
-            - adaptive-expressions.VerifyExpression
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Optional function to verify each child's result.
-          optional: true
       return:
-        type:
-          - Object
+        type: Object
         description: List of child values or error message.
+  - name: isNumber(any)
+    uid: adaptive-expressions.FunctionUtils.isNumber
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.foreach
-    name: 'foreach(Expression, MemoryInterface, Options)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Evaluator for foreach and select functions.
-    syntax:
-      content: >-
-        static function foreach(expression: Expression, state: MemoryInterface,
-        options: Options)
-      parameters:
-        - id: expression
-          type:
-            - adaptive-expressions.Expression
-          description: Expression.
-        - id: state
-          type:
-            - adaptive-expressions.MemoryInterface
-          description: Memory scope.
-        - id: options
-          type:
-            - adaptive-expressions.Options
-          description: |
-            Options.
-      return:
-        type:
-          - adaptive-expressions.ValueWithError
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.isEqual
-    name: 'isEqual(any[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Equal helper function.
-    syntax:
-      content: 'static function isEqual(args: any[])'
-      parameters:
-        - id: args
-          type:
-            - 'any[]'
-          description: |
-            Input args. Compare the first param and second param.
-      return:
-        type:
-          - boolean
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.isLogicTrue
-    name: isLogicTrue(any)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Test result to see if True in logical comparison functions.
-    syntax:
-      content: 'static function isLogicTrue(instance: any)'
-      parameters:
-        - id: instance
-          type:
-            - any
-          description: Computed value.
-      return:
-        type:
-          - boolean
-        description: True if boolean true or non-null.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.isNumber
-    name: isNumber(any)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Is number helper function.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function isNumber(instance: any)'
       parameters:
         - id: instance
-          type:
-            - any
+          type: any
           description: Input.
       return:
-        type:
-          - boolean
+        type: boolean
         description: True if the input is a number.
+  - name: timestampFormatter(string)
+    uid: adaptive-expressions.FunctionUtils.timestampFormatter
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.MillisecondToTickConstant
-    name: MillisecondToTickConstant
-    fullName: MillisecondToTickConstant
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Constant to convert between ticks and ms.
-    syntax:
-      content: 'static MillisecondToTickConstant: BigInteger'
-      return:
-        type:
-          - BigInteger
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.parseStringOrUndefined
-    name: parseStringOrUndefined(string | undefined)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Wrap string or undefined into string. Default to empty string.
-    syntax:
-      content: 'static function parseStringOrUndefined(input: string | undefined)'
-      parameters:
-        - id: input
-          type:
-            - string | undefined
-          description: |
-            Input string
-      return:
-        type:
-          - string
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.parseTimestamp
-    name: 'parseTimestamp(string, (arg0: Date) => any)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Transform a timestamp into another with customized function.
-    syntax:
-      content: >-
-        static function parseTimestamp(timeStamp: string, transform?: (arg0:
-        Date) => any)
-      parameters:
-        - id: timeStamp
-          type:
-            - string
-          description: Original time stamp.
-        - id: transform
-          type:
-            - '(arg0: Date) => any'
-          description: Transform function.
-          optional: true
-      return:
-        type:
-          - adaptive-expressions.ValueWithError
-        description: New timestamp and error.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.parseTimexProperty
-    name: parseTimexProperty(any)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Parse timex funcition.
-    syntax:
-      content: 'static function parseTimexProperty(timexExpr: any)'
-      parameters:
-        - id: timexExpr
-          type:
-            - any
-          description: String or TimexProperty input.
-      return:
-        type:
-          - Object
-        description: TimexProperty and error.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.parseUri
-    name: parseUri(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Parse string into URL object.
-    syntax:
-      content: 'static function parseUri(uri: string)'
-      parameters:
-        - id: uri
-          type:
-            - string
-          description: |
-            Input string uri.
-      return:
-        type:
-          - adaptive-expressions.ValueWithError
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.returnFormattedTimeStampStr
-    name: 'returnFormattedTimeStampStr(Moment, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Format datetime.
-    syntax:
-      content: >-
-        static function returnFormattedTimeStampStr(timedata: Moment, format:
-        string)
-      parameters:
-        - id: timedata
-          type:
-            - Moment
-          description: Input date time.
-        - id: format
-          type:
-            - string
-          description: |
-            Format flag.
-      return:
-        type:
-          - adaptive-expressions.ValueWithError
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.sortBy
-    name: sortBy(boolean)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Sort helper function.
-    syntax:
-      content: 'static function sortBy(isDescending: boolean)'
-      parameters:
-        - id: isDescending
-          type:
-            - boolean
-          description: |
-            Descending flag.
-      return:
-        type:
-          - adaptive-expressions.EvaluateExpressionDelegate
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.ticks
-    name: ticks(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Convert a string input to ticks number.
-    syntax:
-      content: 'static function ticks(timeStamp: string)'
-      parameters:
-        - id: timeStamp
-          type:
-            - string
-          description: |
-            String timestamp input.
-      return:
-        type:
-          - adaptive-expressions.ValueWithError
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.timestampFormatter
-    name: timestampFormatter(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: 'Timestamp formatter, convert C# datetime to moment js format.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function timestampFormatter(formatter: string)'
       parameters:
         - id: formatter
-          type:
-            - string
+          type: string
           description: |
             C# datetime format
       return:
-        type:
-          - string
+        type: string
         description: ''
+  - name: 'tryAccumulatePath(Expression, MemoryInterface, Options)'
+    uid: adaptive-expressions.FunctionUtils.tryAccumulatePath
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.timeUnitTransformer
-    name: 'timeUnitTransformer(number, string)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Transform C# period and unit into js period and unit
-    syntax:
-      content: 'static function timeUnitTransformer(duration: number, cSharpStr: string)'
-      parameters:
-        - id: duration
-          type:
-            - number
-          description: C# duration
-        - id: cSharpStr
-          type:
-            - string
-          description: |
-            C# unit.
-      return:
-        type:
-          - Object
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.toBinary
-    name: toBinary(string)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Convert string into Uint8Array object.
-    syntax:
-      content: 'static function toBinary(stringToConvert: string)'
-      parameters:
-        - id: stringToConvert
-          type:
-            - string
-          description: |
-            Input string.
-      return:
-        type:
-          - Uint8Array
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.tryAccumulatePath
-    name: 'tryAccumulatePath(Expression, MemoryInterface, Options)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: State object for resolving memory paths.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function tryAccumulatePath(expression: Expression, state:
         MemoryInterface, options: Options)
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression.
         - id: state
-          type:
-            - adaptive-expressions.MemoryInterface
+          type: <xref uid="adaptive-expressions.MemoryInterface" />
           description: Scope.
         - id: options
-          type:
-            - adaptive-expressions.Options
+          type: <xref uid="adaptive-expressions.Options" />
           description: Options used in evaluation.
       return:
-        type:
-          - Object
+        type: Object
         description: >-
           Return the accumulated path and the expression left unable to
           accumulate.
+  - name: 'validateArityAndAnyType(Expression, number, number, ReturnType)'
+    uid: adaptive-expressions.FunctionUtils.validateArityAndAnyType
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.UnixMilliSecondToTicksConstant
-    name: UnixMilliSecondToTicksConstant
-    fullName: UnixMilliSecondToTicksConstant
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Constant for converting unix timestamp to ticks.
-    syntax:
-      content: 'static UnixMilliSecondToTicksConstant: BigInteger'
-      return:
-        type:
-          - BigInteger
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateArityAndAnyType
-    name: 'validateArityAndAnyType(Expression, number, number, ReturnType)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Validate that expression has a certain number of children that are of any
       of the supported types.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function validateArityAndAnyType(expression: Expression,
-        minArity: number, maxArity: number, returnType?: ReturnType)
+        minArity: number, maxArity: number, returnType: ReturnType)
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression to validate.
         - id: minArity
-          type:
-            - number
+          type: number
           description: Minimum number of children.
         - id: maxArity
-          type:
-            - number
+          type: number
           description: Maximum number of children.
         - id: returnType
-          type:
-            - adaptive-expressions.ReturnType
+          type: <xref uid="adaptive-expressions.ReturnType" />
           description: >
             Allowed return types for children.
 
             If a child has a return type of Object then validation will happen
             at runtime.
-          optional: true
+  - name: validateAtLeastOne(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateAtLeastOne
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateAtLeastOne
-    name: validateAtLeastOne(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate at least 1 argument of any type.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateAtLeastOne(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateBinary(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateBinary
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateBinary
-    name: validateBinary(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate there are two children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateBinary(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateBinaryNumber(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateBinaryNumber
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateBinaryNumber
-    name: validateBinaryNumber(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate 2 numeric arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateBinaryNumber(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateBinaryNumberOrString(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateBinaryNumberOrString
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateBinaryNumberOrString
-    name: validateBinaryNumberOrString(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate there are 2 numeric or string arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateBinaryNumberOrString(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateNumber(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateNumber
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateForeach
-    name: validateForeach(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: 'Validator for foreach, select, and where functions.'
-    syntax:
-      content: 'static function validateForeach(expression: Expression)'
-      parameters:
-        - id: expression
-          type:
-            - adaptive-expressions.Expression
-          description: |+
-
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateNumber
-    name: validateNumber(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate 1 or more numeric arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateNumber(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: 'validateOrder(Expression, ReturnType[], ReturnType[])'
+    uid: adaptive-expressions.FunctionUtils.validateOrder
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateOrder
-    name: 'validateOrder(Expression, ReturnType[], ReturnType[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate the number and type of arguments to a function.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function validateOrder(expression: Expression, optional:
         ReturnType[], types: ReturnType[])
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression to validate.
         - id: optional
-          type:
-            - 'adaptive-expressions.ReturnType[]'
+          type: '<xref uid="adaptive-expressions.ReturnType" />[]'
           description: Optional types in order.
         - id: types
-          type:
-            - 'adaptive-expressions.ReturnType[]'
+          type: '<xref uid="adaptive-expressions.ReturnType" />[]'
           description: |
             Expected types in order.
+  - name: validateString(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateString
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateString
-    name: validateString(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate 1 or more string arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateString(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateTwoOrMoreThanTwoNumbers(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateTwoOrMoreThanTwoNumbers
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateTwoOrMoreThanTwoNumbers
-    name: validateTwoOrMoreThanTwoNumbers(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate 2 or more than 2 numeric arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateTwoOrMoreThanTwoNumbers(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateUnary(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateUnary
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateUnary
-    name: validateUnary(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate there is a single argument.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateUnary(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateUnaryBoolean(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateUnaryBoolean
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateUnaryBoolean
-    name: validateUnaryBoolean(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate there is a single boolean argument.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateUnaryBoolean(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateUnaryNumber(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateUnaryNumber
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateUnaryNumber
-    name: validateUnaryNumber(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate there is a single argument.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateUnaryNumber(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateUnaryOrBinaryNumber(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateUnaryOrBinaryNumber
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateUnaryOrBinaryNumber
-    name: validateUnaryOrBinaryNumber(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate 1 or 2 numeric arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateUnaryOrBinaryNumber(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateUnaryOrBinaryString(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateUnaryOrBinaryString
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateUnaryOrBinaryString
-    name: validateUnaryOrBinaryString(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate there is one or two string arguments.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateUnaryOrBinaryString(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: validateUnaryString(Expression)
+    uid: adaptive-expressions.FunctionUtils.validateUnaryString
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.validateUnaryString
-    name: validateUnaryString(Expression)
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Validate there is a single string argument.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function validateUnaryString(expression: Expression)'
       parameters:
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: |
             Expression to validate.
+  - name: 'verifyBoolean(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyBoolean
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyBoolean
-    name: 'verifyBoolean(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is boolean.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyBoolean(value: any, expression: Expression, _:
         number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyContainer(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyContainer
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyContainer
-    name: 'verifyContainer(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value contains elements.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyContainer(value: any, expression: Expression, _:
         number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyInteger(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyInteger
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyInteger
-    name: 'verifyInteger(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is an integer.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyInteger(value: any, expression: Expression, _:
         number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyList(any, Expression)'
+    uid: adaptive-expressions.FunctionUtils.verifyList
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyISOTimestamp
-    name: verifyISOTimestamp(any)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Verify a timestamp string is valid ISO timestamp format.
-    syntax:
-      content: 'static function verifyISOTimestamp(value: any)'
-      parameters:
-        - id: value
-          type:
-            - any
-          description: Timestamp string to check.
-      return:
-        type:
-          - string | undefined
-        description: Error or undefined if invalid.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyList
-    name: 'verifyList(any, Expression)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is an list.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function verifyList(value: any, expression: Expression)'
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyNotNull(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyNotNull
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyNotNull
-    name: 'verifyNotNull(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is not null or undefined.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyNotNull(value: any, expression: Expression, _:
         number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if valid.
+  - name: 'verifyNumber(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyNumber
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyNumber
-    name: 'verifyNumber(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is numeric.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyNumber(value: any, expression: Expression, _:
         number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyNumberOrNumericList(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyNumberOrNumericList
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyNumberOrNumericList
-    name: 'verifyNumberOrNumericList(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is numeric.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyNumberOrNumericList(value: any, expression:
         Expression, _: number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyNumberOrString(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyNumberOrString
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyNumberOrString
-    name: 'verifyNumberOrString(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is a number or string.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyNumberOrString(value: any, expression: Expression,
         _: number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyNumberOrStringOrNull(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyNumberOrStringOrNull
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyNumberOrStringOrNull
-    name: 'verifyNumberOrStringOrNull(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is a number or string or null.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyNumberOrStringOrNull(value: any, expression:
         Expression, _: number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyNumericList(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyNumericList
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyNumericList
-    name: 'verifyNumericList(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is numeric list.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyNumericList(value: any, expression: Expression, _:
         number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyString(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyString
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyString
-    name: 'verifyString(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify value is a string.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyString(value: any, expression: Expression, _:
         number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
+  - name: 'verifyStringOrNull(any, Expression, number)'
+    uid: adaptive-expressions.FunctionUtils.verifyStringOrNull
     package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyStringOrNull
-    name: 'verifyStringOrNull(any, Expression, number)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Verify an object is neither a string nor null.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         static function verifyStringOrNull(value: any, expression: Expression,
         _: number)
       parameters:
         - id: value
-          type:
-            - any
+          type: any
           description: Value to check.
         - id: expression
-          type:
-            - adaptive-expressions.Expression
+          type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
         - id: _
-          type:
-            - number
+          type: number
           description: ''
       return:
-        type:
-          - string | undefined
+        type: string | undefined
         description: Error or undefined if invalid.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.verifyTimestamp
-    name: verifyTimestamp(any)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Verify a timestamp string is valid timestamp format.
-    syntax:
-      content: 'static function verifyTimestamp(value: any)'
-      parameters:
-        - id: value
-          type:
-            - any
-          description: Timestamp string to check.
-      return:
-        type:
-          - string | undefined
-        description: Error or undefined if invalid.
-    package: adaptive-expressions
-  - uid: adaptive-expressions.FunctionUtils.wrapGetValue
-    name: 'wrapGetValue(MemoryInterface, string, Options)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Get the value of a path from a memory
-    syntax:
-      content: >-
-        static function wrapGetValue(state: MemoryInterface, path: string,
-        options: Options)
-      parameters:
-        - id: state
-          type:
-            - adaptive-expressions.MemoryInterface
-          description: Memory.
-        - id: path
-          type:
-            - string
-          description: Path string.
-        - id: options
-          type:
-            - adaptive-expressions.Options
-          description: |
-            Options.
-      return:
-        type:
-          - any
-        description: ''
-    package: adaptive-expressions
-references:
-  - uid: adaptive-expressions.ValueWithError
-    name: ValueWithError
-    spec.typeScript:
-      - name: ValueWithError
-        fullName: ValueWithError
-        uid: adaptive-expressions.ValueWithError
-  - uid: adaptive-expressions.VerifyExpression
-    name: VerifyExpression
-    spec.typeScript:
-      - name: VerifyExpression
-        fullName: VerifyExpression
-        uid: adaptive-expressions.VerifyExpression
-  - uid: adaptive-expressions.EvaluateExpressionDelegate
-    name: EvaluateExpressionDelegate
-    spec.typeScript:
-      - name: EvaluateExpressionDelegate
-        fullName: EvaluateExpressionDelegate
-        uid: adaptive-expressions.EvaluateExpressionDelegate
-  - uid: adaptive-expressions.Expression
-    name: Expression
-    spec.typeScript:
-      - name: Expression
-        fullName: Expression
-        uid: adaptive-expressions.Expression
-  - uid: adaptive-expressions.MemoryInterface
-    name: MemoryInterface
-    spec.typeScript:
-      - name: MemoryInterface
-        fullName: MemoryInterface
-        uid: adaptive-expressions.MemoryInterface
-  - uid: adaptive-expressions.Options
-    name: Options
-    spec.typeScript:
-      - name: Options
-        fullName: Options
-        uid: adaptive-expressions.Options
-  - uid: adaptive-expressions.ReturnType
-    name: ReturnType
-    spec.typeScript:
-      - name: ReturnType
-        fullName: ReturnType
-        uid: adaptive-expressions.ReturnType
-  - uid: 'adaptive-expressions.ReturnType[]'
-    name: 'ReturnType[]'
-    spec.typeScript:
-      - name: ReturnType
-        fullName: ReturnType
-        uid: adaptive-expressions.ReturnType
-      - name: '[]'
-        fullName: '[]'

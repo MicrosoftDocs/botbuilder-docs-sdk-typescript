@@ -1,144 +1,102 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botframework-streaming.NamedPipeServer
-    name: NamedPipeServer
-    fullName: NamedPipeServer
-    children:
-      - botframework-streaming.NamedPipeServer.disconnect
-      - botframework-streaming.NamedPipeServer.isConnected
-      - botframework-streaming.NamedPipeServer.constructor
-      - botframework-streaming.NamedPipeServer.send
-      - botframework-streaming.NamedPipeServer.start
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      Streaming transport server implementation that uses named pipes for
-      inter-process communication.
+### YamlMime:TSType
+name: NamedPipeServer
+uid: botframework-streaming.NamedPipeServer
+package: botframework-streaming
+summary: >-
+  Streaming transport server implementation that uses named pipes for
+  inter-process communication.
+fullName: NamedPipeServer
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'NamedPipeServer(string, RequestHandler, boolean)'
+    uid: botframework-streaming.NamedPipeServer.constructor
     package: botframework-streaming
-  - uid: botframework-streaming.NamedPipeServer.disconnect
-    name: disconnect()
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Allows for manually disconnecting the server.
-    syntax:
-      content: function disconnect()
-      parameters: []
-    package: botframework-streaming
-  - uid: botframework-streaming.NamedPipeServer.isConnected
-    name: isConnected
-    fullName: isConnected
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Returns true if currently connected.
-    syntax:
-      content: 'isConnected: boolean'
-      return:
-        type:
-          - boolean
-        description: ''
-    package: botframework-streaming
-  - uid: botframework-streaming.NamedPipeServer.constructor
-    name: 'NamedPipeServer(string, RequestHandler, boolean)'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
     summary: >-
       Creates a new instance of the
       [NamedPipeServer](xref:botframework-streaming.NamedPipeServer) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new NamedPipeServer(baseName: string, requestHandler?: RequestHandler,
-        autoReconnect?: boolean)
+        autoReconnect: boolean)
       parameters:
         - id: baseName
-          type:
-            - string
+          type: string
           description: The named pipe to connect to.
         - id: requestHandler
-          type:
-            - botframework-streaming.RequestHandler
+          type: <xref uid="botframework-streaming.RequestHandler" />
           description: >-
             Optional
             [RequestHandler](xref:botframework-streaming.RequestHandler) to
             process incoming messages received by this client.
-          optional: true
         - id: autoReconnect
-          type:
-            - boolean
+          type: boolean
           description: >
             Optional setting to determine if the client sould attempt to
             reconnect automatically on disconnection events. Defaults to true.
-          optional: true
+properties:
+  - name: isConnected
+    uid: botframework-streaming.NamedPipeServer.isConnected
     package: botframework-streaming
-  - uid: botframework-streaming.NamedPipeServer.send
-    name: send(StreamingRequest)
-    children: []
-    type: method
-    langs:
-      - typeScript
+    summary: Returns true if currently connected.
+    fullName: isConnected
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: boolean isConnected
+      return:
+        type: boolean
+        description: ''
+methods:
+  - name: disconnect()
+    uid: botframework-streaming.NamedPipeServer.disconnect
+    package: botframework-streaming
+    summary: Allows for manually disconnecting the server.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function disconnect()
+  - name: send(StreamingRequest)
+    uid: botframework-streaming.NamedPipeServer.send
+    package: botframework-streaming
     summary: Task used to send data over this client connection.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function send(request: StreamingRequest)'
       parameters:
         - id: request
-          type:
-            - botframework-streaming.StreamingRequest
+          type: <xref uid="botframework-streaming.StreamingRequest" />
           description: >-
             The [StreamingRequest](xref:botframework-streaming.StreamingRequest)
             to send.
       return:
-        type:
-          - Promise<botframework-streaming.IReceiveResponse>
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
         description: >-
           A promise for an instance of
           [IReceiveResponse](xref:botframework-streaming.IReceiveResponse) on
           completion of the send operation.
+  - name: start()
+    uid: botframework-streaming.NamedPipeServer.start
     package: botframework-streaming
-  - uid: botframework-streaming.NamedPipeServer.start
-    name: start()
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: >-
       Used to establish the connection used by this server and begin listening
       for incoming messages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: function start()
-      parameters: []
       return:
-        type:
-          - Promise<string>
+        type: Promise&lt;string&gt;
         description: >-
           A promised string that will not resolve as long as the server is
           running.
-    package: botframework-streaming
-references:
-  - uid: botframework-streaming.RequestHandler
-    name: RequestHandler
-    spec.typeScript:
-      - name: RequestHandler
-        fullName: RequestHandler
-        uid: botframework-streaming.RequestHandler
-  - uid: botframework-streaming.StreamingRequest
-    name: StreamingRequest
-    spec.typeScript:
-      - name: StreamingRequest
-        fullName: StreamingRequest
-        uid: botframework-streaming.StreamingRequest
-  - uid: Promise<botframework-streaming.IReceiveResponse>
-    name: IReceiveResponse>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: IReceiveResponse
-        fullName: IReceiveResponse
-        uid: botframework-streaming.IReceiveResponse
-      - name: '>'
-        fullName: '>'

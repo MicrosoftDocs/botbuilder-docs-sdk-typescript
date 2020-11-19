@@ -1,134 +1,100 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-calling.SimpleDialog
-    name: SimpleDialog
-    fullName: SimpleDialog
-    children:
-      - botbuilder-calling.SimpleDialog.begin
-      - botbuilder-calling.SimpleDialog.dialogResumed
-      - botbuilder-calling.SimpleDialog.replyReceived
-      - botbuilder-calling.SimpleDialog.constructor
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      Allows for the creation of custom dialogs that are based on a simple
-      closure. This is useful for
+### YamlMime:TSType
+name: SimpleDialog
+uid: botbuilder-calling.SimpleDialog
+package: botbuilder-calling
+summary: >-
+  Allows for the creation of custom dialogs that are based on a simple closure.
+  This is useful for
 
-      cases where you want a dynamic conversation flow or you have a situation
-      that just doesn’t map
+  cases where you want a dynamic conversation flow or you have a situation that
+  just doesn’t map
 
-      very well to using a waterfall.  The things to keep in mind:
+  very well to using a waterfall.  The things to keep in mind:
 
-      * Your dialogs closure is can get called in two different contexts that
-      you potentially need to
-        test for. It will get called as expected when the user send your dialog a message but if you
-        call another prompt or dialog from your closure it will get called a second time with the
-        results from the prompt/dialog. You can typically test for this second case by checking for the
-        existant of an `args.resumed` property. It's important to avoid getting yourself into an
-        infinite loop which can be easy to do.
-      * Unlike a waterfall your dialog will not automatically end. It will
-      remain the active dialog
-        until you call [session.endDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#enddialog).
-    extends:
-      name: botbuilder-calling.Dialog
-    package: botbuilder-calling
-  - uid: botbuilder-calling.SimpleDialog.begin
-    name: 'begin(CallSession, T)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Called when a new dialog session is being started.
-    syntax:
-      content: 'function begin<T>(session: CallSession, args?: T)'
-      parameters:
-        - id: session
-          type:
-            - botbuilder-calling.CallSession
-          description: Session object for the current conversation.
-        - id: args
-          type:
-            - T
-          description: |
-            (Optional) arguments passed to the dialog by its parent.
-          optional: true
-    package: botbuilder-calling
-  - uid: botbuilder-calling.SimpleDialog.dialogResumed
-    name: 'dialogResumed(CallSession, IDialogResult<T>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: A child dialog has ended and the current one is being resumed.
-    syntax:
-      content: >-
-        function dialogResumed<T>(session: CallSession, result:
-        IDialogResult<T>)
-      parameters:
-        - id: session
-          type:
-            - botbuilder-calling.CallSession
-          description: Session object for the current conversation.
-        - id: result
-          type:
-            - botbuilder-calling.IDialogResult<T>
-          description: |
-            Result returned by the child dialog.
-    package: botbuilder-calling
-  - uid: botbuilder-calling.SimpleDialog.replyReceived
-    name: replyReceived(CallSession)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: Processes messages received from the user. Called by the dialog system.
-    syntax:
-      content: 'function replyReceived(session: CallSession)'
-      parameters:
-        - id: session
-          type:
-            - botbuilder-calling.CallSession
-          description: |
-            Session object for the current conversation.
-    package: botbuilder-calling
-  - uid: botbuilder-calling.SimpleDialog.constructor
-    name: >-
+  * Your dialogs closure is can get called in two different contexts that you
+  potentially need to
+    test for. It will get called as expected when the user send your dialog a message but if you
+    call another prompt or dialog from your closure it will get called a second time with the
+    results from the prompt/dialog. You can typically test for this second case by checking for the
+    existant of an `args.resumed` property. It's important to avoid getting yourself into an
+    infinite loop which can be easy to do.
+  * Unlike a waterfall your dialog will not automatically end. It will remain
+  the active dialog
+    until you call [session.endDialog()](en-us/node/builder/calling-reference/classes/_botbuilder_d_.session.html#enddialog).
+fullName: SimpleDialog
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
       SimpleDialog((session: CallSession, args?: any | IDialogResult<any>) =>
       void)
-    children: []
-    type: constructor
-    langs:
-      - typeScript
+    uid: botbuilder-calling.SimpleDialog.constructor
+    package: botbuilder-calling
     summary: Creates a new custom dialog based on a simple closure.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new SimpleDialog(handler: (session: CallSession, args?: any |
         IDialogResult<any>) => void)
       parameters:
         - id: handler
-          type:
-            - '(session: CallSession, args?: any | IDialogResult<any>) => void'
+          type: >-
+            (session: CallSession, args?: any | IDialogResult&lt;any&gt;) =&gt;
+            void
           description: The function closure for your dialog.
+methods:
+  - name: 'begin<T>(CallSession, T)'
+    uid: botbuilder-calling.SimpleDialog.begin
     package: botbuilder-calling
-references:
-  - uid: botbuilder-calling.Dialog
-    name: Dialog
-    spec.typeScript:
-      - name: Dialog
-        fullName: Dialog
-        uid: botbuilder-calling.Dialog
-  - uid: botbuilder-calling.CallSession
-    name: CallSession
-    spec.typeScript:
-      - name: CallSession
-        fullName: CallSession
-        uid: botbuilder-calling.CallSession
-  - uid: botbuilder-calling.IDialogResult<T>
-    name: IDialogResult<T>
-    spec.typeScript:
-      - name: IDialogResult
-        fullName: IDialogResult
-        uid: botbuilder-calling.IDialogResult
-      - name: <T>
-        fullName: <T>
+    summary: Called when a new dialog session is being started.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function begin<T>(session: CallSession, args?: T)'
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: args
+          type: T
+          description: |
+            (Optional) arguments passed to the dialog by its parent.
+  - name: 'dialogResumed<T>(CallSession, IDialogResult<T>)'
+    uid: botbuilder-calling.SimpleDialog.dialogResumed
+    package: botbuilder-calling
+    summary: A child dialog has ended and the current one is being resumed.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function dialogResumed<T>(session: CallSession, result:
+        IDialogResult<T>)
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: Session object for the current conversation.
+        - id: result
+          type: <xref uid="botbuilder-calling.IDialogResult" />&lt;T&gt;
+          description: |
+            Result returned by the child dialog.
+  - name: replyReceived(CallSession)
+    uid: botbuilder-calling.SimpleDialog.replyReceived
+    package: botbuilder-calling
+    summary: Processes messages received from the user. Called by the dialog system.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function replyReceived(session: CallSession)'
+      parameters:
+        - id: session
+          type: <xref uid="botbuilder-calling.CallSession" />
+          description: |
+            Session object for the current conversation.
+extends: <xref uid="botbuilder-calling.Dialog" />

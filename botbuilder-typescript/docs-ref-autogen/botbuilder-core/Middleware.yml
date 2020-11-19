@@ -1,40 +1,18 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.Middleware
-    name: Middleware
-    fullName: Middleware
-    children:
-      - botbuilder-core.Middleware.onTurn
-    langs:
-      - typeScript
-    type: interface
-    summary: Interface implemented by object based middleware.
+### YamlMime:TSType
+name: Middleware
+uid: botbuilder-core.Middleware
+package: botbuilder-core
+summary: Interface implemented by object based middleware.
+fullName: Middleware
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+  - name: 'onTurn(TurnContext, () => Promise<void>)'
+    uid: botbuilder-core.Middleware.onTurn
     package: botbuilder-core
-  - uid: botbuilder-core.Middleware.onTurn
-    name: 'onTurn(TurnContext, () => Promise<void>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: Called each time the bot receives a new request.
-    syntax:
-      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
-      parameters:
-        - id: context
-          type:
-            - botbuilder-core.TurnContext
-          description: Context for current turn of conversation with the user.
-        - id: next
-          type:
-            - () => Promise<void>
-          description: >
-            Function to call to continue execution to the next step in the
-            middleware chain.
-      return:
-        type:
-          - Promise<void>
-        description: ''
-    package: botbuilder-core
     remarks: >-
       Calling `await next();` will cause execution to continue to either the
       next piece of
@@ -64,10 +42,19 @@ items:
       }
 
       ```
-references:
-  - uid: botbuilder-core.TurnContext
-    name: TurnContext
-    spec.typeScript:
-      - name: TurnContext
-        fullName: TurnContext
-        uid: botbuilder-core.TurnContext
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-core.TurnContext" />
+          description: Context for current turn of conversation with the user.
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: >
+            Function to call to continue execution to the next step in the
+            middleware chain.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''

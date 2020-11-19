@@ -1,152 +1,127 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botframework-connector.JwtTokenExtractor
-    name: JwtTokenExtractor
-    fullName: JwtTokenExtractor
-    children:
-      - botframework-connector.JwtTokenExtractor.getIdentity
-      - botframework-connector.JwtTokenExtractor.getIdentityFromAuthHeader
-      - botframework-connector.JwtTokenExtractor.constructor
-      - botframework-connector.JwtTokenExtractor.openIdMetadata
-      - botframework-connector.JwtTokenExtractor.tokenValidationParameters
-    langs:
-      - typeScript
-    type: class
-    summary: ''
+### YamlMime:TSType
+name: JwtTokenExtractor
+uid: botframework-connector.JwtTokenExtractor
+package: botframework-connector
+summary: >-
+  A JWT token processing class that gets identity information and performs
+  security token validation.
+fullName: JwtTokenExtractor
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'JwtTokenExtractor(VerifyOptions, string, string[])'
+    uid: botframework-connector.JwtTokenExtractor.constructor
     package: botframework-connector
-  - uid: botframework-connector.JwtTokenExtractor.getIdentity
-    name: 'getIdentity(string, string, string, string[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: >-
-        function getIdentity(scheme: string, parameter: string, channelId:
-        string, requiredEndorsements?: string[])
-      parameters:
-        - id: scheme
-          type:
-            - string
-          description: ''
-        - id: parameter
-          type:
-            - string
-          description: ''
-        - id: channelId
-          type:
-            - string
-          description: ''
-        - id: requiredEndorsements
-          type:
-            - 'string[]'
-          description: ''
-          optional: true
-      return:
-        type:
-          - Promise<botframework-connector.ClaimsIdentity | null>
-        description: ''
-    package: botframework-connector
-  - uid: botframework-connector.JwtTokenExtractor.getIdentityFromAuthHeader
-    name: 'getIdentityFromAuthHeader(string, string, string[])'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
-    syntax:
-      content: >-
-        function getIdentityFromAuthHeader(authorizationHeader: string,
-        channelId: string, requiredEndorsements?: string[])
-      parameters:
-        - id: authorizationHeader
-          type:
-            - string
-          description: ''
-        - id: channelId
-          type:
-            - string
-          description: ''
-        - id: requiredEndorsements
-          type:
-            - 'string[]'
-          description: ''
-          optional: true
-      return:
-        type:
-          - Promise<botframework-connector.ClaimsIdentity | null>
-        description: ''
-    package: botframework-connector
-  - uid: botframework-connector.JwtTokenExtractor.constructor
-    name: 'JwtTokenExtractor(VerifyOptions, string, string[])'
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [JwtTokenExtractor](xref:botframework-connector.JwtTokenExtractor) class.
+      Extracts relevant data from JWT Tokens.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: >-
         new JwtTokenExtractor(tokenValidationParameters: VerifyOptions,
         metadataUrl: string, allowedSigningAlgorithms: string[])
       parameters:
         - id: tokenValidationParameters
-          type:
-            - VerifyOptions
-          description: ''
+          type: VerifyOptions
+          description: Token validation parameters.
         - id: metadataUrl
-          type:
-            - string
-          description: ''
+          type: string
+          description: Metadata Url.
         - id: allowedSigningAlgorithms
-          type:
-            - 'string[]'
-          description: ''
+          type: 'string[]'
+          description: |
+            Allowed signing algorithms.
+properties:
+  - name: openIdMetadata
+    uid: botframework-connector.JwtTokenExtractor.openIdMetadata
     package: botframework-connector
-  - uid: botframework-connector.JwtTokenExtractor.openIdMetadata
-    name: openIdMetadata
+    summary: ''
     fullName: openIdMetadata
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'openIdMetadata: OpenIdMetadata'
+      content: 'public openIdMetadata: OpenIdMetadata'
       return:
-        type:
-          - botframework-connector.OpenIdMetadata
+        type: <xref uid="botframework-connector.OpenIdMetadata" />
         description: ''
+  - name: tokenValidationParameters
+    uid: botframework-connector.JwtTokenExtractor.tokenValidationParameters
     package: botframework-connector
-  - uid: botframework-connector.JwtTokenExtractor.tokenValidationParameters
-    name: tokenValidationParameters
+    summary: ''
     fullName: tokenValidationParameters
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'tokenValidationParameters: VerifyOptions'
+      content: 'public tokenValidationParameters: VerifyOptions'
       return:
-        type:
-          - VerifyOptions
+        type: VerifyOptions
         description: ''
+methods:
+  - name: 'getIdentity(string, string, string, string[])'
+    uid: botframework-connector.JwtTokenExtractor.getIdentity
     package: botframework-connector
-references:
-  - uid: botframework-connector.OpenIdMetadata
-    name: OpenIdMetadata
-    spec.typeScript:
-      - name: OpenIdMetadata
-        fullName: OpenIdMetadata
-        uid: botframework-connector.OpenIdMetadata
-  - uid: Promise<botframework-connector.ClaimsIdentity | null>
-    name: ClaimsIdentity | null>
-    spec.typeScript:
-      - name: Promise<
-        fullName: Promise<
-      - name: ClaimsIdentity
-        fullName: ClaimsIdentity
-        uid: botframework-connector.ClaimsIdentity
-      - name: ' | null>'
-        fullName: ' | null>'
+    summary: Gets the claims identity associated with a request.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getIdentity(scheme: string, parameter: string, channelId:
+        string, requiredEndorsements: string[])
+      parameters:
+        - id: scheme
+          type: string
+          description: The associated scheme.
+        - id: parameter
+          type: string
+          description: The token.
+        - id: channelId
+          type: string
+          description: The Id of the channel being validated in the original request.
+        - id: requiredEndorsements
+          type: 'string[]'
+          description: The required JWT endorsements.
+      return:
+        type: >-
+          Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
+          null&gt;
+        description: >-
+          A `Promise` representation for either a
+          [ClaimsIdentity](botframework-connector:module.ClaimsIdentity) or
+          `null`.
+  - name: 'getIdentityFromAuthHeader(string, string, string[])'
+    uid: botframework-connector.JwtTokenExtractor.getIdentityFromAuthHeader
+    package: botframework-connector
+    summary: Gets the claims identity associated with a request.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getIdentityFromAuthHeader(authorizationHeader: string,
+        channelId: string, requiredEndorsements?: string[])
+      parameters:
+        - id: authorizationHeader
+          type: string
+          description: 'The raw HTTP header in the format: "Bearer [longString]".'
+        - id: channelId
+          type: string
+          description: The Id of the channel being validated in the original request.
+        - id: requiredEndorsements
+          type: 'string[]'
+          description: The required JWT endorsements.
+      return:
+        type: >-
+          Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
+          null&gt;
+        description: >-
+          A `Promise` representation for either a
+          [ClaimsIdentity](botframework-connector:module.ClaimsIdentity) or
+          `null`.

@@ -1,82 +1,107 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-dialogs-adaptive.FirstSelector
-    name: FirstSelector
-    fullName: FirstSelector
-    children:
-      - botbuilder-dialogs-adaptive.FirstSelector.initialize
-      - botbuilder-dialogs-adaptive.FirstSelector.parser
-      - botbuilder-dialogs-adaptive.FirstSelector.select
-    langs:
-      - typeScript
-    type: class
-    summary: Select the first true rule implementation of TriggerSelector
+### YamlMime:TSType
+name: FirstSelector
+uid: botbuilder-dialogs-adaptive.FirstSelector
+package: botbuilder-dialogs-adaptive
+summary: Select the first true rule implementation of TriggerSelector
+fullName: FirstSelector
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: $kind
+    uid: botbuilder-dialogs-adaptive.FirstSelector.$kind
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.FirstSelector.initialize
-    name: 'initialize(OnCondition[], boolean)'
-    children: []
-    type: method
-    langs:
-      - typeScript
     summary: ''
+    fullName: $kind
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static $kind: string = "Microsoft.FirstSelector"'
+      return:
+        type: string
+        description: ''
+  - name: parser
+    uid: botbuilder-dialogs-adaptive.FirstSelector.parser
+    package: botbuilder-dialogs-adaptive
+    summary: Gets or sets the expression parser to use.
+    fullName: parser
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public parser: ExpressionParserInterface = new ExpressionParser()'
+      return:
+        type: ExpressionParserInterface
+        description: ''
+methods:
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive.FirstSelector.configure
+    package: botbuilder-dialogs-adaptive
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>)'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        type: this
+        description: ''
+  - name: getConverter(string)
+    uid: botbuilder-dialogs-adaptive.FirstSelector.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string)'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        type: Converter | ConverterFactory
+        description: ''
+  - name: 'initialize(OnCondition[], boolean)'
+    uid: botbuilder-dialogs-adaptive.FirstSelector.initialize
+    package: botbuilder-dialogs-adaptive
+    summary: Initialize the selector with the set of rules.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function initialize(conditionals: OnCondition[], evaluate: boolean)'
       parameters:
         - id: conditionals
-          type:
-            - 'botbuilder-dialogs-adaptive.OnCondition[]'
-          description: ''
+          type: '<xref uid="botbuilder-dialogs-adaptive.OnCondition" />[]'
+          description: Possible rules to match.
         - id: evaluate
-          type:
-            - boolean
-          description: ''
+          type: boolean
+          description: |
+            A boolean representing if rules should be evaluated on select.
+  - name: select(ActionContext)
+    uid: botbuilder-dialogs-adaptive.FirstSelector.select
     package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.FirstSelector.parser
-    name: parser
-    fullName: parser
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets or sets the expression parser to use.
-    syntax:
-      content: 'parser: ExpressionParserInterface'
-      return:
-        type:
-          - ExpressionParserInterface
-        description: ''
-    package: botbuilder-dialogs-adaptive
-  - uid: botbuilder-dialogs-adaptive.FirstSelector.select
-    name: select(ActionContext)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: Select the best rule to execute.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function select(actionContext: ActionContext)'
       parameters:
         - id: actionContext
-          type:
-            - botbuilder-dialogs-adaptive.ActionContext
-          description: ''
+          type: <xref uid="botbuilder-dialogs-adaptive.ActionContext" />
+          description: Dialog context for evaluation.
       return:
-        type:
-          - 'Promise<number[]>'
-        description: ''
-    package: botbuilder-dialogs-adaptive
-references:
-  - uid: 'botbuilder-dialogs-adaptive.OnCondition[]'
-    name: 'OnCondition[]'
-    spec.typeScript:
-      - name: OnCondition
-        fullName: OnCondition
-        uid: botbuilder-dialogs-adaptive.OnCondition
-      - name: '[]'
-        fullName: '[]'
-  - uid: botbuilder-dialogs-adaptive.ActionContext
-    name: ActionContext
-    spec.typeScript:
-      - name: ActionContext
-        fullName: ActionContext
-        uid: botbuilder-dialogs-adaptive.ActionContext
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs-adaptive.OnCondition"
+          />[]&gt;
+        description: A Promise with a number array.
+extends: <xref uid="botbuilder-dialogs-adaptive.TriggerSelector" />

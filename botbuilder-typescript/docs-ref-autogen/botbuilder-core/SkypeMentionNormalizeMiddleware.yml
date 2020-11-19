@@ -1,73 +1,64 @@
-### YamlMime:UniversalReference
-items:
-  - uid: botbuilder-core.SkypeMentionNormalizeMiddleware
-    name: SkypeMentionNormalizeMiddleware
-    fullName: SkypeMentionNormalizeMiddleware
-    children:
-      - >-
-        botbuilder-core.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
-      - botbuilder-core.SkypeMentionNormalizeMiddleware.onTurn
-    langs:
-      - typeScript
-    type: class
-    summary: >-
-      Middleware to patch mention Entities from Skype since they don't conform
-      to expected values.
+### YamlMime:TSType
+name: SkypeMentionNormalizeMiddleware
+uid: botbuilder-core.SkypeMentionNormalizeMiddleware
+package: botbuilder-core
+summary: >-
+  Middleware to patch mention Entities from Skype since they don't conform to
+  expected values.
 
-      Bots that interact with Skype should use this middleware if mentions are
-      used.
+  Bots that interact with Skype should use this middleware if mentions are used.
+fullName: SkypeMentionNormalizeMiddleware
+remarks: >-
+  A Skype mention "text" field is of the format:
+    <at id="28:2bc5b54d-5d48-4ff1-bd25-03dcbb5ce918">botname</at>
+  But Activity.Text doesn't contain those tags and RemoveMentionText can't
+  remove
+
+  the entity from Activity.Text.
+
+  This will remove the <at> nodes, leaving just the name.
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: normalizeSkypeMentionText(Activity)
+    uid: botbuilder-core.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
     package: botbuilder-core
-    remarks: >-
-      A Skype mention "text" field is of the format:
-        <at id="28:2bc5b54d-5d48-4ff1-bd25-03dcbb5ce918">botname</at>
-      But Activity.Text doesn't contain those tags and RemoveMentionText can't
-      remove
-
-      the entity from Activity.Text.
-
-      This will remove the <at> nodes, leaving just the name.
-  - uid: botbuilder-core.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
-    name: normalizeSkypeMentionText(Activity)
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: Performs the normalization of Skype mention Entities.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'static function normalizeSkypeMentionText(activity: Activity)'
       parameters:
         - id: activity
-          type:
-            - Activity
-          description: ''
+          type: Activity
+          description: >
+            (xref:botframework-schema.Activity) containing the mentions to
+            normalize.
+  - name: 'onTurn(TurnContext, () => Promise<void>)'
+    uid: botbuilder-core.SkypeMentionNormalizeMiddleware.onTurn
     package: botbuilder-core
-  - uid: botbuilder-core.SkypeMentionNormalizeMiddleware.onTurn
-    name: 'onTurn(TurnContext, () => Promise<void>)'
-    children: []
-    type: method
-    langs:
-      - typeScript
-    summary: ''
+    summary: >-
+      Middleware implementation which corrects the Entity text of type
+      [Mention](xref:botframework-schema.Mention) to a value that
+      [removeMentionText](xref:botbuilder-core.TurnContext.removeMentionText)
+      can work with.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: 'function onTurn(turnContext: TurnContext, next: () => Promise<void>)'
       parameters:
         - id: turnContext
-          type:
-            - botbuilder-core.TurnContext
-          description: ''
+          type: <xref uid="botbuilder-core.TurnContext" />
+          description: >-
+            (xref:botbuilder-core.TurnContext) for the current turn of
+            conversation.
         - id: next
-          type:
-            - () => Promise<void>
-          description: ''
+          type: () =&gt; Promise&lt;void&gt;
+          description: |
+            Delegate to call to continue the bot middleware pipeline.
       return:
-        type:
-          - Promise<void>
+        type: Promise&lt;void&gt;
         description: ''
-    package: botbuilder-core
-references:
-  - uid: botbuilder-core.TurnContext
-    name: TurnContext
-    spec.typeScript:
-      - name: TurnContext
-        fullName: TurnContext
-        uid: botbuilder-core.TurnContext

@@ -1,113 +1,112 @@
-### YamlMime:UniversalReference
-items:
-  - uid: adaptive-expressions.Union
-    name: Union
-    fullName: Union
-    children:
-      - adaptive-expressions.Union.returnType
-      - adaptive-expressions.Union.tryEvaluate
-      - adaptive-expressions.Union.type
-      - adaptive-expressions.Union.constructor
-      - adaptive-expressions.Union.validateExpression
-    langs:
-      - typeScript
-    type: class
+### YamlMime:TSType
+name: Union
+uid: adaptive-expressions.Union
+package: adaptive-expressions
+summary: >-
+  Return a collection that has all the items from the specified collections.
+
+  To appear in the result, an item can appear in any collection passed to this
+  function.
+
+  If one or more items have the same name, the last item with that name appears
+  in the result.
+fullName: Union
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: Union()
+    uid: adaptive-expressions.Union.constructor
+    package: adaptive-expressions
     summary: >-
-      Return a collection that has all the items from the specified collections.
-
-      To appear in the result, an item can appear in any collection passed to
-      this function.
-
-      If one or more items have the same name, the last item with that name
-      appears in the result.
-    extends:
-      name: adaptive-expressions.ExpressionEvaluator
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Union.returnType
-    name: returnType
-    fullName: returnType
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Type expected by evaluating the expression.
-    syntax:
-      content: 'returnType: ReturnType'
-      return:
-        type:
-          - adaptive-expressions.ReturnType
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Union.tryEvaluate
-    name: tryEvaluate
-    fullName: tryEvaluate
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Evaluate an expression.
-    syntax:
-      content: >-
-        tryEvaluate: (expression: Expression, state: MemoryInterface, options:
-        Options) => ValueWithError
-      return:
-        type:
-          - >-
-            (expression: Expression, state: MemoryInterface, options: Options)
-            => ValueWithError
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Union.type
-    name: type
-    fullName: type
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Gets the expression type for evaluator.
-    syntax:
-      content: 'type: string'
-      return:
-        type:
-          - string
-        description: ''
-    package: adaptive-expressions
-  - uid: adaptive-expressions.Union.constructor
-    name: Union()
-    children: []
-    type: constructor
-    langs:
-      - typeScript
-    summary: ''
+      Initializes a new instance of the [Union](xref:adaptive-expressions.Union)
+      class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
       content: new Union()
-      parameters: []
+properties:
+  - name: negation
+    uid: adaptive-expressions.Union.negation
     package: adaptive-expressions
-  - uid: adaptive-expressions.Union.validateExpression
-    name: validateExpression
-    fullName: validateExpression
-    children: []
-    langs:
-      - typeScript
-    type: property
-    summary: Validate an expression.
+    summary: |-
+      Gets the evaluator that is a negation of this one.
+      Sets the evaluator that is a negation of this one.
+    fullName: negation
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
     syntax:
-      content: 'validateExpression: (expression: Expression) => void'
+      content: ExpressionEvaluator negation
       return:
-        type:
-          - '(expression: Expression) => void'
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
         description: ''
+  - name: returnType
+    uid: adaptive-expressions.Union.returnType
     package: adaptive-expressions
-references:
-  - uid: adaptive-expressions.ExpressionEvaluator
-    name: ExpressionEvaluator
-    spec.typeScript:
-      - name: ExpressionEvaluator
-        fullName: ExpressionEvaluator
-        uid: adaptive-expressions.ExpressionEvaluator
-  - uid: adaptive-expressions.ReturnType
-    name: ReturnType
-    spec.typeScript:
-      - name: ReturnType
-        fullName: ReturnType
-        uid: adaptive-expressions.ReturnType
+    summary: Type expected by evaluating the expression.
+    fullName: returnType
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public returnType: ReturnType'
+      return:
+        type: <xref uid="adaptive-expressions.ReturnType" />
+        description: ''
+  - name: type
+    uid: adaptive-expressions.Union.type
+    package: adaptive-expressions
+    summary: Gets the expression type for evaluator.
+    fullName: type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public type: string'
+      return:
+        type: string
+        description: ''
+methods:
+  - name: 'tryEvaluate(Expression, MemoryInterface, Options)'
+    uid: adaptive-expressions.Union.tryEvaluate
+    package: adaptive-expressions
+    summary: Evaluate an expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function tryEvaluate(expression: Expression, state: MemoryInterface,
+        options: Options)
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: Expression to evaluate.
+        - id: state
+          type: <xref uid="adaptive-expressions.MemoryInterface" />
+          description: |
+            Global state information.
+        - id: options
+          type: <xref uid="adaptive-expressions.Options" />
+          description: ''
+      return:
+        type: <xref uid="adaptive-expressions.ValueWithError" />
+        description: ''
+  - name: validateExpression(Expression)
+    uid: adaptive-expressions.Union.validateExpression
+    package: adaptive-expressions
+    summary: Validate an expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function validateExpression(expression: Expression)'
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: |
+            Expression to validate.
+extends: <xref uid="adaptive-expressions.ExpressionEvaluator" />
