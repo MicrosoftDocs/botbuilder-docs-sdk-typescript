@@ -4,13 +4,7 @@ uid: botbuilder-ai.QnAMaker
 package: botbuilder-ai
 summary: Query a QnA Maker knowledge base for answers and provide feedbacks.
 fullName: QnAMaker
-remarks: >-
-  This class is used to make queries to a single QnA Maker knowledge base and
-  return the result.
-
-
-  Use this to process incoming messages with the [getAnswers()](#getAnswers)
-  method.
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
@@ -24,7 +18,7 @@ constructors:
     isDeprecated: false
     syntax:
       content: >-
-        new QnAMaker(endpoint: QnAMakerEndpoint, options: QnAMakerOptions,
+        new QnAMaker(endpoint: QnAMakerEndpoint, options?: QnAMakerOptions,
         telemetryClient?: BotTelemetryClient, logPersonalInformation?: boolean)
       parameters:
         - id: endpoint
@@ -45,9 +39,7 @@ properties:
   - name: logPersonalInformation
     uid: botbuilder-ai.QnAMaker.logPersonalInformation
     package: botbuilder-ai
-    summary: >-
-      Gets a value indicating whether determines whether to log personal
-      information that came from the user.
+    summary: ''
     fullName: logPersonalInformation
     remarks: ''
     isPreview: false
@@ -60,7 +52,7 @@ properties:
   - name: telemetryClient
     uid: botbuilder-ai.QnAMaker.telemetryClient
     package: botbuilder-ai
-    summary: Gets the currently configured botTelemetryClient that logs the events.
+    summary: ''
     fullName: telemetryClient
     remarks: ''
     isPreview: false
@@ -77,11 +69,7 @@ methods:
     summary: >-
       Calls [generateAnswer()](#generateanswer) and sends the resulting answer
       as a reply to the user.
-    remarks: >-
-      Returns a value of `true` if an answer was found and sent. If multiple
-      answers are
-
-      returned the first one will be delivered.
+    remarks: ''
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: >-
@@ -92,11 +80,10 @@ methods:
       parameters:
         - id: context
           type: TurnContext
-          description: |
-            Context for the current turn of conversation with the user.
+          description: Context for the current turn of conversation with the user.
       return:
         type: Promise&lt;boolean&gt;
-        description: ''
+        description: A promise resolving to true if an answer was sent
   - name: callTrainAsync(FeedbackRecords)
     uid: botbuilder-ai.QnAMaker.callTrainAsync
     package: botbuilder-ai
@@ -109,18 +96,15 @@ methods:
       parameters:
         - id: feedbackRecords
           type: <xref uid="botbuilder-ai.FeedbackRecords" />
-          description: |
-            Feedback records.
+          description: Feedback records.
       return:
         type: Promise&lt;void&gt;
-        description: ''
+        description: A promise representing the async operation
   - name: 'generateAnswer(string | undefined, number, number)'
     uid: botbuilder-ai.QnAMaker.generateAnswer
     package: botbuilder-ai
     summary: Calls the QnA Maker service to generate answer(s) for a question.
-    remarks: >-
-      Returns an array of answers sorted by score with the top scoring answer
-      returned first.
+    remarks: ''
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: >-
@@ -139,27 +123,19 @@ methods:
           description: (Optional) number of answers to return. Defaults to a value of `1`.
         - id: scoreThreshold
           type: number
-          description: >
+          description: >-
             (Optional) minimum answer score needed to be considered a match to
             questions. Defaults to a value of `0.001`.
       return:
         type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
-        description: ''
+        description: A promise resolving to the QnAMaker results
   - name: >-
       getAnswers(TurnContext, QnAMakerOptions, [key: string]: string, [key:
       string]: number)
     uid: botbuilder-ai.QnAMaker.getAnswers
     package: botbuilder-ai
     summary: Calls the QnA Maker service to generate answer(s) for a question.
-    remarks: >-
-      Returns an array of answers sorted by score with the top scoring answer
-      returned first.
-
-
-      In addition to returning the results from QnA Maker,
-      [getAnswers()](#getAnswers) will also
-
-      emit a trace activity that contains the QnA Maker results.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -185,12 +161,12 @@ methods:
             event.
         - id: telemetryMetrics
           type: '[key: string]\: number'
-          description: >
+          description: >-
             Additional metrics to be logged to telemetry with the QnaMessage
             event.
       return:
         type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
-        description: ''
+        description: A promise resolving to the QnAMaker result
   - name: >-
       getAnswersRaw(TurnContext, QnAMakerOptions, [key: string]: string, [key:
       string]: number)
@@ -236,7 +212,7 @@ methods:
     uid: botbuilder-ai.QnAMaker.getLowScoreVariation
     package: botbuilder-ai
     summary: Filters the ambiguous question for active learning.
-    remarks: Returns a filtered array of ambiguous question.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -244,8 +220,7 @@ methods:
       parameters:
         - id: queryResult
           type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
-          description: |
-            User query output.
+          description: User query output.
       return:
         type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
-        description: ''
+        description: the filtered results

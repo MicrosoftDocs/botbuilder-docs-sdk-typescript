@@ -14,6 +14,8 @@ interfaces:
   - botbuilder-dialogs-adaptive.BreakLoopConfiguration
   - botbuilder-dialogs-adaptive.CancelAllDialogsBaseConfiguration
   - botbuilder-dialogs-adaptive.CodeActionConfiguration
+  - botbuilder-dialogs-adaptive.ContinueConversationConfiguration
+  - botbuilder-dialogs-adaptive.ContinueConversationLaterConfiguration
   - botbuilder-dialogs-adaptive.ContinueLoopConfiguration
   - botbuilder-dialogs-adaptive.DeleteActivityConfiguration
   - botbuilder-dialogs-adaptive.DeletePropertiesConfiguration
@@ -27,6 +29,7 @@ interfaces:
   - botbuilder-dialogs-adaptive.ForEachPageConfiguration
   - botbuilder-dialogs-adaptive.GetActivityMembersConfiguration
   - botbuilder-dialogs-adaptive.GetConversationMembersConfiguration
+  - botbuilder-dialogs-adaptive.GetConversationReferenceConfiguration
   - botbuilder-dialogs-adaptive.GotoActionConfiguration
   - botbuilder-dialogs-adaptive.HttpRequestConfiguration
   - botbuilder-dialogs-adaptive.IfConditionConfiguration
@@ -40,6 +43,7 @@ interfaces:
   - botbuilder-dialogs-adaptive.SignOutUserConfiguration
   - botbuilder-dialogs-adaptive.SwitchConditionConfiguration
   - botbuilder-dialogs-adaptive.TelemetryTrackEventActionConfiguration
+  - botbuilder-dialogs-adaptive.ThrowExceptionConfiguration
   - botbuilder-dialogs-adaptive.TraceActivityConfiguration
   - botbuilder-dialogs-adaptive.UpdateActivityConfiguration
   - botbuilder-dialogs-adaptive.AdaptiveDialogConfiguration
@@ -67,13 +71,15 @@ interfaces:
   - botbuilder-dialogs-adaptive.TextInputConfiguration
   - botbuilder-dialogs-adaptive.LanguageGenerator
   - botbuilder-dialogs-adaptive.CrossTrainedRecognizerSetConfiguration
-  - botbuilder-dialogs-adaptive.EntityRecognizer
   - botbuilder-dialogs-adaptive.RegexEntityRecognizerConfiguration
   - botbuilder-dialogs-adaptive.MultiLanguageRecognizerConfiguration
   - botbuilder-dialogs-adaptive.RecognizerSetConfiguration
   - botbuilder-dialogs-adaptive.RegexRecognizerConfiguration
   - botbuilder-dialogs-adaptive.ConditionalSelectorConfiguration
   - botbuilder-dialogs-adaptive.MostSpecificSelectorConfiguration
+  - botbuilder-dialogs-adaptive.ActivityTemplateConguration
+  - botbuilder-dialogs-adaptive.StaticActivityTemplateConfiguration
+  - botbuilder-dialogs-adaptive.TextTemplateConfiguration
   - botbuilder-dialogs-adaptive.TriggerSelectorConfiguration
 enums:
   - botbuilder-dialogs-adaptive.ActionChangeType
@@ -96,6 +102,8 @@ classes:
   - botbuilder-dialogs-adaptive.CancelDialog
   - botbuilder-dialogs-adaptive.Case
   - botbuilder-dialogs-adaptive.CodeAction
+  - botbuilder-dialogs-adaptive.ContinueConversation
+  - botbuilder-dialogs-adaptive.ContinueConversationLater
   - botbuilder-dialogs-adaptive.ContinueLoop
   - botbuilder-dialogs-adaptive.DeleteActivity
   - botbuilder-dialogs-adaptive.DeleteProperties
@@ -110,6 +118,7 @@ classes:
   - botbuilder-dialogs-adaptive.ForEachPage
   - botbuilder-dialogs-adaptive.GetActivityMembers
   - botbuilder-dialogs-adaptive.GetConversationMembers
+  - botbuilder-dialogs-adaptive.GetConversationReference
   - botbuilder-dialogs-adaptive.GotoAction
   - botbuilder-dialogs-adaptive.HttpRequest
   - botbuilder-dialogs-adaptive.Result
@@ -123,6 +132,7 @@ classes:
   - botbuilder-dialogs-adaptive.SignOutUser
   - botbuilder-dialogs-adaptive.SwitchCondition
   - botbuilder-dialogs-adaptive.TelemetryTrackEventAction
+  - botbuilder-dialogs-adaptive.ThrowException
   - botbuilder-dialogs-adaptive.TraceActivity
   - botbuilder-dialogs-adaptive.UpdateActivity
   - botbuilder-dialogs-adaptive.AdaptiveComponentRegistration
@@ -136,6 +146,7 @@ classes:
   - botbuilder-dialogs-adaptive.OnChooseIntent
   - botbuilder-dialogs-adaptive.OnChooseProperty
   - botbuilder-dialogs-adaptive.OnCondition
+  - botbuilder-dialogs-adaptive.OnContinueConversation
   - botbuilder-dialogs-adaptive.OnConversationUpdateActivity
   - botbuilder-dialogs-adaptive.OnDialogEvent
   - botbuilder-dialogs-adaptive.OnEndOfActions
@@ -143,6 +154,7 @@ classes:
   - botbuilder-dialogs-adaptive.OnError
   - botbuilder-dialogs-adaptive.OnEventActivity
   - botbuilder-dialogs-adaptive.OnHandoffActivity
+  - botbuilder-dialogs-adaptive.OnInstallationUpdateActivity
   - botbuilder-dialogs-adaptive.OnIntent
   - botbuilder-dialogs-adaptive.OnInvokeActivity
   - botbuilder-dialogs-adaptive.OnMessageActivity
@@ -166,6 +178,8 @@ classes:
   - botbuilder-dialogs-adaptive.EntityAssignments
   - botbuilder-dialogs-adaptive.EntityInfo
   - botbuilder-dialogs-adaptive.DialogExpression
+  - botbuilder-dialogs-adaptive.HasPendingActionsFunction
+  - botbuilder-dialogs-adaptive.IsDialogActiveFunction
   - botbuilder-dialogs-adaptive.LanguageGeneratorManager
   - botbuilder-dialogs-adaptive.MultiLanguageGenerator
   - botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
@@ -188,11 +202,13 @@ classes:
   - botbuilder-dialogs-adaptive.PropertySchema
   - botbuilder-dialogs-adaptive.CrossTrainedRecognizerSet
   - botbuilder-dialogs-adaptive.AgeEntityRecognizer
+  - botbuilder-dialogs-adaptive.ChannelMentionEntityRecognizer
   - botbuilder-dialogs-adaptive.ConfirmationEntityRecognizer
   - botbuilder-dialogs-adaptive.CurrencyEntityRecognizer
   - botbuilder-dialogs-adaptive.DateTimeEntityRecognizer
   - botbuilder-dialogs-adaptive.DimensionEntityRecognizer
   - botbuilder-dialogs-adaptive.EmailEntityRecognizer
+  - botbuilder-dialogs-adaptive.EntityRecognizer
   - botbuilder-dialogs-adaptive.EntityRecognizerSet
   - botbuilder-dialogs-adaptive.GuidEntityRecognizer
   - botbuilder-dialogs-adaptive.HashtagEntityRecognizer
@@ -226,6 +242,16 @@ classes:
   - botbuilder-dialogs-adaptive.TriggerSelector
 typeAliases:
   - botbuilder-dialogs-adaptive.CodeActionHandler
+  - botbuilder-dialogs-adaptive.HeadersInput
+  - botbuilder-dialogs-adaptive.HeadersOutput
+  - botbuilder-dialogs-adaptive.D
+  - botbuilder-dialogs-adaptive.AssignmentInput
+  - botbuilder-dialogs-adaptive.CaseInput
+  - botbuilder-dialogs-adaptive.PropertiesInput
+  - botbuilder-dialogs-adaptive.PropertiesOutput
+  - botbuilder-dialogs-adaptive.Input
+  - botbuilder-dialogs-adaptive.Output
+  - botbuilder-dialogs-adaptive.IntentPatternInput
 functions:
   - name: 'replaceJsonRecursively(DialogStateManager, object)'
     uid: botbuilder-dialogs-adaptive.replaceJsonRecursively

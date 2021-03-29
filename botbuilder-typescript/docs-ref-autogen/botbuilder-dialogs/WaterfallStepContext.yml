@@ -66,7 +66,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public context: TurnContext'
+      content: 'context: TurnContext'
       return:
         type: TurnContext
         description: ''
@@ -92,7 +92,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public dialogs: DialogSet'
+      content: 'dialogs: DialogSet'
       return:
         type: <xref uid="botbuilder-dialogs.DialogSet" />
         description: ''
@@ -143,7 +143,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public parent: DialogContext | undefined'
+      content: 'parent: DialogContext | undefined'
       return:
         type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
         description: ''
@@ -184,9 +184,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public services: TurnContextStateCollection = new
-        TurnContextStateCollection()
+      content: 'services: TurnContextStateCollection'
       return:
         type: TurnContextStateCollection
         description: ''
@@ -199,7 +197,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public stack: DialogInstance[]'
+      content: 'stack: DialogInstance[]'
       return:
         type: '<xref uid="botbuilder-dialogs.DialogInstance" />[]'
         description: ''
@@ -212,7 +210,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public state: DialogStateManager'
+      content: 'state: DialogStateManager'
       return:
         type: <xref uid="botbuilder-dialogs.DialogStateManager" />
         description: ''
@@ -328,7 +326,7 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function cancelAllDialogs(cancelParents: boolean, eventName?: string,
+        function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
         eventValue?: any)
       parameters:
         - id: cancelParents
@@ -403,8 +401,8 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function emitEvent(name: string, value?: any, bubble: boolean, fromLeaf:
-        boolean)
+        function emitEvent(name: string, value?: any, bubble?: boolean,
+        fromLeaf?: boolean)
       parameters:
         - id: name
           type: string
@@ -561,7 +559,8 @@ methods:
       This helper method formats the object to use as the `options` parameter,
       and then calls
 
-      beginDialog to start the specified prompt dialog.
+      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
+      the specified prompt dialog.
 
 
       ```JavaScript
@@ -584,11 +583,10 @@ methods:
           type: >-
             string | Partial&lt;Activity&gt; | <xref
             uid="botbuilder-dialogs.PromptOptions" />
-          description: >-
+          description: |-
             The text of the initial prompt to send the user,
-
-            or the [Activity](xref:botframework-schema.Activity) to send as the
-            initial prompt.
+                 the activity to send as the initial prompt, or
+                 the object with which to format the prompt dialog.
       return:
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
@@ -604,7 +602,8 @@ methods:
       This helper method formats the object to use as the `options` parameter,
       and then calls
 
-      beginDialog to start the specified prompt dialog.
+      [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog) to start
+      the specified prompt dialog.
 
 
       ```JavaScript
@@ -630,8 +629,10 @@ methods:
           description: >-
             The text of the initial prompt to send the user,
 
-            or the [Activity](xref:botframework-schema.Activity) to send as the
-            initial prompt.
+            the [Activity](xref:botframework-schema.Activity) to send as the
+            initial prompt, or
+
+            the object with which to format the prompt dialog.
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
           description: |-

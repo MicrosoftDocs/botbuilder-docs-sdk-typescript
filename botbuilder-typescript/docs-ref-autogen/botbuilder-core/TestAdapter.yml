@@ -43,7 +43,7 @@ constructors:
       content: >-
         new TestAdapter(logicOrConversation?: (context: TurnContext) =>
         Promise<void> | ConversationReference, template?: Partial<Activity>,
-        sendTraceActivity: boolean)
+        sendTraceActivity?: boolean)
       parameters:
         - id: logicOrConversation
           type: >-
@@ -68,7 +68,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public activeQueue: Partial<Activity>[] = []'
+      content: 'activeQueue: Partial<Activity>[]'
       return:
         type: 'Partial&lt;Activity&gt;[]'
         description: ''
@@ -81,7 +81,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public BotIdentityKey: symbol = Symbol(''BotIdentity'')'
+      content: 'BotIdentityKey: symbol'
       return:
         type: symbol
         description: ''
@@ -94,7 +94,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public conversation: ConversationReference'
+      content: 'conversation: ConversationReference'
       return:
         type: ConversationReference
         description: ''
@@ -122,7 +122,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public locale: string = "en-us"'
+      content: 'locale: string'
       return:
         type: string
         description: ''
@@ -135,7 +135,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public OAuthScopeKey: symbol = Symbol(''OAuthScope'')'
+      content: 'OAuthScopeKey: symbol'
       return:
         type: symbol
         description: ''
@@ -179,7 +179,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public template: Partial<Activity>'
+      content: 'template: Partial<Activity>'
       return:
         type: Partial&lt;Activity&gt;
         description: ''
@@ -276,7 +276,7 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        static function createConversation(name: string, user: string, bot:
+        static function createConversation(name: string, user?: string, bot?:
         string)
       parameters:
         - id: name
@@ -720,15 +720,14 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function use(middleware: (context: TurnContext, next: () =>
+        function use(middlewares: (context: TurnContext, next: () =>
         Promise<void>) => Promise<void> | Middleware[])
       parameters:
-        - id: middleware
+        - id: middlewares
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: |
-            The middleware or middleware handlers to add.
+          description: ''
       return:
         type: this
         description: ''

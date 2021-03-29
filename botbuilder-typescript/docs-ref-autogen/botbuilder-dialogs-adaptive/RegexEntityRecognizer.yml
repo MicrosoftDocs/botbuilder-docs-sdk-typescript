@@ -12,14 +12,7 @@ constructors:
   - name: RegexEntityRecognizer()
     uid: botbuilder-dialogs-adaptive.RegexEntityRecognizer.constructor
     package: botbuilder-dialogs-adaptive
-    summary: >-
-      Initializes a new instance of the
-      [RegexEntityRecognizer](xref:botbuilder-dialogs-adaptive.RegexEntityRecognizer)
-      class.
-
-      Initializes a new instance of the
-      [RegexEntityRecognizer](xref:botbuilder-dialogs-adaptive.RegexEntityRecognizer)
-      class.
+    summary: ''
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -35,7 +28,20 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public static $kind: string = "Microsoft.RegexEntityRecognizer"'
+      content: 'static $kind: string'
+      return:
+        type: string
+        description: ''
+  - name: id
+    uid: botbuilder-dialogs-adaptive.RegexEntityRecognizer.id
+    package: botbuilder-dialogs-adaptive
+    summary: Recognizers unique ID.
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
       return:
         type: string
         description: ''
@@ -48,7 +54,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public name: string'
+      content: 'name: string'
       return:
         type: string
         description: ''
@@ -66,6 +72,21 @@ properties:
       content: string pattern
       return:
         type: string
+        description: ''
+  - name: telemetryClient
+    uid: botbuilder-dialogs-adaptive.RegexEntityRecognizer.telemetryClient
+    package: botbuilder-dialogs-adaptive
+    summary: |-
+      The telemetry client for logging events.
+      Default this to the NullTelemetryClient, which does nothing.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type: BotTelemetryClient
         description: ''
 methods:
   - name: 'configure(Record<string, unknown>)'
@@ -101,6 +122,36 @@ methods:
       return:
         type: Converter | ConverterFactory
         description: ''
+  - name: >-
+      recognize(DialogContext, Partial<Activity>, Record<string, string>,
+      Record<string, number>)
+    uid: botbuilder-dialogs-adaptive.RegexEntityRecognizer.recognize
+    package: botbuilder-dialogs-adaptive
+    summary: To recognize intents and entities in a users utterance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function recognize(dialogContext: DialogContext, activity:
+        Partial<Activity>, telemetryProperties?: Record<string, string>,
+        telemetryMetrics?: Record<string, number>)
+      parameters:
+        - id: dialogContext
+          type: DialogContext
+          description: Dialog Context.
+        - id: activity
+          type: Partial&lt;Activity&gt;
+          description: Activity.
+        - id: telemetryProperties
+          type: 'Record&lt;string, string&gt;'
+          description: Additional properties to be logged to telemetry with event.
+        - id: telemetryMetrics
+          type: 'Record&lt;string, number&gt;'
+          description: Additional metrics to be logged to telemetry with event.
+      return:
+        type: Promise&lt;RecognizerResult&gt;
+        description: Analysis of utterance.
   - name: 'recognizeEntities(DialogContext, string, string, Entity[])'
     uid: botbuilder-dialogs-adaptive.RegexEntityRecognizer.recognizeEntities
     package: botbuilder-dialogs-adaptive

@@ -8,6 +8,35 @@ remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
+properties:
+  - name: id
+    uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.id
+    package: botbuilder-dialogs-adaptive
+    summary: Recognizers unique ID.
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
+      return:
+        type: string
+        description: ''
+  - name: telemetryClient
+    uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.telemetryClient
+    package: botbuilder-dialogs-adaptive
+    summary: |-
+      The telemetry client for logging events.
+      Default this to the NullTelemetryClient, which does nothing.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        type: BotTelemetryClient
+        description: ''
 methods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.configure
@@ -42,6 +71,36 @@ methods:
       return:
         type: Converter | ConverterFactory
         description: ''
+  - name: >-
+      recognize(DialogContext, Partial<Activity>, Record<string, string>,
+      Record<string, number>)
+    uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.recognize
+    package: botbuilder-dialogs-adaptive
+    summary: To recognize intents and entities in a users utterance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function recognize(dialogContext: DialogContext, activity:
+        Partial<Activity>, telemetryProperties?: Record<string, string>,
+        telemetryMetrics?: Record<string, number>)
+      parameters:
+        - id: dialogContext
+          type: DialogContext
+          description: Dialog Context.
+        - id: activity
+          type: Partial&lt;Activity&gt;
+          description: Activity.
+        - id: telemetryProperties
+          type: 'Record&lt;string, string&gt;'
+          description: Additional properties to be logged to telemetry with event.
+        - id: telemetryMetrics
+          type: 'Record&lt;string, number&gt;'
+          description: Additional metrics to be logged to telemetry with event.
+      return:
+        type: Promise&lt;RecognizerResult&gt;
+        description: Analysis of utterance.
   - name: 'recognizeEntities(DialogContext, string, string, Entity[])'
     uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.recognizeEntities
     package: botbuilder-dialogs-adaptive
@@ -75,4 +134,4 @@ methods:
       return:
         type: 'Promise&lt;Entity[]&gt;'
         description: 'Recognized [Entity](xref:botframework-schema.Entity) list Promise.'
-extends: Configurable
+extends: <xref uid="botbuilder-dialogs-adaptive.EntityRecognizer" />
