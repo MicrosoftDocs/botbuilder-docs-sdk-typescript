@@ -4,6 +4,7 @@ name: adaptive-expressions
 summary: ''
 type: package
 classes:
+  - adaptive-expressions.Abs
   - adaptive-expressions.Accessor
   - adaptive-expressions.Add
   - adaptive-expressions.AddDays
@@ -43,6 +44,7 @@ classes:
   - adaptive-expressions.Element
   - adaptive-expressions.Empty
   - adaptive-expressions.EndsWith
+  - adaptive-expressions.EOL
   - adaptive-expressions.Equal
   - adaptive-expressions.Exists
   - adaptive-expressions.First
@@ -124,11 +126,13 @@ classes:
   - adaptive-expressions.SortBy
   - adaptive-expressions.SortByDescending
   - adaptive-expressions.Split
+  - adaptive-expressions.Sqrt
   - adaptive-expressions.StartOfDay
   - adaptive-expressions.StartOfHour
   - adaptive-expressions.StartOfMonth
   - adaptive-expressions.StartsWith
   - adaptive-expressions.String
+  - adaptive-expressions.StringOrValue
   - adaptive-expressions.StringTransformEvaluator
   - adaptive-expressions.SubArray
   - adaptive-expressions.Substring
@@ -141,6 +145,7 @@ classes:
   - adaptive-expressions.TicksToHours
   - adaptive-expressions.TicksToMinutes
   - adaptive-expressions.TimeTransformEvaluator
+  - adaptive-expressions.TimexResolve
   - adaptive-expressions.TitleCase
   - adaptive-expressions.ToLower
   - adaptive-expressions.ToUpper
@@ -157,6 +162,8 @@ classes:
   - adaptive-expressions.UriScheme
   - adaptive-expressions.UtcNow
   - adaptive-expressions.Where
+  - adaptive-expressions.XML
+  - adaptive-expressions.XPath
   - adaptive-expressions.Year
   - adaptive-expressions.CommonRegex
   - adaptive-expressions.Constant
@@ -255,24 +262,24 @@ classes:
   - adaptive-expressions.Trigger
   - adaptive-expressions.TriggerTree
 functions:
-  - name: convertCSharpDateTimeToMomentJS(string)
-    uid: adaptive-expressions.convertCSharpDateTimeToMomentJS
+  - name: convertCSharpDateTimeToDayjs(string)
+    uid: adaptive-expressions.convertCSharpDateTimeToDayjs
     package: adaptive-expressions
     summary: >-
-      Convert a CSharp style datetime format string to a Moment.js style
-      datetime format string. Ref:
+      Convert a CSharp style datetime format string to a Day.js style datetime
+      format string. Ref:
       https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function convertCSharpDateTimeToMomentJS(fmtString: string)'
+      content: 'function convertCSharpDateTimeToDayjs(fmtString: string)'
       parameters:
         - id: fmtString
           type: string
           description: >-
             A CSharp style datetime format string. Ref:
-            https://devhints.io/moment
+            https://day.js.org/docs/en/display/format
       return:
         type: string
         description: A Momengt.js style datetime format string.

@@ -9,10 +9,30 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
+  - name: ResourceExplorer(ResourceExplorerOptions)
+    uid: botbuilder-dialogs-declarative.ResourceExplorer.constructor_1
+    package: botbuilder-dialogs-declarative
+    summary: >-
+      Initializes a new instance of the
+      [ResourceExplorer](botbuilder-dialogs.declarative.ResourceExplorer) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new ResourceExplorer(options?: ResourceExplorerOptions)'
+      parameters:
+        - id: options
+          type: >-
+            <xref uid="botbuilder-dialogs-declarative.ResourceExplorerOptions"
+            />
+          description: |
+            The configuration options.
   - name: 'ResourceExplorer(ResourceProvider[])'
     uid: botbuilder-dialogs-declarative.ResourceExplorer.constructor
     package: botbuilder-dialogs-declarative
-    summary: Initializes a new instance of the `ResourceExplorer` class.
+    summary: >-
+      Initializes a new instance of the
+      [ResourceExplorer](botbuilder-dialogs.declarative.ResourceExplorer) class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -21,8 +41,10 @@ constructors:
       parameters:
         - id: providers
           type: '<xref uid="botbuilder-dialogs-declarative.ResourceProvider" />[]'
-          description: |
-            Resource providers.
+          description: >
+            The list of
+            [ResourceProvider](botbuilder-dialogs-declarative.ResourceProvider)
+            to initialize the current instance.
 properties:
   - name: changed
     uid: botbuilder-dialogs-declarative.ResourceExplorer.changed
@@ -33,9 +55,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: void changed
+      content: any changed
       return:
-        type: void
+        type: any
         description: ''
   - name: resourceProviders
     uid: botbuilder-dialogs-declarative.ResourceExplorer.resourceProviders
@@ -46,7 +68,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public resourceProviders: ResourceProvider[]'
+      content: 'resourceProviders: ResourceProvider[]'
       return:
         type: '<xref uid="botbuilder-dialogs-declarative.ResourceProvider" />[]'
         description: ''
@@ -59,9 +81,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public resourceTypes: Set<string> = new Set(['dialog', 'lu', 'lg',
-        'qna', 'schema', 'json'])
+      content: 'resourceTypes: Set<string>'
       return:
         type: Set&lt;string&gt;
         description: ''
@@ -75,8 +95,8 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function addFolder(folder: string, includeSubFolders: boolean,
-        monitorChanges: boolean)
+        function addFolder(folder: string, includeSubFolders?: boolean,
+        monitorChanges?: boolean)
       parameters:
         - id: folder
           type: string
@@ -86,11 +106,12 @@ methods:
           description: Whether to include subfolders.
         - id: monitorChanges
           type: boolean
-          description: |
-            Whether to track changes.
+          description: Whether to track changes.
       return:
         type: <xref uid="botbuilder-dialogs-declarative.ResourceExplorer" />
-        description: ''
+        description: >-
+          Resource explorer so that you can fluently call multiple methods on
+          the resource explorer.
   - name: 'addFolders(string, string[], boolean)'
     uid: botbuilder-dialogs-declarative.ResourceExplorer.addFolders
     package: botbuilder-dialogs-declarative
@@ -101,7 +122,7 @@ methods:
     syntax:
       content: >-
         function addFolders(folder: string, ignoreFolders?: string[],
-        monitorChanges: boolean)
+        monitorChanges?: boolean)
       parameters:
         - id: folder
           type: string
@@ -111,11 +132,12 @@ methods:
           description: Imediate subfolders to ignore.
         - id: monitorChanges
           type: boolean
-          description: |
-            Whether to track changes.
+          description: Whether to track changes.
       return:
         type: <xref uid="botbuilder-dialogs-declarative.ResourceExplorer" />
-        description: ''
+        description: >-
+          Resource explorer so that you can fluently call multiple methods on
+          the resource explorer.
   - name: addResourceProvider(ResourceProvider)
     uid: botbuilder-dialogs-declarative.ResourceExplorer.addResourceProvider
     package: botbuilder-dialogs-declarative
@@ -128,11 +150,12 @@ methods:
       parameters:
         - id: resourceProvider
           type: <xref uid="botbuilder-dialogs-declarative.ResourceProvider" />
-          description: |
-            Resource provider to be added.
+          description: Resource provider to be added.
       return:
         type: <xref uid="botbuilder-dialogs-declarative.ResourceExplorer" />
-        description: ''
+        description: >-
+          Resource explorer so that you can fluently call multiple methods on
+          the resource explorer.
   - name: addResourceType(string)
     uid: botbuilder-dialogs-declarative.ResourceExplorer.addResourceType
     package: botbuilder-dialogs-declarative
@@ -150,7 +173,7 @@ methods:
   - name: 'buildType<T>(string, C)'
     uid: botbuilder-dialogs-declarative.ResourceExplorer.buildType
     package: botbuilder-dialogs-declarative
-    summary: Build type for given $kind.
+    summary: Build type for given $kind from configuration.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -162,11 +185,10 @@ methods:
           description: $kind.
         - id: config
           type: C
-          description: |
-            Source configuration object.
+          description: Source configuration object.
       return:
         type: T
-        description: ''
+        description: Instantiated object.
   - name: getResource(string)
     uid: botbuilder-dialogs-declarative.ResourceExplorer.getResource
     package: botbuilder-dialogs-declarative
@@ -179,11 +201,10 @@ methods:
       parameters:
         - id: id
           type: string
-          description: |
-            Resource id.
+          description: Resource id.
       return:
         type: <xref uid="botbuilder-dialogs-declarative.Resource" />
-        description: ''
+        description: 'The resource, or undefined if not found.'
   - name: getResources(string)
     uid: botbuilder-dialogs-declarative.ResourceExplorer.getResources
     package: botbuilder-dialogs-declarative
@@ -196,28 +217,42 @@ methods:
       parameters:
         - id: fileExtension
           type: string
-          description: |
-            File extension filter.
+          description: File extension filter.
       return:
         type: '<xref uid="botbuilder-dialogs-declarative.Resource" />[]'
-        description: ''
-  - name: loadType<T>(string | Resource)
-    uid: botbuilder-dialogs-declarative.ResourceExplorer.loadType
+        description: The resources.
+  - name: loadType<T>(Resource)
+    uid: botbuilder-dialogs-declarative.ResourceExplorer.loadType_1
     package: botbuilder-dialogs-declarative
-    summary: Load types from resource or resource id.
+    summary: Load type from resource
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function loadType<T>(resource: string | Resource)'
+      content: 'function loadType<T>(resource: Resource)'
       parameters:
         - id: resource
-          type: string | <xref uid="botbuilder-dialogs-declarative.Resource" />
-          description: |
-            Resource or resource id to be parsed as a type.
+          type: <xref uid="botbuilder-dialogs-declarative.Resource" />
+          description: Resource id to bind to.
       return:
         type: T
-        description: ''
+        description: Type created from resource
+  - name: loadType<T>(string)
+    uid: botbuilder-dialogs-declarative.ResourceExplorer.loadType
+    package: botbuilder-dialogs-declarative
+    summary: Load type from resource
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function loadType<T>(resourceId: string)'
+      parameters:
+        - id: resourceId
+          type: string
+          description: Resource id to bind to.
+      return:
+        type: T
+        description: Type created from resource
   - name: refresh()
     uid: botbuilder-dialogs-declarative.ResourceExplorer.refresh
     package: botbuilder-dialogs-declarative
@@ -227,3 +262,31 @@ methods:
     isDeprecated: false
     syntax:
       content: function refresh()
+  - name: >-
+      registerType<T>(string, Newable<T>, CustomDeserializer<T, Record<string,
+      unknown>>)
+    uid: botbuilder-dialogs-declarative.ResourceExplorer.registerType
+    package: botbuilder-dialogs-declarative
+    summary: Register a declarative type with the resource loader system.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function registerType<T>(kind: string, type: Newable<T>, loader?:
+        CustomDeserializer<T, Record<string, unknown>>)
+      parameters:
+        - id: kind
+          type: string
+          description: The $kind name to map to this type.
+        - id: type
+          type: Newable&lt;T&gt;
+          description: Type of object to create.
+        - id: loader
+          type: >-
+            <xref uid="botbuilder-dialogs-declarative.CustomDeserializer"
+            />&lt;T, Record&lt;string, unknown&gt;&gt;
+          description: Optional custom deserializer.
+      return:
+        type: <xref uid="botbuilder-dialogs-declarative.ResourceExplorer" />
+        description: Resource explorer for fluent style multiple calls.

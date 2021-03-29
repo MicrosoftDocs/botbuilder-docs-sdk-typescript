@@ -24,7 +24,7 @@ constructors:
           description: |
             The `ResourceExplorer` used by the loader.
 methods:
-  - name: 'load(Record<string, unknown>, Object)'
+  - name: 'load(Record<string, unknown>, Newable<Configurable>)'
     uid: botbuilder-dialogs-declarative.DefaultLoader.load
     package: botbuilder-dialogs-declarative
     summary: The method that loads the configuration object to a requested type.
@@ -32,13 +32,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function load(config: Record<string, unknown>, type: Object)'
+      content: >-
+        function load(config: Record<string, unknown>, type:
+        Newable<Configurable>)
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: The configuration object to deserialize.
         - id: type
-          type: Object
+          type: Newable&lt;Configurable&gt;
           description: The object type that the configuration will be deserialized to.
       return:
         type: Configurable

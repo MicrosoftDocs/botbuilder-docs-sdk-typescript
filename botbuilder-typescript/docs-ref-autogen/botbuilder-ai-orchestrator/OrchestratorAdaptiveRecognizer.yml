@@ -9,7 +9,7 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'OrchestratorAdaptiveRecognizer(string, string, any)'
+  - name: 'OrchestratorAdaptiveRecognizer(string, string, LabelResolver)'
     uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.constructor
     package: botbuilder-ai-orchestrator
     summary: Returns an OrchestratorAdaptiveRecognizer instance.
@@ -18,17 +18,17 @@ constructors:
     isDeprecated: false
     syntax:
       content: >-
-        new OrchestratorAdaptiveRecognizer(modelPath?: string, snapshoPath?:
-        string, resolver?: any)
+        new OrchestratorAdaptiveRecognizer(modelFolder?: string, snapshotFile?:
+        string, resolver?: LabelResolver)
       parameters:
-        - id: modelPath
+        - id: modelFolder
           type: string
           description: Path to NLR model.
-        - id: snapshoPath
+        - id: snapshotFile
           type: string
           description: Path to snapshot.
         - id: resolver
-          type: any
+          type: <xref uid="botbuilder-ai-orchestrator.LabelResolver" />
           description: |
             Orchestrator resolver to use.
 properties:
@@ -41,21 +41,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public static $kind: string = "Microsoft.OrchestratorRecognizer"'
-      return:
-        type: string
-        description: ''
-  - name: candidatesCollection
-    uid: >-
-      botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.candidatesCollection
-    package: botbuilder-ai-orchestrator
-    summary: Property under which ambiguous intents are returned.
-    fullName: candidatesCollection
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'public candidatesCollection: string = "candidates"'
+      content: 'static $kind: string'
       return:
         type: string
         description: ''
@@ -68,7 +54,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public chooseIntent: string = "ChooseIntent"'
+      content: 'chooseIntent: string'
       return:
         type: string
         description: ''
@@ -76,15 +62,13 @@ properties:
     uid: >-
       botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.detectAmbiguousIntents
     package: botbuilder-ai-orchestrator
-    summary: Enable ambiguous intent detection.
+    summary: Enable ambiguous intent detection. Defaults to false.
     fullName: detectAmbiguousIntents
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public detectAmbiguousIntents: BoolExpression = new
-        BoolExpression(false)
+      content: 'detectAmbiguousIntents: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -93,34 +77,32 @@ properties:
       botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.disambiguationScoreThreshold
     package: botbuilder-ai-orchestrator
     summary: >-
-      Threshold value to use for ambiguous intent detection.
+      Threshold value to use for ambiguous intent detection. Defaults to 0.05.
 
-      Any intents that are classified with a score that is within this value
-      from the top scoring intent is determined to be ambiguous.
+      Recognizer returns ChooseIntent (disambiguation) if other intents are
+      classified within this threshold of the top scoring intent.
     fullName: disambiguationScoreThreshold
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public disambiguationScoreThreshold: NumberExpression = new
-        NumberExpression(0.05)
+      content: 'disambiguationScoreThreshold: NumberExpression'
       return:
         type: NumberExpression
         description: ''
-  - name: entityRecognizers
+  - name: externalEntityRecognizer
     uid: >-
-      botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.entityRecognizers
+      botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.externalEntityRecognizer
     package: botbuilder-ai-orchestrator
-    summary: The entity recognizers.
-    fullName: entityRecognizers
+    summary: The external entity recognizer.
+    fullName: externalEntityRecognizer
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public entityRecognizers: EntityRecognizer[] = []'
+      content: 'externalEntityRecognizer: Recognizer'
       return:
-        type: 'EntityRecognizer[]'
+        type: Recognizer
         description: ''
   - name: id
     uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.id
@@ -135,31 +117,18 @@ properties:
       return:
         type: string
         description: ''
-  - name: modelPath
-    uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.modelPath
+  - name: modelFolder
+    uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.modelFolder
     package: botbuilder-ai-orchestrator
-    summary: Path to the model to load.
-    fullName: modelPath
+    summary: Path to Orchestrator base model folder.
+    fullName: modelFolder
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public modelPath: StringExpression = new StringExpression('''')'
+      content: 'modelFolder: StringExpression'
       return:
         type: StringExpression
-        description: ''
-  - name: noneIntent
-    uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.noneIntent
-    package: botbuilder-ai-orchestrator
-    summary: Intent name when no intent matches.
-    fullName: noneIntent
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'public noneIntent: string = "None"'
-      return:
-        type: string
         description: ''
   - name: resultProperty
     uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.resultProperty
@@ -170,27 +139,29 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public resultProperty: string = "result"'
+      content: 'resultProperty: string'
       return:
         type: string
         description: ''
-  - name: snapshotPath
-    uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.snapshotPath
+  - name: snapshotFile
+    uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.snapshotFile
     package: botbuilder-ai-orchestrator
     summary: Path to the snapshot (.blu file) to load.
-    fullName: snapshotPath
+    fullName: snapshotFile
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public snapshotPath: StringExpression = new StringExpression('''')'
+      content: 'snapshotFile: StringExpression'
       return:
         type: StringExpression
         description: ''
   - name: telemetryClient
     uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.telemetryClient
     package: botbuilder-ai-orchestrator
-    summary: Sets the telemetry client for this dialog.
+    summary: |-
+      The telemetry client for logging events.
+      Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
     isPreview: false
@@ -234,7 +205,9 @@ methods:
       return:
         type: Converter | ConverterFactory
         description: ''
-  - name: 'recognize(DialogContext, Activity)'
+  - name: >-
+      recognize(DialogContext, Partial<Activity>, Record<string, string>,
+      Record<string, number>)
     uid: botbuilder-ai-orchestrator.OrchestratorAdaptiveRecognizer.recognize
     package: botbuilder-ai-orchestrator
     summary: Returns a new OrchestratorAdaptiveRecognizer instance.
@@ -242,16 +215,24 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function recognize(dialogContext: DialogContext, activity: Activity)'
+      content: >-
+        function recognize(dc: DialogContext, activity: Partial<Activity>,
+        telemetryProperties?: Record<string, string>, telemetryMetrics?:
+        Record<string, number>)
       parameters:
-        - id: dialogContext
+        - id: dc
           type: DialogContext
           description: Context for the current dialog.
         - id: activity
-          type: Activity
-          description: |
-            Current activity sent from user.
+          type: Partial&lt;Activity&gt;
+          description: Current activity sent from user.
+        - id: telemetryProperties
+          type: 'Record&lt;string, string&gt;'
+          description: Additional properties to be logged to telemetry with event.
+        - id: telemetryMetrics
+          type: 'Record&lt;string, number&gt;'
+          description: Additional metrics to be logged to telemetry with event.
       return:
         type: Promise&lt;RecognizerResult&gt;
-        description: ''
+        description: Recognized result.
 extends: Recognizer

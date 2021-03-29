@@ -43,15 +43,14 @@ constructors:
     isDeprecated: false
     syntax:
       content: >-
-        new MiddlewareSet(middleware: (context: TurnContext, next: () =>
+        new MiddlewareSet(middlewares: (context: TurnContext, next: () =>
         Promise<void>) => Promise<void> | Middleware[])
       parameters:
-        - id: middleware
+        - id: middlewares
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: |
-            One or more middleware handlers(s) to register.
+          description: ''
 methods:
   - name: 'onTurn(TurnContext, () => Promise<void>)'
     uid: botbuilder-core.MiddlewareSet.onTurn
@@ -88,11 +87,10 @@ methods:
           description: Context for the current turn of conversation with the user.
         - id: next
           type: () =&gt; Promise&lt;void&gt;
-          description: |
-            Function to invoke at the end of the middleware chain.
+          description: Function to invoke at the end of the middleware chain.
       return:
         type: Promise&lt;void&gt;
-        description: ''
+        description: A promise that resolves after the handler chain is complete.
   - name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
       Middleware[])
@@ -113,15 +111,14 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function use(middleware: (context: TurnContext, next: () =>
+        function use(middlewares: (context: TurnContext, next: () =>
         Promise<void>) => Promise<void> | Middleware[])
       parameters:
-        - id: middleware
+        - id: middlewares
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: |
-            One or more middleware handlers(s) to register.
+          description: ''
       return:
         type: this
         description: ''

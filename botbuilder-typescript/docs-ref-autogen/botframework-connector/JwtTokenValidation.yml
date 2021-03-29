@@ -33,10 +33,10 @@ functions:
           description: 'The set of valid credentials, such as the Bot Application ID'
         - id: channelService
           type: string
-          description: ''
+          description: The channel service
         - id: authConfig
           type: <xref uid="botframework-connector.AuthenticationConfiguration" />
-          description: ''
+          description: 'Optional, the auth config'
       return:
         type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: Promise with ClaimsIdentity for the request.
@@ -44,21 +44,7 @@ functions:
     uid: botframework-connector.JwtTokenValidation.getAppIdFromClaims
     package: botframework-connector
     summary: Gets the AppId from a claims list.
-    remarks: >-
-      In v1 tokens the AppId is in the "ver" AuthenticationConstants.AppIdClaim
-      claim.
-
-      In v2 tokens the AppId is in the "azp"
-      AuthenticationConstants.AuthorizedParty claim.
-
-      If the AuthenticationConstants.VersionClaim is not present, this method
-      will attempt to
-
-      obtain the attribute from the AuthenticationConstants.AppIdClaim or if
-      present.
-
-
-      Throws a TypeError if claims is falsy.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -66,15 +52,14 @@ functions:
       parameters:
         - id: claims
           type: '<xref uid="botframework-connector.Claim" />[]'
-          description: |
-            An object containing claims types and their values.
+          description: An object containing claims types and their values.
       return:
         type: string
-        description: ''
+        description: the app ID
   - name: isGovernment(string)
     uid: botframework-connector.JwtTokenValidation.isGovernment
     package: botframework-connector
-    summary: ''
+    summary: Determine whether or not a channel service is government
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -83,10 +68,10 @@ functions:
       parameters:
         - id: channelService
           type: string
-          description: ''
+          description: the channel service
       return:
         type: boolean
-        description: ''
+        description: true if this is a government channel service
   - name: isValidTokenFormat(string)
     uid: botframework-connector.JwtTokenValidation.isValidTokenFormat
     package: botframework-connector
@@ -110,7 +95,7 @@ functions:
       AuthenticationConfiguration)
     uid: botframework-connector.JwtTokenValidation.validateAuthHeader
     package: botframework-connector
-    summary: ''
+    summary: Validate an auth header.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -118,26 +103,28 @@ functions:
       content: >-
         function validateAuthHeader(authHeader: string, credentials:
         ICredentialProvider, channelService: string, channelId: string,
-        serviceUrl: string, authConfig: AuthenticationConfiguration)
+        serviceUrl?: string, authConfig?: AuthenticationConfiguration)
       parameters:
         - id: authHeader
           type: string
-          description: ''
+          description: the auth header
         - id: credentials
           type: <xref uid="botframework-connector.ICredentialProvider" />
-          description: ''
+          description: the credentials
         - id: channelService
           type: string
-          description: ''
+          description: the channel service
         - id: channelId
           type: string
-          description: ''
+          description: the channel ID
         - id: serviceUrl
           type: string
-          description: ''
+          description: the service URL
         - id: authConfig
           type: <xref uid="botframework-connector.AuthenticationConfiguration" />
-          description: ''
+          description: the auth config
       return:
         type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
-        description: ''
+        description: >-
+          a promise that resolves to the validated claims, or rejects if
+          validation fails

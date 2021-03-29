@@ -41,7 +41,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public static $kind: string = "Microsoft.QnAMakerRecognizer"'
+      content: 'static $kind: string'
       return:
         type: string
         description: ''
@@ -54,7 +54,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public context: ObjectExpression<QnARequestContext>'
+      content: 'context: ObjectExpression<QnARequestContext>'
       return:
         type: ObjectExpression&lt;<xref uid="botbuilder-ai.QnARequestContext" />&gt;
         description: ''
@@ -67,7 +67,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public endpointKey: StringExpression'
+      content: 'endpointKey: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -80,7 +80,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public hostname: StringExpression'
+      content: 'hostname: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -106,9 +106,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public includeDialogNameInMetadata: BoolExpression = new
-        BoolExpression(true)
+      content: 'includeDialogNameInMetadata: BoolExpression'
       return:
         type: BoolExpression
         description: ''
@@ -123,7 +121,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public isTest: boolean'
+      content: 'isTest: boolean'
       return:
         type: boolean
         description: ''
@@ -136,9 +134,24 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public knowledgeBaseId: StringExpression'
+      content: 'knowledgeBaseId: StringExpression'
       return:
         type: StringExpression
+        description: ''
+  - name: logPersonalInformation
+    uid: botbuilder-ai.QnAMakerRecognizer.logPersonalInformation
+    package: botbuilder-ai
+    summary: >-
+      The flag to indicate if personal information should be logged in
+      telemetry.
+    fullName: logPersonalInformation
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'logPersonalInformation: BoolExpression'
+      return:
+        type: BoolExpression
         description: ''
   - name: metadata
     uid: botbuilder-ai.QnAMakerRecognizer.metadata
@@ -149,7 +162,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public metadata: ArrayExpression<QnAMakerMetadata>'
+      content: 'metadata: ArrayExpression<QnAMakerMetadata>'
       return:
         type: ArrayExpression&lt;<xref uid="botbuilder-ai.QnAMakerMetadata" />&gt;
         description: ''
@@ -162,7 +175,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public qnaId: IntExpression = new IntExpression(0)'
+      content: 'qnaId: IntExpression'
       return:
         type: IntExpression
         description: ''
@@ -175,7 +188,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public static qnaMatchIntent: "QnAMatch" = "QnAMatch"'
+      content: 'static qnaMatchIntent: "QnAMatch" = "QnAMatch"'
       return:
         type: '"QnAMatch"'
         description: ''
@@ -188,9 +201,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public rankerType: StringExpression = new
-        StringExpression(RankerTypes.default)
+      content: 'rankerType: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -203,14 +214,16 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public strictFiltersJoinOperator: JoinOperator'
+      content: 'strictFiltersJoinOperator: JoinOperator'
       return:
         type: <xref uid="botbuilder-ai.JoinOperator" />
         description: ''
   - name: telemetryClient
     uid: botbuilder-ai.QnAMakerRecognizer.telemetryClient
     package: botbuilder-ai
-    summary: Sets the telemetry client for this dialog.
+    summary: |-
+      The telemetry client for logging events.
+      Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
     isPreview: false
@@ -229,7 +242,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public threshold: NumberExpression = new NumberExpression(0.3)'
+      content: 'threshold: NumberExpression'
       return:
         type: NumberExpression
         description: ''
@@ -242,7 +255,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public top: IntExpression = new IntExpression(3)'
+      content: 'top: IntExpression'
       return:
         type: IntExpression
         description: ''
@@ -310,9 +323,8 @@ methods:
           description: Additional properties to be logged to telemetry.
         - id: telemetryMetrics
           type: '[key: string]\: number'
-          description: |
-            Additional metrics to be logged to telemetry.
+          description: Additional metrics to be logged to telemetry.
       return:
         type: Promise&lt;RecognizerResult&gt;
-        description: ''
+        description: A promise resolving to the recognizer result
 extends: Recognizer
