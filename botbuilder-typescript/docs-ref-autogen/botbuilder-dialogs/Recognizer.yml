@@ -18,7 +18,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public id: string'
+      content: 'id: string'
       return:
         type: string
         description: ''
@@ -26,14 +26,14 @@ properties:
     uid: botbuilder-dialogs.Recognizer.telemetryClient
     package: botbuilder-dialogs
     summary: |-
-      Gets the telemetry client for this dialog.
-      Sets the telemetry client for this dialog.
+      The telemetry client for logging events.
+      Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: BotTelemetryClient telemetryClient
+      content: 'telemetryClient: BotTelemetryClient'
       return:
         type: BotTelemetryClient
         description: ''
@@ -74,8 +74,8 @@ methods:
           uid="botbuilder-dialogs.ConverterFactory" />
         description: ''
   - name: >-
-      recognize(DialogContext, Partial<Activity>, [key: string]: string, [key:
-      string]: number)
+      recognize(DialogContext, Partial<Activity>, Record<string, string>,
+      Record<string, number>)
     uid: botbuilder-dialogs.Recognizer.recognize
     package: botbuilder-dialogs
     summary: To recognize intents and entities in a users utterance.
@@ -85,8 +85,8 @@ methods:
     syntax:
       content: >-
         function recognize(dialogContext: DialogContext, activity:
-        Partial<Activity>, telemetryProperties?: [key: string]: string,
-        telemetryMetrics?: [key: string]: number)
+        Partial<Activity>, telemetryProperties?: Record<string, string>,
+        telemetryMetrics?: Record<string, number>)
       parameters:
         - id: dialogContext
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -95,13 +95,12 @@ methods:
           type: Partial&lt;Activity&gt;
           description: Activity.
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: 'Record&lt;string, string&gt;'
           description: Additional properties to be logged to telemetry with event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
-          description: |
-            Additional metrics to be logged to telemetry with event.
+          type: 'Record&lt;string, number&gt;'
+          description: Additional metrics to be logged to telemetry with event.
       return:
         type: Promise&lt;RecognizerResult&gt;
-        description: ''
+        description: Recognized result.
 extends: <xref uid="botbuilder-dialogs.Configurable" />

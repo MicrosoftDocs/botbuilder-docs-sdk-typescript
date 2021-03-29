@@ -21,7 +21,7 @@ constructors:
     isDeprecated: false
     syntax:
       content: >-
-        new LuisRecognizerInternal(application: LuisApplication, options?:
+        new LuisRecognizerInternal(application: LuisApplication, _options?:
         LuisRecognizerOptions)
       parameters:
         - id: application
@@ -29,7 +29,7 @@ constructors:
           description: >-
             An object conforming to the
             [LuisApplication](xref:botbuilder-ai.LuisApplication) definition.
-        - id: options
+        - id: _options
           type: <xref uid="botbuilder-ai.LuisRecognizerOptions" />
           description: >
             Optional. Options object used to control predictions. Should conform
@@ -51,7 +51,7 @@ properties:
         type: <xref uid="botbuilder-ai.LuisApplication" />
         description: ''
 methods:
-  - name: recognizeInternal(TurnContext)
+  - name: recognizeInternal(DialogContext | TurnContext)
     uid: botbuilder-ai.LuisRecognizerInternal.recognizeInternal
     package: botbuilder-ai
     summary: ''
@@ -59,10 +59,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function recognizeInternal(context: TurnContext)'
+      content: 'function recognizeInternal(context: DialogContext | TurnContext)'
       parameters:
         - id: context
-          type: TurnContext
+          type: DialogContext | TurnContext
           description: ''
       return:
         type: Promise&lt;RecognizerResult&gt;

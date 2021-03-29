@@ -4,16 +4,7 @@ uid: botbuilder-ai.LuisRecognizer
 package: botbuilder-ai
 summary: Recognize intents in a user utterance using a configured LUIS model.
 fullName: LuisRecognizer
-remarks: >-
-  This class is used to recognize intents and extract entities from incoming
-  messages.
-
-  See this class in action [in this sample
-  application](https://github.com/microsoft/BotBuilder-Samples/tree/main/samples/javascript_nodejs/14.nlp-with-dispatch).
-
-
-  This component can be used within your bots logic by calling
-  [recognize()](#recognize).
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
@@ -118,9 +109,7 @@ properties:
   - name: logPersonalInformation
     uid: botbuilder-ai.LuisRecognizer.logPersonalInformation
     package: botbuilder-ai
-    summary: >-
-      Gets a value indicating whether determines whether to log personal
-      information that came from the user.
+    summary: ''
     fullName: logPersonalInformation
     remarks: ''
     isPreview: false
@@ -133,7 +122,7 @@ properties:
   - name: telemetryClient
     uid: botbuilder-ai.LuisRecognizer.telemetryClient
     package: botbuilder-ai
-    summary: Gets the currently configured botTelemetryClient that logs the events.
+    summary: ''
     fullName: telemetryClient
     remarks: ''
     isPreview: false
@@ -145,63 +134,32 @@ properties:
         description: ''
 methods:
   - name: >-
-      recognize(TurnContext, [key: string]: string, [key: string]: number,
-      LuisRecognizerOptionsV2 | LuisRecognizerOptionsV3 | LuisPredictionOptions)
+      recognize(DialogContext | TurnContext, Record<string, string>,
+      Record<string, number>, LuisRecognizerOptionsV2 | LuisRecognizerOptionsV3
+      | LuisPredictionOptions)
     uid: botbuilder-ai.LuisRecognizer.recognize
     package: botbuilder-ai
     summary: Calls LUIS to recognize intents and entities in a users utterance.
-    remarks: >-
-      Returns a [RecognizerResult](../botbuilder-core/recognizerresult)
-      containing any intents and entities recognized by LUIS.
-
-
-      In addition to returning the results from LUIS, [recognize()](#recognize)
-      will also
-
-      emit a trace activity that contains the LUIS results.
-
-
-      Here is an example of recognize being used within a bot's turn handler: to
-      interpret an incoming message:
-
-
-      ```javascript
-
-      async onTurn(context) {
-          if (turnContext.activity.type === ActivityTypes.Message) {
-              const results = await luisRecognizer.recognize(turnContext);
-              const topIntent = LuisRecognizer.topIntent(results);
-              switch (topIntent) {
-                  case 'MyIntent':
-                      // ... handle intent ...
-                      break;
-                  case 'None':
-                      // ... handle intent ...
-                      break;
-              }
-          }
-      }
-
-      ```
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function recognize(context: TurnContext, telemetryProperties?: [key:
-        string]: string, telemetryMetrics?: [key: string]: number, options?:
-        LuisRecognizerOptionsV2 | LuisRecognizerOptionsV3 |
-        LuisPredictionOptions)
+        function recognize(context: DialogContext | TurnContext,
+        telemetryProperties?: Record<string, string>, telemetryMetrics?:
+        Record<string, number>, options?: LuisRecognizerOptionsV2 |
+        LuisRecognizerOptionsV3 | LuisPredictionOptions)
       parameters:
         - id: context
-          type: TurnContext
+          type: DialogContext | TurnContext
           description: Context for the current turn of conversation with the use.
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: 'Record&lt;string, string&gt;'
           description: >-
             Additional properties to be logged to telemetry with the LuisResult
             event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
+          type: 'Record&lt;string, number&gt;'
           description: >-
             Additional metrics to be logged to telemetry with the LuisResult
             event.
@@ -210,14 +168,39 @@ methods:
             <xref uid="botbuilder-ai.LuisRecognizerOptionsV2" /> | <xref
             uid="botbuilder-ai.LuisRecognizerOptionsV3" /> | <xref
             uid="botbuilder-ai.LuisPredictionOptions" />
-          description: >
+          description: >-
             (Optional) options object used to override control predictions.
             Should conform to the [LuisRecognizerOptionsV2] or
             [LuisRecognizerOptionsV3] definition.
       return:
         type: Promise&lt;RecognizerResult&gt;
-        description: ''
-  - name: 'topIntent(RecognizerResult | undefined, string, number)'
+        description: A promise that resolved to the recognizer result.
+  - name: 'sortedIntents(RecognizerResult, number)'
+    uid: botbuilder-ai.LuisRecognizer.sortedIntents
+    package: botbuilder-ai
+    summary: >-
+      Sorts recognizer result intents in ascending order by score, filtering
+      those that
+
+      have scores less that `minScore`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function sortedIntents(result?: RecognizerResult, minScore?:
+        number)
+      parameters:
+        - id: result
+          type: RecognizerResult
+          description: recognizer result to be sorted and filtered
+        - id: minScore
+          type: number
+          description: 'minimum score threshold, lower score results will be filtered'
+      return:
+        type: Array&lt;Object&gt;
+        description: '>} sorted result intents'
+  - name: 'topIntent(RecognizerResult, string, number)'
     uid: botbuilder-ai.LuisRecognizer.topIntent
     package: botbuilder-ai
     summary: Returns the name of the top scoring intent from a set of LUIS results.
@@ -226,11 +209,11 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        static function topIntent(results: RecognizerResult | undefined,
-        defaultIntent: string, minScore: number)
+        static function topIntent(results?: RecognizerResult, defaultIntent?:
+        string, minScore?: number)
       parameters:
         - id: results
-          type: RecognizerResult | undefined
+          type: RecognizerResult
           description: Result set to be searched.
         - id: defaultIntent
           type: string
@@ -239,10 +222,10 @@ methods:
             Defaults to a value of `None`.
         - id: minScore
           type: number
-          description: >
+          description: >-
             (Optional) minimum score needed for an intent to be considered as a
             top intent. If all intents in the set are below this threshold then
             the `defaultIntent` will be returned.  Defaults to a value of `0.0`.
       return:
         type: string
-        description: ''
+        description: the top intent

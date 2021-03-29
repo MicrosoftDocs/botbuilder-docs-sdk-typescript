@@ -9,7 +9,9 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'StringTransformEvaluator(string, (arg0: any[]) => string)'
+  - name: >-
+      StringTransformEvaluator(string, (arg0: any[], options: Options) =>
+      string, (expr: Expression) => void)
     uid: adaptive-expressions.StringTransformEvaluator.constructor
     package: adaptive-expressions
     summary: >-
@@ -21,17 +23,20 @@ constructors:
     isDeprecated: false
     syntax:
       content: >-
-        new StringTransformEvaluator(type: string, func: (arg0: any[]) =>
-        string)
+        new StringTransformEvaluator(type: string, func: (arg0: any[], options:
+        Options) => string, validator?: (expr: Expression) => void)
       parameters:
         - id: type
           type: string
           description: Name of the built-in function.
         - id: func
-          type: '(arg0: any[]) =&gt; string'
+          type: '(arg0: any[], options: Options) =&gt; string'
           description: >
             The string transformation function, it takes a list of objects and
             returns an string.
+        - id: validator
+          type: '(expr: Expression) =&gt; void'
+          description: ''
 properties:
   - name: negation
     uid: adaptive-expressions.StringTransformEvaluator.negation

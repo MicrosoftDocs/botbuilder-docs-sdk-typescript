@@ -94,7 +94,7 @@ methods:
       return:
         type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
-  - name: 'applyWithError((arg0: any[]) => any, VerifyExpression)'
+  - name: 'applyWithError((arg0: any[]) => ValueWithError, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.applyWithError
     package: adaptive-expressions
     summary: >-
@@ -105,11 +105,36 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        static function applyWithError(func: (arg0: any[]) => any, verify?:
-        VerifyExpression)
+        static function applyWithError(func: (arg0: any[]) => ValueWithError,
+        verify?: VerifyExpression)
       parameters:
         - id: func
-          type: '(arg0: any[]) =&gt; any'
+          type: '(arg0: any[]) =&gt; ValueWithError'
+          description: Function to apply.
+        - id: verify
+          type: <xref uid="adaptive-expressions.VerifyExpression" />
+          description: Function to check each arg for validity.
+      return:
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
+        description: Delegate for evaluating an expression.
+  - name: >-
+      applyWithOptions((arg0: unknown[], options: Options) => unknown,
+      VerifyExpression)
+    uid: adaptive-expressions.FunctionUtils.applyWithOptions
+    package: adaptive-expressions
+    summary: >-
+      Generate an expression delegate that applies function after verifying all
+      children.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function applyWithOptions(func: (arg0: unknown[], options:
+        Options) => unknown, verify?: VerifyExpression)
+      parameters:
+        - id: func
+          type: '(arg0: unknown[], options: Options) =&gt; unknown'
           description: Function to apply.
         - id: verify
           type: <xref uid="adaptive-expressions.VerifyExpression" />
@@ -142,6 +167,34 @@ methods:
       return:
         type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+  - name: 'determineFormatAndLocale(unknown[], number, string, string)'
+    uid: adaptive-expressions.FunctionUtils.determineFormatAndLocale
+    package: adaptive-expressions
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function determineFormatAndLocale(args: unknown[], maxArgsLength:
+        number, format: string, locale: string)
+      parameters:
+        - id: args
+          type: 'unknown[]'
+          description: An array of arguments.
+        - id: maxArgsLength
+          type: number
+          description: |
+            The max length of a given function.
+        - id: format
+          type: string
+          description: A format string.
+        - id: locale
+          type: string
+          description: A locale string.
+      return:
+        type: Object
+        description: ''
   - name: 'determineLocale(unknown[], number, string)'
     uid: adaptive-expressions.FunctionUtils.determineLocale
     package: adaptive-expressions
@@ -213,7 +266,7 @@ methods:
   - name: timestampFormatter(string)
     uid: adaptive-expressions.FunctionUtils.timestampFormatter
     package: adaptive-expressions
-    summary: 'Timestamp formatter, convert C# datetime to moment js format.'
+    summary: 'Timestamp formatter, convert C# datetime to day.js format.'
     remarks: ''
     isPreview: false
     isDeprecated: false

@@ -4,14 +4,7 @@ uid: botbuilder-ai.QnAMakerDialog
 package: botbuilder-ai
 summary: A dialog that supports multi-step and adaptive-learning QnA Maker services.
 fullName: QnAMakerDialog<O>
-remarks: >-
-  An instance of this class targets a specific QnA Maker knowledge base.
-
-  It supports knowledge bases that include follow-up prompt and active learning
-  features.
-
-  The dialog will also present user with appropriate multi-turn prompt or active
-  learning options.
+remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
@@ -30,10 +23,11 @@ constructors:
     syntax:
       content: >-
         new QnAMakerDialog(knowledgeBaseId?: string, endpointKey?: string,
-        hostname?: string, noAnswer?: Activity, threshold: number,
-        activeLearningCardTitle: string, cardNoMatchText: string, top: number,
-        cardNoMatchResponse?: Activity, strictFilters?: QnAMakerMetadata[],
-        dialogId: string, strictFiltersJoinOperator: JoinOperator)
+        hostname?: string, noAnswer?: Activity, threshold?: number,
+        activeLearningCardTitle?: string, cardNoMatchText?: string, top?:
+        number, cardNoMatchResponse?: Activity, strictFilters?:
+        QnAMakerMetadata[], dialogId?: string, strictFiltersJoinOperator?:
+        JoinOperator)
       parameters:
         - id: knowledgeBaseId
           type: string
@@ -43,7 +37,9 @@ constructors:
           description: The QnA Maker endpoint key to use to query the knowledge base.
         - id: hostname
           type: string
-          description: ''
+          description: >-
+            The QnA Maker host URL for the knowledge base, starting with
+            "https://" and ending with "/qnamaker".
         - id: noAnswer
           type: Activity
           description: >-
@@ -81,11 +77,11 @@ constructors:
             to the knowledge base; or null to apply none.
         - id: dialogId
           type: string
-          description: |
-            (Optional) Id of the created dialog. Default is 'QnAMakerDialog'.
+          description: (Optional) Id of the created dialog. Default is 'QnAMakerDialog'.
         - id: strictFiltersJoinOperator
           type: <xref uid="botbuilder-ai.JoinOperator" />
-          description: ''
+          description: |
+            join operator for strict filters
 properties:
   - name: $kind
     uid: botbuilder-ai.QnAMakerDialog.$kind
@@ -96,50 +92,58 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public static $kind: string = "Microsoft.QnAMakerDialog"'
+      content: 'static $kind: string'
       return:
         type: string
         description: ''
   - name: activeLearningCardTitle
     uid: botbuilder-ai.QnAMakerDialog.activeLearningCardTitle
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets the card title to use when showing active learning options to
+      the user.
     fullName: activeLearningCardTitle
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public activeLearningCardTitle: StringExpression'
+      content: 'activeLearningCardTitle: StringExpression'
       return:
         type: StringExpression
         description: ''
   - name: cardNoMatchResponse
     uid: botbuilder-ai.QnAMakerDialog.cardNoMatchResponse
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets the template to send to the user if they select the no match
+      option on an
+
+      active learning card.
     fullName: cardNoMatchResponse
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        public cardNoMatchResponse: TemplateInterface<Partial<Activity>,
-        DialogStateManager> = new BindToActivity(
-                MessageFactory.text(this.defaultCardNoMatchResponse) as Activity
-            )
+        cardNoMatchResponse: TemplateInterface<Partial<Activity>,
+        DialogStateManager>
       return:
         type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
         description: ''
   - name: cardNoMatchText
     uid: botbuilder-ai.QnAMakerDialog.cardNoMatchText
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets the button text to use with active learning options, allowing
+      a user to
+
+      indicate non of the options are applicable.
     fullName: cardNoMatchText
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public cardNoMatchText: StringExpression'
+      content: 'cardNoMatchText: StringExpression'
       return:
         type: StringExpression
         description: ''
@@ -164,33 +168,35 @@ properties:
   - name: endpointKey
     uid: botbuilder-ai.QnAMakerDialog.endpointKey
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets the QnA Maker endpoint key to use to query the knowledge
+      base.
     fullName: endpointKey
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public endpointKey: StringExpression'
+      content: 'endpointKey: StringExpression'
       return:
         type: StringExpression
         description: ''
   - name: hostname
     uid: botbuilder-ai.QnAMakerDialog.hostname
     package: botbuilder-ai
-    summary: ''
+    summary: Gets or sets the QnA Maker host URL for the knowledge base.
     fullName: hostname
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public hostname: StringExpression'
+      content: 'hostname: StringExpression'
       return:
         type: StringExpression
         description: ''
   - name: id
     uid: botbuilder-ai.QnAMakerDialog.id
     package: botbuilder-ai
-    summary: Sets the unique ID of the dialog.
+    summary: ''
     fullName: id
     remarks: ''
     isPreview: false
@@ -203,95 +209,95 @@ properties:
   - name: isTest
     uid: botbuilder-ai.QnAMakerDialog.isTest
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets a value indicating whether gets or sets environment of
+      knowledgebase to be called.
     fullName: isTest
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public isTest: boolean = false'
+      content: 'isTest: boolean'
       return:
         type: boolean
         description: ''
   - name: knowledgeBaseId
     uid: botbuilder-ai.QnAMakerDialog.knowledgeBaseId
     package: botbuilder-ai
-    summary: ''
+    summary: Gets or sets the QnA Maker knowledge base ID to query.
     fullName: knowledgeBaseId
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public knowledgeBaseId: StringExpression'
+      content: 'knowledgeBaseId: StringExpression'
       return:
         type: StringExpression
         description: ''
   - name: logPersonalInformation
     uid: botbuilder-ai.QnAMakerDialog.logPersonalInformation
     package: botbuilder-ai
-    summary: Log personal information flag.
+    summary: >-
+      Gets or sets the flag to determine if personal information should be
+      logged in telemetry.
     fullName: logPersonalInformation
-    remarks: |-
-      Defauls to a value of `=settings.logPersonalInformation`, which retrieves
-      `logPersonalInformation` flag from settings.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public logPersonalInformation: BoolExpression = new
-        BoolExpression('=settings.logPersonalInformation')
+      content: 'logPersonalInformation: BoolExpression'
       return:
         type: BoolExpression
         description: ''
   - name: noAnswer
     uid: botbuilder-ai.QnAMakerDialog.noAnswer
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets the template to send to the user when QnA Maker does not find
+      an answer.
     fullName: noAnswer
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public noAnswer: TemplateInterface<Partial<Activity>,
-        DialogStateManager> = new BindToActivity(
-                MessageFactory.text(this.defaultNoAnswer) as Activity
-            )
+      content: 'noAnswer: TemplateInterface<Partial<Activity>, DialogStateManager>'
       return:
         type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
         description: ''
   - name: rankerType
     uid: botbuilder-ai.QnAMakerDialog.rankerType
     package: botbuilder-ai
-    summary: ''
+    summary: Gets or sets the QnA Maker ranker type to use.
     fullName: rankerType
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        public rankerType: EnumExpression<RankerTypes> = new
-        EnumExpression(RankerTypes.default)
+      content: 'rankerType: EnumExpression<RankerTypes>'
       return:
         type: EnumExpression&lt;<xref uid="botbuilder-ai.RankerTypes" />&gt;
         description: ''
   - name: strictFilters
     uid: botbuilder-ai.QnAMakerDialog.strictFilters
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets the QnA Maker metadata with which to filter or boost queries
+      to the knowledge base,
+
+      or null to apply none.
     fullName: strictFilters
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public strictFilters: ArrayExpression<QnAMakerMetadata>'
+      content: 'strictFilters: ArrayExpression<QnAMakerMetadata>'
       return:
         type: ArrayExpression&lt;<xref uid="botbuilder-ai.QnAMakerMetadata" />&gt;
         description: ''
   - name: telemetryClient
     uid: botbuilder-ai.QnAMakerDialog.telemetryClient
     package: botbuilder-ai
-    summary: Sets the telemetry client for this dialog.
+    summary: ''
     fullName: telemetryClient
     remarks: ''
     isPreview: false
@@ -304,26 +310,28 @@ properties:
   - name: threshold
     uid: botbuilder-ai.QnAMakerDialog.threshold
     package: botbuilder-ai
-    summary: ''
+    summary: 'Gets or sets the threshold for answers returned, based on score.'
     fullName: threshold
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public threshold: NumberExpression = new NumberExpression(0.3)'
+      content: 'threshold: NumberExpression'
       return:
         type: NumberExpression
         description: ''
   - name: top
     uid: botbuilder-ai.QnAMakerDialog.top
     package: botbuilder-ai
-    summary: ''
+    summary: >-
+      Gets or sets the maximum number of answers to return from the knowledge
+      base.
     fullName: top
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public top: IntExpression = new IntExpression(3)'
+      content: 'top: IntExpression'
       return:
         type: IntExpression
         description: ''
@@ -401,20 +409,7 @@ methods:
     uid: botbuilder-ai.QnAMakerDialog.beginDialog
     package: botbuilder-ai
     summary: Called when the dialog is started and pushed onto the dialog stack.
-    remarks: >-
-      If the task is successful, the result indicates whether the dialog is
-      still
-
-      active after the turn has been processed by the dialog.
-
-
-      You can use the [options](#options) parameter to include the QnA Maker
-      context data,
-
-      which represents context from the previous query. To do so, the value
-      should include a
-
-      `context` property of type [QnAResponseContext](#QnAResponseContext).
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -427,11 +422,10 @@ methods:
             current turn of conversation.
         - id: options
           type: object
-          description: |
-            (Optional) Initial information to pass to the dialog.
+          description: (Optional) Initial information to pass to the dialog.
       return:
         type: Promise&lt;DialogTurnResult&gt;
-        description: ''
+        description: A promise resolving to the turn result
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-ai.QnAMakerDialog.configure
     package: botbuilder-ai

@@ -18,7 +18,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public detectAmbiguousIntents: boolean = false'
+      content: 'detectAmbiguousIntents: boolean'
       return:
         type: boolean
         description: ''
@@ -29,31 +29,29 @@ properties:
     summary: >-
       Threshold value to use for ambiguous intent detection. Defaults to 0.05.
 
-      Any intents that are classified with a score that is within this value
-      from the top
-
-      scoring intent is determined to be ambiguous.
+      Recognizer returns ChooseIntent (disambiguation) if other intents are
+      classified within this threshold of the top scoring intent.
     fullName: disambiguationScoreThreshold
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public disambiguationScoreThreshold: number = 0.05'
+      content: 'disambiguationScoreThreshold: number'
       return:
         type: number
         description: ''
-  - name: entityRecognizers
-    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.entityRecognizers
+  - name: externalEntityRecognizer
+    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.externalEntityRecognizer
     package: botbuilder-ai-orchestrator
-    summary: The entity recognizers.
-    fullName: entityRecognizers
+    summary: The external entity recognizer.
+    fullName: externalEntityRecognizer
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public entityRecognizers: EntityRecognizer[] = []'
+      content: 'externalEntityRecognizer: Recognizer'
       return:
-        type: 'EntityRecognizer[]'
+        type: Recognizer
         description: ''
   - name: id
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.id
@@ -64,20 +62,20 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public id: string'
+      content: 'id: string'
       return:
         type: string
         description: ''
-  - name: modelPath
-    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.modelPath
+  - name: modelFolder
+    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.modelFolder
     package: botbuilder-ai-orchestrator
-    summary: Path to the model to load.
-    fullName: modelPath
+    summary: Path to Orchestrator base model folder.
+    fullName: modelFolder
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public modelPath: string = null'
+      content: 'modelFolder: string'
       return:
         type: string
         description: ''
@@ -90,20 +88,20 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public resultProperty: string = "result"'
+      content: 'resultProperty: string'
       return:
         type: string
         description: ''
-  - name: snapshotPath
-    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.snapshotPath
+  - name: snapshotFile
+    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.snapshotFile
     package: botbuilder-ai-orchestrator
     summary: Path to the snapshot (.blu file) to load.
-    fullName: snapshotPath
+    fullName: snapshotFile
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public snapshotPath: string = null'
+      content: 'snapshotFile: string'
       return:
         type: string
         description: ''
@@ -151,13 +149,12 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function recognize(context: TurnContext)'
+      content: 'function recognize(turnContext: TurnContext)'
       parameters:
-        - id: context
+        - id: turnContext
           type: TurnContext
-          description: |
-            Context for the current turn of conversation with the use.
+          description: Context for the current turn of conversation with the use.
       return:
         type: Promise&lt;RecognizerResult&gt;
-        description: ''
+        description: Recognizer result.
 extends: Configurable
