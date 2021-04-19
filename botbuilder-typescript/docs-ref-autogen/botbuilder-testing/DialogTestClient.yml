@@ -9,7 +9,7 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'DialogTestClient(string, Dialog, any, Middleware[], ConversationState)'
+  - name: 'DialogTestClient(string, Dialog, unknown, Middleware[], ConversationState)'
     uid: botbuilder-testing.DialogTestClient.constructor
     package: botbuilder-testing
     summary: >-
@@ -32,7 +32,7 @@ constructors:
     syntax:
       content: >-
         new DialogTestClient(channelId: string, targetDialog: Dialog,
-        initialDialogOptions?: any, middlewares?: Middleware[],
+        initialDialogOptions?: unknown, middlewares?: Middleware[],
         conversationState?: ConversationState)
       parameters:
         - id: channelId
@@ -51,7 +51,7 @@ constructors:
             The [Dialog](xref:botbuilder-dialogs.Dialog) to be tested. This will
             be the root dialog for the test client.
         - id: initialDialogOptions
-          type: any
+          type: unknown
           description: >-
             Optional. Additional argument(s) to pass to the
             [Dialog](xref:botbuilder-dialogs.Dialog) being started.
@@ -67,7 +67,7 @@ constructors:
             [ConversationState](xref:botbuilder-core.ConversationState) instance
             to use in the test client.
   - name: >-
-      DialogTestClient(TestAdapter, Dialog, any, Middleware[],
+      DialogTestClient(TestAdapter, Dialog, unknown, Middleware[],
       ConversationState)
     uid: botbuilder-testing.DialogTestClient.constructor_1
     package: botbuilder-testing
@@ -91,7 +91,7 @@ constructors:
     syntax:
       content: >-
         new DialogTestClient(testAdapter: TestAdapter, targetDialog: Dialog,
-        initialDialogOptions?: any, middlewares?: Middleware[],
+        initialDialogOptions?: unknown, middlewares?: Middleware[],
         conversationState?: ConversationState)
       parameters:
         - id: testAdapter
@@ -103,7 +103,7 @@ constructors:
             The [Dialog](xref:botbuilder-dialogs.Dialog) to be tested. This will
             be the root dialog for the test client.
         - id: initialDialogOptions
-          type: any
+          type: unknown
           description: >-
             Optional. Additional argument(s) to pass to the
             [Dialog](xref:botbuilder-dialogs.Dialog) being started.
@@ -146,7 +146,7 @@ properties:
       content: DialogContext dialogContext
       return:
         type: DialogContext
-        description: ''
+        description: the dialog context
   - name: dialogTurnResult
     uid: botbuilder-testing.DialogTestClient.dialogTurnResult
     package: botbuilder-testing
@@ -172,11 +172,15 @@ methods:
       content: function getNextReply()
       return:
         type: Partial&lt;Activity&gt;
-        description: ''
+        description: the next reply
   - name: sendActivity(Partial<Activity> | string)
     uid: botbuilder-testing.DialogTestClient.sendActivity
     package: botbuilder-testing
-    summary: Send an activity into the dialog.
+    summary: |
+      Send an activity into the dialog.
+      ```javascript
+      await DialogTest.send('hello').assertReply('hello yourself').startTest();
+      ```
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -185,12 +189,7 @@ methods:
       parameters:
         - id: activity
           type: Partial&lt;Activity&gt; | string
-          description: |
-            an activity potentially with text
-
-            ```javascript
-            DialogTest.send('hello').assertReply('hello yourself').then(done);
-            ```
+          description: an activity potentially with text
       return:
         type: Promise&lt;any&gt;
         description: a TestFlow that can be used to assert replies etc

@@ -9,7 +9,7 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'OnChooseProperty(string[], string[], Dialog[], string)'
+  - name: 'OnChooseProperty(Dialog[], string)'
     uid: botbuilder-dialogs-adaptive.OnChooseProperty.constructor
     package: botbuilder-dialogs-adaptive
     summary: >-
@@ -20,25 +20,17 @@ constructors:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        new OnChooseProperty(properties?: string[], entities?: string[],
-        actions?: Dialog[], condition?: string)
+      content: 'new OnChooseProperty(actions?: Dialog[], condition?: string)'
       parameters:
-        - id: properties
-          type: 'string[]'
-          description: Optional. List of properties being chosen between to filter events.
-        - id: entities
-          type: 'string[]'
-          description: Optional. List of entities being chosen between to filter events.
         - id: actions
           type: 'Dialog[]'
           description: >-
-            Optional. A [Dialog](xref:botbuilder-dialogs.Dialog) list containing
-            the actions to add to the plan when the rule constraints are met.
+            Optional, actions to add to the plan when the rule constraints are
+            met.
         - id: condition
           type: string
           description: >
-            Optional. Condition which needs to be met for the actions to be
+            Optional, condition which needs to be met for the actions to be
             executed.
 properties:
   - name: $kind
@@ -84,19 +76,6 @@ properties:
       return:
         type: BoolExpression
         description: ''
-  - name: entities
-    uid: botbuilder-dialogs-adaptive.OnChooseProperty.entities
-    package: botbuilder-dialogs-adaptive
-    summary: Gets or sets the entities being chosen between to filter events.
-    fullName: entities
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'entities: string[]'
-      return:
-        type: 'string[]'
-        description: ''
   - name: event
     uid: botbuilder-dialogs-adaptive.OnChooseProperty.event
     package: botbuilder-dialogs-adaptive
@@ -134,22 +113,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'priority: IntExpression'
+      content: 'priority: NumberExpression'
       return:
-        type: IntExpression
-        description: ''
-  - name: properties
-    uid: botbuilder-dialogs-adaptive.OnChooseProperty.properties
-    package: botbuilder-dialogs-adaptive
-    summary: Gets or sets the properties being chosen between to filter events.
-    fullName: properties
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'properties: string[]'
-      return:
-        type: 'string[]'
+        type: NumberExpression
         description: ''
   - name: runOnce
     uid: botbuilder-dialogs-adaptive.OnChooseProperty.runOnce
@@ -263,24 +229,16 @@ methods:
       return:
         type: 'Dialog[]'
         description: ''
-  - name: getExpression(ExpressionParserInterface)
+  - name: getExpression()
     uid: botbuilder-dialogs-adaptive.OnChooseProperty.getExpression
     package: botbuilder-dialogs-adaptive
-    summary: Get the expression for this rule.
+    summary: Get the cached expression for this condition.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getExpression(parser: ExpressionParserInterface)'
-      parameters:
-        - id: parser
-          type: ExpressionParserInterface
-          description: >-
-            (xref:adaptive-expressions.ExpressionParserInterface) used to parse
-            a string into an [Expression](xref:adaptive-expressions.Expression).
+      content: function getExpression()
       return:
         type: Expression
-        description: >-
-          (xref:adaptive-expressions.Expression) which will be cached and used
-          to evaluate this rule.
+        description: Cached expression used to evaluate this condition.
 extends: <xref uid="botbuilder-dialogs-adaptive.OnDialogEvent" />
