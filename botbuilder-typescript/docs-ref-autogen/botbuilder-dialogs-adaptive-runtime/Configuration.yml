@@ -1,0 +1,166 @@
+### YamlMime:TSType
+name: Configuration
+uid: botbuilder-dialogs-adaptive-runtime.Configuration
+package: botbuilder-dialogs-adaptive-runtime
+summary: >-
+  Configuration implements the
+  [IConfiguration](xref:botbuilder-dialogs-adaptive-runtime-core.IConfiguration)
+
+  interface and adds helper methods for setting values, layering sources, and
+  getting type checked values.
+fullName: Configuration
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: 'argv(string[])'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.argv
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Load process.arguments as a configuration source.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function argv(argv?: string[])'
+      parameters:
+        - id: argv
+          type: 'string[]'
+          description: 'arguments to parse, defaults to `process.argv`'
+      return:
+        type: this
+        description: this for chaining
+  - name: 'bind(string[])'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.bind
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: |-
+      Bind a path to a Configuration instance such that calls to get or set will
+      automatically include the bound path as a prefix.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function bind(path: string[])'
+      parameters:
+        - id: path
+          type: 'string[]'
+          description: path to bind to new Configuration instance
+      return:
+        type: <xref uid="botbuilder-dialogs-adaptive-runtime.Configuration" />
+        description: configuration instance with `path` bound as a prefix
+  - name: 'bool(string[])'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.bool
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Get a boolean value from config
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function bool(path: string[])'
+      parameters:
+        - id: path
+          type: 'string[]'
+          description: path to boolean value
+      return:
+        type: boolean
+        description: true or false depending on flag
+  - name: env(string)
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.env
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Load environment variables as a configuration source.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function env(separator?: string)'
+      parameters:
+        - id: separator
+          type: string
+          description: value used to indicate nesting
+      return:
+        type: this
+        description: this for chaining
+  - name: file(string)
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.file
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Load a file as a configuration source.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function file(name: string)'
+      parameters:
+        - id: name
+          type: string
+          description: file name
+      return:
+        type: this
+        description: this for chaining
+  - name: 'get(string[])'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.get
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Get a value by path.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function get(path: string[])'
+      parameters:
+        - id: path
+          type: 'string[]'
+          description: path to value
+      return:
+        type: unknown | undefined
+        description: 'the value, or undefined'
+  - name: 'set(string[], unknown)'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.set
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Set a value by path.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function set(path: string[], value: unknown)'
+      parameters:
+        - id: path
+          type: 'string[]'
+          description: path to value
+        - id: value
+          type: unknown
+          description: |
+            value to set
+  - name: 'string(string[])'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.string
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Get a string value from config
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function string(path: string[])'
+      parameters:
+        - id: path
+          type: 'string[]'
+          description: path to string value
+      return:
+        type: string | undefined
+        description: the string or undefined
+  - name: 'type<T>(string[], Runtype<T>)'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.type
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Get a typed value from config
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function type<T>(path: string[], runtype: Runtype<T>)'
+      parameters:
+        - id: path
+          type: 'string[]'
+          description: path to value
+        - id: runtype
+          type: Runtype&lt;T&gt;
+          description: runtype to use for type checking
+      return:
+        type: T | undefined
+        description: 'the value, or undefined'

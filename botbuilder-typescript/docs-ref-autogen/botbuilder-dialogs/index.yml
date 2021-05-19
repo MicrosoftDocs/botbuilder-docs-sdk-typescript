@@ -23,6 +23,8 @@ interfaces:
   - botbuilder-dialogs.DialogManagerConfiguration
   - botbuilder-dialogs.DialogManagerResult
   - botbuilder-dialogs.DialogDependencies
+  - botbuilder-dialogs.ComponentMemoryScopes
+  - botbuilder-dialogs.ComponentPathResolvers
   - botbuilder-dialogs.DialogStateManagerConfiguration
   - botbuilder-dialogs.PathResolver
   - botbuilder-dialogs.ChoiceDefaultsChoicePrompt
@@ -49,6 +51,8 @@ classes:
   - botbuilder-dialogs.DialogManager
   - botbuilder-dialogs.DialogSet
   - botbuilder-dialogs.DialogTurnStateConstants
+  - botbuilder-dialogs.DialogsBotComponent
+  - botbuilder-dialogs.DialogsComponentRegistration
   - botbuilder-dialogs.DialogPath
   - botbuilder-dialogs.DialogStateManager
   - botbuilder-dialogs.AliasPathResolver
@@ -325,6 +329,36 @@ functions:
       return:
         type: <xref uid="botbuilder-dialogs.DialogContext" />
         description: 'Active [DialogContext](xref:botbuilder-dialogs.DialogContext).'
+  - name: >-
+      internalRun(TurnContext, string, DialogContext,
+      DialogStateManagerConfiguration)
+    uid: botbuilder-dialogs.internalRun
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function internalRun(context: TurnContext, dialogId: string,
+        dialogContext: DialogContext, dialogStateManagerConfiguration?:
+        DialogStateManagerConfiguration)
+      parameters:
+        - id: context
+          type: TurnContext
+          description: ''
+        - id: dialogId
+          type: string
+          description: ''
+        - id: dialogContext
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: ''
+        - id: dialogStateManagerConfiguration
+          type: <xref uid="botbuilder-dialogs.DialogStateManagerConfiguration" />
+          description: ''
+      return:
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        description: ''
   - name: isFromParentToSkill(TurnContext)
     uid: botbuilder-dialogs.isFromParentToSkill
     package: botbuilder-dialogs
@@ -346,7 +380,7 @@ functions:
   - name: 'runDialog(Dialog, TurnContext, StatePropertyAccessor<DialogState>)'
     uid: botbuilder-dialogs.runDialog
     package: botbuilder-dialogs
-    summary: Runs a dialog from a given context and accesor.
+    summary: Runs a dialog from a given context and accessor.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -387,14 +421,56 @@ functions:
       parameters:
         - id: context
           type: TurnContext
-          description: |+
-
+          description: ''
         - id: turnResult
           type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
-          description: ''
+          description: |+
+
       return:
         type: boolean
         description: ''
+  - name: isComponentMemoryScopes(unknown)
+    uid: botbuilder-dialogs.isComponentMemoryScopes
+    package: botbuilder-dialogs
+    summary: >-
+      Check if a
+      [ComponentRegistration](xref:botbuilder-core.ComponentRegistration) is
+
+      [ComponentMemoryScopes](xref:botbuilder-dialogs.ComponentMemoryScopes) or
+      not.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isComponentMemoryScopes(component: unknown)'
+      parameters:
+        - id: component
+          type: unknown
+          description: The component registration.
+      return:
+        type: boolean
+        description: Type check result.
+  - name: isComponentPathResolvers(unknown)
+    uid: botbuilder-dialogs.isComponentPathResolvers
+    package: botbuilder-dialogs
+    summary: >-
+      Check if a
+      [ComponentRegistration](xref:botbuilder-core.ComponentRegistration) is
+
+      [ComponentPathResolvers](xref:botbuilder-dialogs.ComponentPathResolvers)
+      or not.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isComponentPathResolvers(component: unknown)'
+      parameters:
+        - id: component
+          type: unknown
+          description: The component registration.
+      return:
+        type: boolean
+        description: Type check result.
 typeAliases:
   - botbuilder-dialogs.TokenizerFunction
   - botbuilder-dialogs.ConverterFactory

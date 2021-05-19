@@ -25,19 +25,19 @@ constructors:
       parameters:
         - id: property
           type: string
-          description: Optional. Property to be assigned for filtering events.
+          description: 'Optional, property filter on event.'
         - id: entity
           type: string
-          description: Optional. Entity name being assigned for filtering events.
+          description: 'Optional, entity filter on event.'
         - id: actions
           type: 'Dialog[]'
           description: >-
-            Optional. A [Dialog](xref:botbuilder-dialogs.Dialog) list containing
-            the actions to add to the plan when the rule constraints are met.
+            Optional, actions to add to the plan when the rule constraints are
+            met.
         - id: condition
           type: string
           description: >
-            Optional. Condition which needs to be met for the actions to be
+            Optional, condition which needs to be met for the actions to be
             executed.
 properties:
   - name: $kind
@@ -86,7 +86,7 @@ properties:
   - name: entity
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.entity
     package: botbuilder-dialogs-adaptive
-    summary: Gets or sets the entity name being assigned for filtering events.
+    summary: Gets or sets the entity filter on event.
     fullName: entity
     remarks: ''
     isPreview: false
@@ -133,14 +133,14 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'priority: IntExpression'
+      content: 'priority: NumberExpression'
       return:
-        type: IntExpression
+        type: NumberExpression
         description: ''
   - name: property
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.property
     package: botbuilder-dialogs-adaptive
-    summary: Gets or sets the property to be assigned for filtering events.
+    summary: Gets or sets the property filter on event.
     fullName: property
     remarks: ''
     isPreview: false
@@ -262,24 +262,16 @@ methods:
       return:
         type: 'Dialog[]'
         description: ''
-  - name: getExpression(ExpressionParserInterface)
+  - name: getExpression()
     uid: botbuilder-dialogs-adaptive.OnChooseEntity.getExpression
     package: botbuilder-dialogs-adaptive
-    summary: Get the expression for this rule.
+    summary: Get the cached expression for this condition.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getExpression(parser: ExpressionParserInterface)'
-      parameters:
-        - id: parser
-          type: ExpressionParserInterface
-          description: >-
-            (xref:adaptive-expressions.ExpressionParserInterface) used to parse
-            a string into an [Expression](xref:adaptive-expressions.Expression).
+      content: function getExpression()
       return:
         type: Expression
-        description: >-
-          (xref:adaptive-expressions.Expression) which will be cached and used
-          to evaluate this rule.
+        description: Cached expression used to evaluate this condition.
 extends: <xref uid="botbuilder-dialogs-adaptive.OnDialogEvent" />

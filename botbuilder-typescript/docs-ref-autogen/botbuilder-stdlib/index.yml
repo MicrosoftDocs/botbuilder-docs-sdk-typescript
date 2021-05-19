@@ -39,6 +39,45 @@ functions:
       return:
         type: asserts
         description: ''
+  - name: 'delay<T>(Promise<T>, number)'
+    uid: botbuilder-stdlib.delay
+    package: botbuilder-stdlib
+    summary: Delay resolution of `promise`
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delay<T>(promise: Promise<T>, milliseconds: number)'
+      parameters:
+        - id: promise
+          type: Promise&lt;T&gt;
+          description: an optional promise to delay
+        - id: milliseconds
+          type: number
+          description: how long to delay
+      return:
+        type: Promise&lt;T&gt;
+        description: >-
+          a promise that will resolve to the result of `promise`, delayed by
+          `milliseconds`.
+  - name: delay(number)
+    uid: botbuilder-stdlib.delay_1
+    package: botbuilder-stdlib
+    summary: Return a promise that resolves after `milliseconds`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delay(milliseconds: number)'
+      parameters:
+        - id: milliseconds
+          type: number
+          description: how long to delay
+      return:
+        type: Promise&lt;void&gt;
+        description: >-
+          a promise that will resolve to the result of `promise`, delayed by
+          `milliseconds`.
   - name: 'maybeCast<T>(unknown, Newable<T>)'
     uid: botbuilder-stdlib.maybeCast
     package: botbuilder-stdlib
@@ -470,6 +509,34 @@ functions:
     isDeprecated: false
     syntax:
       content: 'function isObject(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `object`
+  - name: isObjectAs<T>(unknown)
+    uid: botbuilder-stdlib.isObjectAs
+    package: botbuilder-stdlib
+    summary: >-
+      **UNSAFE**
+
+      Test if `val` is of type `object`.
+
+      This test does not actually verify that `val` is of type `T`. It is useful
+      as the first
+
+      line in a nested assertion so that remaining assertion calls can leverage
+      helpful intellisense.
+
+      This method is only exported under the `unsafe` keyword as a constant
+      reminder of this fact.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isObjectAs<T>(val: unknown)'
       parameters:
         - id: val
           type: unknown

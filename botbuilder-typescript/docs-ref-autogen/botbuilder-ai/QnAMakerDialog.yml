@@ -10,6 +10,80 @@ isDeprecated: false
 type: class
 constructors:
   - name: >-
+      QnAMakerDialog(string, string, string, Activity, number,
+      QnASuggestionsActivityFactory, string, number, Activity,
+      QnAMakerMetadata[], string, JoinOperator)
+    uid: botbuilder-ai.QnAMakerDialog.constructor_1
+    package: botbuilder-ai
+    summary: >-
+      Initializes a new instance of the [QnAMakerDialog](xref:QnAMakerDialog)
+      class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new QnAMakerDialog(knowledgeBaseId?: string, endpointKey?: string,
+        hostname?: string, noAnswer?: Activity, threshold?: number,
+        suggestionsActivityFactory?: QnASuggestionsActivityFactory,
+        cardNoMatchText?: string, top?: number, cardNoMatchResponse?: Activity,
+        strictFilters?: QnAMakerMetadata[], dialogId?: string,
+        strictFiltersJoinOperator?: JoinOperator)
+      parameters:
+        - id: knowledgeBaseId
+          type: string
+          description: The ID of the QnA Maker knowledge base to query.
+        - id: endpointKey
+          type: string
+          description: The QnA Maker endpoint key to use to query the knowledge base.
+        - id: hostname
+          type: string
+          description: >-
+            The QnA Maker host URL for the knowledge base, starting with
+            "https://" and ending with "/qnamaker".
+        - id: noAnswer
+          type: Activity
+          description: >-
+            (Optional) The activity to send the user when QnA Maker does not
+            find an answer.
+        - id: threshold
+          type: number
+          description: >-
+            (Optional) The threshold above which to treat answers found from the
+            knowledgebase as a match.
+        - id: suggestionsActivityFactory
+          type: <xref uid="botbuilder-ai.QnASuggestionsActivityFactory" />
+          description: >-
+            (xref:botbuilder-ai.QnASuggestionsActivityFactory) used for custom
+            Activity formatting.
+        - id: cardNoMatchText
+          type: string
+          description: >-
+            (Optional) The button text to use with active learning options,
+            allowing a user to indicate none of the options are applicable.
+        - id: top
+          type: number
+          description: >-
+            (Optional) Maximum number of answers to return from the knowledge
+            base.
+        - id: cardNoMatchResponse
+          type: Activity
+          description: >-
+            (Optional) The activity to send the user if they select the no match
+            option on an active learning card.
+        - id: strictFilters
+          type: '<xref uid="botbuilder-ai.QnAMakerMetadata" />[]'
+          description: >-
+            (Optional) QnA Maker metadata with which to filter or boost queries
+            to the knowledge base; or null to apply none.
+        - id: dialogId
+          type: string
+          description: (Optional) Id of the created dialog. Default is 'QnAMakerDialog'.
+        - id: strictFiltersJoinOperator
+          type: <xref uid="botbuilder-ai.JoinOperator" />
+          description: |
+            join operator for strict filters
+  - name: >-
       QnAMakerDialog(string, string, string, Activity, number, string, string,
       number, Activity, QnAMakerMetadata[], string, JoinOperator)
     uid: botbuilder-ai.QnAMakerDialog.constructor
@@ -99,9 +173,11 @@ properties:
   - name: activeLearningCardTitle
     uid: botbuilder-ai.QnAMakerDialog.activeLearningCardTitle
     package: botbuilder-ai
-    summary: >-
+    summary: >
       Gets or sets the card title to use when showing active learning options to
       the user.
+
+      _Note: If suggestionsActivityFactory is passed in, this member is unused._
     fullName: activeLearningCardTitle
     remarks: ''
     isPreview: false
@@ -133,11 +209,14 @@ properties:
   - name: cardNoMatchText
     uid: botbuilder-ai.QnAMakerDialog.cardNoMatchText
     package: botbuilder-ai
-    summary: >-
+    summary: >
       Gets or sets the button text to use with active learning options, allowing
       a user to
 
       indicate non of the options are applicable.
+
+      _Note: If suggestionsActivityFactory is passed in, this member is
+      required._
     fullName: cardNoMatchText
     remarks: ''
     isPreview: false
@@ -447,18 +526,11 @@ methods:
     uid: botbuilder-ai.QnAMakerDialog.continueDialog
     package: botbuilder-ai
     summary: >-
-      Called when the [WaterfallDialog](xref:botbuilder-dialogs.WaterfallDialog)
-      is _continued_, where it is the active dialog and the
+      Called when the dialog is _continued_, where it is the active dialog and
+      the
 
       user replies with a new [Activity](xref:botframework-schema.Activity).
-    remarks: >-
-      If the task is successful, the result indicates whether the dialog is
-      still
-
-      active after the turn has been processed by the dialog. The result may
-      also contain a
-
-      return value.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:

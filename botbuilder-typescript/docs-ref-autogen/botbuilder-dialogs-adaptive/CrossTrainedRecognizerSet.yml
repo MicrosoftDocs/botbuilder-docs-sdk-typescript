@@ -35,6 +35,22 @@ properties:
       return:
         type: string
         description: ''
+  - name: logPersonalInformation
+    uid: >-
+      botbuilder-dialogs-adaptive.CrossTrainedRecognizerSet.logPersonalInformation
+    package: botbuilder-dialogs-adaptive
+    summary: >-
+      (Optional) Flag that designates whether personally identifiable
+      information (PII) should log to telemetry.
+    fullName: logPersonalInformation
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'logPersonalInformation: BoolExpression'
+      return:
+        type: BoolExpression
+        description: ''
   - name: recognizers
     uid: botbuilder-dialogs-adaptive.CrossTrainedRecognizerSet.recognizers
     package: botbuilder-dialogs-adaptive
@@ -98,8 +114,8 @@ methods:
         type: Converter | ConverterFactory
         description: ''
   - name: >-
-      recognize(DialogContext, Activity, [key: string]: string, [key: string]:
-      number)
+      recognize(DialogContext, Activity, Record<string, string>, Record<string,
+      number>)
     uid: botbuilder-dialogs-adaptive.CrossTrainedRecognizerSet.recognize
     package: botbuilder-dialogs-adaptive
     summary: To recognize intents and entities in a users utterance.
@@ -109,22 +125,28 @@ methods:
     syntax:
       content: >-
         function recognize(dialogContext: DialogContext, activity: Activity,
-        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number)
+        telemetryProperties?: Record<string, string>, telemetryMetrics?:
+        Record<string, number>)
       parameters:
         - id: dialogContext
           type: DialogContext
-          description: ''
+          description: The dialog context.
         - id: activity
           type: Activity
-          description: ''
+          description: The activity.
         - id: telemetryProperties
-          type: '[key: string]\: string'
-          description: ''
+          type: 'Record&lt;string, string&gt;'
+          description: >-
+            Optional. Additional properties to be logged to telemetry with the
+            recognizer result event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
-          description: ''
+          type: 'Record&lt;string, number&gt;'
+          description: >-
+            Optional. Additional metrics to be logged to telemetry with the
+            recognizer result event.
       return:
         type: Promise&lt;RecognizerResult&gt;
-        description: ''
-extends: Recognizer
+        description: >-
+          Promise of the intent recognized by the recognizer in the form of a
+          RecognizerResult.
+extends: <xref uid="botbuilder-dialogs-adaptive.AdaptiveRecognizer" />
