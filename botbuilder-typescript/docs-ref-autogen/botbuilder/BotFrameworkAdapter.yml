@@ -283,72 +283,7 @@ methods:
     uid: botbuilder.BotFrameworkAdapter.continueConversation_1
     package: botbuilder
     summary: ''
-    remarks: >-
-      This is often referred to as a _proactive notification_, the bot can
-      proactively
-
-      send a message to a conversation or user without waiting for an incoming
-      message.
-
-      For example, a bot can use this method to send notifications or coupons to
-      a user.
-
-
-      To send a proactive message:
-
-      1. Save a copy of a
-      [ConversationReference](xref:botframework-schema.ConversationReference)
-         from an incoming activity. For example, you can store the conversation reference in a database.
-      1. Call this method to resume the conversation at a later time. Use the
-      saved reference to access the conversation.
-
-      1. On success, the adapter generates a
-      [TurnContext](xref:botbuilder-core.TurnContext) object and calls the
-      `logic` function handler.
-         Use the `logic` function to send the proactive message.
-
-      To copy the reference from any incoming activity in the conversation, use
-      the
-
-      [TurnContext.getConversationReference](xref:botbuilder-core.TurnContext.getConversationReference)
-      method.
-
-
-      This method is similar to the
-      [processActivity](xref:botbuilder.BotFrameworkAdapter.processActivity)
-      method.
-
-      The adapter creates a [TurnContext](xref:botbuilder-core.TurnContext) and
-      routes it through
-
-      its middleware before calling the `logic` handler. The created activity
-      will have a
-
-      [type](xref:botframework-schema.Activity.type) of 'event' and a
-
-      [name](xref:botframework-schema.Activity.name) of 'continueConversation'.
-
-
-      For example:
-
-      ```JavaScript
-
-      server.post('/api/notifyUser', async (req, res) => {
-         // Lookup previously saved conversation reference.
-         const reference = await findReference(req.body.refId);
-
-         // Proactively notify the user.
-         if (reference) {
-            await adapter.continueConversation(reference, async (context) => {
-               await context.sendActivity(req.body.message);
-            });
-            res.send(200);
-         } else {
-            res.send(404);
-         }
-      });
-
-      ```
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -419,11 +354,10 @@ methods:
     package: botbuilder
     summary: Create a ConnectorClient with a ClaimsIdentity and an explicit audience.
     remarks: >-
-      If the ClaimsIdentity contains the claims for a Skills request, create a
-      ConnectorClient for use with Skills.
+      If the trimmed audience is not a non-zero length string, the audience will
+      be derived from the ClaimsIdentity or
 
-      Derives the correct audience from the ClaimsIdentity, or the instance's
-      credentials property.
+      the instance's credentials property.
     isPreview: false
     isDeprecated: false
     syntax:
@@ -1028,25 +962,30 @@ methods:
       return:
         type: Promise&lt;TokenResponse&gt;
         description: ''
-  - name: healthCheck(TurnContext)
-    uid: botbuilder.BotFrameworkAdapter.healthCheck
+  - name: 'process(Request & Emitter, Response, BotLogic)'
+    uid: botbuilder.BotFrameworkAdapter.process
     package: botbuilder
-    summary: >-
-      Invoked when the bot is sent a health check from the hosting
-      infrastructure or, in the case of Skills the parent bot.
+    summary: ''
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function healthCheck(context: TurnContext)'
+      content: 'function process(req: Request & Emitter, res: Response, logic: BotLogic)'
       parameters:
-        - id: context
-          type: TurnContext
-          description: |
-            The [TurnContext](xref:botbuilder-core.TurnContext) for this turn.
+        - id: req
+          type: >-
+            <xref uid="botbuilder.Request" /> & <xref uid="botbuilder.Emitter"
+            />
+          description: ''
+        - id: res
+          type: <xref uid="botbuilder.Response" />
+          description: ''
+        - id: logic
+          type: <xref uid="botbuilder.BotLogic" />
+          description: ''
       return:
-        type: Promise&lt;HealthCheckResponse&gt;
-        description: The result of the health check.
+        type: Promise&lt;void&gt;
+        description: ''
   - name: >-
       processActivity(WebRequest, WebResponse, (context: TurnContext) =>
       Promise<any>)

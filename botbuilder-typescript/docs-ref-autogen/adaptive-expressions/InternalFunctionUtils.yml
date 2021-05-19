@@ -76,6 +76,44 @@ methods:
       return:
         type: <xref uid="adaptive-expressions.ValueWithError" />
         description: Value and error information if any.
+  - name: commonStringify(unknown)
+    uid: adaptive-expressions.InternalFunctionUtils.commonStringify
+    package: adaptive-expressions
+    summary: Common Stringfy an object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function commonStringify(input: unknown)'
+      parameters:
+        - id: input
+          type: unknown
+          description: |
+            input object.
+      return:
+        type: string
+        description: ''
+  - name: convertToList(unknown)
+    uid: adaptive-expressions.InternalFunctionUtils.convertToList
+    package: adaptive-expressions
+    summary: |-
+      Convert an object into array.
+      If the instance is array, return itself.
+      If the instance is object, return {key, value} pair list.
+      Else return undefined.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function convertToList(instance: unknown)'
+      parameters:
+        - id: instance
+          type: unknown
+          description: |
+            input instance.
+      return:
+        type: 'unknown[] | undefined'
+        description: ''
   - name: 'foreach(Expression, MemoryInterface, Options)'
     uid: adaptive-expressions.InternalFunctionUtils.foreach
     package: adaptive-expressions
@@ -100,6 +138,34 @@ methods:
             Options.
       return:
         type: <xref uid="adaptive-expressions.ValueWithError" />
+        description: ''
+  - name: getTextDecoder(string)
+    uid: adaptive-expressions.InternalFunctionUtils.getTextDecoder
+    package: adaptive-expressions
+    summary: TextDecoder helper function.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function getTextDecoder(code: string)'
+      parameters:
+        - id: code
+          type: string
+          description: ''
+      return:
+        type: TextDecoder
+        description: ''
+  - name: getTextEncoder()
+    uid: adaptive-expressions.InternalFunctionUtils.getTextEncoder
+    package: adaptive-expressions
+    summary: TextEncoder helper function.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: static function getTextEncoder()
+      return:
+        type: TextEncoder
         description: ''
   - name: 'isEqual(any[])'
     uid: adaptive-expressions.InternalFunctionUtils.isEqual
@@ -134,6 +200,37 @@ methods:
       return:
         type: boolean
         description: True if boolean true or non-null.
+  - name: >-
+      lambdaEvaluator<T>(Expression, MemoryInterface, Options, T[],
+      (currentItem: T, result: U, error: string) => boolean)
+    uid: adaptive-expressions.InternalFunctionUtils.lambdaEvaluator
+    package: adaptive-expressions
+    summary: Lambda evaluator.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function lambdaEvaluator<T>(expression: Expression, state:
+        MemoryInterface, options: Options, list: T[], callback: (currentItem: T,
+        result: U, error: string) => boolean)
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: expression.
+        - id: state
+          type: <xref uid="adaptive-expressions.MemoryInterface" />
+          description: memory state.
+        - id: options
+          type: <xref uid="adaptive-expressions.Options" />
+          description: options.
+        - id: list
+          type: 'T[]'
+          description: item list.
+        - id: callback
+          type: '(currentItem: T, result: U, error: string) =&gt; boolean'
+          description: |
+            call back. return the should break flag.
   - name: parseStringOrUndefined(string | undefined)
     uid: adaptive-expressions.InternalFunctionUtils.parseStringOrUndefined
     package: adaptive-expressions
@@ -238,32 +335,15 @@ methods:
       return:
         type: Object
         description: ''
-  - name: toBinary(string)
-    uid: adaptive-expressions.InternalFunctionUtils.toBinary
-    package: adaptive-expressions
-    summary: Convert string into Uint8Array object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static function toBinary(stringToConvert: string)'
-      parameters:
-        - id: stringToConvert
-          type: string
-          description: |
-            Input string.
-      return:
-        type: Uint8Array
-        description: ''
-  - name: validateForeach(Expression)
-    uid: adaptive-expressions.InternalFunctionUtils.validateForeach
+  - name: ValidateLambdaExpression(Expression)
+    uid: adaptive-expressions.InternalFunctionUtils.ValidateLambdaExpression
     package: adaptive-expressions
     summary: 'Validator for foreach, select, and where functions.'
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function validateForeach(expression: Expression)'
+      content: 'static function ValidateLambdaExpression(expression: Expression)'
       parameters:
         - id: expression
           type: <xref uid="adaptive-expressions.Expression" />
