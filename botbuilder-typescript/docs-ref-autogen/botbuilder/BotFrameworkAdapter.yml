@@ -1308,7 +1308,9 @@ methods:
       return:
         type: this
         description: ''
-  - name: 'useNamedPipe((context: TurnContext) => Promise<any>, string)'
+  - name: >-
+      useNamedPipe((context: TurnContext) => Promise<any>, string, number, () =>
+      void)
     uid: botbuilder.BotFrameworkAdapter.useNamedPipe
     package: botbuilder
     summary: >-
@@ -1320,15 +1322,22 @@ methods:
     syntax:
       content: >-
         function useNamedPipe(logic: (context: TurnContext) => Promise<any>,
-        pipeName?: string)
+        pipeName?: string, retryCount?: number, onListen?: () => void)
       parameters:
         - id: logic
           type: '(context: TurnContext) =&gt; Promise&lt;any&gt;'
-          description: |
-            The logic that will handle incoming requests.
+          description: The logic that will handle incoming requests.
         - id: pipeName
           type: string
           description: The name of the named pipe to use when creating the server.
+        - id: retryCount
+          type: number
+          description: Number of times to attempt to bind incoming and outgoing pipe
+        - id: onListen
+          type: () =&gt; void
+          description: >
+            Optional callback that fires once when server is listening on both
+            incoming and outgoing pipe
       return:
         type: Promise&lt;void&gt;
         description: ''

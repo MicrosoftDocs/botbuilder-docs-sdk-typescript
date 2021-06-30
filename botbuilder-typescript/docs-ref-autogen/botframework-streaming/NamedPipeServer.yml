@@ -36,14 +36,13 @@ constructors:
             process incoming messages received by this client.
         - id: autoReconnect
           type: boolean
-          description: >
-            Optional setting to determine if the client should attempt to
-            reconnect automatically on disconnection events. Defaults to true.
+          description: |
+            Deprecated: Automatic reconnection is the default behavior.
 properties:
   - name: isConnected
     uid: botframework-streaming.NamedPipeServer.isConnected
     package: botframework-streaming
-    summary: Returns true if currently connected.
+    summary: Get connected status
     fullName: isConnected
     remarks: ''
     isPreview: false
@@ -52,7 +51,7 @@ properties:
       content: boolean isConnected
       return:
         type: boolean
-        description: ''
+        description: true if currently connected.
 methods:
   - name: disconnect()
     uid: botframework-streaming.NamedPipeServer.disconnect
@@ -84,7 +83,7 @@ methods:
           A promise for an instance of
           [IReceiveResponse](xref:botframework-streaming.IReceiveResponse) on
           completion of the send operation.
-  - name: start()
+  - name: start(() => void)
     uid: botframework-streaming.NamedPipeServer.start
     package: botframework-streaming
     summary: >-
@@ -94,7 +93,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function start()
+      content: 'function start(onListen?: () => void)'
+      parameters:
+        - id: onListen
+          type: () =&gt; void
+          description: >-
+            Optional callback that fires once when server is listening on both
+            incoming and outgoing pipe
       return:
         type: Promise&lt;string&gt;
         description: >-
