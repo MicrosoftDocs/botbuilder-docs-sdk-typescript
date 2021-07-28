@@ -1,0 +1,195 @@
+### YamlMime:TSType
+name: TemplatesParser
+uid: botbuilder-lg.TemplatesParser
+package: botbuilder-lg
+summary: LG Parser
+fullName: TemplatesParser
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: importRegex
+    uid: botbuilder-lg.TemplatesParser.importRegex
+    package: botbuilder-lg
+    summary: Import regex.
+    fullName: importRegex
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        public static importRegex: RegExp = new
+        RegExp(/\[([^\]]*)\]\(([^)]*)\)([\w\s]*)/)
+      return:
+        type: RegExp
+        description: ''
+  - name: inlineContentId
+    uid: botbuilder-lg.TemplatesParser.inlineContentId
+    package: botbuilder-lg
+    summary: Inline text id.
+    fullName: inlineContentId
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static inlineContentId: string = "inline content"'
+      return:
+        type: string
+        description: ''
+  - name: optionRegex
+    uid: botbuilder-lg.TemplatesParser.optionRegex
+    package: botbuilder-lg
+    summary: option regex.
+    fullName: optionRegex
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static optionRegex: RegExp = new RegExp(/>\s*!#(.*)$/)'
+      return:
+        type: RegExp
+        description: ''
+methods:
+  - name: antlrParseTemplates(LGResource)
+    uid: botbuilder-lg.TemplatesParser.antlrParseTemplates
+    package: botbuilder-lg
+    summary: Parse LG content and return the AST.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function antlrParseTemplates(resource: LGResource)'
+      parameters:
+        - id: resource
+          type: <xref uid="botbuilder-lg.LGResource" />
+          description: LG resource.
+      return:
+        type: <xref uid="botbuilder-lg.FileContext" />
+        description: The abstract syntax tree of lg file.
+  - name: 'defaultFileResolver(LGResource, string)'
+    uid: botbuilder-lg.TemplatesParser.defaultFileResolver
+    package: botbuilder-lg
+    summary: >-
+      Default import resolver, using relative/absolute file path to access the
+      file content.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function defaultFileResolver(resource: LGResource, resourceId:
+        string)
+      parameters:
+        - id: resource
+          type: <xref uid="botbuilder-lg.LGResource" />
+          description: Original Resource.
+        - id: resourceId
+          type: string
+          description: |
+            Import path.
+      return:
+        type: <xref uid="botbuilder-lg.LGResource" />
+        description: ''
+  - name: 'parseFile(string, ImportResolverDelegate, ExpressionParser)'
+    uid: botbuilder-lg.TemplatesParser.parseFile
+    package: botbuilder-lg
+    summary: parse a file and return LG file.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function parseFile(filePath: string, importResolver?:
+        ImportResolverDelegate, expressionParser?: ExpressionParser)
+      parameters:
+        - id: filePath
+          type: string
+          description: LG absolute file path..
+        - id: importResolver
+          type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
+          description: Resolver to resolve LG import id to template text.
+        - id: expressionParser
+          type: ExpressionParser
+          description: Expression parser for evaluating expressions.
+      return:
+        type: <xref uid="botbuilder-lg.Templates" />
+        description: New lg file.
+  - name: 'parseResource(LGResource, ImportResolverDelegate, ExpressionParser)'
+    uid: botbuilder-lg.TemplatesParser.parseResource
+    package: botbuilder-lg
+    summary: Parser to turn lg content into a Templates.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function parseResource(resource: LGResource, importResolver?:
+        ImportResolverDelegate, expressionParser?: ExpressionParser)
+      parameters:
+        - id: resource
+          type: <xref uid="botbuilder-lg.LGResource" />
+          description: LG resource.
+        - id: importResolver
+          type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
+          description: Resolver to resolve LG import id to template text.
+        - id: expressionParser
+          type: ExpressionParser
+          description: Expression parser for evaluating expressions.
+      return:
+        type: <xref uid="botbuilder-lg.Templates" />
+        description: Entity.
+  - name: 'parseText(string, string, ImportResolverDelegate, ExpressionParser)'
+    uid: botbuilder-lg.TemplatesParser.parseText
+    package: botbuilder-lg
+    summary: Parser to turn lg content into a Templates.
+    remarks: ''
+    isPreview: false
+    isDeprecated: true
+    customDeprecatedMessage: This method will soon be deprecated. Use ParseResource instead.
+    syntax:
+      content: >-
+        static function parseText(content: string, id: string, importResolver?:
+        ImportResolverDelegate, expressionParser?: ExpressionParser)
+      parameters:
+        - id: content
+          type: string
+          description: Text content contains lg templates.
+        - id: id
+          type: string
+          description: >-
+            Id is the identifier of content. If importResolver is undefined, id
+            must be a full path string.
+        - id: importResolver
+          type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
+          description: Resolver to resolve LG import id to template text.
+        - id: expressionParser
+          type: ExpressionParser
+          description: Expression parser for evaluating expressions.
+      return:
+        type: <xref uid="botbuilder-lg.Templates" />
+        description: Entity.
+  - name: 'parseTextWithRef(string, Templates)'
+    uid: botbuilder-lg.TemplatesParser.parseTextWithRef
+    package: botbuilder-lg
+    summary: >-
+      Parser to turn lg content into a Templates based on the original
+      Templates.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function parseTextWithRef(content: string, originalTemplates:
+        Templates)
+      parameters:
+        - id: content
+          type: string
+          description: Text content contains lg templates.
+        - id: originalTemplates
+          type: <xref uid="botbuilder-lg.Templates" />
+          description: |
+            Original templates
+      return:
+        type: <xref uid="botbuilder-lg.Templates" />
+        description: ''

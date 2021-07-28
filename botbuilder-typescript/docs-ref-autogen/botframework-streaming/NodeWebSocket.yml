@@ -1,0 +1,181 @@
+### YamlMime:TSType
+name: NodeWebSocket
+uid: botframework-streaming.NodeWebSocket
+package: botframework-streaming
+summary: >-
+  An implementation of [ISocket](xref:botframework-streaming.ISocket) to use
+  with a
+  [NodeWebSocketFactory](xref:botframework-streaming.NodeWebSocketFactory) to
+  create a WebSocket server.
+fullName: NodeWebSocket
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: NodeWebSocket(WebSocket)
+    uid: botframework-streaming.NodeWebSocket.constructor
+    package: botframework-streaming
+    summary: >-
+      Creates a new [NodeWebSocket](xref:botframework-streaming.NodeWebSocket)
+      instance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new NodeWebSocket(wsSocket?: WebSocket)'
+      parameters:
+        - id: wsSocket
+          type: WebSocket
+          description: |
+            The `ws` WebSocket instance to build this connection on.
+properties:
+  - name: isConnected
+    uid: botframework-streaming.NodeWebSocket.isConnected
+    package: botframework-streaming
+    summary: >-
+      Indicates if the 'ws' WebSocket is currently connected and ready to send
+      messages.
+    fullName: isConnected
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: boolean isConnected
+      return:
+        type: boolean
+        description: >-
+          `true` if the underlying websocket is ready and availble to send
+          messages, otherwise `false`.
+methods:
+  - name: 'close(number, string)'
+    uid: botframework-streaming.NodeWebSocket.close
+    package: botframework-streaming
+    summary: Close the socket.
+    remarks: >-
+      Optionally pass in a status code and string explaining why the connection
+      is closing.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function close(code?: number, data?: string)'
+      parameters:
+        - id: code
+          type: number
+          description: Optional status code to explain why the connection has closed.
+        - id: data
+          type: string
+          description: |
+            Optional additional data to explain why the connection has closed.
+  - name: 'connect(string, number)'
+    uid: botframework-streaming.NodeWebSocket.connect
+    package: botframework-streaming
+    summary: Connects to the supporting socket using WebSocket protocol.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function connect(serverAddress: string, port?: number)'
+      parameters:
+        - id: serverAddress
+          type: string
+          description: The address the server is listening on.
+        - id: port
+          type: number
+          description: 'The port the server is listening on, defaults to 8082.'
+      return:
+        type: Promise&lt;void&gt;
+        description: >-
+          A Promise that resolves when the websocket connection is closed, or
+          rejects on an error.
+  - name: 'create(INodeIncomingMessage, INodeSocket, INodeBuffer)'
+    uid: botframework-streaming.NodeWebSocket.create
+    package: botframework-streaming
+    summary: 'Create and set a `ws` WebSocket with an HTTP Request, Socket and Buffer.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function create(req: INodeIncomingMessage, socket: INodeSocket, head:
+        INodeBuffer)
+      parameters:
+        - id: req
+          type: <xref uid="botframework-streaming.INodeIncomingMessage" />
+          description: >-
+            An HTTP Request matching the
+            [INodeIncomingMessage](xref:botframework-streaming.INodeIncomingMessage)
+            interface.
+        - id: socket
+          type: <xref uid="botframework-streaming.INodeSocket" />
+          description: >-
+            A Socket [INodeSocket](xref:botframework-streaming.INodeSocket)
+            interface.
+        - id: head
+          type: <xref uid="botframework-streaming.INodeBuffer" />
+          description: >-
+            A Buffer [INodeBuffer](xref:botframework-streaming.INodeBuffer)
+            interface.
+      return:
+        type: Promise&lt;void&gt;
+        description: >-
+          A Promise that resolves after the WebSocket upgrade has been handled,
+          otherwise rejects with a thrown error.
+  - name: 'setOnCloseHandler((x: any) => void)'
+    uid: botframework-streaming.NodeWebSocket.setOnCloseHandler
+    package: botframework-streaming
+    summary: Set the callback to call when encountering socket closures.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setOnCloseHandler(handler: (x: any) => void)'
+      parameters:
+        - id: handler
+          type: '(x: any) =&gt; void'
+          description: |
+            The callback to handle the "close" event.
+  - name: 'setOnErrorHandler((x: any) => void)'
+    uid: botframework-streaming.NodeWebSocket.setOnErrorHandler
+    package: botframework-streaming
+    summary: Set the callback to call when encountering errors.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setOnErrorHandler(handler: (x: any) => void)'
+      parameters:
+        - id: handler
+          type: '(x: any) =&gt; void'
+          description: |
+            The callback to handle the "error" event.
+  - name: 'setOnMessageHandler((x: any) => void)'
+    uid: botframework-streaming.NodeWebSocket.setOnMessageHandler
+    package: botframework-streaming
+    summary: >-
+      Set the handler for `'data'` and `'message'` events received on the
+      socket.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setOnMessageHandler(handler: (x: any) => void)'
+      parameters:
+        - id: handler
+          type: '(x: any) =&gt; void'
+          description: |
+            The callback to handle the "message" event.
+  - name: write(INodeBuffer)
+    uid: botframework-streaming.NodeWebSocket.write
+    package: botframework-streaming
+    summary: Writes a buffer to the socket and sends it.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function write(buffer: INodeBuffer)'
+      parameters:
+        - id: buffer
+          type: <xref uid="botframework-streaming.INodeBuffer" />
+          description: |
+            The buffer of data to send across the connection.

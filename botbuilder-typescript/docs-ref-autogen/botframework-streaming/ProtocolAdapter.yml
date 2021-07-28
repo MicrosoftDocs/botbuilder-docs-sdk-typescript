@@ -1,0 +1,117 @@
+### YamlMime:TSType
+name: ProtocolAdapter
+uid: botframework-streaming.ProtocolAdapter
+package: botframework-streaming
+summary: Creates a protocol adapter for Streaming.
+fullName: ProtocolAdapter
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
+      ProtocolAdapter(RequestHandler, RequestManager, PayloadSender,
+      PayloadReceiver)
+    uid: botframework-streaming.ProtocolAdapter.constructor
+    package: botframework-streaming
+    summary: Creates a new instance of the protocol adapter class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new ProtocolAdapter(requestHandler: RequestHandler, requestManager:
+        RequestManager, sender: PayloadSender, receiver: PayloadReceiver)
+      parameters:
+        - id: requestHandler
+          type: <xref uid="botframework-streaming.RequestHandler" />
+          description: >-
+            The [RequestHandler](xref:botframework-streaming.RequestHandler)
+            that will process incoming requests.
+        - id: requestManager
+          type: <xref uid="botframework-streaming.RequestManager" />
+          description: >-
+            The [RequestManager](xref:botframework-streaming.RequestManager)
+            that will process outgoing requests.
+        - id: sender
+          type: <xref uid="botframework-streaming.PayloadSender" />
+          description: >-
+            The [PayloadSender](xref:botframework-streaming.PayloadSender) for
+            use with outgoing requests.
+        - id: receiver
+          type: <xref uid="botframework-streaming.PayloadReceiver" />
+          description: >
+            The [PayloadReceiver](xref:botframework-streaming.PayloadReceiver)
+            for use with incoming requests.
+methods:
+  - name: onCancelStream(PayloadAssembler)
+    uid: botframework-streaming.ProtocolAdapter.onCancelStream
+    package: botframework-streaming
+    summary: Executes the receive pipeline when a cancellation comes in.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onCancelStream(contentStreamAssembler: PayloadAssembler)'
+      parameters:
+        - id: contentStreamAssembler
+          type: <xref uid="botframework-streaming.PayloadAssembler" />
+          description: >
+            The payload assembler processing the incoming data that this
+            cancellation request targets.
+  - name: 'onReceiveRequest(string, IReceiveRequest)'
+    uid: botframework-streaming.ProtocolAdapter.onReceiveRequest
+    package: botframework-streaming
+    summary: Executes the receive pipeline when a request comes in.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onReceiveRequest(id: string, request: IReceiveRequest)'
+      parameters:
+        - id: id
+          type: string
+          description: The id the resources created for the response will be assigned.
+        - id: request
+          type: <xref uid="botframework-streaming.IReceiveRequest" />
+          description: |
+            The incoming request to process.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: 'onReceiveResponse(string, IReceiveResponse)'
+    uid: botframework-streaming.ProtocolAdapter.onReceiveResponse
+    package: botframework-streaming
+    summary: Executes the receive pipeline when a response comes in.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onReceiveResponse(id: string, response: IReceiveResponse)'
+      parameters:
+        - id: id
+          type: string
+          description: The id the resources created for the response will be assigned.
+        - id: response
+          type: <xref uid="botframework-streaming.IReceiveResponse" />
+          description: |
+            The incoming response to process.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: sendRequest(StreamingRequest)
+    uid: botframework-streaming.ProtocolAdapter.sendRequest
+    package: botframework-streaming
+    summary: Sends a request over the attached request manager.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function sendRequest(request: StreamingRequest)'
+      parameters:
+        - id: request
+          type: <xref uid="botframework-streaming.StreamingRequest" />
+          description: The outgoing request to send.
+      return:
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
+        description: The response to the specified request.

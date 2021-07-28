@@ -1,0 +1,99 @@
+### YamlMime:TSType
+name: BrowserSessionStorage
+uid: botbuilder-core.BrowserSessionStorage
+package: botbuilder-core
+summary: Storage provider that uses browser session storage.
+fullName: BrowserSessionStorage
+remarks: >-
+  Anything written to the store will only be persisted for the lifetime of a
+  single page within a
+
+  browser tab. The storage will survive page reloads but closing the tab will
+  delete anything
+
+  persisted by the store and opening a new browser tab will create a new
+  persistance store for the
+
+  page.
+
+
+  ```JavaScript
+
+  const { BrowserSessionStorage, ConversationState } = require('botbuilder');
+
+
+  const conversationState = new ConversationState(new BrowserSessionStorage());
+
+  ```
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: BrowserSessionStorage()
+    uid: botbuilder-core.BrowserSessionStorage.constructor
+    package: botbuilder-core
+    summary: >-
+      Creates a new
+      [BrowserSessionStorage](xref:botbuilder-core.BrowserSessionStorage)
+      instance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: new BrowserSessionStorage()
+methods:
+  - name: 'delete(string[])'
+    uid: botbuilder-core.BrowserSessionStorage.delete
+    package: botbuilder-core
+    summary: Deletes storage items from storage.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delete(keys: string[])'
+      parameters:
+        - id: keys
+          type: 'string[]'
+          description: >
+            Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
+            delete.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: 'read(string[])'
+    uid: botbuilder-core.BrowserSessionStorage.read
+    package: botbuilder-core
+    summary: Reads storage items from storage.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function read(keys: string[])'
+      parameters:
+        - id: keys
+          type: 'string[]'
+          description: >-
+            Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
+            read.
+      return:
+        type: Promise&lt;<xref uid="botbuilder-core.StoreItems" />&gt;
+        description: The read items.
+  - name: write(StoreItems)
+    uid: botbuilder-core.BrowserSessionStorage.write
+    package: botbuilder-core
+    summary: Writes storage items to storage.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function write(changes: StoreItems)'
+      parameters:
+        - id: changes
+          type: <xref uid="botbuilder-core.StoreItems" />
+          description: >
+            The [StoreItems](xref:botbuilder-core.StoreItems) to write, indexed
+            by key.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+extends: <xref uid="botbuilder-core.MemoryStorage" />

@@ -1,0 +1,493 @@
+### YamlMime:TSType
+name: Clause
+uid: adaptive-expressions.Clause
+package: adaptive-expressions
+summary: A canonical normal form expression.
+fullName: Clause
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'Clause(Clause | Expression | Expression[])'
+    uid: adaptive-expressions.Clause.constructor
+    package: adaptive-expressions
+    summary: Initializes a new instance of the `Clause` class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new Clause(clauseOrExpression?: Clause | Expression | Expression[])'
+      parameters:
+        - id: clauseOrExpression
+          type: >-
+            <xref uid="adaptive-expressions.Clause" /> | <xref
+            uid="adaptive-expressions.Expression" /> | <xref
+            uid="adaptive-expressions.Expression" />[]
+          description: >
+            A clause, expression or an array of expressions to initialize a
+            `Clause`.
+properties:
+  - name: anyBindings
+    uid: adaptive-expressions.Clause.anyBindings
+    package: adaptive-expressions
+    summary: Gets or sets the anyBinding dictionary.
+    fullName: anyBindings
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public anyBindings: Map<string, string> = new Map<string, string>()'
+      return:
+        type: 'Map&lt;string, string&gt;'
+        description: ''
+  - name: children
+    uid: adaptive-expressions.Clause.children
+    package: adaptive-expressions
+    summary: Children expressions.
+    fullName: children
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public children: Expression[]'
+      return:
+        type: '<xref uid="adaptive-expressions.Expression" />[]'
+        description: ''
+  - name: evaluator
+    uid: adaptive-expressions.Clause.evaluator
+    package: adaptive-expressions
+    summary: Evaluator of expression.
+    fullName: evaluator
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public evaluator: ExpressionEvaluator'
+      return:
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
+        description: ''
+  - name: functions
+    uid: adaptive-expressions.Clause.functions
+    package: adaptive-expressions
+    summary: >-
+      Dictionary of function => ExpressionEvaluator.
+
+      This is all available functions, you can add custom functions to it, but
+      you cannot
+
+      replace builtin functions.  If you clear the dictionary, it will be reset
+      to the built in functions.
+    fullName: functions
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static functions: FunctionTable = new FunctionTable()'
+      return:
+        type: <xref uid="adaptive-expressions.FunctionTable" />
+        description: ''
+  - name: returnType
+    uid: adaptive-expressions.Clause.returnType
+    package: adaptive-expressions
+    summary: Expected result of evaluating expression.
+    fullName: returnType
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: ReturnType returnType
+      return:
+        type: <xref uid="adaptive-expressions.ReturnType" />
+        description: ''
+  - name: subsumed
+    uid: adaptive-expressions.Clause.subsumed
+    package: adaptive-expressions
+    summary: Gets or sets whether the clause is subsumed.
+    fullName: subsumed
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public subsumed: boolean = false'
+      return:
+        type: boolean
+        description: ''
+  - name: type
+    uid: adaptive-expressions.Clause.type
+    package: adaptive-expressions
+    summary: Type of expression.
+    fullName: type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: string type
+      return:
+        type: string
+        description: ''
+methods:
+  - name: 'andExpression(Expression[])'
+    uid: adaptive-expressions.Clause.andExpression
+    package: adaptive-expressions
+    summary: Construct and validate an And expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function andExpression(children: Expression[])'
+      parameters:
+        - id: children
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          description: Child clauses.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: deepEquals(Expression)
+    uid: adaptive-expressions.Clause.deepEquals
+    package: adaptive-expressions
+    summary: Do a deep equality between expressions.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function deepEquals(other: Expression)'
+      parameters:
+        - id: other
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: Other expression.
+      return:
+        type: boolean
+        description: True if expressions are the same.
+  - name: 'equalsExpression(Expression[])'
+    uid: adaptive-expressions.Clause.equalsExpression
+    package: adaptive-expressions
+    summary: Construct and validate an Equals expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function equalsExpression(children: Expression[])'
+      parameters:
+        - id: children
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          description: Child clauses.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: lambaExpression(EvaluateExpressionDelegate)
+    uid: adaptive-expressions.Clause.lambaExpression
+    package: adaptive-expressions
+    summary: Construct an expression from a EvaluateExpressionDelegate
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function lambaExpression(func: EvaluateExpressionDelegate)'
+      parameters:
+        - id: func
+          type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
+          description: |
+            Function to create an expression from.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: ''
+  - name: 'lambda((arg0: any) => any)'
+    uid: adaptive-expressions.Clause.lambda
+    package: adaptive-expressions
+    summary: |-
+      Construct an expression from a lamba expression over the state.
+      Exceptions will be caught and surfaced as an error string.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function lambda(func: (arg0: any) => any)'
+      parameters:
+        - id: func
+          type: '(arg0: any) =&gt; any'
+          description: ambda expression to evaluate.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: lookup(string)
+    uid: adaptive-expressions.Clause.lookup
+    package: adaptive-expressions
+    summary: >-
+      Lookup an
+      [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+      function by name.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function lookup(functionName: string)'
+      parameters:
+        - id: functionName
+          type: string
+          description: Name of function to lookup.
+      return:
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
+        description: >-
+          An
+          [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+          corresponding to the function name.
+  - name: 'makeExpression(string, ExpressionEvaluator, Expression[])'
+    uid: adaptive-expressions.Clause.makeExpression
+    package: adaptive-expressions
+    summary: Make an expression and validate it.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function makeExpression(type: string, evaluator:
+        ExpressionEvaluator, children: Expression[])
+      parameters:
+        - id: type
+          type: string
+          description: Type of expression from ExpressionType.
+        - id: evaluator
+          type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
+          description: Information about how to validate and evaluate expression.
+        - id: children
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          description: |
+            Child expressions.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: ''
+  - name: 'matches(Clause, MemoryInterface | any)'
+    uid: adaptive-expressions.Clause.matches
+    package: adaptive-expressions
+    summary: Determines whether the current `Clause` matches with another `Clause`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function matches(clause: Clause, memory: MemoryInterface | any)'
+      parameters:
+        - id: clause
+          type: <xref uid="adaptive-expressions.Clause" />
+          description: The other `Clause` instance to compare with.
+        - id: memory
+          type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
+          description: The scope for looking up variables.
+      return:
+        type: boolean
+        description: A boolean value indicating whether the two clauses are matches.
+  - name: notExpression(Expression)
+    uid: adaptive-expressions.Clause.notExpression
+    package: adaptive-expressions
+    summary: Construct and validate an Not expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function notExpression(child: Expression)'
+      parameters:
+        - id: child
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: ''
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: 'orExpression(Expression[])'
+    uid: adaptive-expressions.Clause.orExpression
+    package: adaptive-expressions
+    summary: Construct and validate an Or expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function orExpression(children: Expression[])'
+      parameters:
+        - id: children
+          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          description: Child clauses.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: 'parse(string, EvaluatorLookup)'
+    uid: adaptive-expressions.Clause.parse
+    package: adaptive-expressions
+    summary: >-
+      Parse an expression string into an
+      [Expression](xref:adaptive-expressions.Expression) object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function parse(expression: string, lookup?: EvaluatorLookup)'
+      parameters:
+        - id: expression
+          type: string
+          description: Expression string.
+        - id: lookup
+          type: <xref uid="adaptive-expressions.ExpressionParser.EvaluatorLookup" />
+          description: >-
+            Optional.
+            [EvaluatorLookup](xref:adaptive-expressions.EvaluatorLookup)
+            function lookup when parsing the expression. Default is
+            [Expression.lookup](xref:adaptive-expressions.Expression.lookup)
+            which uses
+            [Expression.functions](xref:adaptive-expressions.Expression.functions)
+            table.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: The expression object.
+  - name: references()
+    uid: adaptive-expressions.Clause.references
+    package: adaptive-expressions
+    summary: >-
+      Return the static reference paths to memory.
+
+      Return all static paths to memory.  If there is a computed element index,
+      then the path is terminated there,
+
+      but you might get other paths from the computed part as well.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function references()
+      return:
+        type: 'string[]'
+        description: List of the static reference paths.
+  - name: 'referenceWalk(Expression, (arg0: Expression) => boolean)'
+    uid: adaptive-expressions.Clause.referenceWalk
+    package: adaptive-expressions
+    summary: >-
+      Walking function for identifying static memory references in an
+      expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function referenceWalk(expression: Expression, extension?: (arg0:
+        Expression) => boolean)
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: Expression to analyze.
+        - id: extension
+          type: '(arg0: Expression) =&gt; boolean'
+          description: >-
+            If present, called to override lookup for things like template
+            expansion.
+      return:
+        type: Object
+        description: Accessor path of expression.
+  - name: 'relationship(Clause, PredicateComparers)'
+    uid: adaptive-expressions.Clause.relationship
+    package: adaptive-expressions
+    summary: Compares the current `Clause` with another `Clause`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function relationship(other: Clause, comparers: PredicateComparers)'
+      parameters:
+        - id: other
+          type: <xref uid="adaptive-expressions.Clause" />
+          description: The other `Clause` to compare.
+        - id: comparers
+          type: <xref uid="adaptive-expressions.PredicateComparers" />
+          description: >-
+            A comparer, which is a dictionary of `PredicateComparer` with string
+            keys.
+      return:
+        type: <xref uid="adaptive-expressions.RelationshipType" />
+        description: A `RelationshipType` value between two `Clause` instances.
+  - name: 'setPathToValue(Expression, any)'
+    uid: adaptive-expressions.Clause.setPathToValue
+    package: adaptive-expressions
+    summary: Construct and validate an Set a property expression to a value expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function setPathToValue(property: Expression, value: any)'
+      parameters:
+        - id: property
+          type: <xref uid="adaptive-expressions.Expression" />
+          description: property expression.
+        - id: value
+          type: any
+          description: value expression.
+      return:
+        type: <xref uid="adaptive-expressions.Expression" />
+        description: New expression.
+  - name: splitIgnores()
+    uid: adaptive-expressions.Clause.splitIgnores
+    package: adaptive-expressions
+    summary: Splits ignored child expressions.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function splitIgnores()
+  - name: 'toString(string[], number)'
+    uid: adaptive-expressions.Clause.toString
+    package: adaptive-expressions
+    summary: Gets a string that represents the current clause.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function toString(builder: string[], indent: number)'
+      parameters:
+        - id: builder
+          type: 'string[]'
+          description: An array of string to build the string of clause.
+        - id: indent
+          type: number
+          description: |
+            An integer represents the number of spaces at the start of a line.
+      return:
+        type: string
+        description: ''
+  - name: 'tryEvaluate(MemoryInterface | any, Options)'
+    uid: adaptive-expressions.Clause.tryEvaluate
+    package: adaptive-expressions
+    summary: >-
+      Evaluate the expression.
+
+      Global state to evaluate accessor expressions against.  Can Dictionary be
+      otherwise reflection is used to access property and then indexer.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function tryEvaluate(state: MemoryInterface | any, options: Options)'
+      parameters:
+        - id: state
+          type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
+          description: |+
+
+        - id: options
+          type: <xref uid="adaptive-expressions.Options" />
+          description: ''
+      return:
+        type: <xref uid="adaptive-expressions.ValueWithError" />
+        description: ''
+  - name: validate()
+    uid: adaptive-expressions.Clause.validate
+    package: adaptive-expressions
+    summary: Validate immediate expression.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function validate()
+  - name: validateTree()
+    uid: adaptive-expressions.Clause.validateTree
+    package: adaptive-expressions
+    summary: Recursively validate the expression tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function validateTree()
+extends: <xref uid="adaptive-expressions.Expression" />

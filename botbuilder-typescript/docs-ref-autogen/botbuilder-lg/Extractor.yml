@@ -1,0 +1,223 @@
+### YamlMime:TSType
+name: Extractor
+uid: botbuilder-lg.Extractor
+package: botbuilder-lg
+summary: Lg template extracter.
+fullName: Extractor
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'Extractor(Template[])'
+    uid: botbuilder-lg.Extractor.constructor
+    package: botbuilder-lg
+    summary: >-
+      Creates a new instance of the [Extractor](xref:botbuilder-lg.Extractor)
+      class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new Extractor(templates: Template[])'
+      parameters:
+        - id: templates
+          type: '<xref uid="botbuilder-lg.Template" />[]'
+          description: |
+            Template list.
+properties:
+  - name: templateMap
+    uid: botbuilder-lg.Extractor.templateMap
+    package: botbuilder-lg
+    summary: ''
+    fullName: templateMap
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public templateMap: Record<string, Template>'
+      return:
+        type: 'Record&lt;string, <xref uid="botbuilder-lg.Template" />&gt;'
+        description: ''
+  - name: templates
+    uid: botbuilder-lg.Extractor.templates
+    package: botbuilder-lg
+    summary: ''
+    fullName: templates
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public templates: Template[]'
+      return:
+        type: '<xref uid="botbuilder-lg.Template" />[]'
+        description: ''
+methods:
+  - name: extract()
+    uid: botbuilder-lg.Extractor.extract
+    package: botbuilder-lg
+    summary: Extracts the templates and returns a map with their names and bodies.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function extract()
+      return:
+        type: 'Map&lt;string, string[] | Map&lt;string, string[]&gt;&gt;[]'
+        description: Map object with template names and bodies.
+  - name: visit(ParseTree)
+    uid: botbuilder-lg.Extractor.visit
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation calls <xref:ParseTree%23accept> on the
+      specified tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visit(tree: ParseTree)'
+      parameters:
+        - id: tree
+          type: ParseTree
+          description: ''
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: ''
+  - name: visitChildren(RuleNode)
+    uid: botbuilder-lg.Extractor.visitChildren
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation initializes the aggregate result to
+      [defaultResult()](xref:%23defaultResult). Before visiting each child, it
+      calls [shouldVisitNextChild](xref:%23shouldVisitNextChild); if the result
+      is `false` no more children are visited and the current aggregate
+      result is returned. After visiting a child, the aggregate result is
+      updated by calling [aggregateResult](xref:%23aggregateResult) with the
+      previous aggregate result and the result of visiting the child.
+
+      The default implementation is not safe for use in visitors that modify
+      the tree structure. Visitors that modify the tree should override this
+      method to behave properly in respect to the specific algorithm in use.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitChildren(node: RuleNode)'
+      parameters:
+        - id: node
+          type: RuleNode
+          description: ''
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: ''
+  - name: visitErrorNode(ErrorNode)
+    uid: botbuilder-lg.Extractor.visitErrorNode
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitErrorNode(node: ErrorNode)'
+      parameters:
+        - id: node
+          type: ErrorNode
+          description: ''
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: ''
+  - name: visitIfElseBody(IfElseBodyContext)
+    uid: botbuilder-lg.Extractor.visitIfElseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the ifElseBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitIfElseBody(context: IfElseBodyContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.IfElseBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: The result of visiting the if else body.
+  - name: visitNormalTemplateBody(NormalTemplateBodyContext)
+    uid: botbuilder-lg.Extractor.visitNormalTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateBody.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitNormalTemplateBody(context: NormalTemplateBodyContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: The result of visiting the normal template body.
+  - name: visitStructuredBody(StructuredBodyContext)
+    uid: botbuilder-lg.Extractor.visitStructuredBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the structuredBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitStructuredBody(context: StructuredBodyContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.StructuredBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: The result of visiting the structured body.
+  - name: visitSwitchCaseBody(SwitchCaseBodyContext)
+    uid: botbuilder-lg.Extractor.visitSwitchCaseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the switchCaseBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitSwitchCaseBody(context: SwitchCaseBodyContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
+          description: The parse tree.
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: The result of visiting the switch case body.
+  - name: visitTerminal(TerminalNode)
+    uid: botbuilder-lg.Extractor.visitTerminal
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitTerminal(node: TerminalNode)'
+      parameters:
+        - id: node
+          type: TerminalNode
+          description: ''
+      return:
+        type: 'Map&lt;string, string[]&gt;'
+        description: ''
+extends: 'AbstractParseTreeVisitor&lt;Map&lt;string, string[]&gt;&gt;'

@@ -1,0 +1,217 @@
+### YamlMime:TSType
+name: StaticChecker
+uid: botbuilder-lg.StaticChecker
+package: botbuilder-lg
+summary: LG managed code checker.
+fullName: StaticChecker
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: StaticChecker(Templates)
+    uid: botbuilder-lg.StaticChecker.constructor
+    package: botbuilder-lg
+    summary: >-
+      Creates a new instance of the
+      [StaticChecker](xref:botbuilder-lg.StaticChecker) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new StaticChecker(templates: Templates)'
+      parameters:
+        - id: templates
+          type: <xref uid="botbuilder-lg.Templates" />
+          description: |
+            (xref:botbuilder-lg.Templates) to be checked.
+methods:
+  - name: check()
+    uid: botbuilder-lg.StaticChecker.check
+    package: botbuilder-lg
+    summary: Return error messages list.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function check()
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: Report result.
+  - name: visit(ParseTree)
+    uid: botbuilder-lg.StaticChecker.visit
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation calls <xref:ParseTree%23accept> on the
+      specified tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visit(tree: ParseTree)'
+      parameters:
+        - id: tree
+          type: ParseTree
+          description: ''
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitChildren(RuleNode)
+    uid: botbuilder-lg.StaticChecker.visitChildren
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation initializes the aggregate result to
+      [defaultResult()](xref:%23defaultResult). Before visiting each child, it
+      calls [shouldVisitNextChild](xref:%23shouldVisitNextChild); if the result
+      is `false` no more children are visited and the current aggregate
+      result is returned. After visiting a child, the aggregate result is
+      updated by calling [aggregateResult](xref:%23aggregateResult) with the
+      previous aggregate result and the result of visiting the child.
+
+      The default implementation is not safe for use in visitors that modify
+      the tree structure. Visitors that modify the tree should override this
+      method to behave properly in respect to the specific algorithm in use.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitChildren(node: RuleNode)'
+      parameters:
+        - id: node
+          type: RuleNode
+          description: ''
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitErrorNode(ErrorNode)
+    uid: botbuilder-lg.StaticChecker.visitErrorNode
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitErrorNode(node: ErrorNode)'
+      parameters:
+        - id: node
+          type: ErrorNode
+          description: ''
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitIfElseBody(IfElseBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitIfElseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the `ifElseBody` labeled alternative in
+      `LGTemplateParser.body`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitIfElseBody(context: IfElseBodyContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.IfElseBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitNormalTemplateBody(NormalTemplateBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitNormalTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by `LGTemplateParser.normalTemplateBody`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitNormalTemplateBody(context: NormalTemplateBodyContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitNormalTemplateString(NormalTemplateStringContext)
+    uid: botbuilder-lg.StaticChecker.visitNormalTemplateString
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by `LGTemplateParser.normalTemplateString`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitNormalTemplateString(context: NormalTemplateStringContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
+          description: |
+            The parse tree.
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitStructuredTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by `LGTemplateParser.structuredTemplateBody`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitStructuredTemplateBody(context:
+        StructuredTemplateBodyContext)
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitSwitchCaseBody(SwitchCaseBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitSwitchCaseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the `switchCaseBody` labeled alternative in
+      `LGTemplateParser.body`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitSwitchCaseBody(context: SwitchCaseBodyContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+  - name: visitTerminal(TerminalNode)
+    uid: botbuilder-lg.StaticChecker.visitTerminal
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitTerminal(node: TerminalNode)'
+      parameters:
+        - id: node
+          type: TerminalNode
+          description: ''
+      return:
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        description: ''
+extends: 'AbstractParseTreeVisitor&lt;<xref uid="botbuilder-lg.Diagnostic" />[]&gt;'

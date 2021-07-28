@@ -1,0 +1,124 @@
+### YamlMime:TSType
+name: MiddlewareSet
+uid: botbuilder-core.MiddlewareSet
+package: botbuilder-core
+summary: A set of `Middleware` plugins.
+fullName: MiddlewareSet
+remarks: >-
+  The set itself is middleware so you can easily package up a set of middleware
+  that can be composed
+
+  into an adapter with a single `adapter.use(mySet)` call or even into another
+  middleware set using
+
+  `set.use(mySet)`.
+
+
+  ```JavaScript
+
+  const { MiddlewareSet } = require('botbuilder');
+
+
+  const set = new MiddlewareSet();
+
+  set.use(async (context, next) => {
+     console.log(`Leading Edge`);
+     await next();
+     console.log(`Trailing Edge`);
+  });
+
+  ```
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
+      MiddlewareSet((context: TurnContext, next: () => Promise<void>) =>
+      Promise<void> | Middleware[])
+    uid: botbuilder-core.MiddlewareSet.constructor
+    package: botbuilder-core
+    summary: Creates a new MiddlewareSet instance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new MiddlewareSet(middlewares: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middlewares
+          type: >-
+            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
+            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
+          description: ''
+methods:
+  - name: 'onTurn(TurnContext, () => Promise<void>)'
+    uid: botbuilder-core.MiddlewareSet.onTurn
+    package: botbuilder-core
+    summary: Processes an incoming activity.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-core.TurnContext" />
+          description: '(xref:botbuilder-core.TurnContext) object for this turn.'
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: |
+            Delegate to call to continue the bot middleware pipeline.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: 'run(TurnContext, () => Promise<void>)'
+    uid: botbuilder-core.MiddlewareSet.run
+    package: botbuilder-core
+    summary: Executes a set of middleware in series.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function run(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-core.TurnContext" />
+          description: Context for the current turn of conversation with the user.
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: Function to invoke at the end of the middleware chain.
+      return:
+        type: Promise&lt;void&gt;
+        description: A promise that resolves after the handler chain is complete.
+  - name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    uid: botbuilder-core.MiddlewareSet.use
+    package: botbuilder-core
+    summary: Registers middleware handlers(s) with the set.
+    remarks: |-
+      This example adds a new piece of middleware to a set:
+
+      ```JavaScript
+      set.use(async (context, next) => {
+         console.log(`Leading Edge`);
+         await next();
+         console.log(`Trailing Edge`);
+      });
+      ```
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function use(middlewares: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[])
+      parameters:
+        - id: middlewares
+          type: >-
+            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
+            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
+          description: ''
+      return:
+        type: this
+        description: ''

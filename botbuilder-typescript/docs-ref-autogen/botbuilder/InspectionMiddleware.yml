@@ -1,0 +1,82 @@
+### YamlMime:TSType
+name: InspectionMiddleware
+uid: botbuilder.InspectionMiddleware
+package: botbuilder
+summary: >-
+  InspectionMiddleware for emulator inspection of runtime Activities and
+  BotState.
+fullName: InspectionMiddleware
+remarks: >-
+  InspectionMiddleware for emulator inspection of runtime Activities and
+  BotState.
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
+      InspectionMiddleware(InspectionState, UserState, ConversationState,
+      Partial<MicrosoftAppCredentials>)
+    uid: botbuilder.InspectionMiddleware.constructor
+    package: botbuilder
+    summary: >-
+      Create the Inspection middleware for sending trace activities out to an
+      emulator session
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new InspectionMiddleware(inspectionState: InspectionState, userState?:
+        UserState, conversationState?: ConversationState, credentials?:
+        Partial<MicrosoftAppCredentials>)
+      parameters:
+        - id: inspectionState
+          type: <xref uid="botbuilder.InspectionState" />
+          description: ''
+        - id: userState
+          type: UserState
+          description: ''
+        - id: conversationState
+          type: ConversationState
+          description: ''
+        - id: credentials
+          type: Partial&lt;MicrosoftAppCredentials&gt;
+          description: ''
+methods:
+  - name: 'onTurn(TurnContext, () => Promise<void>)'
+    uid: botbuilder.InspectionMiddleware.onTurn
+    package: botbuilder
+    summary: Implement middleware signature
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onTurn(turnContext: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: turnContext
+          type: TurnContext
+          description: ''
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: |
+            The next delegate function.
+      return:
+        type: Promise&lt;void&gt;
+        description: ''
+  - name: processCommand(TurnContext)
+    uid: botbuilder.InspectionMiddleware.processCommand
+    package: botbuilder
+    summary: Indentifies open and attach commands and calls the appropriate method.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function processCommand(turnContext: TurnContext)'
+      parameters:
+        - id: turnContext
+          type: TurnContext
+          description: 'The [TurnContext](xref:botbuilder-core.TurnContext) for this turn.'
+      return:
+        type: Promise&lt;any&gt;
+        description: 'True if the command is open or attached, otherwise false.'
+extends: InterceptionMiddleware

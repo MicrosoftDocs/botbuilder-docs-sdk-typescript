@@ -1,0 +1,230 @@
+### YamlMime:TSType
+name: DialogSet
+uid: botbuilder-dialogs.DialogSet
+package: botbuilder-dialogs
+summary: A related set of dialogs that can all call each other.
+fullName: DialogSet
+remarks: >-
+  The constructor for the dialog set should be passed a state property that will
+  be used to
+
+  persist the dialog stack for the set:
+
+
+  ```JavaScript
+
+  const { ConversationState, MemoryStorage, ActivityTypes } =
+  require('botbuilder');
+
+  const { DialogSet, Dialog, DialogTurnStatus } = require('botbuilder-dialogs');
+
+
+  const convoState = new ConversationState(new MemoryStorage());
+
+  const dialogState = convoState.createProperty('dialogState');
+
+  const dialogs = new DialogSet(dialogState);
+
+  ```
+
+
+  The bot can add dialogs or prompts to the set using the [add()](#add) method:
+
+
+  ```JavaScript
+
+  class GreetingDialog extends Dialog {
+      async beginDialog(dc, options) {
+          await dc.context.sendActivity(`Hi! I'm a bot.`);
+          return await dc.endDialog();
+      }
+  }
+
+
+  dialogs.add(new GreetingDialog('greeting'));
+
+  ```
+
+
+  To interact with the sets dialogs you can call
+  [createContext()](#createcontext) with the
+
+  current `TurnContext`. That will create a `DialogContext` that can be used to
+  start or continue
+
+  execution of the sets dialogs:
+
+
+  ```JavaScript
+
+  // Create DialogContext for the current turn
+
+  const dc = await dialogs.createContext(turnContext);
+
+
+  // Try to continue executing an active multi-turn dialog
+
+  const result = await dc.continueDialog();
+
+
+  // Send greeting if no other dialogs active
+
+  if (result.status == DialogTurnStatus.empty && dc.context.activity.type ==
+  ActivityTypes.Message) {
+      await dc.beginDialog('greeting');
+  }
+
+  ```
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: DialogSet(StatePropertyAccessor<DialogState>)
+    uid: botbuilder-dialogs.DialogSet.constructor
+    package: botbuilder-dialogs
+    summary: Creates a new DialogSet instance.
+    remarks: >-
+      If the `dialogState` property is not passed in, calls to
+      [createContext()](#createcontext)
+
+      will return an error.  You will need to create a `DialogContext` for the
+      set manually and
+
+      pass in your own state object for persisting the sets dialog stack:
+
+
+      ```JavaScript
+
+      const dc = new DialogContext(dialogs, turnContext, state);
+
+      ```
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new DialogSet(dialogState?: StatePropertyAccessor<DialogState>)'
+      parameters:
+        - id: dialogState
+          type: >-
+            StatePropertyAccessor&lt;<xref uid="botbuilder-dialogs.DialogState"
+            />&gt;
+          description: |
+            (Optional) state property used to persist the sets dialog stack.
+properties:
+  - name: telemetryClient
+    uid: botbuilder-dialogs.DialogSet.telemetryClient
+    package: botbuilder-dialogs
+    summary: >-
+      Set the telemetry client for this dialog set and apply it to all current
+      dialogs.
+
+      Set the telemetry client for this dialog set and apply it to all current
+      dialogs.
+
+      Future dialogs added to the set will also inherit this client.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: BotTelemetryClient telemetryClient
+      return:
+        type: BotTelemetryClient
+        description: ''
+methods:
+  - name: add<T>(T)
+    uid: botbuilder-dialogs.DialogSet.add
+    package: botbuilder-dialogs
+    summary: Adds a new dialog or prompt to the set.
+    remarks: >-
+      If the `Dialog.id` being added already exists in the set, the dialogs id
+      will be updated to
+
+      include a suffix which makes it unique. So adding 2 dialogs named
+      "duplicate" to the set
+
+      would result in the first one having an id of "duplicate" and the second
+      one having an id
+
+      of "duplicate2".
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function add<T>(dialog: T)'
+      parameters:
+        - id: dialog
+          type: T
+          description: >
+            The dialog or prompt to add.
+
+            If a telemetryClient is present on the dialog set, it will be added
+            to each dialog.
+      return:
+        type: this
+        description: ''
+  - name: createContext(TurnContext)
+    uid: botbuilder-dialogs.DialogSet.createContext
+    package: botbuilder-dialogs
+    summary: >-
+      Creates a dialog context which can be used to work with the dialogs in the
+      set.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function createContext(context: TurnContext)'
+      parameters:
+        - id: context
+          type: TurnContext
+          description: |
+            Context for the current turn of conversation with the user.
+      return:
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogContext" />&gt;
+        description: ''
+  - name: find(string)
+    uid: botbuilder-dialogs.DialogSet.find
+    package: botbuilder-dialogs
+    summary: 'Finds a dialog that was previously added to the set using [add()](#add).'
+    remarks: |-
+      This example finds a dialog named "greeting":
+
+      ```JavaScript
+      const dialog = dialogs.find('greeting');
+      ```
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function find(dialogId: string)'
+      parameters:
+        - id: dialogId
+          type: string
+          description: |
+            ID of the dialog or prompt to lookup.
+      return:
+        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
+        description: ''
+  - name: getDialogs()
+    uid: botbuilder-dialogs.DialogSet.getDialogs
+    package: botbuilder-dialogs
+    summary: Gets the Dialogs of the set.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getDialogs()
+      return:
+        type: '<xref uid="botbuilder-dialogs.Dialog" />[]'
+        description: 'An array of [Dialog](xref:botbuilder-dialogs.Dialog).'
+  - name: getVersion()
+    uid: botbuilder-dialogs.DialogSet.getVersion
+    package: botbuilder-dialogs
+    summary: Returns a 32-bit hash of the all the `Dialog.version` values in the set.
+    remarks: >-
+      This hash is persisted to state storage and used to detect changes to a
+      dialog set.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getVersion()
+      return:
+        type: string
+        description: ''

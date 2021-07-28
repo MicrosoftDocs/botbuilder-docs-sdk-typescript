@@ -1,0 +1,1168 @@
+### YamlMime:TSPackage
+uid: botbuilder-stdlib
+name: botbuilder-stdlib
+summary: ''
+type: package
+typeAliases:
+  - botbuilder-stdlib.NewableError
+  - botbuilder-stdlib.Assertion
+  - botbuilder-stdlib.Dictionary
+  - botbuilder-stdlib.Extends
+  - botbuilder-stdlib.Func
+  - botbuilder-stdlib.Maybe
+  - botbuilder-stdlib.Newable
+  - botbuilder-stdlib.Nil
+  - botbuilder-stdlib.Test
+functions:
+  - name: 'assertCondition(unknown, string, NewableError)'
+    uid: botbuilder-stdlib.assertCondition
+    package: botbuilder-stdlib
+    summary: Asserts `condition` to the Typescript compiler
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function assertCondition(condition: unknown, message: string, ctor?:
+        NewableError)
+      parameters:
+        - id: condition
+          type: unknown
+          description: a condition to assert
+        - id: message
+          type: string
+          description: error message
+        - id: ctor
+          type: <xref uid="botbuilder-stdlib.NewableError" />
+          description: |
+            an optional constructor that makes Error instances
+      return:
+        type: asserts
+        description: ''
+  - name: 'delay<T>(Promise<T>, number)'
+    uid: botbuilder-stdlib.delay
+    package: botbuilder-stdlib
+    summary: Delay resolution of `promise`
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delay<T>(promise: Promise<T>, milliseconds: number)'
+      parameters:
+        - id: promise
+          type: Promise&lt;T&gt;
+          description: an optional promise to delay
+        - id: milliseconds
+          type: number
+          description: how long to delay
+      return:
+        type: Promise&lt;T&gt;
+        description: >-
+          a promise that will resolve to the result of `promise`, delayed by
+          `milliseconds`.
+  - name: delay(number)
+    uid: botbuilder-stdlib.delay_1
+    package: botbuilder-stdlib
+    summary: Return a promise that resolves after `milliseconds`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function delay(milliseconds: number)'
+      parameters:
+        - id: milliseconds
+          type: number
+          description: how long to delay
+      return:
+        type: Promise&lt;void&gt;
+        description: >-
+          a promise that will resolve to the result of `promise`, delayed by
+          `milliseconds`.
+  - name: 'maybeCast<T>(unknown, Newable<T>)'
+    uid: botbuilder-stdlib.maybeCast
+    package: botbuilder-stdlib
+    summary: Maybe cast value to a particular type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeCast<T>(value: unknown, ctor?: Newable<T>)'
+      parameters:
+        - id: value
+          type: unknown
+          description: value to maybe cast
+        - id: ctor
+          type: <xref uid="botbuilder-stdlib.Newable" />&lt;T&gt;
+          description: optional class to perform instanceof check
+      return:
+        type: T
+        description: 'value, maybe casted to T'
+  - name: 'retry<T>((n: number) => Promise<T>, number, number)'
+    uid: botbuilder-stdlib.retry
+    package: botbuilder-stdlib
+    summary: Retry a given promise with gradually increasing delay.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function retry<T>(promise: (n: number) => Promise<T>, maxRetries:
+        number, initialDelay?: number)
+      parameters:
+        - id: promise
+          type: '(n: number) =&gt; Promise&lt;T&gt;'
+          description: a function that returns a promise to retry
+        - id: maxRetries
+          type: number
+          description: the maximum number of times to retry
+        - id: initialDelay
+          type: number
+          description: the initial value to delay before retrying (in milliseconds)
+      return:
+        type: Promise&lt;T | undefined&gt;
+        description: >-
+          a promise resolving to the result of the promise from the promise
+          generating function, or undefined
+  - name: 'any(unknown, string[])'
+    uid: botbuilder-stdlib.any
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `any`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function any(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'array(unknown, string[])'
+    uid: botbuilder-stdlib.array
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `array`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function array(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: arrayOf<T>(Assertion<T>)
+    uid: botbuilder-stdlib.arrayOf
+    package: botbuilder-stdlib
+    summary: >-
+      Construct an assertion that an unknown value is an array with items of
+      type `T`
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function arrayOf<T>(assertion: Assertion<T>)'
+      parameters:
+        - id: assertion
+          type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+          description: the assertion
+      return:
+        type: <xref uid="botbuilder-stdlib.Assertion" />&lt;Array&lt;T&gt;&gt;
+        description: >-
+          an assertion that asserts an unknown value is an array with items of
+          type `T`
+  - name: 'arrayOfString(unknown, string[])'
+    uid: botbuilder-stdlib.arrayOfString
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `string[]`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function arrayOfString(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'boolean(unknown, string[])'
+    uid: botbuilder-stdlib.boolean
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `boolean`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function boolean(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'castObjectAs<T>(unknown, string[])'
+    uid: botbuilder-stdlib.castObjectAs
+    package: botbuilder-stdlib
+    summary: >-
+      **UNSAFE**
+
+      This assertion does not actually verify that `val` is of type `T`. It is
+      useful as the first
+
+      line in a nested assertion so that remaining assertion calls can leverage
+      helpful intellisense.
+
+      This method is only exported under the `unsafe` keyword as a constant
+      reminder of this fact.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function castObjectAs<T>(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: the unknown value
+        - id: path
+          type: 'string[]'
+          description: |
+            the accumulated assertion path
+      return:
+        type: asserts
+        description: ''
+  - name: 'condition(unknown, string[], string, NewableError)'
+    uid: botbuilder-stdlib.condition
+    package: botbuilder-stdlib
+    summary: Asserts `cond` to the typescript compiler
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function condition(cond: unknown, path: string[], message: string,
+        errorCtor?: NewableError)
+      parameters:
+        - id: cond
+          type: unknown
+          description: a condition to assert
+        - id: path
+          type: 'string[]'
+          description: the accumulated path for the assertion
+        - id: message
+          type: string
+          description: an error message to use
+        - id: errorCtor
+          type: <xref uid="botbuilder-stdlib.NewableError" />
+          description: |
+            an optional error constructor
+      return:
+        type: asserts
+        description: ''
+  - name: 'date(unknown, string[])'
+    uid: botbuilder-stdlib.date
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `Date`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function date(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'dictionary(unknown, string[])'
+    uid: botbuilder-stdlib.dictionary
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `Dictionary`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function dictionary(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'error(unknown, string[])'
+    uid: botbuilder-stdlib.error
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `Error`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function error(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'func(unknown, string[])'
+    uid: botbuilder-stdlib.func
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `Func`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function func(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'instanceOf<T>(string, Newable<T> | Extends<T>)'
+    uid: botbuilder-stdlib.instanceOf
+    package: botbuilder-stdlib
+    summary: Construct an assertion that an unknown value is an instance of type `T`
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function instanceOf<T>(typeName: string, ctor: Newable<T> | Extends<T>)'
+      parameters:
+        - id: typeName
+          type: string
+          description: the name of type `T`
+        - id: ctor
+          type: >-
+            <xref uid="botbuilder-stdlib.Newable" />&lt;T&gt; | <xref
+            uid="botbuilder-stdlib.Extends" />&lt;T&gt;
+          description: a constructor reference for type `T`
+      return:
+        type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+        description: an assertion that asserts an unknown value is an instance of type `T`
+  - name: isAny(unknown)
+    uid: botbuilder-stdlib.isAny
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `any`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isAny(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `any`
+  - name: isArray(unknown)
+    uid: botbuilder-stdlib.isArray
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `array`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isArray(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `array`
+  - name: isBoolean(unknown)
+    uid: botbuilder-stdlib.isBoolean
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `boolean`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isBoolean(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `boolean`
+  - name: isDate(unknown)
+    uid: botbuilder-stdlib.isDate
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `Date`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isDate(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `Date`
+  - name: isDictionary(unknown)
+    uid: botbuilder-stdlib.isDictionary
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `Dictionary`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isDictionary(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `Dictionary`
+  - name: isError(unknown)
+    uid: botbuilder-stdlib.isError
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `Error`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isError(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `Error`
+  - name: isFunc(unknown)
+    uid: botbuilder-stdlib.isFunc
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `Func`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isFunc(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `Func`
+  - name: isNil(unknown)
+    uid: botbuilder-stdlib.isNil
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `Nil`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isNil(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `Func`
+  - name: isNumber(unknown)
+    uid: botbuilder-stdlib.isNumber
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `number`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isNumber(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `number`
+  - name: isObject(unknown)
+    uid: botbuilder-stdlib.isObject
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `object`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isObject(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `object`
+  - name: isObjectAs<T>(unknown)
+    uid: botbuilder-stdlib.isObjectAs
+    package: botbuilder-stdlib
+    summary: >-
+      **UNSAFE**
+
+      Test if `val` is of type `object`.
+
+      This test does not actually verify that `val` is of type `T`. It is useful
+      as the first
+
+      line in a nested assertion so that remaining assertion calls can leverage
+      helpful intellisense.
+
+      This method is only exported under the `unsafe` keyword as a constant
+      reminder of this fact.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isObjectAs<T>(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `object`
+  - name: isString(unknown)
+    uid: botbuilder-stdlib.isString
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `string`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isString(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `string`
+  - name: isStringNullOrEmpty(unknown)
+    uid: botbuilder-stdlib.isStringNullOrEmpty
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `string` with zero length or `Nil`.
+    remarks: >-
+      Implementation of string.IsNullOrEmpty():
+      https://docs.microsoft.com/en-us/dotnet/api/system.string.isnullorempty?view=netcore-3.1
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isStringNullOrEmpty(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of `string` with zero length or `Nil`
+  - name: isTypeError(unknown)
+    uid: botbuilder-stdlib.isTypeError
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `TypeError`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isTypeError(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `TypeError`
+  - name: isUndefinedError(unknown)
+    uid: botbuilder-stdlib.isUndefinedError
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `UndefinedError`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isUndefinedError(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `UndefinedError`
+  - name: isUnknown(unknown)
+    uid: botbuilder-stdlib.isUnknown
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `unknown`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isUnknown(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of type `unknown`
+  - name: 'makeAssertion<T>(string, Test<T>, boolean)'
+    uid: botbuilder-stdlib.makeAssertion
+    package: botbuilder-stdlib
+    summary: Construct an assertion function
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function makeAssertion<T>(typeName: string, test: Test<T>, acceptNil?:
+        boolean)
+      parameters:
+        - id: typeName
+          type: string
+          description: the name of type `T`
+        - id: test
+          type: <xref uid="botbuilder-stdlib.Test" />&lt;T&gt;
+          description: a method to test if an unknown value is of type `T`
+        - id: acceptNil
+          type: boolean
+          description: true if null or undefined values are acceptable
+      return:
+        type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+        description: an assertion that asserts an unknown value is of type `T`
+  - name: makeMaybeAssertion<T>(Assertion<T>)
+    uid: botbuilder-stdlib.makeMaybeAssertion
+    package: botbuilder-stdlib
+    summary: >-
+      Constructs a type assertion that is enforced if the value is not null or
+      undefined
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function makeMaybeAssertion<T>(assertion: Assertion<T>)'
+      parameters:
+        - id: assertion
+          type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+          description: the assertion
+      return:
+        type: >-
+          <xref uid="botbuilder-stdlib.Assertion" />&lt;<xref
+          uid="botbuilder-stdlib.Maybe" />&lt;T&gt;&gt;
+        description: an assertion that asserts an unknown value is of type `T` or `Nil`
+  - name: makePartialAssertion<T>(Assertion<T>)
+    uid: botbuilder-stdlib.makePartialAssertion
+    package: botbuilder-stdlib
+    summary: >-
+      Takes an assertion for type `T` and returns an assertion for type
+      `Partial<T>`. The implementation
+
+      expects that the assertion throws `UndefinedError` if an expected value is
+      undefined. All the assertions
+
+      exported by this package satisfy that requirement.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function makePartialAssertion<T>(assertion: Assertion<T>)'
+      parameters:
+        - id: assertion
+          type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+          description: an assertion that asserts an unknown value is of type `T`
+      return:
+        type: <xref uid="botbuilder-stdlib.Assertion" />&lt;Partial&lt;T&gt;&gt;
+        description: an assertion that asserts an unknown value is of type `Partial<T>`
+  - name: makeTest<T>(Assertion<T>)
+    uid: botbuilder-stdlib.makeTest
+    package: botbuilder-stdlib
+    summary: Make a type test function out of an assertion
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function makeTest<T>(assertion: Assertion<T>)'
+      parameters:
+        - id: assertion
+          type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+          description: an assertion
+      return:
+        type: <xref uid="botbuilder-stdlib.Test" />&lt;T&gt;
+        description: a type test that returns true if an unknown value is of type `T`
+  - name: 'maybeAny(unknown, string[])'
+    uid: botbuilder-stdlib.maybeAny
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `any`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeAny(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'maybeArray(unknown, string[])'
+    uid: botbuilder-stdlib.maybeArray
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `array`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeArray(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: maybeArrayOf<T>(Assertion<T>)
+    uid: botbuilder-stdlib.maybeArrayOf
+    package: botbuilder-stdlib
+    summary: >-
+      Construct an assertion that an unknown value is an array with items of
+      type `T`, or `Nil`
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeArrayOf<T>(assertion: Assertion<T>)'
+      parameters:
+        - id: assertion
+          type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+          description: the assertion
+      return:
+        type: >-
+          <xref uid="botbuilder-stdlib.Assertion" />&lt;<xref
+          uid="botbuilder-stdlib.Maybe" />&lt;Array&lt;T&gt;&gt;&gt;
+        description: |-
+          an assertion that asserts an unknown value is an array with
+          items of type `T`, or `Nil`
+  - name: 'maybeBoolean(unknown, string[])'
+    uid: botbuilder-stdlib.maybeBoolean
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `boolean`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeBoolean(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'maybeDate(unknown, string[])'
+    uid: botbuilder-stdlib.maybeDate
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `Date`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeDate(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'maybeDictionary(unknown, string[])'
+    uid: botbuilder-stdlib.maybeDictionary
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `Dictionary`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeDictionary(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'maybeFunc(unknown, string[])'
+    uid: botbuilder-stdlib.maybeFunc
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `Func`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeFunc(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'maybeInstanceOf<T>(string, Newable<T> | Extends<T>)'
+    uid: botbuilder-stdlib.maybeInstanceOf
+    package: botbuilder-stdlib
+    summary: >-
+      Construct an assertion that an unknown value is an instance of type `T`,
+      or `Nil`
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function maybeInstanceOf<T>(typeName: string, ctor: Newable<T> |
+        Extends<T>)
+      parameters:
+        - id: typeName
+          type: string
+          description: the name of type `T`
+        - id: ctor
+          type: >-
+            <xref uid="botbuilder-stdlib.Newable" />&lt;T&gt; | <xref
+            uid="botbuilder-stdlib.Extends" />&lt;T&gt;
+          description: a constructor reference for type `T`
+      return:
+        type: >-
+          <xref uid="botbuilder-stdlib.Assertion" />&lt;<xref
+          uid="botbuilder-stdlib.Maybe" />&lt;T&gt;&gt;
+        description: >-
+          an assertion that asserts an unknown value is an instance of type `T`,
+          or `Nil`
+  - name: 'maybeNumber(unknown, string[])'
+    uid: botbuilder-stdlib.maybeNumber
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `number`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeNumber(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'maybeObject(unknown, string[])'
+    uid: botbuilder-stdlib.maybeObject
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `object`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeObject(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: maybeOneOf<T>(Array<Test<T>>)
+    uid: botbuilder-stdlib.maybeOneOf
+    package: botbuilder-stdlib
+    summary: >-
+      Construct an assertion that an unknown value is of type `T`, likely a
+      union type, or `Nil`
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeOneOf<T>(tests: Array<Test<T>>)'
+      parameters:
+        - id: tests
+          type: Array&lt;<xref uid="botbuilder-stdlib.Test" />&lt;T&gt;&gt;
+          description: a set of tests for type `T`
+      return:
+        type: >-
+          <xref uid="botbuilder-stdlib.Assertion" />&lt;<xref
+          uid="botbuilder-stdlib.Maybe" />&lt;T&gt;&gt;
+        description: 'an assertion that asserts an unknown value is of type `T`, or `Nil`'
+  - name: 'maybeString(unknown, string[])'
+    uid: botbuilder-stdlib.maybeString
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `string`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeString(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'maybeUnknown(unknown, string[])'
+    uid: botbuilder-stdlib.maybeUnknown
+    package: botbuilder-stdlib
+    summary: 'Assert that `val` is of type `unknown`, or `Nil`.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function maybeUnknown(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'nil(unknown, string[])'
+    uid: botbuilder-stdlib.nil
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `Nil`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function nil(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'number(unknown, string[])'
+    uid: botbuilder-stdlib.number
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `number`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function number(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'object(unknown, string[])'
+    uid: botbuilder-stdlib.object
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `object`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function object(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: oneOf<T>(Array<Test<T>>)
+    uid: botbuilder-stdlib.oneOf
+    package: botbuilder-stdlib
+    summary: >-
+      Construct an assertion that an unknown value is of type `T`, likely a
+      union type
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function oneOf<T>(tests: Array<Test<T>>)'
+      parameters:
+        - id: tests
+          type: Array&lt;<xref uid="botbuilder-stdlib.Test" />&lt;T&gt;&gt;
+          description: a set of tests for type `T`
+      return:
+        type: <xref uid="botbuilder-stdlib.Assertion" />&lt;T&gt;
+        description: an assertion that asserts an unknown value is of type `T`
+  - name: 'string(unknown, string[])'
+    uid: botbuilder-stdlib.string
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `string`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function string(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'typeError(unknown, string[])'
+    uid: botbuilder-stdlib.typeError
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `TypeError`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function typeError(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'undefinedError(unknown, string[])'
+    uid: botbuilder-stdlib.undefinedError
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `UndefinedError`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function undefinedError(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+  - name: 'unknown(unknown, string[])'
+    uid: botbuilder-stdlib.unknown
+    package: botbuilder-stdlib
+    summary: Assert that `val` is of type `unknown`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function unknown(val: unknown, path: string[])'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to assert
+        - id: path
+          type: 'string[]'
+          description: |
+            path to val (useful for nested assertions)
+      return:
+        type: asserts
+        description: ''
+classes:
+  - botbuilder-stdlib.UndefinedError

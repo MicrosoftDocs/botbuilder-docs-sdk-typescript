@@ -1,0 +1,124 @@
+### YamlMime:TSPackage
+uid: botbuilder-dialogs-adaptive-runtime
+name: botbuilder-dialogs-adaptive-runtime
+summary: ''
+type: package
+classes:
+  - botbuilder-dialogs-adaptive-runtime.Configuration
+  - botbuilder-dialogs-adaptive-runtime.ConfigurationResourceExporer
+  - botbuilder-dialogs-adaptive-runtime.CoreBot
+  - botbuilder-dialogs-adaptive-runtime.CoreBotAdapter
+functions:
+  - name: 'getRuntimeServices(string, string)'
+    uid: botbuilder-dialogs-adaptive-runtime.getRuntimeServices
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Construct all runtime services.
+    remarks: >-
+      While the full set of dependencies is designed to be sufficient to run
+      Adaptive Dialogs,
+
+      the `"bot"` dependency can actually be any
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler)
+
+      implementation and is not constrained to one that uses Adaptive Dialogs.
+      Any Bot Framework project
+
+      can therefore be simplified by just using this function along with a
+      custom
+
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) implementation.
+
+
+      Aspects of the behavior of a number of these dependencies, including those
+      that can be overriden,
+
+      can be controlled through configuration.
+
+
+      The default
+      [ResourceExplorer](xref:botbuilder-dialogs-declarative.ResourceExplorer)
+      uses the file
+
+      system. The `applicationRoot` folder is used as the root directory.
+
+
+      If not overridden, the exact type of
+      [Storage](xref:botbuilder-core.Storage) added depends on configuration.
+
+      With no configuration, the default is memory storage. It should be noted
+      that
+
+      [MemoryStorage](xref:botbuilder-core.MemoryStorage) is designed primarily
+      for testing with a single host
+
+      running the bot and no durable storage.
+
+
+      The default Skills implementation can be constrained in terms of allowed
+      callers through configuration.
+
+      Refer to the product documentation for further details.
+
+
+      The default [BotTelemetryClient](xref:botbuilder-core.BotTelemetryClient)
+      implementation uses AppInsights
+
+      and aspects of what is included in the telemetry data recorded can be
+      controller through configuration.
+
+      Refer to the product documentation for further details.
+
+
+      A number of the features of the runtime are implemented through
+      middleware. Various feature flags in
+
+      configuration determine whether these middleware are added at runtime, the
+      settings include:
+
+      UseInspection, ShowTyping and SetSpeak.
+
+
+      These control the addition of:
+
+      [InspectionMiddleware](xref:botbuilder.InspectionMiddleware),
+
+      [ShowTypingMiddleware](xref:botbuilder-core.ShowTypingMiddleware), and
+
+      [SetSpeakMiddleware](xref:botbuilder.SetSpeakMiddleware) respectively.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getRuntimeServices(applicationRoot: string, settingsDirectory:
+        string)
+      parameters:
+        - id: applicationRoot
+          type: string
+          description: absolute path to root of application
+        - id: settingsDirectory
+          type: string
+          description: directory where settings files are located
+      return:
+        type: Promise&lt;Object&gt;
+        description: service collection and configuration
+  - name: 'getRuntimeServices(string, Configuration)'
+    uid: botbuilder-dialogs-adaptive-runtime.getRuntimeServices_1
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Construct all runtime services.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getRuntimeServices(applicationRoot: string, configuration:
+        Configuration)
+      parameters:
+        - id: applicationRoot
+          type: string
+          description: absolute path to root of application
+        - id: configuration
+          type: <xref uid="botbuilder-dialogs-adaptive-runtime.Configuration" />
+          description: a fully initialized configuration instance to use
+      return:
+        type: Promise&lt;Object&gt;
+        description: service collection and configuration

@@ -1,0 +1,107 @@
+### YamlMime:TSType
+name: NamedPipeServer
+uid: botframework-streaming.NamedPipeServer
+package: botframework-streaming
+summary: >-
+  Streaming transport server implementation that uses named pipes for
+  inter-process communication.
+fullName: NamedPipeServer
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'NamedPipeServer(string, RequestHandler, boolean)'
+    uid: botframework-streaming.NamedPipeServer.constructor
+    package: botframework-streaming
+    summary: >-
+      Creates a new instance of the
+      [NamedPipeServer](xref:botframework-streaming.NamedPipeServer) class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new NamedPipeServer(baseName: string, requestHandler?: RequestHandler,
+        autoReconnect?: boolean)
+      parameters:
+        - id: baseName
+          type: string
+          description: The named pipe to connect to.
+        - id: requestHandler
+          type: <xref uid="botframework-streaming.RequestHandler" />
+          description: >-
+            Optional
+            [RequestHandler](xref:botframework-streaming.RequestHandler) to
+            process incoming messages received by this client.
+        - id: autoReconnect
+          type: boolean
+          description: |
+            Deprecated: Automatic reconnection is the default behavior.
+properties:
+  - name: isConnected
+    uid: botframework-streaming.NamedPipeServer.isConnected
+    package: botframework-streaming
+    summary: Get connected status
+    fullName: isConnected
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: boolean isConnected
+      return:
+        type: boolean
+        description: true if currently connected.
+methods:
+  - name: disconnect()
+    uid: botframework-streaming.NamedPipeServer.disconnect
+    package: botframework-streaming
+    summary: Allows for manually disconnecting the server.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function disconnect()
+  - name: send(StreamingRequest)
+    uid: botframework-streaming.NamedPipeServer.send
+    package: botframework-streaming
+    summary: Task used to send data over this client connection.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function send(request: StreamingRequest)'
+      parameters:
+        - id: request
+          type: <xref uid="botframework-streaming.StreamingRequest" />
+          description: >-
+            The [StreamingRequest](xref:botframework-streaming.StreamingRequest)
+            to send.
+      return:
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
+        description: >-
+          A promise for an instance of
+          [IReceiveResponse](xref:botframework-streaming.IReceiveResponse) on
+          completion of the send operation.
+  - name: start(() => void)
+    uid: botframework-streaming.NamedPipeServer.start
+    package: botframework-streaming
+    summary: >-
+      Used to establish the connection used by this server and begin listening
+      for incoming messages.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function start(onListen?: () => void)'
+      parameters:
+        - id: onListen
+          type: () =&gt; void
+          description: >-
+            Optional callback that fires once when server is listening on both
+            incoming and outgoing pipe
+      return:
+        type: Promise&lt;string&gt;
+        description: >-
+          A promised string that will not resolve as long as the server is
+          running.

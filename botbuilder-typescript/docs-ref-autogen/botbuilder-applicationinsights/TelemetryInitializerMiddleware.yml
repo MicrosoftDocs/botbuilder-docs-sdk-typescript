@@ -1,0 +1,90 @@
+### YamlMime:TSType
+name: TelemetryInitializerMiddleware
+uid: botbuilder-applicationinsights.TelemetryInitializerMiddleware
+package: botbuilder-applicationinsights
+summary: >-
+  Middleware for storing the incoming activity to be made available to
+  Application Insights and optionally run the TelemetryLoggerMiddleware.
+
+  Uses the botTelemetryClient interface.
+fullName: TelemetryInitializerMiddleware
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'TelemetryInitializerMiddleware(TelemetryLoggerMiddleware, boolean)'
+    uid: botbuilder-applicationinsights.TelemetryInitializerMiddleware.constructor
+    package: botbuilder-applicationinsights
+    summary: Initializes a new instance of the TelemetryInitializerMiddleware class.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new TelemetryInitializerMiddleware(telemetryLoggerMiddleware:
+        TelemetryLoggerMiddleware, logActivityTelemetry?: boolean)
+      parameters:
+        - id: telemetryLoggerMiddleware
+          type: TelemetryLoggerMiddleware
+          description: The TelemetryLoggerMiddleware used for logging activity telemetry.
+        - id: logActivityTelemetry
+          type: boolean
+          description: |
+            (Optional) Enable/Disable logging of activity telemetry.
+properties:
+  - name: logActivityTelemetry
+    uid: >-
+      botbuilder-applicationinsights.TelemetryInitializerMiddleware.logActivityTelemetry
+    package: botbuilder-applicationinsights
+    summary: >-
+      Gets a value indicating whether determines whether to call the telemetry
+      logging middleware to log activity events.
+    fullName: logActivityTelemetry
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: boolean logActivityTelemetry
+      return:
+        type: boolean
+        description: whether or not to log activity telemetry
+  - name: telemetryClient
+    uid: >-
+      botbuilder-applicationinsights.TelemetryInitializerMiddleware.telemetryClient
+    package: botbuilder-applicationinsights
+    summary: >-
+      Gets the currently configured TelemetryLoggerMiddleware that logs activity
+      events.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: TelemetryLoggerMiddleware telemetryClient
+      return:
+        type: TelemetryLoggerMiddleware
+        description: telemetry logger middleware
+methods:
+  - name: 'onTurn(TurnContext, () => Promise<void>)'
+    uid: botbuilder-applicationinsights.TelemetryInitializerMiddleware.onTurn
+    package: botbuilder-applicationinsights
+    summary: >-
+      Store the incoming activity on the App Insights Correlation Context and
+      optionally calls the TelemetryLoggerMiddleware
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      parameters:
+        - id: context
+          type: TurnContext
+          description: The context object for this turn.
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: |
+            The delegate to call to continue the bot middleware pipeline
+      return:
+        type: Promise&lt;void&gt;
+        description: ''

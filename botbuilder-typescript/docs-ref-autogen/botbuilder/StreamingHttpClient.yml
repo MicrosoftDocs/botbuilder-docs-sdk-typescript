@@ -1,0 +1,53 @@
+### YamlMime:TSType
+name: StreamingHttpClient
+uid: botbuilder.StreamingHttpClient
+package: botbuilder
+summary: >-
+  An implementation of `HttpClient` that adds compatibility with streaming
+  connections.
+fullName: StreamingHttpClient
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: StreamingHttpClient(IStreamingTransportServer)
+    uid: botbuilder.StreamingHttpClient.constructor
+    package: botbuilder
+    summary: Creates a new streaming Http client.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new StreamingHttpClient(server: IStreamingTransportServer)'
+      parameters:
+        - id: server
+          type: IStreamingTransportServer
+          description: |
+            Transport server implementation to be used.
+methods:
+  - name: sendRequest(WebResource)
+    uid: botbuilder.StreamingHttpClient.sendRequest
+    package: botbuilder
+    summary: >-
+      This function hides the default sendRequest of the HttpClient, replacing
+      it
+
+      with a version that takes the WebResource created by the
+      BotFrameworkAdapter
+
+      and converting it to a form that can be sent over a streaming transport.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function sendRequest(httpRequest: WebResource)'
+      parameters:
+        - id: httpRequest
+          type: WebResource
+          description: The outgoing request created by the BotframeworkAdapter.
+      return:
+        type: Promise&lt;HttpOperationResponse&gt;
+        description: >-
+          The streaming transport compatible response to send back to the
+          client.

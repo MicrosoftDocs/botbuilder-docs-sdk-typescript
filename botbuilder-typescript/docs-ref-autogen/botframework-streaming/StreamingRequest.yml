@@ -1,0 +1,107 @@
+### YamlMime:TSType
+name: StreamingRequest
+uid: botframework-streaming.StreamingRequest
+package: botframework-streaming
+summary: >-
+  The basic request type sent over Bot Framework Protocol 3 with Streaming
+  Extensions transports, equivalent to HTTP request messages.
+fullName: StreamingRequest
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+  - name: path
+    uid: botframework-streaming.StreamingRequest.path
+    package: botframework-streaming
+    summary: Request path; null on responses.
+    fullName: path
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'path: string'
+      return:
+        type: string
+        description: ''
+  - name: streams
+    uid: botframework-streaming.StreamingRequest.streams
+    package: botframework-streaming
+    summary: List of associated streams.
+    fullName: streams
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'streams: HttpContentStream[]'
+      return:
+        type: '<xref uid="botframework-streaming.HttpContentStream" />[]'
+        description: ''
+  - name: verb
+    uid: botframework-streaming.StreamingRequest.verb
+    package: botframework-streaming
+    summary: 'Request verb, null on responses.'
+    fullName: verb
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'verb: string'
+      return:
+        type: string
+        description: ''
+methods:
+  - name: addStream(HttpContent)
+    uid: botframework-streaming.StreamingRequest.addStream
+    package: botframework-streaming
+    summary: Adds a new stream attachment to this streaming request.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function addStream(content: HttpContent)'
+      parameters:
+        - id: content
+          type: <xref uid="botframework-streaming.HttpContent" />
+          description: |
+            The Http content to include in the new stream attachment.
+  - name: 'create(string, string, HttpContent)'
+    uid: botframework-streaming.StreamingRequest.create
+    package: botframework-streaming
+    summary: 'Creates a streaming request with the passed in method, path, and body.'
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function create(method: string, path?: string, body?:
+        HttpContent)
+      parameters:
+        - id: method
+          type: string
+          description: The HTTP verb to use for this request.
+        - id: path
+          type: string
+          description: Optional path where the resource can be found on the remote server.
+        - id: body
+          type: <xref uid="botframework-streaming.HttpContent" />
+          description: Optional body to send to the remote server.
+      return:
+        type: <xref uid="botframework-streaming.StreamingRequest" />
+        description: >-
+          On success returns a streaming request with appropriate status code
+          and body.
+  - name: setBody(any)
+    uid: botframework-streaming.StreamingRequest.setBody
+    package: botframework-streaming
+    summary: Sets the contents of the body of this streamingRequest.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setBody(body: any)'
+      parameters:
+        - id: body
+          type: any
+          description: |
+            The JSON text to write to the body of the streamingRequest.
