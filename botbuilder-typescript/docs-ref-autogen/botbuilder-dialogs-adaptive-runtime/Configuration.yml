@@ -80,7 +80,7 @@ methods:
       return:
         type: this
         description: this for chaining
-  - name: file(string)
+  - name: 'file(string, boolean)'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.file
     package: botbuilder-dialogs-adaptive-runtime
     summary: Load a file as a configuration source.
@@ -88,15 +88,20 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function file(name: string)'
+      content: 'function file(name: string, override?: boolean)'
       parameters:
         - id: name
           type: string
           description: file name
+        - id: override
+          type: boolean
+          description: >-
+            optional flag that ensures this file takes precedence over other
+            files
       return:
         type: this
         description: this for chaining
-  - name: 'get(string[])'
+  - name: 'get<T>(string[])'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.get
     package: botbuilder-dialogs-adaptive-runtime
     summary: Get a value by path.
@@ -104,13 +109,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function get(path: string[])'
+      content: 'function get<T>(path?: string[])'
       parameters:
         - id: path
           type: 'string[]'
           description: path to value
       return:
-        type: unknown | undefined
+        type: T | undefined
         description: 'the value, or undefined'
   - name: 'set(string[], unknown)'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.set
@@ -145,7 +150,7 @@ methods:
       return:
         type: string | undefined
         description: the string or undefined
-  - name: 'type<T>(string[], Runtype<T>)'
+  - name: 'type<T>(string[], ZodType<T>)'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.type
     package: botbuilder-dialogs-adaptive-runtime
     summary: Get a typed value from config
@@ -153,14 +158,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function type<T>(path: string[], runtype: Runtype<T>)'
+      content: 'function type<T>(path: string[], t: ZodType<T>)'
       parameters:
         - id: path
           type: 'string[]'
           description: path to value
-        - id: runtype
-          type: Runtype&lt;T&gt;
-          description: runtype to use for type checking
+        - id: t
+          type: ZodType&lt;T&gt;
+          description: zod type to use for type checking
       return:
         type: T | undefined
         description: 'the value, or undefined'

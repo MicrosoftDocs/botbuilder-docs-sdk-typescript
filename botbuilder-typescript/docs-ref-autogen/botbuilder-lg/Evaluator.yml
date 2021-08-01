@@ -9,7 +9,7 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'Evaluator(Template[], ExpressionParser, EvaluationOptions)'
+  - name: 'Evaluator(Templates, EvaluationOptions)'
     uid: botbuilder-lg.Evaluator.constructor
     package: botbuilder-lg
     summary: >-
@@ -19,16 +19,11 @@ constructors:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        new Evaluator(templates: Template[], expressionParser: ExpressionParser,
-        opt: EvaluationOptions)
+      content: 'new Evaluator(templates: Templates, opt?: EvaluationOptions)'
       parameters:
         - id: templates
-          type: '<xref uid="botbuilder-lg.Template" />[]'
-          description: Template list.
-        - id: expressionParser
-          type: ExpressionParser
-          description: Expression parser.
+          type: <xref uid="botbuilder-lg.Templates" />
+          description: Templates.
         - id: opt
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
           description: |
@@ -162,12 +157,12 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public templates: Template[]'
+      content: 'public templates: Templates'
       return:
-        type: '<xref uid="botbuilder-lg.Template" />[]'
+        type: <xref uid="botbuilder-lg.Templates" />
         description: ''
 methods:
-  - name: 'checkExpressionResult(string, string, any, string, string, string)'
+  - name: 'checkExpressionResult(string, string, unknown, string, string, string)'
     uid: botbuilder-lg.Evaluator.checkExpressionResult
     package: botbuilder-lg
     summary: Checks an expression result and throws the corresponding error.
@@ -177,8 +172,8 @@ methods:
     syntax:
       content: >-
         static function checkExpressionResult(exp: string, error: string,
-        result: any, templateName: string, inlineContent: string, errorPrefix:
-        string)
+        result: unknown, templateName: string, inlineContent: string,
+        errorPrefix: string)
       parameters:
         - id: exp
           type: string
@@ -187,7 +182,7 @@ methods:
           type: string
           description: Error message.
         - id: result
-          type: any
+          type: unknown
           description: Result.
         - id: templateName
           type: string
@@ -218,7 +213,7 @@ methods:
       return:
         type: string
         description: The concatenated error messages.
-  - name: 'constructScope(string, any[])'
+  - name: 'constructScope(string, unknown[], Template[])'
     uid: botbuilder-lg.Evaluator.constructScope
     package: botbuilder-lg
     summary: >-
@@ -231,23 +226,28 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function constructScope(inputTemplateName: string, args: any[])'
+      content: >-
+        function constructScope(inputTemplateName: string, args: unknown[],
+        allTemplates: Template[])
       parameters:
         - id: inputTemplateName
           type: string
           description: Template name to evaluate.
         - id: args
-          type: 'any[]'
+          type: 'unknown[]'
           description: Arguments to map to the template parameters.
+        - id: allTemplates
+          type: '<xref uid="botbuilder-lg.Template" />[]'
+          description: All templates.
       return:
-        type: any
+        type: MemoryInterface
         description: >-
           The current scope if the number of arguments is 0, otherwise, returns
           a [CustomizedMemory](xref:botbuilder-lg.CustomizedMemory)
 
           with the mapping of the parameter name to the argument value added to
           the scope.
-  - name: 'evaluateTemplate(string, any)'
+  - name: 'evaluateTemplate(string, unknown)'
     uid: botbuilder-lg.Evaluator.evaluateTemplate
     package: botbuilder-lg
     summary: Evaluate a template with given name and scope.
@@ -255,16 +255,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function evaluateTemplate(inputTemplateName: string, scope: any)'
+      content: 'function evaluateTemplate(inputTemplateName: string, scope: unknown)'
       parameters:
         - id: inputTemplateName
           type: string
           description: Template name.
         - id: scope
-          type: any
+          type: unknown
           description: Scope.
       return:
-        type: any
+        type: unknown
         description: Evaluate result.
   - name: visit(ParseTree)
     uid: botbuilder-lg.Evaluator.visit
@@ -283,7 +283,7 @@ methods:
           type: ParseTree
           description: ''
       return:
-        type: any
+        type: unknown
         description: ''
   - name: visitChildren(RuleNode)
     uid: botbuilder-lg.Evaluator.visitChildren
@@ -311,7 +311,7 @@ methods:
           type: RuleNode
           description: ''
       return:
-        type: any
+        type: unknown
         description: ''
   - name: visitErrorNode(ErrorNode)
     uid: botbuilder-lg.Evaluator.visitErrorNode
@@ -330,7 +330,7 @@ methods:
           type: ErrorNode
           description: ''
       return:
-        type: any
+        type: unknown
         description: ''
   - name: visitIfElseBody(IfElseBodyContext)
     uid: botbuilder-lg.Evaluator.visitIfElseBody
@@ -349,7 +349,7 @@ methods:
           description: |
             The parse tree.
       return:
-        type: any
+        type: unknown
         description: ''
   - name: visitNormalBody(NormalBodyContext)
     uid: botbuilder-lg.Evaluator.visitNormalBody
@@ -367,7 +367,7 @@ methods:
           type: <xref uid="botbuilder-lg.NormalBodyContext" />
           description: The parse tree.
       return:
-        type: any
+        type: unknown
         description: The result of visiting the normal body.
   - name: visitNormalTemplateBody(NormalTemplateBodyContext)
     uid: botbuilder-lg.Evaluator.visitNormalTemplateBody
@@ -383,7 +383,7 @@ methods:
           type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
           description: The parse tree.
       return:
-        type: any
+        type: unknown
         description: The result of visiting the normal template body.
   - name: visitNormalTemplateString(NormalTemplateStringContext)
     uid: botbuilder-lg.Evaluator.visitNormalTemplateString
@@ -399,7 +399,7 @@ methods:
           type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
           description: The parse tree.
       return:
-        type: string
+        type: unknown
         description: The string result of visiting the normal template string.
   - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
     uid: botbuilder-lg.Evaluator.visitStructuredTemplateBody
@@ -415,7 +415,7 @@ methods:
           type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
           description: The parse tree.
       return:
-        type: any
+        type: unknown
         description: The result of visiting the structured template body.
   - name: visitSwitchCaseBody(SwitchCaseBodyContext)
     uid: botbuilder-lg.Evaluator.visitSwitchCaseBody
@@ -433,7 +433,7 @@ methods:
           type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
           description: The parse tree.
       return:
-        type: string
+        type: unknown
         description: The string result of visiting the switch case body.
   - name: visitTerminal(TerminalNode)
     uid: botbuilder-lg.Evaluator.visitTerminal
@@ -452,7 +452,7 @@ methods:
           type: TerminalNode
           description: ''
       return:
-        type: any
+        type: unknown
         description: ''
   - name: 'wrappedEvalTextContainsExpression(string, RegExp)'
     uid: botbuilder-lg.Evaluator.wrappedEvalTextContainsExpression
@@ -474,4 +474,4 @@ methods:
       return:
         type: string
         description: ''
-extends: AbstractParseTreeVisitor&lt;any&gt;
+extends: AbstractParseTreeVisitor&lt;unknown&gt;

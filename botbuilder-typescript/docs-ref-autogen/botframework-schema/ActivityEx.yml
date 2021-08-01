@@ -5,6 +5,46 @@ type: module
 package: botframework-schema
 summary: ''
 functions:
+  - name: asCommandActivity<T>(Partial<Activity>)
+    uid: botframework-schema.ActivityEx.asCommandActivity
+    package: botframework-schema
+    summary: >-
+      Returns the source activity as an ICommandActivity object; or null, if
+      this is not that type of activity.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function asCommandActivity<T>(source: Partial<Activity>)'
+      parameters:
+        - id: source
+          type: Partial&lt;<xref uid="botframework-schema.Activity" />&gt;
+          description: The source activity.
+      return:
+        type: >-
+          Partial&lt;<xref uid="botframework-schema.ICommandActivity"
+          />&lt;T&gt;&gt;
+        description: This activity as a command activity; or null.
+  - name: asCommandResultActivity<T>(Partial<Activity>)
+    uid: botframework-schema.ActivityEx.asCommandResultActivity
+    package: botframework-schema
+    summary: >-
+      Returns the source activity as an ICommandResultActivity object; or null,
+      if this is not that type of activity.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function asCommandResultActivity<T>(source: Partial<Activity>)'
+      parameters:
+        - id: source
+          type: Partial&lt;<xref uid="botframework-schema.Activity" />&gt;
+          description: The source activity.
+      return:
+        type: >-
+          Partial&lt;<xref uid="botframework-schema.ICommandResultActivity"
+          />&lt;T&gt;&gt;
+        description: This activity as a command result activity; or null.
   - name: asContactRelationUpdateActivity(Partial<Activity>)
     uid: botframework-schema.ActivityEx.asContactRelationUpdateActivity
     package: botframework-schema
@@ -383,7 +423,7 @@ functions:
       return:
         type: <xref uid="botframework-schema.Activity" />
         description: The new message activity.
-  - name: 'createTrace(Activity, string, any, string, string)'
+  - name: 'createTrace(Activity, string, unknown, string, string)'
     uid: botframework-schema.ActivityEx.createTrace
     package: botframework-schema
     summary: Creates a new trace activity based on the source activity.
@@ -392,7 +432,7 @@ functions:
     isDeprecated: false
     syntax:
       content: >-
-        function createTrace(source: Activity, name: string, value?: any,
+        function createTrace(source: Activity, name: string, value?: unknown,
         valueType?: string, label?: string)
       parameters:
         - id: source
@@ -402,7 +442,7 @@ functions:
           type: string
           description: The name of the trace operation to create.
         - id: value
-          type: any
+          type: unknown
           description: 'Optional, the content for this trace operation.'
         - id: valueType
           type: string
@@ -415,7 +455,7 @@ functions:
       return:
         type: <xref uid="botframework-schema.ITraceActivity" />
         description: The new trace activity.
-  - name: 'createTraceActivity(string, string, any, string)'
+  - name: 'createTraceActivity(string, string, unknown, string)'
     uid: botframework-schema.ActivityEx.createTraceActivity
     package: botframework-schema
     summary: Creates an Activity as an ITraceActivity object.
@@ -425,7 +465,7 @@ functions:
     syntax:
       content: >-
         function createTraceActivity(name: string, valueType?: string, value?:
-        any, label?: string)
+        unknown, label?: string)
       parameters:
         - id: name
           type: string
@@ -436,7 +476,7 @@ functions:
             Optional, identifier for the format of the @param value . Default is
             the name of type of the @param value .
         - id: value
-          type: any
+          type: unknown
           description: 'Optional, the content for this trace operation.'
         - id: label
           type: string
@@ -456,6 +496,26 @@ functions:
       return:
         type: Partial&lt;<xref uid="botframework-schema.ITypingActivity" />&gt;
         description: The new typing activity.
+  - name: getContinuationActivity(Partial<ConversationReference>)
+    uid: botframework-schema.ActivityEx.getContinuationActivity
+    package: botframework-schema
+    summary: Creates an Activity from conversation reference as it is posted to bot.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getContinuationActivity(reference:
+        Partial<ConversationReference>)
+      parameters:
+        - id: reference
+          type: >-
+            Partial&lt;<xref uid="botframework-schema.ConversationReference"
+            />&gt;
+          description: the conversation reference
+      return:
+        type: Partial&lt;<xref uid="botframework-schema.Activity" />&gt;
+        description: the activity
   - name: getConversationReference(Partial<Activity>)
     uid: botframework-schema.ActivityEx.getConversationReference
     package: botframework-schema
@@ -470,9 +530,7 @@ functions:
           type: Partial&lt;<xref uid="botframework-schema.Activity" />&gt;
           description: The source activity.
       return:
-        type: >-
-          Partial&lt;<xref uid="botframework-schema.ConversationReference"
-          />&gt;
+        type: <xref uid="botframework-schema.ConversationReference" />
         description: >-
           A conversation reference for the conversation that contains the
           activity.

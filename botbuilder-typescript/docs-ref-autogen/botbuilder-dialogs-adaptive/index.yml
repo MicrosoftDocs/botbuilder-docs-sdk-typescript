@@ -56,6 +56,8 @@ interfaces:
   - botbuilder-dialogs-adaptive.OnConditionConfiguration
   - botbuilder-dialogs-adaptive.OnDialogEventConfiguration
   - botbuilder-dialogs-adaptive.OnIntentConfiguration
+  - botbuilder-dialogs-adaptive.EntityAssignmentConfiguration
+  - botbuilder-dialogs-adaptive.EntityAssignmentsConfiguration
   - botbuilder-dialogs-adaptive.MultiLanguageGeneratorBaseConfiguration
   - botbuilder-dialogs-adaptive.ResourceMultiLanguageGeneratorConfiguration
   - botbuilder-dialogs-adaptive.TemplateEngineLanguageGeneratorConfiguration
@@ -146,6 +148,8 @@ classes:
   - botbuilder-dialogs-adaptive.OnChooseEntity
   - botbuilder-dialogs-adaptive.OnChooseIntent
   - botbuilder-dialogs-adaptive.OnChooseProperty
+  - botbuilder-dialogs-adaptive.OnCommandActivity
+  - botbuilder-dialogs-adaptive.OnCommandResultActivity
   - botbuilder-dialogs-adaptive.OnCondition
   - botbuilder-dialogs-adaptive.OnContinueConversation
   - botbuilder-dialogs-adaptive.OnConversationUpdateActivity
@@ -177,6 +181,7 @@ classes:
   - botbuilder-dialogs-adaptive.TextTemplateConverter
   - botbuilder-dialogs-adaptive.DynamicBeginDialogDeserializer
   - botbuilder-dialogs-adaptive.EntityAssignment
+  - botbuilder-dialogs-adaptive.EntityAssignmentComparer
   - botbuilder-dialogs-adaptive.EntityAssignments
   - botbuilder-dialogs-adaptive.EntityInfo
   - botbuilder-dialogs-adaptive.DialogExpression
@@ -255,8 +260,40 @@ typeAliases:
   - botbuilder-dialogs-adaptive.PropertiesOutput
   - botbuilder-dialogs-adaptive.Input
   - botbuilder-dialogs-adaptive.Output
+  - botbuilder-dialogs-adaptive.ArrayProperty
+  - botbuilder-dialogs-adaptive.BoolProperty
+  - botbuilder-dialogs-adaptive.DialogProperty
+  - botbuilder-dialogs-adaptive.EnumProperty
+  - botbuilder-dialogs-adaptive.IntProperty
+  - botbuilder-dialogs-adaptive.NumberProperty
+  - botbuilder-dialogs-adaptive.ObjectProperty
+  - botbuilder-dialogs-adaptive.Property
+  - botbuilder-dialogs-adaptive.StringProperty
+  - botbuilder-dialogs-adaptive.TemplateInterfaceProperty
+  - botbuilder-dialogs-adaptive.UnknownProperty
   - botbuilder-dialogs-adaptive.IntentPatternInput
 functions:
+  - name: 'evaluateExpression(DialogStateManager, ValueExpression)'
+    uid: botbuilder-dialogs-adaptive.evaluateExpression
+    package: botbuilder-dialogs-adaptive
+    summary: Evaluate ValueExpression according the value type.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function evaluateExpression(state: DialogStateManager, valExpr:
+        ValueExpression)
+      parameters:
+        - id: state
+          type: DialogStateManager
+          description: Input ValueExpression
+        - id: valExpr
+          type: ValueExpression
+          description: A scope for looking up variables.
+      return:
+        type: any
+        description: Deep data binding result.
   - name: 'replaceJsonRecursively(DialogStateManager, object)'
     uid: botbuilder-dialogs-adaptive.replaceJsonRecursively
     package: botbuilder-dialogs-adaptive

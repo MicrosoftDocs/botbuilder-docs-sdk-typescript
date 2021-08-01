@@ -35,9 +35,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public templateMap: [key: string]: Template'
+      content: 'public templateMap: Record<string, Template>'
       return:
-        type: '[key: string]\: <xref uid="botbuilder-lg.Template" />'
+        type: 'Record&lt;string, <xref uid="botbuilder-lg.Template" />&gt;'
         description: ''
   - name: templates
     uid: botbuilder-lg.Extractor.templates
@@ -63,7 +63,7 @@ methods:
     syntax:
       content: function extract()
       return:
-        type: 'Map&lt;string, any&gt;[]'
+        type: 'Map&lt;string, string[] | Map&lt;string, string[]&gt;&gt;[]'
         description: Map object with template names and bodies.
   - name: visit(ParseTree)
     uid: botbuilder-lg.Extractor.visit
@@ -82,7 +82,7 @@ methods:
           type: ParseTree
           description: ''
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: ''
   - name: visitChildren(RuleNode)
     uid: botbuilder-lg.Extractor.visitChildren
@@ -110,7 +110,7 @@ methods:
           type: RuleNode
           description: ''
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: ''
   - name: visitErrorNode(ErrorNode)
     uid: botbuilder-lg.Extractor.visitErrorNode
@@ -129,7 +129,7 @@ methods:
           type: ErrorNode
           description: ''
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: ''
   - name: visitIfElseBody(IfElseBodyContext)
     uid: botbuilder-lg.Extractor.visitIfElseBody
@@ -147,7 +147,7 @@ methods:
           type: <xref uid="botbuilder-lg.IfElseBodyContext" />
           description: The parse tree.
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: The result of visiting the if else body.
   - name: visitNormalTemplateBody(NormalTemplateBodyContext)
     uid: botbuilder-lg.Extractor.visitNormalTemplateBody
@@ -163,7 +163,7 @@ methods:
           type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
           description: The parse tree.
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: The result of visiting the normal template body.
   - name: visitStructuredBody(StructuredBodyContext)
     uid: botbuilder-lg.Extractor.visitStructuredBody
@@ -181,7 +181,7 @@ methods:
           type: <xref uid="botbuilder-lg.StructuredBodyContext" />
           description: The parse tree.
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: The result of visiting the structured body.
   - name: visitSwitchCaseBody(SwitchCaseBodyContext)
     uid: botbuilder-lg.Extractor.visitSwitchCaseBody
@@ -199,7 +199,7 @@ methods:
           type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
           description: The parse tree.
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: The result of visiting the switch case body.
   - name: visitTerminal(TerminalNode)
     uid: botbuilder-lg.Extractor.visitTerminal
@@ -218,6 +218,6 @@ methods:
           type: TerminalNode
           description: ''
       return:
-        type: 'Map&lt;string, any&gt;'
+        type: 'Map&lt;string, string[]&gt;'
         description: ''
-extends: 'AbstractParseTreeVisitor&lt;Map&lt;string, any&gt;&gt;'
+extends: 'AbstractParseTreeVisitor&lt;Map&lt;string, string[]&gt;&gt;'

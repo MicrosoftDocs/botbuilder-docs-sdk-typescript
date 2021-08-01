@@ -81,9 +81,9 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'payloadType: string'
+      content: 'payloadType: string | PayloadTypes'
       return:
-        type: string
+        type: string | <xref uid="botframework-streaming.PayloadTypes" />
         description: ''
 methods:
   - name: close()
@@ -121,7 +121,7 @@ methods:
     syntax:
       content: >-
         function onReceive(header: IHeader, stream: SubscribableStream,
-        contentLength: number)
+        _contentLength: number)
       parameters:
         - id: header
           type: <xref uid="botframework-streaming.IHeader" />
@@ -129,7 +129,7 @@ methods:
         - id: stream
           type: <xref uid="botframework-streaming.SubscribableStream" />
           description: The incoming stream being assembled.
-        - id: contentLength
+        - id: _contentLength
           type: number
           description: |
             The length of the stream, if finite.

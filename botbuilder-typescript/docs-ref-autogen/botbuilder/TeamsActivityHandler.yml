@@ -9,7 +9,7 @@ remarks: >-
   via two methods:
    1. Overriding methods starting with `on..` and *not* ending in `..Event()` (e.g. `onTeamsMembersAdded()`), or instead
    2. Passing callbacks to methods starting with `on..` *and* ending in `...Event()` (e.g. `onTeamsMembersAddedEvent()`),
-       to stay in line with older <xref:ActivityHandler> implementation.
+       to stay in line with older {@see ActivityHandler} implementation.
 
   Developers should use either #1 or #2, above for all Conversation Update
   activities and not *both* #2 and #3 for the same activity. Meaning,
@@ -21,6 +21,56 @@ isPreview: false
 isDeprecated: false
 type: class
 methods:
+  - name: onCommand(BotHandler)
+    uid: botbuilder.TeamsActivityHandler.onCommand
+    package: botbuilder
+    summary: Registers an activity event handler for the _command_ activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a Command event, use the
+
+      [onCommand](xref:botbuilder-core.ActivityHandler.onCommand) type-specific
+      event handler.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onCommand(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type: BotHandler
+          description: |
+            The event handler.
+      return:
+        type: this
+        description: ''
+  - name: onCommandResult(BotHandler)
+    uid: botbuilder.TeamsActivityHandler.onCommandResult
+    package: botbuilder
+    summary: Registers an activity event handler for the _CommandResult_ activity.
+    remarks: >-
+      Returns a reference to the
+      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+
+      To handle a CommandResult event, use the
+
+      [onCommandResult](xref:botbuilder-core.ActivityHandler.onCommandResult)
+      type-specific event handler.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function onCommandResult(handler: BotHandler)'
+      parameters:
+        - id: handler
+          type: BotHandler
+          description: |
+            The event handler.
+      return:
+        type: this
+        description: ''
   - name: onConversationUpdate(BotHandler)
     uid: botbuilder.TeamsActivityHandler.onConversationUpdate
     package: botbuilder
@@ -559,6 +609,52 @@ methods:
             (channelInfo: ChannelInfo, teamInfo: TeamInfo, context: TurnContext,
             next: () =&gt; Promise&lt;void&gt;) =&gt; Promise&lt;void&gt;
           description: ''
+      return:
+        type: this
+        description: A promise that represents the work queued.
+  - name: >-
+      onTeamsMeetingEndEvent((meeting: MeetingEndEventDetails, context:
+      TurnContext, next: () => Promise<void>) => Promise<void>)
+    uid: botbuilder.TeamsActivityHandler.onTeamsMeetingEndEvent
+    package: botbuilder
+    summary: Registers a handler for when a Teams meeting ends.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onTeamsMeetingEndEvent(handler: (meeting:
+        MeetingEndEventDetails, context: TurnContext, next: () => Promise<void>)
+        => Promise<void>)
+      parameters:
+        - id: handler
+          type: >-
+            (meeting: MeetingEndEventDetails, context: TurnContext, next: ()
+            =&gt; Promise&lt;void&gt;) =&gt; Promise&lt;void&gt;
+          description: A callback that handles Meeting End events.
+      return:
+        type: this
+        description: A promise that represents the work queued.
+  - name: >-
+      onTeamsMeetingStartEvent((meeting: MeetingStartEventDetails, context:
+      TurnContext, next: () => Promise<void>) => Promise<void>)
+    uid: botbuilder.TeamsActivityHandler.onTeamsMeetingStartEvent
+    package: botbuilder
+    summary: Registers a handler for when a Teams meeting starts.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onTeamsMeetingStartEvent(handler: (meeting:
+        MeetingStartEventDetails, context: TurnContext, next: () =>
+        Promise<void>) => Promise<void>)
+      parameters:
+        - id: handler
+          type: >-
+            (meeting: MeetingStartEventDetails, context: TurnContext, next: ()
+            =&gt; Promise&lt;void&gt;) =&gt; Promise&lt;void&gt;
+          description: A callback that handles Meeting Start events.
       return:
         type: this
         description: A promise that represents the work queued.

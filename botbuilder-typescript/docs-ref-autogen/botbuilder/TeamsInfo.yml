@@ -11,6 +11,25 @@ isPreview: false
 isDeprecated: false
 type: class
 methods:
+  - name: 'getMeetingInfo(TurnContext, string)'
+    uid: botbuilder.TeamsInfo.getMeetingInfo
+    package: botbuilder
+    summary: Gets the information for the given meeting id.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static function getMeetingInfo(context: TurnContext, meetingId?: string)'
+      parameters:
+        - id: context
+          type: TurnContext
+          description: 'The [TurnContext](xref:botbuilder-core.TurnContext) for this turn.'
+        - id: meetingId
+          type: string
+          description: The BASE64-encoded id of the Teams meeting.
+      return:
+        type: Promise&lt;TeamsMeetingInfo&gt;
+        description: 'The [TeamsMeetingInfo](xref:botbuilder-core.TeamsMeetingInfo) fetched'
   - name: 'getMeetingParticipant(TurnContext, string, string, string)'
     uid: botbuilder.TeamsInfo.getMeetingParticipant
     package: botbuilder
@@ -238,7 +257,7 @@ methods:
           The list of
           [TeamsChannelAccount](xref:botframework-schema.TeamsChannelAccount) of
           the members.
-  - name: 'sendMessageToTeamsChannel(TurnContext, Activity, string)'
+  - name: 'sendMessageToTeamsChannel(TurnContext, Activity, string, string)'
     uid: botbuilder.TeamsInfo.sendMessageToTeamsChannel
     package: botbuilder
     summary: >-
@@ -250,7 +269,7 @@ methods:
     syntax:
       content: >-
         static function sendMessageToTeamsChannel(context: TurnContext,
-        activity: Activity, teamsChannelId: string)
+        activity: Activity, teamsChannelId: string, botAppId?: string)
       parameters:
         - id: context
           type: TurnContext
@@ -260,7 +279,14 @@ methods:
           description: 'The [Activity](xref:botframework-schema.Activity) to send.'
         - id: teamsChannelId
           type: string
-          description: Id of the Teams channel.
+          description: >-
+            The Team's Channel ID, note this is distinct from the Bot Framework
+            activity property with same name.
+        - id: botAppId
+          type: string
+          description: >-
+            The bot's appId. This is only used when context.adapter is an
+            instance of CloudAdapter.
       return:
         type: Promise&lt;Object&gt;
         description: >-
