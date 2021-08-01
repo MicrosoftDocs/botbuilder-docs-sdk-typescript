@@ -65,10 +65,39 @@ typeAliases:
   - botframework-streaming.BufferEncoding
   - botframework-streaming.ValidBuffer
   - botframework-streaming.TransportDisconnectedEventHandler
+  - botframework-streaming.ConnectionListener
 enums:
   - botframework-streaming.PayloadConstants
   - botframework-streaming.PayloadTypes
 functions:
+  - name: createNodeServer(ConnectionListener)
+    uid: botframework-streaming.createNodeServer
+    package: botframework-streaming
+    summary: Create a Node 'net' server
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function createNodeServer(callback?: ConnectionListener)'
+      parameters:
+        - id: callback
+          type: <xref uid="botframework-streaming.ConnectionListener" />
+          description: Optional connection listener
+      return:
+        type: <xref uid="botframework-streaming.INodeServer" />
+        description: a Node 'net' server instance
+  - name: getServerFactory()
+    uid: botframework-streaming.getServerFactory
+    package: botframework-streaming
+    summary: Get a function that creates a Node 'net' server instance
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getServerFactory()
+      return:
+        type: '(callback?: ConnectionListener) =&gt; INodeServer'
+        description: a server factory function
   - name: generateGuid()
     uid: botframework-streaming.generateGuid
     package: botframework-streaming

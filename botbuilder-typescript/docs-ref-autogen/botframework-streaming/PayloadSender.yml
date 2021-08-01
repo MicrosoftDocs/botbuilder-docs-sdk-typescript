@@ -27,7 +27,7 @@ properties:
   - name: isConnected
     uid: botframework-streaming.PayloadSender.isConnected
     package: botframework-streaming
-    summary: Tests whether the transport sender is connected.
+    summary: Get current connected state
     fullName: isConnected
     remarks: ''
     isPreview: false
@@ -60,9 +60,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function disconnect(e?: TransportDisconnectedEvent)'
+      content: 'function disconnect(event?: TransportDisconnectedEvent)'
       parameters:
-        - id: e
+        - id: event
           type: <xref uid="botframework-streaming.TransportDisconnectedEvent" />
           description: >
             The disconnected event arguments to include in the disconnected
@@ -87,4 +87,5 @@ methods:
           description: The stream of buffered data to send.
         - id: sentCallback
           type: () =&gt; Promise&lt;void&gt;
-          description: ''
+          description: |
+            The function to execute when the send has completed.

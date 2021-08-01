@@ -85,6 +85,19 @@ properties:
       return:
         type: symbol
         description: ''
+  - name: ConnectorClientKey
+    uid: botbuilder-core.TestAdapter.ConnectorClientKey
+    package: botbuilder-core
+    summary: ''
+    fullName: ConnectorClientKey
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'ConnectorClientKey: symbol'
+      return:
+        type: symbol
+        description: ''
   - name: conversation
     uid: botbuilder-core.TestAdapter.conversation
     package: botbuilder-core
@@ -267,6 +280,112 @@ methods:
       return:
         type: Promise&lt;void&gt;
         description: ''
+  - name: >-
+      continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
+      (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.continueConversationAsync_1
+    package: botbuilder-core
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function continueConversationAsync(claimsIdentity: ClaimsIdentity,
+        reference: Partial<ConversationReference>, logic: (context: TurnContext)
+        => Promise<void>)
+      parameters:
+        - id: claimsIdentity
+          type: ClaimsIdentity
+          description: >-
+            A [ClaimsIdentity](xref:botframework-connector) for the
+            conversation.
+        - id: reference
+          type: Partial&lt;ConversationReference&gt;
+          description: >-
+            A partial
+            [ConversationReference](xref:botframework-schema.ConversationReference)
+            to the conversation to continue.
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The asynchronous method to call after the adapter middleware runs.
+      return:
+        type: Promise&lt;void&gt;
+        description: a promise representing the async operation
+  - name: >-
+      continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
+      string, (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.continueConversationAsync_2
+    package: botbuilder-core
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function continueConversationAsync(claimsIdentity: ClaimsIdentity,
+        reference: Partial<ConversationReference>, audience: string, logic:
+        (context: TurnContext) => Promise<void>)
+      parameters:
+        - id: claimsIdentity
+          type: ClaimsIdentity
+          description: >-
+            A [ClaimsIdentity](xref:botframework-connector) for the
+            conversation.
+        - id: reference
+          type: Partial&lt;ConversationReference&gt;
+          description: >-
+            A partial
+            [ConversationReference](xref:botframework-schema.ConversationReference)
+            to the conversation to continue.
+        - id: audience
+          type: string
+          description: A value signifying the recipient of the proactive message.</param>
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The asynchronous method to call after the adapter middleware runs.
+      return:
+        type: Promise&lt;void&gt;
+        description: a promise representing the async operation
+  - name: >-
+      continueConversationAsync(string, Partial<ConversationReference>,
+      (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.continueConversationAsync
+    package: botbuilder-core
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function continueConversationAsync(botAppId: string, reference:
+        Partial<ConversationReference>, logic: (context: TurnContext) =>
+        Promise<void>)
+      parameters:
+        - id: botAppId
+          type: string
+          description: >-
+            The application ID of the bot. This parameter is ignored in single
+            tenant the Adapters (Console,Test, etc) but is critical to the
+            BotFrameworkAdapter which is multi-tenant aware.
+        - id: reference
+          type: Partial&lt;ConversationReference&gt;
+          description: >-
+            A partial
+            [ConversationReference](xref:botframework-schema.ConversationReference)
+            to the conversation to continue.
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The asynchronous method to call after the adapter middleware runs.
+      return:
+        type: Promise&lt;void&gt;
+        description: a promise representing the async operation
   - name: 'createConversation(string, string, string)'
     uid: botbuilder-core.TestAdapter.createConversation
     package: botbuilder-core
@@ -292,6 +411,61 @@ methods:
       return:
         type: ConversationReference
         description: ''
+  - name: >-
+      createConversationAsync(string, string, string, string,
+      ConversationParameters, (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.createConversationAsync
+    package: botbuilder-core
+    summary: Creates a conversation on the specified channel.
+    remarks: >-
+      To start a conversation, your bot must know its account information and
+      the user's account information on that
+
+      channel.  Most _channels only support initiating a direct message
+      (non-group) conversation.
+
+
+      The adapter attempts to create a new conversation on the channel, and then
+      sends a `conversationUpdate` activity
+
+      through its middleware pipeline to the logic method.
+
+
+      If the conversation is established with the specified users, the ID of the
+      activity's converstion will contain
+
+      the ID of the new conversation.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function createConversationAsync(botAppId: string, channelId: string,
+        serviceUrl: string, audience: string, conversationParameters:
+        ConversationParameters, logic: (context: TurnContext) => Promise<void>)
+      parameters:
+        - id: botAppId
+          type: string
+          description: The application ID of the bot.
+        - id: channelId
+          type: string
+          description: The ID for the channel.
+        - id: serviceUrl
+          type: string
+          description: The ID for the channel.
+        - id: audience
+          type: string
+          description: |-
+            The audience for the connector.
+            <param name="conversationParameters">
+        - id: conversationParameters
+          type: ConversationParameters
+          description: The conversation information to use to create the conversation
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The method to call for the resulting bot turn.
+      return:
+        type: Promise&lt;void&gt;
+        description: A promise that represents the asynchronous operation
   - name: 'exchangeToken(TurnContext, string, string, TokenExchangeRequest)'
     uid: botbuilder-core.TestAdapter.exchangeToken
     package: botbuilder-core

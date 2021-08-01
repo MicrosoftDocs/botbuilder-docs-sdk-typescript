@@ -18,7 +18,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'disconnected: TransportDisconnectedEventHandler'
+      content: 'disconnected?: TransportDisconnectedEventHandler'
       return:
         type: >-
           <xref uid="botframework-streaming.TransportDisconnectedEventHandler"
@@ -27,16 +27,16 @@ properties:
   - name: isConnected
     uid: botframework-streaming.PayloadReceiver.isConnected
     package: botframework-streaming
-    summary: ''
+    summary: Get current connected state
     fullName: isConnected
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'isConnected: boolean'
+      content: boolean isConnected
       return:
         type: boolean
-        description: ''
+        description: true if connected to a transport sender.
 methods:
   - name: connect(ITransportReceiver)
     uid: botframework-streaming.PayloadReceiver.connect
@@ -50,10 +50,13 @@ methods:
       parameters:
         - id: receiver
           type: <xref uid="botframework-streaming.ITransportReceiver" />
-          description: >
+          description: >-
             The
             [ITransportReceiver](xref:botframework-streaming.ITransportReceiver)
             object to pull incoming data from.
+      return:
+        type: Promise&lt;void&gt;
+        description: a promise that resolves when the receiver is complete
   - name: disconnect(TransportDisconnectedEvent)
     uid: botframework-streaming.PayloadReceiver.disconnect
     package: botframework-streaming
@@ -62,9 +65,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function disconnect(e?: TransportDisconnectedEvent)'
+      content: 'function disconnect(event?: TransportDisconnectedEvent)'
       parameters:
-        - id: e
+        - id: event
           type: <xref uid="botframework-streaming.TransportDisconnectedEvent" />
           description: |
             Event arguments to include when broadcasting disconnection event.

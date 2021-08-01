@@ -1,0 +1,139 @@
+### YamlMime:TSType
+name: BotFrameworkAuthentication
+uid: botframework-connector.BotFrameworkAuthentication
+package: botframework-connector
+summary: >-
+  Represents a Cloud Environment used to authenticate Bot Framework Protocol
+  network calls within this environment.
+fullName: BotFrameworkAuthentication
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+methods:
+  - name: authenticateChannelRequest(string)
+    uid: >-
+      botframework-connector.BotFrameworkAuthentication.authenticateChannelRequest
+    package: botframework-connector
+    summary: Authenticate Bot Framework Protocol request to Skills.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function authenticateChannelRequest(authHeader: string)'
+      parameters:
+        - id: authHeader
+          type: string
+          description: The HTTP auth header in the skill request.
+      return:
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
+        description: 'A [ClaimsIdentity](xref:botframework-connector.ClaimsIdentity).'
+  - name: 'authenticateRequest(Activity, string)'
+    uid: botframework-connector.BotFrameworkAuthentication.authenticateRequest
+    package: botframework-connector
+    summary: Validate Bot Framework Protocol requests.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function authenticateRequest(activity: Activity, authHeader: string)'
+      parameters:
+        - id: activity
+          type: Activity
+          description: The inbound Activity.
+        - id: authHeader
+          type: string
+          description: The HTTP auth header.
+      return:
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.AuthenticateRequestResult" />&gt;
+        description: >-
+          An
+          [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
+  - name: 'authenticateStreamingRequest(string, string)'
+    uid: >-
+      botframework-connector.BotFrameworkAuthentication.authenticateStreamingRequest
+    package: botframework-connector
+    summary: Validate Bot Framework Protocol requests.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function authenticateStreamingRequest(authHeader: string,
+        channelIdHeader: string)
+      parameters:
+        - id: authHeader
+          type: string
+          description: The HTTP auth header.
+        - id: channelIdHeader
+          type: string
+          description: The channel ID HTTP header.
+      return:
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.AuthenticateRequestResult" />&gt;
+        description: >-
+          An
+          [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
+  - name: createBotFrameworkClient()
+    uid: botframework-connector.BotFrameworkAuthentication.createBotFrameworkClient
+    package: botframework-connector
+    summary: Creates a BotFrameworkClient for calling Skills.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function createBotFrameworkClient()
+      return:
+        type: <xref uid="botframework-connector.BotFrameworkClient" />
+        description: >-
+          A
+          [BotFrameworkClient](xref:botframework-connector.BotFrameworkClient).
+  - name: createConnectorFactory(ClaimsIdentity)
+    uid: botframework-connector.BotFrameworkAuthentication.createConnectorFactory
+    package: botframework-connector
+    summary: >-
+      Creates a ConnectorFactory that can be used to create ConnectorClients
+      that can use credentials from this particular Cloud Environment.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function createConnectorFactory(claimsIdentity: ClaimsIdentity)'
+      parameters:
+        - id: claimsIdentity
+          type: <xref uid="botframework-connector.ClaimsIdentity" />
+          description: The inbound Activity's ClaimsIdentity.
+      return:
+        type: <xref uid="botframework-connector.ConnectorFactory" />
+        description: 'A [ConnectorFactory](xref:botframework-connector.ConnectorFactory).'
+  - name: createUserTokenClient(ClaimsIdentity)
+    uid: botframework-connector.BotFrameworkAuthentication.createUserTokenClient
+    package: botframework-connector
+    summary: Creates the appropriate UserTokenClient instance.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function createUserTokenClient(claimsIdentity: ClaimsIdentity)'
+      parameters:
+        - id: claimsIdentity
+          type: <xref uid="botframework-connector.ClaimsIdentity" />
+          description: The inbound Activity's ClaimsIdentity.
+      return:
+        type: Promise&lt;<xref uid="botframework-connector.UserTokenClient" />&gt;
+        description: 'An [UserTokenClient](xref:botframework-connector.UserTokenClient).'
+  - name: getOriginatingAudience()
+    uid: botframework-connector.BotFrameworkAuthentication.getOriginatingAudience
+    package: botframework-connector
+    summary: Gets the originating audience from Bot OAuth scope.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: function getOriginatingAudience()
+      return:
+        type: string
+        description: The originating audience.

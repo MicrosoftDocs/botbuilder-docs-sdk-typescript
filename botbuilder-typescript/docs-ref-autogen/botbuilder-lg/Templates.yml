@@ -11,7 +11,8 @@ type: class
 constructors:
   - name: >-
       Templates(Template[], TemplateImport[], Diagnostic[], Templates[], string,
-      string, ExpressionParser, ImportResolverDelegate, string[], string)
+      string, ExpressionParser, ImportResolverDelegate, string[], string,
+      Record<string, Templates>)
     uid: botbuilder-lg.Templates.constructor
     package: botbuilder-lg
     summary: >-
@@ -26,7 +27,7 @@ constructors:
         diagnostics?: Diagnostic[], references?: Templates[], content?: string,
         id?: string, expressionParser?: ExpressionParser,
         importResolverDelegate?: ImportResolverDelegate, options?: string[],
-        source?: string)
+        source?: string, namedReferences?: Record<string, Templates>)
       parameters:
         - id: items
           type: '<xref uid="botbuilder-lg.Template" />[]'
@@ -68,8 +69,12 @@ constructors:
             of the templates.
         - id: source
           type: string
-          description: |
-            Optional. Templates source.
+          description: Optional. Templates source.
+        - id: namedReferences
+          type: 'Record&lt;string, <xref uid="botbuilder-lg.Templates" />&gt;'
+          description: >
+            Optional. eferences that imported with the "as" syntax，for example:
+            [import](path.lg) as myAlias.
 properties:
   - name: allDiagnostics
     uid: botbuilder-lg.Templates.allDiagnostics
@@ -200,6 +205,19 @@ properties:
       content: EvaluationOptions lgOptions
       return:
         type: <xref uid="botbuilder-lg.EvaluationOptions" />
+        description: ''
+  - name: namedReferences
+    uid: botbuilder-lg.Templates.namedReferences
+    package: botbuilder-lg
+    summary: Map from import alias to templates.
+    fullName: namedReferences
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public namedReferences: Record<string, Templates>'
+      return:
+        type: 'Record&lt;string, <xref uid="botbuilder-lg.Templates" />&gt;'
         description: ''
   - name: namespace
     uid: botbuilder-lg.Templates.namespace

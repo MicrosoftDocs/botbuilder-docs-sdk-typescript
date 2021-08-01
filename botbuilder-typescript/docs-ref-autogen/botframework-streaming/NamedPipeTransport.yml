@@ -30,7 +30,7 @@ properties:
   - name: isConnected
     uid: botframework-streaming.NamedPipeTransport.isConnected
     package: botframework-streaming
-    summary: Returns true if currently connected.
+    summary: Returns `true` if currently connected.
     fullName: isConnected
     remarks: ''
     isPreview: false
@@ -39,7 +39,9 @@ properties:
       content: boolean isConnected
       return:
         type: boolean
-        description: ''
+        description: >-
+          `true` if the the transport is connected and ready to send data,
+          `false` otherwise.
   - name: PipePath
     uid: botframework-streaming.NamedPipeTransport.PipePath
     package: botframework-streaming
@@ -101,10 +103,10 @@ methods:
       parameters:
         - id: count
           type: number
-          description: ''
+          description: The maximum amount of bytes to write to the buffer.
       return:
         type: Promise&lt;<xref uid="botframework-streaming.INodeBuffer" />&gt;
-        description: ''
+        description: The buffer containing the data from the transport.
   - name: send(INodeBuffer)
     uid: botframework-streaming.NamedPipeTransport.send
     package: botframework-streaming
@@ -117,8 +119,9 @@ methods:
       parameters:
         - id: buffer
           type: <xref uid="botframework-streaming.INodeBuffer" />
-          description: |
-            The buffer full of data to send out across the socket.
+          description: The buffer full of data to send out across the socket.
       return:
         type: number
-        description: ''
+        description: >-
+          A number indicating the length of the sent data if the data was
+          successfully sent, otherwise 0.

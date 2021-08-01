@@ -2,14 +2,17 @@
 name: PayloadAssemblerManager
 uid: botframework-streaming.PayloadAssemblerManager
 package: botframework-streaming
-summary: Orchestrates assemly of payloads
+summary: Orchestrates assembly of payloads.
 fullName: PayloadAssemblerManager
 remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'PayloadAssemblerManager(StreamManager, Function, Function)'
+  - name: >-
+      PayloadAssemblerManager(StreamManager, (id: string, receiveResponse:
+      IReceiveResponse) => Promise<void>, (id: string, receiveRequest:
+      IReceiveRequest) => Promise<void>)
     uid: botframework-streaming.PayloadAssemblerManager.constructor
     package: botframework-streaming
     summary: >-
@@ -22,7 +25,9 @@ constructors:
     syntax:
       content: >-
         new PayloadAssemblerManager(streamManager: StreamManager,
-        onReceiveResponse: Function, onReceiveRequest: Function)
+        onReceiveResponse: (id: string, receiveResponse: IReceiveResponse) =>
+        Promise<void>, onReceiveRequest: (id: string, receiveRequest:
+        IReceiveRequest) => Promise<void>)
       parameters:
         - id: streamManager
           type: <xref uid="botframework-streaming.StreamManager" />
@@ -30,12 +35,16 @@ constructors:
             The [StreamManager](xref:botframework-streaming.StreamManager)
             managing the stream being assembled.
         - id: onReceiveResponse
-          type: Function
+          type: >-
+            (id: string, receiveResponse: IReceiveResponse) =&gt;
+            Promise&lt;void&gt;
           description: >-
             Function that executes when new bytes are received on a `response`
             stream.
         - id: onReceiveRequest
-          type: Function
+          type: >-
+            (id: string, receiveRequest: IReceiveRequest) =&gt;
+            Promise&lt;void&gt;
           description: >
             Function that executes when new bytes are received on a `request`
             stream.

@@ -91,16 +91,16 @@ properties:
       return:
         type: string
         description: ''
-  - name: role
-    uid: botbuilder-dialogs-adaptive.EntityInfo.role
+  - name: rootEntity
+    uid: botbuilder-dialogs-adaptive.EntityInfo.rootEntity
     package: botbuilder-dialogs-adaptive
-    summary: Role the entity played in utterance.
-    fullName: role
+    summary: Root entity where this entity was found.
+    fullName: rootEntity
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'role: string'
+      content: 'rootEntity: string'
       return:
         type: string
         description: ''
@@ -192,10 +192,10 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        static function alternative(_this: Partial<EntityInfo>, entity:
+        static function alternative(source: Partial<EntityInfo>, entity:
         Partial<EntityInfo>)
       parameters:
-        - id: _this
+        - id: source
           type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
           description: Source entity.
         - id: entity
@@ -214,10 +214,32 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        static function covers(_this: Partial<EntityInfo>, entity:
+        static function covers(source: Partial<EntityInfo>, entity:
         Partial<EntityInfo>)
       parameters:
-        - id: _this
+        - id: source
+          type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
+          description: Source entity.
+        - id: entity
+          type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
+          description: |
+            Entity to compare.
+      return:
+        type: boolean
+        description: ''
+  - name: 'isSameEntity(Partial<EntityInfo>, Partial<EntityInfo>)'
+    uid: botbuilder-dialogs-adaptive.EntityInfo.isSameEntity
+    package: botbuilder-dialogs-adaptive
+    summary: Returns true if entities are the same.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function isSameEntity(source: Partial<EntityInfo>, entity:
+        Partial<EntityInfo>)
+      parameters:
+        - id: source
           type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
           description: Source entity.
         - id: entity
@@ -236,10 +258,32 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        static function overlaps(_this: Partial<EntityInfo>, entity:
+        static function overlaps(source: Partial<EntityInfo>, entity:
         Partial<EntityInfo>)
       parameters:
-        - id: _this
+        - id: source
+          type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
+          description: Source entity.
+        - id: entity
+          type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
+          description: |
+            Entity to compare.
+      return:
+        type: boolean
+        description: ''
+  - name: 'sharesRoot(Partial<EntityInfo>, Partial<EntityInfo>)'
+    uid: botbuilder-dialogs-adaptive.EntityInfo.sharesRoot
+    package: botbuilder-dialogs-adaptive
+    summary: Returns true if entities share the same root.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function sharesRoot(source: Partial<EntityInfo>, entity:
+        Partial<EntityInfo>)
+      parameters:
+        - id: source
           type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
           description: Source entity.
         - id: entity
@@ -257,9 +301,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function toString(_this: Partial<EntityInfo>)'
+      content: 'static function toString(source: Partial<EntityInfo>)'
       parameters:
-        - id: _this
+        - id: source
           type: Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityInfo" />&gt;
           description: |
             Source entity.

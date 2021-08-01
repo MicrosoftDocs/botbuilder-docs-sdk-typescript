@@ -17,7 +17,10 @@ classes:
   - botbuilder-core.BrowserLocalStorage
   - botbuilder-core.BrowserSessionStorage
   - botbuilder-core.CardFactory
+  - botbuilder-core.CloudAdapterBase
   - botbuilder-core.ComponentRegistration
+  - botbuilder-core.ConfigurationBotFrameworkAuthentication
+  - botbuilder-core.ConfigurationServiceClientCredentialFactory
   - botbuilder-core.ConversationState
   - botbuilder-core.InvokeException
   - botbuilder-core.MemoryStorage
@@ -43,6 +46,8 @@ classes:
   - botbuilder-core.UserState
 typeAliases:
   - botbuilder-core.BotHandler
+  - botbuilder-core.ConfigurationBotFrameworkAuthenticationOptions
+  - botbuilder-core.ConfigurationServiceClientCredentialFactoryOptions
   - botbuilder-core.MiddlewareHandler
   - botbuilder-core.StorageKeyFactory
   - botbuilder-core.TestActivityInspector
@@ -113,6 +118,112 @@ functions:
           type: '[key: string]\: number'
           description: |
             Measurements associated with this event.
+  - name: >-
+      createBotFrameworkAuthenticationFromConfiguration(Configuration,
+      ServiceClientCredentialsFactory, AuthenticationConfiguration, (input:
+      RequestInfo, init?: RequestInit) => Promise<Response>,
+      ConnectorClientOptions)
+    uid: botbuilder-core.createBotFrameworkAuthenticationFromConfiguration
+    package: botbuilder-core
+    summary: >-
+      Creates a new instance of the
+      [ConfigurationBotFrameworkAuthentication](xref:botbuilder-core.ConfigurationBotFrameworkAuthentication)
+      class.
+    remarks: >-
+      The
+      [Configuration](xref:botbuilder-dialogs-adaptive-runtime-core.Configuration)
+      instance provided to the constructor should
+
+      have the desired authentication values available at the root, using the
+      properties of
+      [ConfigurationBotFrameworkAuthenticationOptions](xref:botbuilder-core.ConfigurationBotFrameworkAuthenticationOptions)
+      as its keys.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function
+        createBotFrameworkAuthenticationFromConfiguration(configuration:
+        Configuration, credentialsFactory?: ServiceClientCredentialsFactory,
+        authConfiguration?: AuthenticationConfiguration,
+        botFrameworkClientFetch?: (input: RequestInfo, init?: RequestInit) =>
+        Promise<Response>, connectorClientOptions?: ConnectorClientOptions)
+      parameters:
+        - id: configuration
+          type: Configuration
+          description: >-
+            A
+            [Configuration](xref:botbuilder-dialogs-adaptive-runtime-core.Configuration)
+            instance.
+        - id: credentialsFactory
+          type: ServiceClientCredentialsFactory
+          description: >-
+            A
+            [ServiceClientCredentialsFactory](xref:botframework-connector.ServiceClientCredentialsFactory)
+            instance.
+        - id: authConfiguration
+          type: AuthenticationConfiguration
+          description: >-
+            A
+            [Configuration](xref:botframework-connector.AuthenticationConfiguration)
+            object.
+        - id: botFrameworkClientFetch
+          type: >-
+            (input: RequestInfo, init?: RequestInit) =&gt;
+            Promise&lt;Response&gt;
+          description: >-
+            A custom Fetch implementation to be used in the
+            [BotFrameworkClient](xref:botframework-connector.BotFrameworkClient).
+        - id: connectorClientOptions
+          type: ConnectorClientOptions
+          description: >-
+            A
+            [ConnectorClientOptions](xref:botframework-connector.ConnectorClientOptions)
+            object.
+      return:
+        type: BotFrameworkAuthentication
+        description: >-
+          A
+          [ConfigurationBotFrameworkAuthentication](xref:botbuilder-core.ConfigurationBotFrameworkAuthentication)
+          instance.
+  - name: createServiceClientCredentialFactoryFromConfiguration(Configuration)
+    uid: botbuilder-core.createServiceClientCredentialFactoryFromConfiguration
+    package: botbuilder-core
+    summary: >-
+      Creates a new instance of the
+      [ConfigurationServiceClientCredentialFactory](xref:botbuilder-core.ConfigurationServiceClientCredentialFactory)
+      class.
+    remarks: >-
+      The
+      [Configuration](xref:botbuilder-dialogs-adaptive-runtime-core.Configuration)
+      instance provided to the constructor should
+
+      have the desired authentication values available at the root, using the
+      properties of
+      [ConfigurationServiceClientCredentialFactoryOptions](xref:botbuilder-core.ConfigurationServiceClientCredentialFactoryOptions)
+      as its keys.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function
+        createServiceClientCredentialFactoryFromConfiguration(configuration:
+        Configuration)
+      parameters:
+        - id: configuration
+          type: Configuration
+          description: >-
+            A
+            [Configuration](xref:botbuilder-dialogs-adaptive-runtime-core.Configuration)
+            instance.
+      return:
+        type: >-
+          <xref
+          uid="botbuilder-core.ConfigurationServiceClientCredentialFactory" />
+        description: >-
+          A
+          [ConfigurationServiceClientCredentialFactory](xref:botbuilder-core.ConfigurationServiceClientCredentialFactory)
+          instance.
   - name: calculateChangeHash(StoreItem)
     uid: botbuilder-core.calculateChangeHash
     package: botbuilder-core
@@ -169,11 +280,9 @@ interfaces:
   - botbuilder-core.CoreWebResource
   - botbuilder-core.ExtendedUserTokenProvider
   - botbuilder-core.IntentScore
-  - botbuilder-core.InvokeResponse
   - botbuilder-core.Middleware
   - botbuilder-core.PropertyManager
   - botbuilder-core.RecognizerResult
-  - botbuilder-core.BotFrameworkClient
   - botbuilder-core.BotFrameworkSkill
   - botbuilder-core.SkillConversationIdFactoryOptions
   - botbuilder-core.SkillConversationReference
@@ -188,4 +297,3 @@ interfaces:
   - botbuilder-core.TokenPollingSettings
 enums:
   - botbuilder-core.Severity
-  - botbuilder-core.StatusCodes

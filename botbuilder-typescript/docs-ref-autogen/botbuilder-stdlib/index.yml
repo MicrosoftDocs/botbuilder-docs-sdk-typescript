@@ -97,6 +97,32 @@ functions:
       return:
         type: T
         description: 'value, maybe casted to T'
+  - name: 'retry<T>((n: number) => Promise<T>, number, number)'
+    uid: botbuilder-stdlib.retry
+    package: botbuilder-stdlib
+    summary: Retry a given promise with gradually increasing delay.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function retry<T>(promise: (n: number) => Promise<T>, maxRetries:
+        number, initialDelay?: number)
+      parameters:
+        - id: promise
+          type: '(n: number) =&gt; Promise&lt;T&gt;'
+          description: a function that returns a promise to retry
+        - id: maxRetries
+          type: number
+          description: the maximum number of times to retry
+        - id: initialDelay
+          type: number
+          description: the initial value to delay before retrying (in milliseconds)
+      return:
+        type: Promise&lt;T | undefined&gt;
+        description: >-
+          a promise resolving to the result of the promise from the promise
+          generating function, or undefined
   - name: 'any(unknown, string[])'
     uid: botbuilder-stdlib.any
     package: botbuilder-stdlib
@@ -560,6 +586,24 @@ functions:
       return:
         type: boolean
         description: true if `val` is of type `string`
+  - name: isStringNullOrEmpty(unknown)
+    uid: botbuilder-stdlib.isStringNullOrEmpty
+    package: botbuilder-stdlib
+    summary: Test if `val` is of type `string` with zero length or `Nil`.
+    remarks: >-
+      Implementation of string.IsNullOrEmpty():
+      https://docs.microsoft.com/en-us/dotnet/api/system.string.isnullorempty?view=netcore-3.1
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function isStringNullOrEmpty(val: unknown)'
+      parameters:
+        - id: val
+          type: unknown
+          description: value to test
+      return:
+        type: boolean
+        description: true if `val` is of `string` with zero length or `Nil`
   - name: isTypeError(unknown)
     uid: botbuilder-stdlib.isTypeError
     package: botbuilder-stdlib
