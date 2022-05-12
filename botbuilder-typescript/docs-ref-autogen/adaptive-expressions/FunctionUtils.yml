@@ -22,8 +22,8 @@ properties:
         public static DefaultDateTimeFormat: string =
         "YYYY-MM-DDTHH:mm:ss.SSS[Z]"
       return:
-        type: string
         description: ''
+        type: string
 methods:
   - name: 'apply((arg0: unknown[]) => unknown, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.apply
@@ -37,7 +37,7 @@ methods:
     syntax:
       content: >-
         static function apply(func: (arg0: unknown[]) => unknown, verify?:
-        VerifyExpression)
+        VerifyExpression): EvaluateExpressionDelegate
       parameters:
         - id: func
           type: '(arg0: unknown[]) =&gt; unknown'
@@ -46,8 +46,8 @@ methods:
           type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
       return:
-        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
   - name: 'applySequence((arg0: any[]) => any, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.applySequence
     package: adaptive-expressions
@@ -60,7 +60,7 @@ methods:
     syntax:
       content: >-
         static function applySequence(func: (arg0: any[]) => any, verify?:
-        VerifyExpression)
+        VerifyExpression): EvaluateExpressionDelegate
       parameters:
         - id: func
           type: '(arg0: any[]) =&gt; any'
@@ -69,8 +69,8 @@ methods:
           type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
       return:
-        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
   - name: 'applySequenceWithError((arg0: any[]) => any, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.applySequenceWithError
     package: adaptive-expressions
@@ -83,7 +83,7 @@ methods:
     syntax:
       content: >-
         static function applySequenceWithError(func: (arg0: any[]) => any,
-        verify?: VerifyExpression)
+        verify?: VerifyExpression): EvaluateExpressionDelegate
       parameters:
         - id: func
           type: '(arg0: any[]) =&gt; any'
@@ -92,8 +92,8 @@ methods:
           type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
       return:
-        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
   - name: 'applyWithError((arg0: any[]) => ValueWithError, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.applyWithError
     package: adaptive-expressions
@@ -106,7 +106,7 @@ methods:
     syntax:
       content: >-
         static function applyWithError(func: (arg0: any[]) => ValueWithError,
-        verify?: VerifyExpression)
+        verify?: VerifyExpression): EvaluateExpressionDelegate
       parameters:
         - id: func
           type: '(arg0: any[]) =&gt; ValueWithError'
@@ -115,8 +115,8 @@ methods:
           type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
       return:
-        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
   - name: >-
       applyWithOptions((arg0: unknown[], options: Options) => unknown,
       VerifyExpression)
@@ -131,7 +131,8 @@ methods:
     syntax:
       content: >-
         static function applyWithOptions(func: (arg0: unknown[], options:
-        Options) => unknown, verify?: VerifyExpression)
+        Options) => unknown, verify?: VerifyExpression):
+        EvaluateExpressionDelegate
       parameters:
         - id: func
           type: '(arg0: unknown[], options: Options) =&gt; unknown'
@@ -140,11 +141,11 @@ methods:
           type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
       return:
-        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
   - name: >-
-      applyWithOptionsAndError((arg0: unknown[], options: Options) => Object,
-      VerifyExpression)
+      applyWithOptionsAndError((arg0: unknown[], options: Options) => { error:
+      string, value: unknown }, VerifyExpression)
     uid: adaptive-expressions.FunctionUtils.applyWithOptionsAndError
     package: adaptive-expressions
     summary: >-
@@ -156,36 +157,41 @@ methods:
     syntax:
       content: >-
         static function applyWithOptionsAndError(func: (arg0: unknown[],
-        options: Options) => Object, verify?: VerifyExpression)
+        options: Options) => { error: string, value: unknown }, verify?:
+        VerifyExpression): EvaluateExpressionDelegate
       parameters:
         - id: func
-          type: '(arg0: unknown[], options: Options) =&gt; Object'
+          type: >-
+            (arg0: unknown[], options: Options) =&gt; { error: string, value:
+            unknown }
           description: Function to apply.
         - id: verify
           type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Function to check each arg for validity.
       return:
-        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
         description: Delegate for evaluating an expression.
+        type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
   - name: 'commonEquals(unknown, unknown)'
     uid: adaptive-expressions.FunctionUtils.commonEquals
     package: adaptive-expressions
-    summary: Equal helper function.
+    summary: |-
+      Equal helper function.
+      Compare the first param and second param.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function commonEquals(obj1: unknown, obj2: unknown)'
+      content: 'static function commonEquals(obj1: unknown, obj2: unknown): boolean'
       parameters:
         - id: obj1
           type: unknown
-          description: ''
+          description: The first value to compare.
         - id: obj2
           type: unknown
-          description: ''
+          description: The second value to compare.
       return:
+        description: A boolean based on the comparison.
         type: boolean
-        description: ''
   - name: 'determineFormatAndLocale(unknown[], number, string, string)'
     uid: adaptive-expressions.FunctionUtils.determineFormatAndLocale
     package: adaptive-expressions
@@ -196,15 +202,15 @@ methods:
     syntax:
       content: >-
         static function determineFormatAndLocale(args: unknown[], maxArgsLength:
-        number, format: string, locale: string)
+        number, format: string, locale: string): { format: string, locale:
+        string }
       parameters:
         - id: args
           type: 'unknown[]'
           description: An array of arguments.
         - id: maxArgsLength
           type: number
-          description: |
-            The max length of a given function.
+          description: The max length of a given function.
         - id: format
           type: string
           description: A format string.
@@ -212,8 +218,10 @@ methods:
           type: string
           description: A locale string.
       return:
-        type: Object
-        description: ''
+        description: >-
+          The format and the locale from the args param, otherwise the locale
+          and format strings.
+        type: '{ format: string, locale: string }'
   - name: 'determineLocale(unknown[], number, string)'
     uid: adaptive-expressions.FunctionUtils.determineLocale
     package: adaptive-expressions
@@ -224,21 +232,20 @@ methods:
     syntax:
       content: >-
         static function determineLocale(args: unknown[], maxArgsLength: number,
-        locale: string)
+        locale: string): string
       parameters:
         - id: args
           type: 'unknown[]'
           description: An array of arguments.
         - id: maxArgsLength
           type: number
-          description: |
-            The max length of a given function.
+          description: The max length of a given function.
         - id: locale
           type: string
           description: A locale string
       return:
+        description: 'The last item from the args param, otherwise the locale string.'
         type: string
-        description: ''
   - name: 'evaluateChildren(Expression, MemoryInterface, Options, VerifyExpression)'
     uid: adaptive-expressions.FunctionUtils.evaluateChildren
     package: adaptive-expressions
@@ -249,7 +256,8 @@ methods:
     syntax:
       content: >-
         static function evaluateChildren(expression: Expression, state:
-        MemoryInterface, options: Options, verify?: VerifyExpression)
+        MemoryInterface, options: Options, verify?: VerifyExpression): { args:
+        any[], error: string }
       parameters:
         - id: expression
           type: <xref uid="adaptive-expressions.Expression" />
@@ -259,13 +267,13 @@ methods:
           description: Global state.
         - id: options
           type: <xref uid="adaptive-expressions.Options" />
-          description: ''
+          description: Options used in evaluation.
         - id: verify
           type: <xref uid="adaptive-expressions.VerifyExpression" />
           description: Optional function to verify each child's result.
       return:
-        type: Object
         description: List of child values or error message.
+        type: '{ args: any[], error: string }'
   - name: isNumber(any)
     uid: adaptive-expressions.FunctionUtils.isNumber
     package: adaptive-expressions
@@ -274,14 +282,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function isNumber(instance: any)'
+      content: 'static function isNumber(instance: any): boolean'
       parameters:
         - id: instance
           type: any
           description: Input.
       return:
-        type: boolean
         description: True if the input is a number.
+        type: boolean
   - name: timestampFormatter(string)
     uid: adaptive-expressions.FunctionUtils.timestampFormatter
     package: adaptive-expressions
@@ -290,15 +298,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function timestampFormatter(formatter: string)'
+      content: 'static function timestampFormatter(formatter: string): string'
       parameters:
         - id: formatter
           type: string
-          description: |
-            C# datetime format
+          description: C# datetime format
       return:
+        description: The formated datetime.
         type: string
-        description: ''
   - name: 'tryAccumulatePath(Expression, MemoryInterface, Options)'
     uid: adaptive-expressions.FunctionUtils.tryAccumulatePath
     package: adaptive-expressions
@@ -309,7 +316,8 @@ methods:
     syntax:
       content: >-
         static function tryAccumulatePath(expression: Expression, state:
-        MemoryInterface, options: Options)
+        MemoryInterface, options: Options): { error: string, left: any, path:
+        string }
       parameters:
         - id: expression
           type: <xref uid="adaptive-expressions.Expression" />
@@ -321,10 +329,10 @@ methods:
           type: <xref uid="adaptive-expressions.Options" />
           description: Options used in evaluation.
       return:
-        type: Object
         description: >-
           Return the accumulated path and the expression left unable to
           accumulate.
+        type: '{ error: string, left: any, path: string }'
   - name: 'validateArityAndAnyType(Expression, number, number, ReturnType)'
     uid: adaptive-expressions.FunctionUtils.validateArityAndAnyType
     package: adaptive-expressions
@@ -569,7 +577,7 @@ methods:
     syntax:
       content: >-
         static function verifyBoolean(value: any, expression: Expression, _:
-        number)
+        number): string | undefined
       parameters:
         - id: value
           type: any
@@ -579,10 +587,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyContainer(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyContainer
     package: adaptive-expressions
@@ -593,7 +601,7 @@ methods:
     syntax:
       content: >-
         static function verifyContainer(value: any, expression: Expression, _:
-        number)
+        number): string | undefined
       parameters:
         - id: value
           type: any
@@ -603,10 +611,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyContainerOrNull(unknown, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyContainerOrNull
     package: adaptive-expressions
@@ -617,7 +625,7 @@ methods:
     syntax:
       content: >-
         static function verifyContainerOrNull(value: unknown, expression:
-        Expression, _: number)
+        Expression, _: number): string | undefined
       parameters:
         - id: value
           type: unknown
@@ -627,10 +635,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyInteger(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyInteger
     package: adaptive-expressions
@@ -641,7 +649,7 @@ methods:
     syntax:
       content: >-
         static function verifyInteger(value: any, expression: Expression, _:
-        number)
+        number): string | undefined
       parameters:
         - id: value
           type: any
@@ -651,10 +659,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyList(any, Expression)'
     uid: adaptive-expressions.FunctionUtils.verifyList
     package: adaptive-expressions
@@ -663,7 +671,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function verifyList(value: any, expression: Expression)'
+      content: >-
+        static function verifyList(value: any, expression: Expression): string |
+        undefined
       parameters:
         - id: value
           type: any
@@ -672,8 +682,8 @@ methods:
           type: <xref uid="adaptive-expressions.Expression" />
           description: Expression that led to value.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyNotNull(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyNotNull
     package: adaptive-expressions
@@ -684,7 +694,7 @@ methods:
     syntax:
       content: >-
         static function verifyNotNull(value: any, expression: Expression, _:
-        number)
+        number): string | undefined
       parameters:
         - id: value
           type: any
@@ -694,10 +704,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if valid.
+        type: string | undefined
   - name: 'verifyNumber(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyNumber
     package: adaptive-expressions
@@ -708,7 +718,7 @@ methods:
     syntax:
       content: >-
         static function verifyNumber(value: any, expression: Expression, _:
-        number)
+        number): string | undefined
       parameters:
         - id: value
           type: any
@@ -718,10 +728,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyNumberOrNumericList(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyNumberOrNumericList
     package: adaptive-expressions
@@ -732,7 +742,7 @@ methods:
     syntax:
       content: >-
         static function verifyNumberOrNumericList(value: any, expression:
-        Expression, _: number)
+        Expression, _: number): string | undefined
       parameters:
         - id: value
           type: any
@@ -742,10 +752,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyNumberOrString(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyNumberOrString
     package: adaptive-expressions
@@ -756,7 +766,7 @@ methods:
     syntax:
       content: >-
         static function verifyNumberOrString(value: any, expression: Expression,
-        _: number)
+        _: number): string | undefined
       parameters:
         - id: value
           type: any
@@ -766,10 +776,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyNumberOrStringOrNull(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyNumberOrStringOrNull
     package: adaptive-expressions
@@ -780,7 +790,7 @@ methods:
     syntax:
       content: >-
         static function verifyNumberOrStringOrNull(value: any, expression:
-        Expression, _: number)
+        Expression, _: number): string | undefined
       parameters:
         - id: value
           type: any
@@ -790,10 +800,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyNumericList(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyNumericList
     package: adaptive-expressions
@@ -804,7 +814,7 @@ methods:
     syntax:
       content: >-
         static function verifyNumericList(value: any, expression: Expression, _:
-        number)
+        number): string | undefined
       parameters:
         - id: value
           type: any
@@ -814,10 +824,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyString(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyString
     package: adaptive-expressions
@@ -828,7 +838,7 @@ methods:
     syntax:
       content: >-
         static function verifyString(value: any, expression: Expression, _:
-        number)
+        number): string | undefined
       parameters:
         - id: value
           type: any
@@ -838,10 +848,10 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'verifyStringOrNull(any, Expression, number)'
     uid: adaptive-expressions.FunctionUtils.verifyStringOrNull
     package: adaptive-expressions
@@ -852,7 +862,7 @@ methods:
     syntax:
       content: >-
         static function verifyStringOrNull(value: any, expression: Expression,
-        _: number)
+        _: number): string | undefined
       parameters:
         - id: value
           type: any
@@ -862,7 +872,7 @@ methods:
           description: Expression that led to value.
         - id: _
           type: number
-          description: ''
+          description: No function.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined

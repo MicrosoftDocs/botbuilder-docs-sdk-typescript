@@ -19,18 +19,17 @@ methods:
     syntax:
       content: >-
         static function fallbackLocale(locale: string, optionalLocales:
-        string[])
+        string[]): string
       parameters:
         - id: locale
           type: string
           description: Current locale
         - id: optionalLocales
           type: 'string[]'
-          description: |
-            Optional locales.
+          description: Optional locales.
       return:
+        description: The final locale.
         type: string
-        description: ''
   - name: groupByLocale(ResourceExplorer)
     uid: botbuilder-dialogs-adaptive.LanguageResourceLoader.groupByLocale
     package: botbuilder-dialogs-adaptive
@@ -39,15 +38,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function groupByLocale(resourceExplorer: ResourceExplorer)'
+      content: >-
+        static function groupByLocale(resourceExplorer: ResourceExplorer):
+        Map<string, Resource[]>
       parameters:
         - id: resourceExplorer
           type: ResourceExplorer
-          description: |
-            The resource explorer to use.
+          description: The resource explorer to use.
       return:
+        description: The dictionary of grouped locale.
         type: 'Map&lt;string, Resource[]&gt;'
-        description: ''
   - name: parseLGFileName(string)
     uid: botbuilder-dialogs-adaptive.LanguageResourceLoader.parseLGFileName
     package: botbuilder-dialogs-adaptive
@@ -56,12 +56,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function parseLGFileName(lgFileName: string)'
+      content: >-
+        static function parseLGFileName(lgFileName: string): { language: string,
+        prefix: string }
       parameters:
         - id: lgFileName
           type: string
-          description: |
-            LG input file name.
+          description: LG input file name.
       return:
-        type: Object
-        description: ''
+        description: The name and language.
+        type: '{ language: string, prefix: string }'

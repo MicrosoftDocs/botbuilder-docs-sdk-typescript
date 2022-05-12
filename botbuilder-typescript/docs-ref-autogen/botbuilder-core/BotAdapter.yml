@@ -55,8 +55,8 @@ properties:
     syntax:
       content: 'BotIdentityKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: ConnectorClientKey
     uid: botbuilder-core.BotAdapter.ConnectorClientKey
     package: botbuilder-core
@@ -68,8 +68,8 @@ properties:
     syntax:
       content: 'ConnectorClientKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: OAuthScopeKey
     uid: botbuilder-core.BotAdapter.OAuthScopeKey
     package: botbuilder-core
@@ -81,8 +81,8 @@ properties:
     syntax:
       content: 'OAuthScopeKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: onTurnError
     uid: botbuilder-core.BotAdapter.onTurnError
     package: botbuilder-core
@@ -110,8 +110,8 @@ properties:
     syntax:
       content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
-        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
         description: ''
+        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
 methods:
   - name: >-
       continueConversation(Partial<ConversationReference>, (revocableContext:
@@ -135,7 +135,7 @@ methods:
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
-        logic: (revocableContext: TurnContext) => Promise<void>)
+        logic: (revocableContext: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: reference
           type: Partial&lt;ConversationReference&gt;
@@ -145,8 +145,8 @@ methods:
           description: |
             The asynchronous method to call after the adapter middleware runs.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
       (context: TurnContext) => Promise<void>)
@@ -162,7 +162,7 @@ methods:
       content: >-
         function continueConversationAsync(claimsIdentity: ClaimsIdentity,
         reference: Partial<ConversationReference>, logic: (context: TurnContext)
-        => Promise<void>)
+        => Promise<void>): Promise<void>
       parameters:
         - id: claimsIdentity
           type: ClaimsIdentity
@@ -179,8 +179,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: The asynchronous method to call after the adapter middleware runs.
       return:
-        type: Promise&lt;void&gt;
         description: a promise representing the async operation
+        type: Promise&lt;void&gt;
   - name: >-
       continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
       string, (context: TurnContext) => Promise<void>)
@@ -196,7 +196,7 @@ methods:
       content: >-
         function continueConversationAsync(claimsIdentity: ClaimsIdentity,
         reference: Partial<ConversationReference>, audience: string, logic:
-        (context: TurnContext) => Promise<void>)
+        (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: claimsIdentity
           type: ClaimsIdentity
@@ -216,8 +216,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: The asynchronous method to call after the adapter middleware runs.
       return:
-        type: Promise&lt;void&gt;
         description: a promise representing the async operation
+        type: Promise&lt;void&gt;
   - name: >-
       continueConversationAsync(string, Partial<ConversationReference>,
       (context: TurnContext) => Promise<void>)
@@ -233,7 +233,7 @@ methods:
       content: >-
         function continueConversationAsync(botAppId: string, reference:
         Partial<ConversationReference>, logic: (context: TurnContext) =>
-        Promise<void>)
+        Promise<void>): Promise<void>
       parameters:
         - id: botAppId
           type: string
@@ -251,8 +251,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: The asynchronous method to call after the adapter middleware runs.
       return:
-        type: Promise&lt;void&gt;
         description: a promise representing the async operation
+        type: Promise&lt;void&gt;
   - name: >-
       createConversationAsync(string, string, string, string,
       ConversationParameters, (context: TurnContext) => Promise<void>)
@@ -283,7 +283,8 @@ methods:
       content: >-
         function createConversationAsync(botAppId: string, channelId: string,
         serviceUrl: string, audience: string, conversationParameters:
-        ConversationParameters, logic: (context: TurnContext) => Promise<void>)
+        ConversationParameters, logic: (context: TurnContext) => Promise<void>):
+        Promise<void>
       parameters:
         - id: botAppId
           type: string
@@ -306,8 +307,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: The method to call for the resulting bot turn.
       return:
-        type: Promise&lt;void&gt;
         description: A promise that represents the asynchronous operation
+        type: Promise&lt;void&gt;
   - name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     uid: botbuilder-core.BotAdapter.deleteActivity
     package: botbuilder-core
@@ -330,7 +331,7 @@ methods:
     syntax:
       content: >-
         function deleteActivity(context: TurnContext, reference:
-        Partial<ConversationReference>)
+        Partial<ConversationReference>): Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -340,8 +341,8 @@ methods:
           description: |
             Conversation reference information for the activity to delete.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'sendActivities(TurnContext, Partial<Activity>[])'
     uid: botbuilder-core.BotAdapter.sendActivities
     package: botbuilder-core
@@ -369,7 +370,7 @@ methods:
     syntax:
       content: >-
         function sendActivities(context: TurnContext, activities:
-        Partial<Activity>[])
+        Partial<Activity>[]): Promise<ResourceResponse[]>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -379,8 +380,8 @@ methods:
           description: |
             The activities to send.
       return:
-        type: 'Promise&lt;ResourceResponse[]&gt;'
         description: 'An array of [ResourceResponse](xref:)'
+        type: 'Promise&lt;ResourceResponse[]&gt;'
   - name: 'updateActivity(TurnContext, Partial<Activity>)'
     uid: botbuilder-core.BotAdapter.updateActivity
     package: botbuilder-core
@@ -403,7 +404,7 @@ methods:
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
-        Partial<Activity>)
+        Partial<Activity>): Promise<ResourceResponse | void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -413,8 +414,8 @@ methods:
           description: |
             The updated version of the activity to replace.
       return:
-        type: Promise&lt;ResourceResponse | void&gt;
         description: ''
+        type: Promise&lt;ResourceResponse | void&gt;
   - name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
       Middleware[])
@@ -431,7 +432,7 @@ methods:
     syntax:
       content: >-
         function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[])
+        Promise<void>) => Promise<void> | Middleware[]): this
       parameters:
         - id: middlewares
           type: >-
@@ -439,5 +440,5 @@ methods:
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
           description: ''
       return:
-        type: this
         description: ''
+        type: this

@@ -41,8 +41,8 @@ properties:
     syntax:
       content: 'botSignIn: BotSignIn'
       return:
-        type: <xref uid="botframework-connector.BotSignIn" />
         description: ''
+        type: <xref uid="botframework-connector.BotSignIn" />
   - name: credentials
     uid: botframework-connector.TokenApiClient.credentials
     package: botframework-connector
@@ -54,8 +54,8 @@ properties:
     syntax:
       content: 'credentials: ServiceClientCredentials'
       return:
-        type: ServiceClientCredentials
         description: ''
+        type: ServiceClientCredentials
   - name: userToken
     uid: botframework-connector.TokenApiClient.userToken
     package: botframework-connector
@@ -67,9 +67,9 @@ properties:
     syntax:
       content: 'userToken: UserToken'
       return:
-        type: <xref uid="botframework-connector.UserToken" />
         description: ''
-methods:
+        type: <xref uid="botframework-connector.UserToken" />
+inheritedMethods:
   - name: >-
       sendOperationRequest(OperationArguments, OperationSpec,
       ServiceCallback<any>)
@@ -82,7 +82,8 @@ methods:
     syntax:
       content: >-
         function sendOperationRequest(operationArguments: OperationArguments,
-        operationSpec: OperationSpec, callback?: ServiceCallback<any>)
+        operationSpec: OperationSpec, callback?: ServiceCallback<any>):
+        Promise<RestResponse>
       parameters:
         - id: operationArguments
           type: OperationArguments
@@ -97,8 +98,8 @@ methods:
           description: |
             The callback to call when the response is received.
       return:
-        type: Promise&lt;RestResponse&gt;
         description: ''
+        type: Promise&lt;RestResponse&gt;
   - name: sendRequest(RequestPrepareOptions | WebResource)
     uid: botframework-connector.TokenApiClient.sendRequest
     package: botframework-connector
@@ -107,12 +108,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function sendRequest(options: RequestPrepareOptions | WebResource)'
+      content: >-
+        function sendRequest(options: RequestPrepareOptions | WebResource):
+        Promise<HttpOperationResponse>
       parameters:
         - id: options
           type: RequestPrepareOptions | WebResource
           description: ''
       return:
-        type: Promise&lt;HttpOperationResponse&gt;
         description: ''
+        type: Promise&lt;HttpOperationResponse&gt;
 extends: <xref uid="botframework-connector.TokenApiClientContext" />

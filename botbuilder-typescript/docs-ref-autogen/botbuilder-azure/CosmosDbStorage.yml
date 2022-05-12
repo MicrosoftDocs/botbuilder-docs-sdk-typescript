@@ -48,15 +48,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delete(keys: string[])'
+      content: 'function delete(keys: string[]): Promise<void>'
       parameters:
         - id: keys
           type: 'string[]'
-          description: |
-            Keys of the items to remove from the store.
+          description: Keys of the items to remove from the store.
       return:
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
-        description: ''
   - name: 'read(string[])'
     uid: botbuilder-azure.CosmosDbStorage.read
     package: botbuilder-azure
@@ -65,14 +64,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function read(keys: string[])'
+      content: 'function read(keys: string[]): Promise<StoreItems>'
       parameters:
         - id: keys
           type: 'string[]'
           description: Keys of the items to read from the store.
       return:
-        type: Promise&lt;StoreItems&gt;
         description: The read items.
+        type: Promise&lt;StoreItems&gt;
   - name: write(StoreItems)
     uid: botbuilder-azure.CosmosDbStorage.write
     package: botbuilder-azure
@@ -81,12 +80,11 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function write(changes: StoreItems)'
+      content: 'function write(changes: StoreItems): Promise<void>'
       parameters:
         - id: changes
           type: StoreItems
-          description: |
-            Items to write to storage, indexed by key.
+          description: 'Items to write to storage, indexed by key.'
       return:
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
-        description: ''

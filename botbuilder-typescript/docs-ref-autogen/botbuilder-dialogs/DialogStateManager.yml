@@ -58,8 +58,8 @@ properties:
     syntax:
       content: 'configuration: DialogStateManagerConfiguration'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogStateManagerConfiguration" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogStateManagerConfiguration" />
 methods:
   - name: 'anyPathChanged(number, string[])'
     uid: botbuilder-dialogs.DialogStateManager.anyPathChanged
@@ -69,7 +69,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function anyPathChanged(counter: number, paths: string[])'
+      content: 'function anyPathChanged(counter: number, paths: string[]): boolean'
       parameters:
         - id: counter
           type: number
@@ -78,8 +78,8 @@ methods:
           type: 'string[]'
           description: 'Paths from [trackPaths()](#trackpaths) to check.'
       return:
-        type: boolean
         description: True if any path has changed since counter.
+        type: boolean
   - name: deleteScopesMemory(string)
     uid: botbuilder-dialogs.DialogStateManager.deleteScopesMemory
     package: botbuilder-dialogs
@@ -88,14 +88,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function deleteScopesMemory(name: string)'
+      content: 'function deleteScopesMemory(name: string): Promise<void>'
       parameters:
         - id: name
           type: string
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: deleteValue(string)
     uid: botbuilder-dialogs.DialogStateManager.deleteValue
     package: botbuilder-dialogs
@@ -117,10 +117,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getMemorySnapshot()
+      content: 'function getMemorySnapshot(): object'
       return:
-        type: object
         description: Object which represents all memory scopes.
+        type: object
   - name: 'getValue<T>(string, T | () => T)'
     uid: botbuilder-dialogs.DialogStateManager.getValue
     package: botbuilder-dialogs
@@ -131,7 +131,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getValue<T>(pathExpression: string, defaultValue?: T | () => T)'
+      content: >-
+        function getValue<T>(pathExpression: string, defaultValue?: T | () =>
+        T): T
       parameters:
         - id: pathExpression
           type: string
@@ -142,10 +144,10 @@ methods:
             (Optional) default value to use if the path isn't found. May be a
             function that returns the default value to use.
       return:
-        type: T
         description: >-
           The found value or undefined if not found and no `defaultValue`
           specified.
+        type: T
   - name: loadAllScopes()
     uid: botbuilder-dialogs.DialogStateManager.loadAllScopes
     package: botbuilder-dialogs
@@ -154,10 +156,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function loadAllScopes()
+      content: 'function loadAllScopes(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'parsePath(string, boolean)'
     uid: botbuilder-dialogs.DialogStateManager.parsePath
     package: botbuilder-dialogs
@@ -166,7 +168,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function parsePath(pathExpression: string, allowNestedPaths?: boolean)'
+      content: >-
+        function parsePath(pathExpression: string, allowNestedPaths?: boolean):
+        string | number[]
       parameters:
         - id: pathExpression
           type: string
@@ -177,8 +181,8 @@ methods:
             Optional. If `false` then detection of a nested path will cause an
             empty path to be returned. Defaults to 'true'.
       return:
-        type: 'string | number[]'
         description: The normalized path.
+        type: 'string | number[]'
   - name: saveAllChanges()
     uid: botbuilder-dialogs.DialogStateManager.saveAllChanges
     package: botbuilder-dialogs
@@ -187,10 +191,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function saveAllChanges()
+      content: 'function saveAllChanges(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'setValue(string, any)'
     uid: botbuilder-dialogs.DialogStateManager.setValue
     package: botbuilder-dialogs
@@ -216,14 +220,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function trackPaths(paths: string[])'
+      content: 'function trackPaths(paths: string[]): string[]'
       parameters:
         - id: paths
           type: 'string[]'
           description: Paths to track.
       return:
-        type: 'string[]'
         description: 'Normalized paths to pass to [anyPathChanged()](#anypathchanged).'
+        type: 'string[]'
   - name: transformPath(string)
     uid: botbuilder-dialogs.DialogStateManager.transformPath
     package: botbuilder-dialogs
@@ -232,14 +236,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function transformPath(pathExpression: string)'
+      content: 'function transformPath(pathExpression: string): string'
       parameters:
         - id: pathExpression
           type: string
           description: The path to transform.
       return:
-        type: string
         description: The transformed path.
+        type: string
   - name: version()
     uid: botbuilder-dialogs.DialogStateManager.version
     package: botbuilder-dialogs
@@ -248,7 +252,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function version()
+      content: 'function version(): string'
       return:
-        type: string
         description: A string with the version number.
+        type: string

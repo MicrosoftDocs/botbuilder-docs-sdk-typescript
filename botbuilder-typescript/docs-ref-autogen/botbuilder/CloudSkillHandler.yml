@@ -2,7 +2,7 @@
 name: CloudSkillHandler
 uid: botbuilder.CloudSkillHandler
 package: botbuilder
-summary: ''
+summary: A Bot Framework Handler for skills.
 fullName: CloudSkillHandler
 remarks: ''
 isPreview: false
@@ -53,9 +53,9 @@ properties:
     syntax:
       content: 'SkillConversationReferenceKey: symbol'
       return:
-        type: symbol
         description: ''
-methods:
+        type: symbol
+inheritedMethods:
   - name: 'handleCreateConversation(string, ConversationParameters)'
     uid: botbuilder.CloudSkillHandler.handleCreateConversation
     package: botbuilder
@@ -66,7 +66,7 @@ methods:
     syntax:
       content: >-
         function handleCreateConversation(authHeader: string, parameters:
-        ConversationParameters)
+        ConversationParameters): Promise<ConversationResourceResponse>
       parameters:
         - id: authHeader
           type: string
@@ -77,8 +77,8 @@ methods:
             (xref:botbuilder-core.ConversationParameters) to create the
             conversation from.
       return:
-        type: Promise&lt;ConversationResourceResponse&gt;
         description: A `Promise` representation for the operation.
+        type: Promise&lt;ConversationResourceResponse&gt;
   - name: 'handleDeleteActivity(string, string, string)'
     uid: botbuilder.CloudSkillHandler.handleDeleteActivity
     package: botbuilder
@@ -89,7 +89,7 @@ methods:
     syntax:
       content: >-
         function handleDeleteActivity(authHeader: string, conversationId:
-        string, activityId: string)
+        string, activityId: string): Promise<void>
       parameters:
         - id: authHeader
           type: string
@@ -102,8 +102,8 @@ methods:
           description: |
             The activity Id to delete.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'handleDeleteConversationMember(string, string, string)'
     uid: botbuilder.CloudSkillHandler.handleDeleteConversationMember
     package: botbuilder
@@ -114,7 +114,7 @@ methods:
     syntax:
       content: >-
         function handleDeleteConversationMember(authHeader: string,
-        conversationId: string, memberId: string)
+        conversationId: string, memberId: string): Promise<void>
       parameters:
         - id: authHeader
           type: string
@@ -127,8 +127,8 @@ methods:
           description: |
             Id of the member to delete from this conversation.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'handleGetActivityMembers(string, string, string)'
     uid: botbuilder.CloudSkillHandler.handleGetActivityMembers
     package: botbuilder
@@ -141,7 +141,7 @@ methods:
     syntax:
       content: >-
         function handleGetActivityMembers(authHeader: string, conversationId:
-        string, activityId: string)
+        string, activityId: string): Promise<ChannelAccount[]>
       parameters:
         - id: authHeader
           type: string
@@ -153,10 +153,10 @@ methods:
           type: string
           description: The activity Id.
       return:
-        type: 'Promise&lt;ChannelAccount[]&gt;'
         description: >-
           The enumerated
           [ChannelAccount](xref:botframework-schema.ChannelAccount) list.
+        type: 'Promise&lt;ChannelAccount[]&gt;'
   - name: 'handleGetConversationMembers(string, string)'
     uid: botbuilder.CloudSkillHandler.handleGetConversationMembers
     package: botbuilder
@@ -167,7 +167,7 @@ methods:
     syntax:
       content: >-
         function handleGetConversationMembers(authHeader: string,
-        conversationId: string)
+        conversationId: string): Promise<ChannelAccount[]>
       parameters:
         - id: authHeader
           type: string
@@ -176,10 +176,10 @@ methods:
           type: string
           description: The conversation Id.
       return:
-        type: 'Promise&lt;ChannelAccount[]&gt;'
         description: >-
           The enumerated
           [ChannelAccount](xref:botframework-schema.ChannelAccount) list.
+        type: 'Promise&lt;ChannelAccount[]&gt;'
   - name: 'handleGetConversationPagedMembers(string, string, number, string)'
     uid: botbuilder.CloudSkillHandler.handleGetConversationPagedMembers
     package: botbuilder
@@ -190,7 +190,8 @@ methods:
     syntax:
       content: >-
         function handleGetConversationPagedMembers(authHeader: string,
-        conversationId: string, pageSize?: number, continuationToken?: string)
+        conversationId: string, pageSize?: number, continuationToken?: string):
+        Promise<PagedMembersResult>
       parameters:
         - id: authHeader
           type: string
@@ -205,11 +206,11 @@ methods:
           type: string
           description: A continuation token.
       return:
-        type: Promise&lt;PagedMembersResult&gt;
         description: >-
           A `Promise` representing the
           [PagedMembersResult](xref:botframework-schema.PagedMembersResult) for
           the operation.
+        type: Promise&lt;PagedMembersResult&gt;
   - name: 'handleGetConversations(string, string, string)'
     uid: botbuilder.CloudSkillHandler.handleGetConversations
     package: botbuilder
@@ -220,7 +221,7 @@ methods:
     syntax:
       content: >-
         function handleGetConversations(authHeader: string, conversationId:
-        string, continuationToken?: string)
+        string, continuationToken?: string): Promise<ConversationsResult>
       parameters:
         - id: authHeader
           type: string
@@ -232,8 +233,8 @@ methods:
           type: string
           description: A skip or continuation token.
       return:
-        type: Promise&lt;ConversationsResult&gt;
         description: A `Promise` representation for the operation.
+        type: Promise&lt;ConversationsResult&gt;
   - name: 'handleReplyToActivity(string, string, string, Activity)'
     uid: botbuilder.CloudSkillHandler.handleReplyToActivity
     package: botbuilder
@@ -244,7 +245,8 @@ methods:
     syntax:
       content: >-
         function handleReplyToActivity(authHeader: string, conversationId:
-        string, activityId: string, activity: Activity)
+        string, activityId: string, activity: Activity):
+        Promise<ResourceResponse>
       parameters:
         - id: authHeader
           type: string
@@ -259,11 +261,11 @@ methods:
           type: Activity
           description: 'The [Activity](xref:botframework-schema.Activity) to send.'
       return:
-        type: Promise&lt;ResourceResponse&gt;
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
+        type: Promise&lt;ResourceResponse&gt;
   - name: 'handleSendConversationHistory(string, string, Transcript)'
     uid: botbuilder.CloudSkillHandler.handleSendConversationHistory
     package: botbuilder
@@ -274,7 +276,8 @@ methods:
     syntax:
       content: >-
         function handleSendConversationHistory(authHeader: string,
-        conversationId: string, transcript: Transcript)
+        conversationId: string, transcript: Transcript):
+        Promise<ResourceResponse>
       parameters:
         - id: authHeader
           type: string
@@ -286,11 +289,11 @@ methods:
           type: Transcript
           description: '(xref:botframework-schema.Transcript) of activities.'
       return:
-        type: Promise&lt;ResourceResponse&gt;
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
+        type: Promise&lt;ResourceResponse&gt;
   - name: 'handleSendToConversation(string, string, Activity)'
     uid: botbuilder.CloudSkillHandler.handleSendToConversation
     package: botbuilder
@@ -303,7 +306,7 @@ methods:
     syntax:
       content: >-
         function handleSendToConversation(authHeader: string, conversationId:
-        string, activity: Activity)
+        string, activity: Activity): Promise<ResourceResponse>
       parameters:
         - id: authHeader
           type: string
@@ -315,11 +318,11 @@ methods:
           type: Activity
           description: 'The [Activity](xref:botframework-schema.Activity) to send.'
       return:
-        type: Promise&lt;ResourceResponse&gt;
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
+        type: Promise&lt;ResourceResponse&gt;
   - name: 'handleUpdateActivity(string, string, string, Activity)'
     uid: botbuilder.CloudSkillHandler.handleUpdateActivity
     package: botbuilder
@@ -332,7 +335,8 @@ methods:
     syntax:
       content: >-
         function handleUpdateActivity(authHeader: string, conversationId:
-        string, activityId: string, activity: Activity)
+        string, activityId: string, activity: Activity):
+        Promise<ResourceResponse>
       parameters:
         - id: authHeader
           type: string
@@ -347,11 +351,11 @@ methods:
           type: Activity
           description: 'The replacement [Activity](xref:botframework-schema.Activity).'
       return:
-        type: Promise&lt;ResourceResponse&gt;
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
+        type: Promise&lt;ResourceResponse&gt;
   - name: 'handleUploadAttachment(string, string, AttachmentData)'
     uid: botbuilder.CloudSkillHandler.handleUploadAttachment
     package: botbuilder
@@ -362,7 +366,7 @@ methods:
     syntax:
       content: >-
         function handleUploadAttachment(authHeader: string, conversationId:
-        string, attachmentUpload: AttachmentData)
+        string, attachmentUpload: AttachmentData): Promise<ResourceResponse>
       parameters:
         - id: authHeader
           type: string
@@ -374,9 +378,9 @@ methods:
           type: AttachmentData
           description: '(xref:botframework-schema.AttachmentData).'
       return:
-        type: Promise&lt;ResourceResponse&gt;
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
+        type: Promise&lt;ResourceResponse&gt;
 extends: <xref uid="botbuilder.CloudChannelServiceHandler" />

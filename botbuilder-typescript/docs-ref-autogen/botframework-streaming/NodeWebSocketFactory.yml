@@ -36,7 +36,7 @@ methods:
     syntax:
       content: >-
         function createWebSocket(req: INodeIncomingMessage, socket: INodeSocket,
-        head: INodeBuffer)
+        head: INodeBuffer): Promise<NodeWebSocket>
       parameters:
         - id: req
           type: <xref uid="botframework-streaming.INodeIncomingMessage" />
@@ -52,8 +52,8 @@ methods:
             The first packet of the upgraded stream which may be empty per
             https://nodejs.org/api/http.html#http_event_upgrade_1.
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.NodeWebSocket" />&gt;
         description: >-
           A [NodeWebSocket](xref:botframework-streaming.NodeWebSocket) instance
           ready for streaming.
+        type: Promise&lt;<xref uid="botframework-streaming.NodeWebSocket" />&gt;
 extends: <xref uid="botframework-streaming.NodeWebSocketFactoryBase" />

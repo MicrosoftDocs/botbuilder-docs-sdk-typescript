@@ -19,7 +19,7 @@ functions:
       content: >-
         function makeServer(services: ServiceCollection, configuration:
         Configuration, applicationRoot: string, options?: Partial<Options>,
-        server?: restify.Server)
+        server?: restify.Server): Promise<restify.Server>
       parameters:
         - id: services
           type: ServiceCollection
@@ -40,8 +40,8 @@ functions:
           type: <xref uid="restify.Server" />
           description: 'optional predefined restify server, useful to register middleware'
       return:
-        type: Promise&lt;<xref uid="restify.Server" />&gt;
         description: a restify Server ready to listen for connections
+        type: Promise&lt;<xref uid="restify.Server" />&gt;
   - name: 'start(string, string, Partial<Options>)'
     uid: botbuilder-dialogs-adaptive-runtime-integration-restify.start
     package: botbuilder-dialogs-adaptive-runtime-integration-restify
@@ -52,7 +52,7 @@ functions:
     syntax:
       content: >-
         function start(applicationRoot: string, settingsDirectory: string,
-        options?: Partial<Options>)
+        options?: Partial<Options>): Promise<void>
       parameters:
         - id: applicationRoot
           type: string
@@ -68,5 +68,5 @@ functions:
           description: |
             options bag
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

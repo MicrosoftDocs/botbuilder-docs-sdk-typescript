@@ -14,30 +14,32 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function validateAndFixActivity(activity: Activity)'
+      content: 'function validateAndFixActivity(activity: Activity): Activity'
       parameters:
         - id: activity
           type: Activity
           description: '(xref:botbuilder-core.Activity) to be validated.'
       return:
-        type: Activity
         description: 'The [Activity](xref:botframework-schema.Activity).'
+        type: Activity
   - name: teamsGetChannelId(Activity)
     uid: botbuilder.teamsGetChannelId
     package: botbuilder
-    summary: "Activity helper methods for Teams.\t * Activity helper methods for Teams."
+    summary: Activity helper methods for Teams.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function teamsGetChannelId(activity: Activity)'
+      content: 'function teamsGetChannelId(activity: Activity): string | null'
       parameters:
         - id: activity
           type: Activity
-          description: ''
+          description: 'The current [Activity](xref:botframework-schema.Activity).'
       return:
+        description: >-
+          The current [Activity](xref:botframework-schema.Activity)'s team's
+          channel id, or null.
         type: string | null
-        description: ''
   - name: teamsGetTeamId(Activity)
     uid: botbuilder.teamsGetTeamId
     package: botbuilder
@@ -48,16 +50,16 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function teamsGetTeamId(activity: Activity)'
+      content: 'function teamsGetTeamId(activity: Activity): string | null'
       parameters:
         - id: activity
           type: Activity
           description: 'The current [Activity](xref:botframework-schema.Activity).'
       return:
-        type: string | null
         description: >-
           The current [Activity](xref:botframework-schema.Activity)'s team's Id,
           or null.
+        type: string | null
   - name: teamsGetTeamInfo(Activity)
     uid: botbuilder.teamsGetTeamInfo
     package: botbuilder
@@ -68,16 +70,16 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function teamsGetTeamInfo(activity: Activity)'
+      content: 'function teamsGetTeamInfo(activity: Activity): TeamInfo | null'
       parameters:
         - id: activity
           type: Activity
           description: 'The current [Activity](xref:botframework-schema.Activity).'
       return:
-        type: TeamInfo | null
         description: >-
           The current [Activity](xref:botframework-schema.Activity)'s team's
           info, or null.
+        type: TeamInfo | null
   - name: teamsGetTeamMeetingInfo(Activity)
     uid: botbuilder.teamsGetTeamMeetingInfo
     package: botbuilder
@@ -88,16 +90,18 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function teamsGetTeamMeetingInfo(activity: Activity)'
+      content: >-
+        function teamsGetTeamMeetingInfo(activity: Activity): TeamsMeetingInfo |
+        null
       parameters:
         - id: activity
           type: Activity
           description: 'The current [Activity](xref:botframework-schema.Activity).'
       return:
-        type: TeamsMeetingInfo | null
         description: >-
           The current [Activity](xref:botframework-schema.Activity)'s team
           meeting info, or null.
+        type: TeamsMeetingInfo | null
   - name: teamsGetTenant(Activity)
     uid: botbuilder.teamsGetTenant
     package: botbuilder
@@ -108,17 +112,17 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function teamsGetTenant(activity: Activity)'
+      content: 'function teamsGetTenant(activity: Activity): TenantInfo | null'
       parameters:
         - id: activity
           type: Activity
           description: 'The current [Activity](xref:botframework-schema.Activity).'
       return:
-        type: TenantInfo | null
         description: >-
           The current [Activity](xref:botframework-schema.Activity)'s tenant
           info, or null.
-  - name: 'teamsNotifyUser(Activity, boolean, string)'
+        type: TenantInfo | null
+  - name: 'teamsNotifyUser(Partial<Activity>, boolean, string)'
     uid: botbuilder.teamsNotifyUser
     package: botbuilder
     summary: >-
@@ -129,19 +133,22 @@ functions:
     isDeprecated: false
     syntax:
       content: >-
-        function teamsNotifyUser(activity: Activity, alertInMeeting?: boolean,
-        externalResourceUrl?: string)
+        function teamsNotifyUser(activity: Partial<Activity>, alertInMeeting?:
+        boolean, externalResourceUrl?: string)
       parameters:
         - id: activity
-          type: Activity
-          description: |
-            The current [Activity](xref:botframework-schema.Activity).
+          type: Partial&lt;Activity&gt;
+          description: 'The current [Activity](xref:botframework-schema.Activity).'
         - id: alertInMeeting
           type: boolean
-          description: ''
+          description: >-
+            Sent to a meeting chat, this will cause the Teams client to render
+            it in a notification popup as well as in the chat thread.
         - id: externalResourceUrl
           type: string
-          description: ''
+          description: >
+            Url to external resource. Must be included in manifest's valid
+            domains.
 classes:
   - botbuilder.BotFrameworkAdapter
   - botbuilder.BotFrameworkHttpClient

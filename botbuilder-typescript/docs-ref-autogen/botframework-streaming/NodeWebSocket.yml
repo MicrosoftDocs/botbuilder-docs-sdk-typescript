@@ -43,10 +43,10 @@ properties:
     syntax:
       content: boolean isConnected
       return:
-        type: boolean
         description: >-
           `true` if the underlying websocket is ready and availble to send
           messages, otherwise `false`.
+        type: boolean
 methods:
   - name: 'close(number, string)'
     uid: botframework-streaming.NodeWebSocket.close
@@ -75,7 +75,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function connect(serverAddress: string, port?: number)'
+      content: 'function connect(serverAddress: string, port?: number): Promise<void>'
       parameters:
         - id: serverAddress
           type: string
@@ -84,10 +84,10 @@ methods:
           type: number
           description: 'The port the server is listening on, defaults to 8082.'
       return:
-        type: Promise&lt;void&gt;
         description: >-
           A Promise that resolves when the websocket connection is closed, or
           rejects on an error.
+        type: Promise&lt;void&gt;
   - name: 'create(INodeIncomingMessage, INodeSocket, INodeBuffer)'
     uid: botframework-streaming.NodeWebSocket.create
     package: botframework-streaming
@@ -98,7 +98,7 @@ methods:
     syntax:
       content: >-
         function create(req: INodeIncomingMessage, socket: INodeSocket, head:
-        INodeBuffer)
+        INodeBuffer): Promise<void>
       parameters:
         - id: req
           type: <xref uid="botframework-streaming.INodeIncomingMessage" />
@@ -117,10 +117,10 @@ methods:
             A Buffer [INodeBuffer](xref:botframework-streaming.INodeBuffer)
             interface.
       return:
-        type: Promise&lt;void&gt;
         description: >-
           A Promise that resolves after the WebSocket upgrade has been handled,
           otherwise rejects with a thrown error.
+        type: Promise&lt;void&gt;
   - name: 'setOnCloseHandler((x: any) => void)'
     uid: botframework-streaming.NodeWebSocket.setOnCloseHandler
     package: botframework-streaming

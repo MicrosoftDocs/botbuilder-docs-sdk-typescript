@@ -44,7 +44,7 @@ methods:
     syntax:
       content: >-
         function queueActivity(activity: Partial<Activity>, visibilityTimeout?:
-        number, messageTimeToLive?: number)
+        number, messageTimeToLive?: number): Promise<string>
       parameters:
         - id: activity
           type: Partial&lt;Activity&gt;
@@ -58,8 +58,8 @@ methods:
           type: number
           description: Specifies the time-to-live interval for the message.
       return:
-        type: Promise&lt;string&gt;
         description: >-
           [QueueSendMessageResponse](xref:@azure/storage-queue.QueueSendMessageResponse)
           as a JSON string.
+        type: Promise&lt;string&gt;
 extends: QueueStorage

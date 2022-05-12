@@ -41,8 +41,8 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: actions
     uid: botbuilder-dialogs-adaptive.OnCondition.actions
     package: botbuilder-dialogs-adaptive
@@ -56,8 +56,8 @@ properties:
     syntax:
       content: 'actions: Dialog[]'
       return:
-        type: 'Dialog[]'
         description: ''
+        type: 'Dialog[]'
   - name: condition
     uid: botbuilder-dialogs-adaptive.OnCondition.condition
     package: botbuilder-dialogs-adaptive
@@ -71,8 +71,8 @@ properties:
     syntax:
       content: 'condition: BoolExpression'
       return:
-        type: BoolExpression
         description: ''
+        type: BoolExpression
   - name: id
     uid: botbuilder-dialogs-adaptive.OnCondition.id
     package: botbuilder-dialogs-adaptive
@@ -84,8 +84,8 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: priority
     uid: botbuilder-dialogs-adaptive.OnCondition.priority
     package: botbuilder-dialogs-adaptive
@@ -99,8 +99,8 @@ properties:
     syntax:
       content: 'priority: NumberExpression'
       return:
-        type: NumberExpression
         description: ''
+        type: NumberExpression
   - name: runOnce
     uid: botbuilder-dialogs-adaptive.OnCondition.runOnce
     package: botbuilder-dialogs-adaptive
@@ -114,8 +114,26 @@ properties:
     syntax:
       content: 'runOnce: boolean'
       return:
-        type: boolean
         description: ''
+        type: boolean
+inheritedMethods:
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive.OnCondition.configure
+    package: botbuilder-dialogs-adaptive
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>): this'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        description: ''
+        type: this
 methods:
   - name: addExternalCondition(string)
     uid: botbuilder-dialogs-adaptive.OnCondition.addExternalCondition
@@ -132,23 +150,6 @@ methods:
           description: >
             External constraint to add, it will be AND'ed to all other
             constraints.
-  - name: 'configure(Record<string, unknown>)'
-    uid: botbuilder-dialogs-adaptive.OnCondition.configure
-    package: botbuilder-dialogs-adaptive
-    summary: Fluent method for configuring the object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function configure(config: Record<string, unknown>)'
-      parameters:
-        - id: config
-          type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
-      return:
-        type: this
-        description: ''
   - name: currentPriority(ActionContext)
     uid: botbuilder-dialogs-adaptive.OnCondition.currentPriority
     package: botbuilder-dialogs-adaptive
@@ -157,14 +158,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function currentPriority(actionContext: ActionContext)'
+      content: 'function currentPriority(actionContext: ActionContext): number'
       parameters:
         - id: actionContext
           type: <xref uid="botbuilder-dialogs-adaptive.ActionContext" />
           description: Context to use for evaluation.
       return:
-        type: number
         description: Computed priority.
+        type: number
   - name: execute(ActionContext)
     uid: botbuilder-dialogs-adaptive.OnCondition.execute
     package: botbuilder-dialogs-adaptive
@@ -173,16 +174,18 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function execute(actionContext: ActionContext)'
+      content: >-
+        function execute(actionContext: ActionContext):
+        Promise<ActionChangeList[]>
       parameters:
         - id: actionContext
           type: <xref uid="botbuilder-dialogs-adaptive.ActionContext" />
           description: Context.
       return:
+        description: A promise with plan change list.
         type: >-
           Promise&lt;<xref uid="botbuilder-dialogs-adaptive.ActionChangeList"
           />[]&gt;
-        description: A promise with plan change list.
   - name: getConverter(Object)
     uid: botbuilder-dialogs-adaptive.OnCondition.getConverter
     package: botbuilder-dialogs-adaptive
@@ -191,14 +194,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object)'
+      content: 'function getConverter(property: Object): Converter | ConverterFactory'
       parameters:
         - id: property
           type: Object
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
+        description: The converter for the selector configuration.
         type: Converter | ConverterFactory
-        description: ''
   - name: getDependencies()
     uid: botbuilder-dialogs-adaptive.OnCondition.getDependencies
     package: botbuilder-dialogs-adaptive
@@ -209,10 +212,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getDependencies()
+      content: 'function getDependencies(): Dialog[]'
       return:
+        description: 'A list of [Dialog](xref:botbuilder-dialogs.Dialog).'
         type: 'Dialog[]'
-        description: ''
   - name: getExpression()
     uid: botbuilder-dialogs-adaptive.OnCondition.getExpression
     package: botbuilder-dialogs-adaptive
@@ -221,8 +224,8 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getExpression()
+      content: 'function getExpression(): Expression'
       return:
-        type: Expression
         description: Cached expression used to evaluate this condition.
+        type: Expression
 extends: Configurable

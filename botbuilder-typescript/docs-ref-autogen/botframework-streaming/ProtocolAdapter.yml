@@ -67,7 +67,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onReceiveRequest(id: string, request: IReceiveRequest)'
+      content: >-
+        function onReceiveRequest(id: string, request: IReceiveRequest):
+        Promise<void>
       parameters:
         - id: id
           type: string
@@ -77,8 +79,8 @@ methods:
           description: |
             The incoming request to process.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'onReceiveResponse(string, IReceiveResponse)'
     uid: botframework-streaming.ProtocolAdapter.onReceiveResponse
     package: botframework-streaming
@@ -87,7 +89,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onReceiveResponse(id: string, response: IReceiveResponse)'
+      content: >-
+        function onReceiveResponse(id: string, response: IReceiveResponse):
+        Promise<void>
       parameters:
         - id: id
           type: string
@@ -97,8 +101,8 @@ methods:
           description: |
             The incoming response to process.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: sendRequest(StreamingRequest)
     uid: botframework-streaming.ProtocolAdapter.sendRequest
     package: botframework-streaming
@@ -107,11 +111,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function sendRequest(request: StreamingRequest)'
+      content: >-
+        function sendRequest(request: StreamingRequest):
+        Promise<IReceiveResponse>
       parameters:
         - id: request
           type: <xref uid="botframework-streaming.StreamingRequest" />
           description: The outgoing request to send.
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
         description: The response to the specified request.
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;

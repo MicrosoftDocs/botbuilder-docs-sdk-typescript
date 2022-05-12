@@ -47,7 +47,8 @@ methods:
     syntax:
       content: >-
         function exchangeToken(userId: string, connectionName: string,
-        channelId: string, exchangeRequest: TokenExchangeRequest)
+        channelId: string, exchangeRequest: TokenExchangeRequest):
+        Promise<TokenResponse>
       parameters:
         - id: userId
           type: string
@@ -62,8 +63,8 @@ methods:
           type: TokenExchangeRequest
           description: ''
       return:
-        type: Promise&lt;TokenResponse&gt;
         description: ''
+        type: Promise&lt;TokenResponse&gt;
   - name: 'getAadTokens(string, string, string[], string)'
     uid: botframework-connector.UserTokenClientImpl.getAadTokens
     package: botframework-connector
@@ -74,7 +75,8 @@ methods:
     syntax:
       content: >-
         function getAadTokens(userId: string, connectionName: string,
-        resourceUrls: string[], channelId: string)
+        resourceUrls: string[], channelId: string): Promise<Record<string,
+        TokenResponse>>
       parameters:
         - id: userId
           type: string
@@ -89,8 +91,8 @@ methods:
           type: string
           description: ''
       return:
-        type: 'Promise&lt;Record&lt;string, TokenResponse&gt;&gt;'
         description: ''
+        type: 'Promise&lt;Record&lt;string, TokenResponse&gt;&gt;'
   - name: 'getSignInResource(string, Activity, string)'
     uid: botframework-connector.UserTokenClientImpl.getSignInResource
     package: botframework-connector
@@ -101,7 +103,7 @@ methods:
     syntax:
       content: >-
         function getSignInResource(connectionName: string, activity: Activity,
-        finalRedirect: string)
+        finalRedirect: string): Promise<SignInUrlResponse>
       parameters:
         - id: connectionName
           type: string
@@ -113,8 +115,8 @@ methods:
           type: string
           description: ''
       return:
-        type: Promise&lt;SignInUrlResponse&gt;
         description: ''
+        type: Promise&lt;SignInUrlResponse&gt;
   - name: 'getTokenStatus(string, string, string)'
     uid: botframework-connector.UserTokenClientImpl.getTokenStatus
     package: botframework-connector
@@ -125,7 +127,7 @@ methods:
     syntax:
       content: >-
         function getTokenStatus(userId: string, channelId: string,
-        includeFilter: string)
+        includeFilter: string): Promise<TokenStatus[]>
       parameters:
         - id: userId
           type: string
@@ -137,8 +139,8 @@ methods:
           type: string
           description: ''
       return:
-        type: 'Promise&lt;TokenStatus[]&gt;'
         description: ''
+        type: 'Promise&lt;TokenStatus[]&gt;'
   - name: 'getUserToken(string, string, string, string)'
     uid: botframework-connector.UserTokenClientImpl.getUserToken
     package: botframework-connector
@@ -149,7 +151,7 @@ methods:
     syntax:
       content: >-
         function getUserToken(userId: string, connectionName: string, channelId:
-        string, magicCode: string)
+        string, magicCode: string): Promise<TokenResponse>
       parameters:
         - id: userId
           type: string
@@ -164,8 +166,8 @@ methods:
           type: string
           description: ''
       return:
-        type: Promise&lt;TokenResponse&gt;
         description: ''
+        type: Promise&lt;TokenResponse&gt;
   - name: 'signOutUser(string, string, string)'
     uid: botframework-connector.UserTokenClientImpl.signOutUser
     package: botframework-connector
@@ -176,7 +178,7 @@ methods:
     syntax:
       content: >-
         function signOutUser(userId: string, connectionName: string, channelId:
-        string)
+        string): Promise<void>
       parameters:
         - id: userId
           type: string
@@ -188,6 +190,6 @@ methods:
           type: string
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
 extends: <xref uid="botframework-connector.UserTokenClient" />

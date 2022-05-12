@@ -3,7 +3,7 @@ uid: botframework-connector.EmulatorValidation
 name: EmulatorValidation
 type: module
 package: botframework-connector
-summary: Validates and Examines JWT tokens from the Bot Framework Emulator
+summary: ''
 functions:
   - name: >-
       authenticateEmulatorToken(string, ICredentialProvider, string, string,
@@ -23,7 +23,7 @@ functions:
       content: >-
         function authenticateEmulatorToken(authHeader: string, credentials:
         ICredentialProvider, channelService: string, channelId: string,
-        authConfig?: AuthenticationConfiguration)
+        authConfig?: AuthenticationConfiguration): Promise<ClaimsIdentity>
       parameters:
         - id: authHeader
           type: string
@@ -43,8 +43,8 @@ functions:
           type: <xref uid="botframework-connector.AuthenticationConfiguration" />
           description: The authentication configuration.
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: A valid ClaimsIdentity.
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
   - name: isTokenFromEmulator(string)
     uid: botframework-connector.EmulatorValidation.isTokenFromEmulator
     package: botframework-connector
@@ -53,11 +53,11 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function isTokenFromEmulator(authHeader: string)'
+      content: 'function isTokenFromEmulator(authHeader: string): boolean'
       parameters:
         - id: authHeader
           type: string
           description: 'Bearer Token, in the "Bearer [Long String]" Format.'
       return:
-        type: boolean
         description: 'True, if the token was issued by the Emulator. Otherwise, false.'
+        type: boolean

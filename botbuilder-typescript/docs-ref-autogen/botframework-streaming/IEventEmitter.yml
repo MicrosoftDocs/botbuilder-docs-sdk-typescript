@@ -23,7 +23,7 @@ methods:
     syntax:
       content: >-
         function addListener(event: string | symbol, listener: (args: any[]) =>
-        void)
+        void): this
       parameters:
         - id: event
           type: string | symbol
@@ -32,8 +32,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: 'emit(string | symbol, any[])'
     uid: botframework-streaming.IEventEmitter.emit
     package: botframework-streaming
@@ -42,7 +42,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function emit(event: string | symbol, args: any[])'
+      content: 'function emit(event: string | symbol, args: any[]): boolean'
       parameters:
         - id: event
           type: string | symbol
@@ -51,8 +51,8 @@ methods:
           type: 'any[]'
           description: ''
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: eventNames()
     uid: botframework-streaming.IEventEmitter.eventNames
     package: botframework-streaming
@@ -61,10 +61,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function eventNames()
+      content: 'function eventNames(): Array<string | symbol>'
       return:
-        type: Array&lt;string | symbol&gt;
         description: ''
+        type: Array&lt;string | symbol&gt;
   - name: getMaxListeners()
     uid: botframework-streaming.IEventEmitter.getMaxListeners
     package: botframework-streaming
@@ -73,10 +73,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getMaxListeners()
+      content: 'function getMaxListeners(): number'
       return:
-        type: number
         description: ''
+        type: number
   - name: listenerCount(string | symbol)
     uid: botframework-streaming.IEventEmitter.listenerCount
     package: botframework-streaming
@@ -85,14 +85,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function listenerCount(type: string | symbol)'
+      content: 'function listenerCount(type: string | symbol): number'
       parameters:
         - id: type
           type: string | symbol
           description: ''
       return:
-        type: number
         description: ''
+        type: number
   - name: listeners(string | symbol)
     uid: botframework-streaming.IEventEmitter.listeners
     package: botframework-streaming
@@ -101,14 +101,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function listeners(event: string | symbol)'
+      content: 'function listeners(event: string | symbol): Function[]'
       parameters:
         - id: event
           type: string | symbol
           description: ''
       return:
-        type: 'Function[]'
         description: ''
+        type: 'Function[]'
   - name: 'off(string | symbol, (args: any[]) => void)'
     uid: botframework-streaming.IEventEmitter.off
     package: botframework-streaming
@@ -117,7 +117,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function off(event: string | symbol, listener: (args: any[]) => void)'
+      content: >-
+        function off(event: string | symbol, listener: (args: any[]) => void):
+        this
       parameters:
         - id: event
           type: string | symbol
@@ -126,8 +128,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: 'on(string | symbol, (args: any[]) => void)'
     uid: botframework-streaming.IEventEmitter.on
     package: botframework-streaming
@@ -136,7 +138,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function on(event: string | symbol, listener: (args: any[]) => void)'
+      content: >-
+        function on(event: string | symbol, listener: (args: any[]) => void):
+        this
       parameters:
         - id: event
           type: string | symbol
@@ -145,8 +149,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: 'once(string | symbol, (args: any[]) => void)'
     uid: botframework-streaming.IEventEmitter.once
     package: botframework-streaming
@@ -155,7 +159,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function once(event: string | symbol, listener: (args: any[]) => void)'
+      content: >-
+        function once(event: string | symbol, listener: (args: any[]) => void):
+        this
       parameters:
         - id: event
           type: string | symbol
@@ -164,8 +170,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: 'prependListener(string | symbol, (args: any[]) => void)'
     uid: botframework-streaming.IEventEmitter.prependListener
     package: botframework-streaming
@@ -176,7 +182,7 @@ methods:
     syntax:
       content: >-
         function prependListener(event: string | symbol, listener: (args: any[])
-        => void)
+        => void): this
       parameters:
         - id: event
           type: string | symbol
@@ -185,8 +191,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: 'prependOnceListener(string | symbol, (args: any[]) => void)'
     uid: botframework-streaming.IEventEmitter.prependOnceListener
     package: botframework-streaming
@@ -197,7 +203,7 @@ methods:
     syntax:
       content: >-
         function prependOnceListener(event: string | symbol, listener: (args:
-        any[]) => void)
+        any[]) => void): this
       parameters:
         - id: event
           type: string | symbol
@@ -206,8 +212,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: rawListeners(string | symbol)
     uid: botframework-streaming.IEventEmitter.rawListeners
     package: botframework-streaming
@@ -216,14 +222,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function rawListeners(event: string | symbol)'
+      content: 'function rawListeners(event: string | symbol): Function[]'
       parameters:
         - id: event
           type: string | symbol
           description: ''
       return:
-        type: 'Function[]'
         description: ''
+        type: 'Function[]'
   - name: removeAllListeners(string | symbol)
     uid: botframework-streaming.IEventEmitter.removeAllListeners
     package: botframework-streaming
@@ -232,14 +238,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function removeAllListeners(event?: string | symbol)'
+      content: 'function removeAllListeners(event?: string | symbol): this'
       parameters:
         - id: event
           type: string | symbol
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: 'removeListener(string | symbol, (args: any[]) => void)'
     uid: botframework-streaming.IEventEmitter.removeListener
     package: botframework-streaming
@@ -250,7 +256,7 @@ methods:
     syntax:
       content: >-
         function removeListener(event: string | symbol, listener: (args: any[])
-        => void)
+        => void): this
       parameters:
         - id: event
           type: string | symbol
@@ -259,8 +265,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: setMaxListeners(number)
     uid: botframework-streaming.IEventEmitter.setMaxListeners
     package: botframework-streaming
@@ -269,11 +275,11 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function setMaxListeners(n: number)'
+      content: 'function setMaxListeners(n: number): this'
       parameters:
         - id: 'n'
           type: number
           description: ''
       return:
-        type: this
         description: ''
+        type: this

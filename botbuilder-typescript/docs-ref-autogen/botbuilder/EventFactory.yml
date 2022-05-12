@@ -19,7 +19,7 @@ methods:
     syntax:
       content: >-
         static function createHandoffInitiation<T>(context: TurnContext,
-        handoffContext: T, transcript?: Transcript)
+        handoffContext: T, transcript?: Transcript): Activity
       parameters:
         - id: context
           type: TurnContext
@@ -29,11 +29,10 @@ methods:
           description: Agent hub-specific context.
         - id: transcript
           type: Transcript
-          description: |
-            Transcript of the conversation.
+          description: Transcript of the conversation.
       return:
+        description: The handoff event activity.
         type: Activity
-        description: ''
   - name: 'createHandoffStatus(ConversationAccount, string, string)'
     uid: botbuilder.EventFactory.createHandoffStatus
     package: botbuilder
@@ -44,7 +43,7 @@ methods:
     syntax:
       content: >-
         static function createHandoffStatus(conversation: ConversationAccount,
-        state: string, message?: string)
+        state: string, message?: string): Activity
       parameters:
         - id: conversation
           type: ConversationAccount
@@ -54,8 +53,7 @@ methods:
           description: 'State, possible values are: "accepted", "failed", "completed".'
         - id: message
           type: string
-          description: |
-            Additional message for failed handoff.
+          description: Additional message for failed handoff.
       return:
+        description: The handoff event activity.
         type: Activity
-        description: ''

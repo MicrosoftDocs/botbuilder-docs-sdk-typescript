@@ -84,8 +84,8 @@ properties:
     syntax:
       content: 'botStateSet: BotStateSet'
       return:
-        type: <xref uid="botbuilder-core.BotStateSet" />
         description: ''
+        type: <xref uid="botbuilder-core.BotStateSet" />
 methods:
   - name: 'add(BotState[])'
     uid: botbuilder-core.AutoSaveStateMiddleware.add
@@ -95,15 +95,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function add(botStates: BotState[])'
+      content: 'function add(botStates: BotState[]): this'
       parameters:
         - id: botStates
           type: '<xref uid="botbuilder-core.BotState" />[]'
           description: |
             One or more BotState plugins to add.
       return:
-        type: this
         description: ''
+        type: this
   - name: 'onTurn(TurnContext, () => Promise<void>)'
     uid: botbuilder-core.AutoSaveStateMiddleware.onTurn
     package: botbuilder-core
@@ -114,7 +114,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      content: >-
+        function onTurn(context: TurnContext, next: () => Promise<void>):
+        Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -124,5 +126,5 @@ methods:
           description: |
             The next delegate function.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

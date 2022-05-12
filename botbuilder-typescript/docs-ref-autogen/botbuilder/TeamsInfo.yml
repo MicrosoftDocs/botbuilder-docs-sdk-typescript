@@ -19,7 +19,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function getMeetingInfo(context: TurnContext, meetingId?: string)'
+      content: >-
+        static function getMeetingInfo(context: TurnContext, meetingId?:
+        string): Promise<TeamsMeetingInfo>
       parameters:
         - id: context
           type: TurnContext
@@ -28,8 +30,8 @@ methods:
           type: string
           description: The BASE64-encoded id of the Teams meeting.
       return:
-        type: Promise&lt;TeamsMeetingInfo&gt;
         description: 'The [TeamsMeetingInfo](xref:botbuilder-core.TeamsMeetingInfo) fetched'
+        type: Promise&lt;TeamsMeetingInfo&gt;
   - name: 'getMeetingParticipant(TurnContext, string, string, string)'
     uid: botbuilder.TeamsInfo.getMeetingParticipant
     package: botbuilder
@@ -44,7 +46,8 @@ methods:
     syntax:
       content: >-
         static function getMeetingParticipant(context: TurnContext, meetingId?:
-        string, participantId?: string, tenantId?: string)
+        string, participantId?: string, tenantId?: string):
+        Promise<TeamsMeetingParticipant>
       parameters:
         - id: context
           type: TurnContext
@@ -59,11 +62,11 @@ methods:
           type: string
           description: The tenant ID to use when scoping the request
       return:
-        type: Promise&lt;TeamsMeetingParticipant&gt;
         description: >-
           The
           [TeamsMeetingParticipant](xref:botbuilder-core.TeamsMeetingParticipant)
           fetched
+        type: Promise&lt;TeamsMeetingParticipant&gt;
   - name: 'getMember(TurnContext, string)'
     uid: botbuilder.TeamsInfo.getMember
     package: botbuilder
@@ -72,7 +75,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function getMember(context: TurnContext, userId: string)'
+      content: >-
+        static function getMember(context: TurnContext, userId: string):
+        Promise<TeamsChannelAccount>
       parameters:
         - id: context
           type: TurnContext
@@ -81,29 +86,32 @@ methods:
           type: string
           description: ID of the user in question.
       return:
-        type: Promise&lt;TeamsChannelAccount&gt;
         description: >-
           The
           [TeamsChannelAccount](xref:botframework-schema.TeamsChannelAccount) of
           the member.
+        type: Promise&lt;TeamsChannelAccount&gt;
   - name: getMembers(TurnContext)
     uid: botbuilder.TeamsInfo.getMembers
     package: botbuilder
     summary: Gets the conversation members of a one-on-one or group chat.
     remarks: ''
     isPreview: false
-    isDeprecated: false
+    isDeprecated: true
+    customDeprecatedMessage: Use `getPagedTeamMembers` instead.
     syntax:
-      content: 'static function getMembers(context: TurnContext)'
+      content: >-
+        static function getMembers(context: TurnContext):
+        Promise<TeamsChannelAccount[]>
       parameters:
         - id: context
           type: TurnContext
           description: 'The [TurnContext](xref:botbuilder-core.TurnContext) for this turn.'
       return:
-        type: 'Promise&lt;TeamsChannelAccount[]&gt;'
         description: >-
           The list of
           [TeamsChannelAccount](xref:botframework-schema.TeamsChannelAccount).
+        type: 'Promise&lt;TeamsChannelAccount[]&gt;'
   - name: 'getPagedMembers(TurnContext, number, string)'
     uid: botbuilder.TeamsInfo.getPagedMembers
     package: botbuilder
@@ -114,7 +122,7 @@ methods:
     syntax:
       content: >-
         static function getPagedMembers(context: TurnContext, pageSize?: number,
-        continuationToken?: string)
+        continuationToken?: string): Promise<TeamsPagedMembersResult>
       parameters:
         - id: context
           type: TurnContext
@@ -126,11 +134,11 @@ methods:
           type: string
           description: A continuation token.
       return:
-        type: Promise&lt;TeamsPagedMembersResult&gt;
         description: >-
           The
           [TeamsPagedMembersResult](xref:botframework-schema.TeamsPagedMembersResult)
           with the list of members.
+        type: Promise&lt;TeamsPagedMembersResult&gt;
   - name: 'getPagedTeamMembers(TurnContext, string, number, string)'
     uid: botbuilder.TeamsInfo.getPagedTeamMembers
     package: botbuilder
@@ -141,7 +149,8 @@ methods:
     syntax:
       content: >-
         static function getPagedTeamMembers(context: TurnContext, teamId?:
-        string, pageSize?: number, continuationToken?: string)
+        string, pageSize?: number, continuationToken?: string):
+        Promise<TeamsPagedMembersResult>
       parameters:
         - id: context
           type: TurnContext
@@ -156,11 +165,11 @@ methods:
           type: string
           description: The continuationToken token.
       return:
-        type: Promise&lt;TeamsPagedMembersResult&gt;
         description: >-
           A
           [TeamsPagedMembersResult](xref:botframework-schema.TeamsPagedMembersResult)
           with the list of members.
+        type: Promise&lt;TeamsPagedMembersResult&gt;
   - name: 'getTeamChannels(TurnContext, string)'
     uid: botbuilder.TeamsInfo.getTeamChannels
     package: botbuilder
@@ -171,7 +180,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function getTeamChannels(context: TurnContext, teamId?: string)'
+      content: >-
+        static function getTeamChannels(context: TurnContext, teamId?: string):
+        Promise<ChannelInfo[]>
       parameters:
         - id: context
           type: TurnContext
@@ -180,10 +191,10 @@ methods:
           type: string
           description: ID of the Teams team.
       return:
-        type: 'Promise&lt;ChannelInfo[]&gt;'
         description: >-
           The list of [ChannelInfo](xref:botframework-schema.ChannelInfo)
           objects with the conversations.
+        type: 'Promise&lt;ChannelInfo[]&gt;'
   - name: 'getTeamDetails(TurnContext, string)'
     uid: botbuilder.TeamsInfo.getTeamDetails
     package: botbuilder
@@ -194,7 +205,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function getTeamDetails(context: TurnContext, teamId?: string)'
+      content: >-
+        static function getTeamDetails(context: TurnContext, teamId?: string):
+        Promise<TeamDetails>
       parameters:
         - id: context
           type: TurnContext
@@ -203,8 +216,8 @@ methods:
           type: string
           description: The id of the Teams team.
       return:
-        type: Promise&lt;TeamDetails&gt;
         description: 'The [TeamDetails](xref:botbuilder-core.TeamDetails) fetched'
+        type: Promise&lt;TeamDetails&gt;
   - name: 'getTeamMember(TurnContext, string, string)'
     uid: botbuilder.TeamsInfo.getTeamMember
     package: botbuilder
@@ -215,7 +228,7 @@ methods:
     syntax:
       content: >-
         static function getTeamMember(context: TurnContext, teamId?: string,
-        userId?: string)
+        userId?: string): Promise<TeamsChannelAccount>
       parameters:
         - id: context
           type: TurnContext
@@ -227,11 +240,11 @@ methods:
           type: string
           description: ID of the Teams user.
       return:
-        type: Promise&lt;TeamsChannelAccount&gt;
         description: >-
           The
           [TeamsChannelAccount](xref:botframework-schema.TeamsChannelAccount) of
           the member.
+        type: Promise&lt;TeamsChannelAccount&gt;
   - name: 'getTeamMembers(TurnContext, string)'
     uid: botbuilder.TeamsInfo.getTeamMembers
     package: botbuilder
@@ -241,9 +254,12 @@ methods:
       a team.
     remarks: ''
     isPreview: false
-    isDeprecated: false
+    isDeprecated: true
+    customDeprecatedMessage: Use `getPagedTeamMembers` instead.
     syntax:
-      content: 'static function getTeamMembers(context: TurnContext, teamId?: string)'
+      content: >-
+        static function getTeamMembers(context: TurnContext, teamId?: string):
+        Promise<TeamsChannelAccount[]>
       parameters:
         - id: context
           type: TurnContext
@@ -252,11 +268,11 @@ methods:
           type: string
           description: ID of the Teams team.
       return:
-        type: 'Promise&lt;TeamsChannelAccount[]&gt;'
         description: >-
           The list of
           [TeamsChannelAccount](xref:botframework-schema.TeamsChannelAccount) of
           the members.
+        type: 'Promise&lt;TeamsChannelAccount[]&gt;'
   - name: 'sendMessageToTeamsChannel(TurnContext, Activity, string, string)'
     uid: botbuilder.TeamsInfo.sendMessageToTeamsChannel
     package: botbuilder
@@ -269,7 +285,8 @@ methods:
     syntax:
       content: >-
         static function sendMessageToTeamsChannel(context: TurnContext,
-        activity: Activity, teamsChannelId: string, botAppId?: string)
+        activity: Activity, teamsChannelId: string, botAppId?: string):
+        Promise<[ConversationReference, string]>
       parameters:
         - id: context
           type: TurnContext
@@ -288,9 +305,9 @@ methods:
             The bot's appId. This is only used when context.adapter is an
             instance of CloudAdapter.
       return:
-        type: Promise&lt;Object&gt;
         description: >-
           The
           [ConversationReference](xref:botframework-schema.ConversationReference)
           and the id of the [Activity](xref:botframework-schema.Activity) (if
           sent).
+        type: 'Promise&lt;[ConversationReference, string]&gt;'

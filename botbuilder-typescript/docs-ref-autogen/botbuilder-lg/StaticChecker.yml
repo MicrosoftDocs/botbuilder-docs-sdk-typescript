@@ -25,19 +25,7 @@ constructors:
           type: <xref uid="botbuilder-lg.Templates" />
           description: |
             (xref:botbuilder-lg.Templates) to be checked.
-methods:
-  - name: check()
-    uid: botbuilder-lg.StaticChecker.check
-    package: botbuilder-lg
-    summary: Return error messages list.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function check()
-      return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
-        description: Report result.
+inheritedMethods:
   - name: visit(ParseTree)
     uid: botbuilder-lg.StaticChecker.visit
     package: botbuilder-lg
@@ -49,14 +37,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visit(tree: ParseTree)'
+      content: 'function visit(tree: ParseTree): Diagnostic[]'
       parameters:
         - id: tree
           type: ParseTree
           description: ''
       return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
   - name: visitChildren(RuleNode)
     uid: botbuilder-lg.StaticChecker.visitChildren
     package: botbuilder-lg
@@ -77,14 +65,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitChildren(node: RuleNode)'
+      content: 'function visitChildren(node: RuleNode): Diagnostic[]'
       parameters:
         - id: node
           type: RuleNode
           description: ''
       return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
   - name: visitErrorNode(ErrorNode)
     uid: botbuilder-lg.StaticChecker.visitErrorNode
     package: botbuilder-lg
@@ -96,105 +84,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitErrorNode(node: ErrorNode)'
+      content: 'function visitErrorNode(node: ErrorNode): Diagnostic[]'
       parameters:
         - id: node
           type: ErrorNode
           description: ''
       return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
         description: ''
-  - name: visitIfElseBody(IfElseBodyContext)
-    uid: botbuilder-lg.StaticChecker.visitIfElseBody
-    package: botbuilder-lg
-    summary: >-
-      Visit a parse tree produced by the `ifElseBody` labeled alternative in
-      `LGTemplateParser.body`.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitIfElseBody(context: IfElseBodyContext)'
-      parameters:
-        - id: context
-          type: <xref uid="botbuilder-lg.IfElseBodyContext" />
-          description: |
-            The parse tree.
-      return:
         type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
-        description: ''
-  - name: visitNormalTemplateBody(NormalTemplateBodyContext)
-    uid: botbuilder-lg.StaticChecker.visitNormalTemplateBody
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by `LGTemplateParser.normalTemplateBody`.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitNormalTemplateBody(context: NormalTemplateBodyContext)'
-      parameters:
-        - id: context
-          type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
-          description: |
-            The parse tree.
-      return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
-        description: ''
-  - name: visitNormalTemplateString(NormalTemplateStringContext)
-    uid: botbuilder-lg.StaticChecker.visitNormalTemplateString
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by `LGTemplateParser.normalTemplateString`.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitNormalTemplateString(context: NormalTemplateStringContext)'
-      parameters:
-        - id: context
-          type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
-          description: |
-            The parse tree.
-      return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
-        description: ''
-  - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
-    uid: botbuilder-lg.StaticChecker.visitStructuredTemplateBody
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by `LGTemplateParser.structuredTemplateBody`.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function visitStructuredTemplateBody(context:
-        StructuredTemplateBodyContext)
-      parameters:
-        - id: context
-          type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
-          description: |
-            The parse tree.
-      return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
-        description: ''
-  - name: visitSwitchCaseBody(SwitchCaseBodyContext)
-    uid: botbuilder-lg.StaticChecker.visitSwitchCaseBody
-    package: botbuilder-lg
-    summary: >-
-      Visit a parse tree produced by the `switchCaseBody` labeled alternative in
-      `LGTemplateParser.body`.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitSwitchCaseBody(context: SwitchCaseBodyContext)'
-      parameters:
-        - id: context
-          type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
-          description: |
-            The parse tree.
-      return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
-        description: ''
   - name: visitTerminal(TerminalNode)
     uid: botbuilder-lg.StaticChecker.visitTerminal
     package: botbuilder-lg
@@ -206,12 +103,122 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitTerminal(node: TerminalNode)'
+      content: 'function visitTerminal(node: TerminalNode): Diagnostic[]'
       parameters:
         - id: node
           type: TerminalNode
           description: ''
       return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+methods:
+  - name: check()
+    uid: botbuilder-lg.StaticChecker.check
+    package: botbuilder-lg
+    summary: Return error messages list.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function check(): Diagnostic[]'
+      return:
+        description: Report result.
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+  - name: visitIfElseBody(IfElseBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitIfElseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the `ifElseBody` labeled alternative in
+      `LGTemplateParser.body`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitIfElseBody(context: IfElseBodyContext): Diagnostic[]'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.IfElseBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+  - name: visitNormalTemplateBody(NormalTemplateBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitNormalTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by `LGTemplateParser.normalTemplateBody`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitNormalTemplateBody(context: NormalTemplateBodyContext):
+        Diagnostic[]
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+  - name: visitNormalTemplateString(NormalTemplateStringContext)
+    uid: botbuilder-lg.StaticChecker.visitNormalTemplateString
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by `LGTemplateParser.normalTemplateString`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitNormalTemplateString(context:
+        NormalTemplateStringContext): Diagnostic[]
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
+          description: |
+            The parse tree.
+      return:
+        description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+  - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitStructuredTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by `LGTemplateParser.structuredTemplateBody`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitStructuredTemplateBody(context:
+        StructuredTemplateBodyContext): Diagnostic[]
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+  - name: visitSwitchCaseBody(SwitchCaseBodyContext)
+    uid: botbuilder-lg.StaticChecker.visitSwitchCaseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the `switchCaseBody` labeled alternative in
+      `LGTemplateParser.body`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitSwitchCaseBody(context: SwitchCaseBodyContext):
+        Diagnostic[]
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
+          description: |
+            The parse tree.
+      return:
+        description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
 extends: 'AbstractParseTreeVisitor&lt;<xref uid="botbuilder-lg.Diagnostic" />[]&gt;'

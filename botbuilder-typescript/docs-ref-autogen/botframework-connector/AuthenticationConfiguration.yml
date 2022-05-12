@@ -9,7 +9,7 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'AuthenticationConfiguration(string[], ValidateClaims)'
+  - name: 'AuthenticationConfiguration(string[], ValidateClaims, string[])'
     uid: botframework-connector.AuthenticationConfiguration.constructor
     package: botframework-connector
     summary: General configuration settings for authentication.
@@ -19,16 +19,20 @@ constructors:
     syntax:
       content: >-
         new AuthenticationConfiguration(requiredEndorsements?: string[],
-        validateClaims?: ValidateClaims)
+        validateClaims?: ValidateClaims, validTokenIssuers?: string[])
       parameters:
         - id: requiredEndorsements
           type: 'string[]'
           description: An array of JWT endorsements.
         - id: validateClaims
           type: <xref uid="botframework-connector.ValidateClaims" />
-          description: |
+          description: |-
             Function that validates a list of Claims
             and should throw an exception if the validation fails.
+        - id: validTokenIssuers
+          type: 'string[]'
+          description: |
+            An array of valid JWT token issuers.
 properties:
   - name: requiredEndorsements
     uid: botframework-connector.AuthenticationConfiguration.requiredEndorsements
@@ -41,8 +45,8 @@ properties:
     syntax:
       content: 'requiredEndorsements: string[]'
       return:
-        type: 'string[]'
         description: ''
+        type: 'string[]'
   - name: validateClaims
     uid: botframework-connector.AuthenticationConfiguration.validateClaims
     package: botframework-connector
@@ -54,5 +58,18 @@ properties:
     syntax:
       content: 'validateClaims?: ValidateClaims'
       return:
-        type: <xref uid="botframework-connector.ValidateClaims" />
         description: ''
+        type: <xref uid="botframework-connector.ValidateClaims" />
+  - name: validTokenIssuers
+    uid: botframework-connector.AuthenticationConfiguration.validTokenIssuers
+    package: botframework-connector
+    summary: ''
+    fullName: validTokenIssuers
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'validTokenIssuers?: string[]'
+      return:
+        description: ''
+        type: 'string[]'

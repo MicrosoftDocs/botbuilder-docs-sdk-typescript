@@ -8,6 +8,24 @@ remarks: ''
 isPreview: false
 isDeprecated: false
 type: interface
+inheritedMethods:
+  - name: logActivity(Activity)
+    uid: botbuilder-core.TranscriptStore.logActivity
+    package: botbuilder-core
+    summary: Log an activity to the transcript.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function logActivity(activity: Activity): void | Promise<void>'
+      parameters:
+        - id: activity
+          type: Activity
+          description: |
+            Activity being logged.
+      return:
+        description: ''
+        type: void | Promise&lt;void&gt;
 methods:
   - name: 'deleteTranscript(string, string)'
     uid: botbuilder-core.TranscriptStore.deleteTranscript
@@ -17,7 +35,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function deleteTranscript(channelId: string, conversationId: string)'
+      content: >-
+        function deleteTranscript(channelId: string, conversationId: string):
+        Promise<void>
       parameters:
         - id: channelId
           type: string
@@ -27,8 +47,8 @@ methods:
           description: |
             Id of the conversation to delete.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'getTranscriptActivities(string, string, string, Date)'
     uid: botbuilder-core.TranscriptStore.getTranscriptActivities
     package: botbuilder-core
@@ -39,7 +59,8 @@ methods:
     syntax:
       content: >-
         function getTranscriptActivities(channelId: string, conversationId:
-        string, continuationToken?: string, startDate?: Date)
+        string, continuationToken?: string, startDate?: Date):
+        Promise<PagedResult<Activity>>
       parameters:
         - id: channelId
           type: string
@@ -55,10 +76,10 @@ methods:
           description: |
             Earliest time to include.
       return:
+        description: ''
         type: >-
           Promise&lt;<xref uid="botbuilder-core.PagedResult"
           />&lt;Activity&gt;&gt;
-        description: ''
   - name: 'listTranscripts(string, string)'
     uid: botbuilder-core.TranscriptStore.listTranscripts
     package: botbuilder-core
@@ -67,7 +88,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function listTranscripts(channelId: string, continuationToken?: string)'
+      content: >-
+        function listTranscripts(channelId: string, continuationToken?: string):
+        Promise<PagedResult<TranscriptInfo>>
       parameters:
         - id: channelId
           type: string
@@ -77,25 +100,8 @@ methods:
           description: |
             Continuation token to page through results.
       return:
+        description: ''
         type: >-
           Promise&lt;<xref uid="botbuilder-core.PagedResult" />&lt;<xref
           uid="botbuilder-core.TranscriptInfo" />&gt;&gt;
-        description: ''
-  - name: logActivity(Activity)
-    uid: botbuilder-core.TranscriptStore.logActivity
-    package: botbuilder-core
-    summary: Log an activity to the transcript.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function logActivity(activity: Activity)'
-      parameters:
-        - id: activity
-          type: Activity
-          description: |
-            Activity being logged.
-      return:
-        type: void | Promise&lt;void&gt;
-        description: ''
 extends: <xref uid="botbuilder-core.TranscriptLogger" />

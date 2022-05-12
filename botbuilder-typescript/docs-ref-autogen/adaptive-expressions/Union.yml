@@ -41,8 +41,8 @@ properties:
     syntax:
       content: ExpressionEvaluator negation
       return:
+        description: The evaluator that is a negation of this one.
         type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
-        description: ''
   - name: returnType
     uid: adaptive-expressions.Union.returnType
     package: adaptive-expressions
@@ -54,8 +54,8 @@ properties:
     syntax:
       content: 'public returnType: ReturnType'
       return:
-        type: <xref uid="adaptive-expressions.ReturnType" />
         description: ''
+        type: <xref uid="adaptive-expressions.ReturnType" />
   - name: type
     uid: adaptive-expressions.Union.type
     package: adaptive-expressions
@@ -67,9 +67,9 @@ properties:
     syntax:
       content: 'public type: string'
       return:
-        type: string
         description: ''
-methods:
+        type: string
+inheritedMethods:
   - name: 'tryEvaluate(Expression, MemoryInterface, Options)'
     uid: adaptive-expressions.Union.tryEvaluate
     package: adaptive-expressions
@@ -80,21 +80,20 @@ methods:
     syntax:
       content: >-
         function tryEvaluate(expression: Expression, state: MemoryInterface,
-        options: Options)
+        options: Options): ValueWithError
       parameters:
         - id: expression
           type: <xref uid="adaptive-expressions.Expression" />
           description: Expression to evaluate.
         - id: state
           type: <xref uid="adaptive-expressions.MemoryInterface" />
-          description: |
-            Global state information.
+          description: Global state information.
         - id: options
           type: <xref uid="adaptive-expressions.Options" />
-          description: ''
+          description: Options used in the evaluation.
       return:
+        description: The value and error string that is non-null if there is an error.
         type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
   - name: validateExpression(Expression)
     uid: adaptive-expressions.Union.validateExpression
     package: adaptive-expressions
@@ -107,6 +106,5 @@ methods:
       parameters:
         - id: expression
           type: <xref uid="adaptive-expressions.Expression" />
-          description: |
-            Expression to validate.
+          description: Expression to validate.
 extends: <xref uid="adaptive-expressions.ExpressionEvaluator" />

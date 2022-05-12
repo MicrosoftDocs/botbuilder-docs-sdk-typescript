@@ -27,24 +27,7 @@ constructors:
           type: <xref uid="botbuilder-lg.Templates" />
           description: |
             Templates.
-methods:
-  - name: transform(ParseTree)
-    uid: botbuilder-lg.TemplatesTransformer.transform
-    package: botbuilder-lg
-    summary: Transform the parse tree into templates.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function transform(parseTree: ParseTree)'
-      parameters:
-        - id: parseTree
-          type: ParseTree
-          description: |
-            Input abstract syntax tree.
-      return:
-        type: <xref uid="botbuilder-lg.Templates" />
-        description: ''
+inheritedMethods:
   - name: visit(ParseTree)
     uid: botbuilder-lg.TemplatesTransformer.visit
     package: botbuilder-lg
@@ -86,20 +69,6 @@ methods:
         - id: node
           type: RuleNode
           description: ''
-  - name: visitErrorDefinition(ErrorDefinitionContext)
-    uid: botbuilder-lg.TemplatesTransformer.visitErrorDefinition
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by `LGFileParser.errorDefinition`.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitErrorDefinition(context: ErrorDefinitionContext)'
-      parameters:
-        - id: context
-          type: <xref uid="botbuilder-lg.ErrorDefinitionContext" />
-          description: |
-            The parse tree.
   - name: visitErrorNode(ErrorNode)
     uid: botbuilder-lg.TemplatesTransformer.visitErrorNode
     package: botbuilder-lg
@@ -116,6 +85,54 @@ methods:
         - id: node
           type: ErrorNode
           description: ''
+  - name: visitTerminal(TerminalNode)
+    uid: botbuilder-lg.TemplatesTransformer.visitTerminal
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitTerminal(node: TerminalNode)'
+      parameters:
+        - id: node
+          type: TerminalNode
+          description: ''
+methods:
+  - name: transform(ParseTree)
+    uid: botbuilder-lg.TemplatesTransformer.transform
+    package: botbuilder-lg
+    summary: Transform the parse tree into templates.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function transform(parseTree: ParseTree): Templates'
+      parameters:
+        - id: parseTree
+          type: ParseTree
+          description: |
+            Input abstract syntax tree.
+      return:
+        description: ''
+        type: <xref uid="botbuilder-lg.Templates" />
+  - name: visitErrorDefinition(ErrorDefinitionContext)
+    uid: botbuilder-lg.TemplatesTransformer.visitErrorDefinition
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by `LGFileParser.errorDefinition`.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitErrorDefinition(context: ErrorDefinitionContext)'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder-lg.ErrorDefinitionContext" />
+          description: |
+            The parse tree.
   - name: visitImportDefinition(ImportDefinitionContext)
     uid: botbuilder-lg.TemplatesTransformer.visitImportDefinition
     package: botbuilder-lg
@@ -158,20 +175,4 @@ methods:
           type: <xref uid="botbuilder-lg.TemplateDefinitionContext" />
           description: |
             The parse tree.
-  - name: visitTerminal(TerminalNode)
-    uid: botbuilder-lg.TemplatesTransformer.visitTerminal
-    package: botbuilder-lg
-    summary: |
-      {@inheritDoc}
-      The default implementation returns the result of
-      [defaultResult](xref:%23defaultResult).
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitTerminal(node: TerminalNode)'
-      parameters:
-        - id: node
-          type: TerminalNode
-          description: ''
 extends: AbstractParseTreeVisitor&lt;void&gt;

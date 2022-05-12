@@ -46,8 +46,8 @@ properties:
     syntax:
       content: 'previous: Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
 methods:
   - name: 'assertNoReply(string, number)'
     uid: botbuilder-core.TestFlow.assertNoReply
@@ -59,7 +59,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function assertNoReply(description?: string, timeout?: number)'
+      content: 'function assertNoReply(description?: string, timeout?: number): TestFlow'
       parameters:
         - id: description
           type: string
@@ -72,8 +72,8 @@ methods:
             (Optional) number of milliseconds to wait for a response from bot.
             Defaults to a value of `3000`.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: >-
       assertReply(string | Partial<Activity> | TestActivityInspector, string,
       number)
@@ -88,7 +88,7 @@ methods:
     syntax:
       content: >-
         function assertReply(expected: string | Partial<Activity> |
-        TestActivityInspector, description?: string, timeout?: number)
+        TestActivityInspector, description?: string, timeout?: number): TestFlow
       parameters:
         - id: expected
           type: >-
@@ -108,8 +108,8 @@ methods:
             (Optional) number of milliseconds to wait for a response from bot.
             Defaults to a value of `3000`.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: 'assertReplyOneOf(string[], string, number)'
     uid: botbuilder-core.TestFlow.assertReplyOneOf
     package: botbuilder-core
@@ -122,7 +122,7 @@ methods:
     syntax:
       content: >-
         function assertReplyOneOf(candidates: string[], description?: string,
-        timeout?: number)
+        timeout?: number): TestFlow
       parameters:
         - id: candidates
           type: 'string[]'
@@ -138,8 +138,8 @@ methods:
             (Optional) number of milliseconds to wait for a response from bot.
             Defaults to a value of `3000`.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: 'catch((reason: any) => void)'
     uid: botbuilder-core.TestFlow.catch
     package: botbuilder-core
@@ -148,15 +148,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function catch(onRejected?: (reason: any) => void)'
+      content: 'function catch(onRejected?: (reason: any) => void): TestFlow'
       parameters:
         - id: onRejected
           type: '(reason: any) =&gt; void'
           description: |
             Code to run if the test has thrown an error.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: delay(number)
     uid: botbuilder-core.TestFlow.delay
     package: botbuilder-core
@@ -165,15 +165,31 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delay(ms: number)'
+      content: 'function delay(ms: number): TestFlow'
       parameters:
         - id: ms
           type: number
           description: |
             ms to wait
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
+  - name: finally(() => void)
+    uid: botbuilder-core.TestFlow.finally
+    package: botbuilder-core
+    summary: Adds a finally clause. Note that you can't keep chaining afterwards.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function finally(onFinally: () => void): Promise<void>'
+      parameters:
+        - id: onFinally
+          type: () =&gt; void
+          description: ''
+      return:
+        description: ''
+        type: Promise&lt;void&gt;
   - name: send(string | Partial<Activity>)
     uid: botbuilder-core.TestFlow.send
     package: botbuilder-core
@@ -182,15 +198,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function send(userSays: string | Partial<Activity>)'
+      content: 'function send(userSays: string | Partial<Activity>): TestFlow'
       parameters:
         - id: userSays
           type: string | Partial&lt;Activity&gt;
           description: |
             Text or activity simulating user input.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: sendConversationUpdate()
     uid: botbuilder-core.TestFlow.sendConversationUpdate
     package: botbuilder-core
@@ -199,10 +215,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function sendConversationUpdate()
+      content: 'function sendConversationUpdate(): TestFlow'
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: A new TestFlow object.
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: startTest()
     uid: botbuilder-core.TestFlow.startTest
     package: botbuilder-core
@@ -211,10 +227,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function startTest()
+      content: 'function startTest(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       test(string | Partial<Activity>, string | Partial<Activity> | (activity:
       Partial<Activity>, description?: string) => void, string, number)
@@ -235,7 +251,7 @@ methods:
       content: >-
         function test(userSays: string | Partial<Activity>, expected: string |
         Partial<Activity> | (activity: Partial<Activity>, description?: string)
-        => void, description?: string, timeout?: number)
+        => void, description?: string, timeout?: number): TestFlow
       parameters:
         - id: userSays
           type: string | Partial&lt;Activity&gt;
@@ -256,9 +272,9 @@ methods:
             (Optional) number of milliseconds to wait for a response from bot.
             Defaults to a value of `3000`.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
-  - name: then(() => void)
+        type: <xref uid="botbuilder-core.TestFlow" />
+  - name: 'then(() => void, (err: any) => void)'
     uid: botbuilder-core.TestFlow.then
     package: botbuilder-core
     summary: Adds a `then()` step to the tests promise chain.
@@ -266,12 +282,17 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function then(onFulfilled?: () => void)'
+      content: >-
+        function then(onFulfilled?: () => void, onRejected?: (err: any) =>
+        void): TestFlow
       parameters:
         - id: onFulfilled
           type: () =&gt; void
           description: |
             Code to run if the test is currently passing.
+        - id: onRejected
+          type: '(err: any) =&gt; void'
+          description: ''
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />

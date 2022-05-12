@@ -19,7 +19,7 @@ constructors:
     syntax:
       content: >-
         new OrchestratorRecognizer(modelFolder?: string, snapshotFile?: string,
-        resolver?: LabelResolver)
+        resolverExternal?: LabelResolver)
       parameters:
         - id: modelFolder
           type: string
@@ -27,7 +27,7 @@ constructors:
         - id: snapshotFile
           type: string
           description: Path to snapshot.
-        - id: resolver
+        - id: resolverExternal
           type: <xref uid="botbuilder-ai-orchestrator.LabelResolver" />
           description: |
             Orchestrator resolver to use.
@@ -43,8 +43,8 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: chooseIntent
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.chooseIntent
     package: botbuilder-ai-orchestrator
@@ -56,8 +56,8 @@ properties:
     syntax:
       content: 'chooseIntent: "ChooseIntent" = "ChooseIntent"'
       return:
-        type: '"ChooseIntent"'
         description: ''
+        type: '"ChooseIntent"'
   - name: detectAmbiguousIntents
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.detectAmbiguousIntents
     package: botbuilder-ai-orchestrator
@@ -69,8 +69,8 @@ properties:
     syntax:
       content: 'detectAmbiguousIntents: BoolExpression'
       return:
-        type: BoolExpression
         description: ''
+        type: BoolExpression
   - name: disambiguationScoreThreshold
     uid: >-
       botbuilder-ai-orchestrator.OrchestratorRecognizer.disambiguationScoreThreshold
@@ -87,8 +87,8 @@ properties:
     syntax:
       content: 'disambiguationScoreThreshold: NumberExpression'
       return:
-        type: NumberExpression
         description: ''
+        type: NumberExpression
   - name: entityProperty
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.entityProperty
     package: botbuilder-ai-orchestrator
@@ -100,8 +100,8 @@ properties:
     syntax:
       content: 'entityProperty: "entityResult" = "entityResult"'
       return:
-        type: '"entityResult"'
         description: ''
+        type: '"entityResult"'
   - name: externalEntityRecognizer
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.externalEntityRecognizer
     package: botbuilder-ai-orchestrator
@@ -111,10 +111,10 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'externalEntityRecognizer: Recognizer'
+      content: 'externalEntityRecognizer?: Recognizer'
       return:
-        type: Recognizer
         description: ''
+        type: Recognizer
   - name: id
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.id
     package: botbuilder-ai-orchestrator
@@ -126,8 +126,8 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: logPersonalInformation
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.logPersonalInformation
     package: botbuilder-ai-orchestrator
@@ -141,8 +141,8 @@ properties:
     syntax:
       content: 'logPersonalInformation: BoolExpression'
       return:
-        type: BoolExpression
         description: ''
+        type: BoolExpression
   - name: modelFolder
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.modelFolder
     package: botbuilder-ai-orchestrator
@@ -154,8 +154,8 @@ properties:
     syntax:
       content: 'modelFolder: StringExpression'
       return:
-        type: StringExpression
         description: ''
+        type: StringExpression
   - name: resultProperty
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.resultProperty
     package: botbuilder-ai-orchestrator
@@ -167,14 +167,17 @@ properties:
     syntax:
       content: 'resultProperty: "result" = "result"'
       return:
-        type: '"result"'
         description: ''
+        type: '"result"'
   - name: scoreEntities
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.scoreEntities
     package: botbuilder-ai-orchestrator
     summary: >-
       Enable entity detection if entity model exists inside modelFolder.
-      Defaults to false.
+      Defaults to true.
+
+      NOTE: SHOULD consider removing this flag in the next major SDK release
+      (V5).
     fullName: scoreEntities
     remarks: ''
     isPreview: false
@@ -182,8 +185,8 @@ properties:
     syntax:
       content: 'scoreEntities: boolean'
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: snapshotFile
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.snapshotFile
     package: botbuilder-ai-orchestrator
@@ -195,8 +198,8 @@ properties:
     syntax:
       content: 'snapshotFile: StringExpression'
       return:
-        type: StringExpression
         description: ''
+        type: StringExpression
   - name: telemetryClient
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.telemetryClient
     package: botbuilder-ai-orchestrator
@@ -210,9 +213,9 @@ properties:
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
-        type: BotTelemetryClient
         description: ''
-methods:
+        type: BotTelemetryClient
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.configure
     package: botbuilder-ai-orchestrator
@@ -221,15 +224,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
+methods:
   - name: getConverter(Object)
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.getConverter
     package: botbuilder-ai-orchestrator
@@ -238,14 +242,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object)'
+      content: 'function getConverter(property: Object): Converter | ConverterFactory'
       parameters:
         - id: property
           type: Object
           description: ''
       return:
-        type: Converter | ConverterFactory
         description: ''
+        type: Converter | ConverterFactory
   - name: >-
       recognize(DialogContext, Partial<Activity>, Record<string, string>,
       Record<string, number>)
@@ -259,7 +263,7 @@ methods:
       content: >-
         function recognize(dc: DialogContext, activity: Partial<Activity>,
         telemetryProperties?: Record<string, string>, telemetryMetrics?:
-        Record<string, number>)
+        Record<string, number>): Promise<RecognizerResult>
       parameters:
         - id: dc
           type: DialogContext
@@ -274,6 +278,6 @@ methods:
           type: 'Record&lt;string, number&gt;'
           description: Additional metrics to be logged to telemetry with event.
       return:
-        type: Promise&lt;RecognizerResult&gt;
         description: Recognized result.
+        type: Promise&lt;RecognizerResult&gt;
 extends: AdaptiveRecognizer

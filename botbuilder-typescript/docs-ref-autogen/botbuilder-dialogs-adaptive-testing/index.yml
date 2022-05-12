@@ -26,6 +26,7 @@ classes:
   - botbuilder-dialogs-adaptive-testing.AssertReply
   - botbuilder-dialogs-adaptive-testing.AssertReplyActivity
   - botbuilder-dialogs-adaptive-testing.AssertReplyOneOf
+  - botbuilder-dialogs-adaptive-testing.AssertTelemetryContains
   - botbuilder-dialogs-adaptive-testing.CustomEvent
   - botbuilder-dialogs-adaptive-testing.MemoryAssertions
   - botbuilder-dialogs-adaptive-testing.SetProperties
@@ -35,6 +36,7 @@ classes:
   - botbuilder-dialogs-adaptive-testing.UserSays
   - botbuilder-dialogs-adaptive-testing.UserTyping
   - botbuilder-dialogs-adaptive-testing.TestScript
+  - botbuilder-dialogs-adaptive-testing.TestTelemetryClient
   - botbuilder-dialogs-adaptive-testing.TestUtils
   - botbuilder-dialogs-adaptive-testing.UserTokenBasicMock
   - botbuilder-dialogs-adaptive-testing.UserTokenMock
@@ -50,6 +52,7 @@ interfaces:
   - botbuilder-dialogs-adaptive-testing.AssertReplyConfiguration
   - botbuilder-dialogs-adaptive-testing.AssertReplyActivityConfiguration
   - botbuilder-dialogs-adaptive-testing.AssertReplyOneOfConfiguration
+  - botbuilder-dialogs-adaptive-testing.AssertTelemetryContainsConfiguration
   - botbuilder-dialogs-adaptive-testing.CustomEventConfiguration
   - botbuilder-dialogs-adaptive-testing.MemoryAssertionsConfiguration
   - botbuilder-dialogs-adaptive-testing.SetPropertiesConfiguration
@@ -80,7 +83,9 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function useMockLuisSettings(directory: string, endpoint?: string)'
+      content: >-
+        function useMockLuisSettings(directory: string, endpoint?: string):
+        Record<string, string>
       parameters:
         - id: directory
           type: string
@@ -89,5 +94,5 @@ functions:
           type: string
           description: Endpoint to use with a default of westus.
       return:
-        type: 'Record&lt;string, string&gt;'
         description: Modified configuration.
+        type: 'Record&lt;string, string&gt;'

@@ -31,8 +31,8 @@ properties:
     syntax:
       content: 'description: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: name
     uid: botframework-config.BotConfigurationBase.name
     package: botframework-config
@@ -44,8 +44,8 @@ properties:
     syntax:
       content: 'name: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: padlock
     uid: botframework-config.BotConfigurationBase.padlock
     package: botframework-config
@@ -57,8 +57,8 @@ properties:
     syntax:
       content: 'padlock: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: services
     uid: botframework-config.BotConfigurationBase.services
     package: botframework-config
@@ -70,8 +70,8 @@ properties:
     syntax:
       content: 'services: IConnectedService[]'
       return:
-        type: '<xref uid="botframework-config.IConnectedService" />[]'
         description: ''
+        type: '<xref uid="botframework-config.IConnectedService" />[]'
   - name: version
     uid: botframework-config.BotConfigurationBase.version
     package: botframework-config
@@ -83,8 +83,8 @@ properties:
     syntax:
       content: 'version: string'
       return:
-        type: string
         description: ''
+        type: string
 methods:
   - name: connectService(IConnectedService)
     uid: botframework-config.BotConfigurationBase.connectService
@@ -94,14 +94,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function connectService(newService: IConnectedService)'
+      content: 'function connectService(newService: IConnectedService): string'
       parameters:
         - id: newService
           type: <xref uid="botframework-config.IConnectedService" />
           description: Service to add.
       return:
-        type: string
         description: Assigned ID for the service.
+        type: string
   - name: disconnectService(string)
     uid: botframework-config.BotConfigurationBase.disconnectService
     package: botframework-config
@@ -123,15 +123,17 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function disconnectServiceByNameOrId(nameOrId: string)'
+      content: >-
+        function disconnectServiceByNameOrId(nameOrId: string):
+        IConnectedService
       parameters:
         - id: nameOrId
           type: string
           description: |
             Name or ID of the service to remove.
       return:
-        type: <xref uid="botframework-config.IConnectedService" />
         description: ''
+        type: <xref uid="botframework-config.IConnectedService" />
   - name: findService(string)
     uid: botframework-config.BotConfigurationBase.findService
     package: botframework-config
@@ -140,15 +142,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findService(id: string)'
+      content: 'function findService(id: string): IConnectedService'
       parameters:
         - id: id
           type: string
           description: |
             ID of the service to find.
       return:
-        type: <xref uid="botframework-config.IConnectedService" />
         description: ''
+        type: <xref uid="botframework-config.IConnectedService" />
   - name: findServiceByNameOrId(string)
     uid: botframework-config.BotConfigurationBase.findServiceByNameOrId
     package: botframework-config
@@ -157,15 +159,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findServiceByNameOrId(nameOrId: string)'
+      content: 'function findServiceByNameOrId(nameOrId: string): IConnectedService'
       parameters:
         - id: nameOrId
           type: string
           description: |
             Name or ID of the service to find.
       return:
-        type: <xref uid="botframework-config.IConnectedService" />
         description: ''
+        type: <xref uid="botframework-config.IConnectedService" />
   - name: fromJSON(Partial<IBotConfiguration>)
     uid: botframework-config.BotConfigurationBase.fromJSON
     package: botframework-config
@@ -176,15 +178,17 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function fromJSON(source?: Partial<IBotConfiguration>)'
+      content: >-
+        static function fromJSON(source?: Partial<IBotConfiguration>):
+        BotConfigurationBase
       parameters:
         - id: source
           type: Partial&lt;<xref uid="botframework-config.IBotConfiguration" />&gt;
           description: |
             JSON based configuration.
       return:
-        type: <xref uid="botframework-config.BotConfigurationBase" />
         description: ''
+        type: <xref uid="botframework-config.BotConfigurationBase" />
   - name: serviceFromJSON(IConnectedService)
     uid: botframework-config.BotConfigurationBase.serviceFromJSON
     package: botframework-config
@@ -195,15 +199,17 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function serviceFromJSON(service: IConnectedService)'
+      content: >-
+        static function serviceFromJSON(service: IConnectedService):
+        ConnectedService
       parameters:
         - id: service
           type: <xref uid="botframework-config.IConnectedService" />
           description: |
             JSON based service configuration.
       return:
-        type: <xref uid="botframework-config.ConnectedService" />
         description: ''
+        type: <xref uid="botframework-config.ConnectedService" />
   - name: toJSON()
     uid: botframework-config.BotConfigurationBase.toJSON
     package: botframework-config
@@ -212,7 +218,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function toJSON()
+      content: 'function toJSON(): IBotConfiguration'
       return:
-        type: <xref uid="botframework-config.IBotConfiguration" />
         description: ''
+        type: <xref uid="botframework-config.IBotConfiguration" />

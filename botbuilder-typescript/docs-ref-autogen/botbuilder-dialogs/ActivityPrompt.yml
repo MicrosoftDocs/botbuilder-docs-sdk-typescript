@@ -54,8 +54,8 @@ properties:
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
   - name: id
     uid: botbuilder-dialogs.ActivityPrompt.id
     package: botbuilder-dialogs
@@ -69,8 +69,8 @@ properties:
     syntax:
       content: string id
       return:
-        type: string
         description: ''
+        type: string
   - name: telemetryClient
     uid: botbuilder-dialogs.ActivityPrompt.telemetryClient
     package: botbuilder-dialogs
@@ -84,40 +84,9 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        type: BotTelemetryClient
         description: ''
-methods:
-  - name: 'beginDialog(DialogContext, PromptOptions)'
-    uid: botbuilder-dialogs.ActivityPrompt.beginDialog
-    package: botbuilder-dialogs
-    summary: >-
-      Called when a prompt dialog is pushed onto the dialog stack and is being
-      activated.
-    remarks: >-
-      If the promise is successful, the result indicates whether the prompt is
-      still
-
-      active after the turn has been processed by the prompt.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function beginDialog(dc: DialogContext, options: PromptOptions)'
-      parameters:
-        - id: dc
-          type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: >-
-            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
-            current
-
-            turn of the conversation.
-        - id: options
-          type: <xref uid="botbuilder-dialogs.PromptOptions" />
-          description: |-
-            (xref:botbuilder-dialogs.PromptOptions), additional
-            information to pass to the prompt being started.
-      return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: A `Promise` representing the asynchronous operation.
+        type: BotTelemetryClient
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.ActivityPrompt.configure
     package: botbuilder-dialogs
@@ -126,46 +95,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
-  - name: continueDialog(DialogContext)
-    uid: botbuilder-dialogs.ActivityPrompt.continueDialog
-    package: botbuilder-dialogs
-    summary: >-
-      Called when a prompt dialog is the active dialog and the user replied with
-      a new activity.
-    remarks: >-
-      If the promise is successful, the result indicates whether the dialog is
-      still
-
-      active after the turn has been processed by the dialog.
-
-      The prompt generally continues to receive the user's replies until it
-      accepts the
-
-      user's reply as valid input for the prompt.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function continueDialog(dc: DialogContext)'
-      parameters:
-        - id: dc
-          type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: >-
-            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
-            current
-
-            turn of conversation.
-      return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: A `Promise` representing the asynchronous operation.
+        type: this
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.ActivityPrompt.endDialog
     package: botbuilder-dialogs
@@ -200,7 +138,7 @@ methods:
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
+        reason: DialogReason): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -213,8 +151,8 @@ methods:
           description: |
             The reason the dialog is ending.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: getConverter(string)
     uid: botbuilder-dialogs.ActivityPrompt.getConverter
     package: botbuilder-dialogs
@@ -223,16 +161,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
+        description: ''
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
-        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs.ActivityPrompt.getVersion
     package: botbuilder-dialogs
@@ -258,10 +196,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: ''
+        type: string
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.ActivityPrompt.onDialogEvent
     package: botbuilder-dialogs
@@ -272,7 +210,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      content: >-
+        function onDialogEvent(dc: DialogContext, e: DialogEvent):
+        Promise<boolean>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -281,10 +221,75 @@ methods:
           type: <xref uid="botbuilder-dialogs.DialogEvent" />
           description: The event being raised.
       return:
-        type: Promise&lt;boolean&gt;
         description: >-
           True if the event is handled by the current dialog and bubbling should
           stop.
+        type: Promise&lt;boolean&gt;
+methods:
+  - name: 'beginDialog(DialogContext, PromptOptions)'
+    uid: botbuilder-dialogs.ActivityPrompt.beginDialog
+    package: botbuilder-dialogs
+    summary: >-
+      Called when a prompt dialog is pushed onto the dialog stack and is being
+      activated.
+    remarks: >-
+      If the promise is successful, the result indicates whether the prompt is
+      still
+
+      active after the turn has been processed by the prompt.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function beginDialog(dc: DialogContext, options: PromptOptions):
+        Promise<DialogTurnResult>
+      parameters:
+        - id: dc
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current
+
+            turn of the conversation.
+        - id: options
+          type: <xref uid="botbuilder-dialogs.PromptOptions" />
+          description: |-
+            (xref:botbuilder-dialogs.PromptOptions), additional
+            information to pass to the prompt being started.
+      return:
+        description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+  - name: continueDialog(DialogContext)
+    uid: botbuilder-dialogs.ActivityPrompt.continueDialog
+    package: botbuilder-dialogs
+    summary: >-
+      Called when a prompt dialog is the active dialog and the user replied with
+      a new activity.
+    remarks: >-
+      If the promise is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog.
+
+      The prompt generally continues to receive the user's replies until it
+      accepts the
+
+      user's reply as valid input for the prompt.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
+      parameters:
+        - id: dc
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current
+
+            turn of conversation.
+      return:
+        description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs.ActivityPrompt.repromptDialog
     package: botbuilder-dialogs
@@ -295,7 +300,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      content: >-
+        function repromptDialog(context: TurnContext, instance: DialogInstance):
+        Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -308,8 +315,8 @@ methods:
             (xref:botbuilder-dialogs.DialogInstance), the instance
             of the dialog on the stack.
       return:
-        type: Promise&lt;void&gt;
         description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;void&gt;
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.ActivityPrompt.resumeDialog
     package: botbuilder-dialogs
@@ -324,7 +331,7 @@ methods:
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any)
+        any): Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -344,6 +351,6 @@ methods:
             Optional. Value returned from the previous dialog on the stack.
             The type of the value returned is dependent on the previous dialog.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.Dialog" />

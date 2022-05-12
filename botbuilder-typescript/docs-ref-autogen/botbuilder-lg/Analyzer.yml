@@ -9,7 +9,7 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'Analyzer(Templates, EvaluationOptions)'
+  - name: 'Analyzer(Templates, EvaluationOptions, AnalyzerOptions)'
     uid: botbuilder-lg.Analyzer.constructor
     package: botbuilder-lg
     summary: >-
@@ -19,15 +19,20 @@ constructors:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new Analyzer(templates: Templates, opt?: EvaluationOptions)'
+      content: >-
+        new Analyzer(templates: Templates, opt?: EvaluationOptions,
+        analyzerOptions?: AnalyzerOptions)
       parameters:
         - id: templates
           type: <xref uid="botbuilder-lg.Templates" />
           description: Templates.
         - id: opt
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
+          description: Options for LG.
+        - id: analyzerOptions
+          type: <xref uid="botbuilder-lg.AnalyzerOptions" />
           description: |
-            Options for LG.
+            Options for the analyzer.
 properties:
   - name: templates
     uid: botbuilder-lg.Analyzer.templates
@@ -40,25 +45,9 @@ properties:
     syntax:
       content: 'public templates: Templates'
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: ''
-methods:
-  - name: analyzeTemplate(string)
-    uid: botbuilder-lg.Analyzer.analyzeTemplate
-    package: botbuilder-lg
-    summary: Analyze a template to get the static analyzer results.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function analyzeTemplate(templateName: string)'
-      parameters:
-        - id: templateName
-          type: string
-          description: Template name.
-      return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: Analyze result including variables and template references.
+        type: <xref uid="botbuilder-lg.Templates" />
+inheritedMethods:
   - name: visit(ParseTree)
     uid: botbuilder-lg.Analyzer.visit
     package: botbuilder-lg
@@ -70,14 +59,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visit(tree: ParseTree)'
+      content: 'function visit(tree: ParseTree): AnalyzerResult'
       parameters:
         - id: tree
           type: ParseTree
           description: ''
       return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
         description: ''
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
   - name: visitChildren(RuleNode)
     uid: botbuilder-lg.Analyzer.visitChildren
     package: botbuilder-lg
@@ -98,14 +87,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitChildren(node: RuleNode)'
+      content: 'function visitChildren(node: RuleNode): AnalyzerResult'
       parameters:
         - id: node
           type: RuleNode
           description: ''
       return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
         description: ''
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
   - name: visitErrorNode(ErrorNode)
     uid: botbuilder-lg.Analyzer.visitErrorNode
     package: botbuilder-lg
@@ -117,132 +106,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitErrorNode(node: ErrorNode)'
+      content: 'function visitErrorNode(node: ErrorNode): AnalyzerResult'
       parameters:
         - id: node
           type: ErrorNode
           description: ''
       return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
         description: ''
-  - name: visitIfElseBody(IfElseBodyContext)
-    uid: botbuilder-lg.Analyzer.visitIfElseBody
-    package: botbuilder-lg
-    summary: >-
-      Visit a parse tree produced by the ifElseBody labeled alternative in
-      LGTemplateParser.body.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitIfElseBody(ctx: IfElseBodyContext)'
-      parameters:
-        - id: ctx
-          type: <xref uid="botbuilder-lg.IfElseBodyContext" />
-          description: The parse tree.
-      return:
         type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
-  - name: visitNormalBody(NormalBodyContext)
-    uid: botbuilder-lg.Analyzer.visitNormalBody
-    package: botbuilder-lg
-    summary: >-
-      Visit a parse tree produced by the normalBody labeled alternative in
-      LGTemplateParser.body.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitNormalBody(ctx: NormalBodyContext)'
-      parameters:
-        - id: ctx
-          type: <xref uid="botbuilder-lg.NormalBodyContext" />
-          description: The parse tree.
-      return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
-  - name: visitNormalTemplateBody(NormalTemplateBodyContext)
-    uid: botbuilder-lg.Analyzer.visitNormalTemplateBody
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateBody.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitNormalTemplateBody(ctx: NormalTemplateBodyContext)'
-      parameters:
-        - id: ctx
-          type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
-          description: The parse tree.
-      return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
-  - name: visitNormalTemplateString(NormalTemplateStringContext)
-    uid: botbuilder-lg.Analyzer.visitNormalTemplateString
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateString.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitNormalTemplateString(ctx: NormalTemplateStringContext)'
-      parameters:
-        - id: ctx
-          type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
-          description: The parse tree.
-      return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
-  - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
-    uid: botbuilder-lg.Analyzer.visitStructuredTemplateBody
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by LGTemplateParser.structuredTemplateBody.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitStructuredTemplateBody(ctx: StructuredTemplateBodyContext)'
-      parameters:
-        - id: ctx
-          type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
-          description: The parse tree.
-      return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
-  - name: visitStructureValue(KeyValueStructureLineContext)
-    uid: botbuilder-lg.Analyzer.visitStructureValue
-    package: botbuilder-lg
-    summary: Visit a parse tree produced by LGTemplateParser.structuredValue.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitStructureValue(ctx: KeyValueStructureLineContext)'
-      parameters:
-        - id: ctx
-          type: <xref uid="botbuilder-lg.KeyValueStructureLineContext" />
-          description: The parse tree.
-      return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
-  - name: visitSwitchCaseBody(SwitchCaseBodyContext)
-    uid: botbuilder-lg.Analyzer.visitSwitchCaseBody
-    package: botbuilder-lg
-    summary: >-
-      Visit a parse tree produced by the switchCaseBody labeled alternative in
-      LGTemplateParser.body.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitSwitchCaseBody(ctx: SwitchCaseBodyContext)'
-      parameters:
-        - id: ctx
-          type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
-          description: The parse tree.
-      return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
-        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
   - name: visitTerminal(TerminalNode)
     uid: botbuilder-lg.Analyzer.visitTerminal
     package: botbuilder-lg
@@ -254,12 +125,155 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitTerminal(node: TerminalNode)'
+      content: 'function visitTerminal(node: TerminalNode): AnalyzerResult'
       parameters:
         - id: node
           type: TerminalNode
           description: ''
       return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
         description: ''
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+methods:
+  - name: analyzeTemplate(string)
+    uid: botbuilder-lg.Analyzer.analyzeTemplate
+    package: botbuilder-lg
+    summary: Analyze a template to get the static analyzer results.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function analyzeTemplate(templateName: string): AnalyzerResult'
+      parameters:
+        - id: templateName
+          type: string
+          description: Template name.
+      return:
+        description: Analyze result including variables and template references.
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+  - name: visitIfElseBody(IfElseBodyContext)
+    uid: botbuilder-lg.Analyzer.visitIfElseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the ifElseBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitIfElseBody(ctx: IfElseBodyContext): AnalyzerResult'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.IfElseBodyContext" />
+          description: The parse tree.
+      return:
+        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+  - name: visitNormalBody(NormalBodyContext)
+    uid: botbuilder-lg.Analyzer.visitNormalBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the normalBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitNormalBody(ctx: NormalBodyContext): AnalyzerResult'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.NormalBodyContext" />
+          description: The parse tree.
+      return:
+        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+  - name: visitNormalTemplateBody(NormalTemplateBodyContext)
+    uid: botbuilder-lg.Analyzer.visitNormalTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateBody.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitNormalTemplateBody(ctx: NormalTemplateBodyContext):
+        AnalyzerResult
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
+          description: The parse tree.
+      return:
+        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+  - name: visitNormalTemplateString(NormalTemplateStringContext)
+    uid: botbuilder-lg.Analyzer.visitNormalTemplateString
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.normalTemplateString.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitNormalTemplateString(ctx: NormalTemplateStringContext):
+        AnalyzerResult
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
+          description: The parse tree.
+      return:
+        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+  - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
+    uid: botbuilder-lg.Analyzer.visitStructuredTemplateBody
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.structuredTemplateBody.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitStructuredTemplateBody(ctx:
+        StructuredTemplateBodyContext): AnalyzerResult
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
+          description: The parse tree.
+      return:
+        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+  - name: visitStructureValue(KeyValueStructureLineContext)
+    uid: botbuilder-lg.Analyzer.visitStructureValue
+    package: botbuilder-lg
+    summary: Visit a parse tree produced by LGTemplateParser.structuredValue.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function visitStructureValue(ctx: KeyValueStructureLineContext):
+        AnalyzerResult
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.KeyValueStructureLineContext" />
+          description: The parse tree.
+      return:
+        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
+  - name: visitSwitchCaseBody(SwitchCaseBodyContext)
+    uid: botbuilder-lg.Analyzer.visitSwitchCaseBody
+    package: botbuilder-lg
+    summary: >-
+      Visit a parse tree produced by the switchCaseBody labeled alternative in
+      LGTemplateParser.body.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitSwitchCaseBody(ctx: SwitchCaseBodyContext): AnalyzerResult'
+      parameters:
+        - id: ctx
+          type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
+          description: The parse tree.
+      return:
+        description: 'The [AnalyzerResult](xref:botbuilder-lg.AnalyzerResult) instance.'
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
 extends: AbstractParseTreeVisitor&lt;<xref uid="botbuilder-lg.AnalyzerResult" />&gt;

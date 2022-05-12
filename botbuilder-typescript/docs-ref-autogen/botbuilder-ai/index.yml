@@ -7,7 +7,33 @@ typeAliases:
   - botbuilder-ai.window
   - botbuilder-ai.DynamicList
   - botbuilder-ai.QnASuggestionsActivityFactory
+classes:
+  - botbuilder-ai.CustomQuestionAnswering
+  - botbuilder-ai.LuisAdaptivePredictionOptionsConverter
+  - botbuilder-ai.LuisAdaptiveRecognizer
+  - botbuilder-ai.LuisBotComponent
+  - botbuilder-ai.LuisComponentRegistration
+  - botbuilder-ai.LuisRecognizer
+  - botbuilder-ai.LuisRecognizerInternal
+  - botbuilder-ai.LuisRecognizerV2
+  - botbuilder-ai.LuisRecognizerV3
+  - botbuilder-ai.LuisTelemetryConstants
+  - botbuilder-ai.QnACardBuilder
+  - botbuilder-ai.QnAMaker
+  - botbuilder-ai.QnAMakerBotComponent
+  - botbuilder-ai.QnAMakerComponentRegistration
+  - botbuilder-ai.QnAMakerDialog
+  - botbuilder-ai.QnAMakerRecognizer
+  - botbuilder-ai.QnATelemetryConstants
+  - botbuilder-ai.ActiveLearningUtils
+  - botbuilder-ai.BindToActivity
+  - botbuilder-ai.GenerateAnswerUtils
+  - botbuilder-ai.HttpRequestUtils
+  - botbuilder-ai.LanguageServiceUtils
+  - botbuilder-ai.TrainUtils
 interfaces:
+  - botbuilder-ai.QnAMakerClient
+  - botbuilder-ai.QnAMakerTelemetryClient
   - botbuilder-ai.DateTimeSpec
   - botbuilder-ai.ExternalEntity
   - botbuilder-ai.GeographyV2
@@ -25,14 +51,18 @@ interfaces:
   - botbuilder-ai.LuisRecognizerTelemetryClient
   - botbuilder-ai.NumberWithUnits
   - botbuilder-ai.OrdinalV2
-  - botbuilder-ai.QnAMakerClient
-  - botbuilder-ai.QnAMakerTelemetryClient
   - botbuilder-ai.QnAMakerDialogConfiguration
   - botbuilder-ai.QnAMakerDialogOptions
   - botbuilder-ai.QnAMakerDialogResponseOptions
   - botbuilder-ai.QnAMakerRecognizerConfiguration
+  - botbuilder-ai.AnswerSpanResponse
   - botbuilder-ai.FeedbackRecord
   - botbuilder-ai.FeedbackRecords
+  - botbuilder-ai.Filters
+  - botbuilder-ai.KnowledgeBaseAnswer
+  - botbuilder-ai.KnowledgeBaseAnswerSpan
+  - botbuilder-ai.KnowledgeBaseAnswers
+  - botbuilder-ai.MetadataFilter
   - botbuilder-ai.QnARequestContext
   - botbuilder-ai.QnAResponseContext
   - botbuilder-ai.QnAMakerEndpoint
@@ -79,10 +109,10 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getFetch()
+      content: 'function getFetch(): any'
       return:
-        type: any
         description: The fetch library.
+        type: any
   - name: validateListElement(ListElement)
     uid: botbuilder-ai.validateListElement
     package: botbuilder-ai
@@ -107,16 +137,16 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function isLuisRecognizerOptionsV2(options: unknown)'
+      content: 'function isLuisRecognizerOptionsV2(options: unknown): boolean'
       parameters:
         - id: options
           type: unknown
           description: options to type test
       return:
-        type: boolean
         description: >-
           A boolean value that indicates param options is a
           [LuisRecognizerOptionsV2](xref:botbuilder-ai.LuisRecognizerOptionsV2).
+        type: boolean
   - name: isLuisRecognizerOptionsV3(unknown)
     uid: botbuilder-ai.isLuisRecognizerOptionsV3
     package: botbuilder-ai
@@ -127,40 +157,19 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function isLuisRecognizerOptionsV3(options: unknown)'
+      content: 'function isLuisRecognizerOptionsV3(options: unknown): boolean'
       parameters:
         - id: options
           type: unknown
           description: options to type test
       return:
-        type: boolean
         description: >-
           A boolean value that indicates param options is a
           [LuisRecognizerOptionsV3](xref:botbuilder-ai.LuisRecognizerOptionsV3).
+        type: boolean
 enums:
   - botbuilder-ai.GeographyV2Type
   - botbuilder-ai.Anchor
   - botbuilder-ai.JoinOperator
   - botbuilder-ai.RankerTypes
-classes:
-  - botbuilder-ai.LuisAdaptivePredictionOptionsConverter
-  - botbuilder-ai.LuisAdaptiveRecognizer
-  - botbuilder-ai.LuisBotComponent
-  - botbuilder-ai.LuisComponentRegistration
-  - botbuilder-ai.LuisRecognizer
-  - botbuilder-ai.LuisRecognizerInternal
-  - botbuilder-ai.LuisRecognizerV2
-  - botbuilder-ai.LuisRecognizerV3
-  - botbuilder-ai.LuisTelemetryConstants
-  - botbuilder-ai.QnACardBuilder
-  - botbuilder-ai.QnAMaker
-  - botbuilder-ai.QnAMakerBotComponent
-  - botbuilder-ai.QnAMakerComponentRegistration
-  - botbuilder-ai.QnAMakerDialog
-  - botbuilder-ai.QnAMakerRecognizer
-  - botbuilder-ai.QnATelemetryConstants
-  - botbuilder-ai.ActiveLearningUtils
-  - botbuilder-ai.BindToActivity
-  - botbuilder-ai.GenerateAnswerUtils
-  - botbuilder-ai.HttpRequestUtils
-  - botbuilder-ai.TrainUtils
+  - botbuilder-ai.ServiceType

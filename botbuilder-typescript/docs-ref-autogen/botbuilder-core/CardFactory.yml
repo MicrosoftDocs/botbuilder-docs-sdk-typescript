@@ -51,8 +51,8 @@ properties:
     syntax:
       content: 'static contentTypes: any'
       return:
-        type: any
         description: ''
+        type: any
 methods:
   - name: 'actions(string | CardAction[] | undefined)'
     uid: botbuilder-core.CardFactory.actions
@@ -62,7 +62,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function actions(actions: string | CardAction[] | undefined)'
+      content: >-
+        static function actions(actions: string | CardAction[] | undefined):
+        CardAction[]
       parameters:
         - id: actions
           type: 'string | CardAction[] | undefined'
@@ -71,8 +73,8 @@ methods:
             array
                  is converted to an `imBack` button with a title and value set to the value of the string.
       return:
-        type: 'CardAction[]'
         description: ''
+        type: 'CardAction[]'
   - name: adaptiveCard(any)
     uid: botbuilder-core.CardFactory.adaptiveCard
     package: botbuilder-core
@@ -126,14 +128,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function adaptiveCard(card: any)'
+      content: 'static function adaptiveCard(card: any): Attachment'
       parameters:
         - id: card
           type: any
           description: A description of the Adaptive Card to return.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: >-
       animationCard(string, string | MediaUrl[], string | CardAction[],
       Partial<AnimationCard>)
@@ -146,7 +148,8 @@ methods:
     syntax:
       content: >-
         static function animationCard(title: string, media: string | MediaUrl[],
-        buttons?: string | CardAction[], other?: Partial<AnimationCard>)
+        buttons?: string | CardAction[], other?: Partial<AnimationCard>):
+        Attachment
       parameters:
         - id: title
           type: string
@@ -164,8 +167,8 @@ methods:
           type: Partial&lt;AnimationCard&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: >-
       audioCard(string, string | MediaUrl[], string | CardAction[],
       Partial<AudioCard>)
@@ -178,7 +181,7 @@ methods:
     syntax:
       content: >-
         static function audioCard(title: string, media: string | MediaUrl[],
-        buttons?: string | CardAction[], other?: Partial<AudioCard>)
+        buttons?: string | CardAction[], other?: Partial<AudioCard>): Attachment
       parameters:
         - id: title
           type: string
@@ -196,8 +199,8 @@ methods:
           type: Partial&lt;AudioCard&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: >-
       heroCard(string, string | CardImage[], string | CardAction[],
       Partial<HeroCard>)
@@ -221,7 +224,7 @@ methods:
     syntax:
       content: >-
         static function heroCard(title: string, images?: string | CardImage[],
-        buttons?: string | CardAction[], other?: Partial<HeroCard>)
+        buttons?: string | CardAction[], other?: Partial<HeroCard>): Attachment
       parameters:
         - id: title
           type: string
@@ -242,8 +245,8 @@ methods:
           type: Partial&lt;HeroCard&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: >-
       heroCard(string, string, string | CardImage[], string | CardAction[],
       Partial<HeroCard>)
@@ -266,7 +269,8 @@ methods:
     syntax:
       content: >-
         static function heroCard(title: string, text: string, images?: string |
-        CardImage[], buttons?: string | CardAction[], other?: Partial<HeroCard>)
+        CardImage[], buttons?: string | CardAction[], other?:
+        Partial<HeroCard>): Attachment
       parameters:
         - id: title
           type: string
@@ -290,8 +294,8 @@ methods:
           type: Partial&lt;HeroCard&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: 'images(string | CardImage[] | undefined)'
     uid: botbuilder-core.CardFactory.images
     package: botbuilder-core
@@ -300,7 +304,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function images(images: string | CardImage[] | undefined)'
+      content: >-
+        static function images(images: string | CardImage[] | undefined):
+        CardImage[]
       parameters:
         - id: images
           type: 'string | CardImage[] | undefined'
@@ -308,8 +314,8 @@ methods:
             The array of images to include on the card. Each element can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
       return:
-        type: 'CardImage[]'
         description: ''
+        type: 'CardImage[]'
   - name: 'media(string | MediaUrl[] | undefined)'
     uid: botbuilder-core.CardFactory.media
     package: botbuilder-core
@@ -318,15 +324,17 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function media(links: string | MediaUrl[] | undefined)'
+      content: >-
+        static function media(links: string | MediaUrl[] | undefined):
+        MediaUrl[]
       parameters:
         - id: links
           type: 'string | MediaUrl[] | undefined'
           description: |
             The media URLs. Each `string` is converted to a media URL object.
       return:
-        type: 'MediaUrl[]'
         description: ''
+        type: 'MediaUrl[]'
   - name: o365ConnectorCard(O365ConnectorCard)
     uid: botbuilder-core.CardFactory.o365ConnectorCard
     package: botbuilder-core
@@ -351,14 +359,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function o365ConnectorCard(card: O365ConnectorCard)'
+      content: 'static function o365ConnectorCard(card: O365ConnectorCard): Attachment'
       parameters:
         - id: card
           type: O365ConnectorCard
           description: a description of the Office 365 connector card to return.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: 'oauthCard(string, string, string, string, TokenExchangeResource)'
     uid: botbuilder-core.CardFactory.oauthCard
     package: botbuilder-core
@@ -369,7 +377,8 @@ methods:
     syntax:
       content: >-
         static function oauthCard(connectionName: string, title: string, text?:
-        string, link?: string, tokenExchangeResource?: TokenExchangeResource)
+        string, link?: string, tokenExchangeResource?: TokenExchangeResource):
+        Attachment
       parameters:
         - id: connectionName
           type: string
@@ -387,8 +396,8 @@ methods:
           type: TokenExchangeResource
           description: ''
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: receiptCard(ReceiptCard)
     uid: botbuilder-core.CardFactory.receiptCard
     package: botbuilder-core
@@ -397,14 +406,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function receiptCard(card: ReceiptCard)'
+      content: 'static function receiptCard(card: ReceiptCard): Attachment'
       parameters:
         - id: card
           type: ReceiptCard
           description: A description of the receipt card to return.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: 'signinCard(string, string, string)'
     uid: botbuilder-core.CardFactory.signinCard
     package: botbuilder-core
@@ -415,7 +424,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function signinCard(title: string, url: string, text?: string)'
+      content: >-
+        static function signinCard(title: string, url: string, text?: string):
+        Attachment
       parameters:
         - id: title
           type: string
@@ -427,8 +438,8 @@ methods:
           type: string
           description: Optional. Additional text to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: >-
       thumbnailCard(string, string | CardImage[], string | CardAction[],
       Partial<ThumbnailCard>)
@@ -450,7 +461,7 @@ methods:
       content: >-
         static function thumbnailCard(title: string, images?: string |
         CardImage[], buttons?: string | CardAction[], other?:
-        Partial<ThumbnailCard>)
+        Partial<ThumbnailCard>): Attachment
       parameters:
         - id: title
           type: string
@@ -471,8 +482,8 @@ methods:
           type: Partial&lt;ThumbnailCard&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: >-
       thumbnailCard(string, string, string | CardImage[], string | CardAction[],
       Partial<ThumbnailCard>)
@@ -494,7 +505,7 @@ methods:
       content: >-
         static function thumbnailCard(title: string, text: string, images?:
         string | CardImage[], buttons?: string | CardAction[], other?:
-        Partial<ThumbnailCard>)
+        Partial<ThumbnailCard>): Attachment
       parameters:
         - id: title
           type: string
@@ -518,8 +529,8 @@ methods:
           type: Partial&lt;ThumbnailCard&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment
   - name: >-
       videoCard(string, string | MediaUrl[], string | CardAction[],
       Partial<VideoCard>)
@@ -532,7 +543,7 @@ methods:
     syntax:
       content: >-
         static function videoCard(title: string, media: string | MediaUrl[],
-        buttons?: string | CardAction[], other?: Partial<VideoCard>)
+        buttons?: string | CardAction[], other?: Partial<VideoCard>): Attachment
       parameters:
         - id: title
           type: string
@@ -550,5 +561,5 @@ methods:
           type: Partial&lt;VideoCard&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        type: Attachment
         description: 'An [Attachment](xref:botframework-schema.Attachment).'
+        type: Attachment

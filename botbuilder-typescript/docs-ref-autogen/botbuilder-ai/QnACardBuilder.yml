@@ -11,6 +11,33 @@ isPreview: false
 isDeprecated: false
 type: class
 methods:
+  - name: 'getQnAAnswerCard(QnAMakerResult, boolean)'
+    uid: botbuilder-ai.QnACardBuilder.getQnAAnswerCard
+    package: botbuilder-ai
+    summary: >-
+      Returns an [activity](xref:botframework-schema.Activity) with answer text
+      and a hero card attachment, containing buttons for multi turn prompts.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function getQnAAnswerCard(result: QnAMakerResult,
+        displayPreciseAnswerOnly: boolean): Partial<Activity>
+      parameters:
+        - id: result
+          type: <xref uid="botbuilder-ai.QnAMakerResult" />
+          description: >-
+            QnAMaker result containing the answer text and multi turn prompts to
+            be displayed.
+        - id: displayPreciseAnswerOnly
+          type: boolean
+          description: >-
+            whether to display PreciseAnswer Only or along with source Answer
+            text. .
+      return:
+        description: Activity representing the prompts as a card
+        type: Partial&lt;Activity&gt;
   - name: getQnAPromptsCard(QnAMakerResult)
     uid: botbuilder-ai.QnACardBuilder.getQnAPromptsCard
     package: botbuilder-ai
@@ -21,7 +48,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function getQnAPromptsCard(result: QnAMakerResult)'
+      content: >-
+        static function getQnAPromptsCard(result: QnAMakerResult):
+        Partial<Activity>
       parameters:
         - id: result
           type: <xref uid="botbuilder-ai.QnAMakerResult" />
@@ -29,8 +58,8 @@ methods:
             QnAMaker result containing the answer text and multi turn prompts to
             be displayed.
       return:
-        type: Partial&lt;Activity&gt;
         description: Activity representing the prompts as a card
+        type: Partial&lt;Activity&gt;
   - name: 'getSuggestionsCard(string[], string, string)'
     uid: botbuilder-ai.QnACardBuilder.getSuggestionsCard
     package: botbuilder-ai
@@ -43,7 +72,7 @@ methods:
     syntax:
       content: >-
         static function getSuggestionsCard(suggestionsList: string[], cardTitle:
-        string, cardNoMatchText: string)
+        string, cardNoMatchText: string): Partial<Activity>
       parameters:
         - id: suggestionsList
           type: 'string[]'
@@ -57,5 +86,5 @@ methods:
             Text for button to be added to card to allow user to select 'no
             match'.
       return:
-        type: Partial&lt;Activity&gt;
         description: Activity representing the suggestions as a card
+        type: Partial&lt;Activity&gt;

@@ -20,7 +20,7 @@ functions:
       content: >-
         function authenticateRequest(activity: Partial<Activity>, authHeader:
         string, credentials: ICredentialProvider, channelService: string,
-        authConfig?: AuthenticationConfiguration)
+        authConfig?: AuthenticationConfiguration): Promise<ClaimsIdentity>
       parameters:
         - id: activity
           type: Partial&lt;Activity&gt;
@@ -38,8 +38,8 @@ functions:
           type: <xref uid="botframework-connector.AuthenticationConfiguration" />
           description: 'Optional, the auth config'
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: Promise with ClaimsIdentity for the request.
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
   - name: 'getAppIdFromClaims(Claim[])'
     uid: botframework-connector.JwtTokenValidation.getAppIdFromClaims
     package: botframework-connector
@@ -48,14 +48,14 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getAppIdFromClaims(claims: Claim[])'
+      content: 'function getAppIdFromClaims(claims: Claim[]): string'
       parameters:
         - id: claims
           type: '<xref uid="botframework-connector.Claim" />[]'
           description: An object containing claims types and their values.
       return:
-        type: string
         description: the app ID
+        type: string
   - name: isGovernment(string)
     uid: botframework-connector.JwtTokenValidation.isGovernment
     package: botframework-connector
@@ -64,14 +64,14 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function isGovernment(channelService: string)'
+      content: 'function isGovernment(channelService: string): boolean'
       parameters:
         - id: channelService
           type: string
           description: the channel service
       return:
-        type: boolean
         description: true if this is a government channel service
+        type: boolean
   - name: isValidTokenFormat(string)
     uid: botframework-connector.JwtTokenValidation.isValidTokenFormat
     package: botframework-connector
@@ -82,14 +82,14 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function isValidTokenFormat(authHeader: string)'
+      content: 'function isValidTokenFormat(authHeader: string): boolean'
       parameters:
         - id: authHeader
           type: string
           description: A string containing the token header.
       return:
-        type: boolean
         description: 'True if the token is valid, false if not.'
+        type: boolean
   - name: >-
       validateAuthHeader(string, ICredentialProvider, string, string, string,
       AuthenticationConfiguration)
@@ -103,7 +103,8 @@ functions:
       content: >-
         function validateAuthHeader(authHeader: string, credentials:
         ICredentialProvider, channelService: string, channelId: string,
-        serviceUrl?: string, authConfig?: AuthenticationConfiguration)
+        serviceUrl?: string, authConfig?: AuthenticationConfiguration):
+        Promise<ClaimsIdentity>
       parameters:
         - id: authHeader
           type: string
@@ -124,7 +125,7 @@ functions:
           type: <xref uid="botframework-connector.AuthenticationConfiguration" />
           description: the auth config
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: >-
           a promise that resolves to the validated claims, or rejects if
           validation fails
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
