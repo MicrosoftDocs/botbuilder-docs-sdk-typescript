@@ -42,14 +42,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delete(keys: string[])'
+      content: 'function delete(keys: string[]): Promise<void>'
       parameters:
         - id: keys
           type: 'string[]'
           description: Array of item keys to remove from the store
       return:
-        type: Promise&lt;void&gt;
         description: A promise representing the async operation
+        type: Promise&lt;void&gt;
   - name: 'read(string[])'
     uid: botbuilder-azure-blobs.BlobsStorage.read
     package: botbuilder-azure-blobs
@@ -58,14 +58,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function read(keys: string[])'
+      content: 'function read(keys: string[]): Promise<StoreItems>'
       parameters:
         - id: keys
           type: 'string[]'
           description: Array of item keys to read
       return:
-        type: Promise&lt;StoreItems&gt;
         description: 'The fetched [StoreItems](xref:botbuilder-core.StoreItems)'
+        type: Promise&lt;StoreItems&gt;
   - name: write(StoreItems)
     uid: botbuilder-azure-blobs.BlobsStorage.write
     package: botbuilder-azure-blobs
@@ -74,7 +74,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function write(changes: StoreItems)'
+      content: 'function write(changes: StoreItems): Promise<void>'
       parameters:
         - id: changes
           type: StoreItems
@@ -82,5 +82,5 @@ methods:
             Map of [StoreItems](xref:botbuilder-core.StoreItems) to write to
             storage
       return:
-        type: Promise&lt;void&gt;
         description: A promise representing the async operation
+        type: Promise&lt;void&gt;

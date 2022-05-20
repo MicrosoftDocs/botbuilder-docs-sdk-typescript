@@ -41,8 +41,8 @@ properties:
     syntax:
       content: 'BotIdentityKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: ConnectorClientKey
     uid: botbuilder-core.CloudAdapterBase.ConnectorClientKey
     package: botbuilder-core
@@ -54,8 +54,8 @@ properties:
     syntax:
       content: 'ConnectorClientKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: ConnectorFactoryKey
     uid: botbuilder-core.CloudAdapterBase.ConnectorFactoryKey
     package: botbuilder-core
@@ -67,8 +67,8 @@ properties:
     syntax:
       content: 'ConnectorFactoryKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: OAuthScopeKey
     uid: botbuilder-core.CloudAdapterBase.OAuthScopeKey
     package: botbuilder-core
@@ -80,8 +80,8 @@ properties:
     syntax:
       content: 'OAuthScopeKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: onTurnError
     uid: botbuilder-core.CloudAdapterBase.onTurnError
     package: botbuilder-core
@@ -109,8 +109,8 @@ properties:
     syntax:
       content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
-        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
         description: ''
+        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
   - name: UserTokenClientKey
     uid: botbuilder-core.CloudAdapterBase.UserTokenClientKey
     package: botbuilder-core
@@ -122,8 +122,35 @@ properties:
     syntax:
       content: 'UserTokenClientKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
+inheritedMethods:
+  - name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    uid: botbuilder-core.CloudAdapterBase.use
+    package: botbuilder-core
+    summary: Adds middleware to the adapter's pipeline.
+    remarks: >-
+      Middleware is added to the adapter at initialization time.
+
+      Each turn, the adapter calls its middleware in the order in which you
+      added it.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function use(middlewares: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[]): this
+      parameters:
+        - id: middlewares
+          type: >-
+            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
+            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
+          description: ''
+      return:
+        description: ''
+        type: this
 methods:
   - name: >-
       continueConversation(Partial<ConversationReference>, (context:
@@ -138,7 +165,7 @@ methods:
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promise<void>)
+        logic: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: reference
           type: Partial&lt;ConversationReference&gt;
@@ -147,8 +174,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       continueConversationAsync(string | ClaimsIdentity,
       Partial<ConversationReference>, (context: TurnContext) => Promise<void> |
@@ -164,7 +191,7 @@ methods:
         function continueConversationAsync(botAppIdOrClaimsIdentity: string |
         ClaimsIdentity, reference: Partial<ConversationReference>,
         logicOrAudience: (context: TurnContext) => Promise<void> | string,
-        maybeLogic?: (context: TurnContext) => Promise<void>)
+        maybeLogic?: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: botAppIdOrClaimsIdentity
           type: string | ClaimsIdentity
@@ -179,8 +206,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       createConversationAsync(string, string, string, string,
       ConversationParameters, (context: TurnContext) => Promise<void>)
@@ -194,7 +221,8 @@ methods:
       content: >-
         function createConversationAsync(botAppId: string, channelId: string,
         serviceUrl: string, audience: string, conversationParameters:
-        ConversationParameters, logic: (context: TurnContext) => Promise<void>)
+        ConversationParameters, logic: (context: TurnContext) => Promise<void>):
+        Promise<void>
       parameters:
         - id: botAppId
           type: string
@@ -215,8 +243,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     uid: botbuilder-core.CloudAdapterBase.deleteActivity
     package: botbuilder-core
@@ -227,7 +255,7 @@ methods:
     syntax:
       content: >-
         function deleteActivity(context: TurnContext, reference:
-        Partial<ConversationReference>)
+        Partial<ConversationReference>): Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -236,8 +264,8 @@ methods:
           type: Partial&lt;ConversationReference&gt;
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'sendActivities(TurnContext, Partial<Activity>[])'
     uid: botbuilder-core.CloudAdapterBase.sendActivities
     package: botbuilder-core
@@ -248,7 +276,7 @@ methods:
     syntax:
       content: >-
         function sendActivities(context: TurnContext, activities:
-        Partial<Activity>[])
+        Partial<Activity>[]): Promise<ResourceResponse[]>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -257,8 +285,8 @@ methods:
           type: 'Partial&lt;Activity&gt;[]'
           description: ''
       return:
-        type: 'Promise&lt;ResourceResponse[]&gt;'
         description: ''
+        type: 'Promise&lt;ResourceResponse[]&gt;'
   - name: 'updateActivity(TurnContext, Partial<Activity>)'
     uid: botbuilder-core.CloudAdapterBase.updateActivity
     package: botbuilder-core
@@ -269,7 +297,7 @@ methods:
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
-        Partial<Activity>)
+        Partial<Activity>): Promise<ResourceResponse | void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -278,32 +306,6 @@ methods:
           type: Partial&lt;Activity&gt;
           description: ''
       return:
+        description: ''
         type: Promise&lt;ResourceResponse | void&gt;
-        description: ''
-  - name: >-
-      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
-      Middleware[])
-    uid: botbuilder-core.CloudAdapterBase.use
-    package: botbuilder-core
-    summary: Adds middleware to the adapter's pipeline.
-    remarks: >-
-      Middleware is added to the adapter at initialization time.
-
-      Each turn, the adapter calls its middleware in the order in which you
-      added it.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[])
-      parameters:
-        - id: middlewares
-          type: >-
-            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
-            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: ''
-      return:
-        type: this
-        description: ''
 extends: <xref uid="botbuilder-core.BotAdapter" />

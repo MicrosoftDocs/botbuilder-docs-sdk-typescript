@@ -87,8 +87,8 @@ properties:
     syntax:
       content: 'Diagnostic[] allDiagnostics'
       return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
   - name: allTemplates
     uid: botbuilder-lg.Templates.allTemplates
     package: botbuilder-lg
@@ -100,8 +100,8 @@ properties:
     syntax:
       content: 'Template[] allTemplates'
       return:
-        type: '<xref uid="botbuilder-lg.Template" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Template" />[]'
   - name: content
     uid: botbuilder-lg.Templates.content
     package: botbuilder-lg
@@ -113,8 +113,8 @@ properties:
     syntax:
       content: 'public content: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: diagnostics
     uid: botbuilder-lg.Templates.diagnostics
     package: botbuilder-lg
@@ -126,8 +126,21 @@ properties:
     syntax:
       content: 'public diagnostics: Diagnostic[]'
       return:
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+  - name: enableFromFile
+    uid: botbuilder-lg.Templates.enableFromFile
+    package: botbuilder-lg
+    summary: Indicates whether fromFile is allowed in LG templates.
+    fullName: enableFromFile
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'public static enableFromFile: boolean = false'
+      return:
+        description: ''
+        type: boolean
   - name: expressionParser
     uid: botbuilder-lg.Templates.expressionParser
     package: botbuilder-lg
@@ -139,8 +152,8 @@ properties:
     syntax:
       content: 'public expressionParser: ExpressionParser'
       return:
-        type: ExpressionParser
         description: ''
+        type: ExpressionParser
   - name: id
     uid: botbuilder-lg.Templates.id
     package: botbuilder-lg
@@ -152,8 +165,8 @@ properties:
     syntax:
       content: 'public id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: importResolver
     uid: botbuilder-lg.Templates.importResolver
     package: botbuilder-lg
@@ -165,8 +178,8 @@ properties:
     syntax:
       content: 'public importResolver: ImportResolverDelegate'
       return:
-        type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
         description: ''
+        type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
   - name: imports
     uid: botbuilder-lg.Templates.imports
     package: botbuilder-lg
@@ -178,8 +191,8 @@ properties:
     syntax:
       content: 'public imports: TemplateImport[]'
       return:
-        type: '<xref uid="botbuilder-lg.TemplateImport" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.TemplateImport" />[]'
   - name: inlineTemplateIdPrefix
     uid: botbuilder-lg.Templates.inlineTemplateIdPrefix
     package: botbuilder-lg
@@ -191,8 +204,8 @@ properties:
     syntax:
       content: 'public static inlineTemplateIdPrefix: string = "__temp__"'
       return:
-        type: string
         description: ''
+        type: string
   - name: lgOptions
     uid: botbuilder-lg.Templates.lgOptions
     package: botbuilder-lg
@@ -204,8 +217,8 @@ properties:
     syntax:
       content: EvaluationOptions lgOptions
       return:
-        type: <xref uid="botbuilder-lg.EvaluationOptions" />
         description: ''
+        type: <xref uid="botbuilder-lg.EvaluationOptions" />
   - name: namedReferences
     uid: botbuilder-lg.Templates.namedReferences
     package: botbuilder-lg
@@ -217,8 +230,8 @@ properties:
     syntax:
       content: 'public namedReferences: Record<string, Templates>'
       return:
-        type: 'Record&lt;string, <xref uid="botbuilder-lg.Templates" />&gt;'
         description: ''
+        type: 'Record&lt;string, <xref uid="botbuilder-lg.Templates" />&gt;'
   - name: namespace
     uid: botbuilder-lg.Templates.namespace
     package: botbuilder-lg
@@ -230,8 +243,8 @@ properties:
     syntax:
       content: string namespace
       return:
-        type: string
         description: ''
+        type: string
   - name: options
     uid: botbuilder-lg.Templates.options
     package: botbuilder-lg
@@ -243,8 +256,8 @@ properties:
     syntax:
       content: 'public options: string[]'
       return:
-        type: 'string[]'
         description: ''
+        type: 'string[]'
   - name: references
     uid: botbuilder-lg.Templates.references
     package: botbuilder-lg
@@ -260,8 +273,8 @@ properties:
     syntax:
       content: 'public references: Templates[]'
       return:
-        type: '<xref uid="botbuilder-lg.Templates" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Templates" />[]'
   - name: source
     uid: botbuilder-lg.Templates.source
     package: botbuilder-lg
@@ -273,8 +286,8 @@ properties:
     syntax:
       content: 'public source: string'
       return:
-        type: string
         description: ''
+        type: string
 methods:
   - name: 'addTemplate(string, string[], string)'
     uid: botbuilder-lg.Templates.addTemplate
@@ -286,7 +299,7 @@ methods:
     syntax:
       content: >-
         function addTemplate(templateName: string, parameters: string[],
-        templateBody: string)
+        templateBody: string): Templates
       parameters:
         - id: templateName
           type: string
@@ -298,9 +311,9 @@ methods:
           type: string
           description: New  template body.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: New lg file.
-  - name: analyzeTemplate(string)
+        type: <xref uid="botbuilder-lg.Templates" />
+  - name: 'analyzeTemplate(string, AnalyzerOptions)'
     uid: botbuilder-lg.Templates.analyzeTemplate
     package: botbuilder-lg
     summary: >-
@@ -310,14 +323,19 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function analyzeTemplate(templateName: string)'
+      content: >-
+        function analyzeTemplate(templateName: string, analyzerOptions?:
+        AnalyzerOptions): AnalyzerResult
       parameters:
         - id: templateName
           type: string
           description: Template name to be evaluated.
+        - id: analyzerOptions
+          type: <xref uid="botbuilder-lg.AnalyzerOptions" />
+          description: ''
       return:
-        type: <xref uid="botbuilder-lg.AnalyzerResult" />
         description: Analyzer result.
+        type: <xref uid="botbuilder-lg.AnalyzerResult" />
   - name: deleteTemplate(string)
     uid: botbuilder-lg.Templates.deleteTemplate
     package: botbuilder-lg
@@ -326,14 +344,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function deleteTemplate(templateName: string)'
+      content: 'function deleteTemplate(templateName: string): Templates'
       parameters:
         - id: templateName
           type: string
           description: Which template should delete.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: Return the new lg file.
+        type: <xref uid="botbuilder-lg.Templates" />
   - name: 'evaluate(string, object, EvaluationOptions)'
     uid: botbuilder-lg.Templates.evaluate
     package: botbuilder-lg
@@ -344,7 +362,7 @@ methods:
     syntax:
       content: >-
         function evaluate(templateName: string, scope?: object, opt:
-        EvaluationOptions)
+        EvaluationOptions): any
       parameters:
         - id: templateName
           type: string
@@ -356,8 +374,8 @@ methods:
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
           description: ''
       return:
-        type: any
         description: Evaluate result.
+        type: any
   - name: 'evaluateText(string, object, EvaluationOptions)'
     uid: botbuilder-lg.Templates.evaluateText
     package: botbuilder-lg
@@ -368,7 +386,7 @@ methods:
     syntax:
       content: >-
         function evaluateText(inlineStr: string, scope?: object, opt:
-        EvaluationOptions)
+        EvaluationOptions): any
       parameters:
         - id: inlineStr
           type: string
@@ -381,8 +399,8 @@ methods:
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
           description: ''
       return:
-        type: any
         description: ''
+        type: any
   - name: 'expandTemplate(string, object, EvaluationOptions)'
     uid: botbuilder-lg.Templates.expandTemplate
     package: botbuilder-lg
@@ -395,7 +413,7 @@ methods:
     syntax:
       content: >-
         function expandTemplate(templateName: string, scope?: object, opt:
-        EvaluationOptions)
+        EvaluationOptions): any[]
       parameters:
         - id: templateName
           type: string
@@ -407,8 +425,8 @@ methods:
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
           description: ''
       return:
-        type: 'any[]'
         description: Expand result.
+        type: 'any[]'
   - name: 'parseFile(string, ImportResolverDelegate, ExpressionParser)'
     uid: botbuilder-lg.Templates.parseFile
     package: botbuilder-lg
@@ -419,7 +437,7 @@ methods:
     syntax:
       content: >-
         static function parseFile(filePath: string, importResolver?:
-        ImportResolverDelegate, expressionParser?: ExpressionParser)
+        ImportResolverDelegate, expressionParser?: ExpressionParser): Templates
       parameters:
         - id: filePath
           type: string
@@ -431,8 +449,8 @@ methods:
           type: ExpressionParser
           description: Expression parser for evaluating expressions.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: New lg file.
+        type: <xref uid="botbuilder-lg.Templates" />
   - name: 'parseResource(LGResource, ImportResolverDelegate, ExpressionParser)'
     uid: botbuilder-lg.Templates.parseResource
     package: botbuilder-lg
@@ -443,7 +461,7 @@ methods:
     syntax:
       content: >-
         static function parseResource(resource: LGResource, importResolver?:
-        ImportResolverDelegate, expressionParser?: ExpressionParser)
+        ImportResolverDelegate, expressionParser?: ExpressionParser): Templates
       parameters:
         - id: resource
           type: <xref uid="botbuilder-lg.LGResource" />
@@ -455,8 +473,8 @@ methods:
           type: ExpressionParser
           description: Expression parser for evaluating expressions.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: Entity.
+        type: <xref uid="botbuilder-lg.Templates" />
   - name: 'parseText(string, string, ImportResolverDelegate, ExpressionParser)'
     uid: botbuilder-lg.Templates.parseText
     package: botbuilder-lg
@@ -468,7 +486,7 @@ methods:
     syntax:
       content: >-
         static function parseText(content: string, id: string, importResolver?:
-        ImportResolverDelegate, expressionParser?: ExpressionParser)
+        ImportResolverDelegate, expressionParser?: ExpressionParser): Templates
       parameters:
         - id: content
           type: string
@@ -485,8 +503,8 @@ methods:
           type: ExpressionParser
           description: Expression parser for evaluating expressions.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: Entity.
+        type: <xref uid="botbuilder-lg.Templates" />
   - name: 'push(Template[])'
     uid: botbuilder-lg.Templates.push
     package: botbuilder-lg
@@ -509,10 +527,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function toArray()
+      content: 'function toArray(): Template[]'
       return:
-        type: '<xref uid="botbuilder-lg.Template" />[]'
         description: ''
+        type: '<xref uid="botbuilder-lg.Template" />[]'
   - name: toString()
     uid: botbuilder-lg.Templates.toString
     package: botbuilder-lg
@@ -523,12 +541,12 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function toString()
+      content: 'function toString(): string'
       return:
-        type: string
         description: >-
           A string representation of a [Templates](xref:botbuilder-lg.Templates)
           content.
+        type: string
   - name: 'updateTemplate(string, string, string[], string)'
     uid: botbuilder-lg.Templates.updateTemplate
     package: botbuilder-lg
@@ -539,7 +557,7 @@ methods:
     syntax:
       content: >-
         function updateTemplate(templateName: string, newTemplateName: string,
-        parameters: string[], templateBody: string)
+        parameters: string[], templateBody: string): Templates
       parameters:
         - id: templateName
           type: string
@@ -554,5 +572,5 @@ methods:
           type: string
           description: New template body.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: New lg file.
+        type: <xref uid="botbuilder-lg.Templates" />

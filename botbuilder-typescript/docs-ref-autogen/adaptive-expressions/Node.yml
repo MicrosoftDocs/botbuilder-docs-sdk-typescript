@@ -41,8 +41,8 @@ properties:
     syntax:
       content: 'Trigger[] allTriggers'
       return:
+        description: All triggers that contain the `Clause` in this node.
         type: '<xref uid="adaptive-expressions.Trigger" />[]'
-        description: ''
   - name: clause
     uid: adaptive-expressions.Node.clause
     package: adaptive-expressions
@@ -54,8 +54,8 @@ properties:
     syntax:
       content: 'public clause: Clause'
       return:
-        type: <xref uid="adaptive-expressions.Clause" />
         description: ''
+        type: <xref uid="adaptive-expressions.Clause" />
   - name: specializations
     uid: adaptive-expressions.Node.specializations
     package: adaptive-expressions
@@ -67,8 +67,8 @@ properties:
     syntax:
       content: 'Node[] specializations'
       return:
+        description: Specialized children of this node.
         type: '<xref uid="adaptive-expressions.Node" />[]'
-        description: ''
   - name: tree
     uid: adaptive-expressions.Node.tree
     package: adaptive-expressions
@@ -80,8 +80,8 @@ properties:
     syntax:
       content: 'public tree: TriggerTree'
       return:
-        type: <xref uid="adaptive-expressions.TriggerTree" />
         description: ''
+        type: <xref uid="adaptive-expressions.TriggerTree" />
   - name: triggers
     uid: adaptive-expressions.Node.triggers
     package: adaptive-expressions
@@ -95,8 +95,10 @@ properties:
     syntax:
       content: 'Trigger[] triggers'
       return:
+        description: >-
+          All of the most specific triggers that contains the `Clause` in this
+          node.
         type: '<xref uid="adaptive-expressions.Trigger" />[]'
-        description: ''
 methods:
   - name: addNode(Node)
     uid: adaptive-expressions.Node.addNode
@@ -106,14 +108,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function addNode(triggerNode: Node)'
+      content: 'function addNode(triggerNode: Node): boolean'
       parameters:
         - id: triggerNode
           type: <xref uid="adaptive-expressions.Node" />
           description: The node to be added.
       return:
-        type: boolean
         description: Whether adding node operation is successful.
+        type: boolean
   - name: matches(MemoryInterface | any)
     uid: adaptive-expressions.Node.matches
     package: adaptive-expressions
@@ -122,14 +124,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function matches(state: MemoryInterface | any)'
+      content: 'function matches(state: MemoryInterface | any): Trigger[]'
       parameters:
         - id: state
           type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
           description: Frame to evaluate against.
       return:
-        type: '<xref uid="adaptive-expressions.Trigger" />[]'
         description: List of the most specific matches found.
+        type: '<xref uid="adaptive-expressions.Trigger" />[]'
   - name: relationship(Node)
     uid: adaptive-expressions.Node.relationship
     package: adaptive-expressions
@@ -138,14 +140,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function relationship(other: Node)'
+      content: 'function relationship(other: Node): RelationshipType'
       parameters:
         - id: other
           type: <xref uid="adaptive-expressions.Node" />
           description: Node to compare against.
       return:
-        type: <xref uid="adaptive-expressions.RelationshipType" />
         description: Relationship between this node an the other.
+        type: <xref uid="adaptive-expressions.RelationshipType" />
   - name: removeTrigger(Trigger)
     uid: adaptive-expressions.Node.removeTrigger
     package: adaptive-expressions
@@ -154,14 +156,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function removeTrigger(trigger: Trigger)'
+      content: 'function removeTrigger(trigger: Trigger): boolean'
       parameters:
         - id: trigger
           type: <xref uid="adaptive-expressions.Trigger" />
           description: The trigger to be removed.
       return:
-        type: boolean
         description: Whether removing trigger operation is successful.
+        type: boolean
   - name: 'toString(string[], number)'
     uid: adaptive-expressions.Node.toString
     package: adaptive-expressions
@@ -170,15 +172,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function toString(builder: string[], indent: number)'
+      content: 'function toString(builder: string[], indent: number): string'
       parameters:
         - id: builder
           type: 'string[]'
           description: An array of string to build the string of node.
         - id: indent
           type: number
-          description: |
-            An integer representing the number of spaces at the start of a line.
+          description: An integer representing the number of spaces at the start of a line.
       return:
+        description: A string that represents the current node.
         type: string
-        description: ''

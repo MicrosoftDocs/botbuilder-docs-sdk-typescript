@@ -9,7 +9,9 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: WebSocketClient(Object)
+  - name: >-
+      WebSocketClient({ disconnectionHandler: (message: string) => void,
+      requestHandler: RequestHandler, url: string })
     uid: botframework-streaming.WebSocketClient.constructor
     package: botframework-streaming
     summary: >-
@@ -19,10 +21,14 @@ constructors:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new WebSocketClient(__namedParameters: Object)'
+      content: >-
+        new WebSocketClient(__namedParameters: { disconnectionHandler: (message:
+        string) => void, requestHandler: RequestHandler, url: string })
       parameters:
         - id: __namedParameters
-          type: Object
+          type: >-
+            { disconnectionHandler: (message: string) =&gt; void,
+            requestHandler: RequestHandler, url: string }
           description: ''
 methods:
   - name: connect()
@@ -33,12 +39,12 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function connect()
+      content: 'function connect(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: >-
           A promise that will not resolve until the client stops listening for
           incoming messages.
+        type: Promise&lt;void&gt;
   - name: disconnect()
     uid: botframework-streaming.WebSocketClient.disconnect
     package: botframework-streaming
@@ -56,7 +62,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function send(request: StreamingRequest)'
+      content: 'function send(request: StreamingRequest): Promise<IReceiveResponse>'
       parameters:
         - id: request
           type: <xref uid="botframework-streaming.StreamingRequest" />
@@ -64,7 +70,7 @@ methods:
             The [StreamingRequest](xref:botframework-streaming.StreamingRequest)
             instance to send.
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
         description: >-
           A promise that will produce an instance of receive response on
           completion of the send operation.
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;

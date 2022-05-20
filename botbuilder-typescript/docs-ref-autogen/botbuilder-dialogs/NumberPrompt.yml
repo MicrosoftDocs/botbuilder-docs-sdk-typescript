@@ -50,8 +50,8 @@ properties:
     syntax:
       content: 'defaultLocale?: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: EndOfTurn
     uid: botbuilder-dialogs.NumberPrompt.EndOfTurn
     package: botbuilder-dialogs
@@ -68,8 +68,8 @@ properties:
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
   - name: id
     uid: botbuilder-dialogs.NumberPrompt.id
     package: botbuilder-dialogs
@@ -83,8 +83,8 @@ properties:
     syntax:
       content: string id
       return:
-        type: string
         description: ''
+        type: string
   - name: telemetryClient
     uid: botbuilder-dialogs.NumberPrompt.telemetryClient
     package: botbuilder-dialogs
@@ -98,9 +98,9 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        type: BotTelemetryClient
         description: ''
-methods:
+        type: BotTelemetryClient
+inheritedMethods:
   - name: 'beginDialog(DialogContext, PromptOptions)'
     uid: botbuilder-dialogs.NumberPrompt.beginDialog
     package: botbuilder-dialogs
@@ -115,7 +115,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function beginDialog(dc: DialogContext, options: PromptOptions)'
+      content: >-
+        function beginDialog(dc: DialogContext, options: PromptOptions):
+        Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -130,8 +132,8 @@ methods:
             Optional. [PromptOptions](xref:botbuilder-dialogs.PromptOptions),
             additional information to pass to the prompt being started.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.NumberPrompt.configure
     package: botbuilder-dialogs
@@ -140,15 +142,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.NumberPrompt.continueDialog
     package: botbuilder-dialogs
@@ -168,7 +170,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext)'
+      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -176,8 +178,8 @@ methods:
             The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
             current turn of conversation.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.NumberPrompt.endDialog
     package: botbuilder-dialogs
@@ -212,7 +214,7 @@ methods:
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
+        reason: DialogReason): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -225,8 +227,8 @@ methods:
           description: |
             The reason the dialog is ending.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: getConverter(string)
     uid: botbuilder-dialogs.NumberPrompt.getConverter
     package: botbuilder-dialogs
@@ -235,16 +237,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
+        description: ''
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
-        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs.NumberPrompt.getVersion
     package: botbuilder-dialogs
@@ -270,10 +272,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: ''
+        type: string
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.NumberPrompt.onDialogEvent
     package: botbuilder-dialogs
@@ -284,7 +286,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      content: >-
+        function onDialogEvent(dc: DialogContext, e: DialogEvent):
+        Promise<boolean>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -293,10 +297,10 @@ methods:
           type: <xref uid="botbuilder-dialogs.DialogEvent" />
           description: The event being raised.
       return:
-        type: Promise&lt;boolean&gt;
         description: >-
           True if the event is handled by the current dialog and bubbling should
           stop.
+        type: Promise&lt;boolean&gt;
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs.NumberPrompt.repromptDialog
     package: botbuilder-dialogs
@@ -307,7 +311,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      content: >-
+        function repromptDialog(context: TurnContext, instance: DialogInstance):
+        Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -320,8 +326,8 @@ methods:
             (xref:botbuilder-dialogs.DialogInstance), the instance
             of the dialog on the stack.
       return:
-        type: Promise&lt;void&gt;
         description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;void&gt;
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.NumberPrompt.resumeDialog
     package: botbuilder-dialogs
@@ -340,7 +346,7 @@ methods:
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any)
+        any): Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -354,6 +360,6 @@ methods:
             Optional, value returned from the previous dialog on the stack.
             The type of the value returned is dependent on the previous dialog.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A Promise representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.Prompt" />&lt;number&gt;

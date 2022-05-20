@@ -78,14 +78,14 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function createNodeServer(callback?: ConnectionListener)'
+      content: 'function createNodeServer(callback?: ConnectionListener): INodeServer'
       parameters:
         - id: callback
           type: <xref uid="botframework-streaming.ConnectionListener" />
           description: Optional connection listener
       return:
-        type: <xref uid="botframework-streaming.INodeServer" />
         description: a Node 'net' server instance
+        type: <xref uid="botframework-streaming.INodeServer" />
   - name: getServerFactory()
     uid: botframework-streaming.getServerFactory
     package: botframework-streaming
@@ -94,10 +94,12 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getServerFactory()
+      content: >-
+        function getServerFactory(): (callback?: ConnectionListener) =>
+        INodeServer
       return:
-        type: '(callback?: ConnectionListener) =&gt; INodeServer'
         description: a server factory function
+        type: '(callback?: ConnectionListener) =&gt; INodeServer'
   - name: generateGuid()
     uid: botframework-streaming.generateGuid
     package: botframework-streaming
@@ -106,7 +108,7 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function generateGuid()
+      content: 'function generateGuid(): string'
       return:
-        type: string
         description: An uuidv4 string.
+        type: string

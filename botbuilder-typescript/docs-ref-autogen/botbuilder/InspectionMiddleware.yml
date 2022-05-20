@@ -32,17 +32,18 @@ constructors:
       parameters:
         - id: inspectionState
           type: <xref uid="botbuilder.InspectionState" />
-          description: ''
+          description: A state management object for inspection state.
         - id: userState
           type: UserState
-          description: ''
+          description: A state management object for user state.
         - id: conversationState
           type: ConversationState
-          description: ''
+          description: A state management object for conversation state.
         - id: credentials
           type: Partial&lt;MicrosoftAppCredentials&gt;
-          description: ''
-methods:
+          description: |
+            The authentication credentials.
+inheritedMethods:
   - name: 'onTurn(TurnContext, () => Promise<void>)'
     uid: botbuilder.InspectionMiddleware.onTurn
     package: botbuilder
@@ -51,18 +52,21 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onTurn(turnContext: TurnContext, next: () => Promise<void>)'
+      content: >-
+        function onTurn(turnContext: TurnContext, next: () => Promise<void>):
+        Promise<void>
       parameters:
         - id: turnContext
           type: TurnContext
-          description: ''
+          description: An incoming TurnContext object.
         - id: next
           type: () =&gt; Promise&lt;void&gt;
           description: |
             The next delegate function.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
+methods:
   - name: processCommand(TurnContext)
     uid: botbuilder.InspectionMiddleware.processCommand
     package: botbuilder
@@ -71,12 +75,12 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function processCommand(turnContext: TurnContext)'
+      content: 'function processCommand(turnContext: TurnContext): Promise<any>'
       parameters:
         - id: turnContext
           type: TurnContext
           description: 'The [TurnContext](xref:botbuilder-core.TurnContext) for this turn.'
       return:
-        type: Promise&lt;any&gt;
         description: 'True if the command is open or attached, otherwise false.'
+        type: Promise&lt;any&gt;
 extends: InterceptionMiddleware

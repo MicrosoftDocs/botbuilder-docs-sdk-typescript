@@ -48,8 +48,8 @@ properties:
     syntax:
       content: 'openIdMetadata: OpenIdMetadata'
       return:
-        type: <xref uid="botframework-connector.OpenIdMetadata" />
         description: ''
+        type: <xref uid="botframework-connector.OpenIdMetadata" />
   - name: tokenValidationParameters
     uid: botframework-connector.JwtTokenExtractor.tokenValidationParameters
     package: botframework-connector
@@ -61,8 +61,8 @@ properties:
     syntax:
       content: 'tokenValidationParameters: VerifyOptions'
       return:
-        type: VerifyOptions
         description: ''
+        type: VerifyOptions
 methods:
   - name: 'getIdentity(string, string, string, string[])'
     uid: botframework-connector.JwtTokenExtractor.getIdentity
@@ -74,7 +74,7 @@ methods:
     syntax:
       content: >-
         function getIdentity(scheme: string, parameter: string, channelId:
-        string, requiredEndorsements?: string[])
+        string, requiredEndorsements?: string[]): Promise<ClaimsIdentity | null>
       parameters:
         - id: scheme
           type: string
@@ -89,13 +89,13 @@ methods:
           type: 'string[]'
           description: The required JWT endorsements.
       return:
-        type: >-
-          Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
-          null&gt;
         description: >-
           A `Promise` representation for either a
           [ClaimsIdentity](botframework-connector:module.ClaimsIdentity) or
           `null`.
+        type: >-
+          Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
+          null&gt;
   - name: 'getIdentityFromAuthHeader(string, string, string[])'
     uid: botframework-connector.JwtTokenExtractor.getIdentityFromAuthHeader
     package: botframework-connector
@@ -106,7 +106,8 @@ methods:
     syntax:
       content: >-
         function getIdentityFromAuthHeader(authorizationHeader: string,
-        channelId: string, requiredEndorsements?: string[])
+        channelId: string, requiredEndorsements?: string[]):
+        Promise<ClaimsIdentity | null>
       parameters:
         - id: authorizationHeader
           type: string
@@ -118,10 +119,10 @@ methods:
           type: 'string[]'
           description: The required JWT endorsements.
       return:
-        type: >-
-          Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
-          null&gt;
         description: >-
           A `Promise` representation for either a
           [ClaimsIdentity](botframework-connector:module.ClaimsIdentity) or
           `null`.
+        type: >-
+          Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" /> |
+          null&gt;

@@ -69,7 +69,8 @@ methods:
     syntax:
       content: >-
         function createConversation(parameters: ConversationParameters,
-        options?: RequestOptionsBase)
+        options?: RequestOptionsBase):
+        Promise<Models.ConversationsCreateConversationResponse>
       parameters:
         - id: parameters
           type: ConversationParameters
@@ -78,10 +79,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsCreateConversationResponse>
         type: >-
           Promise&lt;<xref uid="Models.ConversationsCreateConversationResponse"
           />&gt;
-        description: Promise<Models.ConversationsCreateConversationResponse>
   - name: >-
       createConversation(ConversationParameters, RequestOptionsBase,
       ServiceCallback<ConversationResourceResponse>)
@@ -144,7 +145,7 @@ methods:
     syntax:
       content: >-
         function deleteActivity(conversationId: string, activityId: string,
-        options?: RequestOptionsBase)
+        options?: RequestOptionsBase): Promise<RestResponse>
       parameters:
         - id: conversationId
           type: string
@@ -156,8 +157,8 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
-        type: Promise&lt;RestResponse&gt;
         description: Promise<msRest.RestResponse>
+        type: Promise&lt;RestResponse&gt;
   - name: 'deleteActivity(string, string, RequestOptionsBase, ServiceCallback<void>)'
     uid: botframework-connector.Conversations.deleteActivity_2
     package: botframework-connector
@@ -223,7 +224,7 @@ methods:
     syntax:
       content: >-
         function deleteConversationMember(conversationId: string, memberId:
-        string, options?: RequestOptionsBase)
+        string, options?: RequestOptionsBase): Promise<RestResponse>
       parameters:
         - id: conversationId
           type: string
@@ -235,8 +236,8 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
-        type: Promise&lt;RestResponse&gt;
         description: Promise<msRest.RestResponse>
+        type: Promise&lt;RestResponse&gt;
   - name: >-
       deleteConversationMember(string, string, RequestOptionsBase,
       ServiceCallback<void>)
@@ -303,7 +304,8 @@ methods:
     syntax:
       content: >-
         function getActivityMembers(conversationId: string, activityId: string,
-        options?: RequestOptionsBase)
+        options?: RequestOptionsBase):
+        Promise<Models.ConversationsGetActivityMembersResponse>
       parameters:
         - id: conversationId
           type: string
@@ -315,10 +317,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsGetActivityMembersResponse>
         type: >-
           Promise&lt;<xref uid="Models.ConversationsGetActivityMembersResponse"
           />&gt;
-        description: Promise<Models.ConversationsGetActivityMembersResponse>
   - name: >-
       getActivityMembers(string, string, RequestOptionsBase,
       ServiceCallback<ChannelAccount[]>)
@@ -382,7 +384,8 @@ methods:
       content: >-
         function getConversationMember(conversationId: string, memberId: string,
         options?: RequestOptionsBase | ServiceCallback<ChannelAccount[]>,
-        callback?: ServiceCallback<ChannelAccount[]>)
+        callback?: ServiceCallback<ChannelAccount[]>):
+        Promise<Models.ConversationsGetConversationMemberResponse>
       parameters:
         - id: conversationId
           type: string
@@ -398,10 +401,10 @@ methods:
           description: |
             The callback
       return:
+        description: ''
         type: >-
           Promise&lt;<xref
           uid="Models.ConversationsGetConversationMemberResponse" />&gt;
-        description: ''
   - name: 'getConversationMembers(string, RequestOptionsBase)'
     uid: botframework-connector.Conversations.getConversationMembers
     package: botframework-connector
@@ -418,7 +421,8 @@ methods:
     syntax:
       content: >-
         function getConversationMembers(conversationId: string, options?:
-        RequestOptionsBase)
+        RequestOptionsBase):
+        Promise<Models.ConversationsGetConversationMembersResponse>
       parameters:
         - id: conversationId
           type: string
@@ -427,10 +431,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsGetConversationMembersResponse>
         type: >-
           Promise&lt;<xref
           uid="Models.ConversationsGetConversationMembersResponse" />&gt;
-        description: Promise<Models.ConversationsGetConversationMembersResponse>
   - name: >-
       getConversationMembers(string, RequestOptionsBase,
       ServiceCallback<ChannelAccount[]>)
@@ -517,7 +521,8 @@ methods:
     syntax:
       content: >-
         function getConversationPagedMembers(conversationId: string, options?:
-        ConversationsGetConversationPagedMembersOptionalParams)
+        ConversationsGetConversationPagedMembersOptionalParams):
+        Promise<Models.ConversationsGetConversationPagedMembersResponse>
       parameters:
         - id: conversationId
           type: string
@@ -529,10 +534,10 @@ methods:
             />
           description: ''
       return:
+        description: Promise<Models.ConversationsGetConversationPagedMembersResponse>
         type: >-
           Promise&lt;<xref
           uid="Models.ConversationsGetConversationPagedMembersResponse" />&gt;
-        description: Promise<Models.ConversationsGetConversationPagedMembersResponse>
   - name: >-
       getConversationPagedMembers(string,
       ConversationsGetConversationPagedMembersOptionalParams,
@@ -611,7 +616,8 @@ methods:
     syntax:
       content: >-
         function getConversations(options?:
-        ConversationsGetConversationsOptionalParams)
+        ConversationsGetConversationsOptionalParams):
+        Promise<Models.ConversationsGetConversationsResponse>
       parameters:
         - id: options
           type: >-
@@ -620,10 +626,10 @@ methods:
             />
           description: ''
       return:
+        description: Promise<Models.ConversationsGetConversationsResponse>
         type: >-
           Promise&lt;<xref uid="Models.ConversationsGetConversationsResponse"
           />&gt;
-        description: Promise<Models.ConversationsGetConversationsResponse>
   - name: >-
       getConversations(ConversationsGetConversationsOptionalParams,
       ServiceCallback<ConversationsResult>)
@@ -698,7 +704,8 @@ methods:
     syntax:
       content: >-
         function replyToActivity(conversationId: string, activityId: string,
-        activity: Partial<Activity>, options?: RequestOptionsBase)
+        activity: Partial<Activity>, options?: RequestOptionsBase):
+        Promise<Models.ConversationsReplyToActivityResponse>
       parameters:
         - id: conversationId
           type: string
@@ -713,10 +720,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsReplyToActivityResponse>
         type: >-
           Promise&lt;<xref uid="Models.ConversationsReplyToActivityResponse"
           />&gt;
-        description: Promise<Models.ConversationsReplyToActivityResponse>
   - name: >-
       replyToActivity(string, string, Partial<Activity>, RequestOptionsBase,
       ServiceCallback<ResourceResponse>)
@@ -796,7 +803,8 @@ methods:
     syntax:
       content: >-
         function sendConversationHistory(conversationId: string, history:
-        Transcript, options?: RequestOptionsBase)
+        Transcript, options?: RequestOptionsBase):
+        Promise<Models.ConversationsSendConversationHistoryResponse>
       parameters:
         - id: conversationId
           type: string
@@ -808,10 +816,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsSendConversationHistoryResponse>
         type: >-
           Promise&lt;<xref
           uid="Models.ConversationsSendConversationHistoryResponse" />&gt;
-        description: Promise<Models.ConversationsSendConversationHistoryResponse>
   - name: >-
       sendConversationHistory(string, Transcript, RequestOptionsBase,
       ServiceCallback<ResourceResponse>)
@@ -897,7 +905,8 @@ methods:
     syntax:
       content: >-
         function sendToConversation(conversationId: string, activity:
-        Partial<Activity>, options?: RequestOptionsBase)
+        Partial<Activity>, options?: RequestOptionsBase):
+        Promise<Models.ConversationsSendToConversationResponse>
       parameters:
         - id: conversationId
           type: string
@@ -909,10 +918,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsSendToConversationResponse>
         type: >-
           Promise&lt;<xref uid="Models.ConversationsSendToConversationResponse"
           />&gt;
-        description: Promise<Models.ConversationsSendToConversationResponse>
   - name: >-
       sendToConversation(string, Partial<Activity>, RequestOptionsBase,
       ServiceCallback<ResourceResponse>)
@@ -985,7 +994,8 @@ methods:
     syntax:
       content: >-
         function updateActivity(conversationId: string, activityId: string,
-        activity: Partial<Activity>, options?: RequestOptionsBase)
+        activity: Partial<Activity>, options?: RequestOptionsBase):
+        Promise<Models.ConversationsUpdateActivityResponse>
       parameters:
         - id: conversationId
           type: string
@@ -1000,10 +1010,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsUpdateActivityResponse>
         type: >-
           Promise&lt;<xref uid="Models.ConversationsUpdateActivityResponse"
           />&gt;
-        description: Promise<Models.ConversationsUpdateActivityResponse>
   - name: >-
       updateActivity(string, string, Partial<Activity>, RequestOptionsBase,
       ServiceCallback<ResourceResponse>)
@@ -1085,7 +1095,8 @@ methods:
     syntax:
       content: >-
         function uploadAttachment(conversationId: string, attachmentUpload:
-        AttachmentData, options?: RequestOptionsBase)
+        AttachmentData, options?: RequestOptionsBase):
+        Promise<Models.ConversationsUploadAttachmentResponse>
       parameters:
         - id: conversationId
           type: string
@@ -1097,10 +1108,10 @@ methods:
           type: RequestOptionsBase
           description: ''
       return:
+        description: Promise<Models.ConversationsUploadAttachmentResponse>
         type: >-
           Promise&lt;<xref uid="Models.ConversationsUploadAttachmentResponse"
           />&gt;
-        description: Promise<Models.ConversationsUploadAttachmentResponse>
   - name: >-
       uploadAttachment(string, AttachmentData, RequestOptionsBase,
       ServiceCallback<ResourceResponse>)

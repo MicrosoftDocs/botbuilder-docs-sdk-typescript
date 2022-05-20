@@ -3,7 +3,7 @@ uid: botframework-connector.SkillValidation
 name: SkillValidation
 type: module
 package: botframework-connector
-summary: Validates JWT tokens sent to and from a Skill.
+summary: ''
 functions:
   - name: >-
       authenticateChannelToken(string, ICredentialProvider, string, string,
@@ -20,7 +20,7 @@ functions:
       content: >-
         function authenticateChannelToken(authHeader: string, credentials:
         ICredentialProvider, channelService: string, channelId: string,
-        authConfig: AuthenticationConfiguration)
+        authConfig: AuthenticationConfiguration): Promise<ClaimsIdentity>
       parameters:
         - id: authHeader
           type: string
@@ -40,8 +40,8 @@ functions:
           type: <xref uid="botframework-connector.AuthenticationConfiguration" />
           description: The authentication configuration.
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: A "ClaimsIdentity" instance if the validation is successful.
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
   - name: createAnonymousSkillClaim()
     uid: botframework-connector.SkillValidation.createAnonymousSkillClaim
     package: botframework-connector
@@ -52,9 +52,8 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function createAnonymousSkillClaim()
+      content: 'function createAnonymousSkillClaim(): ClaimsIdentity'
       return:
-        type: <xref uid="botframework-connector.ClaimsIdentity" />
         description: >-
           A [ClaimsIdentity](xref.botframework-connector.ClaimsIdentity)
           instance with authentication type set to
@@ -62,6 +61,7 @@ functions:
           and a reserved
           [AuthenticationConstants.AnonymousSkillAppId](xref.botframework-connector.AuthenticationConstants)
           claim.
+        type: <xref uid="botframework-connector.ClaimsIdentity" />
   - name: 'isSkillClaim(Claim[])'
     uid: botframework-connector.SkillValidation.isSkillClaim
     package: botframework-connector
@@ -78,14 +78,14 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function isSkillClaim(claims: Claim[])'
+      content: 'function isSkillClaim(claims: Claim[]): boolean'
       parameters:
         - id: claims
           type: '<xref uid="botframework-connector.Claim" />[]'
           description: An object of claims.
       return:
-        type: boolean
         description: 'True if the object of claims is a skill claim, false if is not.'
+        type: boolean
   - name: isSkillToken(string)
     uid: botframework-connector.SkillValidation.isSkillToken
     package: botframework-connector
@@ -96,13 +96,13 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function isSkillToken(authHeader: string)'
+      content: 'function isSkillToken(authHeader: string): boolean'
       parameters:
         - id: authHeader
           type: string
           description: 'Bearer Token, in the "Bearer [Long String]" Format.'
       return:
-        type: boolean
         description: >-
           True, if the token was issued for a skill to bot communication.
           Otherwise, false.
+        type: boolean

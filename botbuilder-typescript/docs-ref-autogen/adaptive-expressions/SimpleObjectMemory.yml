@@ -37,14 +37,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getValue(path: string)'
+      content: 'function getValue(path: string): any'
       parameters:
         - id: path
           type: string
           description: Given path.
       return:
-        type: any
         description: The value in the given path or undefined.
+        type: any
   - name: 'setValue(string, any)'
     uid: adaptive-expressions.SimpleObjectMemory.setValue
     package: adaptive-expressions
@@ -68,10 +68,11 @@ methods:
       parameters:
         - id: path
           type: string
-          description: ''
+          description: Memory path.
         - id: input
           type: any
-          description: ''
+          description: |
+            Value to set.
   - name: toString()
     uid: adaptive-expressions.SimpleObjectMemory.toString
     package: adaptive-expressions
@@ -82,13 +83,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function toString()
+      content: 'function toString(): string'
       return:
-        type: string
         description: >-
           A string value representing the current
           [SimpleObjectMemory](xref:adaptive-expressions.SimpleObjectMemory)
           object.
+        type: string
   - name: version()
     uid: adaptive-expressions.SimpleObjectMemory.version
     package: adaptive-expressions
@@ -99,23 +100,23 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function version()
+      content: 'function version(): string'
       return:
-        type: string
         description: A string value representing the version info.
+        type: string
   - name: wrap(any)
     uid: adaptive-expressions.SimpleObjectMemory.wrap
     package: adaptive-expressions
-    summary: Transfer an common object to simple memory.
+    summary: Transfer a common object to simple memory.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function wrap(obj: any)'
+      content: 'static function wrap(obj: any): MemoryInterface'
       parameters:
         - id: obj
           type: any
           description: Common object.
       return:
-        type: <xref uid="adaptive-expressions.MemoryInterface" />
         description: Simple memory instance.
+        type: <xref uid="adaptive-expressions.MemoryInterface" />

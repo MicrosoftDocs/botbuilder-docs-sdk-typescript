@@ -42,8 +42,8 @@ properties:
     syntax:
       content: DialogInstance | undefined activeDialog
       return:
-        type: <xref uid="botbuilder-dialogs.DialogInstance" /> | undefined
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogInstance" /> | undefined
   - name: child
     uid: botbuilder-dialogs.WaterfallStepContext.child
     package: botbuilder-dialogs
@@ -55,8 +55,8 @@ properties:
     syntax:
       content: DialogContext | undefined child
       return:
-        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
   - name: context
     uid: botbuilder-dialogs.WaterfallStepContext.context
     package: botbuilder-dialogs
@@ -68,8 +68,8 @@ properties:
     syntax:
       content: 'context: TurnContext'
       return:
-        type: TurnContext
         description: ''
+        type: TurnContext
   - name: dialogManager
     uid: botbuilder-dialogs.WaterfallStepContext.dialogManager
     package: botbuilder-dialogs
@@ -81,8 +81,8 @@ properties:
     syntax:
       content: DialogManager dialogManager
       return:
-        type: <xref uid="botbuilder-dialogs.DialogManager" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogManager" />
   - name: dialogs
     uid: botbuilder-dialogs.WaterfallStepContext.dialogs
     package: botbuilder-dialogs
@@ -94,8 +94,8 @@ properties:
     syntax:
       content: 'dialogs: DialogSet'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogSet" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogSet" />
   - name: index
     uid: botbuilder-dialogs.WaterfallStepContext.index
     package: botbuilder-dialogs
@@ -107,8 +107,8 @@ properties:
     syntax:
       content: number index
       return:
-        type: number
         description: ''
+        type: number
   - name: options
     uid: botbuilder-dialogs.WaterfallStepContext.options
     package: botbuilder-dialogs
@@ -122,8 +122,8 @@ properties:
     syntax:
       content: O options
       return:
-        type: O
         description: ''
+        type: O
   - name: parent
     uid: botbuilder-dialogs.WaterfallStepContext.parent
     package: botbuilder-dialogs
@@ -145,8 +145,8 @@ properties:
     syntax:
       content: 'parent: DialogContext | undefined'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
   - name: reason
     uid: botbuilder-dialogs.WaterfallStepContext.reason
     package: botbuilder-dialogs
@@ -158,8 +158,8 @@ properties:
     syntax:
       content: DialogReason reason
       return:
-        type: <xref uid="botbuilder-dialogs.DialogReason" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogReason" />
   - name: result
     uid: botbuilder-dialogs.WaterfallStepContext.result
     package: botbuilder-dialogs
@@ -173,8 +173,8 @@ properties:
     syntax:
       content: any result
       return:
-        type: any
         description: ''
+        type: any
   - name: services
     uid: botbuilder-dialogs.WaterfallStepContext.services
     package: botbuilder-dialogs
@@ -186,8 +186,8 @@ properties:
     syntax:
       content: 'services: TurnContextStateCollection'
       return:
-        type: TurnContextStateCollection
         description: ''
+        type: TurnContextStateCollection
   - name: stack
     uid: botbuilder-dialogs.WaterfallStepContext.stack
     package: botbuilder-dialogs
@@ -199,8 +199,8 @@ properties:
     syntax:
       content: 'stack: DialogInstance[]'
       return:
-        type: '<xref uid="botbuilder-dialogs.DialogInstance" />[]'
         description: ''
+        type: '<xref uid="botbuilder-dialogs.DialogInstance" />[]'
   - name: state
     uid: botbuilder-dialogs.WaterfallStepContext.state
     package: botbuilder-dialogs
@@ -212,8 +212,8 @@ properties:
     syntax:
       content: 'state: DialogStateManager'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogStateManager" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogStateManager" />
   - name: values
     uid: botbuilder-dialogs.WaterfallStepContext.values
     package: botbuilder-dialogs
@@ -225,9 +225,9 @@ properties:
     syntax:
       content: object values
       return:
-        type: object
         description: ''
-methods:
+        type: object
+inheritedMethods:
   - name: 'beginDialog(string, object)'
     uid: botbuilder-dialogs.WaterfallStepContext.beginDialog
     package: botbuilder-dialogs
@@ -274,7 +274,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function beginDialog(dialogId: string, options?: object)'
+      content: >-
+        function beginDialog(dialogId: string, options?: object):
+        Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -284,8 +286,8 @@ methods:
           description: |
             Optional. Arguments to pass into the dialog when it starts.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'cancelAllDialogs(boolean, string, any)'
     uid: botbuilder-dialogs.WaterfallStepContext.cancelAllDialogs
     package: botbuilder-dialogs
@@ -327,7 +329,7 @@ methods:
     syntax:
       content: >-
         function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
-        eventValue?: any)
+        eventValue?: any): Promise<DialogTurnResult>
       parameters:
         - id: cancelParents
           type: boolean
@@ -343,8 +345,8 @@ methods:
           description: |
             Optional. Value to pass along with custom cancellation event.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: continueDialog()
     uid: botbuilder-dialogs.WaterfallStepContext.continueDialog
     package: botbuilder-dialogs
@@ -386,10 +388,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function continueDialog()
+      content: 'function continueDialog(): Promise<DialogTurnResult>'
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'emitEvent(string, any, boolean, boolean)'
     uid: botbuilder-dialogs.WaterfallStepContext.emitEvent
     package: botbuilder-dialogs
@@ -402,7 +404,7 @@ methods:
     syntax:
       content: >-
         function emitEvent(name: string, value?: any, bubble?: boolean,
-        fromLeaf?: boolean)
+        fromLeaf?: boolean): Promise<boolean>
       parameters:
         - id: name
           type: string
@@ -419,8 +421,8 @@ methods:
           type: boolean
           description: Optional. Whether the event is emitted from a leaf node.
       return:
-        type: Promise&lt;boolean&gt;
         description: '`true` if the event was handled.'
+        type: Promise&lt;boolean&gt;
   - name: endDialog(any)
     uid: botbuilder-dialogs.WaterfallStepContext.endDialog
     package: botbuilder-dialogs
@@ -476,7 +478,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function endDialog(result?: any)'
+      content: 'function endDialog(result?: any): Promise<DialogTurnResult>'
       parameters:
         - id: result
           type: any
@@ -486,8 +488,8 @@ methods:
                  on the stack, or if this was the last dialog on the stack, a parent dialog context or
                  the bot's turn handler.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: findDialog(string)
     uid: botbuilder-dialogs.WaterfallStepContext.findDialog
     package: botbuilder-dialogs
@@ -508,15 +510,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findDialog(dialogId: string)'
+      content: 'function findDialog(dialogId: string): Dialog | undefined'
       parameters:
         - id: dialogId
           type: string
           description: |
             ID of the dialog to search for.
       return:
-        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
         description: ''
+        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
   - name: getLocale()
     uid: botbuilder-dialogs.WaterfallStepContext.getLocale
     package: botbuilder-dialogs
@@ -525,30 +527,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getLocale()
+      content: 'function getLocale(): string'
       return:
-        type: string
         description: a locale string.
-  - name: next(any)
-    uid: botbuilder-dialogs.WaterfallStepContext.next
-    package: botbuilder-dialogs
-    summary: Skips to the next waterfall step.
-    remarks: |-
-      ```JavaScript
-      return await step.skip();
-      ```
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function next(result?: any)'
-      parameters:
-        - id: result
-          type: any
-          description: |
-            (Optional) result to pass to the next step.
-      return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
+        type: string
   - name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
     uid: botbuilder-dialogs.WaterfallStepContext.prompt
     package: botbuilder-dialogs
@@ -574,7 +556,7 @@ methods:
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions)
+        Partial<Activity> | PromptOptions): Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -588,8 +570,8 @@ methods:
                  the activity to send as the initial prompt, or
                  the object with which to format the prompt dialog.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: >-
       prompt(string, string | Partial<Activity> | PromptOptions, string |
       Choice[])
@@ -617,7 +599,8 @@ methods:
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions, choices: string | Choice[])
+        Partial<Activity> | PromptOptions, choices: string | Choice[]):
+        Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -639,8 +622,8 @@ methods:
             Optional. Array of choices for the user to choose from,
             for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'replaceDialog(string, object)'
     uid: botbuilder-dialogs.WaterfallStepContext.replaceDialog
     package: botbuilder-dialogs
@@ -670,7 +653,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function replaceDialog(dialogId: string, options?: object)'
+      content: >-
+        function replaceDialog(dialogId: string, options?: object):
+        Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -680,8 +665,8 @@ methods:
           description: |
             Optional. Arguments to pass into the new dialog when it starts.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: repromptDialog()
     uid: botbuilder-dialogs.WaterfallStepContext.repromptDialog
     package: botbuilder-dialogs
@@ -701,8 +686,29 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function repromptDialog()
+      content: 'function repromptDialog(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
+methods:
+  - name: next(any)
+    uid: botbuilder-dialogs.WaterfallStepContext.next
+    package: botbuilder-dialogs
+    summary: Skips to the next waterfall step.
+    remarks: |-
+      ```JavaScript
+      return await step.skip();
+      ```
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function next(result?: any): Promise<DialogTurnResult>'
+      parameters:
+        - id: result
+          type: any
+          description: |
+            (Optional) result to pass to the next step.
+      return:
+        description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.DialogContext" />

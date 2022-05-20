@@ -24,9 +24,9 @@ properties:
     syntax:
       content: 'constructor: this'
       return:
-        type: this
         description: ''
-methods:
+        type: this
+inheritedMethods:
   - name: 'addListener(string | symbol, (args: any[]) => void)'
     uid: botframework-streaming.INodeServer.addListener
     package: botframework-streaming
@@ -37,7 +37,7 @@ methods:
     syntax:
       content: >-
         function addListener(event: string | symbol, listener: (args: any[]) =>
-        void)
+        void): this
       parameters:
         - id: event
           type: string | symbol
@@ -46,24 +46,8 @@ methods:
           type: '(args: any[]) =&gt; void'
           description: ''
       return:
-        type: this
         description: ''
-  - name: 'close((err?: Error) => void)'
-    uid: botframework-streaming.INodeServer.close
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function close(callback?: (err?: Error) => void)'
-      parameters:
-        - id: callback
-          type: '(err?: Error) =&gt; void'
-          description: ''
-      return:
         type: this
-        description: ''
   - name: 'emit(string | symbol, any[])'
     uid: botframework-streaming.INodeServer.emit
     package: botframework-streaming
@@ -72,7 +56,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function emit(event: string | symbol, args: any[])'
+      content: 'function emit(event: string | symbol, args: any[]): boolean'
       parameters:
         - id: event
           type: string | symbol
@@ -81,8 +65,8 @@ methods:
           type: 'any[]'
           description: ''
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: eventNames()
     uid: botframework-streaming.INodeServer.eventNames
     package: botframework-streaming
@@ -91,10 +75,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function eventNames()
+      content: 'function eventNames(): Array<string | symbol>'
       return:
-        type: Array&lt;string | symbol&gt;
         description: ''
+        type: Array&lt;string | symbol&gt;
   - name: getMaxListeners()
     uid: botframework-streaming.INodeServer.getMaxListeners
     package: botframework-streaming
@@ -103,10 +87,233 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getMaxListeners()
+      content: 'function getMaxListeners(): number'
       return:
-        type: number
         description: ''
+        type: number
+  - name: listenerCount(string | symbol)
+    uid: botframework-streaming.INodeServer.listenerCount
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function listenerCount(type: string | symbol): number'
+      parameters:
+        - id: type
+          type: string | symbol
+          description: ''
+      return:
+        description: ''
+        type: number
+  - name: listeners(string | symbol)
+    uid: botframework-streaming.INodeServer.listeners
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function listeners(event: string | symbol): Function[]'
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+      return:
+        description: ''
+        type: 'Function[]'
+  - name: 'off(string | symbol, (args: any[]) => void)'
+    uid: botframework-streaming.INodeServer.off
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function off(event: string | symbol, listener: (args: any[]) => void):
+        this
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+        - id: listener
+          type: '(args: any[]) =&gt; void'
+          description: ''
+      return:
+        description: ''
+        type: this
+  - name: 'on(string | symbol, (args: any[]) => void)'
+    uid: botframework-streaming.INodeServer.on
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function on(event: string | symbol, listener: (args: any[]) => void):
+        this
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+        - id: listener
+          type: '(args: any[]) =&gt; void'
+          description: ''
+      return:
+        description: ''
+        type: this
+  - name: 'once(string | symbol, (args: any[]) => void)'
+    uid: botframework-streaming.INodeServer.once
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function once(event: string | symbol, listener: (args: any[]) => void):
+        this
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+        - id: listener
+          type: '(args: any[]) =&gt; void'
+          description: ''
+      return:
+        description: ''
+        type: this
+  - name: 'prependListener(string | symbol, (args: any[]) => void)'
+    uid: botframework-streaming.INodeServer.prependListener
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function prependListener(event: string | symbol, listener: (args: any[])
+        => void): this
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+        - id: listener
+          type: '(args: any[]) =&gt; void'
+          description: ''
+      return:
+        description: ''
+        type: this
+  - name: 'prependOnceListener(string | symbol, (args: any[]) => void)'
+    uid: botframework-streaming.INodeServer.prependOnceListener
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function prependOnceListener(event: string | symbol, listener: (args:
+        any[]) => void): this
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+        - id: listener
+          type: '(args: any[]) =&gt; void'
+          description: ''
+      return:
+        description: ''
+        type: this
+  - name: rawListeners(string | symbol)
+    uid: botframework-streaming.INodeServer.rawListeners
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function rawListeners(event: string | symbol): Function[]'
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+      return:
+        description: ''
+        type: 'Function[]'
+  - name: removeAllListeners(string | symbol)
+    uid: botframework-streaming.INodeServer.removeAllListeners
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function removeAllListeners(event?: string | symbol): this'
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+      return:
+        description: ''
+        type: this
+  - name: 'removeListener(string | symbol, (args: any[]) => void)'
+    uid: botframework-streaming.INodeServer.removeListener
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function removeListener(event: string | symbol, listener: (args: any[])
+        => void): this
+      parameters:
+        - id: event
+          type: string | symbol
+          description: ''
+        - id: listener
+          type: '(args: any[]) =&gt; void'
+          description: ''
+      return:
+        description: ''
+        type: this
+  - name: setMaxListeners(number)
+    uid: botframework-streaming.INodeServer.setMaxListeners
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function setMaxListeners(n: number): this'
+      parameters:
+        - id: 'n'
+          type: number
+          description: ''
+      return:
+        description: ''
+        type: this
+methods:
+  - name: 'close((err?: Error) => void)'
+    uid: botframework-streaming.INodeServer.close
+    package: botframework-streaming
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function close(callback?: (err?: Error) => void): this'
+      parameters:
+        - id: callback
+          type: '(err?: Error) =&gt; void'
+          description: ''
+      return:
+        description: ''
+        type: this
   - name: 'listen(number, string, number, () => void)'
     uid: botframework-streaming.INodeServer.listen
     package: botframework-streaming
@@ -117,7 +324,7 @@ methods:
     syntax:
       content: >-
         function listen(port?: number, hostname?: string, backlog?: number,
-        listeningListener?: () => void)
+        listeningListener?: () => void): this
       parameters:
         - id: port
           type: number
@@ -132,8 +339,8 @@ methods:
           type: () =&gt; void
           description: ''
       return:
-        type: this
         description: ''
+        type: this
   - name: 'listen(string, () => void)'
     uid: botframework-streaming.INodeServer.listen_1
     package: botframework-streaming
@@ -142,7 +349,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function listen(path: string, listeningListener?: () => void)'
+      content: 'function listen(path: string, listeningListener?: () => void): this'
       parameters:
         - id: path
           type: string
@@ -151,206 +358,6 @@ methods:
           type: () =&gt; void
           description: ''
       return:
+        description: ''
         type: this
-        description: ''
-  - name: listenerCount(string | symbol)
-    uid: botframework-streaming.INodeServer.listenerCount
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function listenerCount(type: string | symbol)'
-      parameters:
-        - id: type
-          type: string | symbol
-          description: ''
-      return:
-        type: number
-        description: ''
-  - name: listeners(string | symbol)
-    uid: botframework-streaming.INodeServer.listeners
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function listeners(event: string | symbol)'
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-      return:
-        type: 'Function[]'
-        description: ''
-  - name: 'off(string | symbol, (args: any[]) => void)'
-    uid: botframework-streaming.INodeServer.off
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function off(event: string | symbol, listener: (args: any[]) => void)'
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-        - id: listener
-          type: '(args: any[]) =&gt; void'
-          description: ''
-      return:
-        type: this
-        description: ''
-  - name: 'on(string | symbol, (args: any[]) => void)'
-    uid: botframework-streaming.INodeServer.on
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function on(event: string | symbol, listener: (args: any[]) => void)'
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-        - id: listener
-          type: '(args: any[]) =&gt; void'
-          description: ''
-      return:
-        type: this
-        description: ''
-  - name: 'once(string | symbol, (args: any[]) => void)'
-    uid: botframework-streaming.INodeServer.once
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function once(event: string | symbol, listener: (args: any[]) => void)'
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-        - id: listener
-          type: '(args: any[]) =&gt; void'
-          description: ''
-      return:
-        type: this
-        description: ''
-  - name: 'prependListener(string | symbol, (args: any[]) => void)'
-    uid: botframework-streaming.INodeServer.prependListener
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function prependListener(event: string | symbol, listener: (args: any[])
-        => void)
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-        - id: listener
-          type: '(args: any[]) =&gt; void'
-          description: ''
-      return:
-        type: this
-        description: ''
-  - name: 'prependOnceListener(string | symbol, (args: any[]) => void)'
-    uid: botframework-streaming.INodeServer.prependOnceListener
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function prependOnceListener(event: string | symbol, listener: (args:
-        any[]) => void)
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-        - id: listener
-          type: '(args: any[]) =&gt; void'
-          description: ''
-      return:
-        type: this
-        description: ''
-  - name: rawListeners(string | symbol)
-    uid: botframework-streaming.INodeServer.rawListeners
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function rawListeners(event: string | symbol)'
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-      return:
-        type: 'Function[]'
-        description: ''
-  - name: removeAllListeners(string | symbol)
-    uid: botframework-streaming.INodeServer.removeAllListeners
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function removeAllListeners(event?: string | symbol)'
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-      return:
-        type: this
-        description: ''
-  - name: 'removeListener(string | symbol, (args: any[]) => void)'
-    uid: botframework-streaming.INodeServer.removeListener
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function removeListener(event: string | symbol, listener: (args: any[])
-        => void)
-      parameters:
-        - id: event
-          type: string | symbol
-          description: ''
-        - id: listener
-          type: '(args: any[]) =&gt; void'
-          description: ''
-      return:
-        type: this
-        description: ''
-  - name: setMaxListeners(number)
-    uid: botframework-streaming.INodeServer.setMaxListeners
-    package: botframework-streaming
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function setMaxListeners(n: number)'
-      parameters:
-        - id: 'n'
-          type: number
-          description: ''
-      return:
-        type: this
-        description: ''
 extends: <xref uid="botframework-streaming.IEventEmitter" />

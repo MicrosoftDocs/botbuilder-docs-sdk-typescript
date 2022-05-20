@@ -117,8 +117,8 @@ properties:
     syntax:
       content: boolean logPersonalInformation
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: telemetryClient
     uid: botbuilder-ai.LuisRecognizer.telemetryClient
     package: botbuilder-ai
@@ -130,8 +130,8 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        type: BotTelemetryClient
         description: ''
+        type: BotTelemetryClient
 methods:
   - name: >-
       recognize(DialogContext | TurnContext, Record<string, string>,
@@ -148,7 +148,8 @@ methods:
         function recognize(context: DialogContext | TurnContext,
         telemetryProperties?: Record<string, string>, telemetryMetrics?:
         Record<string, number>, options?: LuisRecognizerOptionsV2 |
-        LuisRecognizerOptionsV3 | LuisPredictionOptions)
+        LuisRecognizerOptionsV3 | LuisPredictionOptions):
+        Promise<RecognizerResult>
       parameters:
         - id: context
           type: DialogContext | TurnContext
@@ -173,8 +174,8 @@ methods:
             Should conform to the [LuisRecognizerOptionsV2] or
             [LuisRecognizerOptionsV3] definition.
       return:
-        type: Promise&lt;RecognizerResult&gt;
         description: A promise that resolved to the recognizer result.
+        type: Promise&lt;RecognizerResult&gt;
   - name: >-
       recognize(string, LuisRecognizerOptionsV2 | LuisRecognizerOptionsV3 |
       LuisPredictionOptions)
@@ -187,7 +188,8 @@ methods:
     syntax:
       content: >-
         function recognize(utterance: string, options?: LuisRecognizerOptionsV2
-        | LuisRecognizerOptionsV3 | LuisPredictionOptions)
+        | LuisRecognizerOptionsV3 | LuisPredictionOptions):
+        Promise<RecognizerResult>
       parameters:
         - id: utterance
           type: string
@@ -202,8 +204,8 @@ methods:
             Should conform to the [LuisRecognizerOptionsV2] or
             [LuisRecognizerOptionsV3] definition.
       return:
-        type: Promise&lt;RecognizerResult&gt;
         description: ''
+        type: Promise&lt;RecognizerResult&gt;
   - name: 'sortedIntents(RecognizerResult, number)'
     uid: botbuilder-ai.LuisRecognizer.sortedIntents
     package: botbuilder-ai
@@ -218,7 +220,7 @@ methods:
     syntax:
       content: >-
         static function sortedIntents(result?: RecognizerResult, minScore?:
-        number)
+        number): Array<{ intent: string, score: number }>
       parameters:
         - id: result
           type: RecognizerResult
@@ -227,8 +229,8 @@ methods:
           type: number
           description: 'minimum score threshold, lower score results will be filtered'
       return:
-        type: Array&lt;Object&gt;
         description: '>} sorted result intents'
+        type: 'Array&lt;{ intent: string, score: number }&gt;'
   - name: 'topIntent(RecognizerResult, string, number)'
     uid: botbuilder-ai.LuisRecognizer.topIntent
     package: botbuilder-ai
@@ -239,7 +241,7 @@ methods:
     syntax:
       content: >-
         static function topIntent(results?: RecognizerResult, defaultIntent?:
-        string, minScore?: number)
+        string, minScore?: number): string
       parameters:
         - id: results
           type: RecognizerResult
@@ -256,5 +258,5 @@ methods:
             top intent. If all intents in the set are below this threshold then
             the `defaultIntent` will be returned.  Defaults to a value of `0.0`.
       return:
-        type: string
         description: the top intent
+        type: string

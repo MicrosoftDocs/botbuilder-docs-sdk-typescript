@@ -43,8 +43,8 @@ properties:
     syntax:
       content: 'public expressionText: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: value
     uid: adaptive-expressions.ExpressionProperty.value
     package: adaptive-expressions
@@ -56,8 +56,8 @@ properties:
     syntax:
       content: 'public value: T'
       return:
-        type: T
         description: ''
+        type: T
 methods:
   - name: getValue(object)
     uid: adaptive-expressions.ExpressionProperty.getValue
@@ -67,14 +67,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getValue(data: object)'
+      content: 'function getValue(data: object): T'
       parameters:
         - id: data
           type: object
           description: Data to use for expression binding.
       return:
-        type: T
         description: The value.
+        type: T
   - name: setValue(T | string | Expression)
     uid: adaptive-expressions.ExpressionProperty.setValue
     package: adaptive-expressions
@@ -97,10 +97,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function toExpression()
+      content: 'function toExpression(): Expression'
       return:
+        description: The existing expression if the value is non-complex type.
         type: <xref uid="adaptive-expressions.Expression" />
-        description: ''
   - name: toString()
     uid: adaptive-expressions.ExpressionProperty.toString
     package: adaptive-expressions
@@ -109,10 +109,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function toString()
+      content: 'function toString(): string'
       return:
+        description: The converted string.
         type: string
-        description: ''
   - name: tryGetValue(object)
     uid: adaptive-expressions.ExpressionProperty.tryGetValue
     package: adaptive-expressions
@@ -121,11 +121,11 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function tryGetValue(data: object)'
+      content: 'function tryGetValue(data: object): { error: Error, value: T }'
       parameters:
         - id: data
           type: object
           description: Data to use for expression binding.
       return:
-        type: Object
         description: the value or an error.
+        type: '{ error: Error, value: T }'

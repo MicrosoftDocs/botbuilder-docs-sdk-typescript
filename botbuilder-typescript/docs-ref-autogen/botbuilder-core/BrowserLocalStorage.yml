@@ -34,7 +34,7 @@ constructors:
     isDeprecated: false
     syntax:
       content: new BrowserLocalStorage()
-methods:
+inheritedMethods:
   - name: 'delete(string[])'
     uid: botbuilder-core.BrowserLocalStorage.delete
     package: botbuilder-core
@@ -43,7 +43,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delete(keys: string[])'
+      content: 'function delete(keys: string[]): Promise<void>'
       parameters:
         - id: keys
           type: 'string[]'
@@ -51,8 +51,8 @@ methods:
             Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
             delete.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'read(string[])'
     uid: botbuilder-core.BrowserLocalStorage.read
     package: botbuilder-core
@@ -61,7 +61,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function read(keys: string[])'
+      content: 'function read(keys: string[]): Promise<StoreItems>'
       parameters:
         - id: keys
           type: 'string[]'
@@ -69,8 +69,8 @@ methods:
             Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
             read.
       return:
-        type: Promise&lt;<xref uid="botbuilder-core.StoreItems" />&gt;
         description: The read items.
+        type: Promise&lt;<xref uid="botbuilder-core.StoreItems" />&gt;
   - name: write(StoreItems)
     uid: botbuilder-core.BrowserLocalStorage.write
     package: botbuilder-core
@@ -79,7 +79,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function write(changes: StoreItems)'
+      content: 'function write(changes: StoreItems): Promise<void>'
       parameters:
         - id: changes
           type: <xref uid="botbuilder-core.StoreItems" />
@@ -87,6 +87,6 @@ methods:
             The [StoreItems](xref:botbuilder-core.StoreItems) to write, indexed
             by key.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
 extends: <xref uid="botbuilder-core.MemoryStorage" />

@@ -41,8 +41,8 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: context
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.context
     package: botbuilder-dialogs-adaptive
@@ -54,8 +54,8 @@ properties:
     syntax:
       content: 'context: ObjectExpression<Record<string, unknown>>'
       return:
-        type: 'ObjectExpression&lt;Record&lt;string, unknown&gt;&gt;'
         description: ''
+        type: 'ObjectExpression&lt;Record&lt;string, unknown&gt;&gt;'
   - name: EndOfTurn
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.EndOfTurn
     package: botbuilder-dialogs-adaptive
@@ -72,8 +72,8 @@ properties:
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
-        type: DialogTurnResult
         description: ''
+        type: DialogTurnResult
   - name: id
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.id
     package: botbuilder-dialogs-adaptive
@@ -85,8 +85,8 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -98,8 +98,8 @@ properties:
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
-        type: BotTelemetryClient
         description: ''
+        type: BotTelemetryClient
   - name: transcript
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.transcript
     package: botbuilder-dialogs-adaptive
@@ -111,27 +111,9 @@ properties:
     syntax:
       content: 'transcript: ObjectExpression<Transcript>'
       return:
-        type: ObjectExpression&lt;Transcript&gt;
         description: ''
-methods:
-  - name: beginDialog(DialogContext)
-    uid: botbuilder-dialogs-adaptive.SendHandoffActivity.beginDialog
-    package: botbuilder-dialogs-adaptive
-    summary: >-
-      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
-      the dialog stack.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function beginDialog(dc: DialogContext)'
-      parameters:
-        - id: dc
-          type: DialogContext
-          description: dialog context
-      return:
-        type: Promise&lt;DialogTurnResult&lt;ResourceResponse&gt;&gt;
-        description: result of sending handoff activity
+        type: ObjectExpression&lt;Transcript&gt;
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.configure
     package: botbuilder-dialogs-adaptive
@@ -140,15 +122,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.continueDialog
     package: botbuilder-dialogs-adaptive
@@ -179,15 +161,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext)'
+      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
       parameters:
         - id: dc
           type: DialogContext
           description: |
             The context for the current dialog turn.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.endDialog
     package: botbuilder-dialogs-adaptive
@@ -222,7 +204,7 @@ methods:
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
+        reason: DialogReason): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -235,24 +217,8 @@ methods:
           description: |
             The reason the dialog is ending.
       return:
+        description: ''
         type: Promise&lt;void&gt;
-        description: ''
-  - name: getConverter(Object)
-    uid: botbuilder-dialogs-adaptive.SendHandoffActivity.getConverter
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getConverter(property: Object)'
-      parameters:
-        - id: property
-          type: Object
-          description: ''
-      return:
-        type: Converter | ConverterFactory
-        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.getVersion
     package: botbuilder-dialogs-adaptive
@@ -278,10 +244,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: ''
+        type: string
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.onDialogEvent
     package: botbuilder-dialogs-adaptive
@@ -292,7 +258,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      content: >-
+        function onDialogEvent(dc: DialogContext, e: DialogEvent):
+        Promise<boolean>
       parameters:
         - id: dc
           type: DialogContext
@@ -301,10 +269,10 @@ methods:
           type: DialogEvent
           description: The event being raised.
       return:
-        type: Promise&lt;boolean&gt;
         description: >-
           True if the event is handled by the current dialog and bubbling should
           stop.
+        type: Promise&lt;boolean&gt;
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.repromptDialog
     package: botbuilder-dialogs-adaptive
@@ -332,7 +300,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      content: >-
+        function repromptDialog(context: TurnContext, instance: DialogInstance):
+        Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -342,8 +312,8 @@ methods:
           description: |
             Current state information for this dialog.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs-adaptive.SendHandoffActivity.resumeDialog
     package: botbuilder-dialogs-adaptive
@@ -389,7 +359,7 @@ methods:
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any)
+        any): Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: DialogContext
@@ -404,6 +374,43 @@ methods:
           description: |
             Optional. The return value, if any, from the dialog that ended.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
+methods:
+  - name: beginDialog(DialogContext)
+    uid: botbuilder-dialogs-adaptive.SendHandoffActivity.beginDialog
+    package: botbuilder-dialogs-adaptive
+    summary: >-
+      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
+      the dialog stack.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function beginDialog(dc: DialogContext):
+        Promise<DialogTurnResult<ResourceResponse>>
+      parameters:
+        - id: dc
+          type: DialogContext
+          description: dialog context
+      return:
+        description: result of sending handoff activity
+        type: Promise&lt;DialogTurnResult&lt;ResourceResponse&gt;&gt;
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.SendHandoffActivity.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      parameters:
+        - id: property
+          type: Object
+          description: The key of the conditional selector configuration.
+      return:
+        description: The converter for the selector configuration.
+        type: Converter | ConverterFactory
 extends: Dialog

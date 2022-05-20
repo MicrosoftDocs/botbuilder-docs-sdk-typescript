@@ -42,8 +42,8 @@ properties:
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
   - name: id
     uid: botbuilder-dialogs.Dialog.id
     package: botbuilder-dialogs
@@ -57,8 +57,8 @@ properties:
     syntax:
       content: string id
       return:
-        type: string
         description: ''
+        type: string
   - name: telemetryClient
     uid: botbuilder-dialogs.Dialog.telemetryClient
     package: botbuilder-dialogs
@@ -72,8 +72,44 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        type: BotTelemetryClient
         description: ''
+        type: BotTelemetryClient
+inheritedMethods:
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs.Dialog.configure
+    package: botbuilder-dialogs
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>): this'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        description: ''
+        type: this
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.Dialog.getConverter
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        description: ''
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
 methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs.Dialog.beginDialog
@@ -108,7 +144,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function beginDialog(dc: DialogContext, options?: O)'
+      content: >-
+        function beginDialog(dc: DialogContext, options?: O):
+        Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -118,25 +156,8 @@ methods:
           description: |
             Optional. Arguments to use when the dialog starts.
       return:
+        description: ''
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: ''
-  - name: 'configure(Record<string, unknown>)'
-    uid: botbuilder-dialogs.Dialog.configure
-    package: botbuilder-dialogs
-    summary: Fluent method for configuring the object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function configure(config: Record<string, unknown>)'
-      parameters:
-        - id: config
-          type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
-      return:
-        type: this
-        description: ''
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.Dialog.continueDialog
     package: botbuilder-dialogs
@@ -167,15 +188,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext)'
+      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: |
             The context for the current dialog turn.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.Dialog.endDialog
     package: botbuilder-dialogs
@@ -210,7 +231,7 @@ methods:
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
+        reason: DialogReason): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -223,26 +244,8 @@ methods:
           description: |
             The reason the dialog is ending.
       return:
+        description: ''
         type: Promise&lt;void&gt;
-        description: ''
-  - name: getConverter(string)
-    uid: botbuilder-dialogs.Dialog.getConverter
-    package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getConverter(_property: string)'
-      parameters:
-        - id: _property
-          type: string
-          description: ''
-      return:
-        type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
-        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs.Dialog.getVersion
     package: botbuilder-dialogs
@@ -268,10 +271,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: ''
+        type: string
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.Dialog.onDialogEvent
     package: botbuilder-dialogs
@@ -282,7 +285,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      content: >-
+        function onDialogEvent(dc: DialogContext, e: DialogEvent):
+        Promise<boolean>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -291,10 +296,10 @@ methods:
           type: <xref uid="botbuilder-dialogs.DialogEvent" />
           description: The event being raised.
       return:
-        type: Promise&lt;boolean&gt;
         description: >-
           True if the event is handled by the current dialog and bubbling should
           stop.
+        type: Promise&lt;boolean&gt;
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs.Dialog.repromptDialog
     package: botbuilder-dialogs
@@ -322,7 +327,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      content: >-
+        function repromptDialog(context: TurnContext, instance: DialogInstance):
+        Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -332,8 +339,8 @@ methods:
           description: |
             Current state information for this dialog.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.Dialog.resumeDialog
     package: botbuilder-dialogs
@@ -379,7 +386,7 @@ methods:
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any)
+        any): Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -394,6 +401,6 @@ methods:
           description: |
             Optional. The return value, if any, from the dialog that ended.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.Configurable" />

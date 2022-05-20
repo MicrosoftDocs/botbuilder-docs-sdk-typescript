@@ -38,15 +38,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delete(keys: string[])'
+      content: 'function delete(keys: string[]): Promise<void>'
       parameters:
         - id: keys
           type: 'string[]'
           description: |
             Array of Ids for the items to be deleted.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: initialize()
     uid: botbuilder-azure.CosmosDbPartitionedStorage.initialize
     package: botbuilder-azure
@@ -55,10 +55,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function initialize()
+      content: 'function initialize(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'read(string[])'
     uid: botbuilder-azure.CosmosDbPartitionedStorage.read
     package: botbuilder-azure
@@ -67,14 +67,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function read(keys: string[])'
+      content: 'function read(keys: string[]): Promise<StoreItems>'
       parameters:
         - id: keys
           type: 'string[]'
           description: A collection of Ids for each item to be retrieved.
       return:
-        type: Promise&lt;StoreItems&gt;
         description: The read items.
+        type: Promise&lt;StoreItems&gt;
   - name: write(StoreItems)
     uid: botbuilder-azure.CosmosDbPartitionedStorage.write
     package: botbuilder-azure
@@ -83,12 +83,12 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function write(changes: StoreItems)'
+      content: 'function write(changes: StoreItems): Promise<void>'
       parameters:
         - id: changes
           type: StoreItems
           description: |
             Dictionary of items to be inserted or updated indexed by key.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

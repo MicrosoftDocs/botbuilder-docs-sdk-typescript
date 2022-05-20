@@ -42,8 +42,8 @@ properties:
         public static activityAttachmentFunctionName: "ActivityAttachment" =
         "ActivityAttachment"
       return:
-        type: '"ActivityAttachment"'
         description: ''
+        type: '"ActivityAttachment"'
   - name: expandTextFunctionName
     uid: botbuilder-lg.Evaluator.expandTextFunctionName
     package: botbuilder-lg
@@ -55,8 +55,8 @@ properties:
     syntax:
       content: 'public static expandTextFunctionName: "expandText" = "expandText"'
       return:
-        type: '"expandText"'
         description: ''
+        type: '"expandText"'
   - name: expressionParser
     uid: botbuilder-lg.Evaluator.expressionParser
     package: botbuilder-lg
@@ -68,8 +68,8 @@ properties:
     syntax:
       content: 'public expressionParser: ExpressionParser'
       return:
-        type: ExpressionParser
         description: ''
+        type: ExpressionParser
   - name: fromFileFunctionName
     uid: botbuilder-lg.Evaluator.fromFileFunctionName
     package: botbuilder-lg
@@ -81,8 +81,8 @@ properties:
     syntax:
       content: 'public static fromFileFunctionName: "fromFile" = "fromFile"'
       return:
-        type: '"fromFile"'
         description: ''
+        type: '"fromFile"'
   - name: isTemplateFunctionName
     uid: botbuilder-lg.Evaluator.isTemplateFunctionName
     package: botbuilder-lg
@@ -94,8 +94,8 @@ properties:
     syntax:
       content: 'public static isTemplateFunctionName: "isTemplate" = "isTemplate"'
       return:
-        type: '"isTemplate"'
         description: ''
+        type: '"isTemplate"'
   - name: LGType
     uid: botbuilder-lg.Evaluator.LGType
     package: botbuilder-lg
@@ -107,8 +107,8 @@ properties:
     syntax:
       content: 'public static LGType: "lgType" = "lgType"'
       return:
-        type: '"lgType"'
         description: ''
+        type: '"lgType"'
   - name: ReExecuteSuffix
     uid: botbuilder-lg.Evaluator.ReExecuteSuffix
     package: botbuilder-lg
@@ -120,8 +120,8 @@ properties:
     syntax:
       content: 'public static ReExecuteSuffix: "!" = "!"'
       return:
-        type: '"!"'
         description: ''
+        type: '"!"'
   - name: templateFunctionName
     uid: botbuilder-lg.Evaluator.templateFunctionName
     package: botbuilder-lg
@@ -133,8 +133,8 @@ properties:
     syntax:
       content: 'public static templateFunctionName: "template" = "template"'
       return:
-        type: '"template"'
         description: ''
+        type: '"template"'
   - name: templateMap
     uid: botbuilder-lg.Evaluator.templateMap
     package: botbuilder-lg
@@ -146,8 +146,8 @@ properties:
     syntax:
       content: 'public templateMap: [key: string]: Template'
       return:
-        type: '[key: string]\: <xref uid="botbuilder-lg.Template" />'
         description: ''
+        type: '[key: string]\: <xref uid="botbuilder-lg.Template" />'
   - name: templates
     uid: botbuilder-lg.Evaluator.templates
     package: botbuilder-lg
@@ -159,8 +159,94 @@ properties:
     syntax:
       content: 'public templates: Templates'
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: ''
+        type: <xref uid="botbuilder-lg.Templates" />
+inheritedMethods:
+  - name: visit(ParseTree)
+    uid: botbuilder-lg.Evaluator.visit
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation calls <xref:ParseTree%23accept> on the
+      specified tree.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visit(tree: ParseTree): unknown'
+      parameters:
+        - id: tree
+          type: ParseTree
+          description: ''
+      return:
+        description: ''
+        type: unknown
+  - name: visitChildren(RuleNode)
+    uid: botbuilder-lg.Evaluator.visitChildren
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation initializes the aggregate result to
+      [defaultResult()](xref:%23defaultResult). Before visiting each child, it
+      calls [shouldVisitNextChild](xref:%23shouldVisitNextChild); if the result
+      is `false` no more children are visited and the current aggregate
+      result is returned. After visiting a child, the aggregate result is
+      updated by calling [aggregateResult](xref:%23aggregateResult) with the
+      previous aggregate result and the result of visiting the child.
+
+      The default implementation is not safe for use in visitors that modify
+      the tree structure. Visitors that modify the tree should override this
+      method to behave properly in respect to the specific algorithm in use.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitChildren(node: RuleNode): unknown'
+      parameters:
+        - id: node
+          type: RuleNode
+          description: ''
+      return:
+        description: ''
+        type: unknown
+  - name: visitErrorNode(ErrorNode)
+    uid: botbuilder-lg.Evaluator.visitErrorNode
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitErrorNode(node: ErrorNode): unknown'
+      parameters:
+        - id: node
+          type: ErrorNode
+          description: ''
+      return:
+        description: ''
+        type: unknown
+  - name: visitTerminal(TerminalNode)
+    uid: botbuilder-lg.Evaluator.visitTerminal
+    package: botbuilder-lg
+    summary: |
+      {@inheritDoc}
+      The default implementation returns the result of
+      [defaultResult](xref:%23defaultResult).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function visitTerminal(node: TerminalNode): unknown'
+      parameters:
+        - id: node
+          type: TerminalNode
+          description: ''
+      return:
+        description: ''
+        type: unknown
 methods:
   - name: 'checkExpressionResult(string, string, unknown, string, string, string)'
     uid: botbuilder-lg.Evaluator.checkExpressionResult
@@ -202,7 +288,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function concatErrorMsg(firstError: string, secondError: string)'
+      content: >-
+        static function concatErrorMsg(firstError: string, secondError: string):
+        string
       parameters:
         - id: firstError
           type: string
@@ -211,8 +299,8 @@ methods:
           type: string
           description: Second error message to concatenate.
       return:
-        type: string
         description: The concatenated error messages.
+        type: string
   - name: 'constructScope(string, unknown[], Template[])'
     uid: botbuilder-lg.Evaluator.constructScope
     package: botbuilder-lg
@@ -228,7 +316,7 @@ methods:
     syntax:
       content: >-
         function constructScope(inputTemplateName: string, args: unknown[],
-        allTemplates: Template[])
+        allTemplates: Template[]): MemoryInterface
       parameters:
         - id: inputTemplateName
           type: string
@@ -240,13 +328,13 @@ methods:
           type: '<xref uid="botbuilder-lg.Template" />[]'
           description: All templates.
       return:
-        type: MemoryInterface
         description: >-
           The current scope if the number of arguments is 0, otherwise, returns
           a [CustomizedMemory](xref:botbuilder-lg.CustomizedMemory)
 
           with the mapping of the parameter name to the argument value added to
           the scope.
+        type: MemoryInterface
   - name: 'evaluateTemplate(string, unknown)'
     uid: botbuilder-lg.Evaluator.evaluateTemplate
     package: botbuilder-lg
@@ -255,7 +343,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function evaluateTemplate(inputTemplateName: string, scope: unknown)'
+      content: >-
+        function evaluateTemplate(inputTemplateName: string, scope: unknown):
+        unknown
       parameters:
         - id: inputTemplateName
           type: string
@@ -264,74 +354,8 @@ methods:
           type: unknown
           description: Scope.
       return:
-        type: unknown
         description: Evaluate result.
-  - name: visit(ParseTree)
-    uid: botbuilder-lg.Evaluator.visit
-    package: botbuilder-lg
-    summary: |
-      {@inheritDoc}
-      The default implementation calls <xref:ParseTree%23accept> on the
-      specified tree.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visit(tree: ParseTree)'
-      parameters:
-        - id: tree
-          type: ParseTree
-          description: ''
-      return:
         type: unknown
-        description: ''
-  - name: visitChildren(RuleNode)
-    uid: botbuilder-lg.Evaluator.visitChildren
-    package: botbuilder-lg
-    summary: |
-      {@inheritDoc}
-      The default implementation initializes the aggregate result to
-      [defaultResult()](xref:%23defaultResult). Before visiting each child, it
-      calls [shouldVisitNextChild](xref:%23shouldVisitNextChild); if the result
-      is `false` no more children are visited and the current aggregate
-      result is returned. After visiting a child, the aggregate result is
-      updated by calling [aggregateResult](xref:%23aggregateResult) with the
-      previous aggregate result and the result of visiting the child.
-
-      The default implementation is not safe for use in visitors that modify
-      the tree structure. Visitors that modify the tree should override this
-      method to behave properly in respect to the specific algorithm in use.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitChildren(node: RuleNode)'
-      parameters:
-        - id: node
-          type: RuleNode
-          description: ''
-      return:
-        type: unknown
-        description: ''
-  - name: visitErrorNode(ErrorNode)
-    uid: botbuilder-lg.Evaluator.visitErrorNode
-    package: botbuilder-lg
-    summary: |
-      {@inheritDoc}
-      The default implementation returns the result of
-      [defaultResult](xref:%23defaultResult).
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitErrorNode(node: ErrorNode)'
-      parameters:
-        - id: node
-          type: ErrorNode
-          description: ''
-      return:
-        type: unknown
-        description: ''
   - name: visitIfElseBody(IfElseBodyContext)
     uid: botbuilder-lg.Evaluator.visitIfElseBody
     package: botbuilder-lg
@@ -342,15 +366,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitIfElseBody(ctx: IfElseBodyContext)'
+      content: 'function visitIfElseBody(ctx: IfElseBodyContext): unknown'
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.IfElseBodyContext" />
           description: |
             The parse tree.
       return:
-        type: unknown
         description: ''
+        type: unknown
   - name: visitNormalBody(NormalBodyContext)
     uid: botbuilder-lg.Evaluator.visitNormalBody
     package: botbuilder-lg
@@ -361,14 +385,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitNormalBody(ctx: NormalBodyContext)'
+      content: 'function visitNormalBody(ctx: NormalBodyContext): unknown'
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalBodyContext" />
           description: The parse tree.
       return:
-        type: unknown
         description: The result of visiting the normal body.
+        type: unknown
   - name: visitNormalTemplateBody(NormalTemplateBodyContext)
     uid: botbuilder-lg.Evaluator.visitNormalTemplateBody
     package: botbuilder-lg
@@ -377,14 +401,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitNormalTemplateBody(ctx: NormalTemplateBodyContext)'
+      content: >-
+        function visitNormalTemplateBody(ctx: NormalTemplateBodyContext):
+        unknown
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalTemplateBodyContext" />
           description: The parse tree.
       return:
-        type: unknown
         description: The result of visiting the normal template body.
+        type: unknown
   - name: visitNormalTemplateString(NormalTemplateStringContext)
     uid: botbuilder-lg.Evaluator.visitNormalTemplateString
     package: botbuilder-lg
@@ -393,14 +419,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitNormalTemplateString(ctx: NormalTemplateStringContext)'
+      content: >-
+        function visitNormalTemplateString(ctx: NormalTemplateStringContext):
+        unknown
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.NormalTemplateStringContext" />
           description: The parse tree.
       return:
-        type: unknown
         description: The string result of visiting the normal template string.
+        type: unknown
   - name: visitStructuredTemplateBody(StructuredTemplateBodyContext)
     uid: botbuilder-lg.Evaluator.visitStructuredTemplateBody
     package: botbuilder-lg
@@ -409,14 +437,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitStructuredTemplateBody(ctx: StructuredTemplateBodyContext)'
+      content: >-
+        function visitStructuredTemplateBody(ctx:
+        StructuredTemplateBodyContext): unknown
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.StructuredTemplateBodyContext" />
           description: The parse tree.
       return:
-        type: unknown
         description: The result of visiting the structured template body.
+        type: unknown
   - name: visitSwitchCaseBody(SwitchCaseBodyContext)
     uid: botbuilder-lg.Evaluator.visitSwitchCaseBody
     package: botbuilder-lg
@@ -427,33 +457,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function visitSwitchCaseBody(ctx: SwitchCaseBodyContext)'
+      content: 'function visitSwitchCaseBody(ctx: SwitchCaseBodyContext): unknown'
       parameters:
         - id: ctx
           type: <xref uid="botbuilder-lg.SwitchCaseBodyContext" />
           description: The parse tree.
       return:
-        type: unknown
         description: The string result of visiting the switch case body.
-  - name: visitTerminal(TerminalNode)
-    uid: botbuilder-lg.Evaluator.visitTerminal
-    package: botbuilder-lg
-    summary: |
-      {@inheritDoc}
-      The default implementation returns the result of
-      [defaultResult](xref:%23defaultResult).
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function visitTerminal(node: TerminalNode)'
-      parameters:
-        - id: node
-          type: TerminalNode
-          description: ''
-      return:
         type: unknown
-        description: ''
   - name: 'wrappedEvalTextContainsExpression(string, RegExp)'
     uid: botbuilder-lg.Evaluator.wrappedEvalTextContainsExpression
     package: botbuilder-lg
@@ -462,7 +473,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function wrappedEvalTextContainsExpression(exp: string, regex: RegExp)'
+      content: >-
+        function wrappedEvalTextContainsExpression(exp: string, regex: RegExp):
+        string
       parameters:
         - id: exp
           type: string
@@ -472,6 +485,6 @@ methods:
           description: |
             Regex to select the text to replace.
       return:
-        type: string
         description: ''
+        type: string
 extends: AbstractParseTreeVisitor&lt;unknown&gt;

@@ -44,10 +44,10 @@ properties:
     syntax:
       content: boolean isConnected
       return:
-        type: boolean
         description: >-
           `true` if the underlying websocket is ready and availble to send
           messages, otherwise `false`.
+        type: boolean
 methods:
   - name: disconnect()
     uid: botframework-streaming.WebSocketServer.disconnect
@@ -66,16 +66,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function send(request: StreamingRequest)'
+      content: 'function send(request: StreamingRequest): Promise<IReceiveResponse>'
       parameters:
         - id: request
           type: <xref uid="botframework-streaming.StreamingRequest" />
           description: The streaming request to send.
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
         description: >-
           A promise that will produce an instance of receive response on
           completion of the send operation.
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
   - name: start()
     uid: botframework-streaming.WebSocketServer.start
     package: botframework-streaming
@@ -86,9 +86,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function start()
+      content: 'function start(): Promise<string>'
       return:
-        type: Promise&lt;string&gt;
         description: >-
           A promise to handle the server listen operation. This task will not
           resolve as long as the server is running.
+        type: Promise&lt;string&gt;

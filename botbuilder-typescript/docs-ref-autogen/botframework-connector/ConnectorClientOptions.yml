@@ -22,8 +22,8 @@ properties:
     syntax:
       content: 'agentSettings?: AgentSettings'
       return:
-        type: AgentSettings
         description: ''
+        type: AgentSettings
   - name: baseUri
     uid: botframework-connector.ConnectorClientOptions.baseUri
     package: botframework-connector
@@ -37,8 +37,8 @@ properties:
     syntax:
       content: 'baseUri?: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: clientRequestIdHeaderName
     uid: botframework-connector.ConnectorClientOptions.clientRequestIdHeaderName
     package: botframework-connector
@@ -55,8 +55,8 @@ properties:
     syntax:
       content: 'clientRequestIdHeaderName?: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: deserializationContentTypes
     uid: botframework-connector.ConnectorClientOptions.deserializationContentTypes
     package: botframework-connector
@@ -68,8 +68,8 @@ properties:
     syntax:
       content: 'deserializationContentTypes?: DeserializationContentTypes'
       return:
-        type: DeserializationContentTypes
         description: ''
+        type: DeserializationContentTypes
   - name: generateClientRequestIdHeader
     uid: >-
       botframework-connector.ConnectorClientOptions.generateClientRequestIdHeader
@@ -84,8 +84,8 @@ properties:
     syntax:
       content: 'generateClientRequestIdHeader?: boolean'
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: httpClient
     uid: botframework-connector.ConnectorClientOptions.httpClient
     package: botframework-connector
@@ -97,8 +97,8 @@ properties:
     syntax:
       content: 'httpClient?: HttpClient'
       return:
-        type: HttpClient
         description: ''
+        type: HttpClient
   - name: httpPipelineLogger
     uid: botframework-connector.ConnectorClientOptions.httpPipelineLogger
     package: botframework-connector
@@ -112,8 +112,8 @@ properties:
     syntax:
       content: 'httpPipelineLogger?: HttpPipelineLogger'
       return:
-        type: HttpPipelineLogger
         description: ''
+        type: HttpPipelineLogger
   - name: noRetryPolicy
     uid: botframework-connector.ConnectorClientOptions.noRetryPolicy
     package: botframework-connector
@@ -125,8 +125,8 @@ properties:
     syntax:
       content: 'noRetryPolicy?: boolean'
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: proxySettings
     uid: botframework-connector.ConnectorClientOptions.proxySettings
     package: botframework-connector
@@ -138,8 +138,8 @@ properties:
     syntax:
       content: 'proxySettings?: ProxySettings'
       return:
-        type: ProxySettings
         description: ''
+        type: ProxySettings
   - name: requestPolicyFactories
     uid: botframework-connector.ConnectorClientOptions.requestPolicyFactories
     package: botframework-connector
@@ -158,13 +158,15 @@ properties:
     syntax:
       content: >-
         requestPolicyFactories?: RequestPolicyFactory[] |
-        (defaultRequestPolicyFactories: RequestPolicyFactory[]) => void |
-        Object[]
+        (defaultRequestPolicyFactories: RequestPolicyFactory[]) => void | {
+        create(nextPolicy: RequestPolicy, options: RequestPolicyOptions) =>
+        RequestPolicy }[]
       return:
+        description: ''
         type: >-
           RequestPolicyFactory[] | (defaultRequestPolicyFactories:
-          RequestPolicyFactory[]) =&gt; void | Object[]
-        description: ''
+          RequestPolicyFactory[]) =&gt; void | { create(nextPolicy:
+          RequestPolicy, options: RequestPolicyOptions) =&gt; RequestPolicy }[]
   - name: rpRegistrationRetryTimeout
     uid: botframework-connector.ConnectorClientOptions.rpRegistrationRetryTimeout
     package: botframework-connector
@@ -178,8 +180,8 @@ properties:
     syntax:
       content: 'rpRegistrationRetryTimeout?: number'
       return:
-        type: number
         description: ''
+        type: number
   - name: userAgent
     uid: botframework-connector.ConnectorClientOptions.userAgent
     package: botframework-connector
@@ -196,8 +198,8 @@ properties:
     syntax:
       content: 'userAgent?: string | (defaultUserAgent: string) => string'
       return:
-        type: 'string | (defaultUserAgent: string) =&gt; string'
         description: ''
+        type: 'string | (defaultUserAgent: string) =&gt; string'
   - name: userAgentHeaderName
     uid: botframework-connector.ConnectorClientOptions.userAgentHeaderName
     package: botframework-connector
@@ -218,8 +220,8 @@ properties:
         userAgentHeaderName?: string | (defaultUserAgentHeaderName: string) =>
         string
       return:
-        type: 'string | (defaultUserAgentHeaderName: string) =&gt; string'
         description: ''
+        type: 'string | (defaultUserAgentHeaderName: string) =&gt; string'
   - name: withCredentials
     uid: botframework-connector.ConnectorClientOptions.withCredentials
     package: botframework-connector
@@ -236,6 +238,6 @@ properties:
     syntax:
       content: 'withCredentials?: boolean'
       return:
-        type: boolean
         description: ''
+        type: boolean
 extends: ServiceClientOptions

@@ -70,8 +70,8 @@ properties:
     syntax:
       content: 'activeQueue: Partial<Activity>[]'
       return:
-        type: 'Partial&lt;Activity&gt;[]'
         description: ''
+        type: 'Partial&lt;Activity&gt;[]'
   - name: BotIdentityKey
     uid: botbuilder-core.TestAdapter.BotIdentityKey
     package: botbuilder-core
@@ -83,8 +83,8 @@ properties:
     syntax:
       content: 'BotIdentityKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: ConnectorClientKey
     uid: botbuilder-core.TestAdapter.ConnectorClientKey
     package: botbuilder-core
@@ -96,8 +96,8 @@ properties:
     syntax:
       content: 'ConnectorClientKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: conversation
     uid: botbuilder-core.TestAdapter.conversation
     package: botbuilder-core
@@ -109,8 +109,8 @@ properties:
     syntax:
       content: 'conversation: ConversationReference'
       return:
-        type: ConversationReference
         description: ''
+        type: ConversationReference
   - name: enableTrace
     uid: botbuilder-core.TestAdapter.enableTrace
     package: botbuilder-core
@@ -124,8 +124,8 @@ properties:
     syntax:
       content: boolean enableTrace
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: locale
     uid: botbuilder-core.TestAdapter.locale
     package: botbuilder-core
@@ -137,8 +137,8 @@ properties:
     syntax:
       content: 'locale: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: OAuthScopeKey
     uid: botbuilder-core.TestAdapter.OAuthScopeKey
     package: botbuilder-core
@@ -150,8 +150,8 @@ properties:
     syntax:
       content: 'OAuthScopeKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: onTurnError
     uid: botbuilder-core.TestAdapter.onTurnError
     package: botbuilder-core
@@ -179,8 +179,8 @@ properties:
     syntax:
       content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
-        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
         description: ''
+        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
   - name: template
     uid: botbuilder-core.TestAdapter.template
     package: botbuilder-core
@@ -194,8 +194,197 @@ properties:
     syntax:
       content: 'template: Partial<Activity>'
       return:
-        type: Partial&lt;Activity&gt;
         description: ''
+        type: Partial&lt;Activity&gt;
+inheritedMethods:
+  - name: >-
+      continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
+      (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.continueConversationAsync_1
+    package: botbuilder-core
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function continueConversationAsync(claimsIdentity: ClaimsIdentity,
+        reference: Partial<ConversationReference>, logic: (context: TurnContext)
+        => Promise<void>): Promise<void>
+      parameters:
+        - id: claimsIdentity
+          type: ClaimsIdentity
+          description: >-
+            A [ClaimsIdentity](xref:botframework-connector) for the
+            conversation.
+        - id: reference
+          type: Partial&lt;ConversationReference&gt;
+          description: >-
+            A partial
+            [ConversationReference](xref:botframework-schema.ConversationReference)
+            to the conversation to continue.
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The asynchronous method to call after the adapter middleware runs.
+      return:
+        description: a promise representing the async operation
+        type: Promise&lt;void&gt;
+  - name: >-
+      continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
+      string, (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.continueConversationAsync_2
+    package: botbuilder-core
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function continueConversationAsync(claimsIdentity: ClaimsIdentity,
+        reference: Partial<ConversationReference>, audience: string, logic:
+        (context: TurnContext) => Promise<void>): Promise<void>
+      parameters:
+        - id: claimsIdentity
+          type: ClaimsIdentity
+          description: >-
+            A [ClaimsIdentity](xref:botframework-connector) for the
+            conversation.
+        - id: reference
+          type: Partial&lt;ConversationReference&gt;
+          description: >-
+            A partial
+            [ConversationReference](xref:botframework-schema.ConversationReference)
+            to the conversation to continue.
+        - id: audience
+          type: string
+          description: A value signifying the recipient of the proactive message.</param>
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The asynchronous method to call after the adapter middleware runs.
+      return:
+        description: a promise representing the async operation
+        type: Promise&lt;void&gt;
+  - name: >-
+      continueConversationAsync(string, Partial<ConversationReference>,
+      (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.continueConversationAsync
+    package: botbuilder-core
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function continueConversationAsync(botAppId: string, reference:
+        Partial<ConversationReference>, logic: (context: TurnContext) =>
+        Promise<void>): Promise<void>
+      parameters:
+        - id: botAppId
+          type: string
+          description: >-
+            The application ID of the bot. This parameter is ignored in single
+            tenant the Adapters (Console,Test, etc) but is critical to the
+            BotFrameworkAdapter which is multi-tenant aware.
+        - id: reference
+          type: Partial&lt;ConversationReference&gt;
+          description: >-
+            A partial
+            [ConversationReference](xref:botframework-schema.ConversationReference)
+            to the conversation to continue.
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The asynchronous method to call after the adapter middleware runs.
+      return:
+        description: a promise representing the async operation
+        type: Promise&lt;void&gt;
+  - name: >-
+      createConversationAsync(string, string, string, string,
+      ConversationParameters, (context: TurnContext) => Promise<void>)
+    uid: botbuilder-core.TestAdapter.createConversationAsync
+    package: botbuilder-core
+    summary: Creates a conversation on the specified channel.
+    remarks: >-
+      To start a conversation, your bot must know its account information and
+      the user's account information on that
+
+      channel.  Most _channels only support initiating a direct message
+      (non-group) conversation.
+
+
+      The adapter attempts to create a new conversation on the channel, and then
+      sends a `conversationUpdate` activity
+
+      through its middleware pipeline to the logic method.
+
+
+      If the conversation is established with the specified users, the ID of the
+      activity's converstion will contain
+
+      the ID of the new conversation.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function createConversationAsync(botAppId: string, channelId: string,
+        serviceUrl: string, audience: string, conversationParameters:
+        ConversationParameters, logic: (context: TurnContext) => Promise<void>):
+        Promise<void>
+      parameters:
+        - id: botAppId
+          type: string
+          description: The application ID of the bot.
+        - id: channelId
+          type: string
+          description: The ID for the channel.
+        - id: serviceUrl
+          type: string
+          description: The ID for the channel.
+        - id: audience
+          type: string
+          description: |-
+            The audience for the connector.
+            <param name="conversationParameters">
+        - id: conversationParameters
+          type: ConversationParameters
+          description: The conversation information to use to create the conversation
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The method to call for the resulting bot turn.
+      return:
+        description: A promise that represents the asynchronous operation
+        type: Promise&lt;void&gt;
+  - name: >-
+      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
+      Middleware[])
+    uid: botbuilder-core.TestAdapter.use
+    package: botbuilder-core
+    summary: Adds middleware to the adapter's pipeline.
+    remarks: >-
+      Middleware is added to the adapter at initialization time.
+
+      Each turn, the adapter calls its middleware in the order in which you
+      added it.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function use(middlewares: (context: TurnContext, next: () =>
+        Promise<void>) => Promise<void> | Middleware[]): this
+      parameters:
+        - id: middlewares
+          type: >-
+            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
+            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
+          description: ''
+      return:
+        description: ''
+        type: this
 methods:
   - name: 'addExchangeableToken(string, string, string, string, string)'
     uid: botbuilder-core.TestAdapter.addExchangeableToken
@@ -269,7 +458,7 @@ methods:
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
-        logic: (revocableContext: TurnContext) => Promise<void>)
+        logic: (revocableContext: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: reference
           type: Partial&lt;ConversationReference&gt;
@@ -278,114 +467,8 @@ methods:
           type: '(revocableContext: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
-  - name: >-
-      continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
-      (context: TurnContext) => Promise<void>)
-    uid: botbuilder-core.TestAdapter.continueConversationAsync_1
-    package: botbuilder-core
-    summary: >-
-      Asynchronously resumes a conversation with a user, possibly after some
-      time has gone by.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function continueConversationAsync(claimsIdentity: ClaimsIdentity,
-        reference: Partial<ConversationReference>, logic: (context: TurnContext)
-        => Promise<void>)
-      parameters:
-        - id: claimsIdentity
-          type: ClaimsIdentity
-          description: >-
-            A [ClaimsIdentity](xref:botframework-connector) for the
-            conversation.
-        - id: reference
-          type: Partial&lt;ConversationReference&gt;
-          description: >-
-            A partial
-            [ConversationReference](xref:botframework-schema.ConversationReference)
-            to the conversation to continue.
-        - id: logic
-          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: The asynchronous method to call after the adapter middleware runs.
-      return:
         type: Promise&lt;void&gt;
-        description: a promise representing the async operation
-  - name: >-
-      continueConversationAsync(ClaimsIdentity, Partial<ConversationReference>,
-      string, (context: TurnContext) => Promise<void>)
-    uid: botbuilder-core.TestAdapter.continueConversationAsync_2
-    package: botbuilder-core
-    summary: >-
-      Asynchronously resumes a conversation with a user, possibly after some
-      time has gone by.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function continueConversationAsync(claimsIdentity: ClaimsIdentity,
-        reference: Partial<ConversationReference>, audience: string, logic:
-        (context: TurnContext) => Promise<void>)
-      parameters:
-        - id: claimsIdentity
-          type: ClaimsIdentity
-          description: >-
-            A [ClaimsIdentity](xref:botframework-connector) for the
-            conversation.
-        - id: reference
-          type: Partial&lt;ConversationReference&gt;
-          description: >-
-            A partial
-            [ConversationReference](xref:botframework-schema.ConversationReference)
-            to the conversation to continue.
-        - id: audience
-          type: string
-          description: A value signifying the recipient of the proactive message.</param>
-        - id: logic
-          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: The asynchronous method to call after the adapter middleware runs.
-      return:
-        type: Promise&lt;void&gt;
-        description: a promise representing the async operation
-  - name: >-
-      continueConversationAsync(string, Partial<ConversationReference>,
-      (context: TurnContext) => Promise<void>)
-    uid: botbuilder-core.TestAdapter.continueConversationAsync
-    package: botbuilder-core
-    summary: >-
-      Asynchronously resumes a conversation with a user, possibly after some
-      time has gone by.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function continueConversationAsync(botAppId: string, reference:
-        Partial<ConversationReference>, logic: (context: TurnContext) =>
-        Promise<void>)
-      parameters:
-        - id: botAppId
-          type: string
-          description: >-
-            The application ID of the bot. This parameter is ignored in single
-            tenant the Adapters (Console,Test, etc) but is critical to the
-            BotFrameworkAdapter which is multi-tenant aware.
-        - id: reference
-          type: Partial&lt;ConversationReference&gt;
-          description: >-
-            A partial
-            [ConversationReference](xref:botframework-schema.ConversationReference)
-            to the conversation to continue.
-        - id: logic
-          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: The asynchronous method to call after the adapter middleware runs.
-      return:
-        type: Promise&lt;void&gt;
-        description: a promise representing the async operation
   - name: 'createConversation(string, string, string)'
     uid: botbuilder-core.TestAdapter.createConversation
     package: botbuilder-core
@@ -396,7 +479,7 @@ methods:
     syntax:
       content: >-
         static function createConversation(name: string, user?: string, bot?:
-        string)
+        string): ConversationReference
       parameters:
         - id: name
           type: string
@@ -409,63 +492,8 @@ methods:
           description: |
             name of the bot (also id) default: Bot.
       return:
-        type: ConversationReference
         description: ''
-  - name: >-
-      createConversationAsync(string, string, string, string,
-      ConversationParameters, (context: TurnContext) => Promise<void>)
-    uid: botbuilder-core.TestAdapter.createConversationAsync
-    package: botbuilder-core
-    summary: Creates a conversation on the specified channel.
-    remarks: >-
-      To start a conversation, your bot must know its account information and
-      the user's account information on that
-
-      channel.  Most _channels only support initiating a direct message
-      (non-group) conversation.
-
-
-      The adapter attempts to create a new conversation on the channel, and then
-      sends a `conversationUpdate` activity
-
-      through its middleware pipeline to the logic method.
-
-
-      If the conversation is established with the specified users, the ID of the
-      activity's converstion will contain
-
-      the ID of the new conversation.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function createConversationAsync(botAppId: string, channelId: string,
-        serviceUrl: string, audience: string, conversationParameters:
-        ConversationParameters, logic: (context: TurnContext) => Promise<void>)
-      parameters:
-        - id: botAppId
-          type: string
-          description: The application ID of the bot.
-        - id: channelId
-          type: string
-          description: The ID for the channel.
-        - id: serviceUrl
-          type: string
-          description: The ID for the channel.
-        - id: audience
-          type: string
-          description: |-
-            The audience for the connector.
-            <param name="conversationParameters">
-        - id: conversationParameters
-          type: ConversationParameters
-          description: The conversation information to use to create the conversation
-        - id: logic
-          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: The method to call for the resulting bot turn.
-      return:
-        type: Promise&lt;void&gt;
-        description: A promise that represents the asynchronous operation
+        type: ConversationReference
   - name: 'exchangeToken(TurnContext, string, string, TokenExchangeRequest)'
     uid: botbuilder-core.TestAdapter.exchangeToken
     package: botbuilder-core
@@ -476,7 +504,8 @@ methods:
     syntax:
       content: >-
         function exchangeToken(context: TurnContext, connectionName: string,
-        userId: string, tokenExchangeRequest: TokenExchangeRequest)
+        userId: string, tokenExchangeRequest: TokenExchangeRequest):
+        Promise<TokenResponse>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -495,8 +524,8 @@ methods:
             Exchange request details, either a token to exchange or a uri to
             exchange.
       return:
-        type: Promise&lt;TokenResponse&gt;
         description: 'If the promise completes, the exchanged token is returned.'
+        type: Promise&lt;TokenResponse&gt;
   - name: 'getAadTokens(TurnContext, string, string[])'
     uid: botbuilder-core.TestAdapter.getAadTokens
     package: botbuilder-core
@@ -507,7 +536,7 @@ methods:
     syntax:
       content: >-
         function getAadTokens(context: TurnContext, connectionName: string,
-        resourceUrls: string[])
+        resourceUrls: string[]): Promise<[key: string]: TokenResponse>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -520,8 +549,8 @@ methods:
           type: 'string[]'
           description: ''
       return:
-        type: 'Promise&lt;[key: string]: TokenResponse&gt;'
         description: ''
+        type: 'Promise&lt;[key: string]: TokenResponse&gt;'
   - name: getNextReply()
     uid: botbuilder-core.TestAdapter.getNextReply
     package: botbuilder-core
@@ -530,10 +559,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getNextReply()
+      content: 'function getNextReply(): Partial<Activity>'
       return:
-        type: Partial&lt;Activity&gt;
         description: ''
+        type: Partial&lt;Activity&gt;
   - name: 'getSignInLink(TurnContext, string)'
     uid: botbuilder-core.TestAdapter.getSignInLink
     package: botbuilder-core
@@ -544,7 +573,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getSignInLink(context: TurnContext, connectionName: string)'
+      content: >-
+        function getSignInLink(context: TurnContext, connectionName: string):
+        Promise<string>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -554,8 +585,8 @@ methods:
           description: |
             Name of the auth connection to use.
       return:
-        type: Promise&lt;string&gt;
         description: ''
+        type: Promise&lt;string&gt;
   - name: 'getSignInResource(TurnContext, string, string, string)'
     uid: botbuilder-core.TestAdapter.getSignInResource
     package: botbuilder-core
@@ -566,7 +597,7 @@ methods:
     syntax:
       content: >-
         function getSignInResource(context: TurnContext, connectionName: string,
-        userId?: string, finalRedirect?: string)
+        userId?: string, finalRedirect?: string): Promise<SignInUrlResponse>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -583,11 +614,11 @@ methods:
           type: string
           description: Final redirect URL.
       return:
-        type: Promise&lt;SignInUrlResponse&gt;
         description: >-
           A `Promise` with a new
           [SignInUrlResponse](xref:botframework-schema.SignInUrlResponse)
           object.
+        type: Promise&lt;SignInUrlResponse&gt;
   - name: 'getTokenStatus(TurnContext, string, string, any)'
     uid: botbuilder-core.TestAdapter.getTokenStatus
     package: botbuilder-core
@@ -603,7 +634,7 @@ methods:
     syntax:
       content: >-
         function getTokenStatus(context: TurnContext, userId: string,
-        includeFilter?: string, oAuthAppCredentials?: any)
+        includeFilter?: string, oAuthAppCredentials?: any): Promise<any[]>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -622,10 +653,10 @@ methods:
           description: |
             AppCredentials for OAuth.
       return:
-        type: 'Promise&lt;any[]&gt;'
         description: >-
           The [TokenStatus](xref:botframework-connector.TokenStatus) objects
           retrieved.
+        type: 'Promise&lt;any[]&gt;'
   - name: 'getUserToken(TurnContext, string, string)'
     uid: botbuilder-core.TestAdapter.getUserToken
     package: botbuilder-core
@@ -636,7 +667,7 @@ methods:
     syntax:
       content: >-
         function getUserToken(context: TurnContext, connectionName: string,
-        magicCode?: string)
+        magicCode?: string): Promise<TokenResponse>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -649,8 +680,8 @@ methods:
           description: |
             (Optional) Optional user entered code to validate.
       return:
-        type: Promise&lt;TokenResponse&gt;
         description: ''
+        type: Promise&lt;TokenResponse&gt;
   - name: makeActivity(string)
     uid: botbuilder-core.TestAdapter.makeActivity
     package: botbuilder-core
@@ -661,15 +692,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function makeActivity(text?: string)'
+      content: 'function makeActivity(text?: string): Partial<Activity>'
       parameters:
         - id: text
           type: string
           description: |
             The message text.
       return:
-        type: Partial&lt;Activity&gt;
         description: ''
+        type: Partial&lt;Activity&gt;
   - name: >-
       processActivity(string | Partial<Activity>, (context: TurnContext) =>
       Promise<any>)
@@ -682,7 +713,7 @@ methods:
     syntax:
       content: >-
         function processActivity(activity: string | Partial<Activity>,
-        callback?: (context: TurnContext) => Promise<any>)
+        callback?: (context: TurnContext) => Promise<any>): Promise<any>
       parameters:
         - id: activity
           type: string | Partial&lt;Activity&gt;
@@ -692,8 +723,8 @@ methods:
           description: |
             The bot logic to invoke.
       return:
-        type: Promise&lt;any&gt;
         description: ''
+        type: Promise&lt;any&gt;
   - name: send(string | Partial<Activity>)
     uid: botbuilder-core.TestAdapter.send
     package: botbuilder-core
@@ -717,15 +748,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function send(userSays: string | Partial<Activity>)'
+      content: 'function send(userSays: string | Partial<Activity>): TestFlow'
       parameters:
         - id: userSays
           type: string | Partial&lt;Activity&gt;
           description: |
             Text or activity simulating user input.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: 'sendTextToBot(string, (context: TurnContext) => Promise<any>)'
     uid: botbuilder-core.TestAdapter.sendTextToBot
     package: botbuilder-core
@@ -736,7 +767,7 @@ methods:
     syntax:
       content: >-
         function sendTextToBot(userSays: string, callback: (context:
-        TurnContext) => Promise<any>)
+        TurnContext) => Promise<any>): Promise<any>
       parameters:
         - id: userSays
           type: string
@@ -746,8 +777,8 @@ methods:
           description: |
             The bot logic to invoke.
       return:
-        type: Promise&lt;any&gt;
         description: ''
+        type: Promise&lt;any&gt;
   - name: 'signOutUser(TurnContext, string, string)'
     uid: botbuilder-core.TestAdapter.signOutUser
     package: botbuilder-core
@@ -758,7 +789,7 @@ methods:
     syntax:
       content: >-
         function signOutUser(context: TurnContext, connectionName?: string,
-        userId?: string)
+        userId?: string): Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -771,8 +802,8 @@ methods:
           description: |
             User ID to sign out.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       test(string | Partial<Activity>, string | Partial<Activity> | (activity:
       Partial<Activity>, description?: string) => void, string, number)
@@ -799,7 +830,7 @@ methods:
       content: >-
         function test(userSays: string | Partial<Activity>, expected: string |
         Partial<Activity> | (activity: Partial<Activity>, description?: string)
-        => void, description?: string, timeout?: number)
+        => void, description?: string, timeout?: number): TestFlow
       parameters:
         - id: userSays
           type: string | Partial&lt;Activity&gt;
@@ -820,8 +851,8 @@ methods:
             (Optional) number of milliseconds to wait for a response from bot.
             Defaults to a value of `3000`.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: 'testActivities(Partial<Activity>[], string, number)'
     uid: botbuilder-core.TestAdapter.testActivities
     package: botbuilder-core
@@ -836,7 +867,7 @@ methods:
     syntax:
       content: >-
         function testActivities(activities: Partial<Activity>[], description?:
-        string, timeout?: number)
+        string, timeout?: number): TestFlow
       parameters:
         - id: activities
           type: 'Partial&lt;Activity&gt;[]'
@@ -852,8 +883,8 @@ methods:
             (Optional) number of milliseconds to wait for a response from bot.
             Defaults to a value of `3000`.
       return:
-        type: <xref uid="botbuilder-core.TestFlow" />
         description: ''
+        type: <xref uid="botbuilder-core.TestFlow" />
   - name: 'throwOnExchangeRequest(string, string, string, string)'
     uid: botbuilder-core.TestAdapter.throwOnExchangeRequest
     package: botbuilder-core
@@ -879,30 +910,4 @@ methods:
           type: string
           description: |
             The exchangeable token or resource URI.
-  - name: >-
-      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
-      Middleware[])
-    uid: botbuilder-core.TestAdapter.use
-    package: botbuilder-core
-    summary: Adds middleware to the adapter's pipeline.
-    remarks: >-
-      Middleware is added to the adapter at initialization time.
-
-      Each turn, the adapter calls its middleware in the order in which you
-      added it.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[])
-      parameters:
-        - id: middlewares
-          type: >-
-            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
-            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: ''
-      return:
-        type: this
-        description: ''
 extends: <xref uid="botbuilder-core.BotAdapter" />

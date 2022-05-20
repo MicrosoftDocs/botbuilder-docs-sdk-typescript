@@ -6,7 +6,9 @@ type: package
 typeAliases:
   - botbuilder-dialogs-adaptive-runtime-integration-azure-functions.Options
 functions:
-  - name: 'makeTriggers(() => Promise<Object>, string, Partial<Options>)'
+  - name: >-
+      makeTriggers(() => Promise<[ServiceCollection, Configuration]>, string,
+      Partial<Options>)
     uid: >-
       botbuilder-dialogs-adaptive-runtime-integration-azure-functions.makeTriggers
     package: botbuilder-dialogs-adaptive-runtime-integration-azure-functions
@@ -16,11 +18,12 @@ functions:
     isDeprecated: false
     syntax:
       content: >-
-        function makeTriggers(runtimeServices: () => Promise<Object>,
-        applicationRoot: string, options?: Partial<Options>)
+        function makeTriggers(runtimeServices: () => Promise<[ServiceCollection,
+        Configuration]>, applicationRoot: string, options?: Partial<Options>):
+        Record<string, AzureFunction>
       parameters:
         - id: runtimeServices
-          type: () =&gt; Promise&lt;Object&gt;
+          type: '() =&gt; Promise&lt;[ServiceCollection, Configuration]&gt;'
           description: result of calling `once(() => getRuntimeServices(...))`
         - id: applicationRoot
           type: string
@@ -32,8 +35,8 @@ functions:
             />&gt;
           description: options bag for configuring Azure Functions
       return:
-        type: 'Record&lt;string, AzureFunction&gt;'
         description: azure function triggers for `module.exports`
+        type: 'Record&lt;string, AzureFunction&gt;'
   - name: 'triggers(string, string, Partial<Options>)'
     uid: botbuilder-dialogs-adaptive-runtime-integration-azure-functions.triggers
     package: botbuilder-dialogs-adaptive-runtime-integration-azure-functions
@@ -44,7 +47,7 @@ functions:
     syntax:
       content: >-
         function triggers(applicationRoot: string, settingsDirectory: string,
-        options?: Partial<Options>)
+        options?: Partial<Options>): Record<string, AzureFunction>
       parameters:
         - id: applicationRoot
           type: string
@@ -59,5 +62,5 @@ functions:
             />&gt;
           description: options bag for configuring Azure Functions
       return:
-        type: 'Record&lt;string, AzureFunction&gt;'
         description: azure function triggers for `module.exports`
+        type: 'Record&lt;string, AzureFunction&gt;'

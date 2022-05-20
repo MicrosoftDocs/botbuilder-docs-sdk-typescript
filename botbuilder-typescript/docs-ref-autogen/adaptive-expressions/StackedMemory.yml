@@ -22,8 +22,8 @@ properties:
     syntax:
       content: 'static Array: ArrayConstructor'
       return:
-        type: ArrayConstructor
         description: ''
+        type: ArrayConstructor
   - name: length
     uid: adaptive-expressions.StackedMemory.length
     package: adaptive-expressions
@@ -37,9 +37,9 @@ properties:
     syntax:
       content: 'length: number'
       return:
-        type: number
         description: ''
-methods:
+        type: number
+inheritedMethods:
   - name: 'concat(ConcatArray<MemoryInterface>[])'
     uid: adaptive-expressions.StackedMemory.concat
     package: adaptive-expressions
@@ -48,7 +48,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function concat(items: ConcatArray<MemoryInterface>[])'
+      content: >-
+        function concat(items: ConcatArray<MemoryInterface>[]):
+        MemoryInterface[]
       parameters:
         - id: items
           type: >-
@@ -57,8 +59,8 @@ methods:
           description: |
             Additional items to add to the end of array1.
       return:
-        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
         description: ''
+        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
   - name: 'concat(T | ConcatArray<T>[])'
     uid: adaptive-expressions.StackedMemory.concat_1
     package: adaptive-expressions
@@ -67,15 +69,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function concat(items: T | ConcatArray<T>[])'
+      content: 'function concat(items: T | ConcatArray<T>[]): MemoryInterface[]'
       parameters:
         - id: items
           type: 'T | ConcatArray&lt;T&gt;[]'
           description: |
             Additional items to add to the end of array1.
       return:
-        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
         description: ''
+        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
   - name: >-
       every((value: MemoryInterface, index: number, array: MemoryInterface[]) =>
       unknown, any)
@@ -88,7 +90,7 @@ methods:
     syntax:
       content: >-
         function every(callbackfn: (value: MemoryInterface, index: number,
-        array: MemoryInterface[]) => unknown, thisArg?: any)
+        array: MemoryInterface[]) => unknown, thisArg?: any): boolean
       parameters:
         - id: callbackfn
           type: >-
@@ -105,8 +107,8 @@ methods:
             function. If thisArg is omitted, undefined is used as the this
             value.
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: >-
       filter((value: MemoryInterface, index: number, array: MemoryInterface[])
       => unknown, any)
@@ -121,7 +123,7 @@ methods:
     syntax:
       content: >-
         function filter(callbackfn: (value: MemoryInterface, index: number,
-        array: MemoryInterface[]) => unknown, thisArg?: any)
+        array: MemoryInterface[]) => unknown, thisArg?: any): MemoryInterface[]
       parameters:
         - id: callbackfn
           type: >-
@@ -138,8 +140,8 @@ methods:
             function. If thisArg is omitted, undefined is used as the this
             value.
       return:
-        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
         description: ''
+        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
   - name: >-
       filter<S>((value: MemoryInterface, index: number, array:
       MemoryInterface[]) => boolean, any)
@@ -154,7 +156,7 @@ methods:
     syntax:
       content: >-
         function filter<S>(callbackfn: (value: MemoryInterface, index: number,
-        array: MemoryInterface[]) => boolean, thisArg?: any)
+        array: MemoryInterface[]) => boolean, thisArg?: any): S[]
       parameters:
         - id: callbackfn
           type: >-
@@ -171,8 +173,8 @@ methods:
             function. If thisArg is omitted, undefined is used as the this
             value.
       return:
-        type: 'S[]'
         description: ''
+        type: 'S[]'
   - name: >-
       forEach((value: MemoryInterface, index: number, array: MemoryInterface[])
       => void, any)
@@ -200,22 +202,6 @@ methods:
             An object to which the this keyword can refer in the callbackfn
             function. If thisArg is omitted, undefined is used as the this
             value.
-  - name: getValue(string)
-    uid: adaptive-expressions.StackedMemory.getValue
-    package: adaptive-expressions
-    summary: Gets the value from a given path.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getValue(path: string)'
-      parameters:
-        - id: path
-          type: string
-          description: Given path.
-      return:
-        type: any
-        description: 'The value from the given path if found, otherwise, undefined.'
   - name: 'indexOf(MemoryInterface, number)'
     uid: adaptive-expressions.StackedMemory.indexOf
     package: adaptive-expressions
@@ -224,7 +210,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function indexOf(searchElement: MemoryInterface, fromIndex?: number)'
+      content: >-
+        function indexOf(searchElement: MemoryInterface, fromIndex?: number):
+        number
       parameters:
         - id: searchElement
           type: <xref uid="adaptive-expressions.MemoryInterface" />
@@ -235,8 +223,8 @@ methods:
             The array index at which to begin the search. If fromIndex is
             omitted, the search starts at index 0.
       return:
-        type: number
         description: ''
+        type: number
   - name: join(string)
     uid: adaptive-expressions.StackedMemory.join
     package: adaptive-expressions
@@ -247,7 +235,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function join(separator?: string)'
+      content: 'function join(separator?: string): string'
       parameters:
         - id: separator
           type: string
@@ -256,8 +244,8 @@ methods:
             the resulting String. If omitted, the array elements are separated
             with a comma.
       return:
-        type: string
         description: ''
+        type: string
   - name: 'lastIndexOf(MemoryInterface, number)'
     uid: adaptive-expressions.StackedMemory.lastIndexOf
     package: adaptive-expressions
@@ -266,7 +254,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function lastIndexOf(searchElement: MemoryInterface, fromIndex?: number)'
+      content: >-
+        function lastIndexOf(searchElement: MemoryInterface, fromIndex?:
+        number): number
       parameters:
         - id: searchElement
           type: <xref uid="adaptive-expressions.MemoryInterface" />
@@ -277,8 +267,8 @@ methods:
             The array index at which to begin the search. If fromIndex is
             omitted, the search starts at the last index in the array.
       return:
-        type: number
         description: ''
+        type: number
   - name: >-
       map<U>((value: MemoryInterface, index: number, array: MemoryInterface[])
       => U, any)
@@ -293,7 +283,7 @@ methods:
     syntax:
       content: >-
         function map<U>(callbackfn: (value: MemoryInterface, index: number,
-        array: MemoryInterface[]) => U, thisArg?: any)
+        array: MemoryInterface[]) => U, thisArg?: any): U[]
       parameters:
         - id: callbackfn
           type: >-
@@ -309,8 +299,8 @@ methods:
             function. If thisArg is omitted, undefined is used as the this
             value.
       return:
-        type: 'U[]'
         description: ''
+        type: 'U[]'
   - name: pop()
     uid: adaptive-expressions.StackedMemory.pop
     package: adaptive-expressions
@@ -319,10 +309,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function pop()
+      content: 'function pop(): MemoryInterface | undefined'
       return:
-        type: <xref uid="adaptive-expressions.MemoryInterface" /> | undefined
         description: ''
+        type: <xref uid="adaptive-expressions.MemoryInterface" /> | undefined
   - name: 'push(MemoryInterface[])'
     uid: adaptive-expressions.StackedMemory.push
     package: adaptive-expressions
@@ -331,15 +321,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function push(items: MemoryInterface[])'
+      content: 'function push(items: MemoryInterface[]): number'
       parameters:
         - id: items
           type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
           description: |
             New elements of the Array.
       return:
-        type: number
         description: ''
+        type: number
   - name: >-
       reduce((previousValue: MemoryInterface, currentValue: MemoryInterface,
       currentIndex: number, array: MemoryInterface[]) => MemoryInterface)
@@ -356,7 +346,7 @@ methods:
       content: >-
         function reduce(callbackfn: (previousValue: MemoryInterface,
         currentValue: MemoryInterface, currentIndex: number, array:
-        MemoryInterface[]) => MemoryInterface)
+        MemoryInterface[]) => MemoryInterface): MemoryInterface
       parameters:
         - id: callbackfn
           type: >-
@@ -368,8 +358,8 @@ methods:
             calls the callbackfn function one time for each element in the
             array.
       return:
-        type: <xref uid="adaptive-expressions.MemoryInterface" />
         description: ''
+        type: <xref uid="adaptive-expressions.MemoryInterface" />
   - name: >-
       reduce((previousValue: MemoryInterface, currentValue: MemoryInterface,
       currentIndex: number, array: MemoryInterface[]) => MemoryInterface,
@@ -384,7 +374,8 @@ methods:
       content: >-
         function reduce(callbackfn: (previousValue: MemoryInterface,
         currentValue: MemoryInterface, currentIndex: number, array:
-        MemoryInterface[]) => MemoryInterface, initialValue: MemoryInterface)
+        MemoryInterface[]) => MemoryInterface, initialValue: MemoryInterface):
+        MemoryInterface
       parameters:
         - id: callbackfn
           type: >-
@@ -396,8 +387,8 @@ methods:
           type: <xref uid="adaptive-expressions.MemoryInterface" />
           description: ''
       return:
-        type: <xref uid="adaptive-expressions.MemoryInterface" />
         description: ''
+        type: <xref uid="adaptive-expressions.MemoryInterface" />
   - name: >-
       reduce<U>((previousValue: U, currentValue: MemoryInterface, currentIndex:
       number, array: MemoryInterface[]) => U, U)
@@ -414,7 +405,7 @@ methods:
       content: >-
         function reduce<U>(callbackfn: (previousValue: U, currentValue:
         MemoryInterface, currentIndex: number, array: MemoryInterface[]) => U,
-        initialValue: U)
+        initialValue: U): U
       parameters:
         - id: callbackfn
           type: >-
@@ -431,8 +422,8 @@ methods:
             start the accumulation. The first call to the callbackfn function
             provides this value as an argument instead of an array value.
       return:
-        type: U
         description: ''
+        type: U
   - name: >-
       reduceRight((previousValue: MemoryInterface, currentValue:
       MemoryInterface, currentIndex: number, array: MemoryInterface[]) =>
@@ -451,7 +442,7 @@ methods:
       content: >-
         function reduceRight(callbackfn: (previousValue: MemoryInterface,
         currentValue: MemoryInterface, currentIndex: number, array:
-        MemoryInterface[]) => MemoryInterface)
+        MemoryInterface[]) => MemoryInterface): MemoryInterface
       parameters:
         - id: callbackfn
           type: >-
@@ -463,8 +454,8 @@ methods:
             calls the callbackfn function one time for each element in the
             array.
       return:
-        type: <xref uid="adaptive-expressions.MemoryInterface" />
         description: ''
+        type: <xref uid="adaptive-expressions.MemoryInterface" />
   - name: >-
       reduceRight((previousValue: MemoryInterface, currentValue:
       MemoryInterface, currentIndex: number, array: MemoryInterface[]) =>
@@ -479,7 +470,8 @@ methods:
       content: >-
         function reduceRight(callbackfn: (previousValue: MemoryInterface,
         currentValue: MemoryInterface, currentIndex: number, array:
-        MemoryInterface[]) => MemoryInterface, initialValue: MemoryInterface)
+        MemoryInterface[]) => MemoryInterface, initialValue: MemoryInterface):
+        MemoryInterface
       parameters:
         - id: callbackfn
           type: >-
@@ -491,8 +483,8 @@ methods:
           type: <xref uid="adaptive-expressions.MemoryInterface" />
           description: ''
       return:
-        type: <xref uid="adaptive-expressions.MemoryInterface" />
         description: ''
+        type: <xref uid="adaptive-expressions.MemoryInterface" />
   - name: >-
       reduceRight<U>((previousValue: U, currentValue: MemoryInterface,
       currentIndex: number, array: MemoryInterface[]) => U, U)
@@ -510,7 +502,7 @@ methods:
       content: >-
         function reduceRight<U>(callbackfn: (previousValue: U, currentValue:
         MemoryInterface, currentIndex: number, array: MemoryInterface[]) => U,
-        initialValue: U)
+        initialValue: U): U
       parameters:
         - id: callbackfn
           type: >-
@@ -527,8 +519,8 @@ methods:
             start the accumulation. The first call to the callbackfn function
             provides this value as an argument instead of an array value.
       return:
-        type: U
         description: ''
+        type: U
   - name: reverse()
     uid: adaptive-expressions.StackedMemory.reverse
     package: adaptive-expressions
@@ -537,10 +529,209 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function reverse()
+      content: 'function reverse(): MemoryInterface[]'
       return:
-        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
         description: ''
+        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
+  - name: shift()
+    uid: adaptive-expressions.StackedMemory.shift
+    package: adaptive-expressions
+    summary: Removes the first element from an array and returns it.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function shift(): MemoryInterface | undefined'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions.MemoryInterface" /> | undefined
+  - name: 'slice(number, number)'
+    uid: adaptive-expressions.StackedMemory.slice
+    package: adaptive-expressions
+    summary: Returns a section of an array.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function slice(start?: number, end?: number): MemoryInterface[]'
+      parameters:
+        - id: start
+          type: number
+          description: The beginning of the specified portion of the array.
+        - id: end
+          type: number
+          description: |
+            The end of the specified portion of the array.
+      return:
+        description: ''
+        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
+  - name: >-
+      some((value: MemoryInterface, index: number, array: MemoryInterface[]) =>
+      unknown, any)
+    uid: adaptive-expressions.StackedMemory.some
+    package: adaptive-expressions
+    summary: >-
+      Determines whether the specified callback function returns true for any
+      element of an array.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function some(callbackfn: (value: MemoryInterface, index: number, array:
+        MemoryInterface[]) => unknown, thisArg?: any): boolean
+      parameters:
+        - id: callbackfn
+          type: >-
+            (value: MemoryInterface, index: number, array: MemoryInterface[])
+            =&gt; unknown
+          description: >-
+            A function that accepts up to three arguments. The some method calls
+            the callbackfn function for each element in array1 until the
+            callbackfn returns true, or until the end of the array.
+        - id: thisArg
+          type: any
+          description: >
+            An object to which the this keyword can refer in the callbackfn
+            function. If thisArg is omitted, undefined is used as the this
+            value.
+      return:
+        description: ''
+        type: boolean
+  - name: 'sort((a: MemoryInterface, b: MemoryInterface) => number)'
+    uid: adaptive-expressions.StackedMemory.sort
+    package: adaptive-expressions
+    summary: Sorts an array.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sort(compareFn?: (a: MemoryInterface, b: MemoryInterface) =>
+        number): this
+      parameters:
+        - id: compareFn
+          type: '(a: MemoryInterface, b: MemoryInterface) =&gt; number'
+          description: >
+            The name of the function used to determine the order of the
+            elements. If omitted, the elements are sorted in ascending, ASCII
+            character order.
+      return:
+        description: ''
+        type: this
+  - name: 'splice(number, number)'
+    uid: adaptive-expressions.StackedMemory.splice
+    package: adaptive-expressions
+    summary: >-
+      Removes elements from an array and, if necessary, inserts new elements in
+      their place, returning the deleted elements.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function splice(start: number, deleteCount?: number): MemoryInterface[]'
+      parameters:
+        - id: start
+          type: number
+          description: >-
+            The zero-based location in the array from which to start removing
+            elements.
+        - id: deleteCount
+          type: number
+          description: |
+            The number of elements to remove.
+      return:
+        description: ''
+        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
+  - name: 'splice(number, number, MemoryInterface[])'
+    uid: adaptive-expressions.StackedMemory.splice_1
+    package: adaptive-expressions
+    summary: >-
+      Removes elements from an array and, if necessary, inserts new elements in
+      their place, returning the deleted elements.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function splice(start: number, deleteCount: number, items:
+        MemoryInterface[]): MemoryInterface[]
+      parameters:
+        - id: start
+          type: number
+          description: >-
+            The zero-based location in the array from which to start removing
+            elements.
+        - id: deleteCount
+          type: number
+          description: The number of elements to remove.
+        - id: items
+          type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
+          description: |
+            Elements to insert into the array in place of the deleted elements.
+      return:
+        description: ''
+        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
+  - name: toLocaleString()
+    uid: adaptive-expressions.StackedMemory.toLocaleString
+    package: adaptive-expressions
+    summary: >-
+      Returns a string representation of an array. The elements are converted to
+      string using their toLocalString methods.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function toLocaleString(): string'
+      return:
+        description: ''
+        type: string
+  - name: toString()
+    uid: adaptive-expressions.StackedMemory.toString
+    package: adaptive-expressions
+    summary: Returns a string representation of an array.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function toString(): string'
+      return:
+        description: ''
+        type: string
+  - name: 'unshift(MemoryInterface[])'
+    uid: adaptive-expressions.StackedMemory.unshift
+    package: adaptive-expressions
+    summary: Inserts new elements at the start of an array.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function unshift(items: MemoryInterface[]): number'
+      parameters:
+        - id: items
+          type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
+          description: |
+            Elements to insert at the start of the Array.
+      return:
+        description: ''
+        type: number
+methods:
+  - name: getValue(string)
+    uid: adaptive-expressions.StackedMemory.getValue
+    package: adaptive-expressions
+    summary: Gets the value from a given path.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getValue(path: string): any'
+      parameters:
+        - id: path
+          type: string
+          description: Given path.
+      return:
+        description: 'The value from the given path if found, otherwise, undefined.'
+        type: any
   - name: 'setValue(string, any)'
     uid: adaptive-expressions.StackedMemory.setValue
     package: adaptive-expressions
@@ -558,188 +749,6 @@ methods:
           type: any
           description: |
             Value to set.
-  - name: shift()
-    uid: adaptive-expressions.StackedMemory.shift
-    package: adaptive-expressions
-    summary: Removes the first element from an array and returns it.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function shift()
-      return:
-        type: <xref uid="adaptive-expressions.MemoryInterface" /> | undefined
-        description: ''
-  - name: 'slice(number, number)'
-    uid: adaptive-expressions.StackedMemory.slice
-    package: adaptive-expressions
-    summary: Returns a section of an array.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function slice(start?: number, end?: number)'
-      parameters:
-        - id: start
-          type: number
-          description: The beginning of the specified portion of the array.
-        - id: end
-          type: number
-          description: |
-            The end of the specified portion of the array.
-      return:
-        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
-        description: ''
-  - name: >-
-      some((value: MemoryInterface, index: number, array: MemoryInterface[]) =>
-      unknown, any)
-    uid: adaptive-expressions.StackedMemory.some
-    package: adaptive-expressions
-    summary: >-
-      Determines whether the specified callback function returns true for any
-      element of an array.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function some(callbackfn: (value: MemoryInterface, index: number, array:
-        MemoryInterface[]) => unknown, thisArg?: any)
-      parameters:
-        - id: callbackfn
-          type: >-
-            (value: MemoryInterface, index: number, array: MemoryInterface[])
-            =&gt; unknown
-          description: >-
-            A function that accepts up to three arguments. The some method calls
-            the callbackfn function for each element in array1 until the
-            callbackfn returns true, or until the end of the array.
-        - id: thisArg
-          type: any
-          description: >
-            An object to which the this keyword can refer in the callbackfn
-            function. If thisArg is omitted, undefined is used as the this
-            value.
-      return:
-        type: boolean
-        description: ''
-  - name: 'sort((a: MemoryInterface, b: MemoryInterface) => number)'
-    uid: adaptive-expressions.StackedMemory.sort
-    package: adaptive-expressions
-    summary: Sorts an array.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function sort(compareFn?: (a: MemoryInterface, b: MemoryInterface) =>
-        number)
-      parameters:
-        - id: compareFn
-          type: '(a: MemoryInterface, b: MemoryInterface) =&gt; number'
-          description: >
-            The name of the function used to determine the order of the
-            elements. If omitted, the elements are sorted in ascending, ASCII
-            character order.
-      return:
-        type: this
-        description: ''
-  - name: 'splice(number, number)'
-    uid: adaptive-expressions.StackedMemory.splice
-    package: adaptive-expressions
-    summary: >-
-      Removes elements from an array and, if necessary, inserts new elements in
-      their place, returning the deleted elements.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function splice(start: number, deleteCount?: number)'
-      parameters:
-        - id: start
-          type: number
-          description: >-
-            The zero-based location in the array from which to start removing
-            elements.
-        - id: deleteCount
-          type: number
-          description: |
-            The number of elements to remove.
-      return:
-        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
-        description: ''
-  - name: 'splice(number, number, MemoryInterface[])'
-    uid: adaptive-expressions.StackedMemory.splice_1
-    package: adaptive-expressions
-    summary: >-
-      Removes elements from an array and, if necessary, inserts new elements in
-      their place, returning the deleted elements.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function splice(start: number, deleteCount: number, items:
-        MemoryInterface[])
-      parameters:
-        - id: start
-          type: number
-          description: >-
-            The zero-based location in the array from which to start removing
-            elements.
-        - id: deleteCount
-          type: number
-          description: The number of elements to remove.
-        - id: items
-          type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
-          description: |
-            Elements to insert into the array in place of the deleted elements.
-      return:
-        type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
-        description: ''
-  - name: toLocaleString()
-    uid: adaptive-expressions.StackedMemory.toLocaleString
-    package: adaptive-expressions
-    summary: >-
-      Returns a string representation of an array. The elements are converted to
-      string using their toLocalString methods.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function toLocaleString()
-      return:
-        type: string
-        description: ''
-  - name: toString()
-    uid: adaptive-expressions.StackedMemory.toString
-    package: adaptive-expressions
-    summary: Returns a string representation of an array.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function toString()
-      return:
-        type: string
-        description: ''
-  - name: 'unshift(MemoryInterface[])'
-    uid: adaptive-expressions.StackedMemory.unshift
-    package: adaptive-expressions
-    summary: Inserts new elements at the start of an array.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function unshift(items: MemoryInterface[])'
-      parameters:
-        - id: items
-          type: '<xref uid="adaptive-expressions.MemoryInterface" />[]'
-          description: |
-            Elements to insert at the start of the Array.
-      return:
-        type: number
-        description: ''
   - name: version()
     uid: adaptive-expressions.StackedMemory.version
     package: adaptive-expressions
@@ -750,10 +759,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function version()
+      content: 'function version(): string'
       return:
-        type: string
         description: A string value representing the version.
+        type: string
   - name: wrap(MemoryInterface)
     uid: adaptive-expressions.StackedMemory.wrap
     package: adaptive-expressions
@@ -765,7 +774,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function wrap(memory: MemoryInterface)'
+      content: 'static function wrap(memory: MemoryInterface): StackedMemory'
       parameters:
         - id: memory
           type: <xref uid="adaptive-expressions.MemoryInterface" />
@@ -773,6 +782,6 @@ methods:
             An object that implements
             [MemoryInterface](xref:adaptive-expressions.MemoryInterface).
       return:
-        type: <xref uid="adaptive-expressions.StackedMemory" />
         description: 'A [StackedMemory](xref:adaptive-expressions.StackedMemory) object.'
+        type: <xref uid="adaptive-expressions.StackedMemory" />
 extends: Array&lt;<xref uid="adaptive-expressions.MemoryInterface" />&gt;

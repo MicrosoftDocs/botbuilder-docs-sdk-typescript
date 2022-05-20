@@ -38,10 +38,10 @@ properties:
     syntax:
       content: boolean isConnected
       return:
-        type: boolean
         description: >-
           `true` if the the transport is connected and ready to send data,
           `false` otherwise.
+        type: boolean
 methods:
   - name: close()
     uid: botframework-streaming.WebSocketTransport.close
@@ -76,14 +76,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function receive(count: number)'
+      content: 'function receive(count: number): Promise<INodeBuffer>'
       parameters:
         - id: count
           type: number
           description: The number of bytes to attempt to receive.
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.INodeBuffer" />&gt;
         description: A buffer populated with the received data.
+        type: Promise&lt;<xref uid="botframework-streaming.INodeBuffer" />&gt;
   - name: send(INodeBuffer)
     uid: botframework-streaming.WebSocketTransport.send
     package: botframework-streaming
@@ -92,13 +92,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function send(buffer: INodeBuffer)'
+      content: 'function send(buffer: INodeBuffer): number'
       parameters:
         - id: buffer
           type: <xref uid="botframework-streaming.INodeBuffer" />
           description: The buffered data to send out over the connection.
       return:
-        type: number
         description: >-
           A number indicating the length of the sent data if the data was
           successfully sent, otherwise 0.
+        type: number

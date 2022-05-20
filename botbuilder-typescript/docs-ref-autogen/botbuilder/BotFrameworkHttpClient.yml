@@ -2,11 +2,17 @@
 name: BotFrameworkHttpClient
 uid: botbuilder.BotFrameworkHttpClient
 package: botbuilder
-summary: HttpClient for calling skills from a Node.js BotBuilder V4 SDK bot.
+summary: ''
 fullName: BotFrameworkHttpClient
 remarks: ''
 isPreview: false
-isDeprecated: false
+isDeprecated: true
+customDeprecatedMessage: >-
+  Use `BotFrameworkAuthentication.createBotFrameworkClient()` to obtain a client
+  and perform the operations that were accomplished through
+  `BotFrameworkHttpClient`.
+
+  HttpClient for calling skills from a Node.js BotBuilder V4 SDK bot.
 type: class
 constructors:
   - name: 'BotFrameworkHttpClient(ICredentialProvider, string)'
@@ -43,7 +49,8 @@ methods:
     syntax:
       content: >-
         function postActivity<T>(fromBotId: string, toBotId: string, toUrl:
-        string, serviceUrl: string, conversationId: string, activity: Activity)
+        string, serviceUrl: string, conversationId: string, activity: Activity):
+        Promise<InvokeResponse<T>>
       parameters:
         - id: fromBotId
           type: string
@@ -62,8 +69,7 @@ methods:
           description: A conversation ID to use for the conversation with the skill.
         - id: activity
           type: Activity
-          description: |
-            Activity to forward.
+          description: Activity to forward.
       return:
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;InvokeResponse&lt;T&gt;&gt;
-        description: ''

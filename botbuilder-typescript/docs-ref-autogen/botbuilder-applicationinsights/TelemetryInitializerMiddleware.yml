@@ -47,8 +47,8 @@ properties:
     syntax:
       content: boolean logActivityTelemetry
       return:
-        type: boolean
         description: whether or not to log activity telemetry
+        type: boolean
   - name: telemetryClient
     uid: >-
       botbuilder-applicationinsights.TelemetryInitializerMiddleware.telemetryClient
@@ -63,8 +63,8 @@ properties:
     syntax:
       content: TelemetryLoggerMiddleware telemetryClient
       return:
-        type: TelemetryLoggerMiddleware
         description: telemetry logger middleware
+        type: TelemetryLoggerMiddleware
 methods:
   - name: 'onTurn(TurnContext, () => Promise<void>)'
     uid: botbuilder-applicationinsights.TelemetryInitializerMiddleware.onTurn
@@ -76,7 +76,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      content: >-
+        function onTurn(context: TurnContext, next: () => Promise<void>):
+        Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -86,5 +88,5 @@ methods:
           description: |
             The delegate to call to continue the bot middleware pipeline
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

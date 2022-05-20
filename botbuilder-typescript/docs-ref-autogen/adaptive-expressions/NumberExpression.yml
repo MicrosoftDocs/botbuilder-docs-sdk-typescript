@@ -42,8 +42,8 @@ properties:
     syntax:
       content: 'public expressionText: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: value
     uid: adaptive-expressions.NumberExpression.value
     package: adaptive-expressions
@@ -55,9 +55,9 @@ properties:
     syntax:
       content: 'public value: number'
       return:
-        type: number
         description: ''
-methods:
+        type: number
+inheritedMethods:
   - name: getValue(object)
     uid: adaptive-expressions.NumberExpression.getValue
     package: adaptive-expressions
@@ -66,14 +66,55 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getValue(data: object)'
+      content: 'function getValue(data: object): number'
       parameters:
         - id: data
           type: object
           description: Data to use for expression binding.
       return:
-        type: number
         description: The value.
+        type: number
+  - name: toExpression()
+    uid: adaptive-expressions.NumberExpression.toExpression
+    package: adaptive-expressions
+    summary: This will return the existing expression if the value is non-complex type.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function toExpression(): Expression'
+      return:
+        description: The existing expression if the value is non-complex type.
+        type: <xref uid="adaptive-expressions.Expression" />
+  - name: toString()
+    uid: adaptive-expressions.NumberExpression.toString
+    package: adaptive-expressions
+    summary: Convert an expression property to string.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function toString(): string'
+      return:
+        description: The converted string.
+        type: string
+  - name: tryGetValue(object)
+    uid: adaptive-expressions.NumberExpression.tryGetValue
+    package: adaptive-expressions
+    summary: Try to Get the value.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function tryGetValue(data: object): { error: Error, value: number }'
+      parameters:
+        - id: data
+          type: object
+          description: Data to use for expression binding.
+      return:
+        description: the value or an error.
+        type: '{ error: Error, value: number }'
+methods:
   - name: setValue(number | string | Expression)
     uid: adaptive-expressions.NumberExpression.setValue
     package: adaptive-expressions
@@ -88,44 +129,4 @@ methods:
           type: number | string | <xref uid="adaptive-expressions.Expression" />
           description: |
             Value to set.
-  - name: toExpression()
-    uid: adaptive-expressions.NumberExpression.toExpression
-    package: adaptive-expressions
-    summary: This will return the existing expression if the value is non-complex type.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function toExpression()
-      return:
-        type: <xref uid="adaptive-expressions.Expression" />
-        description: ''
-  - name: toString()
-    uid: adaptive-expressions.NumberExpression.toString
-    package: adaptive-expressions
-    summary: Convert an expression property to string.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function toString()
-      return:
-        type: string
-        description: ''
-  - name: tryGetValue(object)
-    uid: adaptive-expressions.NumberExpression.tryGetValue
-    package: adaptive-expressions
-    summary: Try to Get the value.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function tryGetValue(data: object)'
-      parameters:
-        - id: data
-          type: object
-          description: Data to use for expression binding.
-      return:
-        type: Object
-        description: the value or an error.
 extends: <xref uid="adaptive-expressions.ExpressionProperty" />&lt;number&gt;

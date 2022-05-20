@@ -24,10 +24,10 @@ properties:
     syntax:
       content: boolean isReadOnly
       return:
-        type: boolean
         description: >-
           A boolean value indicating whether the
           [FunctionTable](xref:adaptive-expressions.FunctionTable) is readonly.
+        type: boolean
   - name: size
     uid: adaptive-expressions.FunctionTable.size
     package: adaptive-expressions
@@ -43,25 +43,9 @@ properties:
     syntax:
       content: number size
       return:
-        type: number
         description: An integer value.
+        type: number
 methods:
-  - name: add(Object)
-    uid: adaptive-expressions.FunctionTable.add
-    package: adaptive-expressions
-    summary: >-
-      Inserts a mapping of a string key to
-      [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator) into
-      [FunctionTable](xref:adaptive-expressions.FunctionTable).
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function add(item: Object)'
-      parameters:
-        - id: item
-          type: Object
-          description: ''
   - name: 'add(string, customFunction)'
     uid: adaptive-expressions.FunctionTable.add_2
     package: adaptive-expressions
@@ -100,6 +84,22 @@ methods:
         - id: value
           type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
           description: ''
+  - name: 'add({ key: string, value: ExpressionEvaluator })'
+    uid: adaptive-expressions.FunctionTable.add
+    package: adaptive-expressions
+    summary: >-
+      Inserts a mapping of a string key to
+      [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator) into
+      [FunctionTable](xref:adaptive-expressions.FunctionTable).
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function add(item: { key: string, value: ExpressionEvaluator })'
+      parameters:
+        - id: item
+          type: '{ key: string, value: ExpressionEvaluator }'
+          description: ''
   - name: clear()
     uid: adaptive-expressions.FunctionTable.clear
     package: adaptive-expressions
@@ -121,14 +121,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delete(key: string)'
+      content: 'function delete(key: string): boolean'
       parameters:
         - id: key
           type: string
           description: A string key of function name.
       return:
-        type: boolean
         description: A boolean value indicating whether the key is successfully deleted.
+        type: boolean
   - name: entries()
     uid: adaptive-expressions.FunctionTable.entries
     package: adaptive-expressions
@@ -139,10 +139,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function entries()
+      content: 'function entries(): IterableIterator<[string, ExpressionEvaluator]>'
       return:
-        type: IterableIterator&lt;Object&gt;
         description: ''
+        type: 'IterableIterator&lt;[string, ExpressionEvaluator]&gt;'
   - name: >-
       forEach((value: ExpressionEvaluator, key: string, map: Map<string,
       ExpressionEvaluator>) => void, any)
@@ -181,16 +181,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function get(key: string)'
+      content: 'function get(key: string): ExpressionEvaluator'
       parameters:
         - id: key
           type: string
           description: A string value of function name.
       return:
-        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
         description: >-
           An
           [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator).
+        type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
   - name: has(string)
     uid: adaptive-expressions.FunctionTable.has
     package: adaptive-expressions
@@ -201,14 +201,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function has(key: string)'
+      content: 'function has(key: string): boolean'
       parameters:
         - id: key
           type: string
           description: A string key.
       return:
-        type: boolean
         description: '`True` if the key is contained, otherwise returns `False`.'
+        type: boolean
   - name: keys()
     uid: adaptive-expressions.FunctionTable.keys
     package: adaptive-expressions
@@ -219,10 +219,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function keys()
+      content: 'function keys(): IterableIterator<string>'
       return:
-        type: IterableIterator&lt;string&gt;
         description: A list of string values.
+        type: IterableIterator&lt;string&gt;
   - name: 'set(string, ExpressionEvaluator)'
     uid: adaptive-expressions.FunctionTable.set
     package: adaptive-expressions
@@ -234,19 +234,21 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function set(key: string, value: ExpressionEvaluator)'
+      content: 'function set(key: string, value: ExpressionEvaluator): this'
       parameters:
         - id: key
           type: string
           description: A string value of function name.
         - id: value
           type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
-          description: >
+          description: >-
             The value to set for the
             [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator).
       return:
+        description: >-
+          The value of the
+          [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator).
         type: this
-        description: ''
   - name: values()
     uid: adaptive-expressions.FunctionTable.values
     package: adaptive-expressions
@@ -258,11 +260,11 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function values()
+      content: 'function values(): IterableIterator<ExpressionEvaluator>'
       return:
-        type: >-
-          IterableIterator&lt;<xref
-          uid="adaptive-expressions.ExpressionEvaluator" />&gt;
         description: >-
           A list of
           [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator).
+        type: >-
+          IterableIterator&lt;<xref
+          uid="adaptive-expressions.ExpressionEvaluator" />&gt;

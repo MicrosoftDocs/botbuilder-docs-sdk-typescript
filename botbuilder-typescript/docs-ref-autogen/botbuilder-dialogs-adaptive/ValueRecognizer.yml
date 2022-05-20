@@ -2,9 +2,15 @@
 name: ValueRecognizer
 uid: botbuilder-dialogs-adaptive.ValueRecognizer
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: >-
+  ValueRecognizer - Recognizer for mapping message activity. Value payload into
+  intent/entities.
 fullName: ValueRecognizer
-remarks: ''
+remarks: >-
+  This recognizer will map MessageActivity Value payloads into intents and
+  entities.
+       activity.Value.intent => RecognizerResult.Intents.
+       activity.Value.properties => RecognizerResult.Entities.
 isPreview: false
 isDeprecated: false
 type: class
@@ -20,8 +26,8 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: logPersonalInformation
     uid: botbuilder-dialogs-adaptive.ValueRecognizer.logPersonalInformation
     package: botbuilder-dialogs-adaptive
@@ -35,8 +41,8 @@ properties:
     syntax:
       content: 'logPersonalInformation: BoolExpression'
       return:
-        type: BoolExpression
         description: ''
+        type: BoolExpression
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.ValueRecognizer.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -50,9 +56,9 @@ properties:
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
-        type: BotTelemetryClient
         description: ''
-methods:
+        type: BotTelemetryClient
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.ValueRecognizer.configure
     package: botbuilder-dialogs-adaptive
@@ -61,15 +67,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: getConverter(string)
     uid: botbuilder-dialogs-adaptive.ValueRecognizer.getConverter
     package: botbuilder-dialogs-adaptive
@@ -78,20 +84,23 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
-        type: Converter | ConverterFactory
         description: ''
+        type: Converter | ConverterFactory
+methods:
   - name: >-
       recognize(DialogContext, Activity, [key: string]: string, [key: string]:
       number)
     uid: botbuilder-dialogs-adaptive.ValueRecognizer.recognize
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Runs current DialogContext.TurnContext.Activity through a recognizer and
+      returns a [RecognizerResult](xref:botbuilder-core.RecognizerResult).
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -99,21 +108,27 @@ methods:
       content: >-
         function recognize(dialogContext: DialogContext, activity: Activity,
         telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number)
+        string]: number): Promise<RecognizerResult>
       parameters:
         - id: dialogContext
           type: DialogContext
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: activity
           type: Activity
-          description: ''
+          description: '(xref:botframework-schema.Activity) to recognize.'
         - id: telemetryProperties
           type: '[key: string]\: string'
-          description: ''
+          description: >-
+            Optional, additional properties to be logged to telemetry with the
+            LuisResult event.
         - id: telemetryMetrics
           type: '[key: string]\: number'
-          description: ''
+          description: >-
+            Optional, additional metrics to be logged to telemetry with the
+            LuisResult event.
       return:
+        description: Analysis of utterance.
         type: Promise&lt;RecognizerResult&gt;
-        description: ''
 extends: <xref uid="botbuilder-dialogs-adaptive.AdaptiveRecognizer" />

@@ -2,7 +2,9 @@
 name: MostSpecificSelector
 uid: botbuilder-dialogs-adaptive.MostSpecificSelector
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: >-
+  Select the most specific true rule implementation of
+  [TriggerSelector](xref:botbuilder-dialogs-adaptive.TriggerSelector).
 fullName: MostSpecificSelector
 remarks: ''
 isPreview: false
@@ -20,8 +22,8 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: selector
     uid: botbuilder-dialogs-adaptive.MostSpecificSelector.selector
     package: botbuilder-dialogs-adaptive
@@ -33,9 +35,9 @@ properties:
     syntax:
       content: 'selector: TriggerSelector'
       return:
-        type: <xref uid="botbuilder-dialogs-adaptive.TriggerSelector" />
         description: ''
-methods:
+        type: <xref uid="botbuilder-dialogs-adaptive.TriggerSelector" />
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.MostSpecificSelector.configure
     package: botbuilder-dialogs-adaptive
@@ -44,15 +46,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: getConverter(string)
     uid: botbuilder-dialogs-adaptive.MostSpecificSelector.getConverter
     package: botbuilder-dialogs-adaptive
@@ -61,18 +63,19 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
-        type: Converter | ConverterFactory
         description: ''
+        type: Converter | ConverterFactory
+methods:
   - name: 'initialize(OnCondition[], boolean)'
     uid: botbuilder-dialogs-adaptive.MostSpecificSelector.initialize
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: Initializes the selector with the set of rules.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -81,26 +84,27 @@ methods:
       parameters:
         - id: conditionals
           type: '<xref uid="botbuilder-dialogs-adaptive.OnCondition" />[]'
-          description: ''
+          description: Possible rules to match.
         - id: _evaluate
           type: boolean
-          description: ''
+          description: |
+            True by default if rules should be evaluated on select.
   - name: select(ActionContext)
     uid: botbuilder-dialogs-adaptive.MostSpecificSelector.select
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: Selects the best rule to execute.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function select(context: ActionContext)'
+      content: 'function select(context: ActionContext): Promise<OnCondition[]>'
       parameters:
         - id: context
           type: <xref uid="botbuilder-dialogs-adaptive.ActionContext" />
-          description: ''
+          description: The context for the current turn of conversation.
       return:
+        description: The best rule in original list to execute.
         type: >-
           Promise&lt;<xref uid="botbuilder-dialogs-adaptive.OnCondition"
           />[]&gt;
-        description: ''
 extends: <xref uid="botbuilder-dialogs-adaptive.TriggerSelector" />

@@ -20,8 +20,8 @@ properties:
     syntax:
       content: 'public static MillisecondToTickConstant: BigInteger = bigInt(''10000'')'
       return:
-        type: BigInteger
         description: ''
+        type: BigInteger
   - name: UnixMilliSecondToTicksConstant
     uid: adaptive-expressions.InternalFunctionUtils.UnixMilliSecondToTicksConstant
     package: adaptive-expressions
@@ -35,8 +35,8 @@ properties:
         public static UnixMilliSecondToTicksConstant: BigInteger =
         bigInt('621355968000000000')
       return:
-        type: BigInteger
         description: ''
+        type: BigInteger
 methods:
   - name: 'accessIndex(any, number)'
     uid: adaptive-expressions.InternalFunctionUtils.accessIndex
@@ -46,17 +46,19 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function accessIndex(instance: any, index: number)'
+      content: >-
+        static function accessIndex(instance: any, index: number):
+        ValueWithError
       parameters:
         - id: instance
           type: any
           description: Instance with property.
         - id: index
           type: number
-          description: ''
+          description: Property to lookup.
       return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
         description: Value and error information if any.
+        type: <xref uid="adaptive-expressions.ValueWithError" />
   - name: 'accessProperty(any, string)'
     uid: adaptive-expressions.InternalFunctionUtils.accessProperty
     package: adaptive-expressions
@@ -65,7 +67,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function accessProperty(instance: any, property: string)'
+      content: >-
+        static function accessProperty(instance: any, property: string):
+        ValueWithError
       parameters:
         - id: instance
           type: any
@@ -74,25 +78,24 @@ methods:
           type: string
           description: Property to lookup.
       return:
-        type: <xref uid="adaptive-expressions.ValueWithError" />
         description: Value and error information if any.
+        type: <xref uid="adaptive-expressions.ValueWithError" />
   - name: commonStringify(unknown)
     uid: adaptive-expressions.InternalFunctionUtils.commonStringify
     package: adaptive-expressions
-    summary: Common Stringfy an object.
+    summary: Common Stringify an object.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function commonStringify(input: unknown)'
+      content: 'static function commonStringify(input: unknown): string'
       parameters:
         - id: input
           type: unknown
-          description: |
-            input object.
+          description: input object.
       return:
+        description: the stringified object.
         type: string
-        description: ''
   - name: convertToList(unknown)
     uid: adaptive-expressions.InternalFunctionUtils.convertToList
     package: adaptive-expressions
@@ -105,15 +108,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function convertToList(instance: unknown)'
+      content: 'static function convertToList(instance: unknown): unknown[] | undefined'
       parameters:
         - id: instance
           type: unknown
-          description: |
-            input instance.
+          description: input instance.
       return:
+        description: The generated list.
         type: 'unknown[] | undefined'
-        description: ''
   - name: 'foreach(Expression, MemoryInterface, Options)'
     uid: adaptive-expressions.InternalFunctionUtils.foreach
     package: adaptive-expressions
@@ -124,7 +126,7 @@ methods:
     syntax:
       content: >-
         static function foreach(expression: Expression, state: MemoryInterface,
-        options: Options)
+        options: Options): ValueWithError
       parameters:
         - id: expression
           type: <xref uid="adaptive-expressions.Expression" />
@@ -134,11 +136,10 @@ methods:
           description: Memory scope.
         - id: options
           type: <xref uid="adaptive-expressions.Options" />
-          description: |
-            Options.
+          description: Options.
       return:
+        description: The evaluated list.
         type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
   - name: getTextDecoder(string)
     uid: adaptive-expressions.InternalFunctionUtils.getTextDecoder
     package: adaptive-expressions
@@ -147,14 +148,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function getTextDecoder(code: string)'
+      content: 'static function getTextDecoder(code: string): TextDecoder'
       parameters:
         - id: code
           type: string
-          description: ''
+          description: The encoding format.
       return:
+        description: The text decoder.
         type: TextDecoder
-        description: ''
   - name: getTextEncoder()
     uid: adaptive-expressions.InternalFunctionUtils.getTextEncoder
     package: adaptive-expressions
@@ -163,10 +164,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: static function getTextEncoder()
+      content: 'static function getTextEncoder(): TextEncoder'
       return:
+        description: The text encoder.
         type: TextEncoder
-        description: ''
   - name: isLogicTrue(any)
     uid: adaptive-expressions.InternalFunctionUtils.isLogicTrue
     package: adaptive-expressions
@@ -175,16 +176,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function isLogicTrue(instance: any)'
+      content: 'static function isLogicTrue(instance: any): boolean'
       parameters:
         - id: instance
           type: any
           description: Computed value.
       return:
-        type: boolean
         description: True if boolean true or non-null.
+        type: boolean
   - name: >-
-      lambdaEvaluator<T>(Expression, MemoryInterface, Options, T[],
+      lambdaEvaluator<T, U>(Expression, MemoryInterface, Options, T[],
       (currentItem: T, result: U, error: string) => boolean)
     uid: adaptive-expressions.InternalFunctionUtils.lambdaEvaluator
     package: adaptive-expressions
@@ -194,7 +195,7 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        static function lambdaEvaluator<T>(expression: Expression, state:
+        static function lambdaEvaluator<T, U>(expression: Expression, state:
         MemoryInterface, options: Options, list: T[], callback: (currentItem: T,
         result: U, error: string) => boolean)
       parameters:
@@ -222,15 +223,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function parseStringOrUndefined(input: string | undefined)'
+      content: >-
+        static function parseStringOrUndefined(input: string | undefined):
+        string
       parameters:
         - id: input
           type: string | undefined
-          description: |
-            Input string
+          description: Input string
       return:
+        description: The wrapped string.
         type: string
-        description: ''
   - name: parseTimexProperty(any)
     uid: adaptive-expressions.InternalFunctionUtils.parseTimexProperty
     package: adaptive-expressions
@@ -239,14 +241,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function parseTimexProperty(timexExpr: any)'
+      content: >-
+        static function parseTimexProperty(timexExpr: any): { error: string,
+        timexProperty: TimexProperty }
       parameters:
         - id: timexExpr
           type: any
           description: String or TimexProperty input.
       return:
-        type: Object
         description: TimexProperty and error.
+        type: '{ error: string, timexProperty: TimexProperty }'
   - name: parseUri(string)
     uid: adaptive-expressions.InternalFunctionUtils.parseUri
     package: adaptive-expressions
@@ -255,15 +259,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function parseUri(uri: string)'
+      content: 'static function parseUri(uri: string): ValueWithError'
       parameters:
         - id: uri
           type: string
-          description: |
-            Input string uri.
+          description: Input string uri.
       return:
+        description: The parsed URL object.
         type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
   - name: sortBy(boolean)
     uid: adaptive-expressions.InternalFunctionUtils.sortBy
     package: adaptive-expressions
@@ -272,15 +275,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function sortBy(isDescending: boolean)'
+      content: >-
+        static function sortBy(isDescending: boolean):
+        EvaluateExpressionDelegate
       parameters:
         - id: isDescending
           type: boolean
-          description: |
-            Descending flag.
+          description: Descending flag.
       return:
+        description: The sorted array.
         type: <xref uid="adaptive-expressions.EvaluateExpressionDelegate" />
-        description: ''
   - name: ticks(string)
     uid: adaptive-expressions.InternalFunctionUtils.ticks
     package: adaptive-expressions
@@ -289,35 +293,35 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function ticks(timeStamp: string)'
+      content: 'static function ticks(timeStamp: string): ValueWithError'
       parameters:
         - id: timeStamp
           type: string
-          description: |
-            String timestamp input.
+          description: String timestamp input.
       return:
+        description: The string converted in ticks.
         type: <xref uid="adaptive-expressions.ValueWithError" />
-        description: ''
   - name: 'timeUnitTransformer(number, string)'
     uid: adaptive-expressions.InternalFunctionUtils.timeUnitTransformer
     package: adaptive-expressions
-    summary: Transform C# period and unit into js period and unit
+    summary: Transform C# period and unit into js period and unit.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function timeUnitTransformer(duration: number, cSharpStr: string)'
+      content: >-
+        static function timeUnitTransformer(duration: number, cSharpStr:
+        string): { duration: number, tsStr: OpUnitType }
       parameters:
         - id: duration
           type: number
-          description: C# duration
+          description: C# duration.
         - id: cSharpStr
           type: string
-          description: |
-            C# unit.
+          description: C# unit.
       return:
-        type: Object
-        description: ''
+        description: The transformed timeUnit.
+        type: '{ duration: number, tsStr: OpUnitType }'
   - name: ValidateLambdaExpression(Expression)
     uid: adaptive-expressions.InternalFunctionUtils.ValidateLambdaExpression
     package: adaptive-expressions
@@ -330,8 +334,8 @@ methods:
       parameters:
         - id: expression
           type: <xref uid="adaptive-expressions.Expression" />
-          description: |+
-
+          description: |
+            The expression to validate.
   - name: verifyISOTimestamp(any)
     uid: adaptive-expressions.InternalFunctionUtils.verifyISOTimestamp
     package: adaptive-expressions
@@ -340,14 +344,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function verifyISOTimestamp(value: any)'
+      content: 'static function verifyISOTimestamp(value: any): string | undefined'
       parameters:
         - id: value
           type: any
           description: Timestamp string to check.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: verifyTimestamp(any)
     uid: adaptive-expressions.InternalFunctionUtils.verifyTimestamp
     package: adaptive-expressions
@@ -356,25 +360,25 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function verifyTimestamp(value: any)'
+      content: 'static function verifyTimestamp(value: any): string | undefined'
       parameters:
         - id: value
           type: any
           description: Timestamp string to check.
       return:
-        type: string | undefined
         description: Error or undefined if invalid.
+        type: string | undefined
   - name: 'wrapGetValue(MemoryInterface, string, Options)'
     uid: adaptive-expressions.InternalFunctionUtils.wrapGetValue
     package: adaptive-expressions
-    summary: Get the value of a path from a memory
+    summary: Get the value of a path from a memory.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function wrapGetValue(state: MemoryInterface, path: string,
-        options: Options)
+        options: Options): any
       parameters:
         - id: state
           type: <xref uid="adaptive-expressions.MemoryInterface" />
@@ -384,8 +388,7 @@ methods:
           description: Path string.
         - id: options
           type: <xref uid="adaptive-expressions.Options" />
-          description: |
-            Options.
+          description: Options.
       return:
+        description: The value of a path from a memory.
         type: any
-        description: ''

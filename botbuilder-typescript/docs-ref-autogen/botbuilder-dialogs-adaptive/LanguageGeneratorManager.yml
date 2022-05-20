@@ -5,7 +5,7 @@ package: botbuilder-dialogs-adaptive
 summary: >-
   Class which manages cache of all LG resources from a
   [ResourceExplorer](xref:botbuilder-dialogs-declarative.ResourceExplorer).
-fullName: LanguageGeneratorManager<T>
+fullName: 'LanguageGeneratorManager<T, D>'
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -40,10 +40,10 @@ properties:
     syntax:
       content: 'languageGenerators: Map<string, LanguageGenerator<T, D>>'
       return:
+        description: ''
         type: >-
           Map&lt;string, <xref
           uid="botbuilder-dialogs-adaptive.LanguageGenerator" />&lt;T, D&gt;&gt;
-        description: ''
 methods:
   - name: 'resourceExplorerResolver(string, Map<string, Resource[]>)'
     uid: >-
@@ -58,7 +58,7 @@ methods:
     syntax:
       content: >-
         static function resourceExplorerResolver(locale: string,
-        resourceMapping: Map<string, Resource[]>)
+        resourceMapping: Map<string, Resource[]>): ImportResolverDelegate
       parameters:
         - id: locale
           type: string
@@ -67,5 +67,5 @@ methods:
           type: 'Map&lt;string, Resource[]&gt;'
           description: Template resource loader delegate.
       return:
-        type: ImportResolverDelegate
         description: The delegate to resolve the resource.
+        type: ImportResolverDelegate

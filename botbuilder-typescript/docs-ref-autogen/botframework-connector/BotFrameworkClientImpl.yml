@@ -9,9 +9,7 @@ isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: >-
-      BotFrameworkClientImpl(ServiceClientCredentialsFactory, string, (input:
-      RequestInfo, init?: RequestInit) => Promise<Response>)
+  - name: 'BotFrameworkClientImpl(ServiceClientCredentialsFactory, string, fetch)'
     uid: botframework-connector.BotFrameworkClientImpl.constructor
     package: botframework-connector
     summary: ''
@@ -22,8 +20,7 @@ constructors:
       content: >-
         new BotFrameworkClientImpl(credentialsFactory:
         ServiceClientCredentialsFactory, loginEndpoint: string,
-        botFrameworkClientFetch?: (input: RequestInfo, init?: RequestInit) =>
-        Promise<Response>)
+        botFrameworkClientFetch?: fetch)
       parameters:
         - id: credentialsFactory
           type: >-
@@ -34,9 +31,7 @@ constructors:
           type: string
           description: ''
         - id: botFrameworkClientFetch
-          type: >-
-            (input: RequestInfo, init?: RequestInit) =&gt;
-            Promise&lt;Response&gt;
+          type: fetch
           description: ''
 methods:
   - name: 'postActivity<T>(string, string, string, string, string, Activity)'
@@ -49,7 +44,8 @@ methods:
     syntax:
       content: >-
         function postActivity<T>(fromBotId: string, toBotId: string, toUrl:
-        string, serviceUrl: string, conversationId: string, activity: Activity)
+        string, serviceUrl: string, conversationId: string, activity: Activity):
+        Promise<InvokeResponse<T>>
       parameters:
         - id: fromBotId
           type: string
@@ -70,5 +66,5 @@ methods:
           type: Activity
           description: ''
       return:
-        type: Promise&lt;InvokeResponse&lt;T&gt;&gt;
         description: ''
+        type: Promise&lt;InvokeResponse&lt;T&gt;&gt;

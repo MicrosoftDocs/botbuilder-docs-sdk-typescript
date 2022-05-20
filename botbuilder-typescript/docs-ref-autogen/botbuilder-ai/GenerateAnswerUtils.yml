@@ -40,8 +40,8 @@ properties:
     syntax:
       content: 'httpRequestUtils: HttpRequestUtils'
       return:
-        type: <xref uid="botbuilder-ai.HttpRequestUtils" />
         description: ''
+        type: <xref uid="botbuilder-ai.HttpRequestUtils" />
 methods:
   - name: 'emitTraceInfo(TurnContext, QnAMakerResult[], QnAMakerOptions)'
     uid: botbuilder-ai.GenerateAnswerUtils.emitTraceInfo
@@ -53,7 +53,7 @@ methods:
     syntax:
       content: >-
         function emitTraceInfo(turnContext: TurnContext, answers:
-        QnAMakerResult[], queryOptions?: QnAMakerOptions)
+        QnAMakerResult[], queryOptions?: QnAMakerOptions): Promise<any>
       parameters:
         - id: turnContext
           type: TurnContext
@@ -67,8 +67,8 @@ methods:
             (Optional) The options for the QnA Maker knowledge base. If null,
             constructor option is used for this instance.
       return:
-        type: Promise&lt;any&gt;
         description: a promise representing the async operation
+        type: Promise&lt;any&gt;
   - name: 'queryQnaService(QnAMakerEndpoint, string, QnAMakerOptions)'
     uid: botbuilder-ai.GenerateAnswerUtils.queryQnaService
     package: botbuilder-ai
@@ -79,7 +79,7 @@ methods:
     syntax:
       content: >-
         function queryQnaService(endpoint: QnAMakerEndpoint, question: string,
-        options?: QnAMakerOptions)
+        options?: QnAMakerOptions): Promise<QnAMakerResult[]>
       parameters:
         - id: endpoint
           type: <xref uid="botbuilder-ai.QnAMakerEndpoint" />
@@ -93,8 +93,10 @@ methods:
             (Optional) The options for the QnA Maker knowledge base. If null,
             constructor option is used for this instance.
       return:
+        description: |-
+          a promise that resolves to the query results.
+          .
         type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
-        description: a promise that resolves to the query results
   - name: 'queryQnaServiceRaw(QnAMakerEndpoint, string, QnAMakerOptions)'
     uid: botbuilder-ai.GenerateAnswerUtils.queryQnaServiceRaw
     package: botbuilder-ai
@@ -105,7 +107,7 @@ methods:
     syntax:
       content: >-
         function queryQnaServiceRaw(endpoint: QnAMakerEndpoint, question:
-        string, options?: QnAMakerOptions)
+        string, options?: QnAMakerOptions): Promise<QnAMakerResults>
       parameters:
         - id: endpoint
           type: <xref uid="botbuilder-ai.QnAMakerEndpoint" />
@@ -119,8 +121,8 @@ methods:
             (Optional) The options for the QnA Maker knowledge base. If null,
             constructor option is used for this instance.
       return:
-        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
         description: a promise that resolves to the raw query results
+        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
   - name: 'sortAnswersWithinThreshold(QnAMakerResult[], QnAMakerOptions)'
     uid: botbuilder-ai.GenerateAnswerUtils.sortAnswersWithinThreshold
     package: botbuilder-ai
@@ -135,7 +137,7 @@ methods:
     syntax:
       content: >-
         static function sortAnswersWithinThreshold(answers: QnAMakerResult[],
-        queryOptions: QnAMakerOptions)
+        queryOptions: QnAMakerOptions): QnAMakerResult[]
       parameters:
         - id: answers
           type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
@@ -146,8 +148,8 @@ methods:
             (Optional) The options for the QnA Maker knowledge base. If null,
             constructor option is used for this instance.
       return:
-        type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
         description: the sorted and filtered results
+        type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
   - name: validateOptions(QnAMakerOptions)
     uid: botbuilder-ai.GenerateAnswerUtils.validateOptions
     package: botbuilder-ai

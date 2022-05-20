@@ -47,8 +47,8 @@ properties:
     syntax:
       content: boolean logPersonalInformation
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: telemetryClient
     uid: botbuilder-ai.QnAMaker.telemetryClient
     package: botbuilder-ai
@@ -60,8 +60,8 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        type: BotTelemetryClient
         description: ''
+        type: BotTelemetryClient
 methods:
   - name: answer(TurnContext)
     uid: botbuilder-ai.QnAMaker.answer
@@ -76,14 +76,14 @@ methods:
       Instead, favor using [QnAMaker.getAnswers()](#getAnswers) to generate
       answers for a question.
     syntax:
-      content: 'function answer(context: TurnContext)'
+      content: 'function answer(context: TurnContext): Promise<boolean>'
       parameters:
         - id: context
           type: TurnContext
           description: Context for the current turn of conversation with the user.
       return:
-        type: Promise&lt;boolean&gt;
         description: A promise resolving to true if an answer was sent
+        type: Promise&lt;boolean&gt;
   - name: callTrain(FeedbackRecords)
     uid: botbuilder-ai.QnAMaker.callTrain
     package: botbuilder-ai
@@ -92,14 +92,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function callTrain(feedbackRecords: FeedbackRecords)'
+      content: 'function callTrain(feedbackRecords: FeedbackRecords): Promise<void>'
       parameters:
         - id: feedbackRecords
           type: <xref uid="botbuilder-ai.FeedbackRecords" />
           description: Feedback records.
       return:
-        type: Promise&lt;void&gt;
         description: A promise representing the async operation
+        type: Promise&lt;void&gt;
   - name: 'generateAnswer(string | undefined, number, number)'
     uid: botbuilder-ai.QnAMaker.generateAnswer
     package: botbuilder-ai
@@ -113,7 +113,7 @@ methods:
     syntax:
       content: >-
         function generateAnswer(question: string | undefined, top?: number,
-        scoreThreshold?: number)
+        _scoreThreshold?: number): Promise<QnAMakerResult[]>
       parameters:
         - id: question
           type: string | undefined
@@ -121,14 +121,14 @@ methods:
         - id: top
           type: number
           description: (Optional) number of answers to return. Defaults to a value of `1`.
-        - id: scoreThreshold
+        - id: _scoreThreshold
           type: number
           description: >-
             (Optional) minimum answer score needed to be considered a match to
             questions. Defaults to a value of `0.001`.
       return:
-        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
         description: A promise resolving to the QnAMaker results
+        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
   - name: >-
       getAnswers(TurnContext, QnAMakerOptions, [key: string]: string, [key:
       string]: number)
@@ -142,7 +142,7 @@ methods:
       content: >-
         function getAnswers(context: TurnContext, options?: QnAMakerOptions,
         telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number)
+        string]: number): Promise<QnAMakerResult[]>
       parameters:
         - id: context
           type: TurnContext
@@ -165,8 +165,8 @@ methods:
             Additional metrics to be logged to telemetry with the QnaMessage
             event.
       return:
-        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
         description: A promise resolving to the QnAMaker result
+        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
   - name: >-
       getAnswersRaw(TurnContext, QnAMakerOptions, [key: string]: string, [key:
       string]: number)
@@ -178,9 +178,9 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function getAnswersRaw(context: TurnContext, options?: QnAMakerOptions,
-        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number)
+        function getAnswersRaw(context: TurnContext, options: QnAMakerOptions,
+        telemetryProperties: [key: string]: string, telemetryMetrics: [key:
+        string]: number): Promise<QnAMakerResults>
       parameters:
         - id: context
           type: TurnContext
@@ -204,10 +204,51 @@ methods:
             Optional. Additional metrics to be logged to telemetry with the
             QnaMessage event.
       return:
-        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
         description: >-
           A list of answers for the user query, sorted in decreasing order of
           ranking score.
+        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
+  - name: >-
+      getLegacyAnswersRaw(TurnContext, QnAMakerOptions, [key: string]: string,
+      [key: string]: number)
+    uid: botbuilder-ai.QnAMaker.getLegacyAnswersRaw
+    package: botbuilder-ai
+    summary: Generates an answer from the QnA Maker knowledge base.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getLegacyAnswersRaw(context: TurnContext, options?:
+        QnAMakerOptions, telemetryProperties?: [key: string]: string,
+        telemetryMetrics?: [key: string]: number): Promise<QnAMakerResults>
+      parameters:
+        - id: context
+          type: TurnContext
+          description: >-
+            The [TurnContext](xref:botbuilder-core.TurnContext) that contains
+            the user question to be queried against your knowledge base.
+        - id: options
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
+          description: >-
+            Optional. The [QnAMakerOptions](xref:botbuilder-ai.QnAMakerOptions)
+            for the QnA Maker knowledge base. If null, constructor option is
+            used for this instance.
+        - id: telemetryProperties
+          type: '[key: string]\: string'
+          description: >-
+            Optional. Additional properties to be logged to telemetry with the
+            QnaMessage event.
+        - id: telemetryMetrics
+          type: '[key: string]\: number'
+          description: >-
+            Optional. Additional metrics to be logged to telemetry with the
+            QnaMessage event.
+      return:
+        description: >-
+          A list of answers for the user query, sorted in decreasing order of
+          ranking score.
+        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
   - name: 'getLowScoreVariation(QnAMakerResult[])'
     uid: botbuilder-ai.QnAMaker.getLowScoreVariation
     package: botbuilder-ai
@@ -216,11 +257,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getLowScoreVariation(queryResult: QnAMakerResult[])'
+      content: >-
+        function getLowScoreVariation(queryResult: QnAMakerResult[]):
+        QnAMakerResult[]
       parameters:
         - id: queryResult
           type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
           description: User query output.
       return:
-        type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
         description: the filtered results
+        type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'

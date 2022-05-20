@@ -2,7 +2,9 @@
 name: TextEntityRecognizer
 uid: botbuilder-dialogs-adaptive.TextEntityRecognizer
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: >-
+  TextEntityRecognizer - base class for Text.Recogizers from the text recognizer
+  library.
 fullName: TextEntityRecognizer
 remarks: ''
 isPreview: false
@@ -20,8 +22,8 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: logPersonalInformation
     uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.logPersonalInformation
     package: botbuilder-dialogs-adaptive
@@ -35,8 +37,8 @@ properties:
     syntax:
       content: 'logPersonalInformation: BoolExpression'
       return:
-        type: BoolExpression
         description: ''
+        type: BoolExpression
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -50,9 +52,9 @@ properties:
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
-        type: BotTelemetryClient
         description: ''
-methods:
+        type: BotTelemetryClient
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.configure
     package: botbuilder-dialogs-adaptive
@@ -61,15 +63,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: getConverter(string)
     uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.getConverter
     package: botbuilder-dialogs-adaptive
@@ -78,14 +80,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
-        type: Converter | ConverterFactory
         description: ''
+        type: Converter | ConverterFactory
   - name: >-
       recognize(DialogContext, Partial<Activity>, Record<string, string>,
       Record<string, number>)
@@ -98,8 +100,8 @@ methods:
     syntax:
       content: >-
         function recognize(dialogContext: DialogContext, activity:
-        Partial<Activity>, telemetryProperties?: Record<string, string>,
-        telemetryMetrics?: Record<string, number>)
+        Partial<Activity>, _telemetryProperties?: Record<string, string>,
+        _telemetryMetrics?: Record<string, number>): Promise<RecognizerResult>
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -107,15 +109,16 @@ methods:
         - id: activity
           type: Partial&lt;Activity&gt;
           description: Activity.
-        - id: telemetryProperties
+        - id: _telemetryProperties
           type: 'Record&lt;string, string&gt;'
           description: Additional properties to be logged to telemetry with event.
-        - id: telemetryMetrics
+        - id: _telemetryMetrics
           type: 'Record&lt;string, number&gt;'
           description: Additional metrics to be logged to telemetry with event.
       return:
-        type: Promise&lt;RecognizerResult&gt;
         description: Analysis of utterance.
+        type: Promise&lt;RecognizerResult&gt;
+methods:
   - name: 'recognizeEntities(DialogContext, string, string, Entity[])'
     uid: botbuilder-dialogs-adaptive.TextEntityRecognizer.recognizeEntities
     package: botbuilder-dialogs-adaptive
@@ -128,7 +131,7 @@ methods:
     syntax:
       content: >-
         function recognizeEntities(dialogContext: DialogContext, text: string,
-        locale: string, entities: Entity[])
+        locale: string, entities: Entity[]): Promise<Entity[]>
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -147,6 +150,6 @@ methods:
             The [Entity](xref:botframework-schema.Entity) array to be
             recognized.
       return:
-        type: 'Promise&lt;Entity[]&gt;'
         description: 'Recognized [Entity](xref:botframework-schema.Entity) list Promise.'
+        type: 'Promise&lt;Entity[]&gt;'
 extends: <xref uid="botbuilder-dialogs-adaptive.EntityRecognizer" />
