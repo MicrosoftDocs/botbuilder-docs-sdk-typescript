@@ -41,9 +41,9 @@ properties:
     syntax:
       content: 'credentials: ServiceClientCredentials'
       return:
-        type: ServiceClientCredentials
         description: ''
-methods:
+        type: ServiceClientCredentials
+inheritedMethods:
   - name: >-
       sendOperationRequest(OperationArguments, OperationSpec,
       ServiceCallback<any>)
@@ -56,7 +56,8 @@ methods:
     syntax:
       content: >-
         function sendOperationRequest(operationArguments: OperationArguments,
-        operationSpec: OperationSpec, callback?: ServiceCallback<any>)
+        operationSpec: OperationSpec, callback?: ServiceCallback<any>):
+        Promise<RestResponse>
       parameters:
         - id: operationArguments
           type: OperationArguments
@@ -71,8 +72,8 @@ methods:
           description: |
             The callback to call when the response is received.
       return:
-        type: Promise&lt;RestResponse&gt;
         description: ''
+        type: Promise&lt;RestResponse&gt;
   - name: sendRequest(RequestPrepareOptions | WebResource)
     uid: botframework-connector.ConnectorClientContext.sendRequest
     package: botframework-connector
@@ -81,12 +82,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function sendRequest(options: RequestPrepareOptions | WebResource)'
+      content: >-
+        function sendRequest(options: RequestPrepareOptions | WebResource):
+        Promise<HttpOperationResponse>
       parameters:
         - id: options
           type: RequestPrepareOptions | WebResource
           description: ''
       return:
-        type: Promise&lt;HttpOperationResponse&gt;
         description: ''
+        type: Promise&lt;HttpOperationResponse&gt;
 extends: ServiceClient

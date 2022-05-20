@@ -47,8 +47,8 @@ properties:
     syntax:
       content: 'expressionText: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: value
     uid: botbuilder-dialogs-adaptive.DialogExpression.value
     package: botbuilder-dialogs-adaptive
@@ -60,9 +60,9 @@ properties:
     syntax:
       content: 'value: Dialog'
       return:
-        type: Dialog
         description: ''
-methods:
+        type: Dialog
+inheritedMethods:
   - name: getValue(object)
     uid: botbuilder-dialogs-adaptive.DialogExpression.getValue
     package: botbuilder-dialogs-adaptive
@@ -71,14 +71,55 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getValue(data: object)'
+      content: 'function getValue(data: object): Dialog'
       parameters:
         - id: data
           type: object
           description: Data to use for expression binding.
       return:
-        type: Dialog
         description: The value.
+        type: Dialog
+  - name: toExpression()
+    uid: botbuilder-dialogs-adaptive.DialogExpression.toExpression
+    package: botbuilder-dialogs-adaptive
+    summary: This will return the existing expression if the value is non-complex type.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function toExpression(): Expression'
+      return:
+        description: The existing expression if the value is non-complex type.
+        type: Expression
+  - name: toString()
+    uid: botbuilder-dialogs-adaptive.DialogExpression.toString
+    package: botbuilder-dialogs-adaptive
+    summary: Convert an expression property to string.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function toString(): string'
+      return:
+        description: The converted string.
+        type: string
+  - name: tryGetValue(object)
+    uid: botbuilder-dialogs-adaptive.DialogExpression.tryGetValue
+    package: botbuilder-dialogs-adaptive
+    summary: Try to Get the value.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function tryGetValue(data: object): { error: Error, value: Dialog }'
+      parameters:
+        - id: data
+          type: object
+          description: Data to use for expression binding.
+      return:
+        description: the value or an error.
+        type: '{ error: Error, value: Dialog }'
+methods:
   - name: setValue(Dialog | string | Expression)
     uid: botbuilder-dialogs-adaptive.DialogExpression.setValue
     package: botbuilder-dialogs-adaptive
@@ -95,44 +136,4 @@ methods:
             A [Dialog](xref:botbuilder-dialogs.Dialog), a `string` that is
             interpreted as a resource Id or dialogId, or an
             [Expression](xref:adaptive-expressions.Expression).
-  - name: toExpression()
-    uid: botbuilder-dialogs-adaptive.DialogExpression.toExpression
-    package: botbuilder-dialogs-adaptive
-    summary: This will return the existing expression if the value is non-complex type.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function toExpression()
-      return:
-        type: Expression
-        description: ''
-  - name: toString()
-    uid: botbuilder-dialogs-adaptive.DialogExpression.toString
-    package: botbuilder-dialogs-adaptive
-    summary: Convert an expression property to string.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function toString()
-      return:
-        type: string
-        description: ''
-  - name: tryGetValue(object)
-    uid: botbuilder-dialogs-adaptive.DialogExpression.tryGetValue
-    package: botbuilder-dialogs-adaptive
-    summary: Try to Get the value.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function tryGetValue(data: object)'
-      parameters:
-        - id: data
-          type: object
-          description: Data to use for expression binding.
-      return:
-        type: Object
-        description: the value or an error.
 extends: ExpressionProperty&lt;Dialog&gt;

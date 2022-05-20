@@ -20,8 +20,8 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: telemetryClient
     uid: botbuilder-dialogs.Recognizer.telemetryClient
     package: botbuilder-dialogs
@@ -35,9 +35,9 @@ properties:
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
-        type: BotTelemetryClient
         description: ''
-methods:
+        type: BotTelemetryClient
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.Recognizer.configure
     package: botbuilder-dialogs
@@ -46,15 +46,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: getConverter(string)
     uid: botbuilder-dialogs.Recognizer.getConverter
     package: botbuilder-dialogs
@@ -63,16 +63,17 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
+        description: ''
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
-        description: ''
+methods:
   - name: >-
       recognize(DialogContext, Partial<Activity>, Record<string, string>,
       Record<string, number>)
@@ -86,7 +87,7 @@ methods:
       content: >-
         function recognize(dialogContext: DialogContext, activity:
         Partial<Activity>, telemetryProperties?: Record<string, string>,
-        telemetryMetrics?: Record<string, number>)
+        telemetryMetrics?: Record<string, number>): Promise<RecognizerResult>
       parameters:
         - id: dialogContext
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -101,6 +102,6 @@ methods:
           type: 'Record&lt;string, number&gt;'
           description: Additional metrics to be logged to telemetry with event.
       return:
-        type: Promise&lt;RecognizerResult&gt;
         description: Recognized result.
+        type: Promise&lt;RecognizerResult&gt;
 extends: <xref uid="botbuilder-dialogs.Configurable" />

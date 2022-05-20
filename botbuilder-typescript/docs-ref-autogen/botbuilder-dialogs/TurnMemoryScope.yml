@@ -34,8 +34,8 @@ properties:
     syntax:
       content: 'includeInSnapshot: boolean'
       return:
-        type: boolean
         description: ''
+        type: boolean
   - name: name
     uid: botbuilder-dialogs.TurnMemoryScope.name
     package: botbuilder-dialogs
@@ -47,9 +47,9 @@ properties:
     syntax:
       content: 'name: string'
       return:
-        type: string
         description: ''
-methods:
+        type: string
+inheritedMethods:
   - name: delete(DialogContext)
     uid: botbuilder-dialogs.TurnMemoryScope.delete
     package: botbuilder-dialogs
@@ -58,33 +58,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delete(dc: DialogContext)'
+      content: 'function delete(dc: DialogContext): Promise<void>'
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: |
             Current dialog context.
       return:
-        type: Promise&lt;void&gt;
         description: ''
-  - name: getMemory(DialogContext)
-    uid: botbuilder-dialogs.TurnMemoryScope.getMemory
-    package: botbuilder-dialogs
-    summary: Get the backing memory for this scope.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getMemory(dc: DialogContext)'
-      parameters:
-        - id: dc
-          type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: >-
-            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for this
-            turn.
-      return:
-        type: object
-        description: The memory for the scope.
+        type: Promise&lt;void&gt;
   - name: load(DialogContext)
     uid: botbuilder-dialogs.TurnMemoryScope.load
     package: botbuilder-dialogs
@@ -93,15 +75,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function load(dc: DialogContext)'
+      content: 'function load(dc: DialogContext): Promise<void>'
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: |
             Current dialog context.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: saveChanges(DialogContext)
     uid: botbuilder-dialogs.TurnMemoryScope.saveChanges
     package: botbuilder-dialogs
@@ -110,15 +92,34 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function saveChanges(dc: DialogContext)'
+      content: 'function saveChanges(dc: DialogContext): Promise<void>'
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: |
             Current dialog context.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
+methods:
+  - name: getMemory(DialogContext)
+    uid: botbuilder-dialogs.TurnMemoryScope.getMemory
+    package: botbuilder-dialogs
+    summary: Get the backing memory for this scope.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getMemory(dc: DialogContext): object'
+      parameters:
+        - id: dc
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for this
+            turn.
+      return:
+        description: The memory for the scope.
+        type: object
   - name: 'setMemory(DialogContext, object)'
     uid: botbuilder-dialogs.TurnMemoryScope.setMemory
     package: botbuilder-dialogs

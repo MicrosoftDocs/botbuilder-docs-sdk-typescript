@@ -43,8 +43,8 @@ properties:
     syntax:
       content: 'BotIdentityKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: ConnectorClientKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.ConnectorClientKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -56,8 +56,8 @@ properties:
     syntax:
       content: 'ConnectorClientKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: ConnectorFactoryKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.ConnectorFactoryKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -69,8 +69,8 @@ properties:
     syntax:
       content: 'ConnectorFactoryKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: OAuthScopeKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.OAuthScopeKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -82,8 +82,8 @@ properties:
     syntax:
       content: 'OAuthScopeKey: symbol'
       return:
-        type: symbol
         description: ''
+        type: symbol
   - name: onTurnError
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.onTurnError
     package: botbuilder-dialogs-adaptive-runtime
@@ -95,8 +95,8 @@ properties:
     syntax:
       content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
       return:
-        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
         description: ''
+        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
   - name: UserTokenClientKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.UserTokenClientKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -108,9 +108,9 @@ properties:
     syntax:
       content: 'UserTokenClientKey: symbol'
       return:
-        type: symbol
         description: ''
-methods:
+        type: symbol
+inheritedMethods:
   - name: >-
       connectNamedPipe(string, (context: TurnContext) => Promise<void>, string,
       string, string, number)
@@ -124,7 +124,7 @@ methods:
       content: >-
         function connectNamedPipe(pipeName: string, logic: (context:
         TurnContext) => Promise<void>, appId: string, audience: string,
-        callerId?: string, retryCount?: number)
+        callerId?: string, retryCount?: number): Promise<void>
       parameters:
         - id: pipeName
           type: string
@@ -151,8 +151,8 @@ methods:
             Optional, the number of times to retry a failed connection (defaults
             to 7)
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       continueConversation(Partial<ConversationReference>, (context:
       TurnContext) => Promise<void>)
@@ -166,7 +166,7 @@ methods:
     syntax:
       content: >-
         function continueConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promise<void>)
+        logic: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: reference
           type: Partial&lt;ConversationReference&gt;
@@ -175,8 +175,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       continueConversationAsync(string | ClaimsIdentity,
       Partial<ConversationReference>, (context: TurnContext) => Promise<void> |
@@ -193,7 +193,7 @@ methods:
         function continueConversationAsync(botAppIdOrClaimsIdentity: string |
         ClaimsIdentity, reference: Partial<ConversationReference>,
         logicOrAudience: (context: TurnContext) => Promise<void> | string,
-        maybeLogic?: (context: TurnContext) => Promise<void>)
+        maybeLogic?: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: botAppIdOrClaimsIdentity
           type: string | ClaimsIdentity
@@ -208,8 +208,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       createConversationAsync(string, string, string, string,
       ConversationParameters, (context: TurnContext) => Promise<void>)
@@ -223,7 +223,8 @@ methods:
       content: >-
         function createConversationAsync(botAppId: string, channelId: string,
         serviceUrl: string, audience: string, conversationParameters:
-        ConversationParameters, logic: (context: TurnContext) => Promise<void>)
+        ConversationParameters, logic: (context: TurnContext) => Promise<void>):
+        Promise<void>
       parameters:
         - id: botAppId
           type: string
@@ -244,8 +245,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.deleteActivity
     package: botbuilder-dialogs-adaptive-runtime
@@ -256,7 +257,7 @@ methods:
     syntax:
       content: >-
         function deleteActivity(context: TurnContext, reference:
-        Partial<ConversationReference>)
+        Partial<ConversationReference>): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -265,8 +266,8 @@ methods:
           type: Partial&lt;ConversationReference&gt;
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: >-
       process(Request, INodeSocket, INodeBuffer, (context: TurnContext) =>
       Promise<void>)
@@ -281,7 +282,7 @@ methods:
     syntax:
       content: >-
         function process(req: Request, socket: INodeSocket, head: INodeBuffer,
-        logic: (context: TurnContext) => Promise<void>)
+        logic: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
           type: Request
@@ -300,8 +301,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: The logic function to apply
       return:
-        type: Promise&lt;void&gt;
         description: a promise representing the asynchronous operation.
+        type: Promise&lt;void&gt;
   - name: 'process(Request, Response, (context: TurnContext) => Promise<void>)'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.process
     package: botbuilder-dialogs-adaptive-runtime
@@ -312,7 +313,7 @@ methods:
     syntax:
       content: >-
         function process(req: Request, res: Response, logic: (context:
-        TurnContext) => Promise<void>)
+        TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
           type: Request
@@ -324,8 +325,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: The logic function to apply
       return:
-        type: Promise&lt;void&gt;
         description: a promise representing the asynchronous operation.
+        type: Promise&lt;void&gt;
   - name: 'sendActivities(TurnContext, Partial<Activity>[])'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.sendActivities
     package: botbuilder-dialogs-adaptive-runtime
@@ -336,7 +337,7 @@ methods:
     syntax:
       content: >-
         function sendActivities(context: TurnContext, activities:
-        Partial<Activity>[])
+        Partial<Activity>[]): Promise<ResourceResponse[]>
       parameters:
         - id: context
           type: TurnContext
@@ -345,8 +346,8 @@ methods:
           type: 'Partial&lt;Activity&gt;[]'
           description: ''
       return:
-        type: 'Promise&lt;ResourceResponse[]&gt;'
         description: ''
+        type: 'Promise&lt;ResourceResponse[]&gt;'
   - name: 'updateActivity(TurnContext, Partial<Activity>)'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.updateActivity
     package: botbuilder-dialogs-adaptive-runtime
@@ -357,7 +358,7 @@ methods:
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
-        Partial<Activity>)
+        Partial<Activity>): Promise<ResourceResponse | void>
       parameters:
         - id: context
           type: TurnContext
@@ -366,8 +367,8 @@ methods:
           type: Partial&lt;Activity&gt;
           description: ''
       return:
-        type: Promise&lt;ResourceResponse | void&gt;
         description: ''
+        type: Promise&lt;ResourceResponse | void&gt;
   - name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
       Middleware[])
@@ -384,7 +385,7 @@ methods:
     syntax:
       content: >-
         function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[])
+        Promise<void>) => Promise<void> | Middleware[]): this
       parameters:
         - id: middlewares
           type: >-
@@ -392,6 +393,6 @@ methods:
             Promise&lt;void&gt; | Middleware[]
           description: ''
       return:
-        type: this
         description: ''
+        type: this
 extends: CloudAdapter

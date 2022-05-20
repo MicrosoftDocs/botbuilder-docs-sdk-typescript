@@ -17,14 +17,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getResponse(requestId: string)'
+      content: 'function getResponse(requestId: string): Promise<IReceiveResponse>'
       parameters:
         - id: requestId
           type: string
           description: The ID of the StreamingRequest being responded to.
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
         description: The response to the specified request.
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
   - name: pendingRequestCount()
     uid: botframework-streaming.RequestManager.pendingRequestCount
     package: botframework-streaming
@@ -33,10 +33,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function pendingRequestCount()
+      content: 'function pendingRequestCount(): number'
       return:
-        type: number
         description: Number with the pending requests count.
+        type: number
   - name: 'signalResponse(string, IReceiveResponse)'
     uid: botframework-streaming.RequestManager.signalResponse
     package: botframework-streaming
@@ -45,7 +45,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function signalResponse(requestId: string, response: IReceiveResponse)'
+      content: >-
+        function signalResponse(requestId: string, response: IReceiveResponse):
+        Promise<boolean>
       parameters:
         - id: requestId
           type: string
@@ -56,7 +58,7 @@ methods:
             The [IReceiveResponse](xref:botframework-streaming.IReceiveResponse)
             in response to the request.
       return:
-        type: Promise&lt;boolean&gt;
         description: >-
           A Promise that when completed returns `true` if the `requestId`'s
           pending response task was completed, otherwise `false`.
+        type: Promise&lt;boolean&gt;

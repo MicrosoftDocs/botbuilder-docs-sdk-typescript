@@ -19,7 +19,8 @@ methods:
     syntax:
       content: >-
         function exchangeToken(userId: string, connectionName: string,
-        channelId: string, exchangeRequest: TokenExchangeRequest)
+        channelId: string, exchangeRequest: TokenExchangeRequest):
+        Promise<TokenResponse>
       parameters:
         - id: userId
           type: string
@@ -36,8 +37,8 @@ methods:
             The exchange request details, either a token to exchange or a uri to
             exchange.
       return:
-        type: Promise&lt;TokenResponse&gt;
         description: 'A [TokenResponse](xref:botframework-schema.TokenResponse) object.'
+        type: Promise&lt;TokenResponse&gt;
   - name: 'getAadTokens(string, string, string[], string)'
     uid: botframework-connector.UserTokenClient.getAadTokens
     package: botframework-connector
@@ -50,7 +51,8 @@ methods:
     syntax:
       content: >-
         function getAadTokens(userId: string, connectionName: string,
-        resourceUrls: string[], channelId: string)
+        resourceUrls: string[], channelId: string): Promise<Record<string,
+        TokenResponse>>
       parameters:
         - id: userId
           type: string
@@ -65,10 +67,10 @@ methods:
           type: string
           description: The channel Id that will be associated with the token.
       return:
-        type: 'Promise&lt;Record&lt;string, TokenResponse&gt;&gt;'
         description: >-
           A Dictionary of resourceUrls to the corresponding
           [TokenResponse](xref:botframework-schema.TokenResponse).
+        type: 'Promise&lt;Record&lt;string, TokenResponse&gt;&gt;'
   - name: 'getSignInResource(string, Activity, string)'
     uid: botframework-connector.UserTokenClient.getSignInResource
     package: botframework-connector
@@ -81,7 +83,7 @@ methods:
     syntax:
       content: >-
         function getSignInResource(connectionName: string, activity: Activity,
-        finalRediect: string)
+        finalRediect: string): Promise<SignInUrlResponse>
       parameters:
         - id: connectionName
           type: string
@@ -95,8 +97,8 @@ methods:
           type: string
           description: The final URL that the OAuth flow will redirect to.
       return:
-        type: Promise&lt;SignInUrlResponse&gt;
         description: 'A [SignInUrlResponse](xref:botframework-schema.SignInUrlResponse).'
+        type: Promise&lt;SignInUrlResponse&gt;
   - name: 'getTokenStatus(string, string, string)'
     uid: botframework-connector.UserTokenClient.getTokenStatus
     package: botframework-connector
@@ -109,7 +111,7 @@ methods:
     syntax:
       content: >-
         function getTokenStatus(userId: string, channelId: string,
-        includeFilter: string)
+        includeFilter: string): Promise<TokenStatus[]>
       parameters:
         - id: userId
           type: string
@@ -121,8 +123,8 @@ methods:
           type: string
           description: The includeFilter.
       return:
-        type: 'Promise&lt;TokenStatus[]&gt;'
         description: 'A list of [TokenStatus](xref:botframework-schema.TokenStatus) objects.'
+        type: 'Promise&lt;TokenStatus[]&gt;'
   - name: 'getUserToken(string, string, string, string)'
     uid: botframework-connector.UserTokenClient.getUserToken
     package: botframework-connector
@@ -133,7 +135,7 @@ methods:
     syntax:
       content: >-
         function getUserToken(userId: string, connectionName: string, channelId:
-        string, magicCode: string)
+        string, magicCode: string): Promise<TokenResponse>
       parameters:
         - id: userId
           type: string
@@ -148,8 +150,8 @@ methods:
           type: string
           description: (Optional) Optional user entered code to validate.
       return:
-        type: Promise&lt;TokenResponse&gt;
         description: 'A [TokenResponse](xref:botframework-schema.TokenResponse) object.'
+        type: Promise&lt;TokenResponse&gt;
   - name: 'signOutUser(string, string, string)'
     uid: botframework-connector.UserTokenClient.signOutUser
     package: botframework-connector
@@ -160,7 +162,7 @@ methods:
     syntax:
       content: >-
         function signOutUser(userId: string, connectionName: string, channelId:
-        string)
+        string): Promise<void>
       parameters:
         - id: userId
           type: string
@@ -173,5 +175,5 @@ methods:
           description: |
             The channel Id that will be associated with the token.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

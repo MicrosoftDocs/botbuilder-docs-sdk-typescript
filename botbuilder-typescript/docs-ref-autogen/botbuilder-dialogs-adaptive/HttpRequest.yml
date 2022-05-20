@@ -61,8 +61,8 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: body
     uid: botbuilder-dialogs-adaptive.HttpRequest.body
     package: botbuilder-dialogs-adaptive
@@ -74,8 +74,8 @@ properties:
     syntax:
       content: 'body?: ValueExpression'
       return:
-        type: ValueExpression
         description: ''
+        type: ValueExpression
   - name: contentType
     uid: botbuilder-dialogs-adaptive.HttpRequest.contentType
     package: botbuilder-dialogs-adaptive
@@ -87,8 +87,8 @@ properties:
     syntax:
       content: 'contentType?: StringExpression'
       return:
-        type: StringExpression
         description: ''
+        type: StringExpression
   - name: disabled
     uid: botbuilder-dialogs-adaptive.HttpRequest.disabled
     package: botbuilder-dialogs-adaptive
@@ -100,8 +100,8 @@ properties:
     syntax:
       content: 'disabled?: BoolExpression'
       return:
-        type: BoolExpression
         description: ''
+        type: BoolExpression
   - name: EndOfTurn
     uid: botbuilder-dialogs-adaptive.HttpRequest.EndOfTurn
     package: botbuilder-dialogs-adaptive
@@ -118,8 +118,8 @@ properties:
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
-        type: DialogTurnResult
         description: ''
+        type: DialogTurnResult
   - name: headers
     uid: botbuilder-dialogs-adaptive.HttpRequest.headers
     package: botbuilder-dialogs-adaptive
@@ -131,8 +131,8 @@ properties:
     syntax:
       content: 'headers?: [key: string]: StringExpression'
       return:
-        type: '[key: string]\: StringExpression'
         description: ''
+        type: '[key: string]\: StringExpression'
   - name: id
     uid: botbuilder-dialogs-adaptive.HttpRequest.id
     package: botbuilder-dialogs-adaptive
@@ -144,8 +144,8 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: method
     uid: botbuilder-dialogs-adaptive.HttpRequest.method
     package: botbuilder-dialogs-adaptive
@@ -157,8 +157,8 @@ properties:
     syntax:
       content: 'method?: HttpMethod'
       return:
-        type: <xref uid="botbuilder-dialogs-adaptive.HttpMethod" />
         description: ''
+        type: <xref uid="botbuilder-dialogs-adaptive.HttpMethod" />
   - name: responseType
     uid: botbuilder-dialogs-adaptive.HttpRequest.responseType
     package: botbuilder-dialogs-adaptive
@@ -170,10 +170,10 @@ properties:
     syntax:
       content: 'responseType?: EnumExpression<ResponsesTypes>'
       return:
+        description: ''
         type: >-
           EnumExpression&lt;<xref
           uid="botbuilder-dialogs-adaptive.ResponsesTypes" />&gt;
-        description: ''
   - name: resultProperty
     uid: botbuilder-dialogs-adaptive.HttpRequest.resultProperty
     package: botbuilder-dialogs-adaptive
@@ -185,8 +185,8 @@ properties:
     syntax:
       content: 'resultProperty: StringExpression'
       return:
-        type: StringExpression
         description: ''
+        type: StringExpression
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.HttpRequest.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -198,8 +198,8 @@ properties:
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
-        type: BotTelemetryClient
         description: ''
+        type: BotTelemetryClient
   - name: url
     uid: botbuilder-dialogs-adaptive.HttpRequest.url
     package: botbuilder-dialogs-adaptive
@@ -211,32 +211,9 @@ properties:
     syntax:
       content: 'url?: StringExpression'
       return:
-        type: StringExpression
         description: ''
-methods:
-  - name: 'beginDialog(DialogContext, O)'
-    uid: botbuilder-dialogs-adaptive.HttpRequest.beginDialog
-    package: botbuilder-dialogs-adaptive
-    summary: >-
-      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
-      the dialog stack.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function beginDialog(dc: DialogContext, options?: O)'
-      parameters:
-        - id: dc
-          type: DialogContext
-          description: >-
-            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
-            current turn of conversation.
-        - id: options
-          type: O
-          description: Optional. Initial information to pass to the dialog.
-      return:
-        type: Promise&lt;DialogTurnResult&gt;
-        description: A `Promise` representing the asynchronous operation.
+        type: StringExpression
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.configure
     package: botbuilder-dialogs-adaptive
@@ -245,15 +222,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.HttpRequest.continueDialog
     package: botbuilder-dialogs-adaptive
@@ -284,15 +261,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext)'
+      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
       parameters:
         - id: dc
           type: DialogContext
           description: |
             The context for the current dialog turn.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.endDialog
     package: botbuilder-dialogs-adaptive
@@ -327,7 +304,7 @@ methods:
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
+        reason: DialogReason): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -340,24 +317,8 @@ methods:
           description: |
             The reason the dialog is ending.
       return:
+        description: ''
         type: Promise&lt;void&gt;
-        description: ''
-  - name: getConverter(Object)
-    uid: botbuilder-dialogs-adaptive.HttpRequest.getConverter
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getConverter(property: Object)'
-      parameters:
-        - id: property
-          type: Object
-          description: ''
-      return:
-        type: Converter | ConverterFactory
-        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.HttpRequest.getVersion
     package: botbuilder-dialogs-adaptive
@@ -383,10 +344,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: ''
+        type: string
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.onDialogEvent
     package: botbuilder-dialogs-adaptive
@@ -397,7 +358,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      content: >-
+        function onDialogEvent(dc: DialogContext, e: DialogEvent):
+        Promise<boolean>
       parameters:
         - id: dc
           type: DialogContext
@@ -406,10 +369,10 @@ methods:
           type: DialogEvent
           description: The event being raised.
       return:
-        type: Promise&lt;boolean&gt;
         description: >-
           True if the event is handled by the current dialog and bubbling should
           stop.
+        type: Promise&lt;boolean&gt;
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.repromptDialog
     package: botbuilder-dialogs-adaptive
@@ -437,7 +400,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      content: >-
+        function repromptDialog(context: TurnContext, instance: DialogInstance):
+        Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -447,8 +412,8 @@ methods:
           description: |
             Current state information for this dialog.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs-adaptive.HttpRequest.resumeDialog
     package: botbuilder-dialogs-adaptive
@@ -494,7 +459,7 @@ methods:
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any)
+        any): Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: DialogContext
@@ -509,6 +474,48 @@ methods:
           description: |
             Optional. The return value, if any, from the dialog that ended.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
+methods:
+  - name: 'beginDialog(DialogContext, O)'
+    uid: botbuilder-dialogs-adaptive.HttpRequest.beginDialog
+    package: botbuilder-dialogs-adaptive
+    summary: >-
+      Starts a new [Dialog](xref:botbuilder-dialogs.Dialog) and pushes it onto
+      the dialog stack.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function beginDialog(dc: DialogContext, _options?: O):
+        Promise<DialogTurnResult>
+      parameters:
+        - id: dc
+          type: DialogContext
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
+        - id: _options
+          type: O
+          description: Optional. Initial information to pass to the dialog.
+      return:
+        description: A `Promise` representing the asynchronous operation.
+        type: Promise&lt;DialogTurnResult&gt;
+  - name: getConverter(Object)
+    uid: botbuilder-dialogs-adaptive.HttpRequest.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      parameters:
+        - id: property
+          type: Object
+          description: The key of the conditional selector configuration.
+      return:
+        description: The converter for the selector configuration.
+        type: Converter | ConverterFactory
 extends: Dialog&lt;O&gt;

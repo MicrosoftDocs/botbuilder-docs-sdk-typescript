@@ -22,7 +22,7 @@ functions:
     syntax:
       content: >-
         function escapeKey(key: string, keySuffix?: string, compatibilityMode?:
-        boolean)
+        boolean): string
       parameters:
         - id: key
           type: string
@@ -32,12 +32,12 @@ functions:
           description: The string to add a the end of all RowKeys.
         - id: compatibilityMode
           type: boolean
-          description: >
+          description: >-
             True if keys should be truncated in order to support previous
             CosmosDb
 
             max key length of 255.  This behavior can be overridden by setting
             cosmosDbPartitionedStorageOptions.compatibilityMode to false.
       return:
+        description: An escaped key that can be used safely with CosmosDB.
         type: string
-        description: ''

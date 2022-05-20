@@ -64,15 +64,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function clear(context: TurnContext)'
+      content: 'function clear(context: TurnContext): Promise<void>'
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
           description: |
             Context for current turn of conversation with the user.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: createProperty<T>(string)
     uid: botbuilder-core.BotState.createProperty
     package: botbuilder-core
@@ -85,15 +85,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function createProperty<T>(name: string)'
+      content: 'function createProperty<T>(name: string): StatePropertyAccessor<T>'
       parameters:
         - id: name
           type: string
           description: |
             Name of the property to add.
       return:
-        type: <xref uid="botbuilder-core.StatePropertyAccessor" />&lt;T&gt;
         description: ''
+        type: <xref uid="botbuilder-core.StatePropertyAccessor" />&lt;T&gt;
   - name: delete(TurnContext)
     uid: botbuilder-core.BotState.delete
     package: botbuilder-core
@@ -113,15 +113,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function delete(context: TurnContext)'
+      content: 'function delete(context: TurnContext): Promise<void>'
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
           description: |
             Context for current turn of conversation with the user.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: get(TurnContext)
     uid: botbuilder-core.BotState.get
     package: botbuilder-core
@@ -139,15 +139,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function get(context: TurnContext)'
+      content: 'function get(context: TurnContext): any | undefined'
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
           description: |
             Context for current turn of conversation with the user.
       return:
-        type: any | undefined
         description: ''
+        type: any | undefined
   - name: 'load(TurnContext, boolean)'
     uid: botbuilder-core.BotState.load
     package: botbuilder-core
@@ -171,7 +171,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function load(context: TurnContext, force?: boolean)'
+      content: 'function load(context: TurnContext, force?: boolean): Promise<any>'
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -182,8 +182,8 @@ methods:
             (Optional) If `true` the cache will be bypassed and the state will
             always be read in directly from storage. Defaults to `false`.
       return:
-        type: Promise&lt;any&gt;
         description: ''
+        type: Promise&lt;any&gt;
   - name: 'saveChanges(TurnContext, boolean)'
     uid: botbuilder-core.BotState.saveChanges
     package: botbuilder-core
@@ -206,7 +206,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function saveChanges(context: TurnContext, force?: boolean)'
+      content: >-
+        function saveChanges(context: TurnContext, force?: boolean):
+        Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -217,5 +219,5 @@ methods:
             (Optional) if `true` the state will always be written out regardless
             of its change state. Defaults to `false`.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

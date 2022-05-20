@@ -42,7 +42,7 @@ constructors:
           type: string
           description: |
             Optional. The channel service.
-methods:
+inheritedMethods:
   - name: 'postActivity<T>(string, string, string, string, string, Activity)'
     uid: botbuilder.SkillHttpClient.postActivity
     package: botbuilder
@@ -53,7 +53,8 @@ methods:
     syntax:
       content: >-
         function postActivity<T>(fromBotId: string, toBotId: string, toUrl:
-        string, serviceUrl: string, conversationId: string, activity: Activity)
+        string, serviceUrl: string, conversationId: string, activity: Activity):
+        Promise<InvokeResponse<T>>
       parameters:
         - id: fromBotId
           type: string
@@ -72,11 +73,11 @@ methods:
           description: A conversation ID to use for the conversation with the skill.
         - id: activity
           type: Activity
-          description: |
-            Activity to forward.
+          description: Activity to forward.
       return:
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;InvokeResponse&lt;T&gt;&gt;
-        description: ''
+methods:
   - name: 'postToSkill(string, BotFrameworkSkill, string, Activity)'
     uid: botbuilder.SkillHttpClient.postToSkill_1
     package: botbuilder
@@ -92,7 +93,7 @@ methods:
     syntax:
       content: >-
         function postToSkill(fromBotId: string, toSkill: BotFrameworkSkill,
-        callbackUrl: string, activity: Activity)
+        callbackUrl: string, activity: Activity): Promise<InvokeResponse>
       parameters:
         - id: fromBotId
           type: string
@@ -108,8 +109,8 @@ methods:
           description: |
             The activity to send.
       return:
-        type: Promise&lt;InvokeResponse&gt;
         description: ''
+        type: Promise&lt;InvokeResponse&gt;
   - name: 'postToSkill<T>(string, string, BotFrameworkSkill, string, Activity)'
     uid: botbuilder.SkillHttpClient.postToSkill
     package: botbuilder
@@ -122,7 +123,8 @@ methods:
     syntax:
       content: >-
         function postToSkill<T>(originatingAudience: string, fromBotId: string,
-        toSkill: BotFrameworkSkill, callbackUrl: string, activity: Activity)
+        toSkill: BotFrameworkSkill, callbackUrl: string, activity: Activity):
+        Promise<InvokeResponse<T>>
       parameters:
         - id: originatingAudience
           type: string
@@ -143,6 +145,6 @@ methods:
           description: |
             The activity to send.
       return:
-        type: Promise&lt;InvokeResponse&lt;T&gt;&gt;
         description: ''
+        type: Promise&lt;InvokeResponse&lt;T&gt;&gt;
 extends: <xref uid="botbuilder.BotFrameworkHttpClient" />

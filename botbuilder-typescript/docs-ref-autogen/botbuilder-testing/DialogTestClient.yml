@@ -130,8 +130,8 @@ properties:
     syntax:
       content: 'conversationState: ConversationState'
       return:
-        type: ConversationState
         description: ''
+        type: ConversationState
   - name: dialogContext
     uid: botbuilder-testing.DialogTestClient.dialogContext
     package: botbuilder-testing
@@ -145,8 +145,8 @@ properties:
     syntax:
       content: DialogContext dialogContext
       return:
-        type: DialogContext
         description: the dialog context
+        type: DialogContext
   - name: dialogTurnResult
     uid: botbuilder-testing.DialogTestClient.dialogTurnResult
     package: botbuilder-testing
@@ -158,8 +158,8 @@ properties:
     syntax:
       content: 'dialogTurnResult: DialogTurnResult'
       return:
-        type: DialogTurnResult
         description: ''
+        type: DialogTurnResult
 methods:
   - name: getNextReply()
     uid: botbuilder-testing.DialogTestClient.getNextReply
@@ -169,10 +169,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getNextReply()
+      content: 'function getNextReply(): Partial<Activity>'
       return:
-        type: Partial&lt;Activity&gt;
         description: the next reply
+        type: Partial&lt;Activity&gt;
   - name: sendActivity(Partial<Activity> | string)
     uid: botbuilder-testing.DialogTestClient.sendActivity
     package: botbuilder-testing
@@ -185,11 +185,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function sendActivity(activity: Partial<Activity> | string)'
+      content: >-
+        function sendActivity(activity: Partial<Activity> | string):
+        Promise<any>
       parameters:
         - id: activity
           type: Partial&lt;Activity&gt; | string
           description: an activity potentially with text
       return:
-        type: Promise&lt;any&gt;
         description: a TestFlow that can be used to assert replies etc
+        type: Promise&lt;any&gt;

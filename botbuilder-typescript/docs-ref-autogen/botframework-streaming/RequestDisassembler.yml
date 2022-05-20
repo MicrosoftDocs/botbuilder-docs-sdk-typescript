@@ -48,8 +48,8 @@ properties:
     syntax:
       content: 'payloadType: PayloadTypes'
       return:
-        type: <xref uid="botframework-streaming.PayloadTypes" />
         description: ''
+        type: <xref uid="botframework-streaming.PayloadTypes" />
   - name: request
     uid: botframework-streaming.RequestDisassembler.request
     package: botframework-streaming
@@ -61,9 +61,9 @@ properties:
     syntax:
       content: 'request?: StreamingRequest'
       return:
-        type: <xref uid="botframework-streaming.StreamingRequest" />
         description: ''
-methods:
+        type: <xref uid="botframework-streaming.StreamingRequest" />
+inheritedMethods:
   - name: disassemble()
     uid: botframework-streaming.RequestDisassembler.disassemble
     package: botframework-streaming
@@ -75,10 +75,11 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function disassemble()
+      content: 'function disassemble(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: A completed Promise after the disassembled payload has been sent.
+        type: Promise&lt;void&gt;
+methods:
   - name: getStream()
     uid: botframework-streaming.RequestDisassembler.getStream
     package: botframework-streaming
@@ -87,10 +88,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getStream()
+      content: 'function getStream(): Promise<IStreamWrapper>'
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.IStreamWrapper" />&gt;
         description: >-
           An [IStreamWrapper](xref:botframework-streaming.IStreamWrapper) with a
           Subscribable Stream.
+        type: Promise&lt;<xref uid="botframework-streaming.IStreamWrapper" />&gt;
 extends: <xref uid="botframework-streaming.PayloadDisassembler" />

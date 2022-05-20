@@ -23,7 +23,7 @@ functions:
       content: >-
         function authenticateChannelToken(authHeader: string, credentials:
         ICredentialProvider, channelId: string, channelService: string,
-        authConfig?: AuthenticationConfiguration)
+        authConfig?: AuthenticationConfiguration): Promise<ClaimsIdentity>
       parameters:
         - id: authHeader
           type: string
@@ -43,8 +43,8 @@ functions:
           type: <xref uid="botframework-connector.AuthenticationConfiguration" />
           description: The authentication configuration.
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: A valid ClaimsIdentity.
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
   - name: >-
       authenticateChannelTokenWithServiceUrl(string, ICredentialProvider,
       string, string, string)
@@ -63,7 +63,7 @@ functions:
       content: >-
         function authenticateChannelTokenWithServiceUrl(authHeader: string,
         credentials: ICredentialProvider, serviceUrl: string, channelId: string,
-        channelService: string)
+        channelService: string): Promise<ClaimsIdentity>
       parameters:
         - id: authHeader
           type: string
@@ -83,8 +83,8 @@ functions:
             The channelService value that distinguishes public Azure from US
             Government Azure.
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: A valid ClaimsIdentity.
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
   - name: 'validateIdentity(ClaimsIdentity, ICredentialProvider)'
     uid: botframework-connector.EnterpriseChannelValidation.validateIdentity
     package: botframework-connector
@@ -95,7 +95,7 @@ functions:
     syntax:
       content: >-
         function validateIdentity(identity: ClaimsIdentity, credentials:
-        ICredentialProvider)
+        ICredentialProvider): Promise<ClaimsIdentity>
       parameters:
         - id: identity
           type: <xref uid="botframework-connector.ClaimsIdentity" />
@@ -104,5 +104,5 @@ functions:
           type: <xref uid="botframework-connector.ICredentialProvider" />
           description: 'The user defined set of valid credentials, such as the AppId.'
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: A valid ClaimsIdentity.
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;

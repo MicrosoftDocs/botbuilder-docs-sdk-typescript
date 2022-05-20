@@ -71,6 +71,20 @@ constructors:
             A
             [ConnectorClientOptions](xref:botframework-connector.ConnectorClientOptions)
             object.
+inheritedMethods:
+  - name: getOriginatingAudience()
+    uid: >-
+      botbuilder-core.ConfigurationBotFrameworkAuthentication.getOriginatingAudience
+    package: botbuilder-core
+    summary: Gets the originating audience from Bot OAuth scope.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getOriginatingAudience(): string'
+      return:
+        description: The originating audience.
+        type: string
 methods:
   - name: authenticateChannelRequest(string)
     uid: >-
@@ -81,14 +95,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function authenticateChannelRequest(authHeader: string)'
+      content: >-
+        function authenticateChannelRequest(authHeader: string):
+        Promise<ClaimsIdentity>
       parameters:
         - id: authHeader
           type: string
           description: ''
       return:
-        type: Promise&lt;ClaimsIdentity&gt;
         description: ''
+        type: Promise&lt;ClaimsIdentity&gt;
   - name: 'authenticateRequest(Activity, string)'
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.authenticateRequest
@@ -98,7 +114,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function authenticateRequest(activity: Activity, authHeader: string)'
+      content: >-
+        function authenticateRequest(activity: Activity, authHeader: string):
+        Promise<AuthenticateRequestResult>
       parameters:
         - id: activity
           type: Activity
@@ -107,8 +125,8 @@ methods:
           type: string
           description: ''
       return:
-        type: Promise&lt;AuthenticateRequestResult&gt;
         description: ''
+        type: Promise&lt;AuthenticateRequestResult&gt;
   - name: 'authenticateStreamingRequest(string, string)'
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.authenticateStreamingRequest
@@ -120,7 +138,7 @@ methods:
     syntax:
       content: >-
         function authenticateStreamingRequest(authHeader: string,
-        channelIdHeader: string)
+        channelIdHeader: string): Promise<AuthenticateRequestResult>
       parameters:
         - id: authHeader
           type: string
@@ -129,8 +147,8 @@ methods:
           type: string
           description: ''
       return:
-        type: Promise&lt;AuthenticateRequestResult&gt;
         description: ''
+        type: Promise&lt;AuthenticateRequestResult&gt;
   - name: createBotFrameworkClient()
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.createBotFrameworkClient
@@ -140,10 +158,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function createBotFrameworkClient()
+      content: 'function createBotFrameworkClient(): BotFrameworkClient'
       return:
-        type: BotFrameworkClient
         description: ''
+        type: BotFrameworkClient
   - name: createConnectorFactory(ClaimsIdentity)
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.createConnectorFactory
@@ -153,14 +171,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function createConnectorFactory(claimsIdentity: ClaimsIdentity)'
+      content: >-
+        function createConnectorFactory(claimsIdentity: ClaimsIdentity):
+        ConnectorFactory
       parameters:
         - id: claimsIdentity
           type: ClaimsIdentity
           description: ''
       return:
-        type: ConnectorFactory
         description: ''
+        type: ConnectorFactory
   - name: createUserTokenClient(ClaimsIdentity)
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.createUserTokenClient
@@ -170,25 +190,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function createUserTokenClient(claimsIdentity: ClaimsIdentity)'
+      content: >-
+        function createUserTokenClient(claimsIdentity: ClaimsIdentity):
+        Promise<UserTokenClient>
       parameters:
         - id: claimsIdentity
           type: ClaimsIdentity
           description: ''
       return:
-        type: Promise&lt;UserTokenClient&gt;
         description: ''
-  - name: getOriginatingAudience()
-    uid: >-
-      botbuilder-core.ConfigurationBotFrameworkAuthentication.getOriginatingAudience
-    package: botbuilder-core
-    summary: Gets the originating audience from Bot OAuth scope.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function getOriginatingAudience()
-      return:
-        type: string
-        description: The originating audience.
+        type: Promise&lt;UserTokenClient&gt;
 extends: BotFrameworkAuthentication

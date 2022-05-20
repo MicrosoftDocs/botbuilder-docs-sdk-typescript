@@ -29,32 +29,9 @@ constructors:
           description: |
             default set of services
 methods:
-  - name: 'addFactory<InstanceType>(string, Factory<InstanceType, false>)'
-    uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.addFactory
-    package: botbuilder-dialogs-adaptive-runtime-core
-    summary: Register a factory for a key.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function addFactory<InstanceType>(key: string, factory:
-        Factory<InstanceType, false>)
-      parameters:
-        - id: key
-          type: string
-          description: key that factory will provide
-        - id: factory
-          type: >-
-            <xref uid="botbuilder-dialogs-adaptive-runtime-core.Factory"
-            />&lt;InstanceType, false&gt;
-          description: function that creates an instance to provide
-      return:
-        type: this
-        description: this for chaining
   - name: >-
-      addFactory<InstanceType>(string, string[], DependencyFactory<InstanceType,
-      Dependencies, false>)
+      addFactory<InstanceType, Dependencies>(string, string[],
+      DependencyFactory<InstanceType, Dependencies, false>)
     uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.addFactory_1
     package: botbuilder-dialogs-adaptive-runtime-core
     summary: Register a factory for a key with a set of dependencies.
@@ -63,8 +40,9 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function addFactory<InstanceType>(key: string, dependencies: string[],
-        factory: DependencyFactory<InstanceType, Dependencies, false>)
+        function addFactory<InstanceType, Dependencies>(key: string,
+        dependencies: string[], factory: DependencyFactory<InstanceType,
+        Dependencies, false>): this
       parameters:
         - id: key
           type: string
@@ -81,8 +59,31 @@ methods:
             />&lt;InstanceType, Dependencies, false&gt;
           description: function that creates an instance to provide
       return:
-        type: this
         description: this for chaining
+        type: this
+  - name: 'addFactory<InstanceType>(string, Factory<InstanceType, false>)'
+    uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.addFactory
+    package: botbuilder-dialogs-adaptive-runtime-core
+    summary: Register a factory for a key.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function addFactory<InstanceType>(key: string, factory:
+        Factory<InstanceType, false>): this
+      parameters:
+        - id: key
+          type: string
+          description: key that factory will provide
+        - id: factory
+          type: >-
+            <xref uid="botbuilder-dialogs-adaptive-runtime-core.Factory"
+            />&lt;InstanceType, false&gt;
+          description: function that creates an instance to provide
+      return:
+        description: this for chaining
+        type: this
   - name: 'addInstance<InstanceType>(string, InstanceType)'
     uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.addInstance
     package: botbuilder-dialogs-adaptive-runtime-core
@@ -91,7 +92,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function addInstance<InstanceType>(key: string, instance: InstanceType)'
+      content: >-
+        function addInstance<InstanceType>(key: string, instance: InstanceType):
+        this
       parameters:
         - id: key
           type: string
@@ -100,35 +103,10 @@ methods:
           type: InstanceType
           description: instance to provide
       return:
-        type: this
         description: this for chaining
-  - name: 'composeFactory<InstanceType>(string, Factory<InstanceType, true>)'
-    uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.composeFactory
-    package: botbuilder-dialogs-adaptive-runtime-core
-    summary: >-
-      Register a factory (that expects the initial value that is not undefined)
-      for a key.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function composeFactory<InstanceType>(key: string, factory:
-        Factory<InstanceType, true>)
-      parameters:
-        - id: key
-          type: string
-          description: key of the instance being provided
-        - id: factory
-          type: >-
-            <xref uid="botbuilder-dialogs-adaptive-runtime-core.Factory"
-            />&lt;InstanceType, true&gt;
-          description: ''
-      return:
         type: this
-        description: this for chaining
   - name: >-
-      composeFactory<InstanceType>(string, string[],
+      composeFactory<InstanceType, Dependencies>(string, string[],
       DependencyFactory<InstanceType, Dependencies, true>)
     uid: >-
       botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.composeFactory_1
@@ -143,8 +121,9 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function composeFactory<InstanceType>(key: string, dependencies:
-        string[], factory: DependencyFactory<InstanceType, Dependencies, true>)
+        function composeFactory<InstanceType, Dependencies>(key: string,
+        dependencies: string[], factory: DependencyFactory<InstanceType,
+        Dependencies, true>): this
       parameters:
         - id: key
           type: string
@@ -161,8 +140,33 @@ methods:
             />&lt;InstanceType, Dependencies, true&gt;
           description: function that creates an instance to provide
       return:
-        type: this
         description: this for chaining
+        type: this
+  - name: 'composeFactory<InstanceType>(string, Factory<InstanceType, true>)'
+    uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.composeFactory
+    package: botbuilder-dialogs-adaptive-runtime-core
+    summary: >-
+      Register a factory (that expects the initial value that is not undefined)
+      for a key.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function composeFactory<InstanceType>(key: string, factory:
+        Factory<InstanceType, true>): this
+      parameters:
+        - id: key
+          type: string
+          description: key of the instance being provided
+        - id: factory
+          type: >-
+            <xref uid="botbuilder-dialogs-adaptive-runtime-core.Factory"
+            />&lt;InstanceType, true&gt;
+          description: ''
+      return:
+        description: this for chaining
+        type: this
   - name: 'makeInstance<InstanceType>(string, boolean)'
     uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.makeInstance
     package: botbuilder-dialogs-adaptive-runtime-core
@@ -171,7 +175,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function makeInstance<InstanceType>(key: string, deep?: boolean)'
+      content: >-
+        function makeInstance<InstanceType>(key: string, deep?: boolean):
+        InstanceType | undefined
       parameters:
         - id: key
           type: string
@@ -180,8 +186,8 @@ methods:
           type: boolean
           description: reconstruct all dependencies
       return:
-        type: InstanceType | undefined
         description: 'the service instance, or undefined'
+        type: InstanceType | undefined
   - name: makeInstances<InstancesType>()
     uid: botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.makeInstances
     package: botbuilder-dialogs-adaptive-runtime-core
@@ -190,10 +196,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function makeInstances<InstancesType>()
+      content: 'function makeInstances<InstancesType>(): InstancesType'
       return:
-        type: InstancesType
         description: all resolved services
+        type: InstancesType
   - name: 'mustMakeInstance<InstanceType>(string, boolean)'
     uid: >-
       botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.mustMakeInstance
@@ -203,7 +209,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function mustMakeInstance<InstanceType>(key: string, deep?: boolean)'
+      content: >-
+        function mustMakeInstance<InstanceType>(key: string, deep?: boolean):
+        InstanceType
       parameters:
         - id: key
           type: string
@@ -212,8 +220,8 @@ methods:
           type: boolean
           description: reconstruct all dependencies
       return:
-        type: InstanceType
         description: the service instance
+        type: InstanceType
   - name: 'mustMakeInstances<InstancesType>(string[])'
     uid: >-
       botbuilder-dialogs-adaptive-runtime-core.ServiceCollection.mustMakeInstances
@@ -225,11 +233,11 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function mustMakeInstances<InstancesType>(keys: string[])'
+      content: 'function mustMakeInstances<InstancesType>(keys: string[]): InstancesType'
       parameters:
         - id: keys
           type: 'string[]'
           description: instances that must be not undefined
       return:
-        type: InstancesType
         description: all resolve services
+        type: InstancesType

@@ -245,6 +245,7 @@ classes:
   - botbuilder-dialogs-adaptive.RandomSelector
   - botbuilder-dialogs-adaptive.TrueSelector
   - botbuilder-dialogs-adaptive.SkillExtensions
+  - botbuilder-dialogs-adaptive.TelemetryLoggerConstants
   - botbuilder-dialogs-adaptive.ActivityTemplate
   - botbuilder-dialogs-adaptive.StaticActivityTemplate
   - botbuilder-dialogs-adaptive.TextTemplate
@@ -283,7 +284,7 @@ functions:
     syntax:
       content: >-
         function evaluateExpression(state: DialogStateManager, valExpr:
-        ValueExpression)
+        ValueExpression): any
       parameters:
         - id: state
           type: DialogStateManager
@@ -292,8 +293,8 @@ functions:
           type: ValueExpression
           description: A scope for looking up variables.
       return:
-        type: any
         description: Deep data binding result.
+        type: any
   - name: 'replaceJsonRecursively(DialogStateManager, object)'
     uid: botbuilder-dialogs-adaptive.replaceJsonRecursively
     package: botbuilder-dialogs-adaptive
@@ -304,7 +305,9 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function replaceJsonRecursively(state: DialogStateManager, unit: object)'
+      content: >-
+        function replaceJsonRecursively(state: DialogStateManager, unit:
+        object): any
       parameters:
         - id: state
           type: DialogStateManager
@@ -313,8 +316,8 @@ functions:
           type: object
           description: An object.
       return:
-        type: any
         description: Deep data binding result.
+        type: any
   - name: 'useTelemetry(DialogManager, BotTelemetryClient)'
     uid: botbuilder-dialogs-adaptive.useTelemetry
     package: botbuilder-dialogs-adaptive
@@ -327,7 +330,7 @@ functions:
     syntax:
       content: >-
         function useTelemetry(dialogManager: DialogManager, telemetryClient:
-        BotTelemetryClient)
+        BotTelemetryClient): DialogManager
       parameters:
         - id: dialogManager
           type: DialogManager
@@ -336,5 +339,5 @@ functions:
           type: BotTelemetryClient
           description: BotTelemetryClient instance to use.
       return:
-        type: DialogManager
         description: DialogManager.
+        type: DialogManager

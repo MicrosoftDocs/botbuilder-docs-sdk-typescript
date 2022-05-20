@@ -20,9 +20,9 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
-methods:
+        type: string
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.RandomSelector.configure
     package: botbuilder-dialogs-adaptive
@@ -31,15 +31,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: getConverter(string)
     uid: botbuilder-dialogs-adaptive.RandomSelector.getConverter
     package: botbuilder-dialogs-adaptive
@@ -48,14 +48,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
-        type: Converter | ConverterFactory
         description: ''
+        type: Converter | ConverterFactory
+methods:
   - name: 'initialize(OnCondition[], boolean)'
     uid: botbuilder-dialogs-adaptive.RandomSelector.initialize
     package: botbuilder-dialogs-adaptive
@@ -81,14 +82,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function select(actionContext: ActionContext)'
+      content: 'function select(actionContext: ActionContext): Promise<OnCondition[]>'
       parameters:
         - id: actionContext
           type: <xref uid="botbuilder-dialogs-adaptive.ActionContext" />
           description: Dialog context for evaluation.
       return:
+        description: A Promise with a number array.
         type: >-
           Promise&lt;<xref uid="botbuilder-dialogs-adaptive.OnCondition"
           />[]&gt;
-        description: A Promise with a number array.
 extends: <xref uid="botbuilder-dialogs-adaptive.TriggerSelector" />

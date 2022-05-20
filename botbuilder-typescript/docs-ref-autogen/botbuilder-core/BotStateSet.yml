@@ -39,8 +39,8 @@ properties:
     syntax:
       content: 'botStates: BotState[]'
       return:
-        type: '<xref uid="botbuilder-core.BotState" />[]'
         description: ''
+        type: '<xref uid="botbuilder-core.BotState" />[]'
 methods:
   - name: 'add(BotState[])'
     uid: botbuilder-core.BotStateSet.add
@@ -50,15 +50,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function add(botStates: BotState[])'
+      content: 'function add(botStates: BotState[]): this'
       parameters:
         - id: botStates
           type: '<xref uid="botbuilder-core.BotState" />[]'
           description: |
             One or more BotState plugins to register.
       return:
-        type: this
         description: ''
+        type: this
   - name: 'loadAll(TurnContext, boolean)'
     uid: botbuilder-core.BotStateSet.loadAll
     package: botbuilder-core
@@ -72,7 +72,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function loadAll(context: TurnContext, force?: boolean)'
+      content: 'function loadAll(context: TurnContext, force?: boolean): Promise<void>'
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -83,8 +83,8 @@ methods:
             (Optional) If `true` the cache will be bypassed and the state will
             always be read in directly from storage. Defaults to `false`.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'saveAllChanges(TurnContext, boolean)'
     uid: botbuilder-core.BotStateSet.saveAllChanges
     package: botbuilder-core
@@ -98,7 +98,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function saveAllChanges(context: TurnContext, force?: boolean)'
+      content: >-
+        function saveAllChanges(context: TurnContext, force?: boolean):
+        Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -109,5 +111,5 @@ methods:
             (Optional) if `true` the state will always be written out regardless
             of its change state. Defaults to `false`.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

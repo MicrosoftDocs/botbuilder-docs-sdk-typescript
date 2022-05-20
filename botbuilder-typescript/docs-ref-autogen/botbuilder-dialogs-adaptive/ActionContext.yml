@@ -59,8 +59,8 @@ properties:
     syntax:
       content: 'actions: ActionState[]'
       return:
-        type: '<xref uid="botbuilder-dialogs-adaptive.ActionState" />[]'
         description: ''
+        type: '<xref uid="botbuilder-dialogs-adaptive.ActionState" />[]'
   - name: activeDialog
     uid: botbuilder-dialogs-adaptive.ActionContext.activeDialog
     package: botbuilder-dialogs-adaptive
@@ -72,8 +72,8 @@ properties:
     syntax:
       content: 'activeDialog: DialogInstance | undefined'
       return:
-        type: DialogInstance | undefined
         description: ''
+        type: DialogInstance | undefined
   - name: changes
     uid: botbuilder-dialogs-adaptive.ActionContext.changes
     package: botbuilder-dialogs-adaptive
@@ -85,8 +85,8 @@ properties:
     syntax:
       content: 'ActionChangeList[] changes'
       return:
+        description: The list of changes queued.
         type: '<xref uid="botbuilder-dialogs-adaptive.ActionChangeList" />[]'
-        description: ''
   - name: child
     uid: botbuilder-dialogs-adaptive.ActionContext.child
     package: botbuilder-dialogs-adaptive
@@ -98,8 +98,8 @@ properties:
     syntax:
       content: 'child: DialogContext | undefined'
       return:
-        type: DialogContext | undefined
         description: ''
+        type: DialogContext | undefined
   - name: context
     uid: botbuilder-dialogs-adaptive.ActionContext.context
     package: botbuilder-dialogs-adaptive
@@ -111,8 +111,8 @@ properties:
     syntax:
       content: 'context: TurnContext'
       return:
-        type: TurnContext
         description: ''
+        type: TurnContext
   - name: dialogManager
     uid: botbuilder-dialogs-adaptive.ActionContext.dialogManager
     package: botbuilder-dialogs-adaptive
@@ -124,8 +124,8 @@ properties:
     syntax:
       content: 'dialogManager: DialogManager'
       return:
-        type: DialogManager
         description: ''
+        type: DialogManager
   - name: dialogs
     uid: botbuilder-dialogs-adaptive.ActionContext.dialogs
     package: botbuilder-dialogs-adaptive
@@ -137,8 +137,8 @@ properties:
     syntax:
       content: 'dialogs: DialogSet'
       return:
-        type: DialogSet
         description: ''
+        type: DialogSet
   - name: parent
     uid: botbuilder-dialogs-adaptive.ActionContext.parent
     package: botbuilder-dialogs-adaptive
@@ -160,8 +160,8 @@ properties:
     syntax:
       content: 'parent: DialogContext | undefined'
       return:
-        type: DialogContext | undefined
         description: ''
+        type: DialogContext | undefined
   - name: services
     uid: botbuilder-dialogs-adaptive.ActionContext.services
     package: botbuilder-dialogs-adaptive
@@ -173,8 +173,8 @@ properties:
     syntax:
       content: 'services: TurnContextStateCollection'
       return:
-        type: TurnContextStateCollection
         description: ''
+        type: TurnContextStateCollection
   - name: stack
     uid: botbuilder-dialogs-adaptive.ActionContext.stack
     package: botbuilder-dialogs-adaptive
@@ -186,8 +186,8 @@ properties:
     syntax:
       content: 'stack: DialogInstance[]'
       return:
-        type: 'DialogInstance[]'
         description: ''
+        type: 'DialogInstance[]'
   - name: state
     uid: botbuilder-dialogs-adaptive.ActionContext.state
     package: botbuilder-dialogs-adaptive
@@ -199,21 +199,9 @@ properties:
     syntax:
       content: 'state: DialogStateManager'
       return:
+        description: ''
         type: DialogStateManager
-        description: ''
-methods:
-  - name: applyChanges()
-    uid: botbuilder-dialogs-adaptive.ActionContext.applyChanges
-    package: botbuilder-dialogs-adaptive
-    summary: Applies any queued up changes.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function applyChanges()
-      return:
-        type: Promise&lt;boolean&gt;
-        description: ''
+inheritedMethods:
   - name: 'beginDialog(string, object)'
     uid: botbuilder-dialogs-adaptive.ActionContext.beginDialog
     package: botbuilder-dialogs-adaptive
@@ -260,7 +248,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function beginDialog(dialogId: string, options?: object)'
+      content: >-
+        function beginDialog(dialogId: string, options?: object):
+        Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -270,8 +260,8 @@ methods:
           description: |
             Optional. Arguments to pass into the dialog when it starts.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: 'cancelAllDialogs(boolean, string, any)'
     uid: botbuilder-dialogs-adaptive.ActionContext.cancelAllDialogs
     package: botbuilder-dialogs-adaptive
@@ -313,7 +303,7 @@ methods:
     syntax:
       content: >-
         function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
-        eventValue?: any)
+        eventValue?: any): Promise<DialogTurnResult>
       parameters:
         - id: cancelParents
           type: boolean
@@ -329,8 +319,8 @@ methods:
           description: |
             Optional. Value to pass along with custom cancellation event.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: continueDialog()
     uid: botbuilder-dialogs-adaptive.ActionContext.continueDialog
     package: botbuilder-dialogs-adaptive
@@ -372,10 +362,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function continueDialog()
+      content: 'function continueDialog(): Promise<DialogTurnResult>'
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: 'emitEvent(string, any, boolean, boolean)'
     uid: botbuilder-dialogs-adaptive.ActionContext.emitEvent
     package: botbuilder-dialogs-adaptive
@@ -388,7 +378,7 @@ methods:
     syntax:
       content: >-
         function emitEvent(name: string, value?: any, bubble?: boolean,
-        fromLeaf?: boolean)
+        fromLeaf?: boolean): Promise<boolean>
       parameters:
         - id: name
           type: string
@@ -405,8 +395,8 @@ methods:
           type: boolean
           description: Optional. Whether the event is emitted from a leaf node.
       return:
-        type: Promise&lt;boolean&gt;
         description: '`true` if the event was handled.'
+        type: Promise&lt;boolean&gt;
   - name: endDialog(any)
     uid: botbuilder-dialogs-adaptive.ActionContext.endDialog
     package: botbuilder-dialogs-adaptive
@@ -462,7 +452,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function endDialog(result?: any)'
+      content: 'function endDialog(result?: any): Promise<DialogTurnResult>'
       parameters:
         - id: result
           type: any
@@ -472,8 +462,8 @@ methods:
                  on the stack, or if this was the last dialog on the stack, a parent dialog context or
                  the bot's turn handler.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: findDialog(string)
     uid: botbuilder-dialogs-adaptive.ActionContext.findDialog
     package: botbuilder-dialogs-adaptive
@@ -494,15 +484,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findDialog(dialogId: string)'
+      content: 'function findDialog(dialogId: string): Dialog | undefined'
       parameters:
         - id: dialogId
           type: string
           description: |
             ID of the dialog to search for.
       return:
-        type: Dialog | undefined
         description: ''
+        type: Dialog | undefined
   - name: getLocale()
     uid: botbuilder-dialogs-adaptive.ActionContext.getLocale
     package: botbuilder-dialogs-adaptive
@@ -511,10 +501,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getLocale()
+      content: 'function getLocale(): string'
       return:
-        type: string
         description: a locale string.
+        type: string
   - name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
     uid: botbuilder-dialogs-adaptive.ActionContext.prompt
     package: botbuilder-dialogs-adaptive
@@ -540,7 +530,7 @@ methods:
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions)
+        Partial<Activity> | PromptOptions): Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -552,8 +542,8 @@ methods:
                  the activity to send as the initial prompt, or
                  the object with which to format the prompt dialog.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: >-
       prompt(string, string | Partial<Activity> | PromptOptions, string |
       Choice[])
@@ -581,7 +571,8 @@ methods:
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions, choices: string | Choice[])
+        Partial<Activity> | PromptOptions, choices: string | Choice[]):
+        Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -601,24 +592,8 @@ methods:
             Optional. Array of choices for the user to choose from,
             for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
-  - name: queueChanges(ActionChangeList)
-    uid: botbuilder-dialogs-adaptive.ActionContext.queueChanges
-    package: botbuilder-dialogs-adaptive
-    summary: >-
-      Queues up a set of changes that will be applied when applyChanges() is
-      called.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function queueChanges(changes: ActionChangeList)'
-      parameters:
-        - id: changes
-          type: <xref uid="botbuilder-dialogs-adaptive.ActionChangeList" />
-          description: |
-            Plan changes to queue up.
+        type: Promise&lt;DialogTurnResult&gt;
   - name: 'replaceDialog(string, object)'
     uid: botbuilder-dialogs-adaptive.ActionContext.replaceDialog
     package: botbuilder-dialogs-adaptive
@@ -648,7 +623,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function replaceDialog(dialogId: string, options?: object)'
+      content: >-
+        function replaceDialog(dialogId: string, options?: object):
+        Promise<DialogTurnResult>
       parameters:
         - id: dialogId
           type: string
@@ -658,8 +635,8 @@ methods:
           description: |
             Optional. Arguments to pass into the new dialog when it starts.
       return:
-        type: Promise&lt;DialogTurnResult&gt;
         description: ''
+        type: Promise&lt;DialogTurnResult&gt;
   - name: repromptDialog()
     uid: botbuilder-dialogs-adaptive.ActionContext.repromptDialog
     package: botbuilder-dialogs-adaptive
@@ -679,8 +656,37 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function repromptDialog()
+      content: 'function repromptDialog(): Promise<void>'
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
+methods:
+  - name: applyChanges()
+    uid: botbuilder-dialogs-adaptive.ActionContext.applyChanges
+    package: botbuilder-dialogs-adaptive
+    summary: Applies any queued up changes.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function applyChanges(): Promise<boolean>'
+      return:
+        description: True if there were any changes to apply.
+        type: Promise&lt;boolean&gt;
+  - name: queueChanges(ActionChangeList)
+    uid: botbuilder-dialogs-adaptive.ActionContext.queueChanges
+    package: botbuilder-dialogs-adaptive
+    summary: >-
+      Queues up a set of changes that will be applied when applyChanges() is
+      called.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function queueChanges(changes: ActionChangeList)'
+      parameters:
+        - id: changes
+          type: <xref uid="botbuilder-dialogs-adaptive.ActionChangeList" />
+          description: |
+            Plan changes to queue up.
 extends: DialogContext

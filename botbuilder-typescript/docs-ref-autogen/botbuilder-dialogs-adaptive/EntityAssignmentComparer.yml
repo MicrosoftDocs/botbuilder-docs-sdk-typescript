@@ -2,9 +2,14 @@
 name: EntityAssignmentComparer
 uid: botbuilder-dialogs-adaptive.EntityAssignmentComparer
 package: botbuilder-dialogs-adaptive
-summary: ''
+summary: Compare two entity assignments to determine their relative priority.
 fullName: EntityAssignmentComparer
-remarks: ''
+remarks: |-
+  Compare by event: assignEntity, chooseProperty, chooseEntity
+  Then by operations in order from schema (usually within assignEntity).
+  Then by unexpected before expected.
+  Then by oldest turn first.
+  Then by minimum position in utterance.
 isPreview: false
 isDeprecated: false
 type: class
@@ -12,7 +17,10 @@ constructors:
   - name: 'EntityAssignmentComparer(string[])'
     uid: botbuilder-dialogs-adaptive.EntityAssignmentComparer.constructor
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Initializes a new instance of the
+      [EntityAssignmentComparer](xref:botbuilder-dialogs-adaptive.EntityAssignmentComparer)
+      class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -21,30 +29,34 @@ constructors:
       parameters:
         - id: operationPreference
           type: 'string[]'
-          description: ''
+          description: |
+            Preference on operations.
 methods:
   - name: 'compare(Partial<EntityAssignment>, Partial<EntityAssignment>)'
     uid: botbuilder-dialogs-adaptive.EntityAssignmentComparer.compare
     package: botbuilder-dialogs-adaptive
-    summary: ''
+    summary: >-
+      Compares
+      [EntityAssignment](xref:botbuilder-dialogs-adaptive.EntityAssignment) x
+      against y to determine its relative priority.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function compare(x: Partial<EntityAssignment>, y:
-        Partial<EntityAssignment>)
+        Partial<EntityAssignment>): number
       parameters:
         - id: x
           type: >-
             Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityAssignment"
             />&gt;
-          description: ''
+          description: First entity assigment to compare.
         - id: 'y'
           type: >-
             Partial&lt;<xref uid="botbuilder-dialogs-adaptive.EntityAssignment"
             />&gt;
-          description: ''
+          description: Second entity assigment to compare.
       return:
+        description: Numerical value representing x's relative priority.
         type: number
-        description: ''

@@ -19,7 +19,7 @@ methods:
     syntax:
       content: >-
         function getAadTokens(context: TurnContext, connectionName: string,
-        resourceUrls: string[])
+        resourceUrls: string[]): Promise<[key: string]: TokenResponse>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -32,8 +32,8 @@ methods:
           type: 'string[]'
           description: ''
       return:
-        type: 'Promise&lt;[key: string]: TokenResponse&gt;'
         description: ''
+        type: 'Promise&lt;[key: string]: TokenResponse&gt;'
   - name: 'getSignInLink(TurnContext, string)'
     uid: botbuilder-core.IUserTokenProvider.getSignInLink
     package: botbuilder-core
@@ -44,7 +44,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getSignInLink(context: TurnContext, connectionName: string)'
+      content: >-
+        function getSignInLink(context: TurnContext, connectionName: string):
+        Promise<string>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -54,8 +56,8 @@ methods:
           description: |
             Name of the auth connection to use.
       return:
-        type: Promise&lt;string&gt;
         description: ''
+        type: Promise&lt;string&gt;
   - name: 'getTokenStatus(TurnContext, string, string, any)'
     uid: botbuilder-core.IUserTokenProvider.getTokenStatus
     package: botbuilder-core
@@ -68,7 +70,7 @@ methods:
     syntax:
       content: >-
         function getTokenStatus(context: TurnContext, userId: string,
-        includeFilter?: string, oAuthAppCredentials?: any)
+        includeFilter?: string, oAuthAppCredentials?: any): Promise<any[]>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -86,8 +88,8 @@ methods:
           description: |
             The app credentials for OAuth.
       return:
-        type: 'Promise&lt;any[]&gt;'
         description: ''
+        type: 'Promise&lt;any[]&gt;'
   - name: 'getUserToken(TurnContext, string, string)'
     uid: botbuilder-core.IUserTokenProvider.getUserToken
     package: botbuilder-core
@@ -98,7 +100,7 @@ methods:
     syntax:
       content: >-
         function getUserToken(context: TurnContext, connectionName: string,
-        magicCode?: string)
+        magicCode?: string): Promise<TokenResponse>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -111,8 +113,8 @@ methods:
           description: |
             (Optional) Optional user entered code to validate.
       return:
-        type: Promise&lt;TokenResponse&gt;
         description: ''
+        type: Promise&lt;TokenResponse&gt;
   - name: 'signOutUser(TurnContext, string, string)'
     uid: botbuilder-core.IUserTokenProvider.signOutUser
     package: botbuilder-core
@@ -123,7 +125,7 @@ methods:
     syntax:
       content: >-
         function signOutUser(context: TurnContext, connectionName: string,
-        userId?: string)
+        userId?: string): Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -136,5 +138,5 @@ methods:
           description: |
             User id of user to sign out.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

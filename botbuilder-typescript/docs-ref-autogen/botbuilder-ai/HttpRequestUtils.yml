@@ -19,7 +19,8 @@ methods:
     syntax:
       content: >-
         function executeHttpRequest(requestUrl: string, payloadBody: string,
-        endpoint: QnAMakerEndpoint, timeout?: number)
+        endpoint: QnAMakerEndpoint, timeout?: number): Promise<QnAMakerResults |
+        KnowledgeBaseAnswers | undefined>
       parameters:
         - id: requestUrl
           type: string
@@ -34,7 +35,7 @@ methods:
           type: number
           description: (Optional)Timeout for http call
       return:
-        type: >-
-          Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" /> |
-          undefined&gt;
         description: a promise that resolves to the QnAMakerResults
+        type: >-
+          Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" /> | <xref
+          uid="botbuilder-ai.KnowledgeBaseAnswers" /> | undefined&gt;

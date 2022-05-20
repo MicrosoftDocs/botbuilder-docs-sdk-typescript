@@ -49,8 +49,8 @@ properties:
     syntax:
       content: 'application: LuisApplication'
       return:
-        type: <xref uid="botbuilder-ai.LuisApplication" />
         description: ''
+        type: <xref uid="botbuilder-ai.LuisApplication" />
   - name: predictionOptions
     uid: botbuilder-ai.LuisRecognizerV3.predictionOptions
     package: botbuilder-ai
@@ -62,8 +62,8 @@ properties:
     syntax:
       content: 'predictionOptions: LuisRecognizerOptionsV3'
       return:
-        type: <xref uid="botbuilder-ai.LuisRecognizerOptionsV3" />
         description: ''
+        type: <xref uid="botbuilder-ai.LuisRecognizerOptionsV3" />
 methods:
   - name: recognizeInternal(DialogContext | TurnContext)
     uid: botbuilder-ai.LuisRecognizerV3.recognizeInternal
@@ -73,16 +73,18 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function recognizeInternal(context: DialogContext | TurnContext)'
+      content: >-
+        function recognizeInternal(context: DialogContext | TurnContext):
+        Promise<RecognizerResult>
       parameters:
         - id: context
           type: DialogContext | TurnContext
           description: 'The [TurnContext](xref:botbuilder-core.TurnContext).'
       return:
-        type: Promise&lt;RecognizerResult&gt;
         description: >-
           Analysis of utterance in form of
           [RecognizerResult](xref:botbuilder-core.RecognizerResult).
+        type: Promise&lt;RecognizerResult&gt;
   - name: recognizeInternal(string)
     uid: botbuilder-ai.LuisRecognizerV3.recognizeInternal_1
     package: botbuilder-ai
@@ -91,13 +93,13 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function recognizeInternal(utterance: string)'
+      content: 'function recognizeInternal(utterance: string): Promise<RecognizerResult>'
       parameters:
         - id: utterance
           type: string
           description: |
             The utterance to be recognized.
       return:
-        type: Promise&lt;RecognizerResult&gt;
         description: ''
+        type: Promise&lt;RecognizerResult&gt;
 extends: <xref uid="botbuilder-ai.LuisRecognizerInternal" />

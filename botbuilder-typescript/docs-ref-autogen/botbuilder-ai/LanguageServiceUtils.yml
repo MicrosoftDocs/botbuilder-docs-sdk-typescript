@@ -1,0 +1,142 @@
+### YamlMime:TSType
+name: LanguageServiceUtils
+uid: botbuilder-ai.LanguageServiceUtils
+package: botbuilder-ai
+summary: >-
+  Utilities for using Query Knowledge Base and Add Active Learning feedback APIs
+  of language service.
+fullName: LanguageServiceUtils
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+  - name: 'LanguageServiceUtils(QnAMakerOptions, QnAMakerEndpoint)'
+    uid: botbuilder-ai.LanguageServiceUtils.constructor
+    package: botbuilder-ai
+    summary: Creates new Language Service utils.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        new LanguageServiceUtils(_options: QnAMakerOptions, endpoint:
+        QnAMakerEndpoint)
+      parameters:
+        - id: _options
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
+          description: Settings used to configure the instance.
+        - id: endpoint
+          type: <xref uid="botbuilder-ai.QnAMakerEndpoint" />
+          description: |
+            The endpoint of the knowledge base to query.
+properties:
+  - name: endpoint
+    uid: botbuilder-ai.LanguageServiceUtils.endpoint
+    package: botbuilder-ai
+    summary: ''
+    fullName: endpoint
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'endpoint: QnAMakerEndpoint'
+      return:
+        description: ''
+        type: <xref uid="botbuilder-ai.QnAMakerEndpoint" />
+  - name: httpRequestUtils
+    uid: botbuilder-ai.LanguageServiceUtils.httpRequestUtils
+    package: botbuilder-ai
+    summary: ''
+    fullName: httpRequestUtils
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'httpRequestUtils: HttpRequestUtils'
+      return:
+        description: ''
+        type: <xref uid="botbuilder-ai.HttpRequestUtils" />
+methods:
+  - name: addFeedback(FeedbackRecords)
+    uid: botbuilder-ai.LanguageServiceUtils.addFeedback
+    package: botbuilder-ai
+    summary: Adds feedback to the knowledge base.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function addFeedback(feedbackRecords: FeedbackRecords): Promise<void>'
+      parameters:
+        - id: feedbackRecords
+          type: <xref uid="botbuilder-ai.FeedbackRecords" />
+          description: A list of Feedback Records for Active Learning.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;
+  - name: 'emitTraceInfo(TurnContext, QnAMakerResult[], QnAMakerOptions)'
+    uid: botbuilder-ai.LanguageServiceUtils.emitTraceInfo
+    package: botbuilder-ai
+    summary: >-
+      Emits a trace event detailing a Custom Question Answering call and its
+      results.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function emitTraceInfo(turnContext: TurnContext, answers:
+        QnAMakerResult[], queryOptions?: QnAMakerOptions): Promise<any>
+      parameters:
+        - id: turnContext
+          type: TurnContext
+          description: Turn Context for the current turn of conversation with the user.
+        - id: answers
+          type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
+          description: Answers returned by Language Service.
+        - id: queryOptions
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
+          description: >-
+            (Optional) The options for the Custom Question Answering knowledge
+            base. If null, constructor option is used for this instance.
+      return:
+        description: a promise representing the async operation
+        type: Promise&lt;any&gt;
+  - name: 'queryKnowledgebaseRaw(string, QnAMakerOptions)'
+    uid: botbuilder-ai.LanguageServiceUtils.queryKnowledgebaseRaw
+    package: botbuilder-ai
+    summary: Called to query the Language service.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function queryKnowledgebaseRaw(question: string, options?:
+        QnAMakerOptions): Promise<QnAMakerResults>
+      parameters:
+        - id: question
+          type: string
+          description: Question which need to be queried.
+        - id: options
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
+          description: >-
+            (Optional) The options for the QnA Maker knowledge base. If null,
+            constructor option is used for this instance.
+      return:
+        description: a promise that resolves to the raw query results
+        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
+  - name: validateOptions(QnAMakerOptions)
+    uid: botbuilder-ai.LanguageServiceUtils.validateOptions
+    package: botbuilder-ai
+    summary: Validate qna maker options
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function validateOptions(options: QnAMakerOptions)'
+      parameters:
+        - id: options
+          type: <xref uid="botbuilder-ai.QnAMakerOptions" />
+          description: >
+            The options for the Custom Question Answering knowledge base. If
+            null, constructor option is used for this instance.

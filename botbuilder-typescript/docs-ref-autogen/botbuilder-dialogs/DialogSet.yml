@@ -128,8 +128,8 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        type: BotTelemetryClient
         description: ''
+        type: BotTelemetryClient
 methods:
   - name: add<T>(T)
     uid: botbuilder-dialogs.DialogSet.add
@@ -149,7 +149,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function add<T>(dialog: T)'
+      content: 'function add<T>(dialog: T): this'
       parameters:
         - id: dialog
           type: T
@@ -159,8 +159,8 @@ methods:
             If a telemetryClient is present on the dialog set, it will be added
             to each dialog.
       return:
-        type: this
         description: ''
+        type: this
   - name: createContext(TurnContext)
     uid: botbuilder-dialogs.DialogSet.createContext
     package: botbuilder-dialogs
@@ -171,15 +171,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function createContext(context: TurnContext)'
+      content: 'function createContext(context: TurnContext): Promise<DialogContext>'
       parameters:
         - id: context
           type: TurnContext
           description: |
             Context for the current turn of conversation with the user.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogContext" />&gt;
         description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogContext" />&gt;
   - name: find(string)
     uid: botbuilder-dialogs.DialogSet.find
     package: botbuilder-dialogs
@@ -193,15 +193,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function find(dialogId: string)'
+      content: 'function find(dialogId: string): Dialog | undefined'
       parameters:
         - id: dialogId
           type: string
           description: |
             ID of the dialog or prompt to lookup.
       return:
-        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
         description: ''
+        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
   - name: getDialogs()
     uid: botbuilder-dialogs.DialogSet.getDialogs
     package: botbuilder-dialogs
@@ -210,10 +210,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getDialogs()
+      content: 'function getDialogs(): Dialog[]'
       return:
-        type: '<xref uid="botbuilder-dialogs.Dialog" />[]'
         description: 'An array of [Dialog](xref:botbuilder-dialogs.Dialog).'
+        type: '<xref uid="botbuilder-dialogs.Dialog" />[]'
   - name: getVersion()
     uid: botbuilder-dialogs.DialogSet.getVersion
     package: botbuilder-dialogs
@@ -224,7 +224,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: ''
+        type: string

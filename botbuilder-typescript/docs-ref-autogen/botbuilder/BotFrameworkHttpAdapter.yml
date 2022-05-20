@@ -2,13 +2,15 @@
 name: BotFrameworkHttpAdapter
 uid: botbuilder.BotFrameworkHttpAdapter
 package: botbuilder
-summary: |-
-  BotFrameworkHttpAdapter is the interface that describes a Bot Framework
-  adapter that operates on HTTP requests.
+summary: ''
 fullName: BotFrameworkHttpAdapter
 remarks: ''
 isPreview: false
-isDeprecated: false
+isDeprecated: true
+customDeprecatedMessage: |-
+  Use `CloudAdapter` instead.
+  BotFrameworkHttpAdapter is the interface that describes a Bot Framework
+  adapter that operates on HTTP requests.
 type: interface
 methods:
   - name: >-
@@ -25,7 +27,7 @@ methods:
     syntax:
       content: >-
         function process(req: Request, socket: INodeSocket, head: INodeBuffer,
-        logic: (context: TurnContext) => Promise<void>)
+        logic: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
           type: Request
@@ -40,8 +42,8 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'process(Request, Response, (context: TurnContext) => Promise<void>)'
     uid: botbuilder.BotFrameworkHttpAdapter.process
     package: botbuilder
@@ -52,7 +54,7 @@ methods:
     syntax:
       content: >-
         function process(req: Request, res: Response, logic: (context:
-        TurnContext) => Promise<void>)
+        TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
           type: Request
@@ -64,5 +66,5 @@ methods:
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;

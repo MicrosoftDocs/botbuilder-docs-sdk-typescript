@@ -41,8 +41,8 @@ properties:
     syntax:
       content: 'conversationState: ConversationState'
       return:
-        type: ConversationState
         description: ''
+        type: ConversationState
   - name: dialogs
     uid: botbuilder-dialogs.DialogManager.dialogs
     package: botbuilder-dialogs
@@ -54,8 +54,8 @@ properties:
     syntax:
       content: 'dialogs: DialogSet'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogSet" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogSet" />
   - name: expireAfter
     uid: botbuilder-dialogs.DialogManager.expireAfter
     package: botbuilder-dialogs
@@ -69,8 +69,8 @@ properties:
     syntax:
       content: 'expireAfter?: number'
       return:
-        type: number
         description: ''
+        type: number
   - name: initialTurnState
     uid: botbuilder-dialogs.DialogManager.initialTurnState
     package: botbuilder-dialogs
@@ -84,8 +84,8 @@ properties:
     syntax:
       content: TurnContextStateCollection initialTurnState
       return:
-        type: TurnContextStateCollection
         description: ''
+        type: TurnContextStateCollection
   - name: rootDialog
     uid: botbuilder-dialogs.DialogManager.rootDialog
     package: botbuilder-dialogs
@@ -99,8 +99,8 @@ properties:
     syntax:
       content: Dialog rootDialog
       return:
-        type: <xref uid="botbuilder-dialogs.Dialog" />
         description: 'The root [Dialog](xref:botbuilder-dialogs.Dialog) ID.'
+        type: <xref uid="botbuilder-dialogs.Dialog" />
   - name: stateConfiguration
     uid: botbuilder-dialogs.DialogManager.stateConfiguration
     package: botbuilder-dialogs
@@ -114,8 +114,8 @@ properties:
     syntax:
       content: 'stateConfiguration?: DialogStateManagerConfiguration'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogStateManagerConfiguration" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogStateManagerConfiguration" />
   - name: userState
     uid: botbuilder-dialogs.DialogManager.userState
     package: botbuilder-dialogs
@@ -127,8 +127,27 @@ properties:
     syntax:
       content: 'userState?: UserState'
       return:
-        type: UserState
         description: ''
+        type: UserState
+inheritedMethods:
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.DialogManager.getConverter
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        description: ''
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
 methods:
   - name: configure(Partial<DialogManagerConfiguration>)
     uid: botbuilder-dialogs.DialogManager.configure
@@ -138,7 +157,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Partial<DialogManagerConfiguration>)'
+      content: 'function configure(config: Partial<DialogManagerConfiguration>): this'
       parameters:
         - id: config
           type: >-
@@ -146,28 +165,10 @@ methods:
             />&gt;
           description: Configuration settings to apply.
       return:
-        type: this
         description: >-
           The cofigured [DialogManager](xref:botbuilder-dialogs.DialogManager)
           context.
-  - name: getConverter(string)
-    uid: botbuilder-dialogs.DialogManager.getConverter
-    package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getConverter(_property: string)'
-      parameters:
-        - id: _property
-          type: string
-          description: ''
-      return:
-        type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
-        description: ''
+        type: this
   - name: onTurn(TurnContext)
     uid: botbuilder-dialogs.DialogManager.onTurn
     package: botbuilder-dialogs
@@ -178,7 +179,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onTurn(context: TurnContext)'
+      content: 'function onTurn(context: TurnContext): Promise<DialogManagerResult>'
       parameters:
         - id: context
           type: TurnContext
@@ -186,6 +187,6 @@ methods:
             (xref:botbuilder-core.TurnContext) for the current turn of
             conversation with the user.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogManagerResult" />&gt;
         description: Result of running the logic against the activity.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogManagerResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.Configurable" />

@@ -20,14 +20,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function authenticateChannelRequest(authHeader: string)'
+      content: >-
+        function authenticateChannelRequest(authHeader: string):
+        Promise<ClaimsIdentity>
       parameters:
         - id: authHeader
           type: string
           description: The HTTP auth header in the skill request.
       return:
-        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
         description: 'A [ClaimsIdentity](xref:botframework-connector.ClaimsIdentity).'
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
   - name: 'authenticateRequest(Activity, string)'
     uid: botframework-connector.BotFrameworkAuthentication.authenticateRequest
     package: botframework-connector
@@ -36,7 +38,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function authenticateRequest(activity: Activity, authHeader: string)'
+      content: >-
+        function authenticateRequest(activity: Activity, authHeader: string):
+        Promise<AuthenticateRequestResult>
       parameters:
         - id: activity
           type: Activity
@@ -45,12 +49,12 @@ methods:
           type: string
           description: The HTTP auth header.
       return:
-        type: >-
-          Promise&lt;<xref
-          uid="botframework-connector.AuthenticateRequestResult" />&gt;
         description: >-
           An
           [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.AuthenticateRequestResult" />&gt;
   - name: 'authenticateStreamingRequest(string, string)'
     uid: >-
       botframework-connector.BotFrameworkAuthentication.authenticateStreamingRequest
@@ -62,7 +66,7 @@ methods:
     syntax:
       content: >-
         function authenticateStreamingRequest(authHeader: string,
-        channelIdHeader: string)
+        channelIdHeader: string): Promise<AuthenticateRequestResult>
       parameters:
         - id: authHeader
           type: string
@@ -71,12 +75,12 @@ methods:
           type: string
           description: The channel ID HTTP header.
       return:
-        type: >-
-          Promise&lt;<xref
-          uid="botframework-connector.AuthenticateRequestResult" />&gt;
         description: >-
           An
           [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.AuthenticateRequestResult" />&gt;
   - name: createBotFrameworkClient()
     uid: botframework-connector.BotFrameworkAuthentication.createBotFrameworkClient
     package: botframework-connector
@@ -85,12 +89,12 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function createBotFrameworkClient()
+      content: 'function createBotFrameworkClient(): BotFrameworkClient'
       return:
-        type: <xref uid="botframework-connector.BotFrameworkClient" />
         description: >-
           A
           [BotFrameworkClient](xref:botframework-connector.BotFrameworkClient).
+        type: <xref uid="botframework-connector.BotFrameworkClient" />
   - name: createConnectorFactory(ClaimsIdentity)
     uid: botframework-connector.BotFrameworkAuthentication.createConnectorFactory
     package: botframework-connector
@@ -101,14 +105,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function createConnectorFactory(claimsIdentity: ClaimsIdentity)'
+      content: >-
+        function createConnectorFactory(claimsIdentity: ClaimsIdentity):
+        ConnectorFactory
       parameters:
         - id: claimsIdentity
           type: <xref uid="botframework-connector.ClaimsIdentity" />
           description: The inbound Activity's ClaimsIdentity.
       return:
-        type: <xref uid="botframework-connector.ConnectorFactory" />
         description: 'A [ConnectorFactory](xref:botframework-connector.ConnectorFactory).'
+        type: <xref uid="botframework-connector.ConnectorFactory" />
   - name: createUserTokenClient(ClaimsIdentity)
     uid: botframework-connector.BotFrameworkAuthentication.createUserTokenClient
     package: botframework-connector
@@ -117,14 +123,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function createUserTokenClient(claimsIdentity: ClaimsIdentity)'
+      content: >-
+        function createUserTokenClient(claimsIdentity: ClaimsIdentity):
+        Promise<UserTokenClient>
       parameters:
         - id: claimsIdentity
           type: <xref uid="botframework-connector.ClaimsIdentity" />
           description: The inbound Activity's ClaimsIdentity.
       return:
-        type: Promise&lt;<xref uid="botframework-connector.UserTokenClient" />&gt;
         description: 'An [UserTokenClient](xref:botframework-connector.UserTokenClient).'
+        type: Promise&lt;<xref uid="botframework-connector.UserTokenClient" />&gt;
   - name: getOriginatingAudience()
     uid: botframework-connector.BotFrameworkAuthentication.getOriginatingAudience
     package: botframework-connector
@@ -133,7 +141,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getOriginatingAudience()
+      content: 'function getOriginatingAudience(): string'
       return:
-        type: string
         description: The originating audience.
+        type: string

@@ -68,7 +68,9 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function useBotState(botAdapter: BotAdapter, botStates: BotState[])'
+      content: >-
+        function useBotState(botAdapter: BotAdapter, botStates: BotState[]):
+        BotAdapter
       parameters:
         - id: botAdapter
           type: <xref uid="botbuilder-core.BotAdapter" />
@@ -78,8 +80,28 @@ functions:
           description: |
             The state objects to register.
       return:
-        type: <xref uid="botbuilder-core.BotAdapter" />
         description: ''
+        type: <xref uid="botbuilder-core.BotAdapter" />
+  - name: 'assertBotComponent(unknown, unknown[])'
+    uid: botbuilder-core.assertBotComponent
+    package: botbuilder-core
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: true
+    customDeprecatedMessage: Use `BotComponent.z.parse()` instead.
+    syntax:
+      content: 'function assertBotComponent(val: unknown, _args: unknown[]): asserts'
+      parameters:
+        - id: val
+          type: unknown
+          description: ''
+        - id: _args
+          type: 'unknown[]'
+          description: ''
+      return:
+        description: ''
+        type: asserts
   - name: >-
       telemetryTrackDialogView(BotTelemetryClient, string, [key: string]: any,
       [key: string]: number)
@@ -147,7 +169,8 @@ functions:
         Configuration, credentialsFactory?: ServiceClientCredentialsFactory,
         authConfiguration?: AuthenticationConfiguration,
         botFrameworkClientFetch?: (input: RequestInfo, init?: RequestInit) =>
-        Promise<Response>, connectorClientOptions?: ConnectorClientOptions)
+        Promise<Response>, connectorClientOptions?: ConnectorClientOptions):
+        BotFrameworkAuthentication
       parameters:
         - id: configuration
           type: Configuration
@@ -181,11 +204,11 @@ functions:
             [ConnectorClientOptions](xref:botframework-connector.ConnectorClientOptions)
             object.
       return:
-        type: BotFrameworkAuthentication
         description: >-
           A
           [ConfigurationBotFrameworkAuthentication](xref:botbuilder-core.ConfigurationBotFrameworkAuthentication)
           instance.
+        type: BotFrameworkAuthentication
   - name: createServiceClientCredentialFactoryFromConfiguration(Configuration)
     uid: botbuilder-core.createServiceClientCredentialFactoryFromConfiguration
     package: botbuilder-core
@@ -208,7 +231,7 @@ functions:
       content: >-
         function
         createServiceClientCredentialFactoryFromConfiguration(configuration:
-        Configuration)
+        Configuration): ConfigurationServiceClientCredentialFactory
       parameters:
         - id: configuration
           type: Configuration
@@ -217,13 +240,33 @@ functions:
             [Configuration](xref:botbuilder-dialogs-adaptive-runtime-core.Configuration)
             instance.
       return:
-        type: >-
-          <xref
-          uid="botbuilder-core.ConfigurationServiceClientCredentialFactory" />
         description: >-
           A
           [ConfigurationServiceClientCredentialFactory](xref:botbuilder-core.ConfigurationServiceClientCredentialFactory)
           instance.
+        type: >-
+          <xref
+          uid="botbuilder-core.ConfigurationServiceClientCredentialFactory" />
+  - name: 'assertStoreItems(unknown, unknown[])'
+    uid: botbuilder-core.assertStoreItems
+    package: botbuilder-core
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: true
+    customDeprecatedMessage: Use `zod.record(zod.unknown())` instead.
+    syntax:
+      content: 'function assertStoreItems(val: unknown, _args: unknown[]): asserts'
+      parameters:
+        - id: val
+          type: unknown
+          description: ''
+        - id: _args
+          type: 'unknown[]'
+          description: ''
+      return:
+        description: ''
+        type: asserts
   - name: calculateChangeHash(StoreItem)
     uid: botbuilder-core.calculateChangeHash
     package: botbuilder-core
@@ -257,15 +300,14 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function calculateChangeHash(item: StoreItem)'
+      content: 'function calculateChangeHash(item: StoreItem): string'
       parameters:
         - id: item
           type: <xref uid="botbuilder-core.StoreItem" />
-          description: |
-            Item to calculate the change hash for.
+          description: Item to calculate the change hash for.
       return:
+        description: change hash string
         type: string
-        description: ''
 interfaces:
   - botbuilder-core.CachedBotState
   - botbuilder-core.StatePropertyAccessor

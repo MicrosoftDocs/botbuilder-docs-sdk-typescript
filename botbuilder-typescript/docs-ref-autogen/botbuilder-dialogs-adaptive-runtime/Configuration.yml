@@ -13,6 +13,21 @@ remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
+constructors:
+  - name: 'Configuration(Record<string, unknown>)'
+    uid: botbuilder-dialogs-adaptive-runtime.Configuration.constructor
+    package: botbuilder-dialogs-adaptive-runtime
+    summary: Create a configuration instance
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'new Configuration(initialValues?: Record<string, unknown>)'
+      parameters:
+        - id: initialValues
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Optional set of default values to provide
 methods:
   - name: 'argv(string[])'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.argv
@@ -22,14 +37,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function argv(argv?: string[])'
+      content: 'function argv(argv?: string[]): this'
       parameters:
         - id: argv
           type: 'string[]'
           description: 'arguments to parse, defaults to `process.argv`'
       return:
-        type: this
         description: this for chaining
+        type: this
   - name: 'bind(string[])'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.bind
     package: botbuilder-dialogs-adaptive-runtime
@@ -40,14 +55,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function bind(path: string[])'
+      content: 'function bind(path: string[]): Configuration'
       parameters:
         - id: path
           type: 'string[]'
           description: path to bind to new Configuration instance
       return:
-        type: <xref uid="botbuilder-dialogs-adaptive-runtime.Configuration" />
         description: configuration instance with `path` bound as a prefix
+        type: <xref uid="botbuilder-dialogs-adaptive-runtime.Configuration" />
   - name: 'bool(string[])'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.bool
     package: botbuilder-dialogs-adaptive-runtime
@@ -56,14 +71,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function bool(path: string[])'
+      content: 'function bool(path: string[]): boolean'
       parameters:
         - id: path
           type: 'string[]'
           description: path to boolean value
       return:
-        type: boolean
         description: true or false depending on flag
+        type: boolean
   - name: env(string)
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.env
     package: botbuilder-dialogs-adaptive-runtime
@@ -72,14 +87,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function env(separator?: string)'
+      content: 'function env(separator?: string): this'
       parameters:
         - id: separator
           type: string
           description: value used to indicate nesting
       return:
-        type: this
         description: this for chaining
+        type: this
   - name: 'file(string, boolean)'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.file
     package: botbuilder-dialogs-adaptive-runtime
@@ -88,7 +103,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function file(name: string, override?: boolean)'
+      content: 'function file(name: string, override?: boolean): this'
       parameters:
         - id: name
           type: string
@@ -99,8 +114,8 @@ methods:
             optional flag that ensures this file takes precedence over other
             files
       return:
-        type: this
         description: this for chaining
+        type: this
   - name: 'get<T>(string[])'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.get
     package: botbuilder-dialogs-adaptive-runtime
@@ -109,14 +124,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function get<T>(path?: string[])'
+      content: 'function get<T>(path?: string[]): T | undefined'
       parameters:
         - id: path
           type: 'string[]'
           description: path to value
       return:
-        type: T | undefined
         description: 'the value, or undefined'
+        type: T | undefined
   - name: 'set(string[], unknown)'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.set
     package: botbuilder-dialogs-adaptive-runtime
@@ -142,14 +157,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function string(path: string[])'
+      content: 'function string(path: string[]): string | undefined'
       parameters:
         - id: path
           type: 'string[]'
           description: path to string value
       return:
-        type: string | undefined
         description: the string or undefined
+        type: string | undefined
   - name: 'type<T>(string[], ZodType<T>)'
     uid: botbuilder-dialogs-adaptive-runtime.Configuration.type
     package: botbuilder-dialogs-adaptive-runtime
@@ -158,7 +173,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function type<T>(path: string[], t: ZodType<T>)'
+      content: 'function type<T>(path: string[], t: ZodType<T>): T | undefined'
       parameters:
         - id: path
           type: 'string[]'
@@ -167,5 +182,5 @@ methods:
           type: ZodType&lt;T&gt;
           description: zod type to use for type checking
       return:
-        type: T | undefined
         description: 'the value, or undefined'
+        type: T | undefined

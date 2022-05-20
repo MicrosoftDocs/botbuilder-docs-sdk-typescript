@@ -102,8 +102,8 @@ properties:
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
   - name: id
     uid: botbuilder-dialogs.WaterfallDialog.id
     package: botbuilder-dialogs
@@ -117,8 +117,8 @@ properties:
     syntax:
       content: string id
       return:
-        type: string
         description: ''
+        type: string
   - name: telemetryClient
     uid: botbuilder-dialogs.WaterfallDialog.telemetryClient
     package: botbuilder-dialogs
@@ -132,8 +132,110 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        type: BotTelemetryClient
         description: ''
+        type: BotTelemetryClient
+inheritedMethods:
+  - name: 'configure(Record<string, unknown>)'
+    uid: botbuilder-dialogs.WaterfallDialog.configure
+    package: botbuilder-dialogs
+    summary: Fluent method for configuring the object.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function configure(config: Record<string, unknown>): this'
+      parameters:
+        - id: config
+          type: 'Record&lt;string, unknown&gt;'
+          description: |
+            Configuration settings to apply.
+      return:
+        description: ''
+        type: this
+  - name: getConverter(string)
+    uid: botbuilder-dialogs.WaterfallDialog.getConverter
+    package: botbuilder-dialogs
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        description: ''
+        type: >-
+          <xref uid="botbuilder-dialogs.Converter" /> | <xref
+          uid="botbuilder-dialogs.ConverterFactory" />
+  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+    uid: botbuilder-dialogs.WaterfallDialog.onDialogEvent
+    package: botbuilder-dialogs
+    summary: >-
+      Called when an event has been raised, using `DialogContext.emitEvent()`,
+      by either the current dialog or a dialog that the current dialog started.
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onDialogEvent(dc: DialogContext, e: DialogEvent):
+        Promise<boolean>
+      parameters:
+        - id: dc
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: The dialog context for the current turn of conversation.
+        - id: e
+          type: <xref uid="botbuilder-dialogs.DialogEvent" />
+          description: The event being raised.
+      return:
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
+        type: Promise&lt;boolean&gt;
+  - name: 'repromptDialog(TurnContext, DialogInstance)'
+    uid: botbuilder-dialogs.WaterfallDialog.repromptDialog
+    package: botbuilder-dialogs
+    summary: 'When overridden in a derived class, reprompts the user for input.'
+    remarks: >-
+      Derived dialogs that support validation and re-prompt logic should
+      override this method.
+
+      By default, this method has no effect.
+
+
+      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
+      method when the current
+
+      dialog should re-request input from the user. This method is implemented
+      for prompt dialogs.
+
+
+      **See also**
+
+      -
+      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
+
+      - [Prompt](xref:botbuilder-dialogs.Prompt)
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function repromptDialog(context: TurnContext, instance: DialogInstance):
+        Promise<void>
+      parameters:
+        - id: context
+          type: TurnContext
+          description: The context object for the turn.
+        - id: instance
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          description: |
+            Current state information for this dialog.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;
 methods:
   - name: addStep(WaterfallStep<O>)
     uid: botbuilder-dialogs.WaterfallDialog.addStep
@@ -195,15 +297,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function addStep(step: WaterfallStep<O>)'
+      content: 'function addStep(step: WaterfallStep<O>): this'
       parameters:
         - id: step
           type: <xref uid="botbuilder-dialogs.WaterfallStep" />&lt;O&gt;
           description: |
             Asynchronous step function to call.
       return:
-        type: this
         description: ''
+        type: this
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs.WaterfallDialog.beginDialog
     package: botbuilder-dialogs
@@ -218,7 +320,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function beginDialog(dc: DialogContext, options?: O)'
+      content: >-
+        function beginDialog(dc: DialogContext, options?: O):
+        Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -231,25 +335,8 @@ methods:
             Optional, initial information to pass to the
             [Dialog](xref:botbuilder-dialogs.Dialog).
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A Promise representing the asynchronous operation.
-  - name: 'configure(Record<string, unknown>)'
-    uid: botbuilder-dialogs.WaterfallDialog.configure
-    package: botbuilder-dialogs
-    summary: Fluent method for configuring the object.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function configure(config: Record<string, unknown>)'
-      parameters:
-        - id: config
-          type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
-      return:
-        type: this
-        description: ''
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.WaterfallDialog.continueDialog
     package: botbuilder-dialogs
@@ -269,7 +356,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext)'
+      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -277,8 +364,8 @@ methods:
             The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
             current turn of conversation.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A Promise representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.WaterfallDialog.endDialog
     package: botbuilder-dialogs
@@ -289,7 +376,7 @@ methods:
     syntax:
       content: >-
         function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
+        reason: DialogReason): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -302,26 +389,8 @@ methods:
           description: |
             The reason the dialog is ending.
       return:
+        description: ''
         type: Promise&lt;void&gt;
-        description: ''
-  - name: getConverter(string)
-    uid: botbuilder-dialogs.WaterfallDialog.getConverter
-    package: botbuilder-dialogs
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getConverter(_property: string)'
-      parameters:
-        - id: _property
-          type: string
-          description: ''
-      return:
-        type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
-        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs.WaterfallDialog.getVersion
     package: botbuilder-dialogs
@@ -330,72 +399,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: 'Dialog version, composed of the ID and number of steps.'
-  - name: 'onDialogEvent(DialogContext, DialogEvent)'
-    uid: botbuilder-dialogs.WaterfallDialog.onDialogEvent
-    package: botbuilder-dialogs
-    summary: >-
-      Called when an event has been raised, using `DialogContext.emitEvent()`,
-      by either the current dialog or a dialog that the current dialog started.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
-      parameters:
-        - id: dc
-          type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: The dialog context for the current turn of conversation.
-        - id: e
-          type: <xref uid="botbuilder-dialogs.DialogEvent" />
-          description: The event being raised.
-      return:
-        type: Promise&lt;boolean&gt;
-        description: >-
-          True if the event is handled by the current dialog and bubbling should
-          stop.
-  - name: 'repromptDialog(TurnContext, DialogInstance)'
-    uid: botbuilder-dialogs.WaterfallDialog.repromptDialog
-    package: botbuilder-dialogs
-    summary: 'When overridden in a derived class, reprompts the user for input.'
-    remarks: >-
-      Derived dialogs that support validation and re-prompt logic should
-      override this method.
-
-      By default, this method has no effect.
-
-
-      The [DialogContext](xref:botbuilder-dialogs.DialogContext) calls this
-      method when the current
-
-      dialog should re-request input from the user. This method is implemented
-      for prompt dialogs.
-
-
-      **See also**
-
-      -
-      [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
-
-      - [Prompt](xref:botbuilder-dialogs.Prompt)
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
-      parameters:
-        - id: context
-          type: TurnContext
-          description: The context object for the turn.
-        - id: instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
-          description: |
-            Current state information for this dialog.
-      return:
-        type: Promise&lt;void&gt;
-        description: ''
+        type: string
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.WaterfallDialog.resumeDialog
     package: botbuilder-dialogs
@@ -409,7 +416,7 @@ methods:
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any)
+        any): Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -425,6 +432,6 @@ methods:
             Optional, value returned from the dialog that was called. The type
             of the value returned is dependent on the child dialog.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A Promise representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.Dialog" />&lt;O&gt;

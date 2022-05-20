@@ -5,7 +5,7 @@ package: botbuilder-dialogs-adaptive
 summary: >-
   [LanguageGenerator](xref:botbuilder-dialogs-adaptive.LanguageGenerator)
   implementation which uses LGFile.
-fullName: TemplateEngineLanguageGenerator<T>
+fullName: 'TemplateEngineLanguageGenerator<T, D>'
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -49,8 +49,8 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: id
     uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.id
     package: botbuilder-dialogs-adaptive
@@ -62,9 +62,9 @@ properties:
     syntax:
       content: 'id: string'
       return:
-        type: string
         description: ''
-methods:
+        type: string
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.configure
     package: botbuilder-dialogs-adaptive
@@ -73,15 +73,32 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
+  - name: getConverter(string)
+    uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.getConverter
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      parameters:
+        - id: _property
+          type: string
+          description: ''
+      return:
+        description: ''
+        type: Converter | ConverterFactory
+methods:
   - name: 'generate(DialogContext, string, D)'
     uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.generate
     package: botbuilder-dialogs-adaptive
@@ -92,7 +109,7 @@ methods:
     syntax:
       content: >-
         function generate(dialogContext: DialogContext, template: string, data:
-        D)
+        D): Promise<T>
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -104,22 +121,6 @@ methods:
           type: D
           description: Data to bind to.
       return:
-        type: Promise&lt;T&gt;
         description: A Promise string with the evaluated result.
-  - name: getConverter(string)
-    uid: botbuilder-dialogs-adaptive.TemplateEngineLanguageGenerator.getConverter
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function getConverter(_property: string)'
-      parameters:
-        - id: _property
-          type: string
-          description: ''
-      return:
-        type: Converter | ConverterFactory
-        description: ''
+        type: Promise&lt;T&gt;
 extends: Configurable

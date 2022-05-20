@@ -12,14 +12,16 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function allowedCallersClaimsValidator(allowedCallers: string[])'
+      content: >-
+        function allowedCallersClaimsValidator(allowedCallers: string[]):
+        ValidateClaims
       parameters:
         - id: allowedCallers
           type: 'string[]'
           description: allowed callers of skill
       return:
-        type: <xref uid="botframework-connector.ValidateClaims" />
         description: claims validator function
+        type: <xref uid="botframework-connector.ValidateClaims" />
 classes:
   - botframework-connector.AppCredentials
   - botframework-connector.AuthenticationConfiguration
@@ -34,6 +36,10 @@ classes:
   - botframework-connector.SimpleCredentialProvider
   - botframework-connector.EndorsementsValidator
   - botframework-connector.JwtTokenExtractor
+  - botframework-connector.JwtTokenProviderFactory
+  - botframework-connector.ManagedIdentityAppCredentials
+  - botframework-connector.ManagedIdentityAuthenticator
+  - botframework-connector.ManagedIdentityServiceClientCredentialsFactory
   - botframework-connector.MicrosoftAppCredentials
   - botframework-connector.OpenIdMetadata
   - botframework-connector.ParameterizedBotFrameworkAuthentication
@@ -84,6 +90,7 @@ typeAliases:
 interfaces:
   - botframework-connector.Claim
   - botframework-connector.ICredentialProvider
+  - botframework-connector.IJwtTokenProviderFactory
   - botframework-connector.IOpenIdMetadataKey
   - botframework-connector.ConnectorClientOptions
   - >-

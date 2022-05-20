@@ -48,8 +48,8 @@ properties:
     syntax:
       content: 'public action: any'
       return:
-        type: any
         description: ''
+        type: any
   - name: clauses
     uid: adaptive-expressions.Trigger.clauses
     package: adaptive-expressions
@@ -65,8 +65,8 @@ properties:
     syntax:
       content: 'Clause[] clauses'
       return:
+        description: The list of clauses.
         type: '<xref uid="adaptive-expressions.Clause" />[]'
-        description: ''
   - name: originalExpression
     uid: adaptive-expressions.Trigger.originalExpression
     package: adaptive-expressions
@@ -78,8 +78,8 @@ properties:
     syntax:
       content: 'public originalExpression: Expression'
       return:
-        type: <xref uid="adaptive-expressions.Expression" />
         description: ''
+        type: <xref uid="adaptive-expressions.Expression" />
 methods:
   - name: 'matches(Clause, MemoryInterface | any)'
     uid: adaptive-expressions.Trigger.matches
@@ -91,7 +91,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function matches(nodeClause: Clause, state: MemoryInterface | any)'
+      content: >-
+        function matches(nodeClause: Clause, state: MemoryInterface | any):
+        boolean
       parameters:
         - id: nodeClause
           type: <xref uid="adaptive-expressions.Clause" />
@@ -100,8 +102,8 @@ methods:
           type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
           description: The scope for looking up variables.
       return:
-        type: boolean
         description: A boolean value inidicating whether there is a member matches.
+        type: boolean
   - name: 'relationship(Trigger, PredicateComparers)'
     uid: adaptive-expressions.Trigger.relationship
     package: adaptive-expressions
@@ -112,7 +114,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function relationship(other: Trigger, comparers: PredicateComparers)'
+      content: >-
+        function relationship(other: Trigger, comparers: PredicateComparers):
+        RelationshipType
       parameters:
         - id: other
           type: <xref uid="adaptive-expressions.Trigger" />
@@ -121,8 +125,8 @@ methods:
           type: <xref uid="adaptive-expressions.PredicateComparers" />
           description: The comparer dictionary.
       return:
-        type: <xref uid="adaptive-expressions.RelationshipType" />
         description: A `RelationshipType` value.
+        type: <xref uid="adaptive-expressions.RelationshipType" />
   - name: 'toString(string[], number)'
     uid: adaptive-expressions.Trigger.toString
     package: adaptive-expressions
@@ -131,15 +135,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function toString(builder: string[], indent: number)'
+      content: 'function toString(builder: string[], indent: number): string'
       parameters:
         - id: builder
           type: 'string[]'
           description: An array of string to build the string of trigger.
         - id: indent
           type: number
-          description: |
-            An integer represents the number of spaces at the start of a line.
+          description: An integer represents the number of spaces at the start of a line.
       return:
+        description: A string that represents the current trigger.
         type: string
-        description: ''

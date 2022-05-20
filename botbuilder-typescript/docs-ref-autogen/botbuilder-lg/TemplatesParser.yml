@@ -22,8 +22,8 @@ properties:
         public static importRegex: RegExp = new
         RegExp(/\[([^\]]*)\]\(([^)]*)\)([\w\s]*)/)
       return:
-        type: RegExp
         description: ''
+        type: RegExp
   - name: inlineContentId
     uid: botbuilder-lg.TemplatesParser.inlineContentId
     package: botbuilder-lg
@@ -35,8 +35,8 @@ properties:
     syntax:
       content: 'public static inlineContentId: string = "inline content"'
       return:
-        type: string
         description: ''
+        type: string
   - name: optionRegex
     uid: botbuilder-lg.TemplatesParser.optionRegex
     package: botbuilder-lg
@@ -48,8 +48,8 @@ properties:
     syntax:
       content: 'public static optionRegex: RegExp = new RegExp(/>\s*!#(.*)$/)'
       return:
-        type: RegExp
         description: ''
+        type: RegExp
 methods:
   - name: antlrParseTemplates(LGResource)
     uid: botbuilder-lg.TemplatesParser.antlrParseTemplates
@@ -59,14 +59,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function antlrParseTemplates(resource: LGResource)'
+      content: 'static function antlrParseTemplates(resource: LGResource): FileContext'
       parameters:
         - id: resource
           type: <xref uid="botbuilder-lg.LGResource" />
           description: LG resource.
       return:
-        type: <xref uid="botbuilder-lg.FileContext" />
         description: The abstract syntax tree of lg file.
+        type: <xref uid="botbuilder-lg.FileContext" />
   - name: 'defaultFileResolver(LGResource, string)'
     uid: botbuilder-lg.TemplatesParser.defaultFileResolver
     package: botbuilder-lg
@@ -79,7 +79,7 @@ methods:
     syntax:
       content: >-
         static function defaultFileResolver(resource: LGResource, resourceId:
-        string)
+        string): LGResource
       parameters:
         - id: resource
           type: <xref uid="botbuilder-lg.LGResource" />
@@ -89,8 +89,8 @@ methods:
           description: |
             Import path.
       return:
-        type: <xref uid="botbuilder-lg.LGResource" />
         description: ''
+        type: <xref uid="botbuilder-lg.LGResource" />
   - name: 'parseFile(string, ImportResolverDelegate, ExpressionParser)'
     uid: botbuilder-lg.TemplatesParser.parseFile
     package: botbuilder-lg
@@ -101,7 +101,7 @@ methods:
     syntax:
       content: >-
         static function parseFile(filePath: string, importResolver?:
-        ImportResolverDelegate, expressionParser?: ExpressionParser)
+        ImportResolverDelegate, expressionParser?: ExpressionParser): Templates
       parameters:
         - id: filePath
           type: string
@@ -113,8 +113,8 @@ methods:
           type: ExpressionParser
           description: Expression parser for evaluating expressions.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: New lg file.
+        type: <xref uid="botbuilder-lg.Templates" />
   - name: 'parseResource(LGResource, ImportResolverDelegate, ExpressionParser)'
     uid: botbuilder-lg.TemplatesParser.parseResource
     package: botbuilder-lg
@@ -125,7 +125,7 @@ methods:
     syntax:
       content: >-
         static function parseResource(resource: LGResource, importResolver?:
-        ImportResolverDelegate, expressionParser?: ExpressionParser)
+        ImportResolverDelegate, expressionParser?: ExpressionParser): Templates
       parameters:
         - id: resource
           type: <xref uid="botbuilder-lg.LGResource" />
@@ -137,8 +137,8 @@ methods:
           type: ExpressionParser
           description: Expression parser for evaluating expressions.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: Entity.
+        type: <xref uid="botbuilder-lg.Templates" />
   - name: 'parseText(string, string, ImportResolverDelegate, ExpressionParser)'
     uid: botbuilder-lg.TemplatesParser.parseText
     package: botbuilder-lg
@@ -150,7 +150,7 @@ methods:
     syntax:
       content: >-
         static function parseText(content: string, id: string, importResolver?:
-        ImportResolverDelegate, expressionParser?: ExpressionParser)
+        ImportResolverDelegate, expressionParser?: ExpressionParser): Templates
       parameters:
         - id: content
           type: string
@@ -167,8 +167,8 @@ methods:
           type: ExpressionParser
           description: Expression parser for evaluating expressions.
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: Entity.
+        type: <xref uid="botbuilder-lg.Templates" />
   - name: 'parseTextWithRef(string, Templates)'
     uid: botbuilder-lg.TemplatesParser.parseTextWithRef
     package: botbuilder-lg
@@ -181,7 +181,7 @@ methods:
     syntax:
       content: >-
         static function parseTextWithRef(content: string, originalTemplates:
-        Templates)
+        Templates): Templates
       parameters:
         - id: content
           type: string
@@ -191,5 +191,5 @@ methods:
           description: |
             Original templates
       return:
-        type: <xref uid="botbuilder-lg.Templates" />
         description: ''
+        type: <xref uid="botbuilder-lg.Templates" />

@@ -7,7 +7,7 @@ summary: >-
   the locale
 
   and has a policy which controls fallback (try en-us -> en -> default).
-fullName: MultiLanguageGenerator<T>
+fullName: 'MultiLanguageGenerator<T, D>'
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -24,8 +24,8 @@ properties:
     syntax:
       content: 'static $kind: string'
       return:
-        type: string
         description: ''
+        type: string
   - name: languageGenerators
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languageGenerators
     package: botbuilder-dialogs-adaptive
@@ -37,10 +37,10 @@ properties:
     syntax:
       content: 'languageGenerators: Map<string, LanguageGenerator>'
       return:
+        description: ''
         type: >-
           Map&lt;string, <xref
           uid="botbuilder-dialogs-adaptive.LanguageGenerator" />&gt;
-        description: ''
   - name: languagePolicy
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languagePolicy
     package: botbuilder-dialogs-adaptive
@@ -52,9 +52,9 @@ properties:
     syntax:
       content: 'languagePolicy: LanguagePolicy'
       return:
-        type: <xref uid="botbuilder-dialogs-adaptive.LanguagePolicy" />
         description: ''
-methods:
+        type: <xref uid="botbuilder-dialogs-adaptive.LanguagePolicy" />
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.configure
     package: botbuilder-dialogs-adaptive
@@ -63,15 +63,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
   - name: 'generate(DialogContext, string, D)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
     package: botbuilder-dialogs-adaptive
@@ -82,7 +82,7 @@ methods:
     syntax:
       content: >-
         function generate(dialogContext: DialogContext, template: string, data:
-        D)
+        D): Promise<T>
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -92,11 +92,10 @@ methods:
           description: Template to use.
         - id: data
           type: D
-          description: |
-            Data to bind to.
+          description: Data to bind to.
       return:
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;T&gt;
-        description: ''
   - name: getConverter(Object)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.getConverter
     package: botbuilder-dialogs-adaptive
@@ -105,14 +104,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object)'
+      content: 'function getConverter(property: Object): Converter | ConverterFactory'
       parameters:
         - id: property
           type: Object
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
+        description: The converter for the selector configuration.
         type: Converter | ConverterFactory
-        description: ''
+methods:
   - name: 'tryGetGenerator(DialogContext, string)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
     package: botbuilder-dialogs-adaptive
@@ -121,16 +121,17 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function tryGetGenerator(dialogContext: DialogContext, locale: string)'
+      content: >-
+        function tryGetGenerator(dialogContext: DialogContext, locale: string):
+        { exist: boolean, result: LanguageGenerator }
       parameters:
         - id: dialogContext
           type: DialogContext
           description: Context for the current turn of conversation with the user.
         - id: locale
           type: string
-          description: |
-            Locale to lookup.
+          description: Locale to lookup.
       return:
-        type: Object
-        description: ''
+        description: An object with a boolean showing existence and the language generator.
+        type: '{ exist: boolean, result: LanguageGenerator }'
 extends: <xref uid="botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase" />

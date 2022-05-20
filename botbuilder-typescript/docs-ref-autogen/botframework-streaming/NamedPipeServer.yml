@@ -50,8 +50,8 @@ properties:
     syntax:
       content: boolean isConnected
       return:
-        type: boolean
         description: true if currently connected.
+        type: boolean
 methods:
   - name: disconnect()
     uid: botframework-streaming.NamedPipeServer.disconnect
@@ -70,7 +70,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function send(request: StreamingRequest)'
+      content: 'function send(request: StreamingRequest): Promise<IReceiveResponse>'
       parameters:
         - id: request
           type: <xref uid="botframework-streaming.StreamingRequest" />
@@ -78,11 +78,11 @@ methods:
             The [StreamingRequest](xref:botframework-streaming.StreamingRequest)
             to send.
       return:
-        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
         description: >-
           A promise for an instance of
           [IReceiveResponse](xref:botframework-streaming.IReceiveResponse) on
           completion of the send operation.
+        type: Promise&lt;<xref uid="botframework-streaming.IReceiveResponse" />&gt;
   - name: start(() => void)
     uid: botframework-streaming.NamedPipeServer.start
     package: botframework-streaming
@@ -93,7 +93,7 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function start(onListen?: () => void)'
+      content: 'function start(onListen?: () => void): Promise<string>'
       parameters:
         - id: onListen
           type: () =&gt; void
@@ -101,7 +101,7 @@ methods:
             Optional callback that fires once when server is listening on both
             incoming and outgoing pipe
       return:
-        type: Promise&lt;string&gt;
         description: >-
           A promised string that will not resolve as long as the server is
           running.
+        type: Promise&lt;string&gt;

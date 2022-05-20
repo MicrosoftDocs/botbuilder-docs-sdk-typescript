@@ -32,7 +32,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function fetchChannelList(teamId: string, options?: RequestOptionsBase)'
+      content: >-
+        function fetchChannelList(teamId: string, options?: RequestOptionsBase):
+        Promise<Models.TeamsFetchChannelListResponse>
       parameters:
         - id: teamId
           type: string
@@ -41,8 +43,8 @@ methods:
           type: RequestOptionsBase
           description: Optional. The options object to be used in every request.
       return:
-        type: Promise&lt;<xref uid="Models.TeamsFetchChannelListResponse" />&gt;
         description: A `Promise<Models.TeamsFetchChannelListResponse>`.
+        type: Promise&lt;<xref uid="Models.TeamsFetchChannelListResponse" />&gt;
   - name: >-
       fetchChannelList(string, RequestOptionsBase,
       ServiceCallback<ConversationList>)
@@ -98,7 +100,8 @@ methods:
     syntax:
       content: >-
         function fetchMeetingInfo(meetingId: string, options?:
-        RequestOptionsBase | ServiceCallback<TeamDetails>)
+        RequestOptionsBase | ServiceCallback<TeamDetails>):
+        Promise<Models.TeamsMeetingInfoResponse>
       parameters:
         - id: meetingId
           type: string
@@ -107,8 +110,8 @@ methods:
           type: RequestOptionsBase | ServiceCallback&lt;TeamDetails&gt;
           description: ''
       return:
-        type: Promise&lt;<xref uid="Models.TeamsMeetingInfoResponse" />&gt;
         description: Promise<Models.TeamsFetchMeetingInfoResponse>
+        type: Promise&lt;<xref uid="Models.TeamsMeetingInfoResponse" />&gt;
   - name: >-
       fetchMeetingInfo(string, RequestOptionsBase |
       ServiceCallback<TeamDetails>, ServiceCallback<TeamsMeetingInfo>)
@@ -189,7 +192,8 @@ methods:
     syntax:
       content: >-
         function fetchMeetingParticipant(meetingId: string, participantId:
-        string, options?: TeamsFetchMeetingParticipantOptionalParams)
+        string, options?: TeamsFetchMeetingParticipantOptionalParams):
+        Promise<Models.TeamsFetchMeetingParticipantResponse>
       parameters:
         - id: meetingId
           type: string
@@ -204,10 +208,10 @@ methods:
             />
           description: ''
       return:
+        description: Promise<Models.TeamsFetchMeetingParticipantResponse>
         type: >-
           Promise&lt;<xref uid="Models.TeamsFetchMeetingParticipantResponse"
           />&gt;
-        description: Promise<Models.TeamsFetchMeetingParticipantResponse>
   - name: >-
       fetchMeetingParticipant(string, string,
       TeamsFetchMeetingParticipantOptionalParams,
@@ -248,7 +252,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function fetchTeamDetails(teamId: string, options?: RequestOptionsBase)'
+      content: >-
+        function fetchTeamDetails(teamId: string, options?: RequestOptionsBase):
+        Promise<Models.TeamsFetchTeamDetailsResponse>
       parameters:
         - id: teamId
           type: string
@@ -257,8 +263,8 @@ methods:
           type: RequestOptionsBase
           description: Optional. The options object to be used in every request.
       return:
-        type: Promise&lt;<xref uid="Models.TeamsFetchTeamDetailsResponse" />&gt;
         description: A `Promise<Models.TeamsFetchTeamDetailsResponse>`.
+        type: Promise&lt;<xref uid="Models.TeamsFetchTeamDetailsResponse" />&gt;
   - name: 'fetchTeamDetails(string, RequestOptionsBase, ServiceCallback<TeamDetails>)'
     uid: botframework-connector.Teams.fetchTeamDetails_2
     package: botframework-connector

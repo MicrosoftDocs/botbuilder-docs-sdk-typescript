@@ -60,7 +60,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onTurn(context: TurnContext, next: () => Promise<void>)'
+      content: >-
+        function onTurn(context: TurnContext, next: () => Promise<void>):
+        Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -70,8 +72,8 @@ methods:
           description: |
             Delegate to call to continue the bot middleware pipeline.
       return:
-        type: Promise&lt;void&gt;
         description: ''
+        type: Promise&lt;void&gt;
   - name: 'run(TurnContext, () => Promise<void>)'
     uid: botbuilder-core.MiddlewareSet.run
     package: botbuilder-core
@@ -80,7 +82,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function run(context: TurnContext, next: () => Promise<void>)'
+      content: >-
+        function run(context: TurnContext, next: () => Promise<void>):
+        Promise<void>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -89,8 +93,8 @@ methods:
           type: () =&gt; Promise&lt;void&gt;
           description: Function to invoke at the end of the middleware chain.
       return:
-        type: Promise&lt;void&gt;
         description: A promise that resolves after the handler chain is complete.
+        type: Promise&lt;void&gt;
   - name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
       Middleware[])
@@ -112,7 +116,7 @@ methods:
     syntax:
       content: >-
         function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[])
+        Promise<void>) => Promise<void> | Middleware[]): this
       parameters:
         - id: middlewares
           type: >-
@@ -120,5 +124,5 @@ methods:
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
           description: ''
       return:
-        type: this
         description: ''
+        type: this

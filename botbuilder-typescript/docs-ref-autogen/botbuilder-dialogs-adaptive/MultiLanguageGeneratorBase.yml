@@ -3,7 +3,7 @@ name: MultiLanguageGeneratorBase
 uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
 package: botbuilder-dialogs-adaptive
 summary: Base class which applies language policy to tryGetGenerator.
-fullName: MultiLanguageGeneratorBase<T>
+fullName: 'MultiLanguageGeneratorBase<T, D>'
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -20,9 +20,9 @@ properties:
     syntax:
       content: 'languagePolicy: LanguagePolicy'
       return:
-        type: <xref uid="botbuilder-dialogs-adaptive.LanguagePolicy" />
         description: ''
-methods:
+        type: <xref uid="botbuilder-dialogs-adaptive.LanguagePolicy" />
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.configure
     package: botbuilder-dialogs-adaptive
@@ -31,15 +31,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
-        type: this
         description: ''
+        type: this
+methods:
   - name: 'generate(DialogContext, string, D)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.generate
     package: botbuilder-dialogs-adaptive
@@ -50,7 +51,7 @@ methods:
     syntax:
       content: >-
         function generate(dialogContext: DialogContext, template: string, data:
-        D)
+        D): Promise<T>
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -60,11 +61,10 @@ methods:
           description: Template to use.
         - id: data
           type: D
-          description: |
-            Data to bind to.
+          description: Data to bind to.
       return:
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;T&gt;
-        description: ''
   - name: getConverter(Object)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.getConverter
     package: botbuilder-dialogs-adaptive
@@ -73,14 +73,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object)'
+      content: 'function getConverter(property: Object): Converter | ConverterFactory'
       parameters:
         - id: property
           type: Object
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
+        description: The converter for the selector configuration.
         type: Converter | ConverterFactory
-        description: ''
   - name: 'tryGetGenerator(DialogContext, string)'
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.tryGetGenerator
     package: botbuilder-dialogs-adaptive
@@ -89,7 +89,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function tryGetGenerator(dialogContext: DialogContext, locale: string)'
+      content: >-
+        function tryGetGenerator(dialogContext: DialogContext, locale: string):
+        { exist: boolean, result: LanguageGenerator<T, D> }
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -99,6 +101,6 @@ methods:
           description: |
             Locale to lookup.
       return:
-        type: Object
         description: ''
+        type: '{ exist: boolean, result: LanguageGenerator&lt;T, D&gt; }'
 extends: Configurable

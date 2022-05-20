@@ -75,7 +75,7 @@ methods:
       content: >-
         static function forChannel(channelOrContext: string | TurnContext,
         choices: string | Choice[], text?: string, speak?: string, options?:
-        ChoiceFactoryOptions)
+        ChoiceFactoryOptions): Partial<Activity>
       parameters:
         - id: channelOrContext
           type: string | TurnContext
@@ -94,8 +94,8 @@ methods:
           description: |
             (Optional) formatting options to use when rendering as a list.
       return:
-        type: Partial&lt;Activity&gt;
         description: ''
+        type: Partial&lt;Activity&gt;
   - name: 'heroCard(string | Choice[], string, string)'
     uid: botbuilder-dialogs.ChoiceFactory.heroCard
     package: botbuilder-dialogs
@@ -109,7 +109,7 @@ methods:
     syntax:
       content: >-
         static function heroCard(choices?: string | Choice[], text?: string,
-        speak?: string)
+        speak?: string): Activity
       parameters:
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
@@ -123,10 +123,10 @@ methods:
             Optional. SSML text to be spoken by the bot on a speech-enabled
             channel.
       return:
-        type: Activity
         description: >-
           An [Activity](xref:botframework-schema.Activity) with choices as
           `HeroCard` with buttons.
+        type: Activity
   - name: 'inline(string | Choice[], string, string, ChoiceFactoryOptions)'
     uid: botbuilder-dialogs.ChoiceFactory.inline
     package: botbuilder-dialogs
@@ -153,7 +153,7 @@ methods:
     syntax:
       content: >-
         static function inline(choices: string | Choice[], text?: string,
-        speak?: string, options?: ChoiceFactoryOptions)
+        speak?: string, options?: ChoiceFactoryOptions): Partial<Activity>
       parameters:
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
@@ -169,8 +169,8 @@ methods:
           description: |
             (Optional) formatting options to tweak rendering of list.
       return:
-        type: Partial&lt;Activity&gt;
         description: ''
+        type: Partial&lt;Activity&gt;
   - name: 'list(string | Choice[], string, string, ChoiceFactoryOptions)'
     uid: botbuilder-dialogs.ChoiceFactory.list
     package: botbuilder-dialogs
@@ -197,7 +197,7 @@ methods:
     syntax:
       content: >-
         static function list(choices: string | Choice[], text?: string, speak?:
-        string, options?: ChoiceFactoryOptions)
+        string, options?: ChoiceFactoryOptions): Partial<Activity>
       parameters:
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
@@ -213,8 +213,8 @@ methods:
           description: |
             (Optional) formatting options to tweak rendering of list.
       return:
-        type: Partial&lt;Activity&gt;
         description: ''
+        type: Partial&lt;Activity&gt;
   - name: 'suggestedAction(string | Choice[], string, string)'
     uid: botbuilder-dialogs.ChoiceFactory.suggestedAction
     package: botbuilder-dialogs
@@ -241,7 +241,7 @@ methods:
     syntax:
       content: >-
         static function suggestedAction(choices: string | Choice[], text?:
-        string, speak?: string)
+        string, speak?: string): Partial<Activity>
       parameters:
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
@@ -254,8 +254,8 @@ methods:
           description: |
             (Optional) SSML to speak for the message.
       return:
-        type: Partial&lt;Activity&gt;
         description: ''
+        type: Partial&lt;Activity&gt;
   - name: 'toChoices(string | Choice[] | undefined)'
     uid: botbuilder-dialogs.ChoiceFactory.toChoices
     package: botbuilder-dialogs
@@ -281,12 +281,14 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function toChoices(choices: string | Choice[] | undefined)'
+      content: >-
+        static function toChoices(choices: string | Choice[] | undefined):
+        Choice[]
       parameters:
         - id: choices
           type: 'string | <xref uid="botbuilder-dialogs.Choice" />[] | undefined'
           description: |
             List of choices to add.
       return:
-        type: '<xref uid="botbuilder-dialogs.Choice" />[]'
         description: ''
+        type: '<xref uid="botbuilder-dialogs.Choice" />[]'

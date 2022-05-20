@@ -22,8 +22,8 @@ properties:
     syntax:
       content: 'statusCode: number'
       return:
-        type: number
         description: ''
+        type: number
   - name: streams
     uid: botframework-streaming.StreamingResponse.streams
     package: botframework-streaming
@@ -35,8 +35,8 @@ properties:
     syntax:
       content: 'streams: HttpContentStream[]'
       return:
-        type: '<xref uid="botframework-streaming.HttpContentStream" />[]'
         description: ''
+        type: '<xref uid="botframework-streaming.HttpContentStream" />[]'
 methods:
   - name: addStream(HttpContent)
     uid: botframework-streaming.StreamingResponse.addStream
@@ -60,7 +60,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function create(statusCode: number, body?: HttpContent)'
+      content: >-
+        static function create(statusCode: number, body?: HttpContent):
+        StreamingResponse
       parameters:
         - id: statusCode
           type: number
@@ -69,10 +71,10 @@ methods:
           type: <xref uid="botframework-streaming.HttpContent" />
           description: Optional body containing additional information.
       return:
-        type: <xref uid="botframework-streaming.StreamingResponse" />
         description: >-
           A streaming response with the appropriate statuscode and passed in
           body.
+        type: <xref uid="botframework-streaming.StreamingResponse" />
   - name: setBody(any)
     uid: botframework-streaming.StreamingResponse.setBody
     package: botframework-streaming

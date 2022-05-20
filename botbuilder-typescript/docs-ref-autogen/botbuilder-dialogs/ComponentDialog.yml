@@ -106,8 +106,8 @@ properties:
     syntax:
       content: 'dialogs: DialogSet'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogSet" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogSet" />
   - name: EndOfTurn
     uid: botbuilder-dialogs.ComponentDialog.EndOfTurn
     package: botbuilder-dialogs
@@ -124,8 +124,8 @@ properties:
     syntax:
       content: 'static EndOfTurn: DialogTurnResult'
       return:
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
         description: ''
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
   - name: id
     uid: botbuilder-dialogs.ComponentDialog.id
     package: botbuilder-dialogs
@@ -139,8 +139,8 @@ properties:
     syntax:
       content: string id
       return:
-        type: string
         description: ''
+        type: string
   - name: telemetryClient
     uid: botbuilder-dialogs.ComponentDialog.telemetryClient
     package: botbuilder-dialogs
@@ -155,64 +155,9 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
+        description: ''
         type: BotTelemetryClient
-        description: ''
-methods:
-  - name: addDialog(Dialog)
-    uid: botbuilder-dialogs.ComponentDialog.addDialog
-    package: botbuilder-dialogs
-    summary: >-
-      Adds a child [Dialog](xref:botbuilder-dialogs.Dialog) or prompt to the
-      components internal [DialogSet](xref:botbuilder-dialogs.DialogSet).
-    remarks: >-
-      The [Dialog.id](xref:botbuilder-dialogs.Dialog.id) of the first child
-      added to the component will be assigned to the initialDialogId property.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function addDialog(dialog: Dialog)'
-      parameters:
-        - id: dialog
-          type: <xref uid="botbuilder-dialogs.Dialog" />
-          description: 'The child [Dialog](xref:botbuilder-dialogs.Dialog) or prompt to add.'
-      return:
-        type: this
-        description: ''
-  - name: 'beginDialog(DialogContext, O)'
-    uid: botbuilder-dialogs.ComponentDialog.beginDialog
-    package: botbuilder-dialogs
-    summary: >-
-      Called when the dialog is started and pushed onto the parent's dialog
-      stack.
-
-      By default, this calls the
-
-      Dialog.BeginDialogAsync(DialogContext, object, CancellationToken) method
-
-      of the component dialog's initial dialog, as defined by InitialDialogId.
-
-      Override this method in a derived class to implement interrupt logic.
-    remarks: >-
-      If the task is successful, the result indicates whether the dialog is
-      still
-
-      active after the turn has been processed by the dialog.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function beginDialog(outerDC: DialogContext, options?: O)'
-      parameters:
-        - id: outerDC
-          type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: >-
-            The parent [DialogContext](xref:botbuilder-dialogs.DialogContext)
-            for the current turn of conversation.
-        - id: options
-          type: O
-          description: 'Optional, initial information to pass to the dialog.'
-      return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: A Promise representing the asynchronous operation.
+inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.ComponentDialog.configure
     package: botbuilder-dialogs
@@ -221,98 +166,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>)'
+      content: 'function configure(config: Record<string, unknown>): this'
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
           description: |
             Configuration settings to apply.
       return:
+        description: ''
         type: this
-        description: ''
-  - name: continueDialog(DialogContext)
-    uid: botbuilder-dialogs.ComponentDialog.continueDialog
-    package: botbuilder-dialogs
-    summary: >-
-      Called when the dialog is _continued_, where it is the active dialog and
-      the
-
-      user replies with a new [Activity](xref:botframework-schema.Activity).
-
-      If this method is *not* overridden, the dialog automatically ends when the
-      user replies.
-    remarks: >-
-      If the task is successful, the result indicates whether the dialog is
-      still
-
-      active after the turn has been processed by the dialog. The result may
-      also contain a
-
-      return value.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function continueDialog(outerDC: DialogContext)'
-      parameters:
-        - id: outerDC
-          type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: >-
-            The parent [DialogContext](xref:botbuilder-dialogs.DialogContext)
-            for the current turn of conversation.
-      return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-        description: A Promise representing the asynchronous operation.
-  - name: createChildContext(DialogContext)
-    uid: botbuilder-dialogs.ComponentDialog.createChildContext
-    package: botbuilder-dialogs
-    summary: Creates the inner dialog context
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'function createChildContext(outerDC: DialogContext)'
-      parameters:
-        - id: outerDC
-          type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: |
-            the outer dialog context
-      return:
-        type: <xref uid="botbuilder-dialogs.DialogContext" />
-        description: ''
-  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
-    uid: botbuilder-dialogs.ComponentDialog.endDialog
-    package: botbuilder-dialogs
-    summary: 'Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is ending.'
-    remarks: >-
-      When this method is called from the parent dialog's context, the component
-      [Dialog](xref:botbuilder-dialogs.Dialog)
-
-      cancels all of the dialogs on its inner dialog stack before ending.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason)
-      parameters:
-        - id: context
-          type: TurnContext
-          description: >-
-            The [TurnContext](xref:botbuilder-core.TurnContext) object for this
-            turn.
-        - id: instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
-          description: >-
-            State information associated with the instance of this component
-
-            [Dialog](xref:botbuilder-dialogs.Dialog) on its parent's dialog
-            stack.
-        - id: reason
-          type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: 'Reason why the [Dialog](xref:botbuilder-dialogs.Dialog) ended.'
-      return:
-        type: Promise&lt;void&gt;
-        description: A Promise representing the asynchronous operation.
   - name: findDialog(string)
     uid: botbuilder-dialogs.ComponentDialog.findDialog
     package: botbuilder-dialogs
@@ -321,15 +183,15 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findDialog(dialogId: string)'
+      content: 'function findDialog(dialogId: string): Dialog | undefined'
       parameters:
         - id: dialogId
           type: string
           description: |
             ID of the dialog to lookup.
       return:
-        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
         description: ''
+        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
   - name: getConverter(string)
     uid: botbuilder-dialogs.ComponentDialog.getConverter
     package: botbuilder-dialogs
@@ -338,16 +200,16 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string)'
+      content: 'function getConverter(_property: string): Converter | ConverterFactory'
       parameters:
         - id: _property
           type: string
           description: ''
       return:
+        description: ''
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
-        description: ''
   - name: getVersion()
     uid: botbuilder-dialogs.ComponentDialog.getVersion
     package: botbuilder-dialogs
@@ -373,10 +235,10 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: function getVersion()
+      content: 'function getVersion(): string'
       return:
-        type: string
         description: ''
+        type: string
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.ComponentDialog.onDialogEvent
     package: botbuilder-dialogs
@@ -387,7 +249,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onDialogEvent(dc: DialogContext, e: DialogEvent)'
+      content: >-
+        function onDialogEvent(dc: DialogContext, e: DialogEvent):
+        Promise<boolean>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -397,8 +261,151 @@ methods:
           description: |
             The event being raised.
       return:
-        type: Promise&lt;boolean&gt;
         description: ''
+        type: Promise&lt;boolean&gt;
+methods:
+  - name: addDialog(Dialog)
+    uid: botbuilder-dialogs.ComponentDialog.addDialog
+    package: botbuilder-dialogs
+    summary: >-
+      Adds a child [Dialog](xref:botbuilder-dialogs.Dialog) or prompt to the
+      components internal [DialogSet](xref:botbuilder-dialogs.DialogSet).
+    remarks: >-
+      The [Dialog.id](xref:botbuilder-dialogs.Dialog.id) of the first child
+      added to the component will be assigned to the initialDialogId property.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function addDialog(dialog: Dialog): this'
+      parameters:
+        - id: dialog
+          type: <xref uid="botbuilder-dialogs.Dialog" />
+          description: 'The child [Dialog](xref:botbuilder-dialogs.Dialog) or prompt to add.'
+      return:
+        description: ''
+        type: this
+  - name: 'beginDialog(DialogContext, O)'
+    uid: botbuilder-dialogs.ComponentDialog.beginDialog
+    package: botbuilder-dialogs
+    summary: >-
+      Called when the dialog is started and pushed onto the parent's dialog
+      stack.
+
+      By default, this calls the
+
+      Dialog.BeginDialogAsync(DialogContext, object, CancellationToken) method
+
+      of the component dialog's initial dialog, as defined by InitialDialogId.
+
+      Override this method in a derived class to implement interrupt logic.
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function beginDialog(outerDC: DialogContext, options?: O):
+        Promise<DialogTurnResult>
+      parameters:
+        - id: outerDC
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: >-
+            The parent [DialogContext](xref:botbuilder-dialogs.DialogContext)
+            for the current turn of conversation.
+        - id: options
+          type: O
+          description: 'Optional, initial information to pass to the dialog.'
+      return:
+        description: A Promise representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+  - name: continueDialog(DialogContext)
+    uid: botbuilder-dialogs.ComponentDialog.continueDialog
+    package: botbuilder-dialogs
+    summary: >-
+      Called when the dialog is _continued_, where it is the active dialog and
+      the
+
+      user replies with a new [Activity](xref:botframework-schema.Activity).
+
+      If this method is *not* overridden, the dialog automatically ends when the
+      user replies.
+    remarks: >-
+      If the task is successful, the result indicates whether the dialog is
+      still
+
+      active after the turn has been processed by the dialog. The result may
+      also contain a
+
+      return value.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function continueDialog(outerDC: DialogContext):
+        Promise<DialogTurnResult>
+      parameters:
+        - id: outerDC
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: >-
+            The parent [DialogContext](xref:botbuilder-dialogs.DialogContext)
+            for the current turn of conversation.
+      return:
+        description: A Promise representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+  - name: createChildContext(DialogContext)
+    uid: botbuilder-dialogs.ComponentDialog.createChildContext
+    package: botbuilder-dialogs
+    summary: Creates the inner dialog context
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'function createChildContext(outerDC: DialogContext): DialogContext'
+      parameters:
+        - id: outerDC
+          type: <xref uid="botbuilder-dialogs.DialogContext" />
+          description: |
+            the outer dialog context
+      return:
+        description: ''
+        type: <xref uid="botbuilder-dialogs.DialogContext" />
+  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+    uid: botbuilder-dialogs.ComponentDialog.endDialog
+    package: botbuilder-dialogs
+    summary: 'Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is ending.'
+    remarks: >-
+      When this method is called from the parent dialog's context, the component
+      [Dialog](xref:botbuilder-dialogs.Dialog)
+
+      cancels all of the dialogs on its inner dialog stack before ending.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: >-
+        function endDialog(context: TurnContext, instance: DialogInstance,
+        reason: DialogReason): Promise<void>
+      parameters:
+        - id: context
+          type: TurnContext
+          description: >-
+            The [TurnContext](xref:botbuilder-core.TurnContext) object for this
+            turn.
+        - id: instance
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          description: >-
+            State information associated with the instance of this component
+
+            [Dialog](xref:botbuilder-dialogs.Dialog) on its parent's dialog
+            stack.
+        - id: reason
+          type: <xref uid="botbuilder-dialogs.DialogReason" />
+          description: 'Reason why the [Dialog](xref:botbuilder-dialogs.Dialog) ended.'
+      return:
+        description: A Promise representing the asynchronous operation.
+        type: Promise&lt;void&gt;
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs.ComponentDialog.repromptDialog
     package: botbuilder-dialogs
@@ -407,7 +414,9 @@ methods:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function repromptDialog(context: TurnContext, instance: DialogInstance)'
+      content: >-
+        function repromptDialog(context: TurnContext, instance: DialogInstance):
+        Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -418,8 +427,8 @@ methods:
           type: <xref uid="botbuilder-dialogs.DialogInstance" />
           description: State information for this dialog.
       return:
-        type: Promise&lt;void&gt;
         description: A Promise representing the asynchronous operation.
+        type: Promise&lt;void&gt;
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.ComponentDialog.resumeDialog
     package: botbuilder-dialogs
@@ -451,7 +460,7 @@ methods:
     syntax:
       content: >-
         function resumeDialog(outerDC: DialogContext, reason: DialogReason,
-        result?: any)
+        result?: any): Promise<DialogTurnResult>
       parameters:
         - id: outerDC
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -465,6 +474,6 @@ methods:
             Optional, value returned from the dialog that was called. The type
             of the value returned is dependent on the child dialog.
       return:
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
         description: A Promise representing the asynchronous operation.
+        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.DialogContainer" />&lt;O&gt;
