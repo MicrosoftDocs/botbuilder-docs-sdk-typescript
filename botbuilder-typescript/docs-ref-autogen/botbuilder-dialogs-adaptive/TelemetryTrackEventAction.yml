@@ -60,6 +60,33 @@ properties:
       return:
         description: ''
         type: BoolExpression
+  - name: eventName
+    uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.eventName
+    package: botbuilder-dialogs-adaptive
+    summary: Gets or sets a name to use for the event.
+    fullName: eventName
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'eventName: StringExpression'
+      return:
+        description: ''
+        type: StringExpression
+  - name: properties
+    uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.properties
+    package: botbuilder-dialogs-adaptive
+    summary: Gets or sets the properties to attach to the tracked event.
+    fullName: properties
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'properties: [key: string]: StringExpression'
+      return:
+        description: ''
+        type: '[key: string]\: StringExpression'
+inheritedProperties:
   - name: EndOfTurn
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.EndOfTurn
     package: botbuilder-dialogs-adaptive
@@ -78,19 +105,7 @@ properties:
       return:
         description: ''
         type: DialogTurnResult
-  - name: eventName
-    uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.eventName
-    package: botbuilder-dialogs-adaptive
-    summary: Gets or sets a name to use for the event.
-    fullName: eventName
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'eventName: StringExpression'
-      return:
-        description: ''
-        type: StringExpression
+    inheritanceDescription: <b>Inherited From</b> Dialog.EndOfTurn
   - name: id
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.id
     package: botbuilder-dialogs-adaptive
@@ -104,19 +119,7 @@ properties:
       return:
         description: ''
         type: string
-  - name: properties
-    uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.properties
-    package: botbuilder-dialogs-adaptive
-    summary: Gets or sets the properties to attach to the tracked event.
-    fullName: properties
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'properties: [key: string]: StringExpression'
-      return:
-        description: ''
-        type: '[key: string]\: StringExpression'
+    inheritanceDescription: <b>Inherited From</b> Dialog.id
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -130,6 +133,7 @@ properties:
       return:
         description: ''
         type: BotTelemetryClient
+    inheritanceDescription: <b>Inherited From</b> Dialog.telemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.configure
@@ -143,11 +147,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.continueDialog
     package: botbuilder-dialogs-adaptive
@@ -185,8 +191,9 @@ inheritedMethods:
           description: |
             The context for the current dialog turn.
       return:
-        description: ''
+        description: A promise resolving to the dialog turn result.
         type: Promise&lt;DialogTurnResult&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.continueDialog
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.endDialog
     package: botbuilder-dialogs-adaptive
@@ -220,22 +227,23 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance: DialogInstance,
+        _reason: DialogReason): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: DialogInstance
           description: Current state information for this dialog.
-        - id: reason
+        - id: _reason
           type: DialogReason
           description: |
             The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.endDialog
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.getVersion
     package: botbuilder-dialogs-adaptive
@@ -263,8 +271,11 @@ inheritedMethods:
     syntax:
       content: 'function getVersion(): string'
       return:
-        description: ''
+        description: >-
+          Unique string which should only change when dialog has changed in a
+          way that should restart the dialog.
         type: string
+    inheritanceDescription: <b>Inherited From</b> Dialog.getVersion
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.onDialogEvent
     package: botbuilder-dialogs-adaptive
@@ -290,6 +301,7 @@ inheritedMethods:
           True if the event is handled by the current dialog and bubbling should
           stop.
         type: Promise&lt;boolean&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.onDialogEvent
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.repromptDialog
     package: botbuilder-dialogs-adaptive
@@ -318,19 +330,20 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function repromptDialog(context: TurnContext, instance: DialogInstance):
-        Promise<void>
+        function repromptDialog(_context: TurnContext, _instance:
+        DialogInstance): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: DialogInstance
           description: |
             Current state information for this dialog.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.repromptDialog
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.resumeDialog
     package: botbuilder-dialogs-adaptive
@@ -391,8 +404,9 @@ inheritedMethods:
           description: |
             Optional. The return value, if any, from the dialog that ended.
       return:
-        description: ''
+        description: A promise resolving to the dialog turn result.
         type: Promise&lt;DialogTurnResult&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.resumeDialog
 methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.TelemetryTrackEventAction.beginDialog

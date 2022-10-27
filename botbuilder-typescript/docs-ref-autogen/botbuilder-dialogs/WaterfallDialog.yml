@@ -86,6 +86,39 @@ constructors:
           description: |
             (Optional) array of asynchronous waterfall step functions.
 properties:
+  - name: id
+    uid: botbuilder-dialogs.WaterfallDialog.id
+    package: botbuilder-dialogs
+    summary: |-
+      Unique ID of the dialog.
+      Sets the unique ID of the dialog.
+    fullName: id
+    remarks: This will be automatically generated if not specified.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: string id
+      return:
+        description: The Id for the dialog.
+        type: string
+  - name: telemetryClient
+    uid: botbuilder-dialogs.WaterfallDialog.telemetryClient
+    package: botbuilder-dialogs
+    summary: |-
+      Gets the telemetry client for this dialog.
+      Sets the telemetry client for this dialog.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: BotTelemetryClient telemetryClient
+      return:
+        description: >-
+          The [BotTelemetryClient](xref:botbuilder.BotTelemetryClient) to use
+          for logging.
+        type: BotTelemetryClient
+inheritedProperties:
   - name: EndOfTurn
     uid: botbuilder-dialogs.WaterfallDialog.EndOfTurn
     package: botbuilder-dialogs
@@ -104,36 +137,9 @@ properties:
       return:
         description: ''
         type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
-  - name: id
-    uid: botbuilder-dialogs.WaterfallDialog.id
-    package: botbuilder-dialogs
-    summary: |-
-      Unique ID of the dialog.
-      Sets the unique ID of the dialog.
-    fullName: id
-    remarks: This will be automatically generated if not specified.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: string id
-      return:
-        description: ''
-        type: string
-  - name: telemetryClient
-    uid: botbuilder-dialogs.WaterfallDialog.telemetryClient
-    package: botbuilder-dialogs
-    summary: |-
-      Gets the telemetry client for this dialog.
-      Sets the telemetry client for this dialog.
-    fullName: telemetryClient
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: BotTelemetryClient telemetryClient
-      return:
-        description: ''
-        type: BotTelemetryClient
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.EndOfTurn](xref:botbuilder-dialogs.Dialog.EndOfTurn)
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.WaterfallDialog.configure
@@ -147,11 +153,15 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
   - name: getConverter(string)
     uid: botbuilder-dialogs.WaterfallDialog.getConverter
     package: botbuilder-dialogs
@@ -164,12 +174,15 @@ inheritedMethods:
       parameters:
         - id: _property
           type: string
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
-        description: ''
+        description: The converter for the selector configuration.
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.WaterfallDialog.onDialogEvent
     package: botbuilder-dialogs
@@ -195,6 +208,9 @@ inheritedMethods:
           True if the event is handled by the current dialog and bubbling should
           stop.
         type: Promise&lt;boolean&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.onDialogEvent](xref:botbuilder-dialogs.Dialog.onDialogEvent)
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs.WaterfallDialog.repromptDialog
     package: botbuilder-dialogs
@@ -223,19 +239,22 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function repromptDialog(context: TurnContext, instance: DialogInstance):
-        Promise<void>
+        function repromptDialog(_context: TurnContext, _instance:
+        DialogInstance): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: <xref uid="botbuilder-dialogs.DialogInstance" />
           description: |
             Current state information for this dialog.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.repromptDialog](xref:botbuilder-dialogs.Dialog.repromptDialog)
 methods:
   - name: addStep(WaterfallStep<O>)
     uid: botbuilder-dialogs.WaterfallDialog.addStep
@@ -301,10 +320,9 @@ methods:
       parameters:
         - id: step
           type: <xref uid="botbuilder-dialogs.WaterfallStep" />&lt;O&gt;
-          description: |
-            Asynchronous step function to call.
+          description: Asynchronous step function to call.
       return:
-        description: ''
+        description: Waterfall dialog for fluent calls to `addStep()`.
         type: this
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs.WaterfallDialog.beginDialog

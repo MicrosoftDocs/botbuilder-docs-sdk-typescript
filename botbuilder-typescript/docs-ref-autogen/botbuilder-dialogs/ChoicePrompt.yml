@@ -81,24 +81,6 @@ properties:
       return:
         description: ''
         type: string | undefined
-  - name: EndOfTurn
-    uid: botbuilder-dialogs.ChoicePrompt.EndOfTurn
-    package: botbuilder-dialogs
-    summary: Gets a default end-of-turn result.
-    fullName: EndOfTurn
-    remarks: >-
-      This result indicates that a dialog (or a logical step within a dialog)
-      has completed
-
-      processing for the current turn, is still active, and is waiting for more
-      input.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
-      return:
-        description: ''
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
   - name: id
     uid: botbuilder-dialogs.ChoicePrompt.id
     package: botbuilder-dialogs
@@ -112,7 +94,7 @@ properties:
     syntax:
       content: string id
       return:
-        description: ''
+        description: The Id for the dialog.
         type: string
   - name: recognizerOptions
     uid: botbuilder-dialogs.ChoicePrompt.recognizerOptions
@@ -153,8 +135,32 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        description: ''
+        description: >-
+          The [BotTelemetryClient](xref:botbuilder.BotTelemetryClient) to use
+          for logging.
         type: BotTelemetryClient
+inheritedProperties:
+  - name: EndOfTurn
+    uid: botbuilder-dialogs.ChoicePrompt.EndOfTurn
+    package: botbuilder-dialogs
+    summary: Gets a default end-of-turn result.
+    fullName: EndOfTurn
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        description: ''
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.EndOfTurn](xref:botbuilder-dialogs.Dialog.EndOfTurn)
 inheritedMethods:
   - name: 'beginDialog(DialogContext, PromptOptions)'
     uid: botbuilder-dialogs.ChoicePrompt.beginDialog
@@ -189,6 +195,9 @@ inheritedMethods:
       return:
         description: A `Promise` representing the asynchronous operation.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Prompt.beginDialog](xref:botbuilder-dialogs.Prompt.beginDialog)
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.ChoicePrompt.configure
     package: botbuilder-dialogs
@@ -201,11 +210,15 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.ChoicePrompt.continueDialog
     package: botbuilder-dialogs
@@ -235,6 +248,9 @@ inheritedMethods:
       return:
         description: A `Promise` representing the asynchronous operation.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Prompt.continueDialog](xref:botbuilder-dialogs.Prompt.continueDialog)
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.ChoicePrompt.endDialog
     package: botbuilder-dialogs
@@ -268,22 +284,25 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance: DialogInstance,
+        _reason: DialogReason): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: <xref uid="botbuilder-dialogs.DialogInstance" />
           description: Current state information for this dialog.
-        - id: reason
+        - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
           description: |
             The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog)
   - name: getConverter(string)
     uid: botbuilder-dialogs.ChoicePrompt.getConverter
     package: botbuilder-dialogs
@@ -296,12 +315,15 @@ inheritedMethods:
       parameters:
         - id: _property
           type: string
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
-        description: ''
+        description: The converter for the selector configuration.
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
   - name: getVersion()
     uid: botbuilder-dialogs.ChoicePrompt.getVersion
     package: botbuilder-dialogs
@@ -329,8 +351,13 @@ inheritedMethods:
     syntax:
       content: 'function getVersion(): string'
       return:
-        description: ''
+        description: >-
+          Unique string which should only change when dialog has changed in a
+          way that should restart the dialog.
         type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.getVersion](xref:botbuilder-dialogs.Dialog.getVersion)
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.ChoicePrompt.onDialogEvent
     package: botbuilder-dialogs
@@ -356,6 +383,9 @@ inheritedMethods:
           True if the event is handled by the current dialog and bubbling should
           stop.
         type: Promise&lt;boolean&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.onDialogEvent](xref:botbuilder-dialogs.Dialog.onDialogEvent)
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs.ChoicePrompt.repromptDialog
     package: botbuilder-dialogs
@@ -383,6 +413,9 @@ inheritedMethods:
       return:
         description: A `Promise` representing the asynchronous operation.
         type: Promise&lt;void&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Prompt.repromptDialog](xref:botbuilder-dialogs.Prompt.repromptDialog)
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs.ChoicePrompt.resumeDialog
     package: botbuilder-dialogs
@@ -400,16 +433,16 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any): Promise<DialogTurnResult>
+        function resumeDialog(dc: DialogContext, _reason: DialogReason,
+        _result?: any): Promise<DialogTurnResult>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: The DialogContext for the current turn of the conversation.
-        - id: reason
+        - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
           description: An enum indicating why the dialog resumed.
-        - id: result
+        - id: _result
           type: any
           description: |-
             Optional, value returned from the previous dialog on the stack.
@@ -417,6 +450,9 @@ inheritedMethods:
       return:
         description: A Promise representing the asynchronous operation.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Prompt.resumeDialog](xref:botbuilder-dialogs.Prompt.resumeDialog)
 extends: >-
   <xref uid="botbuilder-dialogs.Prompt" />&lt;<xref
   uid="botbuilder-dialogs.FoundChoice" />&gt;

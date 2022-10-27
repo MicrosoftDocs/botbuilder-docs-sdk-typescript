@@ -57,7 +57,7 @@ properties:
     syntax:
       content: string id
       return:
-        description: ''
+        description: The Id for the dialog.
         type: string
   - name: telemetryClient
     uid: botbuilder-dialogs.Dialog.telemetryClient
@@ -72,7 +72,9 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        description: ''
+        description: >-
+          The [BotTelemetryClient](xref:botbuilder.BotTelemetryClient) to use
+          for logging.
         type: BotTelemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
@@ -87,11 +89,15 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
   - name: getConverter(string)
     uid: botbuilder-dialogs.Dialog.getConverter
     package: botbuilder-dialogs
@@ -104,12 +110,15 @@ inheritedMethods:
       parameters:
         - id: _property
           type: string
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
-        description: ''
+        description: The converter for the selector configuration.
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
 methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs.Dialog.beginDialog
@@ -195,7 +204,7 @@ methods:
           description: |
             The context for the current dialog turn.
       return:
-        description: ''
+        description: A promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.Dialog.endDialog
@@ -230,16 +239,16 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance: DialogInstance,
+        _reason: DialogReason): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: <xref uid="botbuilder-dialogs.DialogInstance" />
           description: Current state information for this dialog.
-        - id: reason
+        - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
           description: |
             The reason the dialog is ending.
@@ -273,7 +282,9 @@ methods:
     syntax:
       content: 'function getVersion(): string'
       return:
-        description: ''
+        description: >-
+          Unique string which should only change when dialog has changed in a
+          way that should restart the dialog.
         type: string
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.Dialog.onDialogEvent
@@ -328,13 +339,13 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function repromptDialog(context: TurnContext, instance: DialogInstance):
-        Promise<void>
+        function repromptDialog(_context: TurnContext, _instance:
+        DialogInstance): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: <xref uid="botbuilder-dialogs.DialogInstance" />
           description: |
             Current state information for this dialog.
@@ -401,6 +412,6 @@ methods:
           description: |
             Optional. The return value, if any, from the dialog that ended.
       return:
-        description: ''
+        description: A promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
 extends: <xref uid="botbuilder-dialogs.Configurable" />

@@ -30,6 +30,20 @@ constructors:
             Optional. Numerable list of [Dialog](xref:botbuilder-dialogs.Dialog)
             actions.
 properties:
+  - name: value
+    uid: botbuilder-dialogs-adaptive.Case.value
+    package: botbuilder-dialogs-adaptive
+    summary: Gets or sets value expression to be compared against condition.
+    fullName: value
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'value: string'
+      return:
+        description: ''
+        type: string
+inheritedProperties:
   - name: actions
     uid: botbuilder-dialogs-adaptive.Case.actions
     package: botbuilder-dialogs-adaptive
@@ -43,6 +57,9 @@ properties:
       return:
         description: ''
         type: 'Dialog[]'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ActionScope.actions](xref:botbuilder-dialogs-adaptive.ActionScope.actions)
   - name: EndOfTurn
     uid: botbuilder-dialogs-adaptive.Case.EndOfTurn
     package: botbuilder-dialogs-adaptive
@@ -61,6 +78,7 @@ properties:
       return:
         description: ''
         type: DialogTurnResult
+    inheritanceDescription: <b>Inherited From</b> Dialog.EndOfTurn
   - name: id
     uid: botbuilder-dialogs-adaptive.Case.id
     package: botbuilder-dialogs-adaptive
@@ -74,6 +92,7 @@ properties:
       return:
         description: ''
         type: string
+    inheritanceDescription: <b>Inherited From</b> Dialog.id
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.Case.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -87,19 +106,7 @@ properties:
       return:
         description: ''
         type: BotTelemetryClient
-  - name: value
-    uid: botbuilder-dialogs-adaptive.Case.value
-    package: botbuilder-dialogs-adaptive
-    summary: Gets or sets value expression to be compared against condition.
-    fullName: value
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'value: string'
-      return:
-        description: ''
-        type: string
+    inheritanceDescription: <b>Inherited From</b> Dialog.telemetryClient
 inheritedMethods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.Case.beginDialog
@@ -126,6 +133,9 @@ inheritedMethods:
       return:
         description: A `Promise` representing the asynchronous operation.
         type: Promise&lt;DialogTurnResult&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ActionScope.beginDialog](xref:botbuilder-dialogs-adaptive.ActionScope.beginDialog)
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.Case.configure
     package: botbuilder-dialogs-adaptive
@@ -138,11 +148,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.Case.continueDialog
     package: botbuilder-dialogs-adaptive
@@ -165,6 +177,9 @@ inheritedMethods:
       return:
         description: A `Promise` representing the asynchronous operation.
         type: Promise&lt;DialogTurnResult&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ActionScope.continueDialog](xref:botbuilder-dialogs-adaptive.ActionScope.continueDialog)
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs-adaptive.Case.endDialog
     package: botbuilder-dialogs-adaptive
@@ -198,22 +213,23 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance: DialogInstance,
+        _reason: DialogReason): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: DialogInstance
           description: Current state information for this dialog.
-        - id: reason
+        - id: _reason
           type: DialogReason
           description: |
             The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.endDialog
   - name: getConverter(Object)
     uid: botbuilder-dialogs-adaptive.Case.getConverter
     package: botbuilder-dialogs-adaptive
@@ -230,6 +246,9 @@ inheritedMethods:
       return:
         description: The converter for the selector configuration.
         type: Converter | ConverterFactory
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ActionScope.getConverter](xref:botbuilder-dialogs-adaptive.ActionScope.getConverter)
   - name: getDependencies()
     uid: botbuilder-dialogs-adaptive.Case.getDependencies
     package: botbuilder-dialogs-adaptive
@@ -245,6 +264,9 @@ inheritedMethods:
       return:
         description: 'The child [Dialog](xref:botbuilder-dialogs.Dialog) dependencies.'
         type: 'Dialog[]'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ActionScope.getDependencies](xref:botbuilder-dialogs-adaptive.ActionScope.getDependencies)
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.Case.getVersion
     package: botbuilder-dialogs-adaptive
@@ -263,6 +285,9 @@ inheritedMethods:
           Unique `string` which should only change when dialog has changed in a
           way that should restart the dialog.
         type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ActionScope.getVersion](xref:botbuilder-dialogs-adaptive.ActionScope.getVersion)
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs-adaptive.Case.onDialogEvent
     package: botbuilder-dialogs-adaptive
@@ -288,6 +313,7 @@ inheritedMethods:
           True if the event is handled by the current dialog and bubbling should
           stop.
         type: Promise&lt;boolean&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.onDialogEvent
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs-adaptive.Case.repromptDialog
     package: botbuilder-dialogs-adaptive
@@ -316,19 +342,20 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function repromptDialog(context: TurnContext, instance: DialogInstance):
-        Promise<void>
+        function repromptDialog(_context: TurnContext, _instance:
+        DialogInstance): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: DialogInstance
           description: |
             Current state information for this dialog.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.repromptDialog
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs-adaptive.Case.resumeDialog
     package: botbuilder-dialogs-adaptive
@@ -361,4 +388,7 @@ inheritedMethods:
       return:
         description: A `Promise` representing the asynchronous operation.
         type: Promise&lt;DialogTurnResult&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ActionScope.resumeDialog](xref:botbuilder-dialogs-adaptive.ActionScope.resumeDialog)
 extends: <xref uid="botbuilder-dialogs-adaptive.ActionScope" />

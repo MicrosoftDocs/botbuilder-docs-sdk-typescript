@@ -101,11 +101,7 @@ properties:
   - name: activeDialog
     uid: botbuilder-dialogs.DialogContext.activeDialog
     package: botbuilder-dialogs
-    summary: >-
-      Returns the state information for the dialog on the top of the dialog
-      stack, or `undefined` if
-
-      the stack is empty.
+    summary: ''
     fullName: activeDialog
     remarks: ''
     isPreview: false
@@ -113,12 +109,16 @@ properties:
     syntax:
       content: DialogInstance | undefined activeDialog
       return:
-        description: ''
+        description: >-
+          The state information for the dialog on the top of the dialog stack,
+          or `undefined` if
+
+          the stack is empty.
         type: <xref uid="botbuilder-dialogs.DialogInstance" /> | undefined
   - name: child
     uid: botbuilder-dialogs.DialogContext.child
     package: botbuilder-dialogs
-    summary: Returns dialog context for child if the active dialog is a container.
+    summary: ''
     fullName: child
     remarks: ''
     isPreview: false
@@ -126,7 +126,7 @@ properties:
     syntax:
       content: DialogContext | undefined child
       return:
-        description: ''
+        description: Dialog context for child if the active dialog is a container.
         type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
   - name: context
     uid: botbuilder-dialogs.DialogContext.context
@@ -144,15 +144,16 @@ properties:
   - name: dialogManager
     uid: botbuilder-dialogs.DialogContext.dialogManager
     package: botbuilder-dialogs
-    summary: Returns the current dialog manager instance. This property is obsolete.
+    summary: ''
     fullName: dialogManager
     remarks: ''
     isPreview: false
-    isDeprecated: false
+    isDeprecated: true
+    customDeprecatedMessage: This property serves no function.
     syntax:
       content: DialogManager dialogManager
       return:
-        description: ''
+        description: The current dialog manager instance. This property is deprecated.
         type: <xref uid="botbuilder-dialogs.DialogManager" />
   - name: dialogs
     uid: botbuilder-dialogs.DialogContext.dialogs
@@ -285,10 +286,9 @@ methods:
           description: ID of the dialog to start.
         - id: options
           type: object
-          description: |
-            Optional. Arguments to pass into the dialog when it starts.
+          description: Optional. Arguments to pass into the dialog when it starts.
       return:
-        description: ''
+        description: a promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'cancelAllDialogs(boolean, string, any)'
     uid: botbuilder-dialogs.DialogContext.cancelAllDialogs
@@ -344,10 +344,9 @@ methods:
             [cancelDialog](xref:botbuilder-dialogs.DialogEvents.cancelDialog).
         - id: eventValue
           type: any
-          description: |
-            Optional. Value to pass along with custom cancellation event.
+          description: Optional. Value to pass along with custom cancellation event.
       return:
-        description: ''
+        description: a promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: continueDialog()
     uid: botbuilder-dialogs.DialogContext.continueDialog
@@ -392,7 +391,7 @@ methods:
     syntax:
       content: 'function continueDialog(): Promise<DialogTurnResult>'
       return:
-        description: ''
+        description: a promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: 'emitEvent(string, any, boolean, boolean)'
     uid: botbuilder-dialogs.DialogContext.emitEvent
@@ -484,13 +483,13 @@ methods:
       parameters:
         - id: result
           type: any
-          description: >
+          description: >-
             Optional. A result to pass to the parent logic. This might be the
             next dialog
                  on the stack, or if this was the last dialog on the stack, a parent dialog context or
                  the bot's turn handler.
       return:
-        description: ''
+        description: a promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: findDialog(string)
     uid: botbuilder-dialogs.DialogContext.findDialog
@@ -516,10 +515,9 @@ methods:
       parameters:
         - id: dialogId
           type: string
-          description: |
-            ID of the dialog to search for.
+          description: ID of the dialog to search for.
       return:
-        description: ''
+        description: The dialog for the provided ID.
         type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
   - name: getLocale()
     uid: botbuilder-dialogs.DialogContext.getLocale
@@ -664,10 +662,9 @@ methods:
           description: ID of the dialog to start.
         - id: options
           type: object
-          description: |
-            Optional. Arguments to pass into the new dialog when it starts.
+          description: Optional. Arguments to pass into the new dialog when it starts.
       return:
-        description: ''
+        description: a promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: repromptDialog()
     uid: botbuilder-dialogs.DialogContext.repromptDialog

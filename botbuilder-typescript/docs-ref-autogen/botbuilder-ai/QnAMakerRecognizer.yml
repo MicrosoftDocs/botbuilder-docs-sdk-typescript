@@ -84,19 +84,6 @@ properties:
       return:
         description: ''
         type: StringExpression
-  - name: id
-    uid: botbuilder-ai.QnAMakerRecognizer.id
-    package: botbuilder-ai
-    summary: Recognizers unique ID.
-    fullName: id
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'id: string'
-      return:
-        description: ''
-        type: string
   - name: includeDialogNameInMetadata
     uid: botbuilder-ai.QnAMakerRecognizer.includeDialogNameInMetadata
     package: botbuilder-ai
@@ -218,21 +205,6 @@ properties:
       return:
         description: ''
         type: <xref uid="botbuilder-ai.JoinOperator" />
-  - name: telemetryClient
-    uid: botbuilder-ai.QnAMakerRecognizer.telemetryClient
-    package: botbuilder-ai
-    summary: |-
-      The telemetry client for logging events.
-      Default this to the NullTelemetryClient, which does nothing.
-    fullName: telemetryClient
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'telemetryClient: BotTelemetryClient'
-      return:
-        description: ''
-        type: BotTelemetryClient
   - name: threshold
     uid: botbuilder-ai.QnAMakerRecognizer.threshold
     package: botbuilder-ai
@@ -259,6 +231,37 @@ properties:
       return:
         description: ''
         type: IntExpression
+inheritedProperties:
+  - name: id
+    uid: botbuilder-ai.QnAMakerRecognizer.id
+    package: botbuilder-ai
+    summary: Recognizers unique ID.
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: <b>Inherited From</b> Recognizer.id
+  - name: telemetryClient
+    uid: botbuilder-ai.QnAMakerRecognizer.telemetryClient
+    package: botbuilder-ai
+    summary: |-
+      The telemetry client for logging events.
+      Default this to the NullTelemetryClient, which does nothing.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        description: ''
+        type: BotTelemetryClient
+    inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-ai.QnAMakerRecognizer.configure
@@ -272,11 +275,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
 methods:
   - name: getConverter(Object)
     uid: botbuilder-ai.QnAMakerRecognizer.getConverter
@@ -290,9 +295,9 @@ methods:
       parameters:
         - id: property
           type: Object
-          description: ''
+          description: Properties that extend QnAMakerRecognizerConfiguration.
       return:
-        description: ''
+        description: The expression converter.
         type: Converter | ConverterFactory
   - name: >-
       recognize(DialogContext, Activity, [key: string]: string, [key: string]:

@@ -2,7 +2,9 @@
 name: CloudAdapterBase
 uid: botbuilder-core.CloudAdapterBase
 package: botbuilder-core
-summary: ''
+summary: >-
+  An adapter that implements the Bot Framework Protocol and can be hosted in
+  different cloud environments both public and private.
 fullName: CloudAdapterBase
 remarks: ''
 isPreview: false
@@ -30,32 +32,6 @@ constructors:
             [BotFrameworkAuthentication](xref:botframework-connector.BotFrameworkAuthentication)
             used for validating and creating tokens.
 properties:
-  - name: BotIdentityKey
-    uid: botbuilder-core.CloudAdapterBase.BotIdentityKey
-    package: botbuilder-core
-    summary: ''
-    fullName: BotIdentityKey
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'BotIdentityKey: symbol'
-      return:
-        description: ''
-        type: symbol
-  - name: ConnectorClientKey
-    uid: botbuilder-core.CloudAdapterBase.ConnectorClientKey
-    package: botbuilder-core
-    summary: ''
-    fullName: ConnectorClientKey
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'ConnectorClientKey: symbol'
-      return:
-        description: ''
-        type: symbol
   - name: ConnectorFactoryKey
     uid: botbuilder-core.CloudAdapterBase.ConnectorFactoryKey
     package: botbuilder-core
@@ -66,19 +42,6 @@ properties:
     isDeprecated: false
     syntax:
       content: 'ConnectorFactoryKey: symbol'
-      return:
-        description: ''
-        type: symbol
-  - name: OAuthScopeKey
-    uid: botbuilder-core.CloudAdapterBase.OAuthScopeKey
-    package: botbuilder-core
-    summary: ''
-    fullName: OAuthScopeKey
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'OAuthScopeKey: symbol'
       return:
         description: ''
         type: symbol
@@ -109,7 +72,7 @@ properties:
     syntax:
       content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
-        description: ''
+        description: A promise representing the async operation.
         type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
   - name: UserTokenClientKey
     uid: botbuilder-core.CloudAdapterBase.UserTokenClientKey
@@ -124,6 +87,55 @@ properties:
       return:
         description: ''
         type: symbol
+inheritedProperties:
+  - name: BotIdentityKey
+    uid: botbuilder-core.CloudAdapterBase.BotIdentityKey
+    package: botbuilder-core
+    summary: ''
+    fullName: BotIdentityKey
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'BotIdentityKey: symbol'
+      return:
+        description: ''
+        type: symbol
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [BotAdapter.BotIdentityKey](xref:botbuilder-core.BotAdapter.BotIdentityKey)
+  - name: ConnectorClientKey
+    uid: botbuilder-core.CloudAdapterBase.ConnectorClientKey
+    package: botbuilder-core
+    summary: ''
+    fullName: ConnectorClientKey
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'ConnectorClientKey: symbol'
+      return:
+        description: ''
+        type: symbol
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [BotAdapter.ConnectorClientKey](xref:botbuilder-core.BotAdapter.ConnectorClientKey)
+  - name: OAuthScopeKey
+    uid: botbuilder-core.CloudAdapterBase.OAuthScopeKey
+    package: botbuilder-core
+    summary: ''
+    fullName: OAuthScopeKey
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'OAuthScopeKey: symbol'
+      return:
+        description: ''
+        type: symbol
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [BotAdapter.OAuthScopeKey](xref:botbuilder-core.BotAdapter.OAuthScopeKey)
 inheritedMethods:
   - name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
@@ -147,10 +159,13 @@ inheritedMethods:
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: ''
+          description: The middleware or middleware handlers to add.
       return:
-        description: ''
+        description: The updated adapter object.
         type: this
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [BotAdapter.use](xref:botbuilder-core.BotAdapter.use)
 methods:
   - name: >-
       continueConversation(Partial<ConversationReference>, (context:
@@ -164,13 +179,14 @@ methods:
     customDeprecatedMessage: ''
     syntax:
       content: >-
-        function continueConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promise<void>): Promise<void>
+        function continueConversation(_reference:
+        Partial<ConversationReference>, _logic: (context: TurnContext) =>
+        Promise<void>): Promise<void>
       parameters:
-        - id: reference
+        - id: _reference
           type: Partial&lt;ConversationReference&gt;
           description: ''
-        - id: logic
+        - id: _logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:

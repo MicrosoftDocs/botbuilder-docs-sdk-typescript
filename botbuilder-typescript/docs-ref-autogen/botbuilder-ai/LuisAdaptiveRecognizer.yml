@@ -87,19 +87,6 @@ properties:
       return:
         description: ''
         type: Recognizer
-  - name: id
-    uid: botbuilder-ai.LuisAdaptiveRecognizer.id
-    package: botbuilder-ai
-    summary: Recognizers unique ID.
-    fullName: id
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'id: string'
-      return:
-        description: ''
-        type: string
   - name: logPersonalInformation
     uid: botbuilder-ai.LuisAdaptiveRecognizer.logPersonalInformation
     package: botbuilder-ai
@@ -128,6 +115,34 @@ properties:
       return:
         description: ''
         type: <xref uid="botbuilder-ai.LuisAdaptivePredictionOptions" />
+  - name: version
+    uid: botbuilder-ai.LuisAdaptiveRecognizer.version
+    package: botbuilder-ai
+    summary: LUIS application version.
+    fullName: version
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'version: StringExpression'
+      return:
+        description: ''
+        type: StringExpression
+inheritedProperties:
+  - name: id
+    uid: botbuilder-ai.LuisAdaptiveRecognizer.id
+    package: botbuilder-ai
+    summary: Recognizers unique ID.
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: <b>Inherited From</b> Recognizer.id
   - name: telemetryClient
     uid: botbuilder-ai.LuisAdaptiveRecognizer.telemetryClient
     package: botbuilder-ai
@@ -143,19 +158,7 @@ properties:
       return:
         description: ''
         type: BotTelemetryClient
-  - name: version
-    uid: botbuilder-ai.LuisAdaptiveRecognizer.version
-    package: botbuilder-ai
-    summary: LUIS application version.
-    fullName: version
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'version: StringExpression'
-      return:
-        description: ''
-        type: StringExpression
+    inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-ai.LuisAdaptiveRecognizer.configure
@@ -169,11 +172,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
 methods:
   - name: getConverter(Object)
     uid: botbuilder-ai.LuisAdaptiveRecognizer.getConverter
@@ -187,9 +192,9 @@ methods:
       parameters:
         - id: property
           type: Object
-          description: ''
+          description: Properties that extend RecognizerConfiguration.
       return:
-        description: ''
+        description: Expression converter.
         type: Converter | ConverterFactory
   - name: >-
       recognize(DialogContext, Activity, Record<string, string>, Record<string,

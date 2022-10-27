@@ -2,7 +2,7 @@
 name: InvokeException
 uid: botbuilder-core.InvokeException
 package: botbuilder-core
-summary: ''
+summary: A custom exception for invoke response errors.
 fullName: InvokeException<T>
 remarks: ''
 isPreview: false
@@ -21,10 +21,11 @@ constructors:
       parameters:
         - id: status
           type: StatusCodes
-          description: ''
+          description: The Http status code of the error.
         - id: response
           type: T
-          description: ''
+          description: |
+            optional. The body of the exception. Default is null.
 properties:
   - name: Error
     uid: botbuilder-core.InvokeException.Error
@@ -39,6 +40,7 @@ properties:
       return:
         description: ''
         type: ErrorConstructor
+inheritedProperties:
   - name: message
     uid: botbuilder-core.InvokeException.message
     package: botbuilder-core
@@ -52,6 +54,7 @@ properties:
       return:
         description: ''
         type: string
+    inheritanceDescription: <b>Inherited From</b> Error.message
   - name: name
     uid: botbuilder-core.InvokeException.name
     package: botbuilder-core
@@ -65,6 +68,7 @@ properties:
       return:
         description: ''
         type: string
+    inheritanceDescription: <b>Inherited From</b> Error.name
   - name: stack
     uid: botbuilder-core.InvokeException.stack
     package: botbuilder-core
@@ -78,17 +82,21 @@ properties:
       return:
         description: ''
         type: string
+    inheritanceDescription: <b>Inherited From</b> Error.stack
 methods:
   - name: createInvokeResponse()
     uid: botbuilder-core.InvokeException.createInvokeResponse
     package: botbuilder-core
-    summary: ''
+    summary: >-
+      A factory method that creates a new
+      [InvokeResponse](xref:botbuilder-core.InvokeResponse) object with the
+      status code and body of the current object.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: 'function createInvokeResponse(): InvokeResponse'
       return:
-        description: ''
+        description: 'A new [InvokeResponse](xref:botbuilder-core.InvokeResponse) object.'
         type: InvokeResponse
 extends: Error

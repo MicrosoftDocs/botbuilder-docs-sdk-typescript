@@ -79,7 +79,7 @@ properties:
   - name: allDiagnostics
     uid: botbuilder-lg.Templates.allDiagnostics
     package: botbuilder-lg
-    summary: All diagnostics from current lg file and reference lg files.
+    summary: Gets all diagnostics from current lg file and reference lg files.
     fullName: allDiagnostics
     remarks: ''
     isPreview: false
@@ -87,12 +87,12 @@ properties:
     syntax:
       content: 'Diagnostic[] allDiagnostics'
       return:
-        description: ''
+        description: All diagnostics from current lg file and reference lg files.
         type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
   - name: allTemplates
     uid: botbuilder-lg.Templates.allTemplates
     package: botbuilder-lg
-    summary: All templates from current lg file and reference lg files.
+    summary: Gets all templates from current lg file and reference lg files.
     fullName: allTemplates
     remarks: ''
     isPreview: false
@@ -100,7 +100,7 @@ properties:
     syntax:
       content: 'Template[] allTemplates'
       return:
-        description: ''
+        description: All templates from current lg file and reference lg files.
         type: '<xref uid="botbuilder-lg.Template" />[]'
   - name: content
     uid: botbuilder-lg.Templates.content
@@ -111,7 +111,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public content: string'
+      content: 'content: string'
       return:
         description: ''
         type: string
@@ -124,7 +124,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public diagnostics: Diagnostic[]'
+      content: 'diagnostics: Diagnostic[]'
       return:
         description: ''
         type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
@@ -137,7 +137,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public static enableFromFile: boolean = false'
+      content: 'static enableFromFile: boolean = false'
       return:
         description: ''
         type: boolean
@@ -150,7 +150,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public expressionParser: ExpressionParser'
+      content: 'expressionParser: ExpressionParser'
       return:
         description: ''
         type: ExpressionParser
@@ -163,7 +163,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public id: string'
+      content: 'id: string'
       return:
         description: ''
         type: string
@@ -176,7 +176,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public importResolver: ImportResolverDelegate'
+      content: 'importResolver: ImportResolverDelegate'
       return:
         description: ''
         type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
@@ -189,7 +189,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public imports: TemplateImport[]'
+      content: 'imports: TemplateImport[]'
       return:
         description: ''
         type: '<xref uid="botbuilder-lg.TemplateImport" />[]'
@@ -202,14 +202,16 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public static inlineTemplateIdPrefix: string = "__temp__"'
+      content: 'static inlineTemplateIdPrefix: string = "__temp__"'
       return:
         description: ''
         type: string
   - name: lgOptions
     uid: botbuilder-lg.Templates.lgOptions
     package: botbuilder-lg
-    summary: A value indicating whether the options when evaluation LG templates.
+    summary: |
+      Gets the evluation options for the current LG file.
+       @returns A value indicating whether the options when evaluating LG templates.
     fullName: lgOptions
     remarks: ''
     isPreview: false
@@ -228,14 +230,16 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public namedReferences: Record<string, Templates>'
+      content: 'namedReferences: Record<string, Templates>'
       return:
         description: ''
         type: 'Record&lt;string, <xref uid="botbuilder-lg.Templates" />&gt;'
   - name: namespace
     uid: botbuilder-lg.Templates.namespace
     package: botbuilder-lg
-    summary: A string value represents the namespace to register for current LG file.
+    summary: |
+      Gets the namespace to register for the current LG file.
+       @returns A string value representing the namespace to register for the current LG file.
     fullName: namespace
     remarks: ''
     isPreview: false
@@ -254,7 +258,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public options: string[]'
+      content: 'options: string[]'
       return:
         description: ''
         type: 'string[]'
@@ -271,7 +275,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public references: Templates[]'
+      content: 'references: Templates[]'
       return:
         description: ''
         type: '<xref uid="botbuilder-lg.Templates" />[]'
@@ -284,7 +288,7 @@ properties:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'public source: string'
+      content: 'source: string'
       return:
         description: ''
         type: string
@@ -332,7 +336,7 @@ methods:
           description: Template name to be evaluated.
         - id: analyzerOptions
           type: <xref uid="botbuilder-lg.AnalyzerOptions" />
-          description: ''
+          description: Options for analyzing template.
       return:
         description: Analyzer result.
         type: <xref uid="botbuilder-lg.AnalyzerResult" />
@@ -372,7 +376,7 @@ methods:
           description: The state visible in the evaluation.
         - id: opt
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
-          description: ''
+          description: EvaluationOptions in evaluating a template.
       return:
         description: Evaluate result.
         type: any
@@ -393,13 +397,12 @@ methods:
           description: Inline string which will be evaluated.
         - id: scope
           type: object
-          description: |
-            Scope object or JToken.
+          description: Scope object or JToken.
         - id: opt
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
-          description: ''
+          description: EvaluationOptions in evaluating a template.
       return:
-        description: ''
+        description: Evaluated result object.
         type: any
   - name: 'expandTemplate(string, object, EvaluationOptions)'
     uid: botbuilder-lg.Templates.expandTemplate
@@ -423,14 +426,14 @@ methods:
           description: The state visible in the evaluation.
         - id: opt
           type: <xref uid="botbuilder-lg.EvaluationOptions" />
-          description: ''
+          description: EvaluationOptions in expanding a template.
       return:
         description: Expand result.
         type: 'any[]'
   - name: 'parseFile(string, ImportResolverDelegate, ExpressionParser)'
     uid: botbuilder-lg.Templates.parseFile
     package: botbuilder-lg
-    summary: parse a file and return LG file.
+    summary: Parse a file and return LG file.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -465,7 +468,7 @@ methods:
       parameters:
         - id: resource
           type: <xref uid="botbuilder-lg.LGResource" />
-          description: ''
+          description: LG resource.
         - id: importResolver
           type: <xref uid="botbuilder-lg.ImportResolverDelegate" />
           description: Resolver to resolve LG import id to template text.
@@ -522,14 +525,14 @@ methods:
   - name: toArray()
     uid: botbuilder-lg.Templates.toArray
     package: botbuilder-lg
-    summary: Returns a reference to the internal list of collection templates.
+    summary: Gets the collection of templates.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: 'function toArray(): Template[]'
       return:
-        description: ''
+        description: A reference to the internal list of collection templates.
         type: '<xref uid="botbuilder-lg.Template" />[]'
   - name: toString()
     uid: botbuilder-lg.Templates.toString

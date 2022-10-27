@@ -10,7 +10,8 @@ remarks: >-
   InspectionState for use by the InspectionMiddleware for emulator inspection of
   runtime Activities and BotState.
 isPreview: false
-isDeprecated: false
+isDeprecated: true
+customDeprecatedMessage: This class will be removed in a future version of the framework.
 type: class
 constructors:
   - name: InspectionState(Storage)
@@ -56,11 +57,11 @@ inheritedMethods:
       parameters:
         - id: context
           type: TurnContext
-          description: |
-            Context for current turn of conversation with the user.
+          description: Context for current turn of conversation with the user.
       return:
-        description: ''
+        description: A promise representing the async operation.
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> BotState.clear
   - name: createProperty<T>(string)
     uid: botbuilder.InspectionState.createProperty
     package: botbuilder
@@ -77,11 +78,11 @@ inheritedMethods:
       parameters:
         - id: name
           type: string
-          description: |
-            Name of the property to add.
+          description: Name of the property to add.
       return:
-        description: ''
+        description: An accessor for the property.
         type: StatePropertyAccessor&lt;T&gt;
+    inheritanceDescription: <b>Inherited From</b> BotState.createProperty
   - name: delete(TurnContext)
     uid: botbuilder.InspectionState.delete
     package: botbuilder
@@ -105,11 +106,11 @@ inheritedMethods:
       parameters:
         - id: context
           type: TurnContext
-          description: |
-            Context for current turn of conversation with the user.
+          description: Context for current turn of conversation with the user.
       return:
-        description: ''
+        description: A promise representing the async operation.
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> BotState.delete
   - name: get(TurnContext)
     uid: botbuilder.InspectionState.get
     package: botbuilder
@@ -131,11 +132,11 @@ inheritedMethods:
       parameters:
         - id: context
           type: TurnContext
-          description: |
-            Context for current turn of conversation with the user.
+          description: Context for current turn of conversation with the user.
       return:
-        description: ''
+        description: A cached state object or undefined if not cached.
         type: any | undefined
+    inheritanceDescription: <b>Inherited From</b> BotState.get
   - name: 'load(TurnContext, boolean)'
     uid: botbuilder.InspectionState.load
     package: botbuilder
@@ -166,12 +167,13 @@ inheritedMethods:
           description: Context for current turn of conversation with the user.
         - id: force
           type: boolean
-          description: >
+          description: >-
             (Optional) If `true` the cache will be bypassed and the state will
             always be read in directly from storage. Defaults to `false`.
       return:
-        description: ''
+        description: The cached state.
         type: Promise&lt;any&gt;
+    inheritanceDescription: <b>Inherited From</b> BotState.load
   - name: 'saveChanges(TurnContext, boolean)'
     uid: botbuilder.InspectionState.saveChanges
     package: botbuilder
@@ -203,10 +205,11 @@ inheritedMethods:
           description: Context for current turn of conversation with the user.
         - id: force
           type: boolean
-          description: >
+          description: >-
             (Optional) if `true` the state will always be written out regardless
             of its change state. Defaults to `false`.
       return:
-        description: ''
+        description: A promise representing the async operation.
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> BotState.saveChanges
 extends: BotState

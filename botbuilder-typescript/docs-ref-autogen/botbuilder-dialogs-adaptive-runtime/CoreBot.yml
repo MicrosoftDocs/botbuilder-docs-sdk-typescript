@@ -2,7 +2,7 @@
 name: CoreBot
 uid: botbuilder-dialogs-adaptive-runtime.CoreBot
 package: botbuilder-dialogs-adaptive-runtime
-summary: ''
+summary: Implements an instance of CoreBot.
 fullName: CoreBot
 remarks: ''
 isPreview: false
@@ -30,44 +30,45 @@ constructors:
       parameters:
         - id: resourceExplorer
           type: ResourceExplorer
-          description: ''
+          description: Services to access resources.
         - id: userState
           type: UserState
-          description: ''
+          description: Stored user state.
         - id: conversationState
           type: ConversationState
-          description: ''
+          description: Stored conversation state.
         - id: botFrameworkAuthentication
           type: BotFrameworkAuthentication
-          description: ''
+          description: >-
+            Cloud environment to authenticate Bot Framework Protocol network
+            calls within this environment.
         - id: skillConversationIdFactory
           type: SkillConversationIdFactoryBase
-          description: ''
+          description: Methods to create unique conversation IDs for skill conversations.
         - id: botTelemetryClient
           type: BotTelemetryClient
-          description: ''
+          description: Bot client to telemetry.
         - id: defaultLocale
           type: string
-          description: ''
+          description: The default locale used to determine language-specific behavior.
         - id: defaultRootDialog
           type: string
-          description: ''
+          description: Default bot root dialog.
         - id: memoryScopes
           type: 'MemoryScope[]'
-          description: ''
+          description: >-
+            Named root-level objects, which can exist in the dialog context or
+            outside the turn state.
         - id: pathResolvers
           type: 'PathResolver[]'
-          description: ''
+          description: |
+            Shortcut behavior for transform paths.
 inheritedMethods:
   - name: onCommand(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onCommand
     package: botbuilder-dialogs-adaptive-runtime
     summary: Registers an activity event handler for the _command_ activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       To handle a Command event, use the
 
       [onCommand](xref:botbuilder-core.ActivityHandler.onCommand) type-specific
@@ -79,20 +80,18 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onCommand
   - name: onCommandResult(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onCommandResult
     package: botbuilder-dialogs-adaptive-runtime
     summary: Registers an activity event handler for the _CommandResult_ activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       To handle a CommandResult event, use the
 
       [onCommandResult](xref:botbuilder-core.ActivityHandler.onCommandResult)
@@ -104,11 +103,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onCommandResult
   - name: onConversationUpdate(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onConversationUpdate
     package: botbuilder-dialogs-adaptive-runtime
@@ -118,10 +119,6 @@ inheritedMethods:
 
       conversation update activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       Conversation update activities describe a changes to a conversation's
       metadata, such as title, participants,
 
@@ -142,20 +139,20 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onConversationUpdate
   - name: onDialog(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onDialog
     package: botbuilder-dialogs-adaptive-runtime
     summary: >-
       Registers an activity event handler for the _dialog_ event, emitted as the
       last event for an incoming activity.
-    remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -163,11 +160,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onDialog
   - name: onEndOfConversation(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onEndOfConversation
     package: botbuilder-dialogs-adaptive-runtime
@@ -175,10 +174,6 @@ inheritedMethods:
       Registers an activity event handler for the _end of conversation_
       activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       This activity is typically send from a Skill to a Skill caller indicating
       the end of that particular child conversation.
 
@@ -194,11 +189,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onEndOfConversation
   - name: onEvent(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onEvent
     package: botbuilder-dialogs-adaptive-runtime
@@ -206,10 +203,6 @@ inheritedMethods:
       Registers an activity event handler for the _event_ event, emitted for
       every incoming event activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       Event activities communicate programmatic information from a client or
       channel to a bot.
 
@@ -240,20 +233,18 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onEvent
   - name: onInstallationUpdate(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onInstallationUpdate
     package: botbuilder-dialogs-adaptive-runtime
     summary: Registers an activity event handler for the _installationupdate_ activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       To handle a InstallationUpdate event, use the
 
       [onInstallationUpdate](xref:botbuilder-core.ActivityHandler.onInstallationUpdate)
@@ -265,26 +256,20 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onInstallationUpdate
   - name: onInstallationUpdateAdd(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onInstallationUpdateAdd
     package: botbuilder-dialogs-adaptive-runtime
     summary: >-
       Registers an activity event handler for the _installationupdate add_
       activity.
-    remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
-      To handle a InstallationUpdateAdd event, use the
-
-      [onInstallationUpdateAdd](xref:botbuilder-core.ActivityHandler.onInstallationUpdateAdd)
-      type-specific event handler.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -292,11 +277,18 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+
+          To handle a InstallationUpdateAdd event, use the
+
+          [onInstallationUpdateAdd](xref:botbuilder-core.ActivityHandler.onInstallationUpdateAdd)
+          type-specific event handler.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onInstallationUpdateAdd
   - name: onInstallationUpdateRemove(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onInstallationUpdateRemove
     package: botbuilder-dialogs-adaptive-runtime
@@ -304,10 +296,6 @@ inheritedMethods:
       Registers an activity event handler for the _installationupdate remove_
       activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       To handle a InstallationUpdateRemove event, use the
 
       [onInstallationUpdateRemove](xref:botbuilder-core.ActivityHandler.onInstallationUpdateRemove)
@@ -319,11 +307,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onInstallationUpdateRemove
   - name: onMembersAdded(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onMembersAdded
     package: botbuilder-dialogs-adaptive-runtime
@@ -334,10 +324,6 @@ inheritedMethods:
       conversation update activity that includes members added to the
       conversation.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       The activity's
       [membersAdded](xref:botframework-schema.Activity.membersAdded) property
 
@@ -355,11 +341,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onMembersAdded
   - name: onMembersRemoved(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onMembersRemoved
     package: botbuilder-dialogs-adaptive-runtime
@@ -370,10 +358,6 @@ inheritedMethods:
       conversation update activity that includes members removed from the
       conversation.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       The activity's
       [membersRemoved](xref:botframework-schema.Activity.membersRemoved)
       property
@@ -393,11 +377,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onMembersRemoved
   - name: onMessage(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onMessage
     package: botbuilder-dialogs-adaptive-runtime
@@ -405,10 +391,6 @@ inheritedMethods:
       Registers an activity event handler for the _message_ event, emitted for
       every incoming message activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       Message activities represent content intended to be shown within a
       conversational interface
 
@@ -426,11 +408,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onMessage
   - name: onMessageReaction(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onMessageReaction
     package: botbuilder-dialogs-adaptive-runtime
@@ -440,10 +424,6 @@ inheritedMethods:
 
       message reaction activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       Message reaction activities represent a social interaction on an existing
       message activity
 
@@ -473,11 +453,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onMessageReaction
   - name: onReactionsAdded(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onReactionsAdded
     package: botbuilder-dialogs-adaptive-runtime
@@ -487,10 +469,6 @@ inheritedMethods:
 
       message reaction activity that describes reactions added to a message.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       The activity's
       [reactionsAdded](xref:botframework-schema.Activity.reactionsAdded)
       property
@@ -509,11 +487,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onReactionsAdded
   - name: onReactionsRemoved(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onReactionsRemoved
     package: botbuilder-dialogs-adaptive-runtime
@@ -523,10 +503,6 @@ inheritedMethods:
 
       message reaction activity that describes reactions removed from a message.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       The activity's
       [reactionsRemoved](xref:botframework-schema.Activity.reactionsRemoved)
       property
@@ -545,11 +521,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onReactionsRemoved
   - name: onTokenResponseEvent(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onTokenResponseEvent
     package: botbuilder-dialogs-adaptive-runtime
@@ -560,10 +538,6 @@ inheritedMethods:
       `tokens/response` event activity. These are generated as part of the OAuth
       authentication flow.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       The activity's [value](xref:botframework-schema.Activity.value) property
       contains the user token.
 
@@ -586,20 +560,20 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onTokenResponseEvent
   - name: onTurn(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onTurn
     package: botbuilder-dialogs-adaptive-runtime
     summary: >-
       Registers an activity event handler for the _turn_ event, emitted for
       every incoming activity, regardless of type.
-    remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+    remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
@@ -607,20 +581,18 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onTurn
   - name: onTyping(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onTyping
     package: botbuilder-dialogs-adaptive-runtime
     summary: Registers an activity event handler for the _typing_ activity.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       To handle a Typing event, use the
 
       [onTyping](xref:botbuilder-core.ActivityHandler.onTyping) type-specific
@@ -632,11 +604,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onTyping
   - name: onUnrecognizedActivityType(BotHandler)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.onUnrecognizedActivityType
     package: botbuilder-dialogs-adaptive-runtime
@@ -649,10 +623,6 @@ inheritedMethods:
 
       doesn't provide an event handler.
     remarks: >-
-      Returns a reference to the
-      [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
-
-
       The `ActivityHandler` does not define events for all activity types
       defined in the
 
@@ -675,11 +645,13 @@ inheritedMethods:
       parameters:
         - id: handler
           type: BotHandler
-          description: |
-            The event handler.
+          description: The event handler.
       return:
-        description: ''
+        description: >-
+          A reference to the
+          [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.onUnrecognizedActivityType
   - name: run(TurnContext)
     uid: botbuilder-dialogs-adaptive-runtime.CoreBot.run
     package: botbuilder-dialogs-adaptive-runtime
@@ -723,4 +695,5 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> ActivityHandler.run
 extends: ActivityHandler
