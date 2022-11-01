@@ -149,10 +149,9 @@ functions:
           description: List of choices to search over.
         - id: options
           type: <xref uid="botbuilder-dialogs.FindChoicesOptions" />
-          description: |
-            (Optional) options used to tweak the search that's performed.
+          description: (Optional) options used to tweak the search that's performed.
       return:
-        description: ''
+        description: 'A list of found choices, sorted by most relevant first.'
         type: >-
           <xref uid="botbuilder-dialogs.ModelResult" />&lt;<xref
           uid="botbuilder-dialogs.FoundChoice" />&gt;[]
@@ -186,10 +185,9 @@ functions:
           description: List of values to search over.
         - id: options
           type: <xref uid="botbuilder-dialogs.FindValuesOptions" />
-          description: |
-            (Optional) options used to tweak the search that's performed.
+          description: (Optional) options used to tweak the search that's performed.
       return:
-        description: ''
+        description: A list of found values.
         type: >-
           <xref uid="botbuilder-dialogs.ModelResult" />&lt;<xref
           uid="botbuilder-dialogs.FoundValue" />&gt;[]
@@ -253,10 +251,9 @@ functions:
           description: List of choices to search over.
         - id: options
           type: <xref uid="botbuilder-dialogs.FindChoicesOptions" />
-          description: |
-            (Optional) options used to tweak the search that's performed.
+          description: (Optional) options used to tweak the search that's performed.
       return:
-        description: ''
+        description: 'A list of found choices, sorted by most relevant first.'
         type: >-
           <xref uid="botbuilder-dialogs.ModelResult" />&lt;<xref
           uid="botbuilder-dialogs.FoundChoice" />&gt;[]
@@ -281,11 +278,11 @@ functions:
 
 
       function customTokenizer(text, locale) {
-          const tokens = defaultTokenizer(text, locale);
-          tokens.forEach((t) => {
-              t.normalized = stemmer(t.normalized);
-          });
-          return tokens;
+         const tokens = defaultTokenizer(text, locale);
+         tokens.forEach((t) => {
+             t.normalized = stemmer(t.normalized);
+         });
+         return tokens;
       }
 
 
@@ -300,16 +297,16 @@ functions:
     isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function defaultTokenizer(text: string, locale?: string): Token[]'
+      content: 'function defaultTokenizer(text: string, _locale?: string): Token[]'
       parameters:
         - id: text
           type: string
-          description: ''
-        - id: locale
+          description: The input text.
+        - id: _locale
           type: string
-          description: ''
+          description: 'Optional, identifies the locale of the input text.'
       return:
-        description: ''
+        description: A list of tokens.
         type: '<xref uid="botbuilder-dialogs.Token" />[]'
   - name: getActiveDialogContext(DialogContext)
     uid: botbuilder-dialogs.getActiveDialogContext
@@ -348,18 +345,20 @@ functions:
       parameters:
         - id: context
           type: TurnContext
-          description: ''
+          description: 'The [TurnContext](xref:botbuilder-core.TurnContext) for the turn.'
         - id: dialogId
           type: string
-          description: ''
+          description: The dialog ID.
         - id: dialogContext
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
         - id: dialogStateManagerConfiguration
           type: <xref uid="botbuilder-dialogs.DialogStateManagerConfiguration" />
-          description: ''
+          description: Configuration for the dialog state manager.
       return:
-        description: ''
+        description: a promise resolving to the dialog turn result.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
   - name: isFromParentToSkill(TurnContext)
     uid: botbuilder-dialogs.isFromParentToSkill
@@ -423,13 +422,12 @@ functions:
       parameters:
         - id: context
           type: TurnContext
-          description: ''
+          description: 'The [TurnContext](xref:botbuilder-core.TurnContext) for the turn.'
         - id: turnResult
           type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
-          description: |+
-
+          description: The dialog turn result.
       return:
-        description: ''
+        description: 'True if should send EoC, otherwise false.'
         type: boolean
   - name: isComponentMemoryScopes(unknown)
     uid: botbuilder-dialogs.isComponentMemoryScopes

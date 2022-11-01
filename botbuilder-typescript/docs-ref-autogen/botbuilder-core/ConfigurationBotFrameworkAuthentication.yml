@@ -85,12 +85,13 @@ inheritedMethods:
       return:
         description: The originating audience.
         type: string
+    inheritanceDescription: <b>Inherited From</b> BotFrameworkAuthentication.getOriginatingAudience
 methods:
   - name: authenticateChannelRequest(string)
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.authenticateChannelRequest
     package: botbuilder-core
-    summary: ''
+    summary: Authenticate Bot Framework Protocol requests to Skills.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -101,15 +102,15 @@ methods:
       parameters:
         - id: authHeader
           type: string
-          description: ''
+          description: The http auth header received in the skill request.
       return:
-        description: ''
+        description: 'A [ClaimsIdentity](xref:botframework-connector.ClaimsIdentity).'
         type: Promise&lt;ClaimsIdentity&gt;
   - name: 'authenticateRequest(Activity, string)'
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.authenticateRequest
     package: botbuilder-core
-    summary: ''
+    summary: Validate Bot Framework Protocol requests.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -120,18 +121,20 @@ methods:
       parameters:
         - id: activity
           type: Activity
-          description: ''
+          description: The inbound Activity.
         - id: authHeader
           type: string
-          description: ''
+          description: The HTTP auth header.
       return:
-        description: ''
+        description: >-
+          An
+          [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
         type: Promise&lt;AuthenticateRequestResult&gt;
   - name: 'authenticateStreamingRequest(string, string)'
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.authenticateStreamingRequest
     package: botbuilder-core
-    summary: ''
+    summary: Validate Bot Framework Protocol requests.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -142,31 +145,37 @@ methods:
       parameters:
         - id: authHeader
           type: string
-          description: ''
+          description: The HTTP auth header.
         - id: channelIdHeader
           type: string
-          description: ''
+          description: The channel ID HTTP header.
       return:
-        description: ''
+        description: >-
+          An
+          [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
         type: Promise&lt;AuthenticateRequestResult&gt;
   - name: createBotFrameworkClient()
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.createBotFrameworkClient
     package: botbuilder-core
-    summary: ''
+    summary: Creates a BotFrameworkClient for calling Skills.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: 'function createBotFrameworkClient(): BotFrameworkClient'
       return:
-        description: ''
+        description: >-
+          A
+          [BotFrameworkClient](xref:botframework-connector.BotFrameworkClient).
         type: BotFrameworkClient
   - name: createConnectorFactory(ClaimsIdentity)
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.createConnectorFactory
     package: botbuilder-core
-    summary: ''
+    summary: >-
+      Creates a ConnectorFactory that can be used to create ConnectorClients
+      that can use credentials from this particular Cloud Environment.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -177,15 +186,15 @@ methods:
       parameters:
         - id: claimsIdentity
           type: ClaimsIdentity
-          description: ''
+          description: The inbound Activity's ClaimsIdentity.
       return:
-        description: ''
+        description: 'A [ConnectorFactory](xref:botframework-connector.ConnectorFactory).'
         type: ConnectorFactory
   - name: createUserTokenClient(ClaimsIdentity)
     uid: >-
       botbuilder-core.ConfigurationBotFrameworkAuthentication.createUserTokenClient
     package: botbuilder-core
-    summary: ''
+    summary: Creates the appropriate UserTokenClient instance.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -196,8 +205,8 @@ methods:
       parameters:
         - id: claimsIdentity
           type: ClaimsIdentity
-          description: ''
+          description: The inbound Activity's ClaimsIdentity.
       return:
-        description: ''
+        description: 'An [UserTokenClient](xref:botframework-connector.UserTokenClient).'
         type: Promise&lt;UserTokenClient&gt;
 extends: BotFrameworkAuthentication

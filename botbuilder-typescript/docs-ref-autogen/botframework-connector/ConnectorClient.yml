@@ -56,6 +56,7 @@ properties:
       return:
         description: ''
         type: <xref uid="botframework-connector.Conversations" />
+inheritedProperties:
   - name: credentials
     uid: botframework-connector.ConnectorClient.credentials
     package: botframework-connector
@@ -69,6 +70,9 @@ properties:
       return:
         description: ''
         type: ServiceClientCredentials
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ConnectorClientContext.credentials](xref:botframework-connector.ConnectorClientContext.credentials)
 inheritedMethods:
   - name: >-
       sendOperationRequest(OperationArguments, OperationSpec,
@@ -100,7 +104,8 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;RestResponse&gt;
-  - name: sendRequest(RequestPrepareOptions | WebResource)
+    inheritanceDescription: <b>Inherited From</b> ServiceClient.sendOperationRequest
+  - name: sendRequest(RequestPrepareOptions | WebResourceLike)
     uid: botframework-connector.ConnectorClient.sendRequest
     package: botframework-connector
     summary: Send the provided httpRequest.
@@ -109,13 +114,14 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function sendRequest(options: RequestPrepareOptions | WebResource):
+        function sendRequest(options: RequestPrepareOptions | WebResourceLike):
         Promise<HttpOperationResponse>
       parameters:
         - id: options
-          type: RequestPrepareOptions | WebResource
+          type: RequestPrepareOptions | WebResourceLike
           description: ''
       return:
         description: ''
         type: Promise&lt;HttpOperationResponse&gt;
+    inheritanceDescription: <b>Inherited From</b> ServiceClient.sendRequest
 extends: <xref uid="botframework-connector.ConnectorClientContext" />

@@ -31,7 +31,7 @@ constructors:
             Optional
             [BotFrameworkAuthentication](xref:botframework-connector.BotFrameworkAuthentication)
             instance
-properties:
+inheritedProperties:
   - name: BotIdentityKey
     uid: botbuilder.CloudAdapter.BotIdentityKey
     package: botbuilder
@@ -45,6 +45,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.BotIdentityKey
   - name: ConnectorClientKey
     uid: botbuilder.CloudAdapter.ConnectorClientKey
     package: botbuilder
@@ -58,6 +59,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.ConnectorClientKey
   - name: ConnectorFactoryKey
     uid: botbuilder.CloudAdapter.ConnectorFactoryKey
     package: botbuilder
@@ -71,6 +73,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.ConnectorFactoryKey
   - name: OAuthScopeKey
     uid: botbuilder.CloudAdapter.OAuthScopeKey
     package: botbuilder
@@ -84,6 +87,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.OAuthScopeKey
   - name: onTurnError
     uid: botbuilder.CloudAdapter.onTurnError
     package: botbuilder
@@ -97,6 +101,7 @@ properties:
       return:
         description: ''
         type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.onTurnError
   - name: UserTokenClientKey
     uid: botbuilder.CloudAdapter.UserTokenClientKey
     package: botbuilder
@@ -110,6 +115,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.UserTokenClientKey
 inheritedMethods:
   - name: >-
       continueConversation(Partial<ConversationReference>, (context:
@@ -123,18 +129,20 @@ inheritedMethods:
     customDeprecatedMessage: ''
     syntax:
       content: >-
-        function continueConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promise<void>): Promise<void>
+        function continueConversation(_reference:
+        Partial<ConversationReference>, _logic: (context: TurnContext) =>
+        Promise<void>): Promise<void>
       parameters:
-        - id: reference
+        - id: _reference
           type: Partial&lt;ConversationReference&gt;
           description: ''
-        - id: logic
+        - id: _logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.continueConversation
   - name: >-
       continueConversationAsync(string | ClaimsIdentity,
       Partial<ConversationReference>, (context: TurnContext) => Promise<void> |
@@ -167,6 +175,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.continueConversationAsync
   - name: >-
       createConversationAsync(string, string, string, string,
       ConversationParameters, (context: TurnContext) => Promise<void>)
@@ -204,6 +213,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.createConversationAsync
   - name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     uid: botbuilder.CloudAdapter.deleteActivity
     package: botbuilder
@@ -225,6 +235,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.deleteActivity
   - name: 'sendActivities(TurnContext, Partial<Activity>[])'
     uid: botbuilder.CloudAdapter.sendActivities
     package: botbuilder
@@ -246,6 +257,7 @@ inheritedMethods:
       return:
         description: ''
         type: 'Promise&lt;ResourceResponse[]&gt;'
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.sendActivities
   - name: 'updateActivity(TurnContext, Partial<Activity>)'
     uid: botbuilder.CloudAdapter.updateActivity
     package: botbuilder
@@ -267,6 +279,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;ResourceResponse | void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.updateActivity
   - name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
       Middleware[])
@@ -289,10 +302,11 @@ inheritedMethods:
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | Middleware[]
-          description: ''
+          description: The middleware or middleware handlers to add.
       return:
-        description: ''
+        description: The updated adapter object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.use
 methods:
   - name: >-
       connectNamedPipe(string, (context: TurnContext) => Promise<void>, string,

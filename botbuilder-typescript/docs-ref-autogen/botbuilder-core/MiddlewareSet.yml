@@ -50,7 +50,8 @@ constructors:
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: ''
+          description: |
+            One or more middleware handlers(s) to register.
 methods:
   - name: 'onTurn(TurnContext, () => Promise<void>)'
     uid: botbuilder-core.MiddlewareSet.onTurn
@@ -69,10 +70,9 @@ methods:
           description: '(xref:botbuilder-core.TurnContext) object for this turn.'
         - id: next
           type: () =&gt; Promise&lt;void&gt;
-          description: |
-            Delegate to call to continue the bot middleware pipeline.
+          description: Delegate to call to continue the bot middleware pipeline.
       return:
-        description: ''
+        description: A Promise representing the async operation.
         type: Promise&lt;void&gt;
   - name: 'run(TurnContext, () => Promise<void>)'
     uid: botbuilder-core.MiddlewareSet.run
@@ -103,7 +103,6 @@ methods:
     summary: Registers middleware handlers(s) with the set.
     remarks: |-
       This example adds a new piece of middleware to a set:
-
       ```JavaScript
       set.use(async (context, next) => {
          console.log(`Leading Edge`);
@@ -122,7 +121,7 @@ methods:
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: ''
+          description: One or more middleware handlers(s) to register.
       return:
-        description: ''
+        description: The updated middleware set.
         type: this

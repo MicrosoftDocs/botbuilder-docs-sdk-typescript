@@ -28,32 +28,6 @@ constructors:
           description: |
             Type of service being defined.
 properties:
-  - name: id
-    uid: botframework-config.AzureService.id
-    package: botframework-config
-    summary: Unique Id for the service.
-    fullName: id
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'id: string'
-      return:
-        description: ''
-        type: string
-  - name: name
-    uid: botframework-config.AzureService.name
-    package: botframework-config
-    summary: Friendly name for the service.
-    fullName: name
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'name: string'
-      return:
-        description: ''
-        type: string
   - name: resourceGroup
     uid: botframework-config.AzureService.resourceGroup
     package: botframework-config
@@ -106,6 +80,39 @@ properties:
       return:
         description: ''
         type: string
+inheritedProperties:
+  - name: id
+    uid: botframework-config.AzureService.id
+    package: botframework-config
+    summary: Unique Id for the service.
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ConnectedService.id](xref:botframework-config.ConnectedService.id)
+  - name: name
+    uid: botframework-config.AzureService.name
+    package: botframework-config
+    summary: Friendly name for the service.
+    fullName: name
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'name: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ConnectedService.name](xref:botframework-config.ConnectedService.name)
   - name: type
     uid: botframework-config.AzureService.type
     package: botframework-config
@@ -119,6 +126,9 @@ properties:
       return:
         description: ''
         type: <xref uid="botframework-config.ServiceTypes" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ConnectedService.type](xref:botframework-config.ConnectedService.type)
 inheritedMethods:
   - name: 'decrypt(string, (value: string, secret: string) => string)'
     uid: botframework-config.AzureService.decrypt
@@ -129,16 +139,19 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function decrypt(secret: string, decryptString: (value: string, secret:
-        string) => string)
+        function decrypt(_secret: string, _decryptString: (value: string,
+        secret: string) => string)
       parameters:
-        - id: secret
+        - id: _secret
           type: string
           description: Secret to use to decrypt the keys in this service.
-        - id: decryptString
+        - id: _decryptString
           type: '(value: string, secret: string) =&gt; string'
           description: |
             Function called to decrypt an individual value.
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ConnectedService.decrypt](xref:botframework-config.ConnectedService.decrypt)
   - name: 'encrypt(string, (value: string, secret: string) => string)'
     uid: botframework-config.AzureService.encrypt
     package: botframework-config
@@ -148,26 +161,32 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function encrypt(secret: string, encryptString: (value: string, secret:
-        string) => string)
+        function encrypt(_secret: string, _encryptString: (value: string,
+        secret: string) => string)
       parameters:
-        - id: secret
+        - id: _secret
           type: string
           description: Secret to use to encrypt the keys in this service.
-        - id: encryptString
+        - id: _encryptString
           type: '(value: string, secret: string) =&gt; string'
           description: |
             Function called to encrypt an individual value.
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ConnectedService.encrypt](xref:botframework-config.ConnectedService.encrypt)
   - name: toJSON()
     uid: botframework-config.AzureService.toJSON
     package: botframework-config
-    summary: Returns a JSON based version of the model for saving to disk.
+    summary: Creates a JSON based version of the model for saving to disk.
     remarks: ''
     isPreview: false
     isDeprecated: false
     syntax:
       content: 'function toJSON(): IConnectedService'
       return:
-        description: ''
+        description: An IConnectedService JSON.
         type: <xref uid="botframework-config.IConnectedService" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ConnectedService.toJSON](xref:botframework-config.ConnectedService.toJSON)
 extends: <xref uid="botframework-config.ConnectedService" />
