@@ -9,19 +9,6 @@ isPreview: false
 isDeprecated: false
 type: class
 properties:
-  - name: id
-    uid: botbuilder-dialogs-adaptive.AdaptiveRecognizer.id
-    package: botbuilder-dialogs-adaptive
-    summary: Recognizers unique ID.
-    fullName: id
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'id: string'
-      return:
-        description: ''
-        type: string
   - name: logPersonalInformation
     uid: botbuilder-dialogs-adaptive.AdaptiveRecognizer.logPersonalInformation
     package: botbuilder-dialogs-adaptive
@@ -37,6 +24,21 @@ properties:
       return:
         description: ''
         type: BoolExpression
+inheritedProperties:
+  - name: id
+    uid: botbuilder-dialogs-adaptive.AdaptiveRecognizer.id
+    package: botbuilder-dialogs-adaptive
+    summary: Recognizers unique ID.
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: <b>Inherited From</b> Recognizer.id
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.AdaptiveRecognizer.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -52,6 +54,7 @@ properties:
       return:
         description: ''
         type: BotTelemetryClient
+    inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.AdaptiveRecognizer.configure
@@ -65,11 +68,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
   - name: getConverter(string)
     uid: botbuilder-dialogs-adaptive.AdaptiveRecognizer.getConverter
     package: botbuilder-dialogs-adaptive
@@ -82,10 +87,11 @@ inheritedMethods:
       parameters:
         - id: _property
           type: string
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
-        description: ''
+        description: The converter for the selector configuration.
         type: Converter | ConverterFactory
+    inheritanceDescription: <b>Inherited From</b> Configurable.getConverter
   - name: >-
       recognize(DialogContext, Partial<Activity>, Record<string, string>,
       Record<string, number>)
@@ -97,23 +103,25 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function recognize(dialogContext: DialogContext, activity:
-        Partial<Activity>, telemetryProperties?: Record<string, string>,
-        telemetryMetrics?: Record<string, number>): Promise<RecognizerResult>
+        function recognize(_dialogContext: DialogContext, _activity:
+        Partial<Activity>, _telemetryProperties?: Record<string, string>,
+        _telemetryMetrics?: Record<string, number>): Promise<RecognizerResult>
       parameters:
-        - id: dialogContext
+        - id: _dialogContext
           type: DialogContext
           description: Dialog Context.
-        - id: activity
+        - id: _activity
           type: Partial&lt;Activity&gt;
           description: Activity.
-        - id: telemetryProperties
+        - id: _telemetryProperties
           type: 'Record&lt;string, string&gt;'
           description: Additional properties to be logged to telemetry with event.
-        - id: telemetryMetrics
+        - id: _telemetryMetrics
           type: 'Record&lt;string, number&gt;'
-          description: Additional metrics to be logged to telemetry with event.
+          description: |
+            Additional metrics to be logged to telemetry with event.
       return:
-        description: Recognized result.
+        description: ''
         type: Promise&lt;RecognizerResult&gt;
+    inheritanceDescription: <b>Inherited From</b> Recognizer.recognize
 extends: Recognizer

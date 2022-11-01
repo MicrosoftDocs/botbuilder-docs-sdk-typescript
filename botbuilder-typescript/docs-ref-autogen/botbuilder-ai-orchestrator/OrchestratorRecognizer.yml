@@ -115,34 +115,6 @@ properties:
       return:
         description: ''
         type: Recognizer
-  - name: id
-    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.id
-    package: botbuilder-ai-orchestrator
-    summary: Recognizers unique ID.
-    fullName: id
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'id: string'
-      return:
-        description: ''
-        type: string
-  - name: logPersonalInformation
-    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.logPersonalInformation
-    package: botbuilder-ai-orchestrator
-    summary: >-
-      (Optional) Flag that designates whether personally identifiable
-      information (PII) should log to telemetry.
-    fullName: logPersonalInformation
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'logPersonalInformation: BoolExpression'
-      return:
-        description: ''
-        type: BoolExpression
   - name: modelFolder
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.modelFolder
     package: botbuilder-ai-orchestrator
@@ -200,6 +172,37 @@ properties:
       return:
         description: ''
         type: StringExpression
+inheritedProperties:
+  - name: id
+    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.id
+    package: botbuilder-ai-orchestrator
+    summary: Recognizers unique ID.
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: <b>Inherited From</b> Recognizer.id
+  - name: logPersonalInformation
+    uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.logPersonalInformation
+    package: botbuilder-ai-orchestrator
+    summary: >-
+      (Optional) Flag that designates whether personally identifiable
+      information (PII) should log to telemetry.
+    fullName: logPersonalInformation
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'logPersonalInformation: BoolExpression'
+      return:
+        description: ''
+        type: BoolExpression
+    inheritanceDescription: <b>Inherited From</b> AdaptiveRecognizer.logPersonalInformation
   - name: telemetryClient
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.telemetryClient
     package: botbuilder-ai-orchestrator
@@ -215,6 +218,7 @@ properties:
       return:
         description: ''
         type: BotTelemetryClient
+    inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.configure
@@ -228,11 +232,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
 methods:
   - name: getConverter(Object)
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.getConverter
@@ -246,9 +252,9 @@ methods:
       parameters:
         - id: property
           type: Object
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
-        description: ''
+        description: The converter for the selector configuration.
         type: Converter | ConverterFactory
   - name: >-
       recognize(DialogContext, Partial<Activity>, Record<string, string>,

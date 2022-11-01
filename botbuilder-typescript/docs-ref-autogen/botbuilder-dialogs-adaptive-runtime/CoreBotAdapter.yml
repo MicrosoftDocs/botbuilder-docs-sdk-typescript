@@ -2,7 +2,9 @@
 name: CoreBotAdapter
 uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter
 package: botbuilder-dialogs-adaptive-runtime
-summary: ''
+summary: >-
+  An adapter that implements the Core Bot and can be hosted in different cloud
+  environments both public and private.
 fullName: CoreBotAdapter
 remarks: ''
 isPreview: false
@@ -24,14 +26,17 @@ constructors:
       parameters:
         - id: botFrameworkAuthentication
           type: BotFrameworkAuthentication
-          description: ''
+          description: >-
+            BotFrameworkAuthentication](xref:botframework-connector.BotFrameworkAuthentication)
+            instance.
         - id: conversationState
           type: ConversationState
-          description: ''
+          description: State management object for conversation state.
         - id: userState
           type: UserState
-          description: ''
-properties:
+          description: |
+            Stored user state.
+inheritedProperties:
   - name: BotIdentityKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.BotIdentityKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -45,6 +50,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.BotIdentityKey
   - name: ConnectorClientKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.ConnectorClientKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -58,6 +64,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.ConnectorClientKey
   - name: ConnectorFactoryKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.ConnectorFactoryKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -71,6 +78,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.ConnectorFactoryKey
   - name: OAuthScopeKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.OAuthScopeKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -84,6 +92,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.OAuthScopeKey
   - name: onTurnError
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.onTurnError
     package: botbuilder-dialogs-adaptive-runtime
@@ -97,6 +106,7 @@ properties:
       return:
         description: ''
         type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.onTurnError
   - name: UserTokenClientKey
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.UserTokenClientKey
     package: botbuilder-dialogs-adaptive-runtime
@@ -110,6 +120,7 @@ properties:
       return:
         description: ''
         type: symbol
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.UserTokenClientKey
 inheritedMethods:
   - name: >-
       connectNamedPipe(string, (context: TurnContext) => Promise<void>, string,
@@ -153,6 +164,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapter.connectNamedPipe
   - name: >-
       continueConversation(Partial<ConversationReference>, (context:
       TurnContext) => Promise<void>)
@@ -165,18 +177,20 @@ inheritedMethods:
     customDeprecatedMessage: ''
     syntax:
       content: >-
-        function continueConversation(reference: Partial<ConversationReference>,
-        logic: (context: TurnContext) => Promise<void>): Promise<void>
+        function continueConversation(_reference:
+        Partial<ConversationReference>, _logic: (context: TurnContext) =>
+        Promise<void>): Promise<void>
       parameters:
-        - id: reference
+        - id: _reference
           type: Partial&lt;ConversationReference&gt;
           description: ''
-        - id: logic
+        - id: _logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: ''
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.continueConversation
   - name: >-
       continueConversationAsync(string | ClaimsIdentity,
       Partial<ConversationReference>, (context: TurnContext) => Promise<void> |
@@ -210,6 +224,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.continueConversationAsync
   - name: >-
       createConversationAsync(string, string, string, string,
       ConversationParameters, (context: TurnContext) => Promise<void>)
@@ -247,6 +262,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.createConversationAsync
   - name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.deleteActivity
     package: botbuilder-dialogs-adaptive-runtime
@@ -268,6 +284,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.deleteActivity
   - name: >-
       process(Request, INodeSocket, INodeBuffer, (context: TurnContext) =>
       Promise<void>)
@@ -303,6 +320,7 @@ inheritedMethods:
       return:
         description: a promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapter.process
   - name: 'process(Request, Response, (context: TurnContext) => Promise<void>)'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.process
     package: botbuilder-dialogs-adaptive-runtime
@@ -327,6 +345,7 @@ inheritedMethods:
       return:
         description: a promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapter.process
   - name: 'sendActivities(TurnContext, Partial<Activity>[])'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.sendActivities
     package: botbuilder-dialogs-adaptive-runtime
@@ -348,6 +367,7 @@ inheritedMethods:
       return:
         description: ''
         type: 'Promise&lt;ResourceResponse[]&gt;'
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.sendActivities
   - name: 'updateActivity(TurnContext, Partial<Activity>)'
     uid: botbuilder-dialogs-adaptive-runtime.CoreBotAdapter.updateActivity
     package: botbuilder-dialogs-adaptive-runtime
@@ -369,6 +389,7 @@ inheritedMethods:
       return:
         description: ''
         type: Promise&lt;ResourceResponse | void&gt;
+    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.updateActivity
   - name: >-
       use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
       Middleware[])
@@ -391,8 +412,9 @@ inheritedMethods:
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | Middleware[]
-          description: ''
+          description: The middleware or middleware handlers to add.
       return:
-        description: ''
+        description: The updated adapter object.
         type: this
+    inheritanceDescription: <b>Inherited From</b> BotAdapter.use
 extends: CloudAdapter

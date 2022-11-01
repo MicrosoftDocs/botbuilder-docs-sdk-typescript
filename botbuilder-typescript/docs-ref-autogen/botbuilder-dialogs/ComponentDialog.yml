@@ -95,6 +95,40 @@ constructors:
           description: |
             Optional. unique ID of the dialog.
 properties:
+  - name: id
+    uid: botbuilder-dialogs.ComponentDialog.id
+    package: botbuilder-dialogs
+    summary: |-
+      Unique ID of the dialog.
+      Sets the unique ID of the dialog.
+    fullName: id
+    remarks: This will be automatically generated if not specified.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: string id
+      return:
+        description: The Id for the dialog.
+        type: string
+  - name: telemetryClient
+    uid: botbuilder-dialogs.ComponentDialog.telemetryClient
+    package: botbuilder-dialogs
+    summary: |-
+      Set the telemetry client, and also apply it to all child dialogs.
+      Future dialogs added to the component will also inherit this client.
+      Get the current telemetry client.
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: BotTelemetryClient telemetryClient
+      return:
+        description: >-
+          The [BotTelemetryClient](xref:botbuilder.BotTelemetryClient) to use
+          for logging.
+        type: BotTelemetryClient
+inheritedProperties:
   - name: dialogs
     uid: botbuilder-dialogs.ComponentDialog.dialogs
     package: botbuilder-dialogs
@@ -108,6 +142,9 @@ properties:
       return:
         description: ''
         type: <xref uid="botbuilder-dialogs.DialogSet" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [DialogContainer.dialogs](xref:botbuilder-dialogs.DialogContainer.dialogs)
   - name: EndOfTurn
     uid: botbuilder-dialogs.ComponentDialog.EndOfTurn
     package: botbuilder-dialogs
@@ -126,37 +163,9 @@ properties:
       return:
         description: ''
         type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
-  - name: id
-    uid: botbuilder-dialogs.ComponentDialog.id
-    package: botbuilder-dialogs
-    summary: |-
-      Unique ID of the dialog.
-      Sets the unique ID of the dialog.
-    fullName: id
-    remarks: This will be automatically generated if not specified.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: string id
-      return:
-        description: ''
-        type: string
-  - name: telemetryClient
-    uid: botbuilder-dialogs.ComponentDialog.telemetryClient
-    package: botbuilder-dialogs
-    summary: |-
-      Set the telemetry client, and also apply it to all child dialogs.
-      Future dialogs added to the component will also inherit this client.
-      Get the current telemetry client.
-    fullName: telemetryClient
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: BotTelemetryClient telemetryClient
-      return:
-        description: ''
-        type: BotTelemetryClient
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.EndOfTurn](xref:botbuilder-dialogs.Dialog.EndOfTurn)
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs.ComponentDialog.configure
@@ -170,11 +179,15 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
   - name: findDialog(string)
     uid: botbuilder-dialogs.ComponentDialog.findDialog
     package: botbuilder-dialogs
@@ -187,11 +200,13 @@ inheritedMethods:
       parameters:
         - id: dialogId
           type: string
-          description: |
-            ID of the dialog to lookup.
+          description: ID of the dialog to lookup.
       return:
-        description: ''
+        description: The Dialog if found; otherwise null.
         type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [DialogContainer.findDialog](xref:botbuilder-dialogs.DialogContainer.findDialog)
   - name: getConverter(string)
     uid: botbuilder-dialogs.ComponentDialog.getConverter
     package: botbuilder-dialogs
@@ -204,12 +219,15 @@ inheritedMethods:
       parameters:
         - id: _property
           type: string
-          description: ''
+          description: The key of the conditional selector configuration.
       return:
-        description: ''
+        description: The converter for the selector configuration.
         type: >-
           <xref uid="botbuilder-dialogs.Converter" /> | <xref
           uid="botbuilder-dialogs.ConverterFactory" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
   - name: getVersion()
     uid: botbuilder-dialogs.ComponentDialog.getVersion
     package: botbuilder-dialogs
@@ -237,8 +255,13 @@ inheritedMethods:
     syntax:
       content: 'function getVersion(): string'
       return:
-        description: ''
+        description: >-
+          Unique string which should only change when dialog has changed in a
+          way that should restart the dialog.
         type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Dialog.getVersion](xref:botbuilder-dialogs.Dialog.getVersion)
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs.ComponentDialog.onDialogEvent
     package: botbuilder-dialogs
@@ -258,11 +281,15 @@ inheritedMethods:
           description: The dialog context for the current turn of conversation.
         - id: e
           type: <xref uid="botbuilder-dialogs.DialogEvent" />
-          description: |
-            The event being raised.
+          description: The event being raised.
       return:
-        description: ''
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
         type: Promise&lt;boolean&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [DialogContainer.onDialogEvent](xref:botbuilder-dialogs.DialogContainer.onDialogEvent)
 methods:
   - name: addDialog(Dialog)
     uid: botbuilder-dialogs.ComponentDialog.addDialog
@@ -282,7 +309,9 @@ methods:
           type: <xref uid="botbuilder-dialogs.Dialog" />
           description: 'The child [Dialog](xref:botbuilder-dialogs.Dialog) or prompt to add.'
       return:
-        description: ''
+        description: >-
+          The [ComponentDialog](xref:botbuilder-dialogs.ComponentDialog) after
+          the operation is complete.
         type: this
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs.ComponentDialog.beginDialog
@@ -367,10 +396,9 @@ methods:
       parameters:
         - id: outerDC
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: |
-            the outer dialog context
+          description: the outer dialog context
       return:
-        description: ''
+        description: The created Dialog Context.
         type: <xref uid="botbuilder-dialogs.DialogContext" />
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs.ComponentDialog.endDialog
@@ -459,16 +487,18 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function resumeDialog(outerDC: DialogContext, reason: DialogReason,
-        result?: any): Promise<DialogTurnResult>
+        function resumeDialog(outerDC: DialogContext, _reason: DialogReason,
+        _result?: any): Promise<DialogTurnResult>
       parameters:
         - id: outerDC
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: ''
-        - id: reason
+          description: >-
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) for the
+            current turn of conversation.
+        - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
           description: Reason why the dialog resumed.
-        - id: result
+        - id: _result
           type: any
           description: |-
             Optional, value returned from the dialog that was called. The type

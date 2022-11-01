@@ -37,9 +37,9 @@ remarks: >-
   For more information, see the articles on
 
   [How bots
-  work](/azure/bot-service/bot-builder-basics) and
+  work](https://docs.microsoft.com/azure/bot-service/bot-builder-basics) and
 
-  [Middleware](/azure/bot-service/bot-builder-concept-middleware).
+  [Middleware](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-middleware).
 isPreview: false
 isDeprecated: false
 type: class
@@ -110,7 +110,7 @@ properties:
     syntax:
       content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
       return:
-        description: ''
+        description: A promise representing the async operation.
         type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
 methods:
   - name: >-
@@ -281,29 +281,29 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function createConversationAsync(botAppId: string, channelId: string,
-        serviceUrl: string, audience: string, conversationParameters:
-        ConversationParameters, logic: (context: TurnContext) => Promise<void>):
-        Promise<void>
+        function createConversationAsync(_botAppId: string, _channelId: string,
+        _serviceUrl: string, _audience: string, _conversationParameters:
+        ConversationParameters, _logic: (context: TurnContext) =>
+        Promise<void>): Promise<void>
       parameters:
-        - id: botAppId
+        - id: _botAppId
           type: string
           description: The application ID of the bot.
-        - id: channelId
+        - id: _channelId
           type: string
           description: The ID for the channel.
-        - id: serviceUrl
+        - id: _serviceUrl
           type: string
           description: The ID for the channel.
-        - id: audience
+        - id: _audience
           type: string
           description: |-
             The audience for the connector.
             <param name="conversationParameters">
-        - id: conversationParameters
+        - id: _conversationParameters
           type: ConversationParameters
           description: The conversation information to use to create the conversation
-        - id: logic
+        - id: _logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
           description: The method to call for the resulting bot turn.
       return:
@@ -380,7 +380,7 @@ methods:
           description: |
             The activities to send.
       return:
-        description: 'An array of [ResourceResponse](xref:)'
+        description: 'An array of [ResourceResponse](xref:botbuilder-core.Storage)'
         type: 'Promise&lt;ResourceResponse[]&gt;'
   - name: 'updateActivity(TurnContext, Partial<Activity>)'
     uid: botbuilder-core.BotAdapter.updateActivity
@@ -438,7 +438,7 @@ methods:
           type: >-
             (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
             Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: ''
+          description: The middleware or middleware handlers to add.
       return:
-        description: ''
+        description: The updated adapter object.
         type: this

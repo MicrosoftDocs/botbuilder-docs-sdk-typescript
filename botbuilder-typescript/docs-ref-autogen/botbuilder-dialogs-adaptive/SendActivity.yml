@@ -68,6 +68,7 @@ properties:
       return:
         description: ''
         type: BoolExpression
+inheritedProperties:
   - name: EndOfTurn
     uid: botbuilder-dialogs-adaptive.SendActivity.EndOfTurn
     package: botbuilder-dialogs-adaptive
@@ -86,6 +87,7 @@ properties:
       return:
         description: ''
         type: DialogTurnResult
+    inheritanceDescription: <b>Inherited From</b> Dialog.EndOfTurn
   - name: id
     uid: botbuilder-dialogs-adaptive.SendActivity.id
     package: botbuilder-dialogs-adaptive
@@ -99,6 +101,7 @@ properties:
       return:
         description: ''
         type: string
+    inheritanceDescription: <b>Inherited From</b> Dialog.id
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.SendActivity.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -112,6 +115,7 @@ properties:
       return:
         description: ''
         type: BotTelemetryClient
+    inheritanceDescription: <b>Inherited From</b> Dialog.telemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.SendActivity.configure
@@ -125,11 +129,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.SendActivity.continueDialog
     package: botbuilder-dialogs-adaptive
@@ -167,8 +173,9 @@ inheritedMethods:
           description: |
             The context for the current dialog turn.
       return:
-        description: ''
+        description: A promise resolving to the dialog turn result.
         type: Promise&lt;DialogTurnResult&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.continueDialog
   - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
     uid: botbuilder-dialogs-adaptive.SendActivity.endDialog
     package: botbuilder-dialogs-adaptive
@@ -202,22 +209,23 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
-        reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance: DialogInstance,
+        _reason: DialogReason): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: DialogInstance
           description: Current state information for this dialog.
-        - id: reason
+        - id: _reason
           type: DialogReason
           description: |
             The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.endDialog
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.SendActivity.getVersion
     package: botbuilder-dialogs-adaptive
@@ -245,8 +253,11 @@ inheritedMethods:
     syntax:
       content: 'function getVersion(): string'
       return:
-        description: ''
+        description: >-
+          Unique string which should only change when dialog has changed in a
+          way that should restart the dialog.
         type: string
+    inheritanceDescription: <b>Inherited From</b> Dialog.getVersion
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs-adaptive.SendActivity.onDialogEvent
     package: botbuilder-dialogs-adaptive
@@ -272,6 +283,7 @@ inheritedMethods:
           True if the event is handled by the current dialog and bubbling should
           stop.
         type: Promise&lt;boolean&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.onDialogEvent
   - name: 'repromptDialog(TurnContext, DialogInstance)'
     uid: botbuilder-dialogs-adaptive.SendActivity.repromptDialog
     package: botbuilder-dialogs-adaptive
@@ -300,19 +312,20 @@ inheritedMethods:
     isDeprecated: false
     syntax:
       content: >-
-        function repromptDialog(context: TurnContext, instance: DialogInstance):
-        Promise<void>
+        function repromptDialog(_context: TurnContext, _instance:
+        DialogInstance): Promise<void>
       parameters:
-        - id: context
+        - id: _context
           type: TurnContext
           description: The context object for the turn.
-        - id: instance
+        - id: _instance
           type: DialogInstance
           description: |
             Current state information for this dialog.
       return:
         description: ''
         type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.repromptDialog
   - name: 'resumeDialog(DialogContext, DialogReason, any)'
     uid: botbuilder-dialogs-adaptive.SendActivity.resumeDialog
     package: botbuilder-dialogs-adaptive
@@ -373,8 +386,9 @@ inheritedMethods:
           description: |
             Optional. The return value, if any, from the dialog that ended.
       return:
-        description: ''
+        description: A promise resolving to the dialog turn result.
         type: Promise&lt;DialogTurnResult&gt;
+    inheritanceDescription: <b>Inherited From</b> Dialog.resumeDialog
 methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.SendActivity.beginDialog

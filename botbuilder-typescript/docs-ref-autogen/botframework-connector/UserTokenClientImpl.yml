@@ -26,21 +26,22 @@ constructors:
       parameters:
         - id: appId
           type: string
-          description: ''
+          description: The appId.
         - id: credentials
           type: ServiceClientCredentials
-          description: ''
+          description: AppCredentials for OAuth.
         - id: oauthEndpoint
           type: string
-          description: ''
+          description: The OAuth API endpoint.
         - id: connectorClientOptions
           type: <xref uid="botframework-connector.ConnectorClientOptions" />
-          description: ''
+          description: |
+            A ConnectorClientOptions object.
 methods:
   - name: 'exchangeToken(string, string, string, TokenExchangeRequest)'
     uid: botframework-connector.UserTokenClientImpl.exchangeToken
     package: botframework-connector
-    summary: ''
+    summary: Performs a token exchange operation such as for single sign-on.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -52,23 +53,27 @@ methods:
       parameters:
         - id: userId
           type: string
-          description: ''
+          description: The user id that will be associated with the token.
         - id: connectionName
           type: string
-          description: ''
+          description: Name of the auth connection to use.
         - id: channelId
           type: string
-          description: ''
+          description: The channel Id that will be associated with the token.
         - id: exchangeRequest
           type: TokenExchangeRequest
-          description: ''
+          description: >-
+            The exchange request details, either a token to exchange or a uri to
+            exchange.
       return:
-        description: ''
+        description: A promise representing the result of the operation.
         type: Promise&lt;TokenResponse&gt;
   - name: 'getAadTokens(string, string, string[], string)'
     uid: botframework-connector.UserTokenClientImpl.getAadTokens
     package: botframework-connector
-    summary: ''
+    summary: >-
+      Retrieves Azure Active Directory tokens for particular resources on a
+      configured connection.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -80,23 +85,27 @@ methods:
       parameters:
         - id: userId
           type: string
-          description: ''
+          description: The user id that will be associated with the token.
         - id: connectionName
           type: string
-          description: ''
+          description: Name of the auth connection to use.
         - id: resourceUrls
           type: 'string[]'
-          description: ''
+          description: The list of resource URLs to retrieve tokens for.
         - id: channelId
           type: string
-          description: ''
+          description: The channel Id that will be associated with the token.
       return:
-        description: ''
+        description: >-
+          A promise of Dictionary of resourceUrl to the corresponding
+          TokenResponse.
         type: 'Promise&lt;Record&lt;string, TokenResponse&gt;&gt;'
   - name: 'getSignInResource(string, Activity, string)'
     uid: botframework-connector.UserTokenClientImpl.getSignInResource
     package: botframework-connector
-    summary: ''
+    summary: >-
+      Asynchronously Get the raw signin resource to be sent to the user for
+      signin.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -107,20 +116,24 @@ methods:
       parameters:
         - id: connectionName
           type: string
-          description: ''
+          description: Name of the auth connection to use.
         - id: activity
           type: Activity
-          description: ''
+          description: The Activity from which to derive the token exchange state.
         - id: finalRedirect
           type: string
-          description: ''
+          description: The final URL that the OAuth flow will redirect to.
       return:
-        description: ''
+        description: >-
+          The [SignInUrlResponse](xref:botframework-schema.SignInUrlResponse)
+          resource.
         type: Promise&lt;SignInUrlResponse&gt;
   - name: 'getTokenStatus(string, string, string)'
     uid: botframework-connector.UserTokenClientImpl.getTokenStatus
     package: botframework-connector
-    summary: ''
+    summary: >-
+      Retrieves the token status for each configured connection for the given
+      user.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -131,20 +144,20 @@ methods:
       parameters:
         - id: userId
           type: string
-          description: ''
+          description: The user id that will be associated with the token.
         - id: channelId
           type: string
-          description: ''
+          description: The channel Id that will be associated with the token.
         - id: includeFilter
           type: string
-          description: ''
+          description: The includeFilter.
       return:
-        description: ''
+        description: A promise with an Array of the Token Status.
         type: 'Promise&lt;TokenStatus[]&gt;'
   - name: 'getUserToken(string, string, string, string)'
     uid: botframework-connector.UserTokenClientImpl.getUserToken
     package: botframework-connector
-    summary: ''
+    summary: Attempts to retrieve the token for a user that's in a login flow.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -155,23 +168,23 @@ methods:
       parameters:
         - id: userId
           type: string
-          description: ''
+          description: The user id that will be associated with the token.
         - id: connectionName
           type: string
-          description: ''
+          description: Name of the auth connection to use.
         - id: channelId
           type: string
-          description: ''
+          description: The channel Id that will be associated with the token.
         - id: magicCode
           type: string
-          description: ''
+          description: (Optional) Optional user entered code to validate.
       return:
-        description: ''
+        description: The token Response.
         type: Promise&lt;TokenResponse&gt;
   - name: 'signOutUser(string, string, string)'
     uid: botframework-connector.UserTokenClientImpl.signOutUser
     package: botframework-connector
-    summary: ''
+    summary: Signs the user out with the token server.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -182,13 +195,14 @@ methods:
       parameters:
         - id: userId
           type: string
-          description: ''
+          description: The user id that will be associated with the token.
         - id: connectionName
           type: string
-          description: ''
+          description: Name of the auth connection to use.
         - id: channelId
           type: string
-          description: ''
+          description: |
+            The channel Id that will be associated with the token.
       return:
         description: ''
         type: Promise&lt;void&gt;

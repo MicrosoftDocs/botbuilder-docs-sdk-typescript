@@ -20,6 +20,8 @@ methods:
     remarks: >-
       It should be possible to use the returned string on a request URL and it
       should not contain special characters.
+
+      Returns A unique conversation ID used to communicate with the skill.
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: >-
@@ -27,14 +29,14 @@ methods:
       with SkillConversationIdFactoryOptions instead.
     syntax:
       content: >-
-        function createSkillConversationId(conversationReference:
+        function createSkillConversationId(_conversationReference:
         ConversationReference): Promise<string>
       parameters:
-        - id: conversationReference
+        - id: _conversationReference
           type: ConversationReference
           description: The skill's caller ConversationReference.
       return:
-        description: A unique conversation ID used to communicate with the skill.
+        description: ''
         type: Promise&lt;string&gt;
   - name: createSkillConversationIdWithOptions(SkillConversationIdFactoryOptions)
     uid: >-
@@ -46,18 +48,23 @@ methods:
     remarks: >-
       It should be possible to use the returned string on a request URL and it
       should not contain special characters.
+
+      Returns A unique conversation ID used to communicate with the skill.
     isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function createSkillConversationIdWithOptions(options:
+        function createSkillConversationIdWithOptions(_options:
         SkillConversationIdFactoryOptions): Promise<string>
       parameters:
-        - id: options
+        - id: _options
           type: <xref uid="botbuilder-core.SkillConversationIdFactoryOptions" />
-          description: ''
+          description: >-
+            The
+            [SkillConversationIdFactoryOptions](xref:botbuilder-core.SkillConversationIdFactoryOptions)
+            to use.
       return:
-        description: A unique conversation ID used to communicate with the skill.
+        description: ''
         type: Promise&lt;string&gt;
   - name: deleteConversationReference(string)
     uid: botbuilder-core.SkillConversationIdFactoryBase.deleteConversationReference
@@ -84,22 +91,22 @@ methods:
     summary: >-
       Gets the ConversationReference created using createSkillConversationId()
       for a skillConversationId.
-    remarks: ''
+    remarks: >-
+      Returns The caller's ConversationReference for a skillConversationId. null
+      if not found.
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: 'Method is deprecated, please use getSkillConversationReference() instead.'
     syntax:
       content: >-
-        function getConversationReference(skillConversationId: string):
+        function getConversationReference(_skillConversationId: string):
         Promise<ConversationReference>
       parameters:
-        - id: skillConversationId
+        - id: _skillConversationId
           type: string
-          description: '>A skill conversationId created using createSkillConversationId().'
+          description: A skill conversationId created using createSkillConversationId().
       return:
-        description: >-
-          The caller's ConversationReference for a skillConversationId. null if
-          not found.
+        description: ''
         type: Promise&lt;ConversationReference&gt;
   - name: getSkillConversationReference(string)
     uid: >-
@@ -113,10 +120,10 @@ methods:
     isDeprecated: false
     syntax:
       content: >-
-        function getSkillConversationReference(skillConversationId: string):
+        function getSkillConversationReference(_skillConversationId: string):
         Promise<SkillConversationReference>
       parameters:
-        - id: skillConversationId
+        - id: _skillConversationId
           type: string
           description: >
             Gets the SkillConversationReference used during

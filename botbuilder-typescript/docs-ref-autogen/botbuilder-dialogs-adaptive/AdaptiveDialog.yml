@@ -87,37 +87,6 @@ properties:
       return:
         description: ''
         type: string
-  - name: dialogs
-    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.dialogs
-    package: botbuilder-dialogs-adaptive
-    summary: The containers dialog set.
-    fullName: dialogs
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'dialogs: DialogSet'
-      return:
-        description: ''
-        type: DialogSet
-  - name: EndOfTurn
-    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.EndOfTurn
-    package: botbuilder-dialogs-adaptive
-    summary: Gets a default end-of-turn result.
-    fullName: EndOfTurn
-    remarks: >-
-      This result indicates that a dialog (or a logical step within a dialog)
-      has completed
-
-      processing for the current turn, is still active, and is waiting for more
-      input.
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
-      return:
-        description: ''
-        type: DialogTurnResult
   - name: generator
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.generator
     package: botbuilder-dialogs-adaptive
@@ -131,19 +100,6 @@ properties:
       return:
         description: ''
         type: <xref uid="botbuilder-dialogs-adaptive.LanguageGenerator" />
-  - name: id
-    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.id
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    fullName: id
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'id: string'
-      return:
-        description: ''
-        type: string
   - name: recognizer
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.recognizer
     package: botbuilder-dialogs-adaptive
@@ -185,19 +141,6 @@ properties:
       return:
         description: ''
         type: <xref uid="botbuilder-dialogs-adaptive.TriggerSelector" />
-  - name: telemetryClient
-    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.telemetryClient
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    fullName: telemetryClient
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'telemetryClient: BotTelemetryClient'
-      return:
-        description: ''
-        type: BotTelemetryClient
   - name: triggers
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.triggers
     package: botbuilder-dialogs-adaptive
@@ -211,6 +154,68 @@ properties:
       return:
         description: ''
         type: '<xref uid="botbuilder-dialogs-adaptive.OnCondition" />[]'
+inheritedProperties:
+  - name: dialogs
+    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.dialogs
+    package: botbuilder-dialogs-adaptive
+    summary: The containers dialog set.
+    fullName: dialogs
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'dialogs: DialogSet'
+      return:
+        description: ''
+        type: DialogSet
+    inheritanceDescription: <b>Inherited From</b> DialogContainer.dialogs
+  - name: EndOfTurn
+    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.EndOfTurn
+    package: botbuilder-dialogs-adaptive
+    summary: Gets a default end-of-turn result.
+    fullName: EndOfTurn
+    remarks: >-
+      This result indicates that a dialog (or a logical step within a dialog)
+      has completed
+
+      processing for the current turn, is still active, and is waiting for more
+      input.
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'static EndOfTurn: DialogTurnResult'
+      return:
+        description: ''
+        type: DialogTurnResult
+    inheritanceDescription: <b>Inherited From</b> Dialog.EndOfTurn
+  - name: id
+    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.id
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: id
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'id: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: <b>Inherited From</b> Dialog.id
+  - name: telemetryClient
+    uid: botbuilder-dialogs-adaptive.AdaptiveDialog.telemetryClient
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: telemetryClient
+    remarks: ''
+    isPreview: false
+    isDeprecated: false
+    syntax:
+      content: 'telemetryClient: BotTelemetryClient'
+      return:
+        description: ''
+        type: BotTelemetryClient
+    inheritanceDescription: <b>Inherited From</b> DialogContainer.telemetryClient
 inheritedMethods:
   - name: 'configure(Record<string, unknown>)'
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.configure
@@ -224,11 +229,13 @@ inheritedMethods:
       parameters:
         - id: config
           type: 'Record&lt;string, unknown&gt;'
-          description: |
-            Configuration settings to apply.
+          description: Configuration settings to apply.
       return:
-        description: ''
+        description: >-
+          The [Configurable](xref:botbuilder-dialogs.Configurable) after the
+          operation is complete.
         type: this
+    inheritanceDescription: <b>Inherited From</b> Configurable.configure
   - name: findDialog(string)
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.findDialog
     package: botbuilder-dialogs-adaptive
@@ -241,11 +248,11 @@ inheritedMethods:
       parameters:
         - id: dialogId
           type: string
-          description: |
-            ID of the dialog to lookup.
+          description: ID of the dialog to lookup.
       return:
-        description: ''
+        description: The Dialog if found; otherwise null.
         type: Dialog | undefined
+    inheritanceDescription: <b>Inherited From</b> DialogContainer.findDialog
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.getVersion
     package: botbuilder-dialogs-adaptive
@@ -273,8 +280,11 @@ inheritedMethods:
     syntax:
       content: 'function getVersion(): string'
       return:
-        description: ''
+        description: >-
+          Unique string which should only change when dialog has changed in a
+          way that should restart the dialog.
         type: string
+    inheritanceDescription: <b>Inherited From</b> Dialog.getVersion
   - name: 'onDialogEvent(DialogContext, DialogEvent)'
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.onDialogEvent
     package: botbuilder-dialogs-adaptive
@@ -294,11 +304,13 @@ inheritedMethods:
           description: The dialog context for the current turn of conversation.
         - id: e
           type: DialogEvent
-          description: |
-            The event being raised.
+          description: The event being raised.
       return:
-        description: ''
+        description: >-
+          True if the event is handled by the current dialog and bubbling should
+          stop.
         type: Promise&lt;boolean&gt;
+    inheritanceDescription: <b>Inherited From</b> DialogContainer.onDialogEvent
 methods:
   - name: 'beginDialog(DialogContext, O)'
     uid: botbuilder-dialogs-adaptive.AdaptiveDialog.beginDialog

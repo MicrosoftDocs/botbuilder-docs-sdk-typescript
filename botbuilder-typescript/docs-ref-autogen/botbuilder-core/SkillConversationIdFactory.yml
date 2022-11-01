@@ -2,7 +2,10 @@
 name: SkillConversationIdFactory
 uid: botbuilder-core.SkillConversationIdFactory
 package: botbuilder-core
-summary: ''
+summary: >-
+  A SkillConversationIdFactory that stores and retrieves
+  [ConversationReference](xref:botframework-schema:ConversationReference)
+  instances.
 fullName: SkillConversationIdFactory
 remarks: ''
 isPreview: false
@@ -12,7 +15,7 @@ constructors:
   - name: SkillConversationIdFactory(Storage)
     uid: botbuilder-core.SkillConversationIdFactory.constructor
     package: botbuilder-core
-    summary: ''
+    summary: Creates a new instance of the SkillConversationIdFactory class.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -21,7 +24,10 @@ constructors:
       parameters:
         - id: storage
           type: <xref uid="botbuilder-core.Storage" />
-          description: ''
+          description: >
+            The storage for the
+            [ConversationReference](xref:botframework-schema:ConversationReference)
+            instances.
 inheritedMethods:
   - name: createSkillConversationId(ConversationReference)
     uid: botbuilder-core.SkillConversationIdFactory.createSkillConversationId
@@ -32,6 +38,8 @@ inheritedMethods:
     remarks: >-
       It should be possible to use the returned string on a request URL and it
       should not contain special characters.
+
+      Returns A unique conversation ID used to communicate with the skill.
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: >-
@@ -39,44 +47,52 @@ inheritedMethods:
       with SkillConversationIdFactoryOptions instead.
     syntax:
       content: >-
-        function createSkillConversationId(conversationReference:
+        function createSkillConversationId(_conversationReference:
         ConversationReference): Promise<string>
       parameters:
-        - id: conversationReference
+        - id: _conversationReference
           type: ConversationReference
           description: The skill's caller ConversationReference.
       return:
-        description: A unique conversation ID used to communicate with the skill.
+        description: ''
         type: Promise&lt;string&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [SkillConversationIdFactoryBase.createSkillConversationId](xref:botbuilder-core.SkillConversationIdFactoryBase.createSkillConversationId)
   - name: getConversationReference(string)
     uid: botbuilder-core.SkillConversationIdFactory.getConversationReference
     package: botbuilder-core
     summary: >-
       Gets the ConversationReference created using createSkillConversationId()
       for a skillConversationId.
-    remarks: ''
+    remarks: >-
+      Returns The caller's ConversationReference for a skillConversationId. null
+      if not found.
     isPreview: false
     isDeprecated: true
     customDeprecatedMessage: 'Method is deprecated, please use getSkillConversationReference() instead.'
     syntax:
       content: >-
-        function getConversationReference(skillConversationId: string):
+        function getConversationReference(_skillConversationId: string):
         Promise<ConversationReference>
       parameters:
-        - id: skillConversationId
+        - id: _skillConversationId
           type: string
-          description: '>A skill conversationId created using createSkillConversationId().'
+          description: A skill conversationId created using createSkillConversationId().
       return:
-        description: >-
-          The caller's ConversationReference for a skillConversationId. null if
-          not found.
+        description: ''
         type: Promise&lt;ConversationReference&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [SkillConversationIdFactoryBase.getConversationReference](xref:botbuilder-core.SkillConversationIdFactoryBase.getConversationReference)
 methods:
   - name: createSkillConversationIdWithOptions(SkillConversationIdFactoryOptions)
     uid: >-
       botbuilder-core.SkillConversationIdFactory.createSkillConversationIdWithOptions
     package: botbuilder-core
-    summary: ''
+    summary: >-
+      Creates a conversation ID for a skill conversation based on the caller's
+      [ConversationReference](xref:botframework-schema:ConversationReference).
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -87,14 +103,20 @@ methods:
       parameters:
         - id: options
           type: <xref uid="botbuilder-core.SkillConversationIdFactoryOptions" />
-          description: ''
+          description: >-
+            The
+            [SkillConversationIdFactoryOptions](xref:botbuilder-core.SkillConversationIdFactoryOptions)
+            to use.
       return:
-        description: ''
+        description: A unique conversation ID used to communicate with the skill.
         type: Promise&lt;string&gt;
   - name: deleteConversationReference(string)
     uid: botbuilder-core.SkillConversationIdFactory.deleteConversationReference
     package: botbuilder-core
-    summary: ''
+    summary: >-
+      Deletes the
+      [SkillConversationReference](xref:botbuilder-core.SkillConversationReference)
+      from the storage.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -105,14 +127,16 @@ methods:
       parameters:
         - id: skillConversationId
           type: string
-          description: ''
+          description: The skill conversation id to use as key for the delete.
       return:
-        description: ''
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
   - name: getSkillConversationReference(string)
     uid: botbuilder-core.SkillConversationIdFactory.getSkillConversationReference
     package: botbuilder-core
-    summary: ''
+    summary: >-
+      Gets the ConversationReference created using createSkillConversationId()
+      for a skillConversationId.
     remarks: ''
     isPreview: false
     isDeprecated: false
@@ -123,9 +147,11 @@ methods:
       parameters:
         - id: skillConversationId
           type: string
-          description: ''
+          description: A skill conversationId created using createSkillConversationId().
       return:
-        description: ''
+        description: >-
+          The caller's ConversationReference for a skillConversationId. Null if
+          not found.
         type: >-
           Promise&lt;<xref uid="botbuilder-core.SkillConversationReference"
           />&gt;

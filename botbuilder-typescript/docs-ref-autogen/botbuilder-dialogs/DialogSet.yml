@@ -128,7 +128,9 @@ properties:
     syntax:
       content: BotTelemetryClient telemetryClient
       return:
-        description: ''
+        description: >-
+          The [BotTelemetryClient](xref:botbuilder.BotTelemetryClient) to use
+          for logging.
         type: BotTelemetryClient
 methods:
   - name: add<T>(T)
@@ -153,13 +155,13 @@ methods:
       parameters:
         - id: dialog
           type: T
-          description: >
+          description: >-
             The dialog or prompt to add.
 
             If a telemetryClient is present on the dialog set, it will be added
             to each dialog.
       return:
-        description: ''
+        description: The dialog set after the operation is complete.
         type: this
   - name: createContext(TurnContext)
     uid: botbuilder-dialogs.DialogSet.createContext
@@ -175,10 +177,9 @@ methods:
       parameters:
         - id: context
           type: TurnContext
-          description: |
-            Context for the current turn of conversation with the user.
+          description: Context for the current turn of conversation with the user.
       return:
-        description: ''
+        description: A promise representing the asynchronous operation.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogContext" />&gt;
   - name: find(string)
     uid: botbuilder-dialogs.DialogSet.find
@@ -197,10 +198,9 @@ methods:
       parameters:
         - id: dialogId
           type: string
-          description: |
-            ID of the dialog or prompt to lookup.
+          description: ID of the dialog or prompt to lookup.
       return:
-        description: ''
+        description: The dialog if found; otherwise undefined.
         type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
   - name: getDialogs()
     uid: botbuilder-dialogs.DialogSet.getDialogs
@@ -226,5 +226,7 @@ methods:
     syntax:
       content: 'function getVersion(): string'
       return:
-        description: ''
+        description: >-
+          A version that will change when any of the child dialogs version
+          changes.
         type: string
