@@ -9,7 +9,6 @@ summary: >-
   create a WebSocket server.
 fullName: NodeWebSocket
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -20,15 +19,13 @@ constructors:
       Creates a new [NodeWebSocket](xref:botframework-streaming.NodeWebSocket)
       instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new NodeWebSocket(wsSocket?: WebSocket)'
       parameters:
         - id: wsSocket
           type: WebSocket
-          description: |
-            The `ws` WebSocket instance to build this connection on.
+          description: The `ws` WebSocket instance to build this connection on.
 properties:
   - name: isConnected
     uid: botframework-streaming.NodeWebSocket.isConnected
@@ -38,7 +35,6 @@ properties:
       messages.
     fullName: isConnected
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: boolean isConnected
@@ -48,14 +44,13 @@ properties:
           messages, otherwise `false`.
         type: boolean
 methods:
-  - name: 'close(number, string)'
+  - name: close(number, string)
     uid: botframework-streaming.NodeWebSocket.close
     package: botframework-streaming
     summary: Close the socket.
     remarks: >-
       Optionally pass in a status code and string explaining why the connection
       is closing.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function close(code?: number, data?: string)'
@@ -65,35 +60,36 @@ methods:
           description: Optional status code to explain why the connection has closed.
         - id: data
           type: string
-          description: |
-            Optional additional data to explain why the connection has closed.
-  - name: 'connect(string, number)'
+          description: Optional additional data to explain why the connection has closed.
+  - name: connect(string, number)
     uid: botframework-streaming.NodeWebSocket.connect
     package: botframework-streaming
     summary: Connects to the supporting socket using WebSocket protocol.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function connect(serverAddress: string, port?: number): Promise<void>'
+      content: >-
+        function connect(serverAddressOrHostName: string, port?: number):
+        Promise<void>
       parameters:
-        - id: serverAddress
+        - id: serverAddressOrHostName
           type: string
-          description: The address the server is listening on.
+          description: The host name or URL the server is listening on.
         - id: port
           type: number
-          description: 'The port the server is listening on, defaults to 8082.'
+          description: >-
+            If `serverAddressOrHostName` is a host name, the port the server is
+            listening on, defaults to 8082. Otherwise, this argument is ignored.
       return:
         description: >-
           A Promise that resolves when the websocket connection is closed, or
           rejects on an error.
         type: Promise&lt;void&gt;
-  - name: 'create(INodeIncomingMessage, INodeSocket, INodeBuffer)'
+  - name: create(INodeIncomingMessage, INodeSocket, INodeBuffer)
     uid: botframework-streaming.NodeWebSocket.create
     package: botframework-streaming
-    summary: 'Create and set a `ws` WebSocket with an HTTP Request, Socket and Buffer.'
+    summary: Create and set a `ws` WebSocket with an HTTP Request, Socket and Buffer.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -126,56 +122,46 @@ methods:
     package: botframework-streaming
     summary: Set the callback to call when encountering socket closures.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function setOnCloseHandler(handler: (x: any) => void)'
       parameters:
         - id: handler
           type: '(x: any) =&gt; void'
-          description: |
-            The callback to handle the "close" event.
+          description: The callback to handle the "close" event.
   - name: 'setOnErrorHandler((x: any) => void)'
     uid: botframework-streaming.NodeWebSocket.setOnErrorHandler
     package: botframework-streaming
     summary: Set the callback to call when encountering errors.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function setOnErrorHandler(handler: (x: any) => void)'
       parameters:
         - id: handler
           type: '(x: any) =&gt; void'
-          description: |
-            The callback to handle the "error" event.
+          description: The callback to handle the "error" event.
   - name: 'setOnMessageHandler((x: any) => void)'
     uid: botframework-streaming.NodeWebSocket.setOnMessageHandler
     package: botframework-streaming
-    summary: >-
-      Set the handler for `'data'` and `'message'` events received on the
-      socket.
+    summary: Set the handler for `'message'` events received on the socket.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function setOnMessageHandler(handler: (x: any) => void)'
       parameters:
         - id: handler
           type: '(x: any) =&gt; void'
-          description: |
-            The callback to handle the "message" event.
+          description: The callback to handle the "message" event.
   - name: write(INodeBuffer)
     uid: botframework-streaming.NodeWebSocket.write
     package: botframework-streaming
     summary: Writes a buffer to the socket and sends it.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function write(buffer: INodeBuffer)'
       parameters:
         - id: buffer
           type: <xref uid="botframework-streaming.INodeBuffer" />
-          description: |
-            The buffer of data to send across the connection.
+          description: The buffer of data to send across the connection.

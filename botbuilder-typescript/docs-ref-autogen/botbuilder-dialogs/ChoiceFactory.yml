@@ -26,12 +26,11 @@ remarks: >-
   await context.sendActivity(message);
 
   ```
-isPreview: false
 isDeprecated: false
 type: class
 methods:
   - name: >-
-      forChannel(string | TurnContext, string | Choice[], string, string,
+      forChannel(string | TurnContext, (string | Choice)[], string, string,
       ChoiceFactoryOptions)
     uid: botbuilder-dialogs.ChoiceFactory.forChannel
     package: botbuilder-dialogs
@@ -69,19 +68,18 @@ methods:
       await context.sendActivity(message);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function forChannel(channelOrContext: string | TurnContext,
-        choices: string | Choice[], text?: string, speak?: string, options?:
+        choices: (string | Choice)[], text?: string, speak?: string, options?:
         ChoiceFactoryOptions): Partial<Activity>
       parameters:
         - id: channelOrContext
           type: string | TurnContext
           description: Channel ID or context object for the current turn of conversation.
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
           description: List of choices to render.
         - id: text
           type: string
@@ -95,7 +93,7 @@ methods:
       return:
         description: The created message activity.
         type: Partial&lt;Activity&gt;
-  - name: 'heroCard(string | Choice[], string, string)'
+  - name: heroCard((string | Choice)[], string, string)
     uid: botbuilder-dialogs.ChoiceFactory.heroCard
     package: botbuilder-dialogs
     summary: >-
@@ -103,16 +101,15 @@ methods:
       includes a [Choice](xref:botbuilder-dialogs.Choice) list that have been
       added as `HeroCard`'s.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function heroCard(choices?: string | Choice[], text?: string,
+        static function heroCard(choices?: (string | Choice)[], text?: string,
         speak?: string): Activity
       parameters:
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
-          description: 'Optional. The [Choice](xref:botbuilder-dialogs.Choice) list to add.'
+          type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
+          description: Optional. The [Choice](xref:botbuilder-dialogs.Choice) list to add.
         - id: text
           type: string
           description: Optional. Text of the message.
@@ -126,7 +123,7 @@ methods:
           An [Activity](xref:botframework-schema.Activity) with choices as
           `HeroCard` with buttons.
         type: Activity
-  - name: 'inline(string | Choice[], string, string, ChoiceFactoryOptions)'
+  - name: inline((string | Choice)[], string, string, ChoiceFactoryOptions)
     uid: botbuilder-dialogs.ChoiceFactory.inline
     package: botbuilder-dialogs
     summary: >-
@@ -147,15 +144,14 @@ methods:
       await context.sendActivity(message);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function inline(choices: string | Choice[], text?: string,
+        static function inline(choices: (string | Choice)[], text?: string,
         speak?: string, options?: ChoiceFactoryOptions): Partial<Activity>
       parameters:
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
           description: List of choices to render.
         - id: text
           type: string
@@ -169,7 +165,7 @@ methods:
       return:
         description: The created message activity.
         type: Partial&lt;Activity&gt;
-  - name: 'list(string | Choice[], string, string, ChoiceFactoryOptions)'
+  - name: list((string | Choice)[], string, string, ChoiceFactoryOptions)
     uid: botbuilder-dialogs.ChoiceFactory.list
     package: botbuilder-dialogs
     summary: >-
@@ -190,15 +186,14 @@ methods:
       await context.sendActivity(message);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function list(choices: string | Choice[], text?: string, speak?:
-        string, options?: ChoiceFactoryOptions): Partial<Activity>
+        static function list(choices: (string | Choice)[], text?: string,
+        speak?: string, options?: ChoiceFactoryOptions): Partial<Activity>
       parameters:
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
           description: List of choices to render.
         - id: text
           type: string
@@ -212,7 +207,7 @@ methods:
       return:
         description: The created message activity.
         type: Partial&lt;Activity&gt;
-  - name: 'suggestedAction(string | Choice[], string, string)'
+  - name: suggestedAction((string | Choice)[], string, string)
     uid: botbuilder-dialogs.ChoiceFactory.suggestedAction
     package: botbuilder-dialogs
     summary: >-
@@ -233,15 +228,14 @@ methods:
       await context.sendActivity(message);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function suggestedAction(choices: string | Choice[], text?:
+        static function suggestedAction(choices: (string | Choice)[], text?:
         string, speak?: string): Partial<Activity>
       parameters:
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
           description: List of choices to add.
         - id: text
           type: string
@@ -252,7 +246,7 @@ methods:
       return:
         description: An activity with choices as suggested actions.
         type: Partial&lt;Activity&gt;
-  - name: 'toChoices(string | Choice[] | undefined)'
+  - name: toChoices(undefined | (string | Choice)[])
     uid: botbuilder-dialogs.ChoiceFactory.toChoices
     package: botbuilder-dialogs
     summary: >-
@@ -274,16 +268,15 @@ methods:
       const choices = ChoiceFactory.toChoices(['red', 'green', 'blue']);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function toChoices(choices: string | Choice[] | undefined):
+        static function toChoices(choices: undefined | (string | Choice)[]):
         Choice[]
       parameters:
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[] | undefined'
+          type: undefined | (string | <xref uid="botbuilder-dialogs.Choice" />)[]
           description: List of choices to add.
       return:
         description: A list of choices.
-        type: '<xref uid="botbuilder-dialogs.Choice" />[]'
+        type: <xref uid="botbuilder-dialogs.Choice" />[]

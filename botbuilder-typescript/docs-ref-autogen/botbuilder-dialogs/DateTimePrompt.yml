@@ -3,20 +3,18 @@ name: DateTimePrompt
 uid: botbuilder-dialogs.DateTimePrompt
 package: botbuilder-dialogs
 summary: Prompts a user to enter a datetime expression.
-fullName: DateTimePrompt<O>
+fullName: DateTimePrompt
 remarks: >-
   By default the prompt will return to the calling dialog a
   `DateTimeResolution[]`.
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'DateTimePrompt(string, PromptValidator<DateTimeResolution[]>, string)'
+  - name: DateTimePrompt(string, PromptValidator<DateTimeResolution[]>, string)
     uid: botbuilder-dialogs.DateTimePrompt.constructor
     package: botbuilder-dialogs
     summary: Creates a new DateTimePrompt instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -37,7 +35,7 @@ constructors:
             to the prompt.
         - id: defaultLocale
           type: string
-          description: >
+          description: >-
             (Optional) locale to use if `TurnContext.activity.locale` is not
             specified. Defaults to a value of `en-us`.
 properties:
@@ -47,22 +45,18 @@ properties:
     summary: The prompts default locale that should be recognized.
     fullName: defaultLocale
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'defaultLocale: string | undefined'
+      content: 'defaultLocale: undefined | string'
       return:
         description: ''
-        type: string | undefined
+        type: undefined | string
   - name: id
     uid: botbuilder-dialogs.DateTimePrompt.id
     package: botbuilder-dialogs
-    summary: |-
-      Unique ID of the dialog.
-      Sets the unique ID of the dialog.
+    summary: Unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: string id
@@ -72,12 +66,9 @@ properties:
   - name: telemetryClient
     uid: botbuilder-dialogs.DateTimePrompt.telemetryClient
     package: botbuilder-dialogs
-    summary: |-
-      Gets the telemetry client for this dialog.
-      Sets the telemetry client for this dialog.
+    summary: Gets the telemetry client for this dialog.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: BotTelemetryClient telemetryClient
@@ -98,18 +89,17 @@ inheritedProperties:
 
       processing for the current turn, is still active, and is waiting for more
       input.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
+      content: 'static EndOfTurn: DialogTurnResult<any>'
       return:
         description: ''
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />&lt;any&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Dialog.EndOfTurn](xref:botbuilder-dialogs.Dialog.EndOfTurn)
+      [Prompt.EndOfTurn](xref:botbuilder-dialogs.Prompt.EndOfTurn)
 inheritedMethods:
-  - name: 'beginDialog(DialogContext, PromptOptions)'
+  - name: beginDialog(DialogContext, PromptOptions)
     uid: botbuilder-dialogs.DateTimePrompt.beginDialog
     package: botbuilder-dialogs
     summary: >-
@@ -120,12 +110,11 @@ inheritedMethods:
       still
 
       active after the turn has been processed by the prompt.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dc: DialogContext, options: PromptOptions):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -141,31 +130,32 @@ inheritedMethods:
             additional information to pass to the prompt being started.
       return:
         description: A `Promise` representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Prompt.beginDialog](xref:botbuilder-dialogs.Prompt.beginDialog)
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs.DateTimePrompt.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): DateTimePrompt'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
+        type: <xref uid="botbuilder-dialogs.DateTimePrompt" />
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
+      [Prompt.configure](xref:botbuilder-dialogs.Prompt.configure)
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.DateTimePrompt.continueDialog
     package: botbuilder-dialogs
@@ -182,10 +172,11 @@ inheritedMethods:
       accepts the
 
       user's reply as valid input for the prompt.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
+      content: >-
+        function continueDialog(dc: DialogContext):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -194,11 +185,13 @@ inheritedMethods:
             current turn of conversation.
       return:
         description: A `Promise` representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Prompt.continueDialog](xref:botbuilder-dialogs.Prompt.continueDialog)
-  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+  - name: endDialog(TurnContext, DialogInstance<any>, DialogReason)
     uid: botbuilder-dialogs.DateTimePrompt.endDialog
     package: botbuilder-dialogs
     summary: >-
@@ -227,38 +220,37 @@ inheritedMethods:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(_context: TurnContext, _instance: DialogInstance,
-        _reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance:
+        DialogInstance<any>, _reason: DialogReason): Promise<void>
       parameters:
         - id: _context
           type: TurnContext
           description: The context object for the turn.
         - id: _instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
           description: Current state information for this dialog.
         - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: |
-            The reason the dialog is ending.
+          description: The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog)
+      [Prompt.endDialog](xref:botbuilder-dialogs.Prompt.endDialog)
   - name: getConverter(string)
     uid: botbuilder-dialogs.DateTimePrompt.getConverter
     package: botbuilder-dialogs
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      content: >-
+        function getConverter(_property: string): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: _property
           type: string
@@ -266,11 +258,12 @@ inheritedMethods:
       return:
         description: The converter for the selector configuration.
         type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
+          <xref uid="botbuilder-dialogs.Converter" />&lt;unknown, unknown&gt; |
+          <xref uid="botbuilder-dialogs.ConverterFactory" />&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
+      [Prompt.getConverter](xref:botbuilder-dialogs.Prompt.getConverter)
   - name: getVersion()
     uid: botbuilder-dialogs.DateTimePrompt.getVersion
     package: botbuilder-dialogs
@@ -293,7 +286,6 @@ inheritedMethods:
 
       Returning an empty string will disable version tracking for the component
       all together.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getVersion(): string'
@@ -304,15 +296,14 @@ inheritedMethods:
         type: string
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Dialog.getVersion](xref:botbuilder-dialogs.Dialog.getVersion)
-  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+      [Prompt.getVersion](xref:botbuilder-dialogs.Prompt.getVersion)
+  - name: onDialogEvent(DialogContext, DialogEvent)
     uid: botbuilder-dialogs.DateTimePrompt.onDialogEvent
     package: botbuilder-dialogs
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -332,30 +323,33 @@ inheritedMethods:
         type: Promise&lt;boolean&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Dialog.onDialogEvent](xref:botbuilder-dialogs.Dialog.onDialogEvent)
-  - name: 'repromptDialog(TurnContext, DialogInstance)'
+      [Prompt.onDialogEvent](xref:botbuilder-dialogs.Prompt.onDialogEvent)
+  - name: repromptDialog(TurnContext, DialogInstance<any>)
     uid: botbuilder-dialogs.DateTimePrompt.repromptDialog
     package: botbuilder-dialogs
     summary: >-
       Called when a prompt dialog has been requested to re-prompt the user for
       input.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function repromptDialog(context: TurnContext, instance: DialogInstance):
-        Promise<void>
+        function repromptDialog(context: TurnContext, instance:
+        DialogInstance<any>): Promise<void>
       parameters:
         - id: context
           type: TurnContext
-          description: |-
-            (xref:botbuilder-core.TurnContext), context for the current
+          description: >-
+            [TurnContext](xref:botbuilder-core.TurnContext), context for the
+            current
+
             turn of conversation with the user.
         - id: instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
-          description: |-
-            (xref:botbuilder-dialogs.DialogInstance), the instance
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
+          description: >-
+            [DialogInstance](xref:botbuilder-dialogs.DialogInstance), the
+            instance
+
             of the dialog on the stack.
       return:
         description: A `Promise` representing the asynchronous operation.
@@ -363,7 +357,7 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Prompt.repromptDialog](xref:botbuilder-dialogs.Prompt.repromptDialog)
-  - name: 'resumeDialog(DialogContext, DialogReason, any)'
+  - name: resumeDialog(DialogContext, DialogReason, any)
     uid: botbuilder-dialogs.DateTimePrompt.resumeDialog
     package: botbuilder-dialogs
     summary: >-
@@ -376,12 +370,11 @@ inheritedMethods:
       still
 
       active after the turn has been processed by the dialog.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, _reason: DialogReason,
-        _result?: any): Promise<DialogTurnResult>
+        _result?: any): Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -396,7 +389,9 @@ inheritedMethods:
             The type of the value returned is dependent on the previous dialog.
       return:
         description: A Promise representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Prompt.resumeDialog](xref:botbuilder-dialogs.Prompt.resumeDialog)

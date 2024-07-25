@@ -7,7 +7,6 @@ summary: >-
   in order to make it easier to use rules.
 fullName: TriggerTree
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -16,7 +15,6 @@ constructors:
     package: adaptive-expressions
     summary: Intializes a new instance of the `TriggerTree` class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: new TriggerTree()
@@ -24,10 +22,9 @@ properties:
   - name: comparers
     uid: adaptive-expressions.TriggerTree.comparers
     package: adaptive-expressions
-    summary: 'A dictionary of `PredicateComparer` values, with string keys.'
+    summary: A dictionary of `PredicateComparer` values, with string keys.
     fullName: comparers
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'comparers: PredicateComparers'
@@ -40,20 +37,18 @@ properties:
     summary: A list of `Optimizer` for optimizing claues.
     fullName: optimizers
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'optimizers: Optimizer[] = []'
+      content: 'optimizers: Optimizer[]'
       return:
         description: ''
-        type: '<xref uid="adaptive-expressions.Optimizer" />[]'
+        type: <xref uid="adaptive-expressions.Optimizer" />[]
   - name: root
     uid: adaptive-expressions.TriggerTree.root
     package: adaptive-expressions
     summary: The root node instance.
     fullName: root
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'root: Node'
@@ -66,20 +61,18 @@ properties:
     summary: The total number of triggers.
     fullName: totalTriggers
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'totalTriggers: number = 0'
+      content: 'totalTriggers: number'
       return:
         description: ''
         type: number
 methods:
-  - name: 'addTrigger(string | Expression, any, Quantifier[])'
+  - name: addTrigger(string | Expression, any, Quantifier[])
     uid: adaptive-expressions.TriggerTree.addTrigger
     package: adaptive-expressions
     summary: Add a trigger expression to the tree.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -93,33 +86,31 @@ methods:
           type: any
           description: Action when triggered.
         - id: quantifiers
-          type: '<xref uid="adaptive-expressions.Quantifier" />[]'
+          type: <xref uid="adaptive-expressions.Quantifier" />[]
           description: Quantifiers to use when expanding expressions.
       return:
         description: New trigger.
         type: <xref uid="adaptive-expressions.Trigger" />
-  - name: matches(MemoryInterface | any)
+  - name: matches(any)
     uid: adaptive-expressions.TriggerTree.matches
     package: adaptive-expressions
     summary: Return the possible matches given the current state.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function matches(state: MemoryInterface | any): Trigger[]'
+      content: 'function matches(state: any): Trigger[]'
       parameters:
         - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
+          type: any
           description: State to evaluate against.
       return:
         description: List of possible matches.
-        type: '<xref uid="adaptive-expressions.Trigger" />[]'
+        type: <xref uid="adaptive-expressions.Trigger" />[]
   - name: removeTrigger(Trigger)
     uid: adaptive-expressions.TriggerTree.removeTrigger
     package: adaptive-expressions
     summary: Remove trigger from tree.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function removeTrigger(trigger: Trigger): boolean'
@@ -135,7 +126,6 @@ methods:
     package: adaptive-expressions
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function toString(): string'
@@ -147,10 +137,9 @@ methods:
     package: adaptive-expressions
     summary: Generates a string describing the tree.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function treeToString(indent: number): string'
+      content: 'function treeToString(indent?: number): string'
       parameters:
         - id: indent
           type: number
@@ -163,7 +152,6 @@ methods:
     package: adaptive-expressions
     summary: Verify the tree meets specialization/generalization invariants.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function verifyTree(): Node'

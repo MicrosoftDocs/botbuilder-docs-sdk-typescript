@@ -5,7 +5,6 @@ package: botbuilder-dialogs-adaptive
 summary: Select between two rule selectors based on a condition.
 fullName: ConditionalSelector
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -28,7 +26,6 @@ properties:
     summary: Expression that determines which selector to use.
     fullName: condition
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'condition: BoolExpression'
@@ -41,7 +38,6 @@ properties:
     summary: Gets or sets selector if condition is false.
     fullName: ifFalse
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'ifFalse: TriggerSelector'
@@ -54,7 +50,6 @@ properties:
     summary: Gets or sets selector if condition is true.
     fullName: ifTrue
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'ifTrue: TriggerSelector'
@@ -67,7 +62,6 @@ properties:
     summary: Gets or sets the expression parser to use.
     fullName: parser
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'parser: ExpressionParserInterface'
@@ -75,65 +69,66 @@ properties:
         description: ''
         type: ExpressionParserInterface
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.ConditionalSelector.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): ConditionalSelector'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
+        type: <xref uid="botbuilder-dialogs-adaptive.ConditionalSelector" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [TriggerSelector.configure](xref:botbuilder-dialogs-adaptive.TriggerSelector.configure)
 methods:
-  - name: getConverter(Object)
+  - name: getConverter(keyof ConditionalSelectorConfiguration)
     uid: botbuilder-dialogs-adaptive.ConditionalSelector.getConverter
     package: botbuilder-dialogs-adaptive
     summary: Gets the converter for the selector configuration.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: keyof ConditionalSelectorConfiguration):
+        Converter<unknown, unknown> | ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: keyof ConditionalSelectorConfiguration
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
-  - name: 'initialize(OnCondition[], boolean)'
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
+  - name: initialize(OnCondition[], boolean)
     uid: botbuilder-dialogs-adaptive.ConditionalSelector.initialize
     package: botbuilder-dialogs-adaptive
     summary: Initialize the selector with the set of rules.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function initialize(conditionals: OnCondition[], evaluate: boolean)'
       parameters:
         - id: conditionals
-          type: '<xref uid="botbuilder-dialogs-adaptive.OnCondition" />[]'
+          type: <xref uid="botbuilder-dialogs-adaptive.OnCondition" />[]
           description: Possible rules to match.
         - id: evaluate
           type: boolean
-          description: |
-            True if rules should be evaluated on select.
+          description: True if rules should be evaluated on select.
   - name: select(ActionContext)
     uid: botbuilder-dialogs-adaptive.ConditionalSelector.select
     package: botbuilder-dialogs-adaptive
     summary: Select the best rule to execute.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function select(actionContext: ActionContext): Promise<OnCondition[]>'

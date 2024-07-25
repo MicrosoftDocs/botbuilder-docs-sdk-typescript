@@ -5,7 +5,6 @@ package: botbuilder-azure
 summary: Cosmos DB Partitioned Storage Options.
 fullName: CosmosDbPartitionedStorageOptions
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: interface
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: The authentication key for Cosmos DB.
     fullName: authKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'authKey?: string'
@@ -25,7 +23,7 @@ properties:
   - name: compatibilityMode
     uid: botbuilder-azure.CosmosDbPartitionedStorageOptions.compatibilityMode
     package: botbuilder-azure
-    summary: >
+    summary: >-
       Early version of CosmosDb had a max key length of 255.  Keys longer than
 
       this were truncated in cosmosDbKeyEscape.escapeKey.  This remains the
@@ -35,10 +33,10 @@ properties:
 
       compatibilityMode to false.
 
+
       compatibilityMode cannot be true if keySuffix is used.
     fullName: compatibilityMode
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'compatibilityMode?: boolean'
@@ -51,7 +49,6 @@ properties:
     summary: The container identifier.
     fullName: containerId
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'containerId: string'
@@ -64,7 +61,6 @@ properties:
     summary: The throughput set when creating the Container. Defaults to 400.
     fullName: containerThroughput
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'containerThroughput?: number'
@@ -77,20 +73,18 @@ properties:
     summary: The options for the CosmosClient.
     fullName: cosmosClientOptions
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'cosmosClientOptions?: CosmosClientOptions'
       return:
         description: ''
-        type: CosmosClientOptions
+        type: <xref uid="@azure/cosmos.CosmosClientOptions" />
   - name: cosmosDbEndpoint
     uid: botbuilder-azure.CosmosDbPartitionedStorageOptions.cosmosDbEndpoint
     package: botbuilder-azure
     summary: The CosmosDB endpoint.
     fullName: cosmosDbEndpoint
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'cosmosDbEndpoint?: string'
@@ -103,7 +97,6 @@ properties:
     summary: The database identifier for Cosmos DB instance.
     fullName: databaseId
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'databaseId: string'
@@ -113,8 +106,9 @@ properties:
   - name: keySuffix
     uid: botbuilder-azure.CosmosDbPartitionedStorageOptions.keySuffix
     package: botbuilder-azure
-    summary: |
+    summary: |-
       The suffix to be added to every key. See cosmosDbKeyEscape.escapeKey
+
       Note: compatibilityMode must be set to 'false' to use a KeySuffix.
       When KeySuffix is used, keys will NOT be truncated but an exception will
       be thrown if the key length is longer than allowed by CosmosDb.
@@ -123,10 +117,21 @@ properties:
       (e.g. not: '\\', '?', '/', '#', '*')
     fullName: keySuffix
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'keySuffix?: string'
       return:
         description: ''
         type: string
+  - name: tokenCredential
+    uid: botbuilder-azure.CosmosDbPartitionedStorageOptions.tokenCredential
+    package: botbuilder-azure
+    summary: The authentication tokenCredential for Cosmos DB.
+    fullName: tokenCredential
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'tokenCredential?: TokenCredential'
+      return:
+        description: ''
+        type: <xref uid="@azure/core-auth.TokenCredential" />

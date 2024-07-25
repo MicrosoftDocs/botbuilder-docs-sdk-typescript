@@ -5,28 +5,25 @@ package: botbuilder-dialogs-adaptive
 summary: >-
   Uses resourceExplorer to mount root lg and all language variants as a multi
   language generator.
-fullName: 'ResourceMultiLanguageGenerator<T, D>'
+fullName: ResourceMultiLanguageGenerator<T, D>
 remarks: >-
   Given file name like "foo.lg" this will generate a map of foo.{LOCALE}.lg
   files.
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: ResourceMultiLanguageGenerator(string)
+  - name: ResourceMultiLanguageGenerator<T, D>(string)
     uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.constructor
     package: botbuilder-dialogs-adaptive
     summary: Initializes a new instance of the ResourceMultiLanguageGenerator class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new ResourceMultiLanguageGenerator(resourceId?: string)'
       parameters:
         - id: resourceId
           type: string
-          description: |
-            Resource id of LG file.
+          description: Resource id of LG file.
 properties:
   - name: $kind
     uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.$kind
@@ -34,7 +31,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -47,7 +43,6 @@ properties:
     summary: Resource id of LG file.
     fullName: resourceId
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'resourceId: string'
@@ -61,7 +56,6 @@ inheritedProperties:
     summary: Language policy required by language generator.
     fullName: languagePolicy
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'languagePolicy: LanguagePolicy'
@@ -72,31 +66,35 @@ inheritedProperties:
       <b>Inherited From</b>
       [MultiLanguageGeneratorBase.languagePolicy](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.languagePolicy)
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: >-
+        function configure(config: Record<string, unknown>):
+        ResourceMultiLanguageGenerator<T, D>
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
-  - name: 'generate(DialogContext, string, D)'
+        type: >-
+          <xref uid="botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator"
+          />&lt;T, D&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [MultiLanguageGeneratorBase.configure](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.configure)
+  - name: generate(DialogContext, string, D)
     uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.generate
     package: botbuilder-dialogs-adaptive
     summary: Find a language generator that matches the current context locale.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -118,32 +116,34 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [MultiLanguageGeneratorBase.generate](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.generate)
-  - name: getConverter(Object)
+  - name: getConverter("languagePolicy")
     uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.getConverter
     package: botbuilder-dialogs-adaptive
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: "languagePolicy"): Converter<unknown,
+        unknown> | ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: '"languagePolicy"'
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [MultiLanguageGeneratorBase.getConverter](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.getConverter)
 methods:
-  - name: 'tryGetGenerator(DialogContext, string)'
+  - name: tryGetGenerator(DialogContext, string)
     uid: botbuilder-dialogs-adaptive.ResourceMultiLanguageGenerator.tryGetGenerator
     package: botbuilder-dialogs-adaptive
     summary: Implementation of lookup by locale.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
