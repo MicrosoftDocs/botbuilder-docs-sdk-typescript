@@ -7,21 +7,22 @@ summary: >-
   backed by Azure Blob Storage
 fullName: BlobsStorage
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'BlobsStorage(string, string, BlobsStorageOptions)'
+  - name: >-
+      BlobsStorage(string, string, BlobsStorageOptions, string,
+      StorageSharedKeyCredential | AnonymousCredential | TokenCredential)
     uid: botbuilder-azure-blobs.BlobsStorage.constructor
     package: botbuilder-azure-blobs
     summary: Constructs a BlobsStorage instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         new BlobsStorage(connectionString: string, containerName: string,
-        options?: BlobsStorageOptions)
+        options?: BlobsStorageOptions, url?: string, credential?:
+        StorageSharedKeyCredential | AnonymousCredential | TokenCredential)
       parameters:
         - id: connectionString
           type: string
@@ -31,47 +32,52 @@ constructors:
           description: Azure Blob Storage container name
         - id: options
           type: <xref uid="botbuilder-azure-blobs.BlobsStorageOptions" />
-          description: |
-            Other options for BlobsStorage
+          description: Other options for BlobsStorage
+        - id: url
+          type: string
+          description: Azure Blob Storage container url
+        - id: credential
+          type: >-
+            <xref uid="@azure/storage-blob.StorageSharedKeyCredential" /> |
+            <xref uid="@azure/storage-blob.AnonymousCredential" /> | <xref
+            uid="@azure/core-auth.TokenCredential" />
+          description: Azure credential to access the resource
 methods:
-  - name: 'delete(string[])'
+  - name: delete(string[])
     uid: botbuilder-azure-blobs.BlobsStorage.delete
     package: botbuilder-azure-blobs
     summary: Removes store items from storage.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function delete(keys: string[]): Promise<void>'
       parameters:
         - id: keys
-          type: 'string[]'
+          type: string[]
           description: Array of item keys to remove from the store
       return:
         description: A promise representing the async operation
         type: Promise&lt;void&gt;
-  - name: 'read(string[])'
+  - name: read(string[])
     uid: botbuilder-azure-blobs.BlobsStorage.read
     package: botbuilder-azure-blobs
     summary: Loads store items from storage.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function read(keys: string[]): Promise<StoreItems>'
       parameters:
         - id: keys
-          type: 'string[]'
+          type: string[]
           description: Array of item keys to read
       return:
-        description: 'The fetched [StoreItems](xref:botbuilder-core.StoreItems)'
+        description: The fetched [StoreItems](xref:botbuilder-core.StoreItems)
         type: Promise&lt;StoreItems&gt;
   - name: write(StoreItems)
     uid: botbuilder-azure-blobs.BlobsStorage.write
     package: botbuilder-azure-blobs
     summary: Saves store items to storage.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function write(changes: StoreItems): Promise<void>'

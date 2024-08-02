@@ -5,56 +5,39 @@ package: botbuilder
 summary: Extends Error to provide specialized error messages.
 fullName: StatusCodeError
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'StatusCodeError(StatusCodes, string)'
+  - name: StatusCodeError(StatusCodes, string)
     uid: botbuilder.StatusCodeError.constructor
     package: botbuilder
     summary: >-
       Creates a new instance of the
       [StatusCodeError](xref:botbuilder.StatusCodeError) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new StatusCodeError(statusCode: StatusCodes, message?: string)'
       parameters:
         - id: statusCode
-          type: StatusCodes
+          type: <xref uid="botbuilder.StatusCodes" />
           description: The status code.
         - id: message
           type: string
-          description: |
-            Optional. The error message.
+          description: Optional. The error message.
 properties:
-  - name: Error
-    uid: botbuilder.StatusCodeError.Error
-    package: botbuilder
-    summary: ''
-    fullName: Error
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static Error: ErrorConstructor'
-      return:
-        description: ''
-        type: ErrorConstructor
   - name: statusCode
     uid: botbuilder.StatusCodeError.statusCode
     package: botbuilder
     summary: ''
     fullName: statusCode
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'statusCode: StatusCodes'
       return:
         description: ''
-        type: StatusCodes
+        type: <xref uid="botbuilder.StatusCodes" />
 inheritedProperties:
   - name: message
     uid: botbuilder.StatusCodeError.message
@@ -62,7 +45,6 @@ inheritedProperties:
     summary: ''
     fullName: message
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'message: string'
@@ -76,7 +58,6 @@ inheritedProperties:
     summary: ''
     fullName: name
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'name: string'
@@ -84,13 +65,28 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.name
+  - name: prepareStackTrace
+    uid: botbuilder.StatusCodeError.prepareStackTrace
+    package: botbuilder
+    summary: |-
+      Optional override for formatting stack traces
+
+      See https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+    fullName: prepareStackTrace
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static prepareStackTrace?: (err: Error, stackTraces: CallSite[]) => any'
+      return:
+        description: ''
+        type: '(err: Error, stackTraces: CallSite[]) =&gt; any'
+    inheritanceDescription: <b>Inherited From</b> Error.prepareStackTrace
   - name: stack
     uid: botbuilder.StatusCodeError.stack
     package: botbuilder
     summary: ''
     fullName: stack
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'stack?: string'
@@ -98,4 +94,36 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.stack
+  - name: stackTraceLimit
+    uid: botbuilder.StatusCodeError.stackTraceLimit
+    package: botbuilder
+    summary: ''
+    fullName: stackTraceLimit
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static stackTraceLimit: number'
+      return:
+        description: ''
+        type: number
+    inheritanceDescription: <b>Inherited From</b> Error.stackTraceLimit
+inheritedMethods:
+  - name: captureStackTrace(object, Function)
+    uid: botbuilder.StatusCodeError.captureStackTrace
+    package: botbuilder
+    summary: Create .stack property on a target object
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function captureStackTrace(targetObject: object, constructorOpt?:
+        Function)
+      parameters:
+        - id: targetObject
+          type: object
+          description: ''
+        - id: constructorOpt
+          type: Function
+          description: ''
+    inheritanceDescription: <b>Inherited From</b> Error.captureStackTrace
 extends: Error

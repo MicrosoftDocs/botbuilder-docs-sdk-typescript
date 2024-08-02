@@ -10,7 +10,6 @@ summary: >-
   [AdaptiveDialog](xref:botbuilder-dialogs-adaptive.AdaptiveDialog).
 fullName: ActionContext
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -23,7 +22,6 @@ constructors:
       Initializes a new instance of the
       [ActionContext](xref:botbuilder-dialogs-adaptive.ActionContext) class
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -41,12 +39,11 @@ constructors:
           type: DialogState
           description: Current dialog state.
         - id: actions
-          type: '<xref uid="botbuilder-dialogs-adaptive.ActionState" />[]'
+          type: ActionState[]
           description: Current list of remaining actions to execute.
         - id: changeKey
           type: symbol
-          description: |
-            TurnState key for where to persist any changes.
+          description: TurnState key for where to persist any changes.
 properties:
   - name: actions
     uid: botbuilder-dialogs-adaptive.ActionContext.actions
@@ -54,62 +51,71 @@ properties:
     summary: List of actions being executed.
     fullName: actions
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'actions: ActionState[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-dialogs-adaptive.ActionState" />[]'
-  - name: changes
-    uid: botbuilder-dialogs-adaptive.ActionContext.changes
-    package: botbuilder-dialogs-adaptive
-    summary: Gets list of changes that are queued to be applied.
-    fullName: changes
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'ActionChangeList[] changes'
-      return:
-        description: The list of changes queued.
-        type: '<xref uid="botbuilder-dialogs-adaptive.ActionChangeList" />[]'
-inheritedProperties:
+        type: ActionState[]
   - name: activeDialog
     uid: botbuilder-dialogs-adaptive.ActionContext.activeDialog
     package: botbuilder-dialogs-adaptive
     summary: ''
     fullName: activeDialog
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'activeDialog: DialogInstance | undefined'
+      content: undefined | DialogInstance<any> activeDialog
       return:
-        description: ''
-        type: DialogInstance | undefined
-    inheritanceDescription: <b>Inherited From</b> DialogContext.activeDialog
+        description: >-
+          The state information for the dialog on the top of the dialog stack,
+          or `undefined` if
+
+          the stack is empty.
+        type: undefined | DialogInstance&lt;any&gt;
+  - name: changes
+    uid: botbuilder-dialogs-adaptive.ActionContext.changes
+    package: botbuilder-dialogs-adaptive
+    summary: Gets list of changes that are queued to be applied.
+    fullName: changes
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: ActionChangeList[] changes
+      return:
+        description: The list of changes queued.
+        type: ActionChangeList[]
   - name: child
     uid: botbuilder-dialogs-adaptive.ActionContext.child
     package: botbuilder-dialogs-adaptive
     summary: ''
     fullName: child
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'child: DialogContext | undefined'
+      content: undefined | DialogContext child
       return:
-        description: ''
-        type: DialogContext | undefined
-    inheritanceDescription: <b>Inherited From</b> DialogContext.child
+        description: Dialog context for child if the active dialog is a container.
+        type: undefined | DialogContext
+  - name: dialogManager
+    uid: botbuilder-dialogs-adaptive.ActionContext.dialogManager
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: dialogManager
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: DialogManager dialogManager
+      return:
+        description: The current dialog manager instance. This property is deprecated.
+        type: DialogManager
+inheritedProperties:
   - name: context
     uid: botbuilder-dialogs-adaptive.ActionContext.context
     package: botbuilder-dialogs-adaptive
     summary: Gets the context object for the turn.
     fullName: context
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'context: TurnContext'
@@ -117,27 +123,12 @@ inheritedProperties:
         description: ''
         type: TurnContext
     inheritanceDescription: <b>Inherited From</b> DialogContext.context
-  - name: dialogManager
-    uid: botbuilder-dialogs-adaptive.ActionContext.dialogManager
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    fullName: dialogManager
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'dialogManager: DialogManager'
-      return:
-        description: ''
-        type: DialogManager
-    inheritanceDescription: <b>Inherited From</b> DialogContext.dialogManager
   - name: dialogs
     uid: botbuilder-dialogs-adaptive.ActionContext.dialogs
     package: botbuilder-dialogs-adaptive
     summary: Gets the dialogs that can be called directly from this context.
     fullName: dialogs
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'dialogs: DialogSet'
@@ -161,13 +152,12 @@ inheritedProperties:
 
       in this dialog context, it searches in its parent dialog context, and so
       on.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'parent: DialogContext | undefined'
+      content: 'parent: undefined | DialogContext'
       return:
         description: ''
-        type: DialogContext | undefined
+        type: undefined | DialogContext
     inheritanceDescription: <b>Inherited From</b> DialogContext.parent
   - name: services
     uid: botbuilder-dialogs-adaptive.ActionContext.services
@@ -175,7 +165,6 @@ inheritedProperties:
     summary: Gets the services collection which is contextual to this dialog context.
     fullName: services
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'services: TurnContextStateCollection'
@@ -189,13 +178,12 @@ inheritedProperties:
     summary: Gets the current dialog stack.
     fullName: stack
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'stack: DialogInstance[]'
+      content: 'stack: DialogInstance<any>[]'
       return:
         description: ''
-        type: 'DialogInstance[]'
+        type: DialogInstance&lt;any&gt;[]
     inheritanceDescription: <b>Inherited From</b> DialogContext.stack
   - name: state
     uid: botbuilder-dialogs-adaptive.ActionContext.state
@@ -203,7 +191,6 @@ inheritedProperties:
     summary: Gets the DialogStateManager which manages view of all memory scopes.
     fullName: state
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'state: DialogStateManager'
@@ -212,7 +199,7 @@ inheritedProperties:
         type: DialogStateManager
     inheritanceDescription: <b>Inherited From</b> DialogContext.state
 inheritedMethods:
-  - name: 'beginDialog(string, object)'
+  - name: beginDialog(string, object)
     uid: botbuilder-dialogs-adaptive.ActionContext.beginDialog
     package: botbuilder-dialogs-adaptive
     summary: |-
@@ -255,12 +242,11 @@ inheritedMethods:
       - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
 
       - [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dialogId: string, options?: object):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -270,12 +256,12 @@ inheritedMethods:
           description: Optional. Arguments to pass into the dialog when it starts.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.beginDialog
-  - name: 'cancelAllDialogs(boolean, string, any)'
+  - name: cancelAllDialogs(boolean, string, any)
     uid: botbuilder-dialogs-adaptive.ActionContext.cancelAllDialogs
     package: botbuilder-dialogs-adaptive
-    summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
+    summary: Cancels all dialogs on the dialog stack, and clears stack.
     remarks: >-
       This calls each dialog's
       [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog) method before
@@ -308,12 +294,11 @@ inheritedMethods:
       **See also**
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
-        eventValue?: any): Promise<DialogTurnResult>
+        eventValue?: any): Promise<DialogTurnResult<any>>
       parameters:
         - id: cancelParents
           type: boolean
@@ -329,7 +314,7 @@ inheritedMethods:
           description: Optional. Value to pass along with custom cancellation event.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.cancelAllDialogs
   - name: continueDialog()
     uid: botbuilder-dialogs-adaptive.ActionContext.continueDialog
@@ -369,22 +354,20 @@ inheritedMethods:
       }
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(): Promise<DialogTurnResult>'
+      content: 'function continueDialog(): Promise<DialogTurnResult<any>>'
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.continueDialog
-  - name: 'emitEvent(string, any, boolean, boolean)'
+  - name: emitEvent(string, any, boolean, boolean)
     uid: botbuilder-dialogs-adaptive.ActionContext.emitEvent
     package: botbuilder-dialogs-adaptive
     summary: Searches for a dialog with a given ID.
     remarks: >-
       Emits a named event for the current dialog, or someone who started it, to
       handle.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -461,10 +444,9 @@ inheritedMethods:
       - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
 
       - [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function endDialog(result?: any): Promise<DialogTurnResult>'
+      content: 'function endDialog(result?: any): Promise<DialogTurnResult<any>>'
       parameters:
         - id: result
           type: any
@@ -475,7 +457,7 @@ inheritedMethods:
                  the bot's turn handler.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.endDialog
   - name: findDialog(string)
     uid: botbuilder-dialogs-adaptive.ActionContext.findDialog
@@ -494,24 +476,22 @@ inheritedMethods:
       - [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs)
 
       - [parent](xref:botbuilder-dialogs.DialogContext.parent)
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findDialog(dialogId: string): Dialog | undefined'
+      content: 'function findDialog(dialogId: string): undefined | Dialog<{}>'
       parameters:
         - id: dialogId
           type: string
           description: ID of the dialog to search for.
       return:
         description: The dialog for the provided ID.
-        type: Dialog | undefined
+        type: undefined | Dialog&lt;{}&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.findDialog
   - name: getLocale()
     uid: botbuilder-dialogs-adaptive.ActionContext.getLocale
     package: botbuilder-dialogs-adaptive
     summary: Obtain the CultureInfo in DialogContext.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getLocale(): string'
@@ -519,7 +499,7 @@ inheritedMethods:
         description: a locale string.
         type: string
     inheritanceDescription: <b>Inherited From</b> DialogContext.getLocale
-  - name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
+  - name: prompt(string, string | Partial<Activity> | PromptOptions)
     uid: botbuilder-dialogs-adaptive.ActionContext.prompt
     package: botbuilder-dialogs-adaptive
     summary: >-
@@ -539,12 +519,11 @@ inheritedMethods:
       quit?`);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions): Promise<DialogTurnResult>
+        Partial<Activity> | PromptOptions): Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -557,11 +536,11 @@ inheritedMethods:
                  the object with which to format the prompt dialog.
       return:
         description: ''
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.prompt
   - name: >-
-      prompt(string, string | Partial<Activity> | PromptOptions, string |
-      Choice[])
+      prompt(string, string | Partial<Activity> | PromptOptions, (string |
+      Choice)[])
     uid: botbuilder-dialogs-adaptive.ActionContext.prompt_1
     package: botbuilder-dialogs-adaptive
     summary: >-
@@ -581,13 +560,12 @@ inheritedMethods:
       quit?`);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions, choices: string | Choice[]):
-        Promise<DialogTurnResult>
+        Partial<Activity> | PromptOptions, choices: (string | Choice)[]):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -602,15 +580,15 @@ inheritedMethods:
 
             the object with which to format the prompt dialog.
         - id: choices
-          type: 'string | Choice[]'
+          type: (string | Choice)[]
           description: |-
             Optional. Array of choices for the user to choose from,
             for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
         description: ''
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.prompt
-  - name: 'replaceDialog(string, object)'
+  - name: replaceDialog(string, object)
     uid: botbuilder-dialogs-adaptive.ActionContext.replaceDialog
     package: botbuilder-dialogs-adaptive
     summary: Ends the active dialog and starts a new dialog in its place.
@@ -636,12 +614,11 @@ inheritedMethods:
       - [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function replaceDialog(dialogId: string, options?: object):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -651,7 +628,7 @@ inheritedMethods:
           description: Optional. Arguments to pass into the new dialog when it starts.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: <b>Inherited From</b> DialogContext.replaceDialog
   - name: repromptDialog()
     uid: botbuilder-dialogs-adaptive.ActionContext.repromptDialog
@@ -669,7 +646,6 @@ inheritedMethods:
       await dc.repromptDialog();
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function repromptDialog(): Promise<void>'
@@ -683,7 +659,6 @@ methods:
     package: botbuilder-dialogs-adaptive
     summary: Applies any queued up changes.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function applyChanges(): Promise<boolean>'
@@ -697,13 +672,11 @@ methods:
       Queues up a set of changes that will be applied when applyChanges() is
       called.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function queueChanges(changes: ActionChangeList)'
       parameters:
         - id: changes
-          type: <xref uid="botbuilder-dialogs-adaptive.ActionChangeList" />
-          description: |
-            Plan changes to queue up.
+          type: ActionChangeList
+          description: Plan changes to queue up.
 extends: DialogContext

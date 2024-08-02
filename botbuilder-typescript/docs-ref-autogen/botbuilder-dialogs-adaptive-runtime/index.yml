@@ -3,13 +3,8 @@ uid: botbuilder-dialogs-adaptive-runtime
 name: botbuilder-dialogs-adaptive-runtime
 summary: ''
 type: package
-classes:
-  - botbuilder-dialogs-adaptive-runtime.Configuration
-  - botbuilder-dialogs-adaptive-runtime.ConfigurationResourceExporer
-  - botbuilder-dialogs-adaptive-runtime.CoreBot
-  - botbuilder-dialogs-adaptive-runtime.CoreBotAdapter
 functions:
-  - name: 'getRuntimeServices(string, string)'
+  - name: getRuntimeServices(string, string, Record<string, any>)
     uid: botbuilder-dialogs-adaptive-runtime.getRuntimeServices
     package: botbuilder-dialogs-adaptive-runtime
     summary: Construct all runtime services.
@@ -85,12 +80,12 @@ functions:
       [ShowTypingMiddleware](xref:botbuilder-core.ShowTypingMiddleware), and
 
       [SetSpeakMiddleware](xref:botbuilder.SetSpeakMiddleware) respectively.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getRuntimeServices(applicationRoot: string, settingsDirectory:
-        string): Promise<[ServiceCollection, Configuration]>
+        string, defaultServices?: Record<string, any>):
+        Promise<[ServiceCollection, Configuration]>
       parameters:
         - id: applicationRoot
           type: string
@@ -98,27 +93,33 @@ functions:
         - id: settingsDirectory
           type: string
           description: directory where settings files are located
+        - id: defaultServices
+          type: Record&lt;string, any&gt;
+          description: services to use as default
       return:
         description: service collection and configuration
-        type: 'Promise&lt;[ServiceCollection, Configuration]&gt;'
-  - name: 'getRuntimeServices(string, Configuration)'
+        type: Promise&lt;[ServiceCollection, Configuration]&gt;
+  - name: getRuntimeServices(string, Configuration, Record<string, any>)
     uid: botbuilder-dialogs-adaptive-runtime.getRuntimeServices_1
     package: botbuilder-dialogs-adaptive-runtime
     summary: Construct all runtime services.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getRuntimeServices(applicationRoot: string, configuration:
-        Configuration): Promise<[ServiceCollection, Configuration]>
+        Configuration, defaultServices?: Record<string, any>):
+        Promise<[ServiceCollection, Configuration]>
       parameters:
         - id: applicationRoot
           type: string
           description: absolute path to root of application
         - id: configuration
-          type: <xref uid="botbuilder-dialogs-adaptive-runtime.Configuration" />
+          type: Configuration
           description: a fully initialized configuration instance to use
+        - id: defaultServices
+          type: Record&lt;string, any&gt;
+          description: services to use as default
       return:
         description: service collection and configuration
-        type: 'Promise&lt;[ServiceCollection, Configuration]&gt;'
+        type: Promise&lt;[ServiceCollection, Configuration]&gt;

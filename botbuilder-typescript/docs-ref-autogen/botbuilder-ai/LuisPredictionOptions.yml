@@ -5,7 +5,6 @@ package: botbuilder-ai
 summary: Options per LUIS prediction.
 fullName: LuisPredictionOptions
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: interface
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: (Optional) Bing Spell Check subscription key.
     fullName: bingSpellCheckSubscriptionKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'bingSpellCheckSubscriptionKey?: string'
@@ -28,7 +26,6 @@ properties:
     summary: (Optional) Determine if all intents come back or only the top one.
     fullName: includeAllIntents
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'includeAllIntents?: boolean'
@@ -43,7 +40,6 @@ properties:
       included in response.
     fullName: includeInstanceData
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'includeInstanceData?: boolean'
@@ -56,7 +52,6 @@ properties:
     summary: (Optional) If queries should be logged in LUIS.
     fullName: log
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'log?: boolean'
@@ -71,7 +66,6 @@ properties:
       telemetry.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'logPersonalInformation?: boolean'
@@ -84,7 +78,6 @@ properties:
     summary: (Optional) Whether to spell check query.
     fullName: spellCheck
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'spellCheck?: boolean'
@@ -97,7 +90,6 @@ properties:
     summary: (Optional) Whether to use the staging endpoint.
     fullName: staging
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'staging?: boolean'
@@ -110,7 +102,6 @@ properties:
     summary: (Optional) Telemetry Client.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient?: BotTelemetryClient'
@@ -123,43 +114,52 @@ properties:
     summary: (Optional) The time zone offset for resolving datetimes.
     fullName: timezoneOffset
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'timezoneOffset?: number'
       return:
         description: ''
         type: number
+  - name: verbose
+    uid: botbuilder-ai.LuisPredictionOptions.verbose
+    package: botbuilder-ai
+    summary: If true, return all intents instead of just the top scoring intent.
+    fullName: verbose
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'verbose?: boolean'
+      return:
+        description: ''
+        type: boolean
 inheritedProperties:
   - name: abortSignal
     uid: botbuilder-ai.LuisPredictionOptions.abortSignal
     package: botbuilder-ai
-    summary: The signal which can be used to abort requests.
+    summary: >-
+      Signal of an abort controller. Can be used to abort both sending a network
+      request and waiting for a response.
     fullName: abortSignal
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'abortSignal?: AbortSignalLike'
       return:
         description: ''
-        type: AbortSignalLike
+        type: <xref uid="@azure/abort-controller.AbortSignalLike" />
     inheritanceDescription: <b>Inherited From</b> RequestOptionsBase.abortSignal
   - name: customHeaders
     uid: botbuilder-ai.LuisPredictionOptions.customHeaders
     package: botbuilder-ai
-    summary: |-
-      {object} [customHeaders] User defined custom request headers that
-      will be applied before the request is sent.
+    summary: will be applied before the request is sent.
     fullName: customHeaders
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'customHeaders?: [key: string]: string'
+      content: 'customHeaders?: {[key: string]: string}'
       return:
         description: ''
-        type: '[key: string]\: string'
+        type: '{[key: string]: string}'
     inheritanceDescription: <b>Inherited From</b> RequestOptionsBase.customHeaders
   - name: onDownloadProgress
     uid: botbuilder-ai.LuisPredictionOptions.onDownloadProgress
@@ -167,7 +167,6 @@ inheritedProperties:
     summary: Callback which fires upon download progress.
     fullName: onDownloadProgress
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'onDownloadProgress?: (progress: TransferProgressEvent) => void'
@@ -181,7 +180,6 @@ inheritedProperties:
     summary: Callback which fires upon upload progress.
     fullName: onUploadProgress
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'onUploadProgress?: (progress: TransferProgressEvent) => void'
@@ -189,15 +187,48 @@ inheritedProperties:
         description: ''
         type: '(progress: TransferProgressEvent) =&gt; void'
     inheritanceDescription: <b>Inherited From</b> RequestOptionsBase.onUploadProgress
+  - name: serializerOptions
+    uid: botbuilder-ai.LuisPredictionOptions.serializerOptions
+    package: botbuilder-ai
+    summary: Options to override XML parsing/building behavior.
+    fullName: serializerOptions
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'serializerOptions?: SerializerOptions'
+      return:
+        description: ''
+        type: <xref uid="@azure/core-http.SerializerOptions" />
+    inheritanceDescription: <b>Inherited From</b> RequestOptionsBase.serializerOptions
+  - name: shouldDeserialize
+    uid: botbuilder-ai.LuisPredictionOptions.shouldDeserialize
+    package: botbuilder-ai
+    summary: >-
+      Whether or not the HttpOperationResponse should be deserialized. If this
+      is undefined, then the
+
+      HttpOperationResponse should be deserialized.
+    fullName: shouldDeserialize
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        shouldDeserialize?: boolean | (response: HttpOperationResponse) =>
+        boolean
+      return:
+        description: ''
+        type: 'boolean | (response: HttpOperationResponse) =&gt; boolean'
+    inheritanceDescription: <b>Inherited From</b> RequestOptionsBase.shouldDeserialize
   - name: timeout
     uid: botbuilder-ai.LuisPredictionOptions.timeout
     package: botbuilder-ai
     summary: >-
       The number of milliseconds a request can take before automatically being
       terminated.
+
+      If the request is terminated, an `AbortError` is thrown.
     fullName: timeout
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'timeout?: number'
@@ -205,18 +236,17 @@ inheritedProperties:
         description: ''
         type: number
     inheritanceDescription: <b>Inherited From</b> RequestOptionsBase.timeout
-  - name: verbose
-    uid: botbuilder-ai.LuisPredictionOptions.verbose
+  - name: tracingContext
+    uid: botbuilder-ai.LuisPredictionOptions.tracingContext
     package: botbuilder-ai
-    summary: 'If true, return all intents instead of just the top scoring intent.'
-    fullName: verbose
+    summary: 'Tracing: Context used when creating spans.'
+    fullName: tracingContext
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'verbose?: boolean'
+      content: 'tracingContext?: Context'
       return:
         description: ''
-        type: boolean
-    inheritanceDescription: <b>Inherited From</b> PredictionResolveOptionalParams.verbose
-extends: PredictionResolveOptionalParams
+        type: <xref uid="@azure/core-tracing.Context" />
+    inheritanceDescription: <b>Inherited From</b> RequestOptionsBase.tracingContext
+extends: <xref uid="@azure/core-http.RequestOptionsBase" />

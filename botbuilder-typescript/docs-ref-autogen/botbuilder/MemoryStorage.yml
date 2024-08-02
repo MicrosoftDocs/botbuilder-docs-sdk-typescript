@@ -1,0 +1,101 @@
+### YamlMime:TSType
+name: MemoryStorage
+uid: botbuilder.MemoryStorage
+package: botbuilder
+summary: Memory based storage provider for a bot.
+fullName: MemoryStorage
+remarks: >-
+  This provider is most useful for simulating production storage when running
+  locally against the
+
+  emulator or as part of a unit test. It has the following characteristics:
+
+
+  - Starts off completely empty when the bot is run.
+
+  - Anything written to the store will be forgotten when the process exits.
+
+  - Objects that are read and written to the store are cloned to properly
+  simulate network based
+    storage providers.
+  - Cloned objects are serialized using `JSON.stringify()` to catch any possible
+  serialization
+    related issues that might occur when using a network based storage provider.
+
+  ```JavaScript
+
+  const { MemoryStorage } = require('botbuilder');
+
+
+  const storage = new MemoryStorage();
+
+  ```
+isDeprecated: false
+type: class
+constructors:
+  - name: 'MemoryStorage({[k: string]: string})'
+    uid: botbuilder.MemoryStorage.constructor
+    package: botbuilder
+    summary: Creates a new MemoryStorage instance.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'new MemoryStorage(memory?: {[k: string]: string})'
+      parameters:
+        - id: memory
+          type: '{[k: string]: string}'
+          description: >-
+            (Optional) memory to use for storing items. By default it will
+            create an empty JSON object `{}`.
+methods:
+  - name: delete(string[])
+    uid: botbuilder.MemoryStorage.delete
+    package: botbuilder
+    summary: Deletes storage items from storage.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function delete(keys: string[]): Promise<void>'
+      parameters:
+        - id: keys
+          type: string[]
+          description: >-
+            Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
+            delete.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;
+  - name: read(string[])
+    uid: botbuilder.MemoryStorage.read
+    package: botbuilder
+    summary: Reads storage items from storage.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function read(keys: string[]): Promise<StoreItems>'
+      parameters:
+        - id: keys
+          type: string[]
+          description: >-
+            Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
+            read.
+      return:
+        description: The read items.
+        type: Promise&lt;<xref uid="botbuilder.StoreItems" />&gt;
+  - name: write(StoreItems)
+    uid: botbuilder.MemoryStorage.write
+    package: botbuilder
+    summary: Writes storage items to storage.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function write(changes: StoreItems): Promise<void>'
+      parameters:
+        - id: changes
+          type: <xref uid="botbuilder.StoreItems" />
+          description: >-
+            The [StoreItems](xref:botbuilder-core.StoreItems) to write, indexed
+            by key.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;

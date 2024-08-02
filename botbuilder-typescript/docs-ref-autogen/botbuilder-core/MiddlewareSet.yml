@@ -28,37 +28,29 @@ remarks: >-
   });
 
   ```
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: >-
-      MiddlewareSet((context: TurnContext, next: () => Promise<void>) =>
-      Promise<void> | Middleware[])
+  - name: MiddlewareSet((MiddlewareHandler | Middleware)[])
     uid: botbuilder-core.MiddlewareSet.constructor
     package: botbuilder-core
     summary: Creates a new MiddlewareSet instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        new MiddlewareSet(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[])
+      content: 'new MiddlewareSet(middlewares: (MiddlewareHandler | Middleware)[])'
       parameters:
         - id: middlewares
           type: >-
-            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
-            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
-          description: |
-            One or more middleware handlers(s) to register.
+            (<xref uid="botbuilder-core.MiddlewareHandler" /> | <xref
+            uid="botbuilder-core.Middleware" />)[]
+          description: One or more middleware handlers(s) to register.
 methods:
-  - name: 'onTurn(TurnContext, () => Promise<void>)'
+  - name: onTurn(TurnContext, () => Promise<void>)
     uid: botbuilder-core.MiddlewareSet.onTurn
     package: botbuilder-core
     summary: Processes an incoming activity.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -67,19 +59,20 @@ methods:
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
-          description: '(xref:botbuilder-core.TurnContext) object for this turn.'
+          description: >-
+            [TurnContext](xref:botbuilder-core.TurnContext) object for this
+            turn.
         - id: next
           type: () =&gt; Promise&lt;void&gt;
           description: Delegate to call to continue the bot middleware pipeline.
       return:
         description: A Promise representing the async operation.
         type: Promise&lt;void&gt;
-  - name: 'run(TurnContext, () => Promise<void>)'
+  - name: run(TurnContext, () => Promise<void>)
     uid: botbuilder-core.MiddlewareSet.run
     package: botbuilder-core
     summary: Executes a set of middleware in series.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -95,9 +88,7 @@ methods:
       return:
         description: A promise that resolves after the handler chain is complete.
         type: Promise&lt;void&gt;
-  - name: >-
-      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
-      Middleware[])
+  - name: use((MiddlewareHandler | Middleware)[])
     uid: botbuilder-core.MiddlewareSet.use
     package: botbuilder-core
     summary: Registers middleware handlers(s) with the set.
@@ -110,18 +101,17 @@ methods:
          console.log(`Trailing Edge`);
       });
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[]): this
+        function use(middlewares: (MiddlewareHandler | Middleware)[]):
+        MiddlewareSet
       parameters:
         - id: middlewares
           type: >-
-            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
-            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
+            (<xref uid="botbuilder-core.MiddlewareHandler" /> | <xref
+            uid="botbuilder-core.Middleware" />)[]
           description: One or more middleware handlers(s) to register.
       return:
         description: The updated middleware set.
-        type: this
+        type: <xref uid="botbuilder-core.MiddlewareSet" />

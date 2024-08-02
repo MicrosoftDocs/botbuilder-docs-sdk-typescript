@@ -31,11 +31,10 @@ remarks: >-
   const result = await dc.continueDialog();
 
   ```
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'DialogContext(DialogSet, DialogContext, DialogState)'
+  - name: DialogContext(DialogSet, DialogContext, DialogState)
     uid: botbuilder-dialogs.DialogContext.constructor_1
     package: botbuilder-dialogs
     summary: >-
@@ -44,7 +43,6 @@ constructors:
     remarks: >-
       Passing in a [DialogContext](xref:botbuilder-dialogs.DialogContext)
       instance will clone the dialog context.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -59,14 +57,14 @@ constructors:
         - id: contextOrDC
           type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: >-
-            The [TurnContext](xref:botbuilder-core.TurnContext) object for the
-            current turn of the bot.
+            The [DialogContext](xref:botbuilder-dialogs.DialogContext) object
+            for the current turn of the bot.
         - id: state
           type: <xref uid="botbuilder-dialogs.DialogState" />
           description: >-
             The state object to use to read and write
             [DialogState](xref:botbuilder-dialogs.DialogState) to storage.
-  - name: 'DialogContext(DialogSet, TurnContext, DialogState)'
+  - name: DialogContext(DialogSet, TurnContext, DialogState)
     uid: botbuilder-dialogs.DialogContext.constructor
     package: botbuilder-dialogs
     summary: >-
@@ -75,7 +73,6 @@ constructors:
     remarks: >-
       Passing in a [DialogContext](xref:botbuilder-dialogs.DialogContext)
       instance will clone the dialog context.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -104,37 +101,36 @@ properties:
     summary: ''
     fullName: activeDialog
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: DialogInstance | undefined activeDialog
+      content: undefined | DialogInstance<any> activeDialog
       return:
         description: >-
           The state information for the dialog on the top of the dialog stack,
           or `undefined` if
 
           the stack is empty.
-        type: <xref uid="botbuilder-dialogs.DialogInstance" /> | undefined
+        type: >-
+          undefined | <xref uid="botbuilder-dialogs.DialogInstance"
+          />&lt;any&gt;
   - name: child
     uid: botbuilder-dialogs.DialogContext.child
     package: botbuilder-dialogs
     summary: ''
     fullName: child
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: DialogContext | undefined child
+      content: undefined | DialogContext child
       return:
         description: Dialog context for child if the active dialog is a container.
-        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.DialogContext" />
   - name: context
     uid: botbuilder-dialogs.DialogContext.context
     package: botbuilder-dialogs
     summary: Gets the context object for the turn.
     fullName: context
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'context: TurnContext'
@@ -147,9 +143,7 @@ properties:
     summary: ''
     fullName: dialogManager
     remarks: ''
-    isPreview: false
-    isDeprecated: true
-    customDeprecatedMessage: This property serves no function.
+    isDeprecated: false
     syntax:
       content: DialogManager dialogManager
       return:
@@ -161,7 +155,6 @@ properties:
     summary: Gets the dialogs that can be called directly from this context.
     fullName: dialogs
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'dialogs: DialogSet'
@@ -184,20 +177,18 @@ properties:
 
       in this dialog context, it searches in its parent dialog context, and so
       on.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'parent: DialogContext | undefined'
+      content: 'parent: undefined | DialogContext'
       return:
         description: ''
-        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.DialogContext" />
   - name: services
     uid: botbuilder-dialogs.DialogContext.services
     package: botbuilder-dialogs
     summary: Gets the services collection which is contextual to this dialog context.
     fullName: services
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'services: TurnContextStateCollection'
@@ -210,20 +201,18 @@ properties:
     summary: Gets the current dialog stack.
     fullName: stack
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'stack: DialogInstance[]'
+      content: 'stack: DialogInstance<any>[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-dialogs.DialogInstance" />[]'
+        type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;[]
   - name: state
     uid: botbuilder-dialogs.DialogContext.state
     package: botbuilder-dialogs
     summary: Gets the DialogStateManager which manages view of all memory scopes.
     fullName: state
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'state: DialogStateManager'
@@ -231,7 +220,7 @@ properties:
         description: ''
         type: <xref uid="botbuilder-dialogs.DialogStateManager" />
 methods:
-  - name: 'beginDialog(string, object)'
+  - name: beginDialog(string, object)
     uid: botbuilder-dialogs.DialogContext.beginDialog
     package: botbuilder-dialogs
     summary: |-
@@ -274,12 +263,11 @@ methods:
       - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
 
       - [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dialogId: string, options?: object):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -289,11 +277,13 @@ methods:
           description: Optional. Arguments to pass into the dialog when it starts.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-  - name: 'cancelAllDialogs(boolean, string, any)'
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
+  - name: cancelAllDialogs(boolean, string, any)
     uid: botbuilder-dialogs.DialogContext.cancelAllDialogs
     package: botbuilder-dialogs
-    summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
+    summary: Cancels all dialogs on the dialog stack, and clears stack.
     remarks: >-
       This calls each dialog's
       [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog) method before
@@ -326,12 +316,11 @@ methods:
       **See also**
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
-        eventValue?: any): Promise<DialogTurnResult>
+        eventValue?: any): Promise<DialogTurnResult<any>>
       parameters:
         - id: cancelParents
           type: boolean
@@ -347,7 +336,9 @@ methods:
           description: Optional. Value to pass along with custom cancellation event.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
   - name: continueDialog()
     uid: botbuilder-dialogs.DialogContext.continueDialog
     package: botbuilder-dialogs
@@ -386,21 +377,21 @@ methods:
       }
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(): Promise<DialogTurnResult>'
+      content: 'function continueDialog(): Promise<DialogTurnResult<any>>'
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-  - name: 'emitEvent(string, any, boolean, boolean)'
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
+  - name: emitEvent(string, any, boolean, boolean)
     uid: botbuilder-dialogs.DialogContext.emitEvent
     package: botbuilder-dialogs
     summary: Searches for a dialog with a given ID.
     remarks: >-
       Emits a named event for the current dialog, or someone who started it, to
       handle.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -476,10 +467,9 @@ methods:
       - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
 
       - [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function endDialog(result?: any): Promise<DialogTurnResult>'
+      content: 'function endDialog(result?: any): Promise<DialogTurnResult<any>>'
       parameters:
         - id: result
           type: any
@@ -490,7 +480,9 @@ methods:
                  the bot's turn handler.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
   - name: findDialog(string)
     uid: botbuilder-dialogs.DialogContext.findDialog
     package: botbuilder-dialogs
@@ -508,30 +500,28 @@ methods:
       - [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs)
 
       - [parent](xref:botbuilder-dialogs.DialogContext.parent)
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findDialog(dialogId: string): Dialog | undefined'
+      content: 'function findDialog(dialogId: string): undefined | Dialog<{}>'
       parameters:
         - id: dialogId
           type: string
           description: ID of the dialog to search for.
       return:
         description: The dialog for the provided ID.
-        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.Dialog" />&lt;{}&gt;
   - name: getLocale()
     uid: botbuilder-dialogs.DialogContext.getLocale
     package: botbuilder-dialogs
     summary: Obtain the CultureInfo in DialogContext.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getLocale(): string'
       return:
         description: a locale string.
         type: string
-  - name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
+  - name: prompt(string, string | Partial<Activity> | PromptOptions)
     uid: botbuilder-dialogs.DialogContext.prompt
     package: botbuilder-dialogs
     summary: >-
@@ -551,12 +541,11 @@ methods:
       quit?`);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions): Promise<DialogTurnResult>
+        Partial<Activity> | PromptOptions): Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -571,10 +560,12 @@ methods:
                  the object with which to format the prompt dialog.
       return:
         description: ''
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
   - name: >-
-      prompt(string, string | Partial<Activity> | PromptOptions, string |
-      Choice[])
+      prompt(string, string | Partial<Activity> | PromptOptions, (string |
+      Choice)[])
     uid: botbuilder-dialogs.DialogContext.prompt_1
     package: botbuilder-dialogs
     summary: >-
@@ -594,13 +585,12 @@ methods:
       quit?`);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions, choices: string | Choice[]):
-        Promise<DialogTurnResult>
+        Partial<Activity> | PromptOptions, choices: (string | Choice)[]):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -617,14 +607,16 @@ methods:
 
             the object with which to format the prompt dialog.
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
           description: |-
             Optional. Array of choices for the user to choose from,
             for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
         description: ''
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-  - name: 'replaceDialog(string, object)'
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
+  - name: replaceDialog(string, object)
     uid: botbuilder-dialogs.DialogContext.replaceDialog
     package: botbuilder-dialogs
     summary: Ends the active dialog and starts a new dialog in its place.
@@ -650,12 +642,11 @@ methods:
       - [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function replaceDialog(dialogId: string, options?: object):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -665,7 +656,9 @@ methods:
           description: Optional. Arguments to pass into the new dialog when it starts.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
   - name: repromptDialog()
     uid: botbuilder-dialogs.DialogContext.repromptDialog
     package: botbuilder-dialogs
@@ -682,7 +675,6 @@ methods:
       await dc.repromptDialog();
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function repromptDialog(): Promise<void>'

@@ -5,7 +5,6 @@ package: adaptive-expressions
 summary: Evaluator that transforms a datetime to another datetime.
 fullName: TimeTransformEvaluator
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -19,7 +18,6 @@ constructors:
       [TimeTransformEvaluator](xref:adaptive-expressions.TimeTransformEvaluator)
       class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -31,33 +29,31 @@ constructors:
           description: Name of the built-in function.
         - id: func
           type: '(timestamp: Date, numOfTransformation: number) =&gt; Date'
-          description: >
+          description: >-
             The evaluation function, it takes a timestamp and the number of
             transformation, and returns a `Date`.
-properties:
+inheritedProperties:
   - name: negation
     uid: adaptive-expressions.TimeTransformEvaluator.negation
     package: adaptive-expressions
-    summary: |-
-      Gets the evaluator that is a negation of this one.
-      Sets the evaluator that is a negation of this one.
+    summary: Sets the evaluator that is a negation of this one.
     fullName: negation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: ExpressionEvaluator negation
+      content: 'negation: ExpressionEvaluator'
       return:
-        description: The evaluator that is a negation of this one.
+        description: ''
         type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
-inheritedProperties:
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionEvaluator.negation](xref:adaptive-expressions.ExpressionEvaluator.negation)
   - name: returnType
     uid: adaptive-expressions.TimeTransformEvaluator.returnType
     package: adaptive-expressions
     summary: Type expected by evaluating the expression.
     fullName: returnType
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'returnType: ReturnType'
@@ -67,13 +63,31 @@ inheritedProperties:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionEvaluator.returnType](xref:adaptive-expressions.ExpressionEvaluator.returnType)
+  - name: tryEvaluate
+    uid: adaptive-expressions.TimeTransformEvaluator.tryEvaluate
+    package: adaptive-expressions
+    summary: Evaluate an expression.
+    fullName: tryEvaluate
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        tryEvaluate: (expression: Expression, state: MemoryInterface, options:
+        Options) => ValueWithError
+      return:
+        description: ''
+        type: >-
+          (expression: Expression, state: MemoryInterface, options: Options)
+          =&gt; ValueWithError
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionEvaluator.tryEvaluate](xref:adaptive-expressions.ExpressionEvaluator.tryEvaluate)
   - name: type
     uid: adaptive-expressions.TimeTransformEvaluator.type
     package: adaptive-expressions
     summary: Gets the expression type for evaluator.
     fullName: type
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'type: string'
@@ -83,47 +97,18 @@ inheritedProperties:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionEvaluator.type](xref:adaptive-expressions.ExpressionEvaluator.type)
-inheritedMethods:
-  - name: 'tryEvaluate(Expression, MemoryInterface, Options)'
-    uid: adaptive-expressions.TimeTransformEvaluator.tryEvaluate
-    package: adaptive-expressions
-    summary: Evaluate an expression.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function tryEvaluate(expression: Expression, state: MemoryInterface,
-        options: Options): ValueWithError
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: Expression to evaluate.
-        - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" />
-          description: Global state information.
-        - id: options
-          type: <xref uid="adaptive-expressions.Options" />
-          description: Options used in the evaluation.
-      return:
-        description: The value and error string that is non-null if there is an error.
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-    inheritanceDescription: >-
-      <b>Inherited From</b>
-      [ExpressionEvaluator.tryEvaluate](xref:adaptive-expressions.ExpressionEvaluator.tryEvaluate)
-  - name: validateExpression(Expression)
+  - name: validateExpression
     uid: adaptive-expressions.TimeTransformEvaluator.validateExpression
     package: adaptive-expressions
     summary: Validate an expression.
+    fullName: validateExpression
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function validateExpression(expression: Expression)'
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: Expression to validate.
+      content: 'validateExpression: (expression: Expression) => void'
+      return:
+        description: ''
+        type: '(expression: Expression) =&gt; void'
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionEvaluator.validateExpression](xref:adaptive-expressions.ExpressionEvaluator.validateExpression)

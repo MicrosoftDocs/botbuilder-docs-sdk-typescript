@@ -13,7 +13,6 @@ summary: >-
   The Connector service uses industry-standard REST and JSON over HTTPS.
 fullName: TeamsConnectorClientContext
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -24,7 +23,6 @@ constructors:
     package: botframework-connector
     summary: Initializes a new instance of the TeamsConnectorClientContext class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -32,13 +30,16 @@ constructors:
         options?: TeamsConnectorClientOptions)
       parameters:
         - id: credentials
-          type: ServiceClientCredentials
+          type: <xref uid="botframework-connector.ServiceClientCredentials" />
           description: >-
             Subscription credentials which uniquely identify client
             subscription.
         - id: options
-          type: <xref uid="botframework-connector.TeamsConnectorClientOptions" />
-          description: ''
+          type: >-
+            <xref
+            uid="botframework-connector.TeamsConnectorModels.TeamsConnectorClientOptions"
+            />
+          description: The parameter options
 properties:
   - name: credentials
     uid: botframework-connector.TeamsConnectorClientContext.credentials
@@ -46,13 +47,12 @@ properties:
     summary: ''
     fullName: credentials
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'credentials: ServiceClientCredentials'
       return:
         description: ''
-        type: ServiceClientCredentials
+        type: <xref uid="botframework-connector.ServiceClientCredentials" />
 inheritedMethods:
   - name: >-
       sendOperationRequest(OperationArguments, OperationSpec,
@@ -61,7 +61,6 @@ inheritedMethods:
     package: botframework-connector
     summary: Send an HTTP request that is populated using the provided OperationSpec.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -70,27 +69,25 @@ inheritedMethods:
         Promise<RestResponse>
       parameters:
         - id: operationArguments
-          type: OperationArguments
+          type: <xref uid="@azure/core-http.OperationArguments" />
           description: >-
             The arguments that the HTTP request's templated values will be
             populated from.
         - id: operationSpec
-          type: OperationSpec
+          type: <xref uid="@azure/core-http.OperationSpec" />
           description: The OperationSpec to use to populate the httpRequest.
         - id: callback
-          type: ServiceCallback&lt;any&gt;
-          description: |
-            The callback to call when the response is received.
+          type: <xref uid="@azure/core-http.ServiceCallback" />&lt;any&gt;
+          description: The callback to call when the response is received.
       return:
         description: ''
-        type: Promise&lt;RestResponse&gt;
+        type: Promise&lt;<xref uid="@azure/core-http.RestResponse" />&gt;
     inheritanceDescription: <b>Inherited From</b> ServiceClient.sendOperationRequest
   - name: sendRequest(RequestPrepareOptions | WebResourceLike)
     uid: botframework-connector.TeamsConnectorClientContext.sendRequest
     package: botframework-connector
     summary: Send the provided httpRequest.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -98,10 +95,12 @@ inheritedMethods:
         Promise<HttpOperationResponse>
       parameters:
         - id: options
-          type: RequestPrepareOptions | WebResourceLike
+          type: >-
+            <xref uid="@azure/core-http.RequestPrepareOptions" /> | <xref
+            uid="@azure/core-http.WebResourceLike" />
           description: ''
       return:
         description: ''
-        type: Promise&lt;HttpOperationResponse&gt;
+        type: Promise&lt;<xref uid="@azure/core-http.HttpOperationResponse" />&gt;
     inheritanceDescription: <b>Inherited From</b> ServiceClient.sendRequest
-extends: ServiceClient
+extends: <xref uid="@azure/core-http.ServiceClient" />

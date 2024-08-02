@@ -5,7 +5,6 @@ package: adaptive-expressions
 summary: Information on how to evaluate an expression.
 fullName: ExpressionEvaluator
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -16,12 +15,11 @@ constructors:
     package: adaptive-expressions
     summary: Initializes a new instance of the <see cref="ExpressionEvaluator"/> class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         new ExpressionEvaluator(type: string, evaluator:
-        EvaluateExpressionDelegate, returnType: ReturnType, validator?:
+        EvaluateExpressionDelegate, returnType?: ReturnType, validator?:
         ValidateExpressionDelegate)
       parameters:
         - id: type
@@ -35,23 +33,19 @@ constructors:
           description: Type expected from evaluation.
         - id: validator
           type: <xref uid="adaptive-expressions.ValidateExpressionDelegate" />
-          description: |
-            Static validation of expression.
+          description: Static validation of expression.
 properties:
   - name: negation
     uid: adaptive-expressions.ExpressionEvaluator.negation
     package: adaptive-expressions
-    summary: |-
-      Gets the evaluator that is a negation of this one.
-      Sets the evaluator that is a negation of this one.
+    summary: Sets the evaluator that is a negation of this one.
     fullName: negation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: ExpressionEvaluator negation
+      content: 'negation: ExpressionEvaluator'
       return:
-        description: The evaluator that is a negation of this one.
+        description: ''
         type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
   - name: returnType
     uid: adaptive-expressions.ExpressionEvaluator.returnType
@@ -59,61 +53,49 @@ properties:
     summary: Type expected by evaluating the expression.
     fullName: returnType
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'returnType: ReturnType'
       return:
         description: ''
         type: <xref uid="adaptive-expressions.ReturnType" />
+  - name: tryEvaluate
+    uid: adaptive-expressions.ExpressionEvaluator.tryEvaluate
+    package: adaptive-expressions
+    summary: Evaluate an expression.
+    fullName: tryEvaluate
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        tryEvaluate: (expression: Expression, state: MemoryInterface, options:
+        Options) => ValueWithError
+      return:
+        description: ''
+        type: >-
+          (expression: Expression, state: MemoryInterface, options: Options)
+          =&gt; ValueWithError
   - name: type
     uid: adaptive-expressions.ExpressionEvaluator.type
     package: adaptive-expressions
     summary: Gets the expression type for evaluator.
     fullName: type
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'type: string'
       return:
         description: ''
         type: string
-methods:
-  - name: 'tryEvaluate(Expression, MemoryInterface, Options)'
-    uid: adaptive-expressions.ExpressionEvaluator.tryEvaluate
-    package: adaptive-expressions
-    summary: Evaluate an expression.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function tryEvaluate(expression: Expression, state: MemoryInterface,
-        options: Options): ValueWithError
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: Expression to evaluate.
-        - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" />
-          description: Global state information.
-        - id: options
-          type: <xref uid="adaptive-expressions.Options" />
-          description: Options used in the evaluation.
-      return:
-        description: The value and error string that is non-null if there is an error.
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-  - name: validateExpression(Expression)
+  - name: validateExpression
     uid: adaptive-expressions.ExpressionEvaluator.validateExpression
     package: adaptive-expressions
     summary: Validate an expression.
+    fullName: validateExpression
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function validateExpression(expression: Expression)'
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: Expression to validate.
+      content: 'validateExpression: (expression: Expression) => void'
+      return:
+        description: ''
+        type: '(expression: Expression) =&gt; void'

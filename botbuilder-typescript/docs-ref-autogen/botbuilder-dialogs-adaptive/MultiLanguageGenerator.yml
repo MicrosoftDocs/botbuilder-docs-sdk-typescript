@@ -7,9 +7,8 @@ summary: >-
   the locale
 
   and has a policy which controls fallback (try en-us -> en -> default).
-fullName: 'MultiLanguageGenerator<T, D>'
+fullName: MultiLanguageGenerator
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -19,7 +18,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -32,15 +30,17 @@ properties:
     summary: Gets or sets the language generators for multiple languages.
     fullName: languageGenerators
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'languageGenerators: Map<string, LanguageGenerator>'
+      content: >-
+        languageGenerators: Map<string, LanguageGenerator<unknown,
+        Record<string, unknown>>>
       return:
         description: ''
         type: >-
           Map&lt;string, <xref
-          uid="botbuilder-dialogs-adaptive.LanguageGenerator" />&gt;
+          uid="botbuilder-dialogs-adaptive.LanguageGenerator" />&lt;unknown,
+          Record&lt;string, unknown&gt;&gt;&gt;
 inheritedProperties:
   - name: languagePolicy
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.languagePolicy
@@ -48,7 +48,6 @@ inheritedProperties:
     summary: Language policy required by language generator.
     fullName: languagePolicy
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'languagePolicy: LanguagePolicy'
@@ -59,36 +58,38 @@ inheritedProperties:
       <b>Inherited From</b>
       [MultiLanguageGeneratorBase.languagePolicy](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.languagePolicy)
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: >-
+        function configure(config: Record<string, unknown>):
+        MultiLanguageGenerator
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
-  - name: 'generate(DialogContext, string, D)'
+        type: <xref uid="botbuilder-dialogs-adaptive.MultiLanguageGenerator" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [MultiLanguageGeneratorBase.configure](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.configure)
+  - name: generate(DialogContext, string, Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.generate
     package: botbuilder-dialogs-adaptive
     summary: Find a language generator that matches the current context locale.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function generate(dialogContext: DialogContext, template: string, data:
-        D): Promise<T>
+        Record<string, unknown>): Promise<unknown>
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -97,45 +98,48 @@ inheritedMethods:
           type: string
           description: Template to use.
         - id: data
-          type: D
+          type: Record&lt;string, unknown&gt;
           description: Data to bind to.
       return:
         description: A promise representing the asynchronous operation.
-        type: Promise&lt;T&gt;
+        type: Promise&lt;unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [MultiLanguageGeneratorBase.generate](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.generate)
-  - name: getConverter(Object)
+  - name: getConverter("languagePolicy")
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.getConverter
     package: botbuilder-dialogs-adaptive
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: "languagePolicy"): Converter<unknown,
+        unknown> | ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: '"languagePolicy"'
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [MultiLanguageGeneratorBase.getConverter](xref:botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.getConverter)
 methods:
-  - name: 'tryGetGenerator(DialogContext, string)'
+  - name: tryGetGenerator(DialogContext, string)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGenerator.tryGetGenerator
     package: botbuilder-dialogs-adaptive
     summary: Implementation of lookup by locale.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function tryGetGenerator(dialogContext: DialogContext, locale: string):
-        { exist: boolean, result: LanguageGenerator }
+        { exist: boolean, result: LanguageGenerator<unknown, Record<string,
+        unknown>> }
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -145,5 +149,7 @@ methods:
           description: Locale to lookup.
       return:
         description: An object with a boolean showing existence and the language generator.
-        type: '{ exist: boolean, result: LanguageGenerator }'
+        type: >-
+          { exist: boolean, result: LanguageGenerator&lt;unknown,
+          Record&lt;string, unknown&gt;&gt; }
 extends: <xref uid="botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase" />

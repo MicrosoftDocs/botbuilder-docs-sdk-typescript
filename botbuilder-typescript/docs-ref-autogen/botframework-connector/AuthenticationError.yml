@@ -7,11 +7,10 @@ summary: >-
   a Code Status.
 fullName: AuthenticationError
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'AuthenticationError(string, StatusCode)'
+  - name: AuthenticationError(string, number)
     uid: botframework-connector.AuthenticationError.constructor
     package: botframework-connector
     summary: >-
@@ -19,45 +18,29 @@ constructors:
       [AuthenticationError](xref:botframework-connector.AuthenticationError)
       class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new AuthenticationError(message: string, statusCode: StatusCode)'
+      content: 'new AuthenticationError(message: string, statusCode: number)'
       parameters:
         - id: message
           type: string
           description: The Error message.
         - id: statusCode
-          type: <xref uid="botframework-connector.StatusCode" />
-          description: |
-            The `StatusCode` number to use.
+          type: number
+          description: The `StatusCode` number to use.
 properties:
-  - name: Error
-    uid: botframework-connector.AuthenticationError.Error
-    package: botframework-connector
-    summary: ''
-    fullName: Error
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static Error: ErrorConstructor'
-      return:
-        description: ''
-        type: ErrorConstructor
   - name: statusCode
     uid: botframework-connector.AuthenticationError.statusCode
     package: botframework-connector
     summary: ''
     fullName: statusCode
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'statusCode: StatusCode'
+      content: 'statusCode: number'
       return:
         description: ''
-        type: <xref uid="botframework-connector.StatusCode" />
+        type: number
 inheritedProperties:
   - name: message
     uid: botframework-connector.AuthenticationError.message
@@ -65,7 +48,6 @@ inheritedProperties:
     summary: ''
     fullName: message
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'message: string'
@@ -79,7 +61,6 @@ inheritedProperties:
     summary: ''
     fullName: name
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'name: string'
@@ -87,13 +68,28 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.name
+  - name: prepareStackTrace
+    uid: botframework-connector.AuthenticationError.prepareStackTrace
+    package: botframework-connector
+    summary: |-
+      Optional override for formatting stack traces
+
+      See https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+    fullName: prepareStackTrace
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static prepareStackTrace?: (err: Error, stackTraces: CallSite[]) => any'
+      return:
+        description: ''
+        type: '(err: Error, stackTraces: CallSite[]) =&gt; any'
+    inheritanceDescription: <b>Inherited From</b> Error.prepareStackTrace
   - name: stack
     uid: botframework-connector.AuthenticationError.stack
     package: botframework-connector
     summary: ''
     fullName: stack
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'stack?: string'
@@ -101,6 +97,38 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.stack
+  - name: stackTraceLimit
+    uid: botframework-connector.AuthenticationError.stackTraceLimit
+    package: botframework-connector
+    summary: ''
+    fullName: stackTraceLimit
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static stackTraceLimit: number'
+      return:
+        description: ''
+        type: number
+    inheritanceDescription: <b>Inherited From</b> Error.stackTraceLimit
+inheritedMethods:
+  - name: captureStackTrace(object, Function)
+    uid: botframework-connector.AuthenticationError.captureStackTrace
+    package: botframework-connector
+    summary: Create .stack property on a target object
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function captureStackTrace(targetObject: object, constructorOpt?:
+        Function)
+      parameters:
+        - id: targetObject
+          type: object
+          description: ''
+        - id: constructorOpt
+          type: Function
+          description: ''
+    inheritanceDescription: <b>Inherited From</b> Error.captureStackTrace
 methods:
   - name: determineStatusCodeAndBuildMessage(any)
     uid: >-
@@ -110,14 +138,13 @@ methods:
       Used to determine a status code from the error message for
       non-`IStatusCodeError`'s.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function determineStatusCodeAndBuildMessage(err: any): string'
       parameters:
         - id: err
           type: any
-          description: 'The error thrown, used to determine an appropriate status code.'
+          description: The error thrown, used to determine an appropriate status code.
       return:
         description: The error message to be sent as a response.
         type: string
@@ -128,10 +155,9 @@ methods:
       Corroborates that the error is of type
       [IStatusCodeError](xref:botframework-schema.IStatusCodeError).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static function isStatusCodeError(err: any): boolean'
+      content: 'static function isStatusCodeError(err: any): err'
       parameters:
         - id: err
           type: any
@@ -141,5 +167,5 @@ methods:
           If `err` is an
           [IStatusCodeError](xref:botframework-schema.IStatusCodeError), the
           result is true; otherwise false.
-        type: boolean
+        type: err
 extends: Error

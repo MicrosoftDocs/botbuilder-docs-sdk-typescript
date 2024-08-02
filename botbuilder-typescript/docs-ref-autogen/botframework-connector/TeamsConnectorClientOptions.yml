@@ -5,7 +5,6 @@ package: botframework-connector
 summary: ''
 fullName: TeamsConnectorClientOptions
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: interface
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: ''
     fullName: baseUri
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'baseUri?: string'
@@ -23,22 +21,6 @@ properties:
         description: ''
         type: string
 inheritedProperties:
-  - name: agentSettings
-    uid: botframework-connector.TeamsConnectorClientOptions.agentSettings
-    package: botframework-connector
-    summary: >-
-      HTTP and HTTPS agents which will be used for every HTTP request (Node.js
-      only).
-    fullName: agentSettings
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'agentSettings?: AgentSettings'
-      return:
-        description: ''
-        type: AgentSettings
-    inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.agentSettings
   - name: clientRequestIdHeaderName
     uid: >-
       botframework-connector.TeamsConnectorClientOptions.clientRequestIdHeaderName
@@ -51,7 +33,6 @@ inheritedProperties:
       the request ID.
     fullName: clientRequestIdHeaderName
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'clientRequestIdHeaderName?: string'
@@ -59,6 +40,19 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.clientRequestIdHeaderName
+  - name: credentialScopes
+    uid: botframework-connector.TeamsConnectorClientOptions.credentialScopes
+    package: botframework-connector
+    summary: If specified, will be used to build the BearerTokenAuthenticationPolicy.
+    fullName: credentialScopes
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'credentialScopes?: string | string[]'
+      return:
+        description: ''
+        type: string | string[]
+    inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.credentialScopes
   - name: deserializationContentTypes
     uid: >-
       botframework-connector.TeamsConnectorClientOptions.deserializationContentTypes
@@ -66,13 +60,12 @@ inheritedProperties:
     summary: The content-types that will be associated with JSON or XML serialization.
     fullName: deserializationContentTypes
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'deserializationContentTypes?: DeserializationContentTypes'
       return:
         description: ''
-        type: DeserializationContentTypes
+        type: <xref uid="@azure/core-http.DeserializationContentTypes" />
     inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.deserializationContentTypes
   - name: generateClientRequestIdHeader
     uid: >-
@@ -83,7 +76,6 @@ inheritedProperties:
       request.
     fullName: generateClientRequestIdHeader
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'generateClientRequestIdHeader?: boolean'
@@ -97,13 +89,12 @@ inheritedProperties:
     summary: The HttpClient that will be used to send HTTP requests.
     fullName: httpClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'httpClient?: HttpClient'
       return:
         description: ''
-        type: HttpClient
+        type: <xref uid="@azure/core-http.HttpClient" />
     inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.httpClient
   - name: httpPipelineLogger
     uid: botframework-connector.TeamsConnectorClientOptions.httpPipelineLogger
@@ -113,21 +104,19 @@ inheritedProperties:
       the HTTP pipeline.
     fullName: httpPipelineLogger
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'httpPipelineLogger?: HttpPipelineLogger'
       return:
         description: ''
-        type: HttpPipelineLogger
+        type: <xref uid="@azure/core-http.HttpPipelineLogger" />
     inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.httpPipelineLogger
   - name: noRetryPolicy
     uid: botframework-connector.TeamsConnectorClientOptions.noRetryPolicy
     package: botframework-connector
-    summary: 'If set to true, turn off the default retry policy.'
+    summary: If set to true, turn off the default retry policy.
     fullName: noRetryPolicy
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'noRetryPolicy?: boolean'
@@ -141,28 +130,13 @@ inheritedProperties:
     summary: Proxy settings which will be used for every HTTP request (Node.js only).
     fullName: proxySettings
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'proxySettings?: ProxySettings'
       return:
         description: ''
-        type: ProxySettings
+        type: <xref uid="@azure/core-http.ProxySettings" />
     inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.proxySettings
-  - name: redirectOptions
-    uid: botframework-connector.TeamsConnectorClientOptions.redirectOptions
-    package: botframework-connector
-    summary: Options for how redirect responses are handled.
-    fullName: redirectOptions
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'redirectOptions?: RedirectOptions'
-      return:
-        description: ''
-        type: RedirectOptions
-    inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.redirectOptions
   - name: requestPolicyFactories
     uid: botframework-connector.TeamsConnectorClientOptions.requestPolicyFactories
     package: botframework-connector
@@ -176,7 +150,6 @@ inheritedProperties:
       the requestPolicyFactories that will be used.
     fullName: requestPolicyFactories
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -186,8 +159,9 @@ inheritedProperties:
       return:
         description: ''
         type: >-
-          RequestPolicyFactory[] | (defaultRequestPolicyFactories:
-          RequestPolicyFactory[]) =&gt; void | RequestPolicyFactory[]
+          <xref uid="@azure/core-http.RequestPolicyFactory" />[] |
+          (defaultRequestPolicyFactories: RequestPolicyFactory[]) =&gt; void |
+          RequestPolicyFactory[]
     inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.requestPolicyFactories
   - name: rpRegistrationRetryTimeout
     uid: >-
@@ -198,7 +172,6 @@ inheritedProperties:
       Default value is 30.
     fullName: rpRegistrationRetryTimeout
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'rpRegistrationRetryTimeout?: number'
@@ -217,7 +190,6 @@ inheritedProperties:
       that will be used.
     fullName: userAgent
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'userAgent?: string | (defaultUserAgent: string) => string'
@@ -233,12 +205,11 @@ inheritedProperties:
       If this is not
 
       specified, then "User-Agent" will be used when running on Node.js and
-      "x-ms-command-name" will
+      "x-ms-useragent" will
 
       be used when running in a browser.
     fullName: userAgentHeaderName
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -259,7 +230,6 @@ inheritedProperties:
       for more information.
     fullName: withCredentials
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'withCredentials?: boolean'
@@ -267,4 +237,4 @@ inheritedProperties:
         description: ''
         type: boolean
     inheritanceDescription: <b>Inherited From</b> ServiceClientOptions.withCredentials
-extends: ServiceClientOptions
+extends: <xref uid="@azure/core-http.ServiceClientOptions" />

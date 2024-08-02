@@ -40,7 +40,6 @@ remarks: >-
   work](https://docs.microsoft.com/azure/bot-service/bot-builder-basics) and
 
   [Middleware](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-middleware).
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -50,7 +49,6 @@ properties:
     summary: ''
     fullName: BotIdentityKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'BotIdentityKey: symbol'
@@ -63,7 +61,6 @@ properties:
     summary: ''
     fullName: ConnectorClientKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'ConnectorClientKey: symbol'
@@ -76,7 +73,6 @@ properties:
     summary: ''
     fullName: OAuthScopeKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'OAuthScopeKey: symbol'
@@ -89,23 +85,8 @@ properties:
     summary: >-
       Gets or sets an error handler that can catch exceptions in the middleware
       or application.
-
-      Sets an error handler that can catch exceptions in the middleware or
-      application.
     fullName: onTurnError
-    remarks: >-
-      The error handler is called with these parameters:
-
-
-      | Name | Type | Description |
-
-      | :--- | :--- | :--- |
-
-      | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The
-      context object for the turn. |
-
-      | `error` | `Error` | The Node.js error thrown. |
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
@@ -130,7 +111,6 @@ methods:
 
       For example, a bot can use this method to send notifications or coupons to
       a user.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -138,12 +118,11 @@ methods:
         logic: (revocableContext: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: reference
-          type: Partial&lt;ConversationReference&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
           description: A reference to the conversation to continue.
         - id: logic
           type: '(revocableContext: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: |
-            The asynchronous method to call after the adapter middleware runs.
+          description: The asynchronous method to call after the adapter middleware runs.
       return:
         description: ''
         type: Promise&lt;void&gt;
@@ -156,7 +135,6 @@ methods:
       Asynchronously resumes a conversation with a user, possibly after some
       time has gone by.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -170,7 +148,7 @@ methods:
             A [ClaimsIdentity](xref:botframework-connector) for the
             conversation.
         - id: reference
-          type: Partial&lt;ConversationReference&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
           description: >-
             A partial
             [ConversationReference](xref:botframework-schema.ConversationReference)
@@ -190,7 +168,6 @@ methods:
       Asynchronously resumes a conversation with a user, possibly after some
       time has gone by.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -204,7 +181,7 @@ methods:
             A [ClaimsIdentity](xref:botframework-connector) for the
             conversation.
         - id: reference
-          type: Partial&lt;ConversationReference&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
           description: >-
             A partial
             [ConversationReference](xref:botframework-schema.ConversationReference)
@@ -227,7 +204,6 @@ methods:
       Asynchronously resumes a conversation with a user, possibly after some
       time has gone by.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -242,7 +218,7 @@ methods:
             tenant the Adapters (Console,Test, etc) but is critical to the
             BotFrameworkAdapter which is multi-tenant aware.
         - id: reference
-          type: Partial&lt;ConversationReference&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
           description: >-
             A partial
             [ConversationReference](xref:botframework-schema.ConversationReference)
@@ -277,7 +253,6 @@ methods:
       activity's converstion will contain
 
       the ID of the new conversation.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -301,7 +276,7 @@ methods:
             The audience for the connector.
             <param name="conversationParameters">
         - id: _conversationParameters
-          type: ConversationParameters
+          type: <xref uid="botbuilder-core.ConversationParameters" />
           description: The conversation information to use to create the conversation
         - id: _logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
@@ -309,11 +284,12 @@ methods:
       return:
         description: A promise that represents the asynchronous operation
         type: Promise&lt;void&gt;
-  - name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
+  - name: deleteActivity(TurnContext, Partial<ConversationReference>)
     uid: botbuilder-core.BotAdapter.deleteActivity
     package: botbuilder-core
-    summary: >
+    summary: >-
       Asynchronously deletes an existing activity.
+
 
       This interface supports the framework and is not intended to be called
       directly for your code.
@@ -326,7 +302,6 @@ methods:
     remarks: >-
       Not all channels support this operation. For channels that don't, this
       call may throw an exception.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -337,17 +312,17 @@ methods:
           type: <xref uid="botbuilder-core.TurnContext" />
           description: The context object for the turn.
         - id: reference
-          type: Partial&lt;ConversationReference&gt;
-          description: |
-            Conversation reference information for the activity to delete.
+          type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
+          description: Conversation reference information for the activity to delete.
       return:
         description: ''
         type: Promise&lt;void&gt;
-  - name: 'sendActivities(TurnContext, Partial<Activity>[])'
+  - name: sendActivities(TurnContext, Partial<Activity>[])
     uid: botbuilder-core.BotAdapter.sendActivities
     package: botbuilder-core
-    summary: >
+    summary: >-
       Asynchronously sends a set of outgoing activities to a channel server.
+
 
       This method supports the framework and is not intended to be called
       directly for your code.
@@ -365,7 +340,6 @@ methods:
       activities this will
 
       contain the ID of the delivered message.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -376,17 +350,17 @@ methods:
           type: <xref uid="botbuilder-core.TurnContext" />
           description: The context object for the turn.
         - id: activities
-          type: 'Partial&lt;Activity&gt;[]'
-          description: |
-            The activities to send.
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;[]
+          description: The activities to send.
       return:
-        description: 'An array of [ResourceResponse](xref:botbuilder-core.Storage)'
-        type: 'Promise&lt;ResourceResponse[]&gt;'
-  - name: 'updateActivity(TurnContext, Partial<Activity>)'
+        description: An array of [ResourceResponse](xref:botbuilder-core.Os)
+        type: Promise&lt;<xref uid="botbuilder-core.ResourceResponse" />[]&gt;
+  - name: updateActivity(TurnContext, Partial<Activity>)
     uid: botbuilder-core.BotAdapter.updateActivity
     package: botbuilder-core
-    summary: >
+    summary: >-
       Asynchronously replaces a previous activity with an updated version.
+
 
       This interface supports the framework and is not intended to be called
       directly for your code.
@@ -399,26 +373,22 @@ methods:
     remarks: >-
       Not all channels support this operation. For channels that don't, this
       call may throw an exception.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
-        Partial<Activity>): Promise<ResourceResponse | void>
+        Partial<Activity>): Promise<void | ResourceResponse>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
           description: The context object for the turn.
         - id: activity
-          type: Partial&lt;Activity&gt;
-          description: |
-            The updated version of the activity to replace.
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
+          description: The updated version of the activity to replace.
       return:
         description: ''
-        type: Promise&lt;ResourceResponse | void&gt;
-  - name: >-
-      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
-      Middleware[])
+        type: Promise&lt;void | <xref uid="botbuilder-core.ResourceResponse" />&gt;
+  - name: use((MiddlewareHandler | Middleware)[])
     uid: botbuilder-core.BotAdapter.use
     package: botbuilder-core
     summary: Adds middleware to the adapter's pipeline.
@@ -427,18 +397,17 @@ methods:
 
       Each turn, the adapter calls its middleware in the order in which you
       added it.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[]): this
+        function use(middlewares: (MiddlewareHandler | Middleware)[]):
+        BotAdapter
       parameters:
         - id: middlewares
           type: >-
-            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
-            Promise&lt;void&gt; | <xref uid="botbuilder-core.Middleware" />[]
+            (<xref uid="botbuilder-core.MiddlewareHandler" /> | <xref
+            uid="botbuilder-core.Middleware" />)[]
           description: The middleware or middleware handlers to add.
       return:
         description: The updated adapter object.
-        type: this
+        type: <xref uid="botbuilder-core.BotAdapter" />

@@ -1,0 +1,74 @@
+### YamlMime:TSType
+name: Storage
+uid: botbuilder.Storage
+package: botbuilder
+summary: >-
+  Interface for a storage provider that stores and retrieves plain old JSON
+  objects.
+fullName: Storage
+remarks: ''
+isDeprecated: false
+type: interface
+methods:
+  - name: delete(string[])
+    uid: botbuilder.Storage.delete
+    package: botbuilder
+    summary: Removes store items from storage
+    remarks: |-
+      This example deletes an object from storage:
+
+      ```JavaScript
+      await storage.delete(['botState']);
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function delete(keys: string[]): Promise<void>'
+      parameters:
+        - id: keys
+          type: string[]
+          description: Array of item keys to remove from the store.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;
+  - name: read(string[])
+    uid: botbuilder.Storage.read
+    package: botbuilder
+    summary: Loads store items from storage
+    remarks: |-
+      This example reads in a single object from storage:
+
+      ```JavaScript
+      const items = await storage.read(['botState']);
+      const state = items['botState'] || {};
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function read(keys: string[]): Promise<StoreItems>'
+      parameters:
+        - id: keys
+          type: string[]
+          description: Array of item keys to read from the store.
+      return:
+        description: ''
+        type: Promise&lt;<xref uid="botbuilder.StoreItems" />&gt;
+  - name: write(StoreItems)
+    uid: botbuilder.Storage.write
+    package: botbuilder
+    summary: Saves store items to storage.
+    remarks: |-
+      This example writes an object to storage after its been modified:
+
+      ```JavaScript
+      state.topic = 'someTopic';
+      await storage.write({ 'botState': state });
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function write(changes: StoreItems): Promise<void>'
+      parameters:
+        - id: changes
+          type: <xref uid="botbuilder.StoreItems" />
+          description: Map of items to write to storage.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;

@@ -7,23 +7,46 @@ summary: >-
   learning or multi-turn prompt options for the QnAMakerDialog.
 fullName: QnACardBuilder
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 methods:
-  - name: 'getQnAAnswerCard(QnAMakerResult, boolean)'
+  - name: getHeroCard(string, any[])
+    uid: botbuilder-ai.QnACardBuilder.getHeroCard
+    package: botbuilder-ai
+    summary: >-
+      Returns a Hero Card attachment containing the text for the card and a
+      button list
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function getHeroCard(cardText: string, buttonList: any[]):
+        Attachment
+      parameters:
+        - id: cardText
+          type: string
+          description: The string to be placed in the card's text field
+        - id: buttonList
+          type: any[]
+          description: >-
+            The list of buttons to be converted to imBack buttons and attached
+            to the card
+      return:
+        description: An attachment representing the Hero Card
+        type: Attachment
+  - name: getQnAAnswerCard(QnAMakerResult, boolean, boolean)
     uid: botbuilder-ai.QnACardBuilder.getQnAAnswerCard
     package: botbuilder-ai
     summary: >-
       Returns an [activity](xref:botframework-schema.Activity) with answer text
-      and a hero card attachment, containing buttons for multi turn prompts.
+      and a card attachment, containing buttons for multi turn prompts.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function getQnAAnswerCard(result: QnAMakerResult,
-        displayPreciseAnswerOnly: boolean): Partial<Activity>
+        displayPreciseAnswerOnly: boolean, useTeamsAdaptiveCard?: boolean):
+        Partial<Activity>
       parameters:
         - id: result
           type: <xref uid="botbuilder-ai.QnAMakerResult" />
@@ -34,7 +57,13 @@ methods:
           type: boolean
           description: >-
             whether to display PreciseAnswer Only or along with source Answer
-            text. .
+            text.
+        - id: useTeamsAdaptiveCard
+          type: boolean
+          description: >-
+            whether to use a Microsoft Teams formatted adaptive card instead of
+            a hero card. Defaults to false.
+             Card width is limited by Teams and long CQA responses should be formatted in the Language Studio to add line breaks. Card payload is specific to MS Teams.
       return:
         description: Activity representing the prompts as a card
         type: Partial&lt;Activity&gt;
@@ -45,7 +74,6 @@ methods:
       Returns an [activity](xref:botframework-schema.Activity) with answer text
       and a hero card attachment, containing buttons for multi turn prompts.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -60,22 +88,22 @@ methods:
       return:
         description: Activity representing the prompts as a card
         type: Partial&lt;Activity&gt;
-  - name: 'getSuggestionsCard(string[], string, string)'
+  - name: getSuggestionsCard(string[], string, string, boolean)
     uid: botbuilder-ai.QnACardBuilder.getSuggestionsCard
     package: botbuilder-ai
     summary: >-
       Returns an [activity](xref:botframework-schema.Activity) with a hero card
       attachment, containing buttons for active learning suggestions.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function getSuggestionsCard(suggestionsList: string[], cardTitle:
-        string, cardNoMatchText: string): Partial<Activity>
+        string, cardNoMatchText: string, useTeamsAdaptiveCard?: boolean):
+        Partial<Activity>
       parameters:
         - id: suggestionsList
-          type: 'string[]'
+          type: string[]
           description: List of suggestions to be displayed on hero card.
         - id: cardTitle
           type: string
@@ -85,6 +113,36 @@ methods:
           description: >-
             Text for button to be added to card to allow user to select 'no
             match'.
+        - id: useTeamsAdaptiveCard
+          type: boolean
+          description: >-
+            whether to use a Microsoft Teams formatted adaptive card instead of
+            a hero card. Defaults to false.
+             Card width is limited by Teams and long CQA responses should be formatted in the Language Studio to add line breaks. Card payload is specific to MS Teams.
       return:
         description: Activity representing the suggestions as a card
         type: Partial&lt;Activity&gt;
+  - name: getTeamsAdaptiveCard(string, any[])
+    uid: botbuilder-ai.QnACardBuilder.getTeamsAdaptiveCard
+    package: botbuilder-ai
+    summary: >-
+      Returns an Adaptive Card attachment containing the text for the card and a
+      button list formatted for MS Teams
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function getTeamsAdaptiveCard(cardText: string, buttonList:
+        any[]): Attachment
+      parameters:
+        - id: cardText
+          type: string
+          description: The string to be placed in the card's text field
+        - id: buttonList
+          type: any[]
+          description: >-
+            The list of buttons to be converted to MS Teams messageBack buttons
+            and placed in the card's actions field
+      return:
+        description: An attachment representing the MS Teams-formatted Adaptive Card
+        type: Attachment

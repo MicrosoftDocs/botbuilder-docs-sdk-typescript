@@ -5,7 +5,6 @@ package: botbuilder
 summary: ''
 fullName: BotFrameworkHttpAdapter
 remarks: ''
-isPreview: false
 isDeprecated: true
 customDeprecatedMessage: |-
   Use `CloudAdapter` instead.
@@ -14,7 +13,8 @@ customDeprecatedMessage: |-
 type: interface
 methods:
   - name: >-
-      process(Request, INodeSocket, INodeBuffer, (context: TurnContext) =>
+      process(Request<Record<string, unknown>, Record<string, undefined | string
+      | string[]>>, INodeSocket, INodeBuffer, (context: TurnContext) =>
       Promise<void>)
     uid: botbuilder.BotFrameworkHttpAdapter.process_1
     package: botbuilder
@@ -22,15 +22,17 @@ methods:
       Handle a web socket connection by applying a logic callback function to
       each streaming request.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function process(req: Request, socket: INodeSocket, head: INodeBuffer,
+        function process(req: Request<Record<string, unknown>, Record<string,
+        undefined | string | string[]>>, socket: INodeSocket, head: INodeBuffer,
         logic: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
-          type: Request
+          type: >-
+            <xref uid="botbuilder.Request" />&lt;Record&lt;string, unknown&gt;,
+            Record&lt;string, undefined | string | string[]&gt;&gt;
           description: ''
         - id: socket
           type: INodeSocket
@@ -44,23 +46,27 @@ methods:
       return:
         description: ''
         type: Promise&lt;void&gt;
-  - name: 'process(Request, Response, (context: TurnContext) => Promise<void>)'
+  - name: >-
+      process(Request<Record<string, unknown>, Record<string, undefined | string
+      | string[]>>, Response, (context: TurnContext) => Promise<void>)
     uid: botbuilder.BotFrameworkHttpAdapter.process
     package: botbuilder
     summary: Process a web request by applying a logic callback function.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function process(req: Request, res: Response, logic: (context:
+        function process(req: Request<Record<string, unknown>, Record<string,
+        undefined | string | string[]>>, res: Response, logic: (context:
         TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
-          type: Request
+          type: >-
+            <xref uid="botbuilder.Request" />&lt;Record&lt;string, unknown&gt;,
+            Record&lt;string, undefined | string | string[]&gt;&gt;
           description: ''
         - id: res
-          type: Response
+          type: <xref uid="botbuilder.Response" />
           description: ''
         - id: logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'

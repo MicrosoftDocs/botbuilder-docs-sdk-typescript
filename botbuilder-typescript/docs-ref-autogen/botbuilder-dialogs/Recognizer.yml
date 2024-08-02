@@ -5,7 +5,6 @@ package: botbuilder-dialogs
 summary: Recognizer base class.
 fullName: Recognizer
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: Recognizers unique ID.
     fullName: id
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
@@ -30,7 +28,6 @@ properties:
       Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
@@ -38,24 +35,23 @@ properties:
         description: ''
         type: BotTelemetryClient
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs.Recognizer.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): Recognizer'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
+        type: <xref uid="botbuilder-dialogs.Recognizer" />
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
@@ -64,10 +60,11 @@ inheritedMethods:
     package: botbuilder-dialogs
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      content: >-
+        function getConverter(_property: string): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: _property
           type: string
@@ -75,8 +72,9 @@ inheritedMethods:
       return:
         description: The converter for the selector configuration.
         type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
+          <xref uid="botbuilder-dialogs.Converter" />&lt;unknown, unknown&gt; |
+          <xref uid="botbuilder-dialogs.ConverterFactory" />&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
@@ -88,7 +86,6 @@ methods:
     package: botbuilder-dialogs
     summary: To recognize intents and entities in a users utterance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -103,12 +100,11 @@ methods:
           type: Partial&lt;Activity&gt;
           description: Activity.
         - id: _telemetryProperties
-          type: 'Record&lt;string, string&gt;'
+          type: Record&lt;string, string&gt;
           description: Additional properties to be logged to telemetry with event.
         - id: _telemetryMetrics
-          type: 'Record&lt;string, number&gt;'
-          description: |
-            Additional metrics to be logged to telemetry with event.
+          type: Record&lt;string, number&gt;
+          description: Additional metrics to be logged to telemetry with event.
       return:
         description: ''
         type: Promise&lt;RecognizerResult&gt;

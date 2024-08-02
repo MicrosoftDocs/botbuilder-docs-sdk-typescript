@@ -1,0 +1,137 @@
+### YamlMime:TSType
+name: Trigger
+uid: adaptive-expressions-ie11.Trigger
+package: adaptive-expressions-ie11
+summary: >-
+  A trigger is a combination of a trigger expression and the corresponding
+  action.
+fullName: Trigger
+remarks: ''
+isDeprecated: false
+type: class
+constructors:
+  - name: Trigger(TriggerTree, Expression, any, Quantifier[])
+    uid: adaptive-expressions-ie11.Trigger.constructor
+    package: adaptive-expressions-ie11
+    summary: Intializes a new instance of the `Trigger` class.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        new Trigger(tree: TriggerTree, expression?: Expression, action?: any,
+        quantifiers: Quantifier[])
+      parameters:
+        - id: tree
+          type: <xref uid="adaptive-expressions-ie11.TriggerTree" />
+          description: Trigger tree that contains this trigger.
+        - id: expression
+          type: <xref uid="adaptive-expressions-ie11.Expression" />
+          description: Expression for when the trigger action is possible.
+        - id: action
+          type: any
+          description: Action to take when a trigger matches.
+        - id: quantifiers
+          type: <xref uid="adaptive-expressions-ie11.Quantifier" />[]
+          description: Quantifiers to dynamically expand the expression.
+properties:
+  - name: action
+    uid: adaptive-expressions-ie11.Trigger.action
+    package: adaptive-expressions-ie11
+    summary: Action to take when trigger is true.
+    fullName: action
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'action: any'
+      return:
+        description: ''
+        type: any
+  - name: clauses
+    uid: adaptive-expressions-ie11.Trigger.clauses
+    package: adaptive-expressions-ie11
+    summary: >-
+      Gets list of expressions converted into Disjunctive Normal Form where ! is
+      pushed to the leaves and
+
+      there is an implicit || between clauses and && within a clause.
+    fullName: clauses
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'clauses: Clause[]'
+      return:
+        description: The list of clauses.
+        type: <xref uid="adaptive-expressions-ie11.Clause" />[]
+  - name: originalExpression
+    uid: adaptive-expressions-ie11.Trigger.originalExpression
+    package: adaptive-expressions-ie11
+    summary: Original trigger expression.
+    fullName: originalExpression
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'originalExpression: Expression'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+methods:
+  - name: matches(Clause, any)
+    uid: adaptive-expressions-ie11.Trigger.matches
+    package: adaptive-expressions-ie11
+    summary: >-
+      Determines whether there is a member in the current `Clause` that matches
+      the nodeClause parameter.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function matches(nodeClause: Clause, state: any): boolean'
+      parameters:
+        - id: nodeClause
+          type: <xref uid="adaptive-expressions-ie11.Clause" />
+          description: The other Clause instance to match.
+        - id: state
+          type: any
+          description: The scope for looking up variables.
+      return:
+        description: A boolean value inidicating whether there is a member matches.
+        type: boolean
+  - name: relationship(Trigger, PredicateComparers)
+    uid: adaptive-expressions-ie11.Trigger.relationship
+    package: adaptive-expressions-ie11
+    summary: >-
+      Determines the relationship between current instance and another `Trigger`
+      instance.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function relationship(other: Trigger, comparers: PredicateComparers):
+        RelationshipType
+      parameters:
+        - id: other
+          type: <xref uid="adaptive-expressions-ie11.Trigger" />
+          description: The other Trigger instance.
+        - id: comparers
+          type: <xref uid="adaptive-expressions-ie11.PredicateComparers" />
+          description: The comparer dictionary.
+      return:
+        description: A `RelationshipType` value.
+        type: <xref uid="adaptive-expressions-ie11.RelationshipType" />
+  - name: toString(string[], number)
+    uid: adaptive-expressions-ie11.Trigger.toString
+    package: adaptive-expressions-ie11
+    summary: Gets a string that represents the current trigger.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function toString(builder?: string[], indent?: number): string'
+      parameters:
+        - id: builder
+          type: string[]
+          description: An array of string to build the string of trigger.
+        - id: indent
+          type: number
+          description: An integer represents the number of spaces at the start of a line.
+      return:
+        description: A string that represents the current trigger.
+        type: string

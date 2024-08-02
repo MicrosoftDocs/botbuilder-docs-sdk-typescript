@@ -5,7 +5,6 @@ package: botbuilder-dialogs-adaptive
 summary: Recognizes mention input.
 fullName: MentionEntityRecognizer
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -29,14 +27,13 @@ inheritedProperties:
     summary: Recognizers unique ID.
     fullName: id
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
       return:
         description: ''
         type: string
-    inheritanceDescription: <b>Inherited From</b> Recognizer.id
+    inheritanceDescription: <b>Inherited From</b> TextEntityRecognizer.id
   - name: logPersonalInformation
     uid: botbuilder-dialogs-adaptive.MentionEntityRecognizer.logPersonalInformation
     package: botbuilder-dialogs-adaptive
@@ -45,16 +42,13 @@ inheritedProperties:
       information (PII) should log to telemetry.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'logPersonalInformation: BoolExpression'
       return:
         description: ''
         type: BoolExpression
-    inheritanceDescription: >-
-      <b>Inherited From</b>
-      [AdaptiveRecognizer.logPersonalInformation](xref:botbuilder-dialogs-adaptive.AdaptiveRecognizer.logPersonalInformation)
+    inheritanceDescription: <b>Inherited From</b> TextEntityRecognizer.logPersonalInformation
   - name: telemetryClient
     uid: botbuilder-dialogs-adaptive.MentionEntityRecognizer.telemetryClient
     package: botbuilder-dialogs-adaptive
@@ -63,51 +57,54 @@ inheritedProperties:
       Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
         description: ''
         type: BotTelemetryClient
-    inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
+    inheritanceDescription: <b>Inherited From</b> TextEntityRecognizer.telemetryClient
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.MentionEntityRecognizer.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: >-
+        function configure(config: Record<string, unknown>):
+        MentionEntityRecognizer
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
+        type: <xref uid="botbuilder-dialogs-adaptive.MentionEntityRecognizer" />
+    inheritanceDescription: <b>Inherited From</b> TextEntityRecognizer.configure
   - name: getConverter(string)
     uid: botbuilder-dialogs-adaptive.MentionEntityRecognizer.getConverter
     package: botbuilder-dialogs-adaptive
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      content: >-
+        function getConverter(_property: string): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: _property
           type: string
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
-    inheritanceDescription: <b>Inherited From</b> Configurable.getConverter
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
+    inheritanceDescription: <b>Inherited From</b> TextEntityRecognizer.getConverter
   - name: >-
       recognize(DialogContext, Partial<Activity>, Record<string, string>,
       Record<string, number>)
@@ -115,7 +112,6 @@ inheritedMethods:
     package: botbuilder-dialogs-adaptive
     summary: To recognize intents and entities in a users utterance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -130,25 +126,22 @@ inheritedMethods:
           type: Partial&lt;Activity&gt;
           description: Activity.
         - id: _telemetryProperties
-          type: 'Record&lt;string, string&gt;'
+          type: Record&lt;string, string&gt;
           description: Additional properties to be logged to telemetry with event.
         - id: _telemetryMetrics
-          type: 'Record&lt;string, number&gt;'
+          type: Record&lt;string, number&gt;
           description: Additional metrics to be logged to telemetry with event.
       return:
         description: Analysis of utterance.
         type: Promise&lt;RecognizerResult&gt;
-    inheritanceDescription: >-
-      <b>Inherited From</b>
-      [EntityRecognizer.recognize](xref:botbuilder-dialogs-adaptive.EntityRecognizer.recognize)
-  - name: 'recognizeEntities(DialogContext, string, string, Entity[])'
+    inheritanceDescription: <b>Inherited From</b> TextEntityRecognizer.recognize
+  - name: recognizeEntities(DialogContext, string, string, Entity[])
     uid: botbuilder-dialogs-adaptive.MentionEntityRecognizer.recognizeEntities
     package: botbuilder-dialogs-adaptive
     summary: >-
       Recognizes entities from an [Entity](xref:botframework-schema.Entity)
       list.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -167,14 +160,12 @@ inheritedMethods:
           type: string
           description: Locale to use.
         - id: entities
-          type: 'Entity[]'
+          type: Entity[]
           description: >-
             The [Entity](xref:botframework-schema.Entity) array to be
             recognized.
       return:
-        description: 'Recognized [Entity](xref:botframework-schema.Entity) list Promise.'
-        type: 'Promise&lt;Entity[]&gt;'
-    inheritanceDescription: >-
-      <b>Inherited From</b>
-      [TextEntityRecognizer.recognizeEntities](xref:botbuilder-dialogs-adaptive.TextEntityRecognizer.recognizeEntities)
-extends: <xref uid="botbuilder-dialogs-adaptive.TextEntityRecognizer" />
+        description: Recognized [Entity](xref:botframework-schema.Entity) list Promise.
+        type: Promise&lt;Entity[]&gt;
+    inheritanceDescription: <b>Inherited From</b> TextEntityRecognizer.recognizeEntities
+extends: TextEntityRecognizer

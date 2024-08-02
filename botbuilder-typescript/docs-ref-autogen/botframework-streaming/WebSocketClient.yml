@@ -5,7 +5,6 @@ package: botframework-streaming
 summary: Web socket based client to be used as streaming transport.
 fullName: WebSocketClient
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -18,25 +17,26 @@ constructors:
       Creates a new instance of the
       [WebSocketClient](xref:botframework-streaming.WebSocketClient) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        new WebSocketClient(__namedParameters: { disconnectionHandler: (message:
-        string) => void, requestHandler: RequestHandler, url: string })
+        new WebSocketClient(config: { disconnectionHandler: (message: string) =>
+        void, requestHandler: RequestHandler, url: string })
       parameters:
-        - id: __namedParameters
+        - id: config
           type: >-
             { disconnectionHandler: (message: string) =&gt; void,
             requestHandler: RequestHandler, url: string }
-          description: ''
+          description: >-
+            For configuring a
+            [WebSocketClient](xref:botframework-streaming.WebSocketClient)
+            instance to communicate with a WebSocket server.
 methods:
   - name: connect()
     uid: botframework-streaming.WebSocketClient.connect
     package: botframework-streaming
     summary: Establish a connection with no custom headers.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function connect(): Promise<void>'
@@ -50,7 +50,6 @@ methods:
     package: botframework-streaming
     summary: Stop this client from listening.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: function disconnect()
@@ -59,7 +58,6 @@ methods:
     package: botframework-streaming
     summary: Task used to send data over this client connection.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function send(request: StreamingRequest): Promise<IReceiveResponse>'

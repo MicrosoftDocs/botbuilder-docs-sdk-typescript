@@ -1,0 +1,219 @@
+### YamlMime:TSType
+name: ConfigurationBotFrameworkAuthentication
+uid: botbuilder.ConfigurationBotFrameworkAuthentication
+package: botbuilder
+summary: >-
+  Creates a
+  [BotFrameworkAuthentication](xref:botframework-connector.BotFrameworkAuthentication)
+  instance from an object with the authentication values or a
+  [Configuration](xref:botbuilder-dialogs-adaptive-runtime-core.Configuration)
+  instance.
+fullName: ConfigurationBotFrameworkAuthentication
+remarks: ''
+isDeprecated: false
+type: class
+constructors:
+  - name: >-
+      ConfigurationBotFrameworkAuthentication({ BotOpenIdMetadata?: string,
+      CallerId?: string, CertificatePrivateKey?: string, CertificateThumbprint?:
+      string, ChannelService?: string, MicrosoftAppId?: string,
+      MicrosoftAppTenantId?: string, OAuthApiEndpoint?: string, OAuthUrl?:
+      string, ToBotFromChannelOpenIdMetadataUrl?: string,
+      ToBotFromChannelTokenIssuer?: string, ToBotFromEmulatorOpenIdMetadataUrl?:
+      string, ToChannelFromBotLoginUrl?: string, ToChannelFromBotOAuthScope?:
+      string, ValidateAuthority?: string | boolean },
+      ServiceClientCredentialsFactory, AuthenticationConfiguration, (input:
+      RequestInfo, init?: RequestInit) => Promise<Response>,
+      ConnectorClientOptions)
+    uid: botbuilder.ConfigurationBotFrameworkAuthentication.constructor
+    package: botbuilder
+    summary: >-
+      Initializes a new instance of the
+      [ConfigurationBotFrameworkAuthentication](xref:botbuilder-core.ConfigurationBotFrameworkAuthentication)
+      class.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        new ConfigurationBotFrameworkAuthentication(botFrameworkAuthConfig?: {
+        BotOpenIdMetadata?: string, CallerId?: string, CertificatePrivateKey?:
+        string, CertificateThumbprint?: string, ChannelService?: string,
+        MicrosoftAppId?: string, MicrosoftAppTenantId?: string,
+        OAuthApiEndpoint?: string, OAuthUrl?: string,
+        ToBotFromChannelOpenIdMetadataUrl?: string,
+        ToBotFromChannelTokenIssuer?: string,
+        ToBotFromEmulatorOpenIdMetadataUrl?: string, ToChannelFromBotLoginUrl?:
+        string, ToChannelFromBotOAuthScope?: string, ValidateAuthority?: string
+        | boolean }, credentialsFactory?: ServiceClientCredentialsFactory,
+        authConfiguration?: AuthenticationConfiguration,
+        botFrameworkClientFetch?: (input: RequestInfo, init?: RequestInit) =>
+        Promise<Response>, connectorClientOptions?: ConnectorClientOptions)
+      parameters:
+        - id: botFrameworkAuthConfig
+          type: >-
+            { BotOpenIdMetadata?: string, CallerId?: string,
+            CertificatePrivateKey?: string, CertificateThumbprint?: string,
+            ChannelService?: string, MicrosoftAppId?: string,
+            MicrosoftAppTenantId?: string, OAuthApiEndpoint?: string, OAuthUrl?:
+            string, ToBotFromChannelOpenIdMetadataUrl?: string,
+            ToBotFromChannelTokenIssuer?: string,
+            ToBotFromEmulatorOpenIdMetadataUrl?: string,
+            ToChannelFromBotLoginUrl?: string, ToChannelFromBotOAuthScope?:
+            string, ValidateAuthority?: string | boolean }
+          description: >-
+            A
+            [ConfigurationBotFrameworkAuthenticationOptions](xref:botbuilder-core.ConfigurationBotFrameworkAuthenticationOptions)
+            object.
+        - id: credentialsFactory
+          type: ServiceClientCredentialsFactory
+          description: >-
+            A
+            [ServiceClientCredentialsFactory](xref:botframework-connector.ServiceClientCredentialsFactory)
+            instance.
+        - id: authConfiguration
+          type: AuthenticationConfiguration
+          description: >-
+            A
+            [Configuration](xref:botframework-connector.AuthenticationConfiguration)
+            object.
+        - id: botFrameworkClientFetch
+          type: >-
+            (input: RequestInfo, init?: RequestInit) =&gt;
+            Promise&lt;Response&gt;
+          description: >-
+            A custom Fetch implementation to be used in the
+            [BotFrameworkClient](xref:botframework-connector.BotFrameworkClient).
+        - id: connectorClientOptions
+          type: ConnectorClientOptions
+          description: >-
+            A
+            [ConnectorClientOptions](xref:botframework-connector.ConnectorClientOptions)
+            object.
+inheritedMethods:
+  - name: getOriginatingAudience()
+    uid: botbuilder.ConfigurationBotFrameworkAuthentication.getOriginatingAudience
+    package: botbuilder
+    summary: Gets the originating audience from Bot OAuth scope.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function getOriginatingAudience(): string'
+      return:
+        description: The originating audience.
+        type: string
+    inheritanceDescription: <b>Inherited From</b> BotFrameworkAuthentication.getOriginatingAudience
+methods:
+  - name: authenticateChannelRequest(string)
+    uid: >-
+      botbuilder.ConfigurationBotFrameworkAuthentication.authenticateChannelRequest
+    package: botbuilder
+    summary: Authenticate Bot Framework Protocol requests to Skills.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function authenticateChannelRequest(authHeader: string):
+        Promise<ClaimsIdentity>
+      parameters:
+        - id: authHeader
+          type: string
+          description: The http auth header received in the skill request.
+      return:
+        description: A [ClaimsIdentity](xref:botframework-connector.ClaimsIdentity).
+        type: Promise&lt;ClaimsIdentity&gt;
+  - name: authenticateRequest(Activity, string)
+    uid: botbuilder.ConfigurationBotFrameworkAuthentication.authenticateRequest
+    package: botbuilder
+    summary: Validate Bot Framework Protocol requests.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function authenticateRequest(activity: Activity, authHeader: string):
+        Promise<AuthenticateRequestResult>
+      parameters:
+        - id: activity
+          type: <xref uid="botbuilder.Activity" />
+          description: The inbound Activity.
+        - id: authHeader
+          type: string
+          description: The HTTP auth header.
+      return:
+        description: >-
+          An
+          [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
+        type: Promise&lt;AuthenticateRequestResult&gt;
+  - name: authenticateStreamingRequest(string, string)
+    uid: >-
+      botbuilder.ConfigurationBotFrameworkAuthentication.authenticateStreamingRequest
+    package: botbuilder
+    summary: Validate Bot Framework Protocol requests.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function authenticateStreamingRequest(authHeader: string,
+        channelIdHeader: string): Promise<AuthenticateRequestResult>
+      parameters:
+        - id: authHeader
+          type: string
+          description: The HTTP auth header.
+        - id: channelIdHeader
+          type: string
+          description: The channel ID HTTP header.
+      return:
+        description: >-
+          An
+          [AuthenticateRequestResult](xref:botframework-connector.AuthenticateRequestResult).
+        type: Promise&lt;AuthenticateRequestResult&gt;
+  - name: createBotFrameworkClient()
+    uid: >-
+      botbuilder.ConfigurationBotFrameworkAuthentication.createBotFrameworkClient
+    package: botbuilder
+    summary: Creates a BotFrameworkClient for calling Skills.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function createBotFrameworkClient(): BotFrameworkClient'
+      return:
+        description: >-
+          A
+          [BotFrameworkClient](xref:botframework-connector.BotFrameworkClient).
+        type: <xref uid="botbuilder.BotFrameworkClient" />
+  - name: createConnectorFactory(ClaimsIdentity)
+    uid: botbuilder.ConfigurationBotFrameworkAuthentication.createConnectorFactory
+    package: botbuilder
+    summary: >-
+      Creates a ConnectorFactory that can be used to create ConnectorClients
+      that can use credentials from this particular Cloud Environment.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function createConnectorFactory(claimsIdentity: ClaimsIdentity):
+        ConnectorFactory
+      parameters:
+        - id: claimsIdentity
+          type: ClaimsIdentity
+          description: The inbound Activity's ClaimsIdentity.
+      return:
+        description: A [ConnectorFactory](xref:botframework-connector.ConnectorFactory).
+        type: ConnectorFactory
+  - name: createUserTokenClient(ClaimsIdentity)
+    uid: botbuilder.ConfigurationBotFrameworkAuthentication.createUserTokenClient
+    package: botbuilder
+    summary: Creates the appropriate UserTokenClient instance.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function createUserTokenClient(claimsIdentity: ClaimsIdentity):
+        Promise<UserTokenClient>
+      parameters:
+        - id: claimsIdentity
+          type: ClaimsIdentity
+          description: The inbound Activity's ClaimsIdentity.
+      return:
+        description: An [UserTokenClient](xref:botframework-connector.UserTokenClient).
+        type: Promise&lt;UserTokenClient&gt;
+extends: BotFrameworkAuthentication

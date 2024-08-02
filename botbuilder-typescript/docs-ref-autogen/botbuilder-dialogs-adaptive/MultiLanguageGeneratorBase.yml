@@ -3,9 +3,8 @@ name: MultiLanguageGeneratorBase
 uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase
 package: botbuilder-dialogs-adaptive
 summary: Base class which applies language policy to tryGetGenerator.
-fullName: 'MultiLanguageGeneratorBase<T, D>'
+fullName: MultiLanguageGeneratorBase<T, D>
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: Language policy required by language generator.
     fullName: languagePolicy
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'languagePolicy: LanguagePolicy'
@@ -23,32 +21,34 @@ properties:
         description: ''
         type: <xref uid="botbuilder-dialogs-adaptive.LanguagePolicy" />
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: >-
+        function configure(config: Record<string, unknown>):
+        MultiLanguageGeneratorBase<T, D>
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
+        type: >-
+          <xref uid="botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase"
+          />&lt;T, D&gt;
     inheritanceDescription: <b>Inherited From</b> Configurable.configure
 methods:
-  - name: 'generate(DialogContext, string, D)'
+  - name: generate(DialogContext, string, D)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.generate
     package: botbuilder-dialogs-adaptive
     summary: Find a language generator that matches the current context locale.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -67,28 +67,30 @@ methods:
       return:
         description: A promise representing the asynchronous operation.
         type: Promise&lt;T&gt;
-  - name: getConverter(Object)
+  - name: getConverter("languagePolicy")
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.getConverter
     package: botbuilder-dialogs-adaptive
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: "languagePolicy"): Converter<unknown,
+        unknown> | ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: '"languagePolicy"'
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
-  - name: 'tryGetGenerator(DialogContext, string)'
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
+  - name: tryGetGenerator(DialogContext, string)
     uid: botbuilder-dialogs-adaptive.MultiLanguageGeneratorBase.tryGetGenerator
     package: botbuilder-dialogs-adaptive
     summary: Abstract method to get a language generator by locale.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -100,8 +102,7 @@ methods:
           description: DialogContext.
         - id: locale
           type: string
-          description: |
-            Locale to lookup.
+          description: Locale to lookup.
       return:
         description: ''
         type: '{ exist: boolean, result: LanguageGenerator&lt;T, D&gt; }'

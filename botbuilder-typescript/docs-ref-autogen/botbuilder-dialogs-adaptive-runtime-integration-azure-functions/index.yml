@@ -8,46 +8,44 @@ typeAliases:
 functions:
   - name: >-
       makeTriggers(() => Promise<[ServiceCollection, Configuration]>, string,
-      Partial<Options>)
+      Partial<{ logErrors: boolean, staticDirectory: string }>)
     uid: >-
       botbuilder-dialogs-adaptive-runtime-integration-azure-functions.makeTriggers
     package: botbuilder-dialogs-adaptive-runtime-integration-azure-functions
     summary: Create azure function triggers using the azure restify integration.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function makeTriggers(runtimeServices: () => Promise<[ServiceCollection,
-        Configuration]>, applicationRoot: string, options?: Partial<Options>):
-        Record<string, AzureFunction>
+        Configuration]>, applicationRoot: string, options?: Partial<{ logErrors:
+        boolean, staticDirectory: string }>): Record<string, AzureFunction>
       parameters:
         - id: runtimeServices
-          type: '() =&gt; Promise&lt;[ServiceCollection, Configuration]&gt;'
+          type: () =&gt; Promise&lt;[ServiceCollection, Configuration]&gt;
           description: result of calling `once(() => getRuntimeServices(...))`
         - id: applicationRoot
           type: string
           description: application root directory
         - id: options
-          type: >-
-            Partial&lt;<xref
-            uid="botbuilder-dialogs-adaptive-runtime-integration-azure-functions.Options"
-            />&gt;
+          type: 'Partial&lt;{ logErrors: boolean, staticDirectory: string }&gt;'
           description: options bag for configuring Azure Functions
       return:
         description: azure function triggers for `module.exports`
-        type: 'Record&lt;string, AzureFunction&gt;'
-  - name: 'triggers(string, string, Partial<Options>)'
+        type: Record&lt;string, <xref uid="@azure/functions.AzureFunction" />&gt;
+  - name: >-
+      triggers(string, string, Partial<{ logErrors: boolean, staticDirectory:
+      string }>)
     uid: botbuilder-dialogs-adaptive-runtime-integration-azure-functions.triggers
     package: botbuilder-dialogs-adaptive-runtime-integration-azure-functions
     summary: Create azure function triggers using the azure restify integration.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function triggers(applicationRoot: string, settingsDirectory: string,
-        options?: Partial<Options>): Record<string, AzureFunction>
+        options?: Partial<{ logErrors: boolean, staticDirectory: string }>):
+        Record<string, AzureFunction>
       parameters:
         - id: applicationRoot
           type: string
@@ -56,11 +54,8 @@ functions:
           type: string
           description: settings directory
         - id: options
-          type: >-
-            Partial&lt;<xref
-            uid="botbuilder-dialogs-adaptive-runtime-integration-azure-functions.Options"
-            />&gt;
+          type: 'Partial&lt;{ logErrors: boolean, staticDirectory: string }&gt;'
           description: options bag for configuring Azure Functions
       return:
         description: azure function triggers for `module.exports`
-        type: 'Record&lt;string, AzureFunction&gt;'
+        type: Record&lt;string, <xref uid="@azure/functions.AzureFunction" />&gt;

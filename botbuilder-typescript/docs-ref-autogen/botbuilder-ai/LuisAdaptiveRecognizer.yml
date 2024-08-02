@@ -5,7 +5,6 @@ package: botbuilder-ai
 summary: Class that represents an adaptive LUIS recognizer.
 fullName: LuisAdaptiveRecognizer
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -28,7 +26,6 @@ properties:
     summary: LUIS application ID.
     fullName: applicationId
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'applicationId: StringExpression'
@@ -41,20 +38,18 @@ properties:
     summary: LUIS dynamic list.
     fullName: dynamicLists
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'dynamicLists: ArrayExpression<DynamicList>'
       return:
         description: ''
-        type: ArrayExpression&lt;<xref uid="botbuilder-ai.DynamicList" />&gt;
+        type: ArrayExpression&lt;DynamicList&gt;
   - name: endpoint
     uid: botbuilder-ai.LuisAdaptiveRecognizer.endpoint
     package: botbuilder-ai
     summary: LUIS endpoint to query.
     fullName: endpoint
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'endpoint: StringExpression'
@@ -67,7 +62,6 @@ properties:
     summary: Key used to talk to a LUIS endpoint.
     fullName: endpointKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'endpointKey: StringExpression'
@@ -80,7 +74,6 @@ properties:
     summary: External entity recognizer.
     fullName: externalEntityRecognizer
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'externalEntityRecognizer: Recognizer'
@@ -95,7 +88,6 @@ properties:
       telemetry.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'logPersonalInformation: BoolExpression'
@@ -108,20 +100,18 @@ properties:
     summary: LUIS prediction options.
     fullName: predictionOptions
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'predictionOptions: LuisAdaptivePredictionOptions'
       return:
         description: ''
-        type: <xref uid="botbuilder-ai.LuisAdaptivePredictionOptions" />
+        type: LuisAdaptivePredictionOptions
   - name: version
     uid: botbuilder-ai.LuisAdaptiveRecognizer.version
     package: botbuilder-ai
     summary: LUIS application version.
     fullName: version
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'version: StringExpression'
@@ -135,7 +125,6 @@ inheritedProperties:
     summary: Recognizers unique ID.
     fullName: id
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
@@ -151,7 +140,6 @@ inheritedProperties:
       Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
@@ -160,42 +148,47 @@ inheritedProperties:
         type: BotTelemetryClient
     inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-ai.LuisAdaptiveRecognizer.configure
     package: botbuilder-ai
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: >-
+        function configure(config: Record<string, unknown>):
+        LuisAdaptiveRecognizer
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
+        type: <xref uid="botbuilder-ai.LuisAdaptiveRecognizer" />
+    inheritanceDescription: <b>Inherited From</b> Recognizer.configure
 methods:
-  - name: getConverter(Object)
+  - name: getConverter(keyof LuisAdaptiveRecognizerConfiguration)
     uid: botbuilder-ai.LuisAdaptiveRecognizer.getConverter
     package: botbuilder-ai
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: keyof
+        LuisAdaptiveRecognizerConfiguration): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: keyof LuisAdaptiveRecognizerConfiguration
           description: Properties that extend RecognizerConfiguration.
       return:
         description: Expression converter.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
   - name: >-
       recognize(DialogContext, Activity, Record<string, string>, Record<string,
       number>)
@@ -203,7 +196,6 @@ methods:
     package: botbuilder-ai
     summary: To recognize intents and entities in a users utterance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -213,17 +205,17 @@ methods:
       parameters:
         - id: dialogContext
           type: DialogContext
-          description: 'The [DialogContext](xref:botbuilder-dialogs.DialogContext).'
+          description: The [DialogContext](xref:botbuilder-dialogs.DialogContext).
         - id: activity
           type: Activity
-          description: 'The [Activity](xref:botbuilder-core.Activity).'
+          description: The [Activity](xref:botbuilder-core.Activity).
         - id: telemetryProperties
-          type: 'Record&lt;string, string&gt;'
+          type: Record&lt;string, string&gt;
           description: >-
             Optional. Additional properties to be logged to telemetry with
             event.
         - id: telemetryMetrics
-          type: 'Record&lt;string, number&gt;'
+          type: Record&lt;string, number&gt;
           description: Optional. Additional metrics to be logged to telemetry with event.
       return:
         description: A promise resolving to the recognizer result.
@@ -233,7 +225,6 @@ methods:
     package: botbuilder-ai
     summary: Construct V3 recognizer options from the current dialog context.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-

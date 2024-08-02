@@ -11,25 +11,23 @@ fullName: ObjectExpression<T>
 remarks: >-
   String values are always interpreted as an expression, whether it has '='
   prefix or not.
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: ObjectExpression(T | string | Expression)
+  - name: ObjectExpression<T>(string | Expression | T)
     uid: adaptive-expressions.ObjectExpression.constructor
     package: adaptive-expressions
     summary: >-
       Initializes a new instance of the
       [ObjectExpression<T>](xref:adaptive-expressions.ObjectExpression) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new ObjectExpression(value?: T | string | Expression)'
+      content: 'new ObjectExpression(value?: string | Expression | T)'
       parameters:
         - id: value
-          type: T | string | <xref uid="adaptive-expressions.Expression" />
-          description: >
+          type: string | <xref uid="adaptive-expressions.Expression" /> | T
+          description: >-
             An object of type `T` or a `string` expression which resolves to a
             object of type `T`.
 inheritedProperties:
@@ -39,7 +37,6 @@ inheritedProperties:
     summary: Getes or sets the expression text to evaluate to get the value.
     fullName: expressionText
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'expressionText: string'
@@ -55,7 +52,6 @@ inheritedProperties:
     summary: Gets or sets the raw value of the expression property.
     fullName: value
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'value: T'
@@ -71,7 +67,6 @@ inheritedMethods:
     package: adaptive-expressions
     summary: Get the value.
     remarks: An error will be thrown if value is an invalid expression.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getValue(data: object): T'
@@ -85,20 +80,18 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionProperty.getValue](xref:adaptive-expressions.ExpressionProperty.getValue)
-  - name: setValue(T | string | Expression)
+  - name: setValue(string | Expression | T)
     uid: adaptive-expressions.ObjectExpression.setValue
     package: adaptive-expressions
     summary: Set the value.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function setValue(value: T | string | Expression)'
+      content: 'function setValue(value: string | Expression | T)'
       parameters:
         - id: value
-          type: T | string | <xref uid="adaptive-expressions.Expression" />
-          description: |
-            Value to set.
+          type: string | <xref uid="adaptive-expressions.Expression" /> | T
+          description: Value to set.
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionProperty.setValue](xref:adaptive-expressions.ExpressionProperty.setValue)
@@ -107,7 +100,6 @@ inheritedMethods:
     package: adaptive-expressions
     summary: This will return the existing expression if the value is non-complex type.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function toExpression(): Expression'
@@ -122,7 +114,6 @@ inheritedMethods:
     package: adaptive-expressions
     summary: Convert an expression property to string.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function toString(): string'
@@ -137,7 +128,6 @@ inheritedMethods:
     package: adaptive-expressions
     summary: Try to Get the value.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function tryGetValue(data: object): { error: Error, value: T }'

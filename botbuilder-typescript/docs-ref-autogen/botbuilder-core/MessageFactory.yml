@@ -22,11 +22,10 @@ remarks: |-
   const message = MessageFactory.attachment(card);
   await context.sendActivity(message);
   ```
-isPreview: false
 isDeprecated: false
 type: class
 methods:
-  - name: 'attachment(Attachment, string, string, InputHints | string)'
+  - name: attachment(Attachment, string, string, string)
     uid: botbuilder-core.MessageFactory.attachment
     package: botbuilder-core
     summary: Returns a single message activity containing an attachment.
@@ -42,15 +41,14 @@ methods:
            )
       );
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function attachment(attachment: Attachment, text?: string,
-        speak?: string, inputHint?: InputHints | string): Partial<Activity>
+        speak?: string, inputHint?: string): Partial<Activity>
       parameters:
         - id: attachment
-          type: Attachment
+          type: <xref uid="botbuilder-core.Attachment" />
           description: Adaptive card to include in the message.
         - id: text
           type: string
@@ -59,12 +57,12 @@ methods:
           type: string
           description: (Optional) SSML to include with the message.
         - id: inputHint
-          type: InputHints | string
+          type: string
           description: (Optional) input hint for the message. Defaults to `acceptingInput`.
       return:
         description: A message activity containing the attachment.
-        type: Partial&lt;Activity&gt;
-  - name: 'carousel(Attachment[], string, string, InputHints | string)'
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
+  - name: carousel(Attachment[], string, string, string)
     uid: botbuilder-core.MessageFactory.carousel
     package: botbuilder-core
     summary: >-
@@ -80,15 +78,14 @@ methods:
          CardFactory.heroCard('title3', ['imageUrl3'], ['button3'])
       ]);
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function carousel(attachments: Attachment[], text?: string,
-        speak?: string, inputHint?: InputHints | string): Partial<Activity>
+        speak?: string, inputHint?: string): Partial<Activity>
       parameters:
         - id: attachments
-          type: 'Attachment[]'
+          type: <xref uid="botbuilder-core.Attachment" />[]
           description: Array of attachments to include in the message.
         - id: text
           type: string
@@ -97,14 +94,14 @@ methods:
           type: string
           description: (Optional) SSML to include with the message.
         - id: inputHint
-          type: InputHints | string
+          type: string
           description: (Optional) input hint for the message.
       return:
         description: >-
           A message activity that will display a set of attachments using a
           carousel layout.
-        type: Partial&lt;Activity&gt;
-  - name: 'contentUrl(string, string, string, string, string, InputHints | string)'
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
+  - name: contentUrl(string, string, string, string, string, string)
     uid: botbuilder-core.MessageFactory.contentUrl
     package: botbuilder-core
     summary: Returns a message that will display a single image or video to a user.
@@ -119,12 +116,11 @@ methods:
       'Hawaii Trip', 'A photo from our family vacation.');
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function contentUrl(url: string, contentType: string, name?:
-        string, text?: string, speak?: string, inputHint?: InputHints | string):
+        string, text?: string, speak?: string, inputHint?: string):
         Partial<Activity>
       parameters:
         - id: url
@@ -143,14 +139,14 @@ methods:
           type: string
           description: (Optional) SSML to include with the message.
         - id: inputHint
-          type: InputHints | string
+          type: string
           description: (Optional) input hint for the message.
       return:
         description: >-
           A message activity that will display a single image or video to a
           user.
-        type: Partial&lt;Activity&gt;
-  - name: 'list(Attachment[], string, string, InputHints | string)'
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
+  - name: list(Attachment[], string, string, string)
     uid: botbuilder-core.MessageFactory.list
     package: botbuilder-core
     summary: Returns a message that will display a set of attachments in list form.
@@ -164,15 +160,14 @@ methods:
          CardFactory.heroCard('title3', ['imageUrl3'], ['button3'])
       ]);
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function list(attachments: Attachment[], text?: string, speak?:
-        string, inputHint?: InputHints | string): Partial<Activity>
+        string, inputHint?: string): Partial<Activity>
       parameters:
         - id: attachments
-          type: 'Attachment[]'
+          type: <xref uid="botbuilder-core.Attachment" />[]
           description: Array of attachments to include in the message.
         - id: text
           type: string
@@ -181,16 +176,14 @@ methods:
           type: string
           description: (Optional) SSML to include with the message.
         - id: inputHint
-          type: InputHints | string
+          type: string
           description: (Optional) input hint for the message.
       return:
         description: >-
           A message activity that will display a set of attachments in list
           form.
-        type: Partial&lt;Activity&gt;
-  - name: >-
-      suggestedActions(string | CardAction[], string, string, InputHints |
-      string)
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
+  - name: suggestedActions((string | CardAction)[], string, string, string)
     uid: botbuilder-core.MessageFactory.suggestedActions
     package: botbuilder-core
     summary: >-
@@ -206,16 +199,14 @@ methods:
       `Choose a color`);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function suggestedActions(actions: string | CardAction[], text?:
-        string, speak?: string, inputHint?: InputHints | string):
-        Partial<Activity>
+        static function suggestedActions(actions: (string | CardAction)[],
+        text?: string, speak?: string, inputHint?: string): Partial<Activity>
       parameters:
         - id: actions
-          type: 'string | CardAction[]'
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             Array of card actions or strings to include. Strings will be
             converted to `messageBack` actions.
@@ -226,12 +217,12 @@ methods:
           type: string
           description: (Optional) SSML to include with the message.
         - id: inputHint
-          type: InputHints | string
+          type: string
           description: (Optional) input hint for the message. Defaults to `acceptingInput`.
       return:
         description: A message activity that contains the suggested actions.
-        type: Partial&lt;Activity&gt;
-  - name: 'text(string, string, InputHints | string)'
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
+  - name: text(string, string, string)
     uid: botbuilder-core.MessageFactory.text
     package: botbuilder-core
     summary: Returns a simple text message.
@@ -241,12 +232,11 @@ methods:
       ```JavaScript
       const message = MessageFactory.text('Greetings from example message');
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function text(text: string, speak?: string, inputHint?:
-        InputHints | string): Partial<Activity>
+        static function text(text: string, speak?: string, inputHint?: string):
+        Partial<Activity>
       parameters:
         - id: text
           type: string
@@ -255,8 +245,8 @@ methods:
           type: string
           description: (Optional) SSML to include in the message.
         - id: inputHint
-          type: InputHints | string
+          type: string
           description: (Optional) input hint for the message. Defaults to `acceptingInput`.
       return:
         description: A message activity containing the text.
-        type: Partial&lt;Activity&gt;
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;

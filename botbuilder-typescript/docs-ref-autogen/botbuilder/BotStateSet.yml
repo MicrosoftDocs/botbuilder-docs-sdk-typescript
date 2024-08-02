@@ -1,0 +1,107 @@
+### YamlMime:TSType
+name: BotStateSet
+uid: botbuilder.BotStateSet
+package: botbuilder
+summary: >-
+  A collection of `BotState` plugins that should be loaded or saved in parallel
+  as a single unit.
+
+  See `AutoSaveStateMiddleware` for an implementation of this class.
+fullName: BotStateSet
+remarks: ''
+isDeprecated: false
+type: class
+constructors:
+  - name: BotStateSet(BotState[])
+    uid: botbuilder.BotStateSet.constructor
+    package: botbuilder
+    summary: Creates a new BotStateSet instance.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'new BotStateSet(botStates: BotState[])'
+      parameters:
+        - id: botStates
+          type: <xref uid="botbuilder.BotState" />[]
+          description: One or more BotState plugins to register.
+properties:
+  - name: botStates
+    uid: botbuilder.BotStateSet.botStates
+    package: botbuilder
+    summary: Array of the sets `BotState` plugins.
+    fullName: botStates
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'botStates: BotState[]'
+      return:
+        description: ''
+        type: <xref uid="botbuilder.BotState" />[]
+methods:
+  - name: add(BotState[])
+    uid: botbuilder.BotStateSet.add
+    package: botbuilder
+    summary: Registers one or more `BotState` plugins with the set.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function add(botStates: BotState[]): BotStateSet'
+      parameters:
+        - id: botStates
+          type: <xref uid="botbuilder.BotState" />[]
+          description: One or more BotState plugins to register.
+      return:
+        description: The updated BotStateSet.
+        type: <xref uid="botbuilder.BotStateSet" />
+  - name: loadAll(TurnContext, boolean)
+    uid: botbuilder.BotStateSet.loadAll
+    package: botbuilder
+    summary: Calls `BotState.load()` on all of the BotState plugins in the set.
+    remarks: |-
+      This will trigger all of the plugins to read in their state in parallel.
+
+      ```JavaScript
+      await stateSet.readAll(context);
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function loadAll(context: TurnContext, force?: boolean): Promise<void>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type: boolean
+          description: >-
+            (Optional) If `true` the cache will be bypassed and the state will
+            always be read in directly from storage. Defaults to `false`.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;
+  - name: saveAllChanges(TurnContext, boolean)
+    uid: botbuilder.BotStateSet.saveAllChanges
+    package: botbuilder
+    summary: Calls `BotState.saveChanges()` on all of the BotState plugins in the set.
+    remarks: |-
+      This will trigger all of the plugins to write out their state in parallel.
+
+      ```JavaScript
+      await stateSet.saveAllChanges(context);
+      ```
+    isDeprecated: false
+    syntax:
+      content: >-
+        function saveAllChanges(context: TurnContext, force?: boolean):
+        Promise<void>
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type: boolean
+          description: >-
+            (Optional) if `true` the state will always be written out regardless
+            of its change state. Defaults to `false`.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;

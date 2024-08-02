@@ -1,0 +1,43 @@
+### YamlMime:TSTypeAlias
+name: BotHandler
+uid: botbuilder.BotHandler
+package: botbuilder
+summary: >-
+  Describes a bot activity event handler, for use with an
+  [ActivityHandler](xref:botbuilder-core.ActivityHandler) object.
+fullName: BotHandler
+remarks: >-
+  **Parameters**
+
+
+  | Name | Type | Description |
+
+  | :--- | :--- | :--- |
+
+  | `context` | [TurnContext](xref:botbuilder-core.TurnContext) | The context
+  object for the turn. |
+
+  | `next` | () => Promise<void> | A continuation function for handling the
+  activity. |
+
+
+  **Returns**
+
+
+  `any`
+
+
+  The incoming activity is contained in the `context` object's
+  [activity](xref:botbuilder-core.TurnContext.activity) property.
+
+  Call the `next` function to continue the processing of activity events. Not
+  doing so will stop propagation of events for this activity.
+
+
+  A bot activity handler can return a value, to support _invoke_ activities.
+isDeprecated: false
+syntax: |
+  type BotHandler = (
+    context: TurnContext,
+    next: () => Promise<void>
+  ) => Promise<any>

@@ -1,0 +1,148 @@
+### YamlMime:TSType
+name: SkillConversationIdFactory
+uid: botbuilder.SkillConversationIdFactory
+package: botbuilder
+summary: >-
+  A SkillConversationIdFactory that stores and retrieves
+  [ConversationReference](xref:botframework-schema:ConversationReference)
+  instances.
+fullName: SkillConversationIdFactory
+remarks: ''
+isDeprecated: false
+type: class
+constructors:
+  - name: SkillConversationIdFactory(Storage)
+    uid: botbuilder.SkillConversationIdFactory.constructor
+    package: botbuilder
+    summary: Creates a new instance of the SkillConversationIdFactory class.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'new SkillConversationIdFactory(storage: Storage)'
+      parameters:
+        - id: storage
+          type: <xref uid="botbuilder.Storage" />
+          description: >-
+            The storage for the
+            [ConversationReference](xref:botframework-schema:ConversationReference)
+            instances.
+inheritedMethods:
+  - name: createSkillConversationId(ConversationReference)
+    uid: botbuilder.SkillConversationIdFactory.createSkillConversationId
+    package: botbuilder
+    summary: >-
+      Creates a conversation ID for a skill conversation based on the caller's
+      ConversationReference.
+    remarks: >-
+      It should be possible to use the returned string on a request URL and it
+      should not contain special characters.
+
+      Returns A unique conversation ID used to communicate with the skill.
+    isDeprecated: true
+    customDeprecatedMessage: >-
+      Method is deprecated, please use createSkillConversationIdWithOptions()
+      with SkillConversationIdFactoryOptions instead.
+    syntax:
+      content: >-
+        function createSkillConversationId(_conversationReference:
+        ConversationReference): Promise<string>
+      parameters:
+        - id: _conversationReference
+          type: <xref uid="botbuilder.ConversationReference" />
+          description: The skill's caller ConversationReference.
+      return:
+        description: ''
+        type: Promise&lt;string&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [SkillConversationIdFactoryBase.createSkillConversationId](xref:botbuilder.SkillConversationIdFactoryBase.createSkillConversationId)
+  - name: getConversationReference(string)
+    uid: botbuilder.SkillConversationIdFactory.getConversationReference
+    package: botbuilder
+    summary: >-
+      Gets the ConversationReference created using createSkillConversationId()
+      for a skillConversationId.
+    remarks: >-
+      Returns The caller's ConversationReference for a skillConversationId. null
+      if not found.
+    isDeprecated: true
+    customDeprecatedMessage: Method is deprecated, please use getSkillConversationReference() instead.
+    syntax:
+      content: >-
+        function getConversationReference(_skillConversationId: string):
+        Promise<ConversationReference>
+      parameters:
+        - id: _skillConversationId
+          type: string
+          description: A skill conversationId created using createSkillConversationId().
+      return:
+        description: ''
+        type: Promise&lt;<xref uid="botbuilder.ConversationReference" />&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [SkillConversationIdFactoryBase.getConversationReference](xref:botbuilder.SkillConversationIdFactoryBase.getConversationReference)
+methods:
+  - name: createSkillConversationIdWithOptions(SkillConversationIdFactoryOptions)
+    uid: botbuilder.SkillConversationIdFactory.createSkillConversationIdWithOptions
+    package: botbuilder
+    summary: >-
+      Creates a conversation ID for a skill conversation based on the caller's
+      [ConversationReference](xref:botframework-schema:ConversationReference).
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function createSkillConversationIdWithOptions(options:
+        SkillConversationIdFactoryOptions): Promise<string>
+      parameters:
+        - id: options
+          type: <xref uid="botbuilder.SkillConversationIdFactoryOptions" />
+          description: >-
+            The
+            [SkillConversationIdFactoryOptions](xref:botbuilder-core.SkillConversationIdFactoryOptions)
+            to use.
+      return:
+        description: A unique conversation ID used to communicate with the skill.
+        type: Promise&lt;string&gt;
+  - name: deleteConversationReference(string)
+    uid: botbuilder.SkillConversationIdFactory.deleteConversationReference
+    package: botbuilder
+    summary: >-
+      Deletes the
+      [SkillConversationReference](xref:botbuilder-core.SkillConversationReference)
+      from the storage.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function deleteConversationReference(skillConversationId: string):
+        Promise<void>
+      parameters:
+        - id: skillConversationId
+          type: string
+          description: The skill conversation id to use as key for the delete.
+      return:
+        description: A promise representing the asynchronous operation.
+        type: Promise&lt;void&gt;
+  - name: getSkillConversationReference(string)
+    uid: botbuilder.SkillConversationIdFactory.getSkillConversationReference
+    package: botbuilder
+    summary: >-
+      Gets the ConversationReference created using createSkillConversationId()
+      for a skillConversationId.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getSkillConversationReference(skillConversationId: string):
+        Promise<SkillConversationReference>
+      parameters:
+        - id: skillConversationId
+          type: string
+          description: A skill conversationId created using createSkillConversationId().
+      return:
+        description: >-
+          The caller's ConversationReference for a skillConversationId. Null if
+          not found.
+        type: Promise&lt;<xref uid="botbuilder.SkillConversationReference" />&gt;
+extends: <xref uid="botbuilder.SkillConversationIdFactoryBase" />
