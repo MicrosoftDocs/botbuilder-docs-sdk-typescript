@@ -5,16 +5,14 @@ package: botbuilder-ai-orchestrator
 summary: Class that represents an adaptive Orchestrator recognizer.
 fullName: OrchestratorRecognizer
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'OrchestratorRecognizer(string, string, LabelResolver)'
+  - name: OrchestratorRecognizer(string, string, LabelResolver)
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.constructor
     package: botbuilder-ai-orchestrator
     summary: Returns an OrchestratorRecognizer instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -28,9 +26,8 @@ constructors:
           type: string
           description: Path to snapshot.
         - id: resolverExternal
-          type: <xref uid="botbuilder-ai-orchestrator.LabelResolver" />
-          description: |
-            Orchestrator resolver to use.
+          type: LabelResolver
+          description: Orchestrator resolver to use.
 properties:
   - name: $kind
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.$kind
@@ -38,7 +35,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -51,7 +47,6 @@ properties:
     summary: Intent name if ambiguous intents are detected.
     fullName: chooseIntent
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'chooseIntent: "ChooseIntent" = "ChooseIntent"'
@@ -64,7 +59,6 @@ properties:
     summary: Enable ambiguous intent detection. Defaults to false.
     fullName: detectAmbiguousIntents
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'detectAmbiguousIntents: BoolExpression'
@@ -82,7 +76,6 @@ properties:
       classified within this threshold of the top scoring intent.
     fullName: disambiguationScoreThreshold
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'disambiguationScoreThreshold: NumberExpression'
@@ -95,7 +88,6 @@ properties:
     summary: Full entity recognition results are available under this property
     fullName: entityProperty
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'entityProperty: "entityResult" = "entityResult"'
@@ -108,7 +100,6 @@ properties:
     summary: The external entity recognizer.
     fullName: externalEntityRecognizer
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'externalEntityRecognizer?: Recognizer'
@@ -121,7 +112,6 @@ properties:
     summary: Path to Orchestrator base model folder.
     fullName: modelFolder
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'modelFolder: StringExpression'
@@ -134,7 +124,6 @@ properties:
     summary: Full intent recognition results are available under this property
     fullName: resultProperty
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'resultProperty: "result" = "result"'
@@ -152,7 +141,6 @@ properties:
       (V5).
     fullName: scoreEntities
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'scoreEntities: boolean'
@@ -165,7 +153,6 @@ properties:
     summary: Path to the snapshot (.blu file) to load.
     fullName: snapshotFile
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'snapshotFile: StringExpression'
@@ -179,14 +166,13 @@ inheritedProperties:
     summary: Recognizers unique ID.
     fullName: id
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
       return:
         description: ''
         type: string
-    inheritanceDescription: <b>Inherited From</b> Recognizer.id
+    inheritanceDescription: <b>Inherited From</b> AdaptiveRecognizer.id
   - name: logPersonalInformation
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.logPersonalInformation
     package: botbuilder-ai-orchestrator
@@ -195,7 +181,6 @@ inheritedProperties:
       information (PII) should log to telemetry.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'logPersonalInformation: BoolExpression'
@@ -211,51 +196,55 @@ inheritedProperties:
       Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
         description: ''
         type: BotTelemetryClient
-    inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
+    inheritanceDescription: <b>Inherited From</b> AdaptiveRecognizer.telemetryClient
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.configure
     package: botbuilder-ai-orchestrator
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: >-
+        function configure(config: Record<string, unknown>):
+        OrchestratorRecognizer
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
+        type: <xref uid="botbuilder-ai-orchestrator.OrchestratorRecognizer" />
+    inheritanceDescription: <b>Inherited From</b> AdaptiveRecognizer.configure
 methods:
-  - name: getConverter(Object)
+  - name: getConverter(keyof OrchestratorRecognizerConfiguration)
     uid: botbuilder-ai-orchestrator.OrchestratorRecognizer.getConverter
     package: botbuilder-ai-orchestrator
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: keyof
+        OrchestratorRecognizerConfiguration): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: keyof OrchestratorRecognizerConfiguration
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
   - name: >-
       recognize(DialogContext, Partial<Activity>, Record<string, string>,
       Record<string, number>)
@@ -263,7 +252,6 @@ methods:
     package: botbuilder-ai-orchestrator
     summary: Returns a new OrchestratorRecognizer instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -278,10 +266,10 @@ methods:
           type: Partial&lt;Activity&gt;
           description: Current activity sent from user.
         - id: telemetryProperties
-          type: 'Record&lt;string, string&gt;'
+          type: Record&lt;string, string&gt;
           description: Additional properties to be logged to telemetry with event.
         - id: telemetryMetrics
-          type: 'Record&lt;string, number&gt;'
+          type: Record&lt;string, number&gt;
           description: Additional metrics to be logged to telemetry with event.
       return:
         description: Recognized result.

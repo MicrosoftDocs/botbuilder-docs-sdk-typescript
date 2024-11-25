@@ -5,7 +5,6 @@ package: botbuilder-ai
 summary: Interface for adding telemetry logging capabilities to QnAMaker.
 fullName: QnAMakerTelemetryClient
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: interface
 properties:
@@ -17,7 +16,6 @@ properties:
       information that came from the user.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'logPersonalInformation: boolean'
@@ -30,7 +28,6 @@ properties:
     summary: Gets the currently configured botTelemetryClient that logs the events.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
@@ -39,19 +36,18 @@ properties:
         type: BotTelemetryClient
 methods:
   - name: >-
-      getAnswers(TurnContext, QnAMakerOptions, [key: string]: string, [key:
-      string]: number)
+      getAnswers(TurnContext, QnAMakerOptions, {[key: string]: string}, {[key:
+      string]: number})
     uid: botbuilder-ai.QnAMakerTelemetryClient.getAnswers
     package: botbuilder-ai
     summary: Calls the QnA Maker service to generate answer(s) for a question.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getAnswers(context: TurnContext, options?: QnAMakerOptions,
-        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number): Promise<QnAMakerResult[]>
+        telemetryProperties?: {[key: string]: string}, telemetryMetrics?: {[key:
+        string]: number}): Promise<QnAMakerResult[]>
       parameters:
         - id: context
           type: TurnContext
@@ -64,15 +60,15 @@ methods:
             (Optional) The options for the QnA Maker knowledge base. If null,
             constructor option is used for this instance.
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: '{[key: string]: string}'
           description: >-
             Additional properties to be logged to telemetry with the QnaMessage
             event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
+          type: '{[key: string]: number}'
           description: >-
             Additional metrics to be logged to telemetry with the QnaMessage
             event.
       return:
         description: A promise resolving to the QnAMaker result
-        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
+        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;

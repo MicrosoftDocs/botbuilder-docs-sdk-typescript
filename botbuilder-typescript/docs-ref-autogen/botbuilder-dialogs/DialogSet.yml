@@ -75,7 +75,6 @@ remarks: >-
   }
 
   ```
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -98,7 +97,6 @@ constructors:
       const dc = new DialogContext(dialogs, turnContext, state);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new DialogSet(dialogState?: StatePropertyAccessor<DialogState>)'
@@ -107,8 +105,7 @@ constructors:
           type: >-
             StatePropertyAccessor&lt;<xref uid="botbuilder-dialogs.DialogState"
             />&gt;
-          description: |
-            (Optional) state property used to persist the sets dialog stack.
+          description: (Optional) state property used to persist the sets dialog stack.
 properties:
   - name: telemetryClient
     uid: botbuilder-dialogs.DialogSet.telemetryClient
@@ -116,14 +113,8 @@ properties:
     summary: >-
       Set the telemetry client for this dialog set and apply it to all current
       dialogs.
-
-      Set the telemetry client for this dialog set and apply it to all current
-      dialogs.
-
-      Future dialogs added to the set will also inherit this client.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: BotTelemetryClient telemetryClient
@@ -148,10 +139,9 @@ methods:
       one having an id
 
       of "duplicate2".
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function add<T>(dialog: T): this'
+      content: 'function add<T>(dialog: T): DialogSet'
       parameters:
         - id: dialog
           type: T
@@ -162,7 +152,7 @@ methods:
             to each dialog.
       return:
         description: The dialog set after the operation is complete.
-        type: this
+        type: <xref uid="botbuilder-dialogs.DialogSet" />
   - name: createContext(TurnContext)
     uid: botbuilder-dialogs.DialogSet.createContext
     package: botbuilder-dialogs
@@ -170,7 +160,6 @@ methods:
       Creates a dialog context which can be used to work with the dialogs in the
       set.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function createContext(context: TurnContext): Promise<DialogContext>'
@@ -184,36 +173,34 @@ methods:
   - name: find(string)
     uid: botbuilder-dialogs.DialogSet.find
     package: botbuilder-dialogs
-    summary: 'Finds a dialog that was previously added to the set using [add()](#add).'
+    summary: Finds a dialog that was previously added to the set using [add()](#add).
     remarks: |-
       This example finds a dialog named "greeting":
 
       ```JavaScript
       const dialog = dialogs.find('greeting');
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function find(dialogId: string): Dialog | undefined'
+      content: 'function find(dialogId: string): undefined | Dialog<{}>'
       parameters:
         - id: dialogId
           type: string
           description: ID of the dialog or prompt to lookup.
       return:
         description: The dialog if found; otherwise undefined.
-        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.Dialog" />&lt;{}&gt;
   - name: getDialogs()
     uid: botbuilder-dialogs.DialogSet.getDialogs
     package: botbuilder-dialogs
     summary: Gets the Dialogs of the set.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getDialogs(): Dialog[]'
+      content: 'function getDialogs(): Dialog<{}>[]'
       return:
-        description: 'An array of [Dialog](xref:botbuilder-dialogs.Dialog).'
-        type: '<xref uid="botbuilder-dialogs.Dialog" />[]'
+        description: An array of [Dialog](xref:botbuilder-dialogs.Dialog).
+        type: <xref uid="botbuilder-dialogs.Dialog" />&lt;{}&gt;[]
   - name: getVersion()
     uid: botbuilder-dialogs.DialogSet.getVersion
     package: botbuilder-dialogs
@@ -221,7 +208,6 @@ methods:
     remarks: >-
       This hash is persisted to state storage and used to detect changes to a
       dialog set.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getVersion(): string'

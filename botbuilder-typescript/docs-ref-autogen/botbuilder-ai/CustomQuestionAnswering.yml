@@ -7,7 +7,6 @@ summary: >-
   feedbacks.
 fullName: CustomQuestionAnswering
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -18,7 +17,6 @@ constructors:
     package: botbuilder-ai
     summary: Creates a new CustomQuestionAnswering instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -37,7 +35,7 @@ constructors:
           description: The BotTelemetryClient used for logging telemetry events.
         - id: logPersonalInformation
           type: boolean
-          description: >
+          description: >-
             Set to true to include personally indentifiable information in
             telemetry events.
 properties:
@@ -49,7 +47,6 @@ properties:
       information that came from the user.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: boolean logPersonalInformation
@@ -64,7 +61,6 @@ properties:
     summary: Gets the currently configured BotTelemetryClient that logs the events.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: BotTelemetryClient telemetryClient
@@ -77,7 +73,6 @@ methods:
     package: botbuilder-ai
     summary: Send feedback to the knowledge base.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function callTrain(feedbackRecords: FeedbackRecords): Promise<void>'
@@ -89,19 +84,18 @@ methods:
         description: A promise representing the async operation.
         type: Promise&lt;void&gt;
   - name: >-
-      getAnswers(TurnContext, QnAMakerOptions, [key: string]: string, [key:
-      string]: number)
+      getAnswers(TurnContext, QnAMakerOptions, {[key: string]: string}, {[key:
+      string]: number})
     uid: botbuilder-ai.CustomQuestionAnswering.getAnswers
     package: botbuilder-ai
     summary: Calls the Language service to generate answer(s) for a question.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getAnswers(context: TurnContext, options?: QnAMakerOptions,
-        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number): Promise<QnAMakerResult[]>
+        telemetryProperties?: {[key: string]: string}, telemetryMetrics?: {[key:
+        string]: number}): Promise<QnAMakerResult[]>
       parameters:
         - id: context
           type: TurnContext
@@ -114,32 +108,31 @@ methods:
             (Optional) The options for the Custom Question Answering knowledge
             base. If null, constructor option is used for this instance.
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: '{[key: string]: string}'
           description: >-
             Additional properties to be logged to telemetry with the QnaMessage
             event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
+          type: '{[key: string]: number}'
           description: >-
             Additional metrics to be logged to telemetry with the QnaMessage
             event.
       return:
         description: A promise resolving to the QnAMaker result
-        type: 'Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;'
+        type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResult" />[]&gt;
   - name: >-
-      getAnswersRaw(TurnContext, QnAMakerOptions, [key: string]: string, [key:
-      string]: number)
+      getAnswersRaw(TurnContext, QnAMakerOptions, {[key: string]: string},
+      {[key: string]: number})
     uid: botbuilder-ai.CustomQuestionAnswering.getAnswersRaw
     package: botbuilder-ai
     summary: Generates an answer from the knowledge base.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getAnswersRaw(context: TurnContext, options: QnAMakerOptions,
-        telemetryProperties: [key: string]: string, telemetryMetrics: [key:
-        string]: number): Promise<QnAMakerResults>
+        telemetryProperties: {[key: string]: string}, telemetryMetrics: {[key:
+        string]: number}): Promise<QnAMakerResults>
       parameters:
         - id: context
           type: TurnContext
@@ -153,12 +146,12 @@ methods:
             for the Custom Question Answering knowledge base. If null,
             constructor option is used for this instance.
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: '{[key: string]: string}'
           description: >-
             Optional. Additional properties to be logged to telemetry with the
             QnaMessage event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
+          type: '{[key: string]: number}'
           description: >-
             Optional. Additional metrics to be logged to telemetry with the
             QnaMessage event.
@@ -168,19 +161,18 @@ methods:
           ranking score.
         type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
   - name: >-
-      getKnowledgebaseAnswersRaw(TurnContext, QnAMakerOptions, [key: string]:
-      string, [key: string]: number)
+      getKnowledgebaseAnswersRaw(TurnContext, QnAMakerOptions, {[key: string]:
+      string}, {[key: string]: number})
     uid: botbuilder-ai.CustomQuestionAnswering.getKnowledgebaseAnswersRaw
     package: botbuilder-ai
     summary: Queries for answers from the Language Service project's knowledge base.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getKnowledgebaseAnswersRaw(context: TurnContext, options:
-        QnAMakerOptions, telemetryProperties: [key: string]: string,
-        telemetryMetrics: [key: string]: number): Promise<QnAMakerResults>
+        QnAMakerOptions, telemetryProperties: {[key: string]: string},
+        telemetryMetrics: {[key: string]: number}): Promise<QnAMakerResults>
       parameters:
         - id: context
           type: TurnContext
@@ -194,12 +186,12 @@ methods:
             for the Language Service project's knowledge base. If null,
             constructor option is used for this instance.
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: '{[key: string]: string}'
           description: >-
             Optional. Additional properties to be logged to telemetry with the
             QnaMessage event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
+          type: '{[key: string]: number}'
           description: >-
             Optional. Additional metrics to be logged to telemetry with the
             QnaMessage event.
@@ -208,12 +200,11 @@ methods:
           A list of answers for the user query, sorted in decreasing order of
           ranking score.
         type: Promise&lt;<xref uid="botbuilder-ai.QnAMakerResults" />&gt;
-  - name: 'getLowScoreVariation(QnAMakerResult[])'
+  - name: getLowScoreVariation(QnAMakerResult[])
     uid: botbuilder-ai.CustomQuestionAnswering.getLowScoreVariation
     package: botbuilder-ai
     summary: Filters the ambiguous question for active learning.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -221,8 +212,8 @@ methods:
         QnAMakerResult[]
       parameters:
         - id: queryResult
-          type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
+          type: <xref uid="botbuilder-ai.QnAMakerResult" />[]
           description: User query output.
       return:
         description: the filtered results
-        type: '<xref uid="botbuilder-ai.QnAMakerResult" />[]'
+        type: <xref uid="botbuilder-ai.QnAMakerResult" />[]

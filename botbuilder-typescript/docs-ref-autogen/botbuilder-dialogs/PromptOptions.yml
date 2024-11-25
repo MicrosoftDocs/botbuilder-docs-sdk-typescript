@@ -5,7 +5,6 @@ package: botbuilder-dialogs
 summary: Basic configuration options supported by all prompts.
 fullName: PromptOptions
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: interface
 properties:
@@ -15,33 +14,42 @@ properties:
     summary: (Optional) List of choices associated with the prompt.
     fullName: choices
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'choices?: string | Choice[]'
+      content: 'choices?: (string | Choice)[]'
       return:
         description: ''
-        type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+        type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
   - name: prompt
     uid: botbuilder-dialogs.PromptOptions.prompt
     package: botbuilder-dialogs
     summary: (Optional) Initial prompt to send the user.
     fullName: prompt
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'prompt?: string | Partial<Activity>'
       return:
         description: ''
         type: string | Partial&lt;Activity&gt;
+  - name: recognizeLanguage
+    uid: botbuilder-dialogs.PromptOptions.recognizeLanguage
+    package: botbuilder-dialogs
+    summary: The locale to be use for recognizing the utterance.
+    fullName: recognizeLanguage
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'recognizeLanguage?: string'
+      return:
+        description: ''
+        type: string
   - name: retryPrompt
     uid: botbuilder-dialogs.PromptOptions.retryPrompt
     package: botbuilder-dialogs
     summary: (Optional) Retry prompt to send the user.
     fullName: retryPrompt
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'retryPrompt?: string | Partial<Activity>'
@@ -58,7 +66,6 @@ properties:
       when the prompt is executed using DialogContext.prompt.
     fullName: style
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'style?: ListStyle'
@@ -73,7 +80,6 @@ properties:
       routine.
     fullName: validations
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'validations?: object'

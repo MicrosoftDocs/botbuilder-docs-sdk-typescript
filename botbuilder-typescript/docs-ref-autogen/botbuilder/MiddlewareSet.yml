@@ -1,0 +1,117 @@
+### YamlMime:TSType
+name: MiddlewareSet
+uid: botbuilder.MiddlewareSet
+package: botbuilder
+summary: A set of `Middleware` plugins.
+fullName: MiddlewareSet
+remarks: >-
+  The set itself is middleware so you can easily package up a set of middleware
+  that can be composed
+
+  into an adapter with a single `adapter.use(mySet)` call or even into another
+  middleware set using
+
+  `set.use(mySet)`.
+
+
+  ```JavaScript
+
+  const { MiddlewareSet } = require('botbuilder');
+
+
+  const set = new MiddlewareSet();
+
+  set.use(async (context, next) => {
+     console.log(`Leading Edge`);
+     await next();
+     console.log(`Trailing Edge`);
+  });
+
+  ```
+isDeprecated: false
+type: class
+constructors:
+  - name: MiddlewareSet((MiddlewareHandler | Middleware)[])
+    uid: botbuilder.MiddlewareSet.constructor
+    package: botbuilder
+    summary: Creates a new MiddlewareSet instance.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'new MiddlewareSet(middlewares: (MiddlewareHandler | Middleware)[])'
+      parameters:
+        - id: middlewares
+          type: >-
+            (<xref uid="botbuilder.MiddlewareHandler" /> | <xref
+            uid="botbuilder.Middleware" />)[]
+          description: One or more middleware handlers(s) to register.
+methods:
+  - name: onTurn(TurnContext, () => Promise<void>)
+    uid: botbuilder.MiddlewareSet.onTurn
+    package: botbuilder
+    summary: Processes an incoming activity.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onTurn(context: TurnContext, next: () => Promise<void>):
+        Promise<void>
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: >-
+            [TurnContext](xref:botbuilder-core.TurnContext) object for this
+            turn.
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: Delegate to call to continue the bot middleware pipeline.
+      return:
+        description: A Promise representing the async operation.
+        type: Promise&lt;void&gt;
+  - name: run(TurnContext, () => Promise<void>)
+    uid: botbuilder.MiddlewareSet.run
+    package: botbuilder
+    summary: Executes a set of middleware in series.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function run(context: TurnContext, next: () => Promise<void>):
+        Promise<void>
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for the current turn of conversation with the user.
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: Function to invoke at the end of the middleware chain.
+      return:
+        description: A promise that resolves after the handler chain is complete.
+        type: Promise&lt;void&gt;
+  - name: use((MiddlewareHandler | Middleware)[])
+    uid: botbuilder.MiddlewareSet.use
+    package: botbuilder
+    summary: Registers middleware handlers(s) with the set.
+    remarks: |-
+      This example adds a new piece of middleware to a set:
+      ```JavaScript
+      set.use(async (context, next) => {
+         console.log(`Leading Edge`);
+         await next();
+         console.log(`Trailing Edge`);
+      });
+      ```
+    isDeprecated: false
+    syntax:
+      content: >-
+        function use(middlewares: (MiddlewareHandler | Middleware)[]):
+        MiddlewareSet
+      parameters:
+        - id: middlewares
+          type: >-
+            (<xref uid="botbuilder.MiddlewareHandler" /> | <xref
+            uid="botbuilder.Middleware" />)[]
+          description: One or more middleware handlers(s) to register.
+      return:
+        description: The updated middleware set.
+        type: <xref uid="botbuilder.MiddlewareSet" />

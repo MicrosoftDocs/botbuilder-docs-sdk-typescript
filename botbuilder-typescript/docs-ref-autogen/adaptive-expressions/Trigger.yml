@@ -7,16 +7,14 @@ summary: >-
   action.
 fullName: Trigger
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'Trigger(TriggerTree, Expression, any, Quantifier[])'
+  - name: Trigger(TriggerTree, Expression, any, Quantifier[])
     uid: adaptive-expressions.Trigger.constructor
     package: adaptive-expressions
     summary: Intializes a new instance of the `Trigger` class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -33,9 +31,8 @@ constructors:
           type: any
           description: Action to take when a trigger matches.
         - id: quantifiers
-          type: '<xref uid="adaptive-expressions.Quantifier" />[]'
-          description: |
-            Quantifiers to dynamically expand the expression.
+          type: <xref uid="adaptive-expressions.Quantifier" />[]
+          description: Quantifiers to dynamically expand the expression.
 properties:
   - name: action
     uid: adaptive-expressions.Trigger.action
@@ -43,7 +40,6 @@ properties:
     summary: Action to take when trigger is true.
     fullName: action
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'action: any'
@@ -60,20 +56,18 @@ properties:
       there is an implicit || between clauses and && within a clause.
     fullName: clauses
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'Clause[] clauses'
+      content: 'clauses: Clause[]'
       return:
         description: The list of clauses.
-        type: '<xref uid="adaptive-expressions.Clause" />[]'
+        type: <xref uid="adaptive-expressions.Clause" />[]
   - name: originalExpression
     uid: adaptive-expressions.Trigger.originalExpression
     package: adaptive-expressions
     summary: Original trigger expression.
     fullName: originalExpression
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'originalExpression: Expression'
@@ -81,37 +75,33 @@ properties:
         description: ''
         type: <xref uid="adaptive-expressions.Expression" />
 methods:
-  - name: 'matches(Clause, MemoryInterface | any)'
+  - name: matches(Clause, any)
     uid: adaptive-expressions.Trigger.matches
     package: adaptive-expressions
     summary: >-
       Determines whether there is a member in the current `Clause` that matches
       the nodeClause parameter.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        function matches(nodeClause: Clause, state: MemoryInterface | any):
-        boolean
+      content: 'function matches(nodeClause: Clause, state: any): boolean'
       parameters:
         - id: nodeClause
           type: <xref uid="adaptive-expressions.Clause" />
           description: The other Clause instance to match.
         - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
+          type: any
           description: The scope for looking up variables.
       return:
         description: A boolean value inidicating whether there is a member matches.
         type: boolean
-  - name: 'relationship(Trigger, PredicateComparers)'
+  - name: relationship(Trigger, PredicateComparers)
     uid: adaptive-expressions.Trigger.relationship
     package: adaptive-expressions
     summary: >-
       Determines the relationship between current instance and another `Trigger`
       instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -127,18 +117,17 @@ methods:
       return:
         description: A `RelationshipType` value.
         type: <xref uid="adaptive-expressions.RelationshipType" />
-  - name: 'toString(string[], number)'
+  - name: toString(string[], number)
     uid: adaptive-expressions.Trigger.toString
     package: adaptive-expressions
     summary: Gets a string that represents the current trigger.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function toString(builder: string[], indent: number): string'
+      content: 'function toString(builder?: string[], indent?: number): string'
       parameters:
         - id: builder
-          type: 'string[]'
+          type: string[]
           description: An array of string to build the string of trigger.
         - id: indent
           type: number

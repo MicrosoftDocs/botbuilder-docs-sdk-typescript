@@ -9,24 +9,21 @@ summary: >-
   See `AutoSaveStateMiddleware` for an implementation of this class.
 fullName: BotStateSet
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'BotStateSet(BotState[])'
+  - name: BotStateSet(BotState[])
     uid: botbuilder-core.BotStateSet.constructor
     package: botbuilder-core
     summary: Creates a new BotStateSet instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new BotStateSet(botStates: BotState[])'
       parameters:
         - id: botStates
-          type: '<xref uid="botbuilder-core.BotState" />[]'
-          description: |
-            One or more BotState plugins to register.
+          type: <xref uid="botbuilder-core.BotState" />[]
+          description: One or more BotState plugins to register.
 properties:
   - name: botStates
     uid: botbuilder-core.BotStateSet.botStates
@@ -34,31 +31,29 @@ properties:
     summary: Array of the sets `BotState` plugins.
     fullName: botStates
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'botStates: BotState[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-core.BotState" />[]'
+        type: <xref uid="botbuilder-core.BotState" />[]
 methods:
-  - name: 'add(BotState[])'
+  - name: add(BotState[])
     uid: botbuilder-core.BotStateSet.add
     package: botbuilder-core
     summary: Registers one or more `BotState` plugins with the set.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function add(botStates: BotState[]): this'
+      content: 'function add(botStates: BotState[]): BotStateSet'
       parameters:
         - id: botStates
-          type: '<xref uid="botbuilder-core.BotState" />[]'
+          type: <xref uid="botbuilder-core.BotState" />[]
           description: One or more BotState plugins to register.
       return:
         description: The updated BotStateSet.
-        type: this
-  - name: 'loadAll(TurnContext, boolean)'
+        type: <xref uid="botbuilder-core.BotStateSet" />
+  - name: loadAll(TurnContext, boolean)
     uid: botbuilder-core.BotStateSet.loadAll
     package: botbuilder-core
     summary: Calls `BotState.load()` on all of the BotState plugins in the set.
@@ -68,7 +63,6 @@ methods:
       ```JavaScript
       await stateSet.readAll(context);
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function loadAll(context: TurnContext, force?: boolean): Promise<void>'
@@ -78,13 +72,13 @@ methods:
           description: Context for current turn of conversation with the user.
         - id: force
           type: boolean
-          description: >
+          description: >-
             (Optional) If `true` the cache will be bypassed and the state will
             always be read in directly from storage. Defaults to `false`.
       return:
         description: ''
         type: Promise&lt;void&gt;
-  - name: 'saveAllChanges(TurnContext, boolean)'
+  - name: saveAllChanges(TurnContext, boolean)
     uid: botbuilder-core.BotStateSet.saveAllChanges
     package: botbuilder-core
     summary: Calls `BotState.saveChanges()` on all of the BotState plugins in the set.
@@ -94,7 +88,6 @@ methods:
       ```JavaScript
       await stateSet.saveAllChanges(context);
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -106,7 +99,7 @@ methods:
           description: Context for current turn of conversation with the user.
         - id: force
           type: boolean
-          description: >
+          description: >-
             (Optional) if `true` the state will always be written out regardless
             of its change state. Defaults to `false`.
       return:
