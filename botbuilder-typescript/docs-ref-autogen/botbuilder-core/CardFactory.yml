@@ -36,7 +36,6 @@ remarks: >-
   await context.sendActivity(message);
 
   ```
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -46,7 +45,6 @@ properties:
     summary: Lists the content type schema for each card style.
     fullName: contentTypes
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static contentTypes: any'
@@ -54,27 +52,26 @@ properties:
         description: ''
         type: any
 methods:
-  - name: 'actions(string | CardAction[] | undefined)'
+  - name: actions(undefined | (string | CardAction)[])
     uid: botbuilder-core.CardFactory.actions
     package: botbuilder-core
     summary: Returns a properly formatted array of actions.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function actions(actions: string | CardAction[] | undefined):
+        static function actions(actions: undefined | (string | CardAction)[]):
         CardAction[]
       parameters:
         - id: actions
-          type: 'string | CardAction[] | undefined'
+          type: undefined | (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             The array of action to include on the card. Each `string` in the
             array
                  is converted to an `imBack` button with a title and value set to the value of the string.
       return:
         description: A properly formatted array of actions.
-        type: 'CardAction[]'
+        type: <xref uid="botbuilder-core.CardAction" />[]
   - name: adaptiveCard(any)
     uid: botbuilder-core.CardFactory.adaptiveCard
     package: botbuilder-core
@@ -125,7 +122,6 @@ methods:
       });
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function adaptiveCard(card: any): Attachment'
@@ -134,75 +130,74 @@ methods:
           type: any
           description: A description of the Adaptive Card to return.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
   - name: >-
-      animationCard(string, string | MediaUrl[], string | CardAction[],
+      animationCard(string, (string | MediaUrl)[], (string | CardAction)[],
       Partial<AnimationCard>)
     uid: botbuilder-core.CardFactory.animationCard
     package: botbuilder-core
     summary: Returns an attachment for an animation card.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function animationCard(title: string, media: string | MediaUrl[],
-        buttons?: string | CardAction[], other?: Partial<AnimationCard>):
+        static function animationCard(title: string, media: (string |
+        MediaUrl)[], buttons?: (string | CardAction)[], other?:
+        Partial<AnimationCard>): Attachment
+      parameters:
+        - id: title
+          type: string
+          description: The card title.
+        - id: media
+          type: (string | <xref uid="botbuilder-core.MediaUrl" />)[]
+          description: The media URLs for the card.
+        - id: buttons
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
+          description: >-
+            Optional. The array of buttons to include on the card. Each `string`
+            in the array
+                 is converted to an `imBack` button with a title and value set to the value of the string.
+        - id: other
+          type: Partial&lt;<xref uid="botbuilder-core.AnimationCard" />&gt;
+          description: Optional. Any additional properties to include on the card.
+      return:
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
+  - name: >-
+      audioCard(string, (string | MediaUrl)[], (string | CardAction)[],
+      Partial<AudioCard>)
+    uid: botbuilder-core.CardFactory.audioCard
+    package: botbuilder-core
+    summary: Returns an attachment for an audio card.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function audioCard(title: string, media: (string | MediaUrl)[],
+        buttons?: (string | CardAction)[], other?: Partial<AudioCard>):
         Attachment
       parameters:
         - id: title
           type: string
           description: The card title.
         - id: media
-          type: 'string | MediaUrl[]'
-          description: The media URLs for the card.
-        - id: buttons
-          type: 'string | CardAction[]'
-          description: >-
-            Optional. The array of buttons to include on the card. Each `string`
-            in the array
-                 is converted to an `imBack` button with a title and value set to the value of the string.
-        - id: other
-          type: Partial&lt;AnimationCard&gt;
-          description: Optional. Any additional properties to include on the card.
-      return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
-  - name: >-
-      audioCard(string, string | MediaUrl[], string | CardAction[],
-      Partial<AudioCard>)
-    uid: botbuilder-core.CardFactory.audioCard
-    package: botbuilder-core
-    summary: Returns an attachment for an audio card.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        static function audioCard(title: string, media: string | MediaUrl[],
-        buttons?: string | CardAction[], other?: Partial<AudioCard>): Attachment
-      parameters:
-        - id: title
-          type: string
-          description: The card title.
-        - id: media
-          type: 'string | MediaUrl[]'
+          type: (string | <xref uid="botbuilder-core.MediaUrl" />)[]
           description: The media URL for the card.
         - id: buttons
-          type: 'string | CardAction[]'
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
         - id: other
-          type: Partial&lt;AudioCard&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.AudioCard" />&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
   - name: >-
-      heroCard(string, string | CardImage[], string | CardAction[],
+      heroCard(string, (string | CardImage)[], (string | CardAction)[],
       Partial<HeroCard>)
     uid: botbuilder-core.CardFactory.heroCard
     package: botbuilder-core
@@ -219,36 +214,36 @@ methods:
            ['buy']
       );
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function heroCard(title: string, images?: string | CardImage[],
-        buttons?: string | CardAction[], other?: Partial<HeroCard>): Attachment
+        static function heroCard(title: string, images?: (string | CardImage)[],
+        buttons?: (string | CardAction)[], other?: Partial<HeroCard>):
+        Attachment
       parameters:
         - id: title
           type: string
           description: The card title.
         - id: images
-          type: 'string | CardImage[]'
+          type: (string | <xref uid="botbuilder-core.CardImage" />)[]
           description: >-
             Optional. The array of images to include on the card. Each element
             can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
         - id: buttons
-          type: 'string | CardAction[]'
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
         - id: other
-          type: Partial&lt;HeroCard&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.HeroCard" />&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
   - name: >-
-      heroCard(string, string, string | CardImage[], string | CardAction[],
+      heroCard(string, string, (string | CardImage)[], (string | CardAction)[],
       Partial<HeroCard>)
     uid: botbuilder-core.CardFactory.heroCard_1
     package: botbuilder-core
@@ -264,12 +259,11 @@ methods:
            ['buy']
       );
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function heroCard(title: string, text: string, images?: string |
-        CardImage[], buttons?: string | CardAction[], other?:
+        static function heroCard(title: string, text: string, images?: (string |
+        CardImage)[], buttons?: (string | CardAction)[], other?:
         Partial<HeroCard>): Attachment
       parameters:
         - id: title
@@ -279,61 +273,59 @@ methods:
           type: string
           description: The card text.
         - id: images
-          type: 'string | CardImage[]'
+          type: (string | <xref uid="botbuilder-core.CardImage" />)[]
           description: >-
             Optional. The array of images to include on the card. Each element
             can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
         - id: buttons
-          type: 'string | CardAction[]'
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
         - id: other
-          type: Partial&lt;HeroCard&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.HeroCard" />&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
-  - name: 'images(string | CardImage[] | undefined)'
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
+  - name: images(undefined | (string | CardImage)[])
     uid: botbuilder-core.CardFactory.images
     package: botbuilder-core
     summary: Returns a properly formatted array of card images.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function images(images: string | CardImage[] | undefined):
+        static function images(images: undefined | (string | CardImage)[]):
         CardImage[]
       parameters:
         - id: images
-          type: 'string | CardImage[] | undefined'
+          type: undefined | (string | <xref uid="botbuilder-core.CardImage" />)[]
           description: |-
             The array of images to include on the card. Each element can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
       return:
         description: A properly formatted array of card images.
-        type: 'CardImage[]'
-  - name: 'media(string | MediaUrl[] | undefined)'
+        type: <xref uid="botbuilder-core.CardImage" />[]
+  - name: media(undefined | (string | MediaUrl)[])
     uid: botbuilder-core.CardFactory.media
     package: botbuilder-core
     summary: Returns a properly formatted array of media URL objects.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function media(links: string | MediaUrl[] | undefined):
+        static function media(links: undefined | (string | MediaUrl)[]):
         MediaUrl[]
       parameters:
         - id: links
-          type: 'string | MediaUrl[] | undefined'
+          type: undefined | (string | <xref uid="botbuilder-core.MediaUrl" />)[]
           description: The media URLs. Each `string` is converted to a media URL object.
       return:
         description: A properly formatted array of media URL objects.
-        type: 'MediaUrl[]'
+        type: <xref uid="botbuilder-core.MediaUrl" />[]
   - name: o365ConnectorCard(O365ConnectorCard)
     uid: botbuilder-core.CardFactory.o365ConnectorCard
     package: botbuilder-core
@@ -355,29 +347,29 @@ methods:
         ]
       });
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function o365ConnectorCard(card: O365ConnectorCard): Attachment'
       parameters:
         - id: card
-          type: O365ConnectorCard
+          type: <xref uid="botbuilder-core.O365ConnectorCard" />
           description: a description of the Office 365 connector card to return.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
-  - name: 'oauthCard(string, string, string, string, TokenExchangeResource)'
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
+  - name: >-
+      oauthCard(string, string, string, string, TokenExchangeResource,
+      TokenPostResource)
     uid: botbuilder-core.CardFactory.oauthCard
     package: botbuilder-core
     summary: Returns an attachment for an OAuth card.
     remarks: OAuth cards support the Bot Framework's single sign on (SSO) service.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function oauthCard(connectionName: string, title: string, text?:
-        string, link?: string, tokenExchangeResource?: TokenExchangeResource):
-        Attachment
+        string, link?: string, tokenExchangeResource?: TokenExchangeResource,
+        tokenPostResource?: TokenPostResource): Attachment
       parameters:
         - id: connectionName
           type: string
@@ -392,35 +384,36 @@ methods:
           type: string
           description: Optional. The sign-in link to use.
         - id: tokenExchangeResource
-          type: TokenExchangeResource
+          type: <xref uid="botbuilder-core.TokenExchangeResource" />
           description: optional. The resource to try to perform token exchange with.
+        - id: tokenPostResource
+          type: <xref uid="botbuilder-core.TokenPostResource" />
+          description: optional. The resource for directly post a token to token service.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
   - name: receiptCard(ReceiptCard)
     uid: botbuilder-core.CardFactory.receiptCard
     package: botbuilder-core
     summary: Returns an attachment for a receipt card.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function receiptCard(card: ReceiptCard): Attachment'
       parameters:
         - id: card
-          type: ReceiptCard
+          type: <xref uid="botbuilder-core.ReceiptCard" />
           description: A description of the receipt card to return.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
-  - name: 'signinCard(string, string, string)'
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
+  - name: signinCard(string, string, string)
     uid: botbuilder-core.CardFactory.signinCard
     package: botbuilder-core
     summary: Returns an attachment for a sign-in card.
     remarks: >-
       For channels that don't natively support sign-in cards, an alternative
       message is rendered.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -437,10 +430,10 @@ methods:
           type: string
           description: Optional. Additional text to include on the card.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
   - name: >-
-      thumbnailCard(string, string | CardImage[], string | CardAction[],
+      thumbnailCard(string, (string | CardImage)[], (string | CardAction)[],
       Partial<ThumbnailCard>)
     uid: botbuilder-core.CardFactory.thumbnailCard
     package: botbuilder-core
@@ -454,38 +447,37 @@ methods:
       Channels typically render the card's text to one side of the image,
 
       with any buttons displayed below the card.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function thumbnailCard(title: string, images?: string |
-        CardImage[], buttons?: string | CardAction[], other?:
+        static function thumbnailCard(title: string, images?: (string |
+        CardImage)[], buttons?: (string | CardAction)[], other?:
         Partial<ThumbnailCard>): Attachment
       parameters:
         - id: title
           type: string
           description: The card title.
         - id: images
-          type: 'string | CardImage[]'
+          type: (string | <xref uid="botbuilder-core.CardImage" />)[]
           description: >-
             Optional. The array of images to include on the card. Each element
             can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
         - id: buttons
-          type: 'string | CardAction[]'
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
         - id: other
-          type: Partial&lt;ThumbnailCard&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.ThumbnailCard" />&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
   - name: >-
-      thumbnailCard(string, string, string | CardImage[], string | CardAction[],
-      Partial<ThumbnailCard>)
+      thumbnailCard(string, string, (string | CardImage)[], (string |
+      CardAction)[], Partial<ThumbnailCard>)
     uid: botbuilder-core.CardFactory.thumbnailCard_1
     package: botbuilder-core
     summary: Returns an attachment for a thumbnail card.
@@ -498,12 +490,11 @@ methods:
       Channels typically render the card's text to one side of the image,
 
       with any buttons displayed below the card.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         static function thumbnailCard(title: string, text: string, images?:
-        string | CardImage[], buttons?: string | CardAction[], other?:
+        (string | CardImage)[], buttons?: (string | CardAction)[], other?:
         Partial<ThumbnailCard>): Attachment
       parameters:
         - id: title
@@ -513,52 +504,52 @@ methods:
           type: string
           description: The card text.
         - id: images
-          type: 'string | CardImage[]'
+          type: (string | <xref uid="botbuilder-core.CardImage" />)[]
           description: >-
             Optional. The array of images to include on the card. Each element
             can be a
                  [CardImage](ref:botframework-schema.CardImage) or the URL of the image to include.
         - id: buttons
-          type: 'string | CardAction[]'
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
         - id: other
-          type: Partial&lt;ThumbnailCard&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.ThumbnailCard" />&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />
   - name: >-
-      videoCard(string, string | MediaUrl[], string | CardAction[],
+      videoCard(string, (string | MediaUrl)[], (string | CardAction)[],
       Partial<VideoCard>)
     uid: botbuilder-core.CardFactory.videoCard
     package: botbuilder-core
     summary: Returns an attachment for a video card.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        static function videoCard(title: string, media: string | MediaUrl[],
-        buttons?: string | CardAction[], other?: Partial<VideoCard>): Attachment
+        static function videoCard(title: string, media: (string | MediaUrl)[],
+        buttons?: (string | CardAction)[], other?: Partial<VideoCard>):
+        Attachment
       parameters:
         - id: title
           type: string
           description: The card title.
         - id: media
-          type: 'string | MediaUrl[]'
+          type: (string | <xref uid="botbuilder-core.MediaUrl" />)[]
           description: The media URLs for the card.
         - id: buttons
-          type: 'string | CardAction[]'
+          type: (string | <xref uid="botbuilder-core.CardAction" />)[]
           description: >-
             Optional. The array of buttons to include on the card. Each `string`
             in the array
                  is converted to an `imBack` button with a title and value set to the value of the string.
         - id: other
-          type: Partial&lt;VideoCard&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.VideoCard" />&gt;
           description: Optional. Any additional properties to include on the card.
       return:
-        description: 'An [Attachment](xref:botframework-schema.Attachment).'
-        type: Attachment
+        description: An [Attachment](xref:botframework-schema.Attachment).
+        type: <xref uid="botbuilder-core.Attachment" />

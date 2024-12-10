@@ -5,16 +5,14 @@ package: botbuilder-dialogs
 summary: Context object passed in to a `WaterfallStep`.
 fullName: WaterfallStepContext<O>
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'WaterfallStepContext(DialogContext, WaterfallStepInfo<O>)'
+  - name: WaterfallStepContext<O>(DialogContext, WaterfallStepInfo<O>)
     uid: botbuilder-dialogs.WaterfallStepContext.constructor
     package: botbuilder-dialogs
     summary: Creates a new WaterfallStepContext instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new WaterfallStepContext(dc: DialogContext, info: WaterfallStepInfo<O>)'
@@ -24,8 +22,7 @@ constructors:
           description: The dialog context for the current turn of conversation.
         - id: info
           type: <xref uid="botbuilder-dialogs.WaterfallStepInfo" />&lt;O&gt;
-          description: |
-            Values to initialize the step context with.
+          description: Values to initialize the step context with.
 properties:
   - name: activeDialog
     uid: botbuilder-dialogs.WaterfallStepContext.activeDialog
@@ -33,39 +30,37 @@ properties:
     summary: ''
     fullName: activeDialog
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: DialogInstance | undefined activeDialog
+      content: undefined | DialogInstance<any> activeDialog
       return:
         description: >-
           The state information for the dialog on the top of the dialog stack,
           or `undefined` if
 
           the stack is empty.
-        type: <xref uid="botbuilder-dialogs.DialogInstance" /> | undefined
+        type: >-
+          undefined | <xref uid="botbuilder-dialogs.DialogInstance"
+          />&lt;any&gt;
   - name: child
     uid: botbuilder-dialogs.WaterfallStepContext.child
     package: botbuilder-dialogs
     summary: ''
     fullName: child
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: DialogContext | undefined child
+      content: undefined | DialogContext child
       return:
         description: Dialog context for child if the active dialog is a container.
-        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.DialogContext" />
   - name: dialogManager
     uid: botbuilder-dialogs.WaterfallStepContext.dialogManager
     package: botbuilder-dialogs
     summary: ''
     fullName: dialogManager
     remarks: ''
-    isPreview: false
-    isDeprecated: true
-    customDeprecatedMessage: This property serves no function.
+    isDeprecated: false
     syntax:
       content: DialogManager dialogManager
       return:
@@ -77,7 +72,6 @@ properties:
     summary: The index of the current waterfall step being executed.
     fullName: index
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: number index
@@ -92,7 +86,6 @@ properties:
       `DialogContext.beginDialog()`.
     fullName: options
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: O options
@@ -105,7 +98,6 @@ properties:
     summary: The reason the waterfall step is being executed.
     fullName: reason
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: DialogReason reason
@@ -120,7 +112,6 @@ properties:
       waterfall step.
     fullName: result
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: any result
@@ -133,7 +124,6 @@ properties:
     summary: A dictionary of values which will be persisted across all waterfall steps.
     fullName: values
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: object values
@@ -149,7 +139,6 @@ inheritedProperties:
     summary: Gets the context object for the turn.
     fullName: context
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'context: TurnContext'
@@ -165,7 +154,6 @@ inheritedProperties:
     summary: Gets the dialogs that can be called directly from this context.
     fullName: dialogs
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'dialogs: DialogSet'
@@ -191,13 +179,12 @@ inheritedProperties:
 
       in this dialog context, it searches in its parent dialog context, and so
       on.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'parent: DialogContext | undefined'
+      content: 'parent: undefined | DialogContext'
       return:
         description: ''
-        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.DialogContext" />
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.parent](xref:botbuilder-dialogs.DialogContext.parent)
@@ -207,7 +194,6 @@ inheritedProperties:
     summary: Gets the services collection which is contextual to this dialog context.
     fullName: services
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'services: TurnContextStateCollection'
@@ -223,13 +209,12 @@ inheritedProperties:
     summary: Gets the current dialog stack.
     fullName: stack
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'stack: DialogInstance[]'
+      content: 'stack: DialogInstance<any>[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-dialogs.DialogInstance" />[]'
+        type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;[]
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.stack](xref:botbuilder-dialogs.DialogContext.stack)
@@ -239,7 +224,6 @@ inheritedProperties:
     summary: Gets the DialogStateManager which manages view of all memory scopes.
     fullName: state
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'state: DialogStateManager'
@@ -250,7 +234,7 @@ inheritedProperties:
       <b>Inherited From</b>
       [DialogContext.state](xref:botbuilder-dialogs.DialogContext.state)
 inheritedMethods:
-  - name: 'beginDialog(string, object)'
+  - name: beginDialog(string, object)
     uid: botbuilder-dialogs.WaterfallStepContext.beginDialog
     package: botbuilder-dialogs
     summary: |-
@@ -293,12 +277,11 @@ inheritedMethods:
       - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
 
       - [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dialogId: string, options?: object):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -308,14 +291,16 @@ inheritedMethods:
           description: Optional. Arguments to pass into the dialog when it starts.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
-  - name: 'cancelAllDialogs(boolean, string, any)'
+  - name: cancelAllDialogs(boolean, string, any)
     uid: botbuilder-dialogs.WaterfallStepContext.cancelAllDialogs
     package: botbuilder-dialogs
-    summary: 'Cancels all dialogs on the dialog stack, and clears stack.'
+    summary: Cancels all dialogs on the dialog stack, and clears stack.
     remarks: >-
       This calls each dialog's
       [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog) method before
@@ -348,12 +333,11 @@ inheritedMethods:
       **See also**
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function cancelAllDialogs(cancelParents?: boolean, eventName?: string,
-        eventValue?: any): Promise<DialogTurnResult>
+        eventValue?: any): Promise<DialogTurnResult<any>>
       parameters:
         - id: cancelParents
           type: boolean
@@ -369,7 +353,9 @@ inheritedMethods:
           description: Optional. Value to pass along with custom cancellation event.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.cancelAllDialogs](xref:botbuilder-dialogs.DialogContext.cancelAllDialogs)
@@ -411,24 +397,24 @@ inheritedMethods:
       }
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(): Promise<DialogTurnResult>'
+      content: 'function continueDialog(): Promise<DialogTurnResult<any>>'
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.continueDialog](xref:botbuilder-dialogs.DialogContext.continueDialog)
-  - name: 'emitEvent(string, any, boolean, boolean)'
+  - name: emitEvent(string, any, boolean, boolean)
     uid: botbuilder-dialogs.WaterfallStepContext.emitEvent
     package: botbuilder-dialogs
     summary: Searches for a dialog with a given ID.
     remarks: >-
       Emits a named event for the current dialog, or someone who started it, to
       handle.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -507,10 +493,9 @@ inheritedMethods:
       - [replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
 
       - [Dialog.endDialog](xref:botbuilder-dialogs.Dialog.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function endDialog(result?: any): Promise<DialogTurnResult>'
+      content: 'function endDialog(result?: any): Promise<DialogTurnResult<any>>'
       parameters:
         - id: result
           type: any
@@ -521,7 +506,9 @@ inheritedMethods:
                  the bot's turn handler.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
@@ -542,17 +529,16 @@ inheritedMethods:
       - [dialogs](xref:botbuilder-dialogs.DialogContext.dialogs)
 
       - [parent](xref:botbuilder-dialogs.DialogContext.parent)
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findDialog(dialogId: string): Dialog | undefined'
+      content: 'function findDialog(dialogId: string): undefined | Dialog<{}>'
       parameters:
         - id: dialogId
           type: string
           description: ID of the dialog to search for.
       return:
         description: The dialog for the provided ID.
-        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.Dialog" />&lt;{}&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.findDialog](xref:botbuilder-dialogs.DialogContext.findDialog)
@@ -561,7 +547,6 @@ inheritedMethods:
     package: botbuilder-dialogs
     summary: Obtain the CultureInfo in DialogContext.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getLocale(): string'
@@ -571,7 +556,7 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.getLocale](xref:botbuilder-dialogs.DialogContext.getLocale)
-  - name: 'prompt(string, string | Partial<Activity> | PromptOptions)'
+  - name: prompt(string, string | Partial<Activity> | PromptOptions)
     uid: botbuilder-dialogs.WaterfallStepContext.prompt
     package: botbuilder-dialogs
     summary: >-
@@ -591,12 +576,11 @@ inheritedMethods:
       quit?`);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions): Promise<DialogTurnResult>
+        Partial<Activity> | PromptOptions): Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -611,13 +595,15 @@ inheritedMethods:
                  the object with which to format the prompt dialog.
       return:
         description: ''
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.prompt](xref:botbuilder-dialogs.DialogContext.prompt)
   - name: >-
-      prompt(string, string | Partial<Activity> | PromptOptions, string |
-      Choice[])
+      prompt(string, string | Partial<Activity> | PromptOptions, (string |
+      Choice)[])
     uid: botbuilder-dialogs.WaterfallStepContext.prompt_1
     package: botbuilder-dialogs
     summary: >-
@@ -637,13 +623,12 @@ inheritedMethods:
       quit?`);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function prompt(dialogId: string, promptOrOptions: string |
-        Partial<Activity> | PromptOptions, choices: string | Choice[]):
-        Promise<DialogTurnResult>
+        Partial<Activity> | PromptOptions, choices: (string | Choice)[]):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -660,17 +645,19 @@ inheritedMethods:
 
             the object with which to format the prompt dialog.
         - id: choices
-          type: 'string | <xref uid="botbuilder-dialogs.Choice" />[]'
+          type: (string | <xref uid="botbuilder-dialogs.Choice" />)[]
           description: |-
             Optional. Array of choices for the user to choose from,
             for use with a [ChoicePrompt](xref:botbuilder-dialogs.ChoicePrompt).
       return:
         description: ''
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.prompt](xref:botbuilder-dialogs.DialogContext.prompt)
-  - name: 'replaceDialog(string, object)'
+  - name: replaceDialog(string, object)
     uid: botbuilder-dialogs.WaterfallStepContext.replaceDialog
     package: botbuilder-dialogs
     summary: Ends the active dialog and starts a new dialog in its place.
@@ -696,12 +683,11 @@ inheritedMethods:
       - [beginDialog](xref:botbuilder-dialogs.DialogContext.beginDialog)
 
       - [endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function replaceDialog(dialogId: string, options?: object):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dialogId
           type: string
@@ -711,7 +697,9 @@ inheritedMethods:
           description: Optional. Arguments to pass into the new dialog when it starts.
       return:
         description: a promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
@@ -731,7 +719,6 @@ inheritedMethods:
       await dc.repromptDialog();
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function repromptDialog(): Promise<void>'
@@ -750,15 +737,16 @@ methods:
       ```JavaScript
       return await step.skip();
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function next(result?: any): Promise<DialogTurnResult>'
+      content: 'function next(result?: any): Promise<DialogTurnResult<any>>'
       parameters:
         - id: result
           type: any
           description: (Optional) result to pass to the next step.
       return:
         description: A promise with the DialogTurnResult.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
 extends: <xref uid="botbuilder-dialogs.DialogContext" />

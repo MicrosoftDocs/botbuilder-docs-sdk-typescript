@@ -7,10 +7,11 @@ summary: >-
   depends on a set of
 
   other services. The type is generic over a few parameters:
-fullName: 'DependencyFactory<Type, Dependencies, Initial>'
+fullName: DependencyFactory<Type, Dependencies, Initial>
 remarks: ''
-isPreview: false
 isDeprecated: false
-syntax: >-
-  type DependencyFactory<Type, Dependencies, Initial> = (dependencies:
-  Dependencies, initialValue: Initial extends true ? Type : Type) => Type
+syntax: |
+  type DependencyFactory<Type, Dependencies, Initial> = (
+    dependencies: Dependencies,
+    initialValue: Initial extends true ? Type : Type | undefined
+  ) => Type

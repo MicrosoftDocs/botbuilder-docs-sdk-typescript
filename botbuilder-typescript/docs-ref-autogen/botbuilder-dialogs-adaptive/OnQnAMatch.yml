@@ -5,30 +5,28 @@ package: botbuilder-dialogs-adaptive
 summary: Actions triggered when a MessageUpdateActivity is received.
 fullName: OnQnAMatch
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'OnQnAMatch(Dialog[], string)'
+  - name: OnQnAMatch(Dialog<{}>[], string)
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.constructor
     package: botbuilder-dialogs-adaptive
     summary: >-
       Initializes a new instance of the
       [OnQnAMatch](xref:botbuilder-dialogs-adaptive.OnQnAMatch) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new OnQnAMatch(actions?: Dialog[], condition?: string)'
+      content: 'new OnQnAMatch(actions?: Dialog<{}>[], condition?: string)'
       parameters:
         - id: actions
-          type: 'Dialog[]'
+          type: Dialog&lt;{}&gt;[]
           description: >-
             Optional. A [Dialog](xref:botbuilder-dialogs.Dialog) list containing
             the actions to add to the plan when the rule constraints are met.
         - id: condition
           type: string
-          description: >
+          description: >-
             Optional. Condition which needs to be met for the actions to be
             executed.
 properties:
@@ -38,10 +36,21 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
+      return:
+        description: ''
+        type: string
+  - name: qnaMatchIntent
+    uid: botbuilder-dialogs-adaptive.OnQnAMatch.qnaMatchIntent
+    package: botbuilder-dialogs-adaptive
+    summary: ''
+    fullName: qnaMatchIntent
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static qnaMatchIntent: string'
       return:
         description: ''
         type: string
@@ -54,16 +63,15 @@ inheritedProperties:
       met.
     fullName: actions
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'actions: Dialog[]'
+      content: 'actions: Dialog<{}>[]'
       return:
         description: ''
-        type: 'Dialog[]'
+        type: Dialog&lt;{}&gt;[]
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.actions](xref:botbuilder-dialogs-adaptive.OnCondition.actions)
+      [OnIntent.actions](xref:botbuilder-dialogs-adaptive.OnIntent.actions)
   - name: condition
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.condition
     package: botbuilder-dialogs-adaptive
@@ -72,7 +80,6 @@ inheritedProperties:
       executed (OPTIONAL).
     fullName: condition
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'condition: BoolExpression'
@@ -81,20 +88,19 @@ inheritedProperties:
         type: BoolExpression
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.condition](xref:botbuilder-dialogs-adaptive.OnCondition.condition)
+      [OnIntent.condition](xref:botbuilder-dialogs-adaptive.OnIntent.condition)
   - name: entities
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.entities
     package: botbuilder-dialogs-adaptive
     summary: Gets or sets entities which must be recognized for this rule to trigger.
     fullName: entities
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'entities: string[]'
       return:
         description: ''
-        type: 'string[]'
+        type: string[]
     inheritanceDescription: >-
       <b>Inherited From</b>
       [OnIntent.entities](xref:botbuilder-dialogs-adaptive.OnIntent.entities)
@@ -104,7 +110,6 @@ inheritedProperties:
     summary: Gets or sets the event to fire on.
     fullName: event
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'event: string'
@@ -113,14 +118,13 @@ inheritedProperties:
         type: string
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnDialogEvent.event](xref:botbuilder-dialogs-adaptive.OnDialogEvent.event)
+      [OnIntent.event](xref:botbuilder-dialogs-adaptive.OnIntent.event)
   - name: id
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.id
     package: botbuilder-dialogs-adaptive
     summary: Id for condition.
     fullName: id
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
@@ -129,14 +133,13 @@ inheritedProperties:
         type: string
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.id](xref:botbuilder-dialogs-adaptive.OnCondition.id)
+      [OnIntent.id](xref:botbuilder-dialogs-adaptive.OnIntent.id)
   - name: intent
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.intent
     package: botbuilder-dialogs-adaptive
     summary: Gets or sets intent to match on.
     fullName: intent
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'intent: string'
@@ -154,7 +157,6 @@ inheritedProperties:
       than 0 is ignored.
     fullName: priority
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'priority: NumberExpression'
@@ -163,7 +165,7 @@ inheritedProperties:
         type: NumberExpression
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.priority](xref:botbuilder-dialogs-adaptive.OnCondition.priority)
+      [OnIntent.priority](xref:botbuilder-dialogs-adaptive.OnIntent.priority)
   - name: runOnce
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.runOnce
     package: botbuilder-dialogs-adaptive
@@ -172,7 +174,6 @@ inheritedProperties:
       memory paths.
     fullName: runOnce
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'runOnce: boolean'
@@ -181,51 +182,50 @@ inheritedProperties:
         type: boolean
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.runOnce](xref:botbuilder-dialogs-adaptive.OnCondition.runOnce)
+      [OnIntent.runOnce](xref:botbuilder-dialogs-adaptive.OnIntent.runOnce)
 inheritedMethods:
   - name: addExternalCondition(string)
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.addExternalCondition
     package: botbuilder-dialogs-adaptive
     summary: Add external condition to the OnCondition
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function addExternalCondition(condition: string)'
       parameters:
         - id: condition
           type: string
-          description: >
+          description: >-
             External constraint to add, it will be AND'ed to all other
             constraints.
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.addExternalCondition](xref:botbuilder-dialogs-adaptive.OnCondition.addExternalCondition)
-  - name: 'configure(Record<string, unknown>)'
+      [OnIntent.addExternalCondition](xref:botbuilder-dialogs-adaptive.OnIntent.addExternalCondition)
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): OnQnAMatch'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
+        type: <xref uid="botbuilder-dialogs-adaptive.OnQnAMatch" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [OnIntent.configure](xref:botbuilder-dialogs-adaptive.OnIntent.configure)
   - name: currentPriority(ActionContext)
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.currentPriority
     package: botbuilder-dialogs-adaptive
     summary: Compute the current value of the priority expression and return it.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function currentPriority(actionContext: ActionContext): number'
@@ -238,13 +238,12 @@ inheritedMethods:
         type: number
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.currentPriority](xref:botbuilder-dialogs-adaptive.OnCondition.currentPriority)
+      [OnIntent.currentPriority](xref:botbuilder-dialogs-adaptive.OnIntent.currentPriority)
   - name: execute(ActionContext)
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.execute
     package: botbuilder-dialogs-adaptive
     summary: Method called to execute the condition's actions.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -256,31 +255,32 @@ inheritedMethods:
           description: Context.
       return:
         description: A promise with plan change list.
-        type: >-
-          Promise&lt;<xref uid="botbuilder-dialogs-adaptive.ActionChangeList"
-          />[]&gt;
+        type: Promise&lt;ActionChangeList[]&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.execute](xref:botbuilder-dialogs-adaptive.OnCondition.execute)
-  - name: getConverter(Object)
+      [OnIntent.execute](xref:botbuilder-dialogs-adaptive.OnIntent.execute)
+  - name: getConverter(keyof OnConditionConfiguration)
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.getConverter
     package: botbuilder-dialogs-adaptive
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: keyof OnConditionConfiguration):
+        Converter<unknown, unknown> | ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: keyof OnConditionConfiguration
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.getConverter](xref:botbuilder-dialogs-adaptive.OnCondition.getConverter)
+      [OnIntent.getConverter](xref:botbuilder-dialogs-adaptive.OnIntent.getConverter)
   - name: getDependencies()
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.getDependencies
     package: botbuilder-dialogs-adaptive
@@ -288,22 +288,20 @@ inheritedMethods:
       Get child dialog dependencies so they can be added to the containers
       dialogset.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getDependencies(): Dialog[]'
+      content: 'function getDependencies(): Dialog<{}>[]'
       return:
-        description: 'A list of [Dialog](xref:botbuilder-dialogs.Dialog).'
-        type: 'Dialog[]'
+        description: A list of [Dialog](xref:botbuilder-dialogs.Dialog).
+        type: Dialog&lt;{}&gt;[]
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.getDependencies](xref:botbuilder-dialogs-adaptive.OnCondition.getDependencies)
+      [OnIntent.getDependencies](xref:botbuilder-dialogs-adaptive.OnIntent.getDependencies)
   - name: getExpression()
     uid: botbuilder-dialogs-adaptive.OnQnAMatch.getExpression
     package: botbuilder-dialogs-adaptive
     summary: Get the cached expression for this condition.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getExpression(): Expression'
@@ -312,5 +310,5 @@ inheritedMethods:
         type: Expression
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [OnCondition.getExpression](xref:botbuilder-dialogs-adaptive.OnCondition.getExpression)
+      [OnIntent.getExpression](xref:botbuilder-dialogs-adaptive.OnIntent.getExpression)
 extends: <xref uid="botbuilder-dialogs-adaptive.OnIntent" />

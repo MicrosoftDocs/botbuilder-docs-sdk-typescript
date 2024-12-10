@@ -1,0 +1,123 @@
+### YamlMime:TSType
+name: StatePropertyAccessor
+uid: botbuilder.StatePropertyAccessor
+package: botbuilder
+summary: |-
+  Defines methods for accessing a state property created in a
+  [BotState](xref:botbuilder-core.BotState) object.
+fullName: StatePropertyAccessor<T>
+remarks: |-
+  To create a state property in a state management objet, use the
+  [createProperty\<T>](xref:botbuilder-core.BotState.createProperty) method.
+isDeprecated: false
+type: interface
+methods:
+  - name: delete(TurnContext)
+    uid: botbuilder.StatePropertyAccessor.delete
+    package: botbuilder
+    summary: Deletes the persisted property from its backing storage object.
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      ```JavaScript
+
+      await myProperty.delete(context);
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function delete(context: TurnContext): Promise<void>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for the current turn of conversation with the user.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;
+  - name: get(TurnContext)
+    uid: botbuilder.StatePropertyAccessor.get
+    package: botbuilder
+    summary: Reads a persisted property from its backing storage object.
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      If the property does not currently exist on the storage object and a
+      `defaultValue` has been
+
+      specified, a clone of the `defaultValue` SHOULD be copied to the storage
+      object. If a
+
+      `defaultValue` has not been specified then a value of `undefined` SHOULD
+      be returned.
+
+
+      ```JavaScript
+
+      const value = await myProperty.get(context, { count: 0 });
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function get(context: TurnContext): Promise<undefined | T>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for the current turn of conversation with the user.
+      return:
+        description: ''
+        type: Promise&lt;undefined | T&gt;
+  - name: get(TurnContext, T)
+    uid: botbuilder.StatePropertyAccessor.get_1
+    package: botbuilder
+    summary: ''
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function get(context: TurnContext, defaultValue: T): Promise<T>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: ''
+        - id: defaultValue
+          type: T
+          description: ''
+      return:
+        description: ''
+        type: Promise&lt;T&gt;
+  - name: set(TurnContext, T)
+    uid: botbuilder.StatePropertyAccessor.set
+    package: botbuilder
+    summary: Assigns a new value to the properties backing storage object.
+    remarks: >-
+      The properties backing storage object SHOULD be loaded into memory on
+      first access.
+
+
+      Depending on the state systems implementation, an additional step may be
+      required to
+
+      persist the actual changes to disk.
+
+
+      ```JavaScript
+
+      await myProperty.set(context, value);
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function set(context: TurnContext, value: T): Promise<void>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for the current turn of conversation with the user.
+        - id: value
+          type: T
+          description: Value to assign.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;

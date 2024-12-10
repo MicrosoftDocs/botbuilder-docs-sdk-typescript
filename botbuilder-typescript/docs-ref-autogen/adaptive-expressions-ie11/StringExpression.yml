@@ -1,0 +1,149 @@
+### YamlMime:TSType
+name: StringExpression
+uid: adaptive-expressions-ie11.StringExpression
+package: adaptive-expressions-ie11
+summary: Represents a property which is either a string value or a string expression.
+fullName: StringExpression
+remarks: >-
+  If the value is
+
+  - a string with '=' prefix then the string is treated as an expression to
+  resolve to a string.
+
+  - a string without '=' then value is treated as string with string
+  interpolation.
+
+  - You can escape the '=' prefix by putting a backslash.
+
+  Examples:
+      prop = "Hello @{user.name}" => "Hello Joe"
+      prop = "=length(user.name)" => "3"
+      prop = "=user.name" => "Joe"
+      prop = "\=user" => "=user".
+isDeprecated: false
+type: class
+constructors:
+  - name: StringExpression(string | Expression)
+    uid: adaptive-expressions-ie11.StringExpression.constructor
+    package: adaptive-expressions-ie11
+    summary: >-
+      Initializes a new instance of the
+      [StringExpression](xref:adaptive-expressions.StringExpression) class.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'new StringExpression(value?: string | Expression)'
+      parameters:
+        - id: value
+          type: string | <xref uid="adaptive-expressions-ie11.Expression" />
+          description: A `string` value or a `string` expression.
+inheritedProperties:
+  - name: expressionText
+    uid: adaptive-expressions-ie11.StringExpression.expressionText
+    package: adaptive-expressions-ie11
+    summary: Getes or sets the expression text to evaluate to get the value.
+    fullName: expressionText
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'expressionText: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionProperty.expressionText](xref:adaptive-expressions-ie11.ExpressionProperty.expressionText)
+  - name: value
+    uid: adaptive-expressions-ie11.StringExpression.value
+    package: adaptive-expressions-ie11
+    summary: Gets or sets the raw value of the expression property.
+    fullName: value
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'value: string'
+      return:
+        description: ''
+        type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionProperty.value](xref:adaptive-expressions-ie11.ExpressionProperty.value)
+inheritedMethods:
+  - name: getValue(object)
+    uid: adaptive-expressions-ie11.StringExpression.getValue
+    package: adaptive-expressions-ie11
+    summary: Get the value.
+    remarks: An error will be thrown if value is an invalid expression.
+    isDeprecated: false
+    syntax:
+      content: 'function getValue(data: object): string'
+      parameters:
+        - id: data
+          type: object
+          description: Data to use for expression binding.
+      return:
+        description: The value.
+        type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionProperty.getValue](xref:adaptive-expressions-ie11.ExpressionProperty.getValue)
+  - name: toExpression()
+    uid: adaptive-expressions-ie11.StringExpression.toExpression
+    package: adaptive-expressions-ie11
+    summary: This will return the existing expression if the value is non-complex type.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function toExpression(): Expression'
+      return:
+        description: The existing expression if the value is non-complex type.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionProperty.toExpression](xref:adaptive-expressions-ie11.ExpressionProperty.toExpression)
+  - name: toString()
+    uid: adaptive-expressions-ie11.StringExpression.toString
+    package: adaptive-expressions-ie11
+    summary: Convert an expression property to string.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function toString(): string'
+      return:
+        description: The converted string.
+        type: string
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionProperty.toString](xref:adaptive-expressions-ie11.ExpressionProperty.toString)
+  - name: tryGetValue(object)
+    uid: adaptive-expressions-ie11.StringExpression.tryGetValue
+    package: adaptive-expressions-ie11
+    summary: Try to Get the value.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function tryGetValue(data: object): { error: Error, value: string }'
+      parameters:
+        - id: data
+          type: object
+          description: Data to use for expression binding.
+      return:
+        description: the value or an error.
+        type: '{ error: Error, value: string }'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionProperty.tryGetValue](xref:adaptive-expressions-ie11.ExpressionProperty.tryGetValue)
+methods:
+  - name: setValue(string | Expression)
+    uid: adaptive-expressions-ie11.StringExpression.setValue
+    package: adaptive-expressions-ie11
+    summary: Set a string value.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function setValue(value: string | Expression)'
+      parameters:
+        - id: value
+          type: string | <xref uid="adaptive-expressions-ie11.Expression" />
+          description: Value to set.
+extends: <xref uid="adaptive-expressions-ie11.ExpressionProperty" />&lt;string&gt;

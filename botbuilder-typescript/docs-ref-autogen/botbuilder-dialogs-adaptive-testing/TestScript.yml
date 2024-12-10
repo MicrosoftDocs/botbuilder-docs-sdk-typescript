@@ -5,7 +5,6 @@ package: botbuilder-dialogs-adaptive-testing
 summary: A mock Test Script that can be used for unit testing bot's logic.
 fullName: TestScript
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -28,20 +26,18 @@ properties:
     summary: Configuration to use for the test.
     fullName: configuration
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'configuration: Record<string, string>'
       return:
         description: ''
-        type: 'Record&lt;string, string&gt;'
+        type: Record&lt;string, string&gt;
   - name: description
     uid: botbuilder-dialogs-adaptive-testing.TestScript.description
     package: botbuilder-dialogs-adaptive-testing
     summary: A description of the test sequence.
     fullName: description
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'description: string'
@@ -54,20 +50,18 @@ properties:
     summary: The dialog to use for the root dialog.
     fullName: dialog
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'dialog: Dialog'
+      content: 'dialog: Dialog<{}>'
       return:
         description: ''
-        type: Dialog
+        type: Dialog&lt;{}&gt;
   - name: enableTrace
     uid: botbuilder-dialogs-adaptive-testing.TestScript.enableTrace
     package: botbuilder-dialogs-adaptive-testing
     summary: If true then trace activities will be sent to the test script.
     fullName: enableTrace
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'enableTrace: boolean'
@@ -80,20 +74,18 @@ properties:
     summary: Gets the mock data for Microsoft.HttpRequest.
     fullName: httpRequestMocks
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'httpRequestMocks: HttpRequestMock[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-dialogs-adaptive-testing.HttpRequestMock" />[]'
+        type: HttpRequestMock[]
   - name: languagePolicy
     uid: botbuilder-dialogs-adaptive-testing.TestScript.languagePolicy
     package: botbuilder-dialogs-adaptive-testing
     summary: Language policy.
     fullName: languagePolicy
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'languagePolicy: LanguagePolicy'
@@ -106,7 +98,6 @@ properties:
     summary: 'The locale (default: en-us).'
     fullName: locale
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'locale: string'
@@ -119,66 +110,61 @@ properties:
     summary: The sequence of test actions to perform to validate the dialog behavior.
     fullName: script
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'script: TestAction[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-dialogs-adaptive-testing.TestAction" />[]'
+        type: <xref uid="botbuilder-dialogs-adaptive-testing.TestAction" />[]
   - name: settingMocks
     uid: botbuilder-dialogs-adaptive-testing.TestScript.settingMocks
     package: botbuilder-dialogs-adaptive-testing
     summary: The mock data for settings.
     fullName: settingMocks
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'settingMocks: SettingMock[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-dialogs-adaptive-testing.SettingMock" />[]'
+        type: SettingMock[]
   - name: userTokenMocks
     uid: botbuilder-dialogs-adaptive-testing.TestScript.userTokenMocks
     package: botbuilder-dialogs-adaptive-testing
     summary: The mock data for Microsoft.OAuthInput.
     fullName: userTokenMocks
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'userTokenMocks: UserTokenMock[]'
       return:
         description: ''
-        type: '<xref uid="botbuilder-dialogs-adaptive-testing.UserTokenMock" />[]'
+        type: UserTokenMock[]
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive-testing.TestScript.configure
     package: botbuilder-dialogs-adaptive-testing
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): TestScript'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
+        type: <xref uid="botbuilder-dialogs-adaptive-testing.TestScript" />
     inheritanceDescription: <b>Inherited From</b> Configurable.configure
 methods:
-  - name: 'defaultTestAdapter(string, Middleware[])'
+  - name: defaultTestAdapter(string, Middleware[])
     uid: botbuilder-dialogs-adaptive-testing.TestScript.defaultTestAdapter
     package: botbuilder-dialogs-adaptive-testing
     summary: Build default test adapter.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -189,7 +175,7 @@ methods:
           type: string
           description: Name of test.
         - id: middlewares
-          type: 'Middleware[]'
+          type: Middleware[]
           description: Middlewares to be added to the adapter.
       return:
         description: Test adapter.
@@ -201,7 +187,6 @@ methods:
     package: botbuilder-dialogs-adaptive-testing
     summary: Starts the execution of the test sequence.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -222,26 +207,28 @@ methods:
           type: TestAdapter
           description: Optional test adapter.
         - id: middlewares
-          type: 'Middleware[]'
-          description: |
-            Middlewares to be added to the adapter.
+          type: Middleware[]
+          description: Middlewares to be added to the adapter.
       return:
         description: ''
         type: Promise&lt;void&gt;
-  - name: getConverter(Object)
+  - name: getConverter(keyof TestScriptConfiguration)
     uid: botbuilder-dialogs-adaptive-testing.TestScript.getConverter
     package: botbuilder-dialogs-adaptive-testing
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: keyof TestScriptConfiguration):
+        Converter<unknown, unknown> | ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: keyof TestScriptConfiguration
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
 extends: Configurable

@@ -9,7 +9,6 @@ fullName: StatePropertyAccessor<T>
 remarks: |-
   To create a state property in a state management objet, use the
   [createProperty\<T>](xref:botbuilder-core.BotState.createProperty) method.
-isPreview: false
 isDeprecated: false
 type: interface
 methods:
@@ -27,15 +26,13 @@ methods:
       await myProperty.delete(context);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function delete(context: TurnContext): Promise<void>'
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
-          description: |
-            Context for the current turn of conversation with the user.
+          description: Context for the current turn of conversation with the user.
       return:
         description: ''
         type: Promise&lt;void&gt;
@@ -63,23 +60,21 @@ methods:
       const value = await myProperty.get(context, { count: 0 });
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function get(context: TurnContext): Promise<T | undefined>'
+      content: 'function get(context: TurnContext): Promise<undefined | T>'
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
           description: Context for the current turn of conversation with the user.
       return:
         description: ''
-        type: Promise&lt;T | undefined&gt;
-  - name: 'get(TurnContext, T)'
+        type: Promise&lt;undefined | T&gt;
+  - name: get(TurnContext, T)
     uid: botbuilder-core.StatePropertyAccessor.get_1
     package: botbuilder-core
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function get(context: TurnContext, defaultValue: T): Promise<T>'
@@ -93,7 +88,7 @@ methods:
       return:
         description: ''
         type: Promise&lt;T&gt;
-  - name: 'set(TurnContext, T)'
+  - name: set(TurnContext, T)
     uid: botbuilder-core.StatePropertyAccessor.set
     package: botbuilder-core
     summary: Assigns a new value to the properties backing storage object.
@@ -113,7 +108,6 @@ methods:
       await myProperty.set(context, value);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function set(context: TurnContext, value: T): Promise<void>'
@@ -123,8 +117,7 @@ methods:
           description: Context for the current turn of conversation with the user.
         - id: value
           type: T
-          description: |
-            Value to assign.
+          description: Value to assign.
       return:
         description: ''
         type: Promise&lt;void&gt;

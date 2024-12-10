@@ -1,0 +1,532 @@
+### YamlMime:TSType
+name: Clause
+uid: adaptive-expressions-ie11.Clause
+package: adaptive-expressions-ie11
+summary: A canonical normal form expression.
+fullName: Clause
+remarks: ''
+isDeprecated: false
+type: class
+constructors:
+  - name: Clause(Expression | Expression[] | Clause)
+    uid: adaptive-expressions-ie11.Clause.constructor
+    package: adaptive-expressions-ie11
+    summary: Initializes a new instance of the `Clause` class.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'new Clause(clauseOrExpression?: Expression | Expression[] | Clause)'
+      parameters:
+        - id: clauseOrExpression
+          type: >-
+            <xref uid="adaptive-expressions-ie11.Expression" /> | <xref
+            uid="adaptive-expressions-ie11.Expression" />[] | <xref
+            uid="adaptive-expressions-ie11.Clause" />
+          description: >-
+            A clause, expression or an array of expressions to initialize a
+            `Clause`.
+properties:
+  - name: anyBindings
+    uid: adaptive-expressions-ie11.Clause.anyBindings
+    package: adaptive-expressions-ie11
+    summary: Gets or sets the anyBinding dictionary.
+    fullName: anyBindings
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'anyBindings: Map<string, string>'
+      return:
+        description: ''
+        type: Map&lt;string, string&gt;
+  - name: returnType
+    uid: adaptive-expressions-ie11.Clause.returnType
+    package: adaptive-expressions-ie11
+    summary: Expected result of evaluating the expression.
+    fullName: returnType
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: ReturnType returnType
+      return:
+        description: The expected result of evaluating the expression.
+        type: <xref uid="adaptive-expressions-ie11.ReturnType" />
+  - name: subsumed
+    uid: adaptive-expressions-ie11.Clause.subsumed
+    package: adaptive-expressions-ie11
+    summary: Gets or sets whether the clause is subsumed.
+    fullName: subsumed
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'subsumed: boolean'
+      return:
+        description: ''
+        type: boolean
+  - name: type
+    uid: adaptive-expressions-ie11.Clause.type
+    package: adaptive-expressions-ie11
+    summary: Type of expression.
+    fullName: type
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: string type
+      return:
+        description: The type of the expression.
+        type: string
+inheritedProperties:
+  - name: children
+    uid: adaptive-expressions-ie11.Clause.children
+    package: adaptive-expressions-ie11
+    summary: Children expressions.
+    fullName: children
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'children: Expression[]'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions-ie11.Expression" />[]
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.children](xref:adaptive-expressions-ie11.Expression.children)
+  - name: evaluator
+    uid: adaptive-expressions-ie11.Clause.evaluator
+    package: adaptive-expressions-ie11
+    summary: Evaluator of expression.
+    fullName: evaluator
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'evaluator: ExpressionEvaluator'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions-ie11.ExpressionEvaluator" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.evaluator](xref:adaptive-expressions-ie11.Expression.evaluator)
+  - name: functions
+    uid: adaptive-expressions-ie11.Clause.functions
+    package: adaptive-expressions-ie11
+    summary: >-
+      Dictionary of function => ExpressionEvaluator.
+
+      This is all available functions, you can add custom functions to it, but
+      you cannot
+
+      replace builtin functions.  If you clear the dictionary, it will be reset
+      to the built in functions.
+    fullName: functions
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static functions: FunctionTable'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions-ie11.FunctionTable" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.functions](xref:adaptive-expressions-ie11.Expression.functions)
+  - name: validate
+    uid: adaptive-expressions-ie11.Clause.validate
+    package: adaptive-expressions-ie11
+    summary: Validate immediate expression.
+    fullName: validate
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'validate: () => void'
+      return:
+        description: ''
+        type: () =&gt; void
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.validate](xref:adaptive-expressions-ie11.Expression.validate)
+inheritedMethods:
+  - name: andExpression(Expression[])
+    uid: adaptive-expressions-ie11.Clause.andExpression
+    package: adaptive-expressions-ie11
+    summary: Construct and validate an And expression.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static function andExpression(children: Expression[]): Expression'
+      parameters:
+        - id: children
+          type: <xref uid="adaptive-expressions-ie11.Expression" />[]
+          description: Child clauses.
+      return:
+        description: New expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.andExpression](xref:adaptive-expressions-ie11.Expression.andExpression)
+  - name: deepEquals(Expression)
+    uid: adaptive-expressions-ie11.Clause.deepEquals
+    package: adaptive-expressions-ie11
+    summary: Do a deep equality between expressions.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function deepEquals(other: Expression): boolean'
+      parameters:
+        - id: other
+          type: <xref uid="adaptive-expressions-ie11.Expression" />
+          description: Other expression.
+      return:
+        description: True if expressions are the same.
+        type: boolean
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.deepEquals](xref:adaptive-expressions-ie11.Expression.deepEquals)
+  - name: equalsExpression(Expression[])
+    uid: adaptive-expressions-ie11.Clause.equalsExpression
+    package: adaptive-expressions-ie11
+    summary: Construct and validate an Equals expression.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static function equalsExpression(children: Expression[]): Expression'
+      parameters:
+        - id: children
+          type: <xref uid="adaptive-expressions-ie11.Expression" />[]
+          description: Child clauses.
+      return:
+        description: New expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.equalsExpression](xref:adaptive-expressions-ie11.Expression.equalsExpression)
+  - name: lambaExpression(EvaluateExpressionDelegate)
+    uid: adaptive-expressions-ie11.Clause.lambaExpression
+    package: adaptive-expressions-ie11
+    summary: Construct an expression from a EvaluateExpressionDelegate
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function lambaExpression(func: EvaluateExpressionDelegate):
+        Expression
+      parameters:
+        - id: func
+          type: <xref uid="adaptive-expressions-ie11.EvaluateExpressionDelegate" />
+          description: Function to create an expression from.
+      return:
+        description: The new expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.lambaExpression](xref:adaptive-expressions-ie11.Expression.lambaExpression)
+  - name: 'lambda((arg0: any) => any)'
+    uid: adaptive-expressions-ie11.Clause.lambda
+    package: adaptive-expressions-ie11
+    summary: |-
+      Construct an expression from a lamba expression over the state.
+      Exceptions will be caught and surfaced as an error string.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static function lambda(func: (arg0: any) => any): Expression'
+      parameters:
+        - id: func
+          type: '(arg0: any) =&gt; any'
+          description: ambda expression to evaluate.
+      return:
+        description: New expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.lambda](xref:adaptive-expressions-ie11.Expression.lambda)
+  - name: lookup(string)
+    uid: adaptive-expressions-ie11.Clause.lookup
+    package: adaptive-expressions-ie11
+    summary: >-
+      Lookup an
+      [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+      function by name.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static function lookup(functionName: string): ExpressionEvaluator'
+      parameters:
+        - id: functionName
+          type: string
+          description: Name of function to lookup.
+      return:
+        description: >-
+          An
+          [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
+          corresponding to the function name.
+        type: <xref uid="adaptive-expressions-ie11.ExpressionEvaluator" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.lookup](xref:adaptive-expressions-ie11.Expression.lookup)
+  - name: makeExpression(string, ExpressionEvaluator, Expression[])
+    uid: adaptive-expressions-ie11.Clause.makeExpression
+    package: adaptive-expressions-ie11
+    summary: Make an expression and validate it.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function makeExpression(type: string, evaluator:
+        ExpressionEvaluator, children: Expression[]): Expression
+      parameters:
+        - id: type
+          type: string
+          description: Type of expression from ExpressionType.
+        - id: evaluator
+          type: <xref uid="adaptive-expressions-ie11.ExpressionEvaluator" />
+          description: Information about how to validate and evaluate expression.
+        - id: children
+          type: <xref uid="adaptive-expressions-ie11.Expression" />[]
+          description: Child expressions.
+      return:
+        description: The new expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.makeExpression](xref:adaptive-expressions-ie11.Expression.makeExpression)
+  - name: notExpression(Expression)
+    uid: adaptive-expressions-ie11.Clause.notExpression
+    package: adaptive-expressions-ie11
+    summary: Construct and validate an Not expression.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static function notExpression(child: Expression): Expression'
+      parameters:
+        - id: child
+          type: <xref uid="adaptive-expressions-ie11.Expression" />
+          description: Child clauses.
+      return:
+        description: New expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.notExpression](xref:adaptive-expressions-ie11.Expression.notExpression)
+  - name: orExpression(Expression[])
+    uid: adaptive-expressions-ie11.Clause.orExpression
+    package: adaptive-expressions-ie11
+    summary: Construct and validate an Or expression.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static function orExpression(children: Expression[]): Expression'
+      parameters:
+        - id: children
+          type: <xref uid="adaptive-expressions-ie11.Expression" />[]
+          description: Child clauses.
+      return:
+        description: New expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.orExpression](xref:adaptive-expressions-ie11.Expression.orExpression)
+  - name: parse(string, EvaluatorLookup)
+    uid: adaptive-expressions-ie11.Clause.parse
+    package: adaptive-expressions-ie11
+    summary: >-
+      Parse an expression string into an
+      [Expression](xref:adaptive-expressions.Expression) object.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function parse(expression: string, lookup?: EvaluatorLookup):
+        Expression
+      parameters:
+        - id: expression
+          type: string
+          description: Expression string.
+        - id: lookup
+          type: <xref uid="adaptive-expressions-ie11.EvaluatorLookup" />
+          description: >-
+            Optional.
+            [EvaluatorLookup](xref:adaptive-expressions.EvaluatorLookup)
+            function lookup when parsing the expression. Default is
+            [Expression.lookup](xref:adaptive-expressions.Expression.lookup)
+            which uses
+            [Expression.functions](xref:adaptive-expressions.Expression.functions)
+            table.
+      return:
+        description: The expression object.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.parse](xref:adaptive-expressions-ie11.Expression.parse)
+  - name: references()
+    uid: adaptive-expressions-ie11.Clause.references
+    package: adaptive-expressions-ie11
+    summary: >-
+      Return the static reference paths to memory.
+
+      Return all static paths to memory.  If there is a computed element index,
+      then the path is terminated there,
+
+      but you might get other paths from the computed part as well.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function references(): string[]'
+      return:
+        description: List of the static reference paths.
+        type: string[]
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.references](xref:adaptive-expressions-ie11.Expression.references)
+  - name: 'referenceWalk(Expression, (arg0: Expression) => boolean)'
+    uid: adaptive-expressions-ie11.Clause.referenceWalk
+    package: adaptive-expressions-ie11
+    summary: >-
+      Walking function for identifying static memory references in an
+      expression.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function referenceWalk(expression: Expression, extension?: (arg0:
+        Expression) => boolean): { path: string, refs: Set<string> }
+      parameters:
+        - id: expression
+          type: <xref uid="adaptive-expressions-ie11.Expression" />
+          description: Expression to analyze.
+        - id: extension
+          type: '(arg0: Expression) =&gt; boolean'
+          description: >-
+            If present, called to override lookup for things like template
+            expansion.
+      return:
+        description: Accessor path of expression.
+        type: '{ path: string, refs: Set&lt;string&gt; }'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.referenceWalk](xref:adaptive-expressions-ie11.Expression.referenceWalk)
+  - name: setPathToValue(Expression, any)
+    uid: adaptive-expressions-ie11.Clause.setPathToValue
+    package: adaptive-expressions-ie11
+    summary: Construct and validate an Set a property expression to a value expression.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function setPathToValue(property: Expression, value: any):
+        Expression
+      parameters:
+        - id: property
+          type: <xref uid="adaptive-expressions-ie11.Expression" />
+          description: property expression.
+        - id: value
+          type: any
+          description: value expression.
+      return:
+        description: New expression.
+        type: <xref uid="adaptive-expressions-ie11.Expression" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.setPathToValue](xref:adaptive-expressions-ie11.Expression.setPathToValue)
+  - name: tryEvaluate(any, Options)
+    uid: adaptive-expressions-ie11.Clause.tryEvaluate
+    package: adaptive-expressions-ie11
+    summary: Evaluate the expression.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function tryEvaluate(state: any, options?: Options): ValueWithError'
+      parameters:
+        - id: state
+          type: any
+          description: >-
+            Global state to evaluate accessor expressions against. Can be
+            Dictionary, otherwise reflection is used to access property and then
+            indexer.
+        - id: options
+          type: <xref uid="adaptive-expressions-ie11.Options" />
+          description: Options used in the evaluation.
+      return:
+        description: >-
+          Computed value and an error string. If the string is non-null, then
+          there was an evaluation error.
+        type: <xref uid="adaptive-expressions-ie11.ValueWithError" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.tryEvaluate](xref:adaptive-expressions-ie11.Expression.tryEvaluate)
+  - name: validateTree()
+    uid: adaptive-expressions-ie11.Clause.validateTree
+    package: adaptive-expressions-ie11
+    summary: Recursively validate the expression tree.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: function validateTree()
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.validateTree](xref:adaptive-expressions-ie11.Expression.validateTree)
+methods:
+  - name: matches(Clause, any)
+    uid: adaptive-expressions-ie11.Clause.matches
+    package: adaptive-expressions-ie11
+    summary: Determines whether the current `Clause` matches with another `Clause`.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function matches(clause: Clause, memory: any): boolean'
+      parameters:
+        - id: clause
+          type: <xref uid="adaptive-expressions-ie11.Clause" />
+          description: The other `Clause` instance to compare with.
+        - id: memory
+          type: any
+          description: The scope for looking up variables.
+      return:
+        description: A boolean value indicating whether the two clauses are matches.
+        type: boolean
+  - name: relationship(Clause, PredicateComparers)
+    uid: adaptive-expressions-ie11.Clause.relationship
+    package: adaptive-expressions-ie11
+    summary: Compares the current `Clause` with another `Clause`.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function relationship(other: Clause, comparers: PredicateComparers):
+        RelationshipType
+      parameters:
+        - id: other
+          type: <xref uid="adaptive-expressions-ie11.Clause" />
+          description: The other `Clause` to compare.
+        - id: comparers
+          type: <xref uid="adaptive-expressions-ie11.PredicateComparers" />
+          description: >-
+            A comparer, which is a dictionary of `PredicateComparer` with string
+            keys.
+      return:
+        description: A `RelationshipType` value between two `Clause` instances.
+        type: <xref uid="adaptive-expressions-ie11.RelationshipType" />
+  - name: splitIgnores()
+    uid: adaptive-expressions-ie11.Clause.splitIgnores
+    package: adaptive-expressions-ie11
+    summary: Splits ignored child expressions.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: function splitIgnores()
+  - name: toString(string[], number)
+    uid: adaptive-expressions-ie11.Clause.toString
+    package: adaptive-expressions-ie11
+    summary: Gets a string that represents the current clause.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function toString(builder?: string[], indent?: number): string'
+      parameters:
+        - id: builder
+          type: string[]
+          description: An array of string to build the string of clause.
+        - id: indent
+          type: number
+          description: An integer represents the number of spaces at the start of a line.
+      return:
+        description: A string that represents the current clause.
+        type: string
+extends: <xref uid="adaptive-expressions-ie11.Expression" />

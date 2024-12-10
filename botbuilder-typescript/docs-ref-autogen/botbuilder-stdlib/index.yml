@@ -1,0 +1,145 @@
+### YamlMime:TSPackage
+uid: botbuilder-stdlib
+name: botbuilder-stdlib
+summary: ''
+type: package
+typeAliases:
+  - botbuilder-stdlib.Extends
+  - botbuilder-stdlib.Maybe
+  - botbuilder-stdlib.Newable
+  - botbuilder-stdlib.Nil
+functions:
+  - name: delay<T>(Promise<T>, number)
+    uid: botbuilder-stdlib.delay
+    package: botbuilder-stdlib
+    summary: Delay resolution of `promise`
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function delay<T>(promise: Promise<T>, milliseconds: number): Promise<T>'
+      parameters:
+        - id: promise
+          type: Promise&lt;T&gt;
+          description: an optional promise to delay
+        - id: milliseconds
+          type: number
+          description: how long to delay
+      return:
+        description: >-
+          a promise that will resolve to the result of `promise`, delayed by
+          `milliseconds`.
+        type: Promise&lt;T&gt;
+  - name: delay(number)
+    uid: botbuilder-stdlib.delay_1
+    package: botbuilder-stdlib
+    summary: Return a promise that resolves after `milliseconds`.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function delay(milliseconds: number): Promise<void>'
+      parameters:
+        - id: milliseconds
+          type: number
+          description: how long to delay
+      return:
+        description: >-
+          a promise that will resolve to the result of `promise`, delayed by
+          `milliseconds`.
+        type: Promise&lt;void&gt;
+  - name: maybeCast<T>(unknown, Newable<T, unknown[]>)
+    uid: botbuilder-stdlib.maybeCast
+    package: botbuilder-stdlib
+    summary: Maybe cast value to a particular type
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function maybeCast<T>(value: unknown, ctor?: Newable<T, unknown[]>): T'
+      parameters:
+        - id: value
+          type: unknown
+          description: value to maybe cast
+        - id: ctor
+          type: <xref uid="botbuilder-stdlib.Newable" />&lt;T, unknown[]&gt;
+          description: optional class to perform instanceof check
+      return:
+        description: value, maybe casted to T
+        type: T
+  - name: 'retry<T>((n: number) => Promise<T>, number, number)'
+    uid: botbuilder-stdlib.retry
+    package: botbuilder-stdlib
+    summary: Retry a given promise with gradually increasing delay.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function retry<T>(promise: (n: number) => Promise<T>, maxRetries:
+        number, initialDelay?: number): Promise<T | undefined>
+      parameters:
+        - id: promise
+          type: '(n: number) =&gt; Promise&lt;T&gt;'
+          description: a function that returns a promise to retry
+        - id: maxRetries
+          type: number
+          description: the maximum number of times to retry
+        - id: initialDelay
+          type: number
+          description: the initial value to delay before retrying (in milliseconds)
+      return:
+        description: >-
+          a promise resolving to the result of the promise from the promise
+          generating function, or undefined
+        type: Promise&lt;T | undefined&gt;
+  - name: 'stringify(any, (key: string, value: any) => any, string | number)'
+    uid: botbuilder-stdlib.stringify
+    package: botbuilder-stdlib
+    summary: >+
+      Encapsulates JSON.stringify function to detect and handle different types
+      of errors (eg. Circular Structure).
+
+
+      **Example**
+
+
+      ```ts
+
+      // Circular Structure:
+          {
+            "item": {
+              "name": "parent",
+              "parent": null,
+              "child": {
+                "name": "child",
+                "parent": "[Circular *.item]" // => obj.item.child.parent = obj.item
+              }
+            }
+          }
+      ```
+
+    remarks: |-
+      Circular Structure:
+        - It detects when the provided value has circular references and replaces them with [Circular *.{path to the value being referenced}].
+
+      _replacer internal function:
+        - Have similar functionality as the JSON.stringify internal toJSON function, but with the difference that only affects this stringify functionality.
+    isDeprecated: false
+    syntax:
+      content: >-
+        function stringify(value: any, replacer?: (key: string, value: any) =>
+        any, space?: string | number): string
+      parameters:
+        - id: value
+          type: any
+          description: — A JavaScript value, usually an object or array, to be converted.
+        - id: replacer
+          type: '(key: string, value: any) =&gt; any'
+          description: — A function that transforms the results.
+        - id: space
+          type: string | number
+          description: >-
+            — Adds indentation, white space, and line break characters to the
+            return-value JSON text to make it easier to read.
+      return:
+        description: >-
+          The converted JavaScript value to a JavaScript Object Notation (JSON)
+          string.
+        type: string

@@ -5,9 +5,13 @@ package: botframework-connector
 summary: Contains response data for the getAadTokens operation.
 fullName: UserTokenGetAadTokensResponse
 remarks: ''
-isPreview: false
 isDeprecated: false
-syntax: >-
-  type UserTokenGetAadTokensResponse = [key: string]: TokenResponse & {
-  _response: HttpResponse & { bodyAsText: string, parsedBody: [key: string]:
-  TokenResponse } }
+syntax: |
+  type UserTokenGetAadTokensResponse = {
+    [propertyName: string]: TokenResponse
+  } & {
+    _response: HttpResponse & {
+      bodyAsText: string
+      parsedBody: { [propertyName: string]: TokenResponse }
+    }
+  }

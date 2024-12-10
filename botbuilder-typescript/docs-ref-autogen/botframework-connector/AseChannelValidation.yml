@@ -1,0 +1,59 @@
+### YamlMime:TSPackage
+uid: botframework-connector.AseChannelValidation
+name: AseChannelValidation
+type: module
+package: botframework-connector
+summary: ''
+functions:
+  - name: authenticateAseChannelToken(string, AuthenticationConfiguration)
+    uid: botframework-connector.AseChannelValidation.authenticateAseChannelToken
+    package: botframework-connector
+    summary: >-
+      Validate the incoming Auth Header as a token sent from the Bot Framework
+      AseChannel.
+
+      A token issued by the Bot Framework will FAIL this check. Only AseChannel
+      tokens will pass.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function authenticateAseChannelToken(authHeader: string, authConfig?:
+        AuthenticationConfiguration): Promise<ClaimsIdentity>
+      parameters:
+        - id: authHeader
+          type: string
+          description: 'The raw HTTP header in the format: ''Bearer [longString]'''
+        - id: authConfig
+          type: <xref uid="botframework-connector.AuthenticationConfiguration" />
+          description: The authentication configuration.
+      return:
+        description: A valid ClaimsIdentity.
+        type: Promise&lt;<xref uid="botframework-connector.ClaimsIdentity" />&gt;
+  - name: init(any)
+    uid: botframework-connector.AseChannelValidation.init
+    package: botframework-connector
+    summary: init authentication from user .env configuration.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function init(configuration: any)'
+      parameters:
+        - id: configuration
+          type: any
+          description: The user .env configuration.
+  - name: isTokenFromAseChannel(string)
+    uid: botframework-connector.AseChannelValidation.isTokenFromAseChannel
+    package: botframework-connector
+    summary: Determines if a given Auth header is from the Bot Framework AseChannel
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function isTokenFromAseChannel(channelId: string): boolean'
+      parameters:
+        - id: channelId
+          type: string
+          description: The channelId.
+      return:
+        description: True, if the token was issued by the AseChannel. Otherwise, false.
+        type: boolean

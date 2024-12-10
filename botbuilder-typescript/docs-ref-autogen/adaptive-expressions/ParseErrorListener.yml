@@ -5,7 +5,6 @@ package: adaptive-expressions
 summary: Expression parser error listener.
 fullName: ParseErrorListener
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,31 +14,29 @@ properties:
     summary: ''
     fullName: Instance
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static Instance: ParseErrorListener = new ParseErrorListener()'
+      content: 'static Instance: ParseErrorListener'
       return:
         description: ''
         type: <xref uid="adaptive-expressions.ParseErrorListener" />
 methods:
   - name: >-
-      syntaxError<T>(Recognizer<T, any>, T, number, number, string,
-      RecognitionException | undefined)
+      syntaxError<T>(Recognizer<T, any>, T, number, number, string, undefined |
+      RecognitionException)
     uid: adaptive-expressions.ParseErrorListener.syntaxError
     package: adaptive-expressions
     summary: Throws a syntax error based on the current context.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function syntaxError<T>(_recognizer: Recognizer<T, any>,
         _offendingSymbol: T, line: number, charPositionInLine: number, _msg:
-        string, _e: RecognitionException | undefined)
+        string, _e: undefined | RecognitionException)
       parameters:
         - id: _recognizer
-          type: 'Recognizer&lt;T, any&gt;'
+          type: Recognizer&lt;T, any&gt;
           description: An Antlr4 runtime recognizer.
         - id: _offendingSymbol
           type: T
@@ -54,6 +51,5 @@ methods:
           type: string
           description: The error message.
         - id: _e
-          type: RecognitionException | undefined
-          description: |
-            The `RecognitionException`.
+          type: undefined | RecognitionException
+          description: The `RecognitionException`.
