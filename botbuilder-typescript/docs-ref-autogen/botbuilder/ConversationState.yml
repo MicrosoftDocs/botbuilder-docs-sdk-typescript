@@ -1,0 +1,240 @@
+### YamlMime:TSType
+name: ConversationState
+uid: botbuilder.ConversationState
+package: botbuilder
+summary: Reads and writes conversation state for your bot to storage.
+fullName: ConversationState
+remarks: >-
+  Each conversation your bot has with a user or group will have its own isolated
+  storage object
+
+  that can be used to persist conversation tracking information between turns of
+  the conversation.
+
+  This state information can be reset at any point by calling [clear()](#clear).
+
+
+  ```JavaScript
+
+  const { ConversationState, MemoryStorage } = require('botbuilder');
+
+
+  const conversationState = new ConversationState(new MemoryStorage());
+
+  ```
+isDeprecated: false
+type: class
+constructors:
+  - name: ConversationState(Storage, string)
+    uid: botbuilder.ConversationState.constructor
+    package: botbuilder
+    summary: Creates a new ConversationState instance.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'new ConversationState(storage: Storage, namespace?: string)'
+      parameters:
+        - id: storage
+          type: <xref uid="botbuilder.Storage" />
+          description: Storage provider to persist conversation state to.
+        - id: namespace
+          type: string
+          description: >-
+            (Optional) namespace to append to storage keys. Defaults to an empty
+            string.
+inheritedMethods:
+  - name: clear(TurnContext)
+    uid: botbuilder.ConversationState.clear
+    package: botbuilder
+    summary: Clears the current state object for a turn.
+    remarks: >-
+      The cleared state object will not be persisted until
+      [saveChanges()](#savechanges) has
+
+      been called.
+
+
+      ```JavaScript
+
+      await botState.clear(context);
+
+      await botState.saveChanges(context);
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function clear(context: TurnContext): Promise<void>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> [BotState.clear](xref:botbuilder.BotState.clear)
+  - name: createProperty<T>(string)
+    uid: botbuilder.ConversationState.createProperty
+    package: botbuilder
+    summary: >-
+      Creates a new property accessor for reading and writing an individual
+      property to the bot
+
+      states storage object.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function createProperty<T>(name: string): StatePropertyAccessor<T>'
+      parameters:
+        - id: name
+          type: string
+          description: Name of the property to add.
+      return:
+        description: An accessor for the property.
+        type: <xref uid="botbuilder.StatePropertyAccessor" />&lt;T&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [BotState.createProperty](xref:botbuilder.BotState.createProperty)
+  - name: delete(TurnContext)
+    uid: botbuilder.ConversationState.delete
+    package: botbuilder
+    summary: Delete the backing state object for the current turn.
+    remarks: >-
+      The state object will be removed from storage if it exists.  If the state
+      object has been
+
+      read in and cached, the cache will be cleared.
+
+
+      ```JavaScript
+
+      await botState.delete(context);
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function delete(context: TurnContext): Promise<void>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;
+    inheritanceDescription: <b>Inherited From</b> [BotState.delete](xref:botbuilder.BotState.delete)
+  - name: get(TurnContext)
+    uid: botbuilder.ConversationState.get
+    package: botbuilder
+    summary: Returns a cached state object or undefined if not cached.
+    remarks: >-
+      This example shows how to synchronously get an already loaded and cached
+      state object:
+
+
+      ```JavaScript
+
+      const state = botState.get(context);
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function get(context: TurnContext): any'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+      return:
+        description: A cached state object or undefined if not cached.
+        type: any
+    inheritanceDescription: <b>Inherited From</b> [BotState.get](xref:botbuilder.BotState.get)
+  - name: load(TurnContext, boolean)
+    uid: botbuilder.ConversationState.load
+    package: botbuilder
+    summary: Reads in and caches the backing state object for a turn.
+    remarks: >-
+      Subsequent reads will return the cached object unless the `force` flag is
+      passed in which
+
+      will force the state object to be re-read.
+
+
+      This method is automatically called on first access of any of created
+      property accessors.
+
+
+      ```JavaScript
+
+      const state = await botState.load(context);
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: 'function load(context: TurnContext, force?: boolean): Promise<any>'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type: boolean
+          description: >-
+            (Optional) If `true` the cache will be bypassed and the state will
+            always be read in directly from storage. Defaults to `false`.
+      return:
+        description: The cached state.
+        type: Promise&lt;any&gt;
+    inheritanceDescription: <b>Inherited From</b> [BotState.load](xref:botbuilder.BotState.load)
+  - name: saveChanges(TurnContext, boolean)
+    uid: botbuilder.ConversationState.saveChanges
+    package: botbuilder
+    summary: Saves the cached state object if it's been changed.
+    remarks: >-
+      If the `force` flag is passed in the cached state object will be saved
+      regardless of
+
+      whether its been changed or not and if no object has been cached, an empty
+      object will be
+
+      created and then saved.
+
+
+      ```JavaScript
+
+      await botState.saveChanges(context);
+
+      ```
+    isDeprecated: false
+    syntax:
+      content: >-
+        function saveChanges(context: TurnContext, force?: boolean):
+        Promise<void>
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+        - id: force
+          type: boolean
+          description: >-
+            (Optional) if `true` the state will always be written out regardless
+            of its change state. Defaults to `false`.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [BotState.saveChanges](xref:botbuilder.BotState.saveChanges)
+methods:
+  - name: getStorageKey(TurnContext)
+    uid: botbuilder.ConversationState.getStorageKey
+    package: botbuilder
+    summary: Returns the storage key for the current conversation state.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function getStorageKey(context: TurnContext): undefined | string'
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+      return:
+        description: The storage key for the current conversation state.
+        type: undefined | string
+extends: <xref uid="botbuilder.BotState" />

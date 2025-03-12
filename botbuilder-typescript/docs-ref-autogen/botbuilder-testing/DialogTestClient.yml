@@ -5,11 +5,12 @@ package: botbuilder-testing
 summary: A client for testing dialogs in isolation.
 fullName: DialogTestClient
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'DialogTestClient(string, Dialog, unknown, Middleware[], ConversationState)'
+  - name: >-
+      DialogTestClient(string, Dialog<{}>, unknown, Middleware[],
+      ConversationState)
     uid: botbuilder-testing.DialogTestClient.constructor
     package: botbuilder-testing
     summary: >-
@@ -27,11 +28,10 @@ constructors:
 
       ```
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        new DialogTestClient(channelId: string, targetDialog: Dialog,
+        new DialogTestClient(channelId: string, targetDialog: Dialog<{}>,
         initialDialogOptions?: unknown, middlewares?: Middleware[],
         conversationState?: ConversationState)
       parameters:
@@ -46,7 +46,7 @@ constructors:
             Otherwise, it is recommended that you use the id for the channel(s)
             your bot will be using and write a test case for each channel.
         - id: targetDialog
-          type: Dialog
+          type: Dialog&lt;{}&gt;
           description: >-
             The [Dialog](xref:botbuilder-dialogs.Dialog) to be tested. This will
             be the root dialog for the test client.
@@ -56,18 +56,18 @@ constructors:
             Optional. Additional argument(s) to pass to the
             [Dialog](xref:botbuilder-dialogs.Dialog) being started.
         - id: middlewares
-          type: 'Middleware[]'
+          type: Middleware[]
           description: >-
             Optional. A [Middleware](xref:botbuilder-core.Middleware) list to be
             added to the test adapter.
         - id: conversationState
           type: ConversationState
-          description: >
+          description: >-
             Optional. A
             [ConversationState](xref:botbuilder-core.ConversationState) instance
             to use in the test client.
   - name: >-
-      DialogTestClient(TestAdapter, Dialog, unknown, Middleware[],
+      DialogTestClient(TestAdapter, Dialog<{}>, unknown, Middleware[],
       ConversationState)
     uid: botbuilder-testing.DialogTestClient.constructor_1
     package: botbuilder-testing
@@ -86,19 +86,18 @@ constructors:
 
       ```
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        new DialogTestClient(testAdapter: TestAdapter, targetDialog: Dialog,
+        new DialogTestClient(testAdapter: TestAdapter, targetDialog: Dialog<{}>,
         initialDialogOptions?: unknown, middlewares?: Middleware[],
         conversationState?: ConversationState)
       parameters:
         - id: testAdapter
           type: TestAdapter
-          description: 'The [TestAdapter](xref:botbuilder-core.TestAdapter) to use.'
+          description: The [TestAdapter](xref:botbuilder-core.TestAdapter) to use.
         - id: targetDialog
-          type: Dialog
+          type: Dialog&lt;{}&gt;
           description: >-
             The [Dialog](xref:botbuilder-dialogs.Dialog) to be tested. This will
             be the root dialog for the test client.
@@ -108,13 +107,13 @@ constructors:
             Optional. Additional argument(s) to pass to the
             [Dialog](xref:botbuilder-dialogs.Dialog) being started.
         - id: middlewares
-          type: 'Middleware[]'
+          type: Middleware[]
           description: >-
             Optional. A [Middleware](xref:botbuilder-core.Middleware) list to be
             added to the test adapter.
         - id: conversationState
           type: ConversationState
-          description: >
+          description: >-
             Optional. A
             [ConversationState](xref:botbuilder-core.ConversationState) instance
             to use in the test client.
@@ -125,7 +124,6 @@ properties:
     summary: A ConversationState instance for the current test client.
     fullName: conversationState
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'conversationState: ConversationState'
@@ -137,10 +135,7 @@ properties:
     package: botbuilder-testing
     summary: Gets a reference for the DialogContext.
     fullName: dialogContext
-    remarks: >-
-      This property will be null until at least one activity is sent to
-      DialogTestClient.
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: DialogContext dialogContext
@@ -153,44 +148,42 @@ properties:
     summary: A DialogTurnResult instance with the result of the last turn.
     fullName: dialogTurnResult
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'dialogTurnResult: DialogTurnResult'
+      content: 'dialogTurnResult: DialogTurnResult<any>'
       return:
         description: ''
-        type: DialogTurnResult
+        type: DialogTurnResult&lt;any&gt;
 methods:
   - name: getNextReply()
     uid: botbuilder-testing.DialogTestClient.getNextReply
     package: botbuilder-testing
     summary: Get the next reply waiting to be delivered (if one exists)
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getNextReply(): Partial<Activity>'
       return:
         description: the next reply
         type: Partial&lt;Activity&gt;
-  - name: sendActivity(Partial<Activity> | string)
+  - name: sendActivity(string | Partial<Activity>)
     uid: botbuilder-testing.DialogTestClient.sendActivity
     package: botbuilder-testing
-    summary: |
+    summary: |-
       Send an activity into the dialog.
+
       ```javascript
       await DialogTest.send('hello').assertReply('hello yourself').startTest();
       ```
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function sendActivity(activity: Partial<Activity> | string):
+        function sendActivity(activity: string | Partial<Activity>):
         Promise<any>
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt; | string
+          type: string | Partial&lt;Activity&gt;
           description: an activity potentially with text
       return:
         description: a TestFlow that can be used to assert replies etc

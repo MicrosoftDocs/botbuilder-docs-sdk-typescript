@@ -2,32 +2,29 @@
 name: DialogContextError
 uid: botbuilder-dialogs.DialogContextError
 package: botbuilder-dialogs
-summary: 'An Error that includes extra dialog context, including the dialog stack.'
+summary: An Error that includes extra dialog context, including the dialog stack.
 fullName: DialogContextError
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'DialogContextError(Error | string, DialogContext)'
+  - name: DialogContextError(string | Error, DialogContext)
     uid: botbuilder-dialogs.DialogContextError.constructor
     package: botbuilder-dialogs
     summary: Construct a DialogError.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        new DialogContextError(error: Error | string, dialogContext:
+        new DialogContextError(error: string | Error, dialogContext:
         DialogContext)
       parameters:
         - id: error
-          type: Error | string
+          type: string | Error
           description: Source error or error message.
         - id: dialogContext
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: |
-            Dialog context that is the source of the error.
+          description: Dialog context that is the source of the error.
 properties:
   - name: dialogContext
     uid: botbuilder-dialogs.DialogContextError.dialogContext
@@ -35,41 +32,28 @@ properties:
     summary: Represents the state of a dialog when an error occurred.
     fullName: dialogContext
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         dialogContext: { activeDialog?: string, parent?: string, stack:
-        DialogInstance[] }
+        DialogInstance<any>[] }
       return:
         description: ''
-        type: '{ activeDialog?: string, parent?: string, stack: DialogInstance[] }'
+        type: >-
+          { activeDialog?: string, parent?: string, stack:
+          DialogInstance&lt;any&gt;[] }
   - name: error
     uid: botbuilder-dialogs.DialogContextError.error
     package: botbuilder-dialogs
     summary: ''
     fullName: error
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'error: Error | string'
+      content: 'error: string | Error'
       return:
         description: ''
-        type: Error | string
-  - name: Error
-    uid: botbuilder-dialogs.DialogContextError.Error
-    package: botbuilder-dialogs
-    summary: ''
-    fullName: Error
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static Error: ErrorConstructor'
-      return:
-        description: ''
-        type: ErrorConstructor
+        type: string | Error
 inheritedProperties:
   - name: message
     uid: botbuilder-dialogs.DialogContextError.message
@@ -77,7 +61,6 @@ inheritedProperties:
     summary: ''
     fullName: message
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'message: string'
@@ -91,7 +74,6 @@ inheritedProperties:
     summary: ''
     fullName: name
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'name: string'
@@ -99,13 +81,28 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.name
+  - name: prepareStackTrace
+    uid: botbuilder-dialogs.DialogContextError.prepareStackTrace
+    package: botbuilder-dialogs
+    summary: |-
+      Optional override for formatting stack traces
+
+      See https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+    fullName: prepareStackTrace
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static prepareStackTrace?: (err: Error, stackTraces: CallSite[]) => any'
+      return:
+        description: ''
+        type: '(err: Error, stackTraces: CallSite[]) =&gt; any'
+    inheritanceDescription: <b>Inherited From</b> Error.prepareStackTrace
   - name: stack
     uid: botbuilder-dialogs.DialogContextError.stack
     package: botbuilder-dialogs
     summary: ''
     fullName: stack
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'stack?: string'
@@ -113,4 +110,36 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.stack
+  - name: stackTraceLimit
+    uid: botbuilder-dialogs.DialogContextError.stackTraceLimit
+    package: botbuilder-dialogs
+    summary: ''
+    fullName: stackTraceLimit
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static stackTraceLimit: number'
+      return:
+        description: ''
+        type: number
+    inheritanceDescription: <b>Inherited From</b> Error.stackTraceLimit
+inheritedMethods:
+  - name: captureStackTrace(object, Function)
+    uid: botbuilder-dialogs.DialogContextError.captureStackTrace
+    package: botbuilder-dialogs
+    summary: Create .stack property on a target object
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function captureStackTrace(targetObject: object, constructorOpt?:
+        Function)
+      parameters:
+        - id: targetObject
+          type: object
+          description: ''
+        - id: constructorOpt
+          type: Function
+          description: ''
+    inheritanceDescription: <b>Inherited From</b> Error.captureStackTrace
 extends: Error

@@ -3,30 +3,28 @@ name: NumberInput
 uid: botbuilder-dialogs-adaptive.NumberInput
 package: botbuilder-dialogs-adaptive
 summary: Input dialog for asking for numbers.
-fullName: NumberInput<O>
+fullName: NumberInput
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'NumberInput(string, Partial<Activity> | string)'
+  - name: NumberInput(string, string | Partial<Activity>)
     uid: botbuilder-dialogs-adaptive.NumberInput.constructor
     package: botbuilder-dialogs-adaptive
     summary: >-
       Initializes a new instance of the
       [InputDialog](xref:botbuilder-dialogs-adaptive.InputDialog) class
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new NumberInput(property?: string, prompt?: Partial<Activity> | string)'
+      content: 'new NumberInput(property?: string, prompt?: string | Partial<Activity>)'
       parameters:
         - id: property
           type: string
           description: Optional. The value expression which the input will be bound to.
         - id: prompt
-          type: Partial&lt;Activity&gt; | string
-          description: >
+          type: string | Partial&lt;Activity&gt;
+          description: >-
             Optional. The [Activity](xref:botframework-schema.Activity) to send
             to the user,
 
@@ -39,7 +37,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -52,26 +49,50 @@ properties:
     summary: ''
     fullName: defaultLocale
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'defaultLocale?: StringExpression'
       return:
         description: ''
         type: StringExpression
+  - name: id
+    uid: botbuilder-dialogs-adaptive.NumberInput.id
+    package: botbuilder-dialogs-adaptive
+    summary: Unique ID of the dialog.
+    fullName: id
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: string id
+      return:
+        description: The Id for the dialog.
+        type: string
   - name: outputFormat
     uid: botbuilder-dialogs-adaptive.NumberInput.outputFormat
     package: botbuilder-dialogs-adaptive
     summary: ''
     fullName: outputFormat
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'outputFormat?: NumberExpression'
       return:
         description: ''
         type: NumberExpression
+  - name: telemetryClient
+    uid: botbuilder-dialogs-adaptive.NumberInput.telemetryClient
+    package: botbuilder-dialogs-adaptive
+    summary: Gets the telemetry client for this dialog.
+    fullName: telemetryClient
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: BotTelemetryClient telemetryClient
+      return:
+        description: >-
+          The [BotTelemetryClient](xref:botbuilder.BotTelemetryClient) to use
+          for logging.
+        type: BotTelemetryClient
 inheritedProperties:
   - name: allowInterruptions
     uid: botbuilder-dialogs-adaptive.NumberInput.allowInterruptions
@@ -79,7 +100,6 @@ inheritedProperties:
     summary: Interruption policy.
     fullName: allowInterruptions
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'allowInterruptions: BoolExpression'
@@ -97,7 +117,6 @@ inheritedProperties:
       regardless of there being a value or not.
     fullName: alwaysPrompt
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'alwaysPrompt: BoolExpression'
@@ -113,7 +132,6 @@ inheritedProperties:
     summary: The default value for the input dialog when maxTurnCount is exceeded.
     fullName: defaultValue
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'defaultValue?: ValueExpression'
@@ -131,7 +149,6 @@ inheritedProperties:
       default value is used.
     fullName: defaultValueResponse
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -139,7 +156,7 @@ inheritedProperties:
         DialogStateManager>
       return:
         description: ''
-        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
+        type: TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.defaultValueResponse](xref:botbuilder-dialogs-adaptive.InputDialog.defaultValueResponse)
@@ -149,7 +166,6 @@ inheritedProperties:
     summary: An optional expression which if is true will disable this action.
     fullName: disabled
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'disabled?: BoolExpression'
@@ -170,28 +186,15 @@ inheritedProperties:
 
       processing for the current turn, is still active, and is waiting for more
       input.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
+      content: 'static EndOfTurn: DialogTurnResult<any>'
       return:
         description: ''
-        type: DialogTurnResult
-    inheritanceDescription: <b>Inherited From</b> Dialog.EndOfTurn
-  - name: id
-    uid: botbuilder-dialogs-adaptive.NumberInput.id
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    fullName: id
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'id: string'
-      return:
-        description: ''
-        type: string
-    inheritanceDescription: <b>Inherited From</b> Dialog.id
+        type: DialogTurnResult&lt;any&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [InputDialog.EndOfTurn](xref:botbuilder-dialogs-adaptive.InputDialog.EndOfTurn)
   - name: invalidPrompt
     uid: botbuilder-dialogs-adaptive.NumberInput.invalidPrompt
     package: botbuilder-dialogs-adaptive
@@ -200,13 +203,12 @@ inheritedProperties:
       invalid or not.
     fullName: invalidPrompt
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'invalidPrompt: TemplateInterface<Partial<Activity>, DialogStateManager>'
       return:
         description: ''
-        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
+        type: TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.invalidPrompt](xref:botbuilder-dialogs-adaptive.InputDialog.invalidPrompt)
@@ -218,7 +220,6 @@ inheritedProperties:
       gives up.
     fullName: maxTurnCount
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'maxTurnCount?: IntExpression'
@@ -234,7 +235,6 @@ inheritedProperties:
     summary: ''
     fullName: OPTIONS_PROPERTY
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static OPTIONS_PROPERTY: string'
@@ -250,13 +250,12 @@ inheritedProperties:
     summary: The activity to send to the user.
     fullName: prompt
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'prompt: TemplateInterface<Partial<Activity>, DialogStateManager>'
       return:
         description: ''
-        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
+        type: TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.prompt](xref:botbuilder-dialogs-adaptive.InputDialog.prompt)
@@ -266,7 +265,6 @@ inheritedProperties:
     summary: The value expression which the input will be bound to.
     fullName: property
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'property: StringExpression'
@@ -276,27 +274,12 @@ inheritedProperties:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.property](xref:botbuilder-dialogs-adaptive.InputDialog.property)
-  - name: telemetryClient
-    uid: botbuilder-dialogs-adaptive.NumberInput.telemetryClient
-    package: botbuilder-dialogs-adaptive
-    summary: ''
-    fullName: telemetryClient
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'telemetryClient: BotTelemetryClient'
-      return:
-        description: ''
-        type: BotTelemetryClient
-    inheritanceDescription: <b>Inherited From</b> Dialog.telemetryClient
   - name: TURN_COUNT_PROPERTY
     uid: botbuilder-dialogs-adaptive.NumberInput.TURN_COUNT_PROPERTY
     package: botbuilder-dialogs-adaptive
     summary: ''
     fullName: TURN_COUNT_PROPERTY
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static TURN_COUNT_PROPERTY: string'
@@ -312,7 +295,6 @@ inheritedProperties:
     summary: The activity template for retrying prompt.
     fullName: unrecognizedPrompt
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -320,7 +302,7 @@ inheritedProperties:
         DialogStateManager>
       return:
         description: ''
-        type: 'TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;'
+        type: TemplateInterface&lt;Partial&lt;Activity&gt;, DialogStateManager&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.unrecognizedPrompt](xref:botbuilder-dialogs-adaptive.InputDialog.unrecognizedPrompt)
@@ -330,13 +312,12 @@ inheritedProperties:
     summary: The expressions to run to validate the input.
     fullName: validations
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'validations: string[]'
       return:
         description: ''
-        type: 'string[]'
+        type: string[]
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.validations](xref:botbuilder-dialogs-adaptive.InputDialog.validations)
@@ -346,7 +327,6 @@ inheritedProperties:
     summary: A value expression which can be used to initialize the input prompt.
     fullName: value
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'value: ValueExpression'
@@ -362,7 +342,6 @@ inheritedProperties:
     summary: ''
     fullName: VALUE_PROPERTY
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static VALUE_PROPERTY: string'
@@ -373,19 +352,18 @@ inheritedProperties:
       <b>Inherited From</b>
       [InputDialog.VALUE_PROPERTY](xref:botbuilder-dialogs-adaptive.InputDialog.VALUE_PROPERTY)
 inheritedMethods:
-  - name: 'beginDialog(DialogContext, any)'
+  - name: beginDialog(DialogContext, any)
     uid: botbuilder-dialogs-adaptive.NumberInput.beginDialog
     package: botbuilder-dialogs-adaptive
     summary: >-
       Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is started and
       pushed onto the dialog stack.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dc: DialogContext, options?: any):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: DialogContext
@@ -401,29 +379,30 @@ inheritedMethods:
         description: >-
           A [DialogTurnResult](xref:botbuilder-dialogs.DialogTurnResult)
           `Promise` representing the asynchronous operation.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.beginDialog](xref:botbuilder-dialogs-adaptive.InputDialog.beginDialog)
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.NumberInput.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): NumberInput'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
+        type: <xref uid="botbuilder-dialogs-adaptive.NumberInput" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [InputDialog.configure](xref:botbuilder-dialogs-adaptive.InputDialog.configure)
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs-adaptive.NumberInput.continueDialog
     package: botbuilder-dialogs-adaptive
@@ -431,10 +410,11 @@ inheritedMethods:
       Called when the [Dialog](xref:botbuilder-dialogs.Dialog) is _continued_,
       where it is the active dialog and the user replies with a new activity.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
+      content: >-
+        function continueDialog(dc: DialogContext):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: DialogContext
@@ -445,11 +425,11 @@ inheritedMethods:
         description: >-
           A [DialogTurnResult](xref:botbuilder-dialogs.DialogTurnResult)
           `Promise` representing the asynchronous operation.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.continueDialog](xref:botbuilder-dialogs-adaptive.InputDialog.continueDialog)
-  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+  - name: endDialog(TurnContext, DialogInstance<any>, DialogReason)
     uid: botbuilder-dialogs-adaptive.NumberInput.endDialog
     package: botbuilder-dialogs-adaptive
     summary: >-
@@ -478,27 +458,27 @@ inheritedMethods:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(_context: TurnContext, _instance: DialogInstance,
-        _reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance:
+        DialogInstance<any>, _reason: DialogReason): Promise<void>
       parameters:
         - id: _context
           type: TurnContext
           description: The context object for the turn.
         - id: _instance
-          type: DialogInstance
+          type: DialogInstance&lt;any&gt;
           description: Current state information for this dialog.
         - id: _reason
           type: DialogReason
-          description: |
-            The reason the dialog is ending.
+          description: The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
-    inheritanceDescription: <b>Inherited From</b> Dialog.endDialog
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [InputDialog.endDialog](xref:botbuilder-dialogs-adaptive.InputDialog.endDialog)
   - name: getVersion()
     uid: botbuilder-dialogs-adaptive.NumberInput.getVersion
     package: botbuilder-dialogs-adaptive
@@ -521,7 +501,6 @@ inheritedMethods:
 
       Returning an empty string will disable version tracking for the component
       all together.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getVersion(): string'
@@ -530,15 +509,16 @@ inheritedMethods:
           Unique string which should only change when dialog has changed in a
           way that should restart the dialog.
         type: string
-    inheritanceDescription: <b>Inherited From</b> Dialog.getVersion
-  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [InputDialog.getVersion](xref:botbuilder-dialogs-adaptive.InputDialog.getVersion)
+  - name: onDialogEvent(DialogContext, DialogEvent)
     uid: botbuilder-dialogs-adaptive.NumberInput.onDialogEvent
     package: botbuilder-dialogs-adaptive
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -556,11 +536,13 @@ inheritedMethods:
           True if the event is handled by the current dialog and bubbling should
           stop.
         type: Promise&lt;boolean&gt;
-    inheritanceDescription: <b>Inherited From</b> Dialog.onDialogEvent
-  - name: 'repromptDialog(TurnContext, DialogInstance)'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [InputDialog.onDialogEvent](xref:botbuilder-dialogs-adaptive.InputDialog.onDialogEvent)
+  - name: repromptDialog(TurnContext, DialogInstance<any>)
     uid: botbuilder-dialogs-adaptive.NumberInput.repromptDialog
     package: botbuilder-dialogs-adaptive
-    summary: 'When overridden in a derived class, reprompts the user for input.'
+    summary: When overridden in a derived class, reprompts the user for input.
     remarks: >-
       Derived dialogs that support validation and re-prompt logic should
       override this method.
@@ -581,37 +563,36 @@ inheritedMethods:
       [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
 
       - [Prompt](xref:botbuilder-dialogs.Prompt)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function repromptDialog(_context: TurnContext, _instance:
-        DialogInstance): Promise<void>
+        DialogInstance<any>): Promise<void>
       parameters:
         - id: _context
           type: TurnContext
           description: The context object for the turn.
         - id: _instance
-          type: DialogInstance
-          description: |
-            Current state information for this dialog.
+          type: DialogInstance&lt;any&gt;
+          description: Current state information for this dialog.
       return:
         description: ''
         type: Promise&lt;void&gt;
-    inheritanceDescription: <b>Inherited From</b> Dialog.repromptDialog
-  - name: 'resumeDialog(DialogContext, DialogReason, any)'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [InputDialog.repromptDialog](xref:botbuilder-dialogs-adaptive.InputDialog.repromptDialog)
+  - name: resumeDialog(DialogContext, DialogReason, any)
     uid: botbuilder-dialogs-adaptive.NumberInput.resumeDialog
     package: botbuilder-dialogs-adaptive
     summary: >-
       Called when a child [Dialog](xref:botbuilder-dialogs.Dialog) completes its
       turn, returning control to this dialog.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, _reason: DialogReason,
-        _result?: any): Promise<DialogTurnResult>
+        _result?: any): Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: DialogContext
@@ -621,8 +602,8 @@ inheritedMethods:
         - id: _reason
           type: DialogReason
           description: >-
-            (xref:botbuilder-dialogs.DialogReason), reason why the dialog
-            resumed.
+            [DialogReason](xref:botbuilder-dialogs.DialogReason), reason why the
+            dialog resumed.
         - id: _result
           type: any
           description: >-
@@ -634,25 +615,28 @@ inheritedMethods:
         description: >-
           A [DialogTurnResult](xref:botbuilder-dialogs.DialogTurnResult)
           `Promise` representing the asynchronous operation.
-        type: Promise&lt;DialogTurnResult&gt;
+        type: Promise&lt;DialogTurnResult&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [InputDialog.resumeDialog](xref:botbuilder-dialogs-adaptive.InputDialog.resumeDialog)
 methods:
-  - name: getConverter(Object)
+  - name: getConverter(keyof NumberInputConfiguration)
     uid: botbuilder-dialogs-adaptive.NumberInput.getConverter
     package: botbuilder-dialogs-adaptive
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: keyof NumberInputConfiguration):
+        Converter<unknown, unknown> | ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: keyof NumberInputConfiguration
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
 extends: <xref uid="botbuilder-dialogs-adaptive.InputDialog" />

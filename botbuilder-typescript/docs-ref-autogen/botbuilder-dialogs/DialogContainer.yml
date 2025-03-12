@@ -5,26 +5,23 @@ package: botbuilder-dialogs
 summary: A container for a set of Dialogs.
 fullName: DialogContainer<O>
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: DialogContainer(string)
+  - name: DialogContainer<O>(string)
     uid: botbuilder-dialogs.DialogContainer.constructor
     package: botbuilder-dialogs
     summary: >-
       Creates a new instance of the [Dialog](xref:botbuilder-dialogs.Dialog)
       class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new DialogContainer(dialogId?: string)'
       parameters:
         - id: dialogId
           type: string
-          description: |
-            Optional. unique ID of the dialog.
+          description: Optional. unique ID of the dialog.
 properties:
   - name: dialogs
     uid: botbuilder-dialogs.DialogContainer.dialogs
@@ -32,7 +29,6 @@ properties:
     summary: The containers dialog set.
     fullName: dialogs
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'dialogs: DialogSet'
@@ -42,12 +38,9 @@ properties:
   - name: id
     uid: botbuilder-dialogs.DialogContainer.id
     package: botbuilder-dialogs
-    summary: |-
-      Unique ID of the dialog.
-      Sets the unique ID of the dialog.
+    summary: Unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: string id
@@ -57,13 +50,9 @@ properties:
   - name: telemetryClient
     uid: botbuilder-dialogs.DialogContainer.telemetryClient
     package: botbuilder-dialogs
-    summary: |-
-      Set the telemetry client, and also apply it to all child dialogs.
-      Future dialogs added to the component will also inherit this client.
-      Get the current telemetry client.
+    summary: Get the current telemetry client.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: BotTelemetryClient telemetryClient
@@ -84,21 +73,20 @@ inheritedProperties:
 
       processing for the current turn, is still active, and is waiting for more
       input.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
+      content: 'static EndOfTurn: DialogTurnResult<any>'
       return:
         description: ''
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />&lt;any&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.EndOfTurn](xref:botbuilder-dialogs.Dialog.EndOfTurn)
 inheritedMethods:
-  - name: 'beginDialog(DialogContext, O)'
+  - name: beginDialog(DialogContext, O)
     uid: botbuilder-dialogs.DialogContainer.beginDialog
     package: botbuilder-dialogs
-    summary: 'When overridden in a derived class, starts the dialog.'
+    summary: When overridden in a derived class, starts the dialog.
     remarks: >-
       Derived dialogs must override this method.
 
@@ -125,51 +113,50 @@ inheritedMethods:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dc: DialogContext, options?: O):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
           description: The context for the current dialog turn.
         - id: options
           type: O
-          description: |
-            Optional. Arguments to use when the dialog starts.
+          description: Optional. Arguments to use when the dialog starts.
       return:
         description: ''
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.beginDialog](xref:botbuilder-dialogs.Dialog.beginDialog)
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs.DialogContainer.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): DialogContainer<O>'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
+        type: <xref uid="botbuilder-dialogs.DialogContainer" />&lt;O&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
+      [Dialog.configure](xref:botbuilder-dialogs.Dialog.configure)
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.DialogContainer.continueDialog
     package: botbuilder-dialogs
-    summary: 'When overridden in a derived class, continues the dialog.'
+    summary: When overridden in a derived class, continues the dialog.
     remarks: >-
       Derived dialogs that support multiple-turn conversations should override
       this method.
@@ -193,22 +180,24 @@ inheritedMethods:
 
       -
       [DialogContext.continueDialog](xref:botbuilder-dialogs.DialogContext.continueDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
+      content: >-
+        function continueDialog(dc: DialogContext):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
-          description: |
-            The context for the current dialog turn.
+          description: The context for the current dialog turn.
       return:
         description: A promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.continueDialog](xref:botbuilder-dialogs.Dialog.continueDialog)
-  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+  - name: endDialog(TurnContext, DialogInstance<any>, DialogReason)
     uid: botbuilder-dialogs.DialogContainer.endDialog
     package: botbuilder-dialogs
     summary: >-
@@ -237,23 +226,21 @@ inheritedMethods:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(_context: TurnContext, _instance: DialogInstance,
-        _reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance:
+        DialogInstance<any>, _reason: DialogReason): Promise<void>
       parameters:
         - id: _context
           type: TurnContext
           description: The context object for the turn.
         - id: _instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
           description: Current state information for this dialog.
         - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: |
-            The reason the dialog is ending.
+          description: The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
@@ -265,10 +252,11 @@ inheritedMethods:
     package: botbuilder-dialogs
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      content: >-
+        function getConverter(_property: string): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: _property
           type: string
@@ -276,11 +264,12 @@ inheritedMethods:
       return:
         description: The converter for the selector configuration.
         type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
+          <xref uid="botbuilder-dialogs.Converter" />&lt;unknown, unknown&gt; |
+          <xref uid="botbuilder-dialogs.ConverterFactory" />&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
+      [Dialog.getConverter](xref:botbuilder-dialogs.Dialog.getConverter)
   - name: getVersion()
     uid: botbuilder-dialogs.DialogContainer.getVersion
     package: botbuilder-dialogs
@@ -303,7 +292,6 @@ inheritedMethods:
 
       Returning an empty string will disable version tracking for the component
       all together.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getVersion(): string'
@@ -315,10 +303,10 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.getVersion](xref:botbuilder-dialogs.Dialog.getVersion)
-  - name: 'repromptDialog(TurnContext, DialogInstance)'
+  - name: repromptDialog(TurnContext, DialogInstance<any>)
     uid: botbuilder-dialogs.DialogContainer.repromptDialog
     package: botbuilder-dialogs
-    summary: 'When overridden in a derived class, reprompts the user for input.'
+    summary: When overridden in a derived class, reprompts the user for input.
     remarks: >-
       Derived dialogs that support validation and re-prompt logic should
       override this method.
@@ -339,27 +327,25 @@ inheritedMethods:
       [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
 
       - [Prompt](xref:botbuilder-dialogs.Prompt)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function repromptDialog(_context: TurnContext, _instance:
-        DialogInstance): Promise<void>
+        DialogInstance<any>): Promise<void>
       parameters:
         - id: _context
           type: TurnContext
           description: The context object for the turn.
         - id: _instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
-          description: |
-            Current state information for this dialog.
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
+          description: Current state information for this dialog.
       return:
         description: ''
         type: Promise&lt;void&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.repromptDialog](xref:botbuilder-dialogs.Dialog.repromptDialog)
-  - name: 'resumeDialog(DialogContext, DialogReason, any)'
+  - name: resumeDialog(DialogContext, DialogReason, any)
     uid: botbuilder-dialogs.DialogContainer.resumeDialog
     package: botbuilder-dialogs
     summary: >-
@@ -399,12 +385,11 @@ inheritedMethods:
 
       -
       [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any): Promise<DialogTurnResult>
+        any): Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -416,11 +401,12 @@ inheritedMethods:
                  [DialogReason.endCalled](xref:botbuilder-dialogs.DialogReason.endCalled)
         - id: result
           type: any
-          description: |
-            Optional. The return value, if any, from the dialog that ended.
+          description: Optional. The return value, if any, from the dialog that ended.
       return:
         description: A promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.resumeDialog](xref:botbuilder-dialogs.Dialog.resumeDialog)
@@ -430,12 +416,11 @@ methods:
     package: botbuilder-dialogs
     summary: Creates an inner dialog context for the containers active child.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function createChildContext(dc: DialogContext): DialogContext |
-        undefined
+        function createChildContext(dc: DialogContext): undefined |
+        DialogContext
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -444,31 +429,29 @@ methods:
         description: >-
           A new dialog context for the active child or `undefined` if there is
           no active child.
-        type: <xref uid="botbuilder-dialogs.DialogContext" /> | undefined
+        type: undefined | <xref uid="botbuilder-dialogs.DialogContext" />
   - name: findDialog(string)
     uid: botbuilder-dialogs.DialogContainer.findDialog
     package: botbuilder-dialogs
     summary: Finds a child dialog that was previously added to the container.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function findDialog(dialogId: string): Dialog | undefined'
+      content: 'function findDialog(dialogId: string): undefined | Dialog<{}>'
       parameters:
         - id: dialogId
           type: string
           description: ID of the dialog to lookup.
       return:
         description: The Dialog if found; otherwise null.
-        type: <xref uid="botbuilder-dialogs.Dialog" /> | undefined
-  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+        type: undefined | <xref uid="botbuilder-dialogs.Dialog" />&lt;{}&gt;
+  - name: onDialogEvent(DialogContext, DialogEvent)
     uid: botbuilder-dialogs.DialogContainer.onDialogEvent
     package: botbuilder-dialogs
     summary: |-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-

@@ -28,7 +28,6 @@ remarks: >-
   '/transcripts/')));
 
   ```
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -37,22 +36,19 @@ constructors:
     package: botbuilder
     summary: Creates an instance of FileTranscriptStore.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new FileTranscriptStore(folder: string)'
       parameters:
         - id: folder
           type: string
-          description: |
-            Root folder where transcript will be stored.
+          description: Root folder where transcript will be stored.
 methods:
-  - name: 'deleteTranscript(string, string)'
+  - name: deleteTranscript(string, string)
     uid: botbuilder.FileTranscriptStore.deleteTranscript
     package: botbuilder
     summary: Delete a conversation and all of it's activities.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -68,14 +64,13 @@ methods:
       return:
         description: A promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
-  - name: 'getTranscriptActivities(string, string, string, Date)'
+  - name: getTranscriptActivities(string, string, string, Date)
     uid: botbuilder.FileTranscriptStore.getTranscriptActivities
     package: botbuilder
     summary: >-
       Get all activities associated with a conversation id (aka get the
       transcript).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -97,13 +92,14 @@ methods:
           description: (Optional) Earliest time to include.
       return:
         description: PagedResult of activities.
-        type: Promise&lt;PagedResult&lt;Activity&gt;&gt;
-  - name: 'listTranscripts(string, string)'
+        type: >-
+          Promise&lt;<xref uid="botbuilder.PagedResult" />&lt;<xref
+          uid="botbuilder.Activity" />&gt;&gt;
+  - name: listTranscripts(string, string)
     uid: botbuilder.FileTranscriptStore.listTranscripts
     package: botbuilder
     summary: List all the logged conversations for a given channelId.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -118,19 +114,20 @@ methods:
           description: (Optional) Continuation token to page through results.
       return:
         description: PagedResult of transcripts.
-        type: Promise&lt;PagedResult&lt;TranscriptInfo&gt;&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder.PagedResult" />&lt;<xref
+          uid="botbuilder.TranscriptInfo" />&gt;&gt;
   - name: logActivity(Activity)
     uid: botbuilder.FileTranscriptStore.logActivity
     package: botbuilder
     summary: Log an activity to the transcript.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function logActivity(activity: Activity): Promise<void>'
       parameters:
         - id: activity
-          type: Activity
+          type: <xref uid="botbuilder.Activity" />
           description: Activity being logged.
       return:
         description: a promise representing the asynchronous operation.

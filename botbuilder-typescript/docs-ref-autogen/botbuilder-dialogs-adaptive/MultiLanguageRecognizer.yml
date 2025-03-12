@@ -5,7 +5,6 @@ package: botbuilder-dialogs-adaptive
 summary: Defines map of languages -> recognizer.
 fullName: MultiLanguageRecognizer
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -15,7 +14,6 @@ properties:
     summary: ''
     fullName: $kind
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static $kind: string'
@@ -28,7 +26,6 @@ properties:
     summary: ''
     fullName: languagePolicy
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'languagePolicy: LanguagePolicy'
@@ -41,13 +38,12 @@ properties:
     summary: ''
     fullName: recognizers
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'recognizers: [key: string]: Recognizer'
+      content: 'recognizers: {[locale: string]: Recognizer}'
       return:
         description: ''
-        type: '[key: string]\: Recognizer'
+        type: '{[locale: string]: Recognizer}'
 inheritedProperties:
   - name: id
     uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.id
@@ -55,14 +51,15 @@ inheritedProperties:
     summary: Recognizers unique ID.
     fullName: id
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
       return:
         description: ''
         type: string
-    inheritanceDescription: <b>Inherited From</b> Recognizer.id
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [AdaptiveRecognizer.id](xref:botbuilder-dialogs-adaptive.AdaptiveRecognizer.id)
   - name: logPersonalInformation
     uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.logPersonalInformation
     package: botbuilder-dialogs-adaptive
@@ -71,7 +68,6 @@ inheritedProperties:
       information (PII) should log to telemetry.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'logPersonalInformation: BoolExpression'
@@ -89,67 +85,74 @@ inheritedProperties:
       Default this to the NullTelemetryClient, which does nothing.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
       return:
         description: ''
         type: BotTelemetryClient
-    inheritanceDescription: <b>Inherited From</b> Recognizer.telemetryClient
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [AdaptiveRecognizer.telemetryClient](xref:botbuilder-dialogs-adaptive.AdaptiveRecognizer.telemetryClient)
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.configure
     package: botbuilder-dialogs-adaptive
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: >-
+        function configure(config: Record<string, unknown>):
+        MultiLanguageRecognizer
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> Configurable.configure
+        type: <xref uid="botbuilder-dialogs-adaptive.MultiLanguageRecognizer" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [AdaptiveRecognizer.configure](xref:botbuilder-dialogs-adaptive.AdaptiveRecognizer.configure)
 methods:
-  - name: getConverter(Object)
+  - name: getConverter(keyof MultiLanguageRecognizerConfiguration)
     uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.getConverter
     package: botbuilder-dialogs-adaptive
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(property: Object): Converter | ConverterFactory'
+      content: >-
+        function getConverter(property: keyof
+        MultiLanguageRecognizerConfiguration): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: property
-          type: Object
+          type: keyof MultiLanguageRecognizerConfiguration
           description: The key of the conditional selector configuration.
       return:
         description: The converter for the selector configuration.
-        type: Converter | ConverterFactory
+        type: >-
+          Converter&lt;unknown, unknown&gt; | ConverterFactory&lt;unknown,
+          unknown&gt;
   - name: >-
-      recognize(DialogContext, Activity, [key: string]: string, [key: string]:
-      number)
+      recognize(DialogContext, Activity, {[key: string]: string}, {[key:
+      string]: number})
     uid: botbuilder-dialogs-adaptive.MultiLanguageRecognizer.recognize
     package: botbuilder-dialogs-adaptive
     summary: >-
       Runs current DialogContext.TurnContext.Activity through a recognizer and
       returns a [RecognizerResult](xref:botbuilder-core.RecognizerResult).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function recognize(dialogContext: DialogContext, activity: Activity,
-        telemetryProperties?: [key: string]: string, telemetryMetrics?: [key:
-        string]: number): Promise<RecognizerResult>
+        telemetryProperties?: {[key: string]: string}, telemetryMetrics?: {[key:
+        string]: number}): Promise<RecognizerResult>
       parameters:
         - id: dialogContext
           type: DialogContext
@@ -158,14 +161,14 @@ methods:
             current turn of conversation.
         - id: activity
           type: Activity
-          description: '(xref:botframework-schema.Activity) to recognize.'
+          description: '[Activity](xref:botframework-schema.Activity) to recognize.'
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: '{[key: string]: string}'
           description: >-
             Optional, additional properties to be logged to telemetry with the
             LuisResult event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
+          type: '{[key: string]: number}'
           description: >-
             Optional, additional metrics to be logged to telemetry with the
             LuisResult event.

@@ -5,7 +5,6 @@ package: botframework-schema
 summary: Represents a reference to a programmatic action
 fullName: SemanticAction
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: interface
 properties:
@@ -15,20 +14,18 @@ properties:
     summary: Entities associated with this action
     fullName: entities
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'entities: [key: string]: Entity'
+      content: 'entities: {[propertyName: string]: Entity}'
       return:
         description: ''
-        type: '[key: string]\: <xref uid="botframework-schema.Entity" />'
+        type: '{[propertyName: string]: <xref uid="botframework-schema.Entity" />}'
   - name: id
     uid: botframework-schema.SemanticAction.id
     package: botframework-schema
     summary: ID of this action
     fullName: id
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'id: string'
@@ -41,10 +38,9 @@ properties:
     summary: 'State of this action. Allowed values: ''start'', ''continue'', ''done'''
     fullName: state
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'state: SemanticActionStateTypes | string'
+      content: 'state: string'
       return:
         description: ''
-        type: <xref uid="botframework-schema.SemanticActionStateTypes" /> | string
+        type: string

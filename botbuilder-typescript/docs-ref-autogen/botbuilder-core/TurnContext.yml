@@ -10,18 +10,16 @@ remarks: >-
 
   created by a [BotAdapter](xref:botbuilder-core.BotAdapter) and persists for
   the length of the turn.
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'TurnContext(BotAdapter, Partial<Activity>)'
+  - name: TurnContext(BotAdapter, Partial<Activity>)
     uid: botbuilder-core.TurnContext.constructor
     package: botbuilder-core
     summary: >-
       Creates an new instance of the
       [TurnContext](xref:xref:botbuilder-core.TurnContext) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -32,9 +30,8 @@ constructors:
           type: <xref uid="botbuilder-core.BotAdapter" />
           description: The adapter creating the context.
         - id: request
-          type: Partial&lt;Activity&gt;
-          description: |
-            The incoming activity for the turn.
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
+          description: The incoming activity for the turn.
   - name: TurnContext(TurnContext)
     uid: botbuilder-core.TurnContext.constructor_1
     package: botbuilder-core
@@ -42,44 +39,32 @@ constructors:
       Creates an new instance of the
       [TurnContext](xref:xref:botbuilder-core.TurnContext) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new TurnContext(adapterOrContext: TurnContext)'
       parameters:
         - id: adapterOrContext
           type: <xref uid="botbuilder-core.TurnContext" />
-          description: The adapter creating the context.
+          description: The context object to clone.
 properties:
   - name: activity
     uid: botbuilder-core.TurnContext.activity
     package: botbuilder-core
     summary: Gets the activity associated with this turn.
     fullName: activity
-    remarks: >-
-      This example shows how to get the users trimmed utterance from the
-      activity:
-
-
-      ```JavaScript
-
-      const utterance = (context.activity.text || '').trim();
-
-      ```
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: Activity activity
       return:
         description: The activity associated with this turn.
-        type: Activity
+        type: <xref uid="botbuilder-core.Activity" />
   - name: adapter
     uid: botbuilder-core.TurnContext.adapter
     package: botbuilder-core
     summary: Gets the bot adapter that created this context object.
     fullName: adapter
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: BotAdapter adapter
@@ -94,58 +79,30 @@ properties:
       'expectReplies'`.
     fullName: bufferedReplyActivities
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'bufferedReplyActivities: Partial<Activity>[]'
       return:
         description: ''
-        type: 'Partial&lt;Activity&gt;[]'
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;[]
   - name: locale
     uid: botbuilder-core.TurnContext.locale
     package: botbuilder-core
-    summary: |-
-      Gets the locale stored in the turnState.
-      Sets the locale stored in the turnState.
+    summary: Gets the locale stored in the turnState.
     fullName: locale
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: string | undefined locale
+      content: undefined | string locale
       return:
         description: The locale stored in the turnState.
-        type: string | undefined
+        type: undefined | string
   - name: responded
     uid: botbuilder-core.TurnContext.responded
     package: botbuilder-core
-    summary: |-
-      Indicates whether the bot has replied to the user this turn.
-      Sets the response flag on the current turn context.
+    summary: Indicates whether the bot has replied to the user this turn.
     fullName: responded
-    remarks: >-
-      **true** if at least one response was sent for the current turn;
-      otherwise, **false**.
-
-      Use this to determine if your bot needs to run fallback logic after other
-      normal processing.
-
-
-      Trace activities do not set this flag.
-
-
-      for example:
-
-      ```JavaScript
-
-      await routeActivity(context);
-
-      if (!context.responded) {
-         await context.sendActivity(`I'm sorry. I didn't understand.`);
-      }
-
-      ```
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: boolean responded
@@ -159,37 +116,7 @@ properties:
     package: botbuilder-core
     summary: Gets the services registered on this context object.
     fullName: turnState
-    remarks: >-
-      Middleware, other components, and services will typically use this to
-      cache information
-
-      that could be asked for by a bot multiple times during a turn. You can use
-      this cache to
-
-      pass information between components of your bot.
-
-
-      For example:
-
-      ```JavaScript
-
-      const cartKey = Symbol();
-
-      const cart = await loadUsersShoppingCart(context);
-
-      context.turnState.set(cartKey, cart);
-
-      ```
-
-
-      > [!TIP]
-
-      > When creating middleware or a third-party component, use a unique symbol
-      for your cache key
-
-      > to avoid state naming collisions with the bot or other middleware or
-      components.
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: TurnContextStateCollection turnState
@@ -213,7 +140,6 @@ methods:
       can then use
 
       to update an outgoing activity with the correct delivery information.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -222,10 +148,10 @@ methods:
         Partial<Activity>
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The activity to update.
         - id: reference
-          type: Partial&lt;ConversationReference&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
           description: The conversation reference to copy delivery information from.
         - id: isIncoming
           type: boolean
@@ -235,8 +161,8 @@ methods:
                  bot is the recipient; otherwise, `false`. Default is `false`, and the activity will show
                  the bot as the sender.
       return:
-        description: 'This activity, updated with the delivery information.'
-        type: Partial&lt;Activity&gt;
+        description: This activity, updated with the delivery information.
+        type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
   - name: deleteActivity(string | Partial<ConversationReference>)
     uid: botbuilder-core.TurnContext.deleteActivity
     package: botbuilder-core
@@ -271,7 +197,6 @@ methods:
 
       -
       [getReplyConversationReference](xref:botbuilder-core.TurnContext.getReplyConversationReference)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -279,7 +204,9 @@ methods:
         Partial<ConversationReference>): Promise<void>
       parameters:
         - id: idOrReference
-          type: string | Partial&lt;ConversationReference&gt;
+          type: >-
+            string | Partial&lt;<xref
+            uid="botbuilder-core.ConversationReference" />&gt;
           description: ID or conversation reference for the activity to delete.
       return:
         description: A promise representing the async operation.
@@ -307,7 +234,6 @@ methods:
 
       -
       [BotAdapter.continueConversation](xref:botbuilder-core.BotAdapter.continueConversation)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -315,13 +241,13 @@ methods:
         Partial<ConversationReference>
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The activity to get the information from.
       return:
         description: >-
           A conversation reference for the conversation that contains this
           activity.
-        type: Partial&lt;ConversationReference&gt;
+        type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
   - name: getMentions(Partial<Activity>)
     uid: botbuilder-core.TurnContext.getMentions
     package: botbuilder-core
@@ -345,18 +271,17 @@ methods:
       const mentions = TurnContext.getMentions(turnContext.request);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function getMentions(activity: Partial<Activity>): Mention[]'
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The activity.
       return:
         description: All the at-mention entities included in an activity.
-        type: 'Mention[]'
-  - name: 'getReplyConversationReference(Partial<Activity>, ResourceResponse)'
+        type: <xref uid="botbuilder-core.Mention" />[]
+  - name: getReplyConversationReference(Partial<Activity>, ResourceResponse)
     uid: botbuilder-core.TurnContext.getReplyConversationReference
     package: botbuilder-core
     summary: >-
@@ -385,7 +310,6 @@ methods:
       - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
 
       - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -394,10 +318,10 @@ methods:
         Partial<ConversationReference>
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The sent activity.
         - id: reply
-          type: ResourceResponse
+          type: <xref uid="botbuilder-core.ResourceResponse" />
           description: |-
             The resource response for the activity, returned by the
                  [sendActivity](xref:botbuilder-core.TurnContext.sendActivity) or
@@ -406,7 +330,7 @@ methods:
         description: >-
           A ConversationReference that can be stored and used later to delete or
           update the activity.
-        type: Partial&lt;ConversationReference&gt;
+        type: Partial&lt;<xref uid="botbuilder-core.ConversationReference" />&gt;
   - name: onDeleteActivity(DeleteActivityHandler)
     uid: botbuilder-core.TurnContext.onDeleteActivity
     package: botbuilder-core
@@ -438,17 +362,16 @@ methods:
       });
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onDeleteActivity(handler: DeleteActivityHandler): this'
+      content: 'function onDeleteActivity(handler: DeleteActivityHandler): TurnContext'
       parameters:
         - id: handler
           type: <xref uid="botbuilder-core.DeleteActivityHandler" />
           description: The handler to add to the context object.
       return:
         description: The updated context object.
-        type: this
+        type: <xref uid="botbuilder-core.TurnContext" />
   - name: onSendActivities(SendActivitiesHandler)
     uid: botbuilder-core.TurnContext.onSendActivities
     package: botbuilder-core
@@ -483,17 +406,16 @@ methods:
       });
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onSendActivities(handler: SendActivitiesHandler): this'
+      content: 'function onSendActivities(handler: SendActivitiesHandler): TurnContext'
       parameters:
         - id: handler
           type: <xref uid="botbuilder-core.SendActivitiesHandler" />
           description: The handler to add to the context object.
       return:
         description: The updated context object.
-        type: this
+        type: <xref uid="botbuilder-core.TurnContext" />
   - name: onUpdateActivity(UpdateActivityHandler)
     uid: botbuilder-core.TurnContext.onUpdateActivity
     package: botbuilder-core
@@ -525,18 +447,17 @@ methods:
       });
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function onUpdateActivity(handler: UpdateActivityHandler): this'
+      content: 'function onUpdateActivity(handler: UpdateActivityHandler): TurnContext'
       parameters:
         - id: handler
           type: <xref uid="botbuilder-core.UpdateActivityHandler" />
           description: The handler to add to the context object.
       return:
         description: The updated context object.
-        type: this
-  - name: 'removeMentionText(Partial<Activity>, string)'
+        type: <xref uid="botbuilder-core.TurnContext" />
+  - name: removeMentionText(Partial<Activity>, string)
     uid: botbuilder-core.TurnContext.removeMentionText
     package: botbuilder-core
     summary: >-
@@ -592,7 +513,6 @@ methods:
 
       -
       [removeRecipientMention](xref:botbuilder-core.TurnContext.removeRecipientMention)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -600,7 +520,7 @@ methods:
         string): string
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The activity to remove at mentions from.
         - id: id
           type: string
@@ -645,7 +565,6 @@ methods:
       **See also**
 
       - [removeMentionText](xref:botbuilder-core.TurnContext.removeMentionText)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -653,12 +572,12 @@ methods:
         string
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The activity to remove at mentions from.
       return:
         description: The updated activity's text.
         type: string
-  - name: 'sendActivities(Partial<Activity>[])'
+  - name: sendActivities(Partial<Activity>[])
     uid: botbuilder-core.TurnContext.sendActivities
     package: botbuilder-core
     summary: >-
@@ -700,7 +619,6 @@ methods:
       - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
 
       - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -708,12 +626,12 @@ methods:
         Promise<ResourceResponse[]>
       parameters:
         - id: activities
-          type: 'Partial&lt;Activity&gt;[]'
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;[]
           description: The activities to send.
       return:
         description: A promise with a ResourceResponse.
-        type: 'Promise&lt;ResourceResponse[]&gt;'
-  - name: 'sendActivity(string | Partial<Activity>, string, string)'
+        type: Promise&lt;<xref uid="botbuilder-core.ResourceResponse" />[]&gt;
+  - name: sendActivity(string | Partial<Activity>, string, string)
     uid: botbuilder-core.TurnContext.sendActivity
     package: botbuilder-core
     summary: Asynchronously sends an activity to the sender of the incoming activity.
@@ -754,16 +672,15 @@ methods:
       - [updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
 
       - [deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function sendActivity(activityOrText: string | Partial<Activity>,
-        speak?: string, inputHint?: string): Promise<ResourceResponse |
-        undefined>
+        speak?: string, inputHint?: string): Promise<undefined |
+        ResourceResponse>
       parameters:
         - id: activityOrText
-          type: string | Partial&lt;Activity&gt;
+          type: string | Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The activity or text to send.
         - id: speak
           type: string
@@ -779,8 +696,10 @@ methods:
                  or 'expectingInput'. Default is 'acceptingInput'.
       return:
         description: A promise with a ResourceResponse.
-        type: Promise&lt;ResourceResponse | undefined&gt;
-  - name: 'sendTraceActivity(string, any, string, string)'
+        type: >-
+          Promise&lt;undefined | <xref uid="botbuilder-core.ResourceResponse"
+          />&gt;
+  - name: sendTraceActivity(string, any, string, string)
     uid: botbuilder-core.TurnContext.sendTraceActivity
     package: botbuilder-core
     summary: Asynchronously sends an activity to the sender of the incoming activity.
@@ -803,12 +722,11 @@ methods:
 
 
       - [sendActivities](xref:botbuilder-core.TurnContext.sendActivities)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function sendTraceActivity(name: string, value?: any, valueType?:
-        string, label?: string): Promise<ResourceResponse | undefined>
+        string, label?: string): Promise<undefined | ResourceResponse>
       parameters:
         - id: name
           type: string
@@ -830,7 +748,9 @@ methods:
             ignoring user
       return:
         description: A promise with a ResourceResponse.
-        type: Promise&lt;ResourceResponse | undefined&gt;
+        type: >-
+          Promise&lt;undefined | <xref uid="botbuilder-core.ResourceResponse"
+          />&gt;
   - name: updateActivity(Partial<Activity>)
     uid: botbuilder-core.TurnContext.updateActivity
     package: botbuilder-core
@@ -865,16 +785,15 @@ methods:
 
       -
       [getReplyConversationReference](xref:botbuilder-core.TurnContext.getReplyConversationReference)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function updateActivity(activity: Partial<Activity>):
-        Promise<ResourceResponse | void>
+        function updateActivity(activity: Partial<Activity>): Promise<void |
+        ResourceResponse>
       parameters:
         - id: activity
-          type: Partial&lt;Activity&gt;
+          type: Partial&lt;<xref uid="botbuilder-core.Activity" />&gt;
           description: The replacement for the original activity.
       return:
         description: A promise with a ResourceResponse.
-        type: Promise&lt;ResourceResponse | void&gt;
+        type: Promise&lt;void | <xref uid="botbuilder-core.ResourceResponse" />&gt;

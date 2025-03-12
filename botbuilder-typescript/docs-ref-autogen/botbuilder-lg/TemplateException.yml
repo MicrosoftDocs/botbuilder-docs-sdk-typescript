@@ -5,18 +5,16 @@ package: botbuilder-lg
 summary: LG Exception that contains diagnostics.
 fullName: TemplateException
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'TemplateException(string, Diagnostic[])'
+  - name: TemplateException(string, Diagnostic[])
     uid: botbuilder-lg.TemplateException.constructor
     package: botbuilder-lg
     summary: >-
       Creates a new instance of the
       [TemplateException](xref:botbuilder-lg.TemplateException) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new TemplateException(m: string, diagnostics: Diagnostic[])'
@@ -25,23 +23,8 @@ constructors:
           type: string
           description: Error message.
         - id: diagnostics
-          type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
-          description: |
-            List of [Diagnostic](xref:botbuilder-lg.Diagnostic) to throw.
-properties:
-  - name: Error
-    uid: botbuilder-lg.TemplateException.Error
-    package: botbuilder-lg
-    summary: ''
-    fullName: Error
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'static Error: ErrorConstructor'
-      return:
-        description: ''
-        type: ErrorConstructor
+          type: <xref uid="botbuilder-lg.Diagnostic" />[]
+          description: List of [Diagnostic](xref:botbuilder-lg.Diagnostic) to throw.
 inheritedProperties:
   - name: message
     uid: botbuilder-lg.TemplateException.message
@@ -49,7 +32,6 @@ inheritedProperties:
     summary: ''
     fullName: message
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'message: string'
@@ -63,7 +45,6 @@ inheritedProperties:
     summary: ''
     fullName: name
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'name: string'
@@ -71,13 +52,28 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.name
+  - name: prepareStackTrace
+    uid: botbuilder-lg.TemplateException.prepareStackTrace
+    package: botbuilder-lg
+    summary: |-
+      Optional override for formatting stack traces
+
+      See https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+    fullName: prepareStackTrace
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static prepareStackTrace?: (err: Error, stackTraces: CallSite[]) => any'
+      return:
+        description: ''
+        type: '(err: Error, stackTraces: CallSite[]) =&gt; any'
+    inheritanceDescription: <b>Inherited From</b> Error.prepareStackTrace
   - name: stack
     uid: botbuilder-lg.TemplateException.stack
     package: botbuilder-lg
     summary: ''
     fullName: stack
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'stack?: string'
@@ -85,13 +81,44 @@ inheritedProperties:
         description: ''
         type: string
     inheritanceDescription: <b>Inherited From</b> Error.stack
+  - name: stackTraceLimit
+    uid: botbuilder-lg.TemplateException.stackTraceLimit
+    package: botbuilder-lg
+    summary: ''
+    fullName: stackTraceLimit
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static stackTraceLimit: number'
+      return:
+        description: ''
+        type: number
+    inheritanceDescription: <b>Inherited From</b> Error.stackTraceLimit
+inheritedMethods:
+  - name: captureStackTrace(object, Function)
+    uid: botbuilder-lg.TemplateException.captureStackTrace
+    package: botbuilder-lg
+    summary: Create .stack property on a target object
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        static function captureStackTrace(targetObject: object, constructorOpt?:
+        Function)
+      parameters:
+        - id: targetObject
+          type: object
+          description: ''
+        - id: constructorOpt
+          type: Function
+          description: ''
+    inheritanceDescription: <b>Inherited From</b> Error.captureStackTrace
 methods:
   - name: getDiagnostic()
     uid: botbuilder-lg.TemplateException.getDiagnostic
     package: botbuilder-lg
     summary: Diagnostics.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getDiagnostic(): Diagnostic[]'
@@ -99,5 +126,5 @@ methods:
         description: >-
           A diagnostic of the error or warning (range, message, severity,
           source, code).
-        type: '<xref uid="botbuilder-lg.Diagnostic" />[]'
+        type: <xref uid="botbuilder-lg.Diagnostic" />[]
 extends: Error

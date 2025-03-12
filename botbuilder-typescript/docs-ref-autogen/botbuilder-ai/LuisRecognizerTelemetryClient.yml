@@ -5,7 +5,6 @@ package: botbuilder-ai
 summary: ''
 fullName: LuisRecognizerTelemetryClient
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: interface
 properties:
@@ -17,7 +16,6 @@ properties:
       information that came from the user.
     fullName: logPersonalInformation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'logPersonalInformation: boolean'
@@ -30,7 +28,6 @@ properties:
     summary: Gets the currently configured botTelemetryClient that logs the events.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'telemetryClient: BotTelemetryClient'
@@ -38,29 +35,28 @@ properties:
         description: ''
         type: BotTelemetryClient
 methods:
-  - name: 'recognize(TurnContext, [key: string]: string, [key: string]: number)'
+  - name: 'recognize(TurnContext, {[key: string]: string}, {[key: string]: number})'
     uid: botbuilder-ai.LuisRecognizerTelemetryClient.recognize
     package: botbuilder-ai
     summary: Calls LUIS to recognize intents and entities in a users utterance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function recognize(context: TurnContext, telemetryProperties?: [key:
-        string]: string, telemetryMetrics?: [key: string]: number):
+        function recognize(context: TurnContext, telemetryProperties?: {[key:
+        string]: string}, telemetryMetrics?: {[key: string]: number}):
         Promise<RecognizerResult>
       parameters:
         - id: context
           type: TurnContext
           description: Context for the current turn of conversation with the use.
         - id: telemetryProperties
-          type: '[key: string]\: string'
+          type: '{[key: string]: string}'
           description: >-
             Additional properties to be logged to telemetry with the LuisResult
             event.
         - id: telemetryMetrics
-          type: '[key: string]\: number'
+          type: '{[key: string]: number}'
           description: >-
             Additional metrics to be logged to telemetry with the LuisResult
             event.
