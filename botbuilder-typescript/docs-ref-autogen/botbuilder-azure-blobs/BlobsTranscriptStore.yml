@@ -9,21 +9,23 @@ summary: >-
   transcripts in Azure Blob Storage
 fullName: BlobsTranscriptStore
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'BlobsTranscriptStore(string, string, BlobsTranscriptStoreOptions)'
+  - name: >-
+      BlobsTranscriptStore(string, string, BlobsTranscriptStoreOptions, string,
+      StorageSharedKeyCredential | AnonymousCredential | TokenCredential)
     uid: botbuilder-azure-blobs.BlobsTranscriptStore.constructor
     package: botbuilder-azure-blobs
     summary: Constructs a BlobsTranscriptStore instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         new BlobsTranscriptStore(connectionString: string, containerName:
-        string, options?: BlobsTranscriptStoreOptions)
+        string, options?: BlobsTranscriptStoreOptions, blobServiceUri?: string,
+        tokenCredential?: StorageSharedKeyCredential | AnonymousCredential |
+        TokenCredential)
       parameters:
         - id: connectionString
           type: string
@@ -33,15 +35,24 @@ constructors:
           description: Azure Blob Storage container name
         - id: options
           type: <xref uid="botbuilder-azure-blobs.BlobsTranscriptStoreOptions" />
-          description: |
-            Other options for BlobsTranscriptStore
+          description: Other options for BlobsTranscriptStore
+        - id: blobServiceUri
+          type: string
+          description: >-
+            A Uri referencing the blob container that includes the name of the
+            account and the name of the container
+        - id: tokenCredential
+          type: >-
+            <xref uid="@azure/storage-blob.StorageSharedKeyCredential" /> |
+            <xref uid="@azure/storage-blob.AnonymousCredential" /> | <xref
+            uid="@azure/core-auth.TokenCredential" />
+          description: The token credential to authenticate to the Azure storage
 methods:
-  - name: 'deleteTranscript(string, string)'
+  - name: deleteTranscript(string, string)
     uid: botbuilder-azure-blobs.BlobsTranscriptStore.deleteTranscript
     package: botbuilder-azure-blobs
     summary: Delete a specific conversation and all of its activities.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -57,12 +68,11 @@ methods:
       return:
         description: A promise representing the async operation.
         type: Promise&lt;void&gt;
-  - name: 'getTranscriptActivities(string, string, string, Date)'
+  - name: getTranscriptActivities(string, string, string, Date)
     uid: botbuilder-azure-blobs.BlobsTranscriptStore.getTranscriptActivities
     package: botbuilder-azure-blobs
     summary: Get activities for a conversation (aka the transcript).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -89,12 +99,11 @@ methods:
           [PagedResult](xref:botbuilder-core.PagedResult) of
           [Activity](xref:botbuilder-core.Activity) items
         type: Promise&lt;PagedResult&lt;Activity&gt;&gt;
-  - name: 'listTranscripts(string, string)'
+  - name: listTranscripts(string, string)
     uid: botbuilder-azure-blobs.BlobsTranscriptStore.listTranscripts
     package: botbuilder-azure-blobs
     summary: List conversations in the channelId.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -114,12 +123,11 @@ methods:
           [PagedResult](xref:botbuilder-core.PagedResult) of
           [Activity](xref:botbuilder-core.Activity) items
         type: Promise&lt;PagedResult&lt;TranscriptInfo&gt;&gt;
-  - name: 'logActivity(Activity, BlobsTranscriptStoreOptions)'
+  - name: logActivity(Activity, BlobsTranscriptStoreOptions)
     uid: botbuilder-azure-blobs.BlobsTranscriptStore.logActivity
     package: botbuilder-azure-blobs
     summary: Log an activity to the transcript.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-

@@ -9,11 +9,10 @@ remarks: >-
   instance
 
   with the initial parameters for the dialog.
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'SkillDialog(SkillDialogOptions, string)'
+  - name: SkillDialog(SkillDialogOptions, string)
     uid: botbuilder-dialogs.SkillDialog.constructor
     package: botbuilder-dialogs
     summary: A sample dialog that can wrap remote calls to a skill.
@@ -22,7 +21,6 @@ constructors:
       object with the initial parameters
 
       for the dialog.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new SkillDialog(dialogOptions: SkillDialogOptions, dialogId?: string)'
@@ -32,18 +30,14 @@ constructors:
           description: The options to execute the skill dialog.
         - id: dialogId
           type: string
-          description: |
-            The id of the dialog.
+          description: The id of the dialog.
 properties:
   - name: id
     uid: botbuilder-dialogs.SkillDialog.id
     package: botbuilder-dialogs
-    summary: |-
-      Unique ID of the dialog.
-      Sets the unique ID of the dialog.
+    summary: Unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: string id
@@ -53,12 +47,9 @@ properties:
   - name: telemetryClient
     uid: botbuilder-dialogs.SkillDialog.telemetryClient
     package: botbuilder-dialogs
-    summary: |-
-      Gets the telemetry client for this dialog.
-      Sets the telemetry client for this dialog.
+    summary: Gets the telemetry client for this dialog.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: BotTelemetryClient telemetryClient
@@ -79,47 +70,46 @@ inheritedProperties:
 
       processing for the current turn, is still active, and is waiting for more
       input.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
+      content: 'static EndOfTurn: DialogTurnResult<any>'
       return:
         description: ''
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />&lt;any&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.EndOfTurn](xref:botbuilder-dialogs.Dialog.EndOfTurn)
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs.SkillDialog.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): SkillDialog'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
+        type: <xref uid="botbuilder-dialogs.SkillDialog" />
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
+      [Dialog.configure](xref:botbuilder-dialogs.Dialog.configure)
   - name: getConverter(string)
     uid: botbuilder-dialogs.SkillDialog.getConverter
     package: botbuilder-dialogs
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      content: >-
+        function getConverter(_property: string): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: _property
           type: string
@@ -127,11 +117,12 @@ inheritedMethods:
       return:
         description: The converter for the selector configuration.
         type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
+          <xref uid="botbuilder-dialogs.Converter" />&lt;unknown, unknown&gt; |
+          <xref uid="botbuilder-dialogs.ConverterFactory" />&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
+      [Dialog.getConverter](xref:botbuilder-dialogs.Dialog.getConverter)
   - name: getVersion()
     uid: botbuilder-dialogs.SkillDialog.getVersion
     package: botbuilder-dialogs
@@ -154,7 +145,6 @@ inheritedMethods:
 
       Returning an empty string will disable version tracking for the component
       all together.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getVersion(): string'
@@ -166,14 +156,13 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.getVersion](xref:botbuilder-dialogs.Dialog.getVersion)
-  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+  - name: onDialogEvent(DialogContext, DialogEvent)
     uid: botbuilder-dialogs.SkillDialog.onDialogEvent
     package: botbuilder-dialogs
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -195,19 +184,18 @@ inheritedMethods:
       <b>Inherited From</b>
       [Dialog.onDialogEvent](xref:botbuilder-dialogs.Dialog.onDialogEvent)
 methods:
-  - name: 'beginDialog(DialogContext, BeginSkillDialogOptions)'
+  - name: beginDialog(DialogContext, BeginSkillDialogOptions)
     uid: botbuilder-dialogs.SkillDialog.beginDialog
     package: botbuilder-dialogs
     summary: Called when the skill dialog is started and pushed onto the dialog stack.
     remarks: >-
       If the task is successful, the result indicates whether the dialog is
       still active after the turn has been processed by the dialog.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dc: DialogContext, options:
-        BeginSkillDialogOptions): Promise<DialogTurnResult>
+        BeginSkillDialogOptions): Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -219,7 +207,9 @@ methods:
           description: Initial information to pass to the dialog.
       return:
         description: A Promise representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.SkillDialog.continueDialog
     package: botbuilder-dialogs
@@ -236,10 +226,11 @@ methods:
       also contain a
 
       return value.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
+      content: >-
+        function continueDialog(dc: DialogContext):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -248,17 +239,18 @@ methods:
             current turn of conversation.
       return:
         description: A Promise representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
+  - name: endDialog(TurnContext, DialogInstance<any>, DialogReason)
     uid: botbuilder-dialogs.SkillDialog.endDialog
     package: botbuilder-dialogs
     summary: Called when the skill dialog is ending.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(context: TurnContext, instance: DialogInstance,
+        function endDialog(context: TurnContext, instance: DialogInstance<any>,
         reason: DialogReason): Promise<void>
       parameters:
         - id: context
@@ -267,27 +259,26 @@ methods:
             The [TurnContext](xref:botbuilder-core.TurnContext) object for this
             turn.
         - id: instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
           description: >-
             State information associated with the instance of this dialog on the
             dialog stack.
         - id: reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: '(xref:botbuilder-dialogs.DialogReason) why the dialog ended.'
+          description: '[Reason](xref:botbuilder-dialogs.DialogReason) why the dialog ended.'
       return:
         description: A Promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
-  - name: 'repromptDialog(TurnContext, DialogInstance)'
+  - name: repromptDialog(TurnContext, DialogInstance<any>)
     uid: botbuilder-dialogs.SkillDialog.repromptDialog
     package: botbuilder-dialogs
     summary: Called when the skill dialog should re-prompt the user for input.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function repromptDialog(context: TurnContext, instance: DialogInstance):
-        Promise<void>
+        function repromptDialog(context: TurnContext, instance:
+        DialogInstance<any>): Promise<void>
       parameters:
         - id: context
           type: TurnContext
@@ -295,24 +286,23 @@ methods:
             The [TurnContext](xref:botbuilder-core.TurnContext) object for this
             turn.
         - id: instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
           description: State information for this dialog.
       return:
         description: A Promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
-  - name: 'resumeDialog(DialogContext, DialogReason, any)'
+  - name: resumeDialog(DialogContext, DialogReason, any)
     uid: botbuilder-dialogs.SkillDialog.resumeDialog
     package: botbuilder-dialogs
     summary: >-
       Called when a child skill dialog completed its turn, returning control to
       this dialog.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, _reason: DialogReason,
-        _result?: any): Promise<DialogTurnResult>
+        _result?: any): Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -321,7 +311,9 @@ methods:
             current turn of the conversation.
         - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: '(xref:botbuilder-dialogs.DialogReason) why the dialog resumed.'
+          description: >-
+            [Reason](xref:botbuilder-dialogs.DialogReason) why the dialog
+            resumed.
         - id: _result
           type: any
           description: |-
@@ -329,7 +321,9 @@ methods:
             of the value returned is dependent on the child dialog.
       return:
         description: A Promise representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
 extends: >-
   <xref uid="botbuilder-dialogs.Dialog" />&lt;Partial&lt;<xref
   uid="botbuilder-dialogs.BeginSkillDialogOptions" />&gt;&gt;

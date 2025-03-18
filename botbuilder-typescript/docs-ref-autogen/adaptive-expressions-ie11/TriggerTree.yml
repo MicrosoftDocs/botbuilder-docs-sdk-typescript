@@ -1,0 +1,160 @@
+### YamlMime:TSType
+name: TriggerTree
+uid: adaptive-expressions-ie11.TriggerTree
+package: adaptive-expressions-ie11
+summary: >-
+  A trigger tree organizes evaluators according to generalization/specialization
+  in order to make it easier to use rules.
+fullName: TriggerTree
+remarks: ''
+isDeprecated: false
+type: class
+constructors:
+  - name: TriggerTree()
+    uid: adaptive-expressions-ie11.TriggerTree.constructor
+    package: adaptive-expressions-ie11
+    summary: Intializes a new instance of the `TriggerTree` class.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: new TriggerTree()
+properties:
+  - name: comparers
+    uid: adaptive-expressions-ie11.TriggerTree.comparers
+    package: adaptive-expressions-ie11
+    summary: A dictionary of `PredicateComparer` values, with string keys.
+    fullName: comparers
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'comparers: PredicateComparers'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions-ie11.PredicateComparers" />
+  - name: optimizers
+    uid: adaptive-expressions-ie11.TriggerTree.optimizers
+    package: adaptive-expressions-ie11
+    summary: A list of `Optimizer` for optimizing claues.
+    fullName: optimizers
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'optimizers: Optimizer[]'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions-ie11.Optimizer" />[]
+  - name: root
+    uid: adaptive-expressions-ie11.TriggerTree.root
+    package: adaptive-expressions-ie11
+    summary: The root node instance.
+    fullName: root
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'root: Node'
+      return:
+        description: ''
+        type: <xref uid="adaptive-expressions-ie11.Node" />
+  - name: totalTriggers
+    uid: adaptive-expressions-ie11.TriggerTree.totalTriggers
+    package: adaptive-expressions-ie11
+    summary: The total number of triggers.
+    fullName: totalTriggers
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'totalTriggers: number'
+      return:
+        description: ''
+        type: number
+methods:
+  - name: addTrigger(string | Expression, any, Quantifier[])
+    uid: adaptive-expressions-ie11.TriggerTree.addTrigger
+    package: adaptive-expressions-ie11
+    summary: Add a trigger expression to the tree.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function addTrigger(stringOrExpression: string | Expression, action:
+        any, quantifiers: Quantifier[]): Trigger
+      parameters:
+        - id: stringOrExpression
+          type: string | <xref uid="adaptive-expressions-ie11.Expression" />
+          description: Trigger to add.
+        - id: action
+          type: any
+          description: Action when triggered.
+        - id: quantifiers
+          type: <xref uid="adaptive-expressions-ie11.Quantifier" />[]
+          description: Quantifiers to use when expanding expressions.
+      return:
+        description: New trigger.
+        type: <xref uid="adaptive-expressions-ie11.Trigger" />
+  - name: matches(any)
+    uid: adaptive-expressions-ie11.TriggerTree.matches
+    package: adaptive-expressions-ie11
+    summary: Return the possible matches given the current state.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function matches(state: any): Trigger[]'
+      parameters:
+        - id: state
+          type: any
+          description: State to evaluate against.
+      return:
+        description: List of possible matches.
+        type: <xref uid="adaptive-expressions-ie11.Trigger" />[]
+  - name: removeTrigger(Trigger)
+    uid: adaptive-expressions-ie11.TriggerTree.removeTrigger
+    package: adaptive-expressions-ie11
+    summary: Remove trigger from tree.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function removeTrigger(trigger: Trigger): boolean'
+      parameters:
+        - id: trigger
+          type: <xref uid="adaptive-expressions-ie11.Trigger" />
+          description: Trigger to remove.
+      return:
+        description: True if removed trigger.
+        type: boolean
+  - name: toString()
+    uid: adaptive-expressions-ie11.TriggerTree.toString
+    package: adaptive-expressions-ie11
+    summary: ''
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function toString(): string'
+      return:
+        description: A string the represents the current object.
+        type: string
+  - name: treeToString(number)
+    uid: adaptive-expressions-ie11.TriggerTree.treeToString
+    package: adaptive-expressions-ie11
+    summary: Generates a string describing the tree.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function treeToString(indent?: number): string'
+      parameters:
+        - id: indent
+          type: number
+          description: Current indent level.
+      return:
+        description: String describing the tree.
+        type: string
+  - name: verifyTree()
+    uid: adaptive-expressions-ie11.TriggerTree.verifyTree
+    package: adaptive-expressions-ie11
+    summary: Verify the tree meets specialization/generalization invariants.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function verifyTree(): Node'
+      return:
+        description: Bad node if found.
+        type: <xref uid="adaptive-expressions-ie11.Node" />

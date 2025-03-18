@@ -7,20 +7,23 @@ typeAliases:
   - botbuilder-dialogs-adaptive-runtime-integration-express.Options
 functions:
   - name: >-
-      makeApp(ServiceCollection, Configuration, string, Partial<Options>,
-      Application)
+      makeApp(ServiceCollection, Configuration, string, Partial<{
+      connectorClientOptions: ConnectorClientOptions, logErrors: boolean,
+      messagingEndpointPath: string, port: string | number,
+      skillsEndpointPrefix: string, staticDirectory: string }>, Application)
     uid: botbuilder-dialogs-adaptive-runtime-integration-express.makeApp
     package: botbuilder-dialogs-adaptive-runtime-integration-express
     summary: Create an Express App using the runtime Express integration.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function makeApp(services: ServiceCollection, configuration:
-        Configuration, applicationRoot: string, options?: Partial<Options>,
-        app?: Application): Promise<[Application, (callback?: () => void) =>
-        Server]>
+        Configuration, applicationRoot: string, options?: Partial<{
+        connectorClientOptions: ConnectorClientOptions, logErrors: boolean,
+        messagingEndpointPath: string, port: string | number,
+        skillsEndpointPrefix: string, staticDirectory: string }>, app?:
+        Application): Promise<[Application, (callback?: () => void) => Server]>
       parameters:
         - id: services
           type: ServiceCollection
@@ -33,29 +36,35 @@ functions:
           description: application root directory
         - id: options
           type: >-
-            Partial&lt;<xref
-            uid="botbuilder-dialogs-adaptive-runtime-integration-express.Options"
-            />&gt;
+            Partial&lt;{ connectorClientOptions: ConnectorClientOptions,
+            logErrors: boolean, messagingEndpointPath: string, port: string |
+            number, skillsEndpointPrefix: string, staticDirectory: string }&gt;
           description: options bag for configuring Express Application
         - id: app
           type: Application
-          description: 'optional predefined express app, useful to register middleware'
+          description: optional predefined express app, useful to register middleware
       return:
         description: >-
           the Express Application and a function to start the App & handle
           "upgrade" requests for Streaming
         type: 'Promise&lt;[Application, (callback?: () =&gt; void) =&gt; Server]&gt;'
-  - name: 'start(string, string, Partial<Options>)'
+  - name: >-
+      start(string, string, Partial<{ connectorClientOptions:
+      ConnectorClientOptions, logErrors: boolean, messagingEndpointPath: string,
+      port: string | number, skillsEndpointPrefix: string, staticDirectory:
+      string }>)
     uid: botbuilder-dialogs-adaptive-runtime-integration-express.start
     package: botbuilder-dialogs-adaptive-runtime-integration-express
     summary: Start a bot using the runtime Express integration.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function start(applicationRoot: string, settingsDirectory: string,
-        options?: Partial<Options>): Promise<void>
+        options?: Partial<{ connectorClientOptions: ConnectorClientOptions,
+        logErrors: boolean, messagingEndpointPath: string, port: string |
+        number, skillsEndpointPrefix: string, staticDirectory: string }>):
+        Promise<void>
       parameters:
         - id: applicationRoot
           type: string
@@ -65,11 +74,10 @@ functions:
           description: settings directory
         - id: options
           type: >-
-            Partial&lt;<xref
-            uid="botbuilder-dialogs-adaptive-runtime-integration-express.Options"
-            />&gt;
-          description: |
-            options bag
+            Partial&lt;{ connectorClientOptions: ConnectorClientOptions,
+            logErrors: boolean, messagingEndpointPath: string, port: string |
+            number, skillsEndpointPrefix: string, staticDirectory: string }&gt;
+          description: options bag
       return:
         description: ''
         type: Promise&lt;void&gt;

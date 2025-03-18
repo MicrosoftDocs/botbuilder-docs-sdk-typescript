@@ -1,0 +1,62 @@
+### YamlMime:TSType
+name: SkypeMentionNormalizeMiddleware
+uid: botbuilder.SkypeMentionNormalizeMiddleware
+package: botbuilder
+summary: >-
+  Middleware to patch mention Entities from Skype since they don't conform to
+  expected values.
+
+  Bots that interact with Skype should use this middleware if mentions are used.
+fullName: SkypeMentionNormalizeMiddleware
+remarks: >-
+  A Skype mention "text" field is of the format:
+    <at id="28:2bc5b54d-5d48-4ff1-bd25-03dcbb5ce918">botname</at>
+  But Activity.Text doesn't contain those tags and RemoveMentionText can't
+  remove
+
+  the entity from Activity.Text.
+
+  This will remove the <at> nodes, leaving just the name.
+isDeprecated: false
+type: class
+methods:
+  - name: normalizeSkypeMentionText(Activity)
+    uid: botbuilder.SkypeMentionNormalizeMiddleware.normalizeSkypeMentionText
+    package: botbuilder
+    summary: Performs the normalization of Skype mention Entities.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'static function normalizeSkypeMentionText(activity: Activity)'
+      parameters:
+        - id: activity
+          type: <xref uid="botbuilder.Activity" />
+          description: >-
+            [Activity](xref:botframework-schema.Activity) containing the
+            mentions to normalize.
+  - name: onTurn(TurnContext, () => Promise<void>)
+    uid: botbuilder.SkypeMentionNormalizeMiddleware.onTurn
+    package: botbuilder
+    summary: >-
+      Middleware implementation which corrects the Entity text of type
+      [Mention](xref:botframework-schema.Mention) to a value that
+      [removeMentionText](xref:botbuilder-core.TurnContext.removeMentionText)
+      can work with.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onTurn(turnContext: TurnContext, next: () => Promise<void>):
+        Promise<void>
+      parameters:
+        - id: turnContext
+          type: <xref uid="botbuilder.TurnContext" />
+          description: >-
+            [TurnContext](xref:botbuilder-core.TurnContext) for the current turn
+            of conversation.
+        - id: next
+          type: () =&gt; Promise&lt;void&gt;
+          description: Delegate to call to continue the bot middleware pipeline.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;

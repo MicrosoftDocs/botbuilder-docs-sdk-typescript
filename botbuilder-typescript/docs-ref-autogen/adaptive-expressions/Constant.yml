@@ -5,7 +5,6 @@ package: adaptive-expressions
 summary: Construct an expression constant.
 fullName: Constant
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -18,15 +17,13 @@ constructors:
 
       Constructs an expression constant.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new Constant(value: any)'
       parameters:
         - id: value
           type: any
-          description: |
-            Constant value.
+          description: Constant value.
 properties:
   - name: returnType
     uid: adaptive-expressions.Constant.returnType
@@ -34,7 +31,6 @@ properties:
     summary: Expected result of evaluating the expression.
     fullName: returnType
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: ReturnType returnType
@@ -47,7 +43,6 @@ properties:
     summary: Type of expression.
     fullName: type
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: string type
@@ -57,12 +52,9 @@ properties:
   - name: value
     uid: adaptive-expressions.Constant.value
     package: adaptive-expressions
-    summary: |-
-      Constant value.
-      Sets constant value.
+    summary: Constant value.
     fullName: value
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: any value
@@ -76,13 +68,12 @@ inheritedProperties:
     summary: Children expressions.
     fullName: children
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'children: Expression[]'
       return:
         description: ''
-        type: '<xref uid="adaptive-expressions.Expression" />[]'
+        type: <xref uid="adaptive-expressions.Expression" />[]
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.children](xref:adaptive-expressions.Expression.children)
@@ -92,7 +83,6 @@ inheritedProperties:
     summary: Evaluator of expression.
     fullName: evaluator
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'evaluator: ExpressionEvaluator'
@@ -115,29 +105,42 @@ inheritedProperties:
       to the built in functions.
     fullName: functions
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static functions: FunctionTable = new FunctionTable()'
+      content: 'static functions: FunctionTable'
       return:
         description: ''
         type: <xref uid="adaptive-expressions.FunctionTable" />
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.functions](xref:adaptive-expressions.Expression.functions)
+  - name: validate
+    uid: adaptive-expressions.Constant.validate
+    package: adaptive-expressions
+    summary: Validate immediate expression.
+    fullName: validate
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'validate: () => void'
+      return:
+        description: ''
+        type: () =&gt; void
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [Expression.validate](xref:adaptive-expressions.Expression.validate)
 inheritedMethods:
-  - name: 'andExpression(Expression[])'
+  - name: andExpression(Expression[])
     uid: adaptive-expressions.Constant.andExpression
     package: adaptive-expressions
     summary: Construct and validate an And expression.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function andExpression(children: Expression[]): Expression'
       parameters:
         - id: children
-          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          type: <xref uid="adaptive-expressions.Expression" />[]
           description: Child clauses.
       return:
         description: New expression.
@@ -145,18 +148,17 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.andExpression](xref:adaptive-expressions.Expression.andExpression)
-  - name: 'equalsExpression(Expression[])'
+  - name: equalsExpression(Expression[])
     uid: adaptive-expressions.Constant.equalsExpression
     package: adaptive-expressions
     summary: Construct and validate an Equals expression.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function equalsExpression(children: Expression[]): Expression'
       parameters:
         - id: children
-          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          type: <xref uid="adaptive-expressions.Expression" />[]
           description: Child clauses.
       return:
         description: New expression.
@@ -169,7 +171,6 @@ inheritedMethods:
     package: adaptive-expressions
     summary: Construct an expression from a EvaluateExpressionDelegate
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -192,7 +193,6 @@ inheritedMethods:
       Construct an expression from a lamba expression over the state.
       Exceptions will be caught and surfaced as an error string.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function lambda(func: (arg0: any) => any): Expression'
@@ -214,7 +214,6 @@ inheritedMethods:
       [ExpressionEvaluator](xref:adaptive-expressions.ExpressionEvaluator)
       function by name.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function lookup(functionName: string): ExpressionEvaluator'
@@ -231,12 +230,11 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.lookup](xref:adaptive-expressions.Expression.lookup)
-  - name: 'makeExpression(string, ExpressionEvaluator, Expression[])'
+  - name: makeExpression(string, ExpressionEvaluator, Expression[])
     uid: adaptive-expressions.Constant.makeExpression
     package: adaptive-expressions
     summary: Make an expression and validate it.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -250,7 +248,7 @@ inheritedMethods:
           type: <xref uid="adaptive-expressions.ExpressionEvaluator" />
           description: Information about how to validate and evaluate expression.
         - id: children
-          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          type: <xref uid="adaptive-expressions.Expression" />[]
           description: Child expressions.
       return:
         description: The new expression.
@@ -263,7 +261,6 @@ inheritedMethods:
     package: adaptive-expressions
     summary: Construct and validate an Not expression.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function notExpression(child: Expression): Expression'
@@ -277,18 +274,17 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.notExpression](xref:adaptive-expressions.Expression.notExpression)
-  - name: 'orExpression(Expression[])'
+  - name: orExpression(Expression[])
     uid: adaptive-expressions.Constant.orExpression
     package: adaptive-expressions
     summary: Construct and validate an Or expression.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'static function orExpression(children: Expression[]): Expression'
       parameters:
         - id: children
-          type: '<xref uid="adaptive-expressions.Expression" />[]'
+          type: <xref uid="adaptive-expressions.Expression" />[]
           description: Child clauses.
       return:
         description: New expression.
@@ -296,14 +292,13 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.orExpression](xref:adaptive-expressions.Expression.orExpression)
-  - name: 'parse(string, EvaluatorLookup)'
+  - name: parse(string, EvaluatorLookup)
     uid: adaptive-expressions.Constant.parse
     package: adaptive-expressions
     summary: >-
       Parse an expression string into an
       [Expression](xref:adaptive-expressions.Expression) object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -314,7 +309,7 @@ inheritedMethods:
           type: string
           description: Expression string.
         - id: lookup
-          type: <xref uid="adaptive-expressions.ExpressionParser.EvaluatorLookup" />
+          type: <xref uid="adaptive-expressions.EvaluatorLookup" />
           description: >-
             Optional.
             [EvaluatorLookup](xref:adaptive-expressions.EvaluatorLookup)
@@ -340,13 +335,12 @@ inheritedMethods:
 
       but you might get other paths from the computed part as well.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function references(): string[]'
       return:
         description: List of the static reference paths.
-        type: 'string[]'
+        type: string[]
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.references](xref:adaptive-expressions.Expression.references)
@@ -357,7 +351,6 @@ inheritedMethods:
       Walking function for identifying static memory references in an
       expression.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -378,12 +371,11 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.referenceWalk](xref:adaptive-expressions.Expression.referenceWalk)
-  - name: 'setPathToValue(Expression, any)'
+  - name: setPathToValue(Expression, any)
     uid: adaptive-expressions.Constant.setPathToValue
     package: adaptive-expressions
     summary: Construct and validate an Set a property expression to a value expression.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -402,20 +394,17 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.setPathToValue](xref:adaptive-expressions.Expression.setPathToValue)
-  - name: 'tryEvaluate(MemoryInterface | any, Options)'
+  - name: tryEvaluate(any, Options)
     uid: adaptive-expressions.Constant.tryEvaluate
     package: adaptive-expressions
     summary: Evaluate the expression.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: >-
-        function tryEvaluate(state: MemoryInterface | any, options: Options):
-        ValueWithError
+      content: 'function tryEvaluate(state: any, options?: Options): ValueWithError'
       parameters:
         - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" /> | any
+          type: any
           description: >-
             Global state to evaluate accessor expressions against. Can be
             Dictionary, otherwise reflection is used to access property and then
@@ -431,24 +420,11 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Expression.tryEvaluate](xref:adaptive-expressions.Expression.tryEvaluate)
-  - name: validate()
-    uid: adaptive-expressions.Constant.validate
-    package: adaptive-expressions
-    summary: Validate immediate expression.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: function validate()
-    inheritanceDescription: >-
-      <b>Inherited From</b>
-      [Expression.validate](xref:adaptive-expressions.Expression.validate)
   - name: validateTree()
     uid: adaptive-expressions.Constant.validateTree
     package: adaptive-expressions
     summary: Recursively validate the expression tree.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: function validateTree()
@@ -464,7 +440,6 @@ methods:
       [Expression](xref:adaptive-expressions.Expression) instance is deep equal
       to another one.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function deepEquals(other: Expression): boolean'
@@ -484,7 +459,6 @@ methods:
     package: adaptive-expressions
     summary: Returns a string that represents the current constant object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function toString(): string'

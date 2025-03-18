@@ -5,7 +5,6 @@ package: adaptive-expressions
 summary: Numeric operators that can have 2 or more args.
 fullName: MultivariateNumericEvaluator
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -19,7 +18,6 @@ constructors:
       [MultivariateNumericEvaluator](xref:adaptive-expressions.MultivariateNumericEvaluator)
       class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -36,7 +34,7 @@ constructors:
             number.
         - id: verify
           type: <xref uid="adaptive-expressions.VerifyExpression" />
-          description: >
+          description: >-
             Optional.
             [VerifyExpression](xref:adaptive-expressions.VerifyExpression)
             function to verify each child's result.
@@ -44,12 +42,9 @@ properties:
   - name: negation
     uid: adaptive-expressions.MultivariateNumericEvaluator.negation
     package: adaptive-expressions
-    summary: |-
-      Gets the evaluator that is a negation of this one.
-      Sets the evaluator that is a negation of this one.
+    summary: Gets the evaluator that is a negation of this one.
     fullName: negation
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: ExpressionEvaluator negation
@@ -63,7 +58,6 @@ inheritedProperties:
     summary: Type expected by evaluating the expression.
     fullName: returnType
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'returnType: ReturnType'
@@ -73,13 +67,31 @@ inheritedProperties:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionEvaluator.returnType](xref:adaptive-expressions.ExpressionEvaluator.returnType)
+  - name: tryEvaluate
+    uid: adaptive-expressions.MultivariateNumericEvaluator.tryEvaluate
+    package: adaptive-expressions
+    summary: Evaluate an expression.
+    fullName: tryEvaluate
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        tryEvaluate: (expression: Expression, state: MemoryInterface, options:
+        Options) => ValueWithError
+      return:
+        description: ''
+        type: >-
+          (expression: Expression, state: MemoryInterface, options: Options)
+          =&gt; ValueWithError
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [ExpressionEvaluator.tryEvaluate](xref:adaptive-expressions.ExpressionEvaluator.tryEvaluate)
   - name: type
     uid: adaptive-expressions.MultivariateNumericEvaluator.type
     package: adaptive-expressions
     summary: Gets the expression type for evaluator.
     fullName: type
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'type: string'
@@ -89,47 +101,18 @@ inheritedProperties:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionEvaluator.type](xref:adaptive-expressions.ExpressionEvaluator.type)
-inheritedMethods:
-  - name: 'tryEvaluate(Expression, MemoryInterface, Options)'
-    uid: adaptive-expressions.MultivariateNumericEvaluator.tryEvaluate
-    package: adaptive-expressions
-    summary: Evaluate an expression.
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function tryEvaluate(expression: Expression, state: MemoryInterface,
-        options: Options): ValueWithError
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: Expression to evaluate.
-        - id: state
-          type: <xref uid="adaptive-expressions.MemoryInterface" />
-          description: Global state information.
-        - id: options
-          type: <xref uid="adaptive-expressions.Options" />
-          description: Options used in the evaluation.
-      return:
-        description: The value and error string that is non-null if there is an error.
-        type: <xref uid="adaptive-expressions.ValueWithError" />
-    inheritanceDescription: >-
-      <b>Inherited From</b>
-      [ExpressionEvaluator.tryEvaluate](xref:adaptive-expressions.ExpressionEvaluator.tryEvaluate)
-  - name: validateExpression(Expression)
+  - name: validateExpression
     uid: adaptive-expressions.MultivariateNumericEvaluator.validateExpression
     package: adaptive-expressions
     summary: Validate an expression.
+    fullName: validateExpression
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function validateExpression(expression: Expression)'
-      parameters:
-        - id: expression
-          type: <xref uid="adaptive-expressions.Expression" />
-          description: Expression to validate.
+      content: 'validateExpression: (expression: Expression) => void'
+      return:
+        description: ''
+        type: '(expression: Expression) =&gt; void'
     inheritanceDescription: >-
       <b>Inherited From</b>
       [ExpressionEvaluator.validateExpression](xref:adaptive-expressions.ExpressionEvaluator.validateExpression)

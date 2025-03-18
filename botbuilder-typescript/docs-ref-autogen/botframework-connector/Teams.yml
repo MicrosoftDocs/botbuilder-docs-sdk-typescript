@@ -5,7 +5,6 @@ package: botframework-connector
 summary: Class representing a Teams.
 fullName: Teams
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -14,37 +13,60 @@ constructors:
     package: botframework-connector
     summary: Create a Teams.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'new Teams(client: TeamsConnectorClientContext)'
       parameters:
         - id: client
           type: <xref uid="botframework-connector.TeamsConnectorClientContext" />
-          description: |
-            Reference to the service client.
+          description: Reference to the service client.
 methods:
-  - name: 'fetchChannelList(string, RequestOptionsBase)'
+  - name: cancelOperation(string, RequestOptionsBase)
+    uid: botframework-connector.Teams.cancelOperation
+    package: botframework-connector
+    summary: Cancel an operation.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function cancelOperation(operationId: string, options?:
+        RequestOptionsBase): Promise<CancelOperationResponse>
+      parameters:
+        - id: operationId
+          type: string
+          description: The id of the operation to cancel.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+      return:
+        description: Promise with CancelOperationResponse.
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.CancelOperationResponse"
+          />&gt;
+  - name: fetchChannelList(string, RequestOptionsBase)
     uid: botframework-connector.Teams.fetchChannelList
     package: botframework-connector
     summary: Fetches channel list for a given team.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function fetchChannelList(teamId: string, options?: RequestOptionsBase):
-        Promise<Models.TeamsFetchChannelListResponse>
+        Promise<TeamsFetchChannelListResponse>
       parameters:
         - id: teamId
           type: string
           description: Team Id.
         - id: options
-          type: RequestOptionsBase
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
           description: Optional. The options object to be used in every request.
       return:
         description: A `Promise<Models.TeamsFetchChannelListResponse>`.
-        type: Promise&lt;<xref uid="Models.TeamsFetchChannelListResponse" />&gt;
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsFetchChannelListResponse"
+          />&gt;
   - name: >-
       fetchChannelList(string, RequestOptionsBase,
       ServiceCallback<ConversationList>)
@@ -52,7 +74,6 @@ methods:
     package: botframework-connector
     summary: Fetches channel list for a given team.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -63,18 +84,18 @@ methods:
           type: string
           description: Team Id.
         - id: options
-          type: RequestOptionsBase
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
           description: The options object to be used in every request.
         - id: callback
-          type: ServiceCallback&lt;ConversationList&gt;
-          description: |
-            The callback.
-  - name: 'fetchChannelList(string, ServiceCallback<ConversationList>)'
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;ConversationList&gt;
+          description: The callback.
+  - name: fetchChannelList(string, ServiceCallback<ConversationList>)
     uid: botframework-connector.Teams.fetchChannelList_1
     package: botframework-connector
     summary: Fetches channel list for a given team.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -85,9 +106,10 @@ methods:
           type: string
           description: Team Id.
         - id: callback
-          type: ServiceCallback&lt;ConversationList&gt;
-          description: |
-            The callback.
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;ConversationList&gt;
+          description: The callback.
   - name: >-
       fetchMeetingInfo(string, RequestOptionsBase |
       ServiceCallback<TeamDetails>)
@@ -95,23 +117,27 @@ methods:
     package: botframework-connector
     summary: Fetch meeting information.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function fetchMeetingInfo(meetingId: string, options?:
         RequestOptionsBase | ServiceCallback<TeamDetails>):
-        Promise<Models.TeamsMeetingInfoResponse>
+        Promise<TeamsMeetingInfoResponse>
       parameters:
         - id: meetingId
           type: string
-          description: 'Meeting Id, encoded as a BASE64 string.'
+          description: Meeting Id, encoded as a BASE64 string.
         - id: options
-          type: RequestOptionsBase | ServiceCallback&lt;TeamDetails&gt;
-          description: ''
+          type: >-
+            <xref uid="@azure/core-http.RequestOptionsBase" /> | <xref
+            uid="@azure/core-http.ServiceCallback" />&lt;TeamDetails&gt;
+          description: The optional parameters
       return:
         description: Promise<Models.TeamsFetchMeetingInfoResponse>
-        type: Promise&lt;<xref uid="Models.TeamsMeetingInfoResponse" />&gt;
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsMeetingInfoResponse"
+          />&gt;
   - name: >-
       fetchMeetingInfo(string, RequestOptionsBase |
       ServiceCallback<TeamDetails>, ServiceCallback<TeamsMeetingInfo>)
@@ -119,7 +145,6 @@ methods:
     package: botframework-connector
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -129,20 +154,22 @@ methods:
       parameters:
         - id: meetingId
           type: string
-          description: 'Meeting Id, encoded as a BASE64 string.'
+          description: Meeting Id, encoded as a BASE64 string.
         - id: options
-          type: RequestOptionsBase | ServiceCallback&lt;TeamDetails&gt;
+          type: >-
+            <xref uid="@azure/core-http.RequestOptionsBase" /> | <xref
+            uid="@azure/core-http.ServiceCallback" />&lt;TeamDetails&gt;
           description: The optional parameters
         - id: callback
-          type: ServiceCallback&lt;TeamsMeetingInfo&gt;
-          description: |
-            The callback
-  - name: 'fetchMeetingInfo(string, ServiceCallback<TeamsMeetingInfo>)'
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;TeamsMeetingInfo&gt;
+          description: The callback
+  - name: fetchMeetingInfo(string, ServiceCallback<TeamsMeetingInfo>)
     uid: botframework-connector.Teams.fetchMeetingInfo_1
     package: botframework-connector
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -151,11 +178,12 @@ methods:
       parameters:
         - id: meetingId
           type: string
-          description: 'Meeting Id, encoded as a BASE64 string.'
+          description: Meeting Id, encoded as a BASE64 string.
         - id: callback
-          type: ServiceCallback&lt;TeamsMeetingInfo&gt;
-          description: |
-            The callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;TeamsMeetingInfo&gt;
+          description: The callback
   - name: >-
       fetchMeetingParticipant(string, string,
       ServiceCallback<TeamsMeetingParticipant>)
@@ -163,7 +191,6 @@ methods:
     package: botframework-connector
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -177,9 +204,10 @@ methods:
           type: string
           description: Participant Id
         - id: callback
-          type: ServiceCallback&lt;TeamsMeetingParticipant&gt;
-          description: |
-            The callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;TeamsMeetingParticipant&gt;
+          description: The callback
   - name: >-
       fetchMeetingParticipant(string, string,
       TeamsFetchMeetingParticipantOptionalParams)
@@ -187,13 +215,12 @@ methods:
     package: botframework-connector
     summary: Fetch a meeting participant
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function fetchMeetingParticipant(meetingId: string, participantId:
         string, options?: TeamsFetchMeetingParticipantOptionalParams):
-        Promise<Models.TeamsFetchMeetingParticipantResponse>
+        Promise<TeamsFetchMeetingParticipantResponse>
       parameters:
         - id: meetingId
           type: string
@@ -204,13 +231,14 @@ methods:
         - id: options
           type: >-
             <xref
-            uid="botframework-connector.TeamsFetchMeetingParticipantOptionalParams"
+            uid="botframework-connector.TeamsConnectorModels.TeamsFetchMeetingParticipantOptionalParams"
             />
-          description: ''
+          description: The optional parameters
       return:
         description: Promise<Models.TeamsFetchMeetingParticipantResponse>
         type: >-
-          Promise&lt;<xref uid="Models.TeamsFetchMeetingParticipantResponse"
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsFetchMeetingParticipantResponse"
           />&gt;
   - name: >-
       fetchMeetingParticipant(string, string,
@@ -220,7 +248,6 @@ methods:
     package: botframework-connector
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -237,40 +264,42 @@ methods:
         - id: options
           type: >-
             <xref
-            uid="botframework-connector.TeamsFetchMeetingParticipantOptionalParams"
+            uid="botframework-connector.TeamsConnectorModels.TeamsFetchMeetingParticipantOptionalParams"
             />
           description: The optional parameters
         - id: callback
-          type: ServiceCallback&lt;TeamsMeetingParticipant&gt;
-          description: |
-            The callback
-  - name: 'fetchTeamDetails(string, RequestOptionsBase)'
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;TeamsMeetingParticipant&gt;
+          description: The callback
+  - name: fetchTeamDetails(string, RequestOptionsBase)
     uid: botframework-connector.Teams.fetchTeamDetails
     package: botframework-connector
     summary: Fetches details related to a team.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function fetchTeamDetails(teamId: string, options?: RequestOptionsBase):
-        Promise<Models.TeamsFetchTeamDetailsResponse>
+        Promise<TeamsFetchTeamDetailsResponse>
       parameters:
         - id: teamId
           type: string
           description: Team Id.
         - id: options
-          type: RequestOptionsBase
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
           description: Optional. The options object to be used in every request.
       return:
         description: A `Promise<Models.TeamsFetchTeamDetailsResponse>`.
-        type: Promise&lt;<xref uid="Models.TeamsFetchTeamDetailsResponse" />&gt;
-  - name: 'fetchTeamDetails(string, RequestOptionsBase, ServiceCallback<TeamDetails>)'
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsFetchTeamDetailsResponse"
+          />&gt;
+  - name: fetchTeamDetails(string, RequestOptionsBase, ServiceCallback<TeamDetails>)
     uid: botframework-connector.Teams.fetchTeamDetails_2
     package: botframework-connector
     summary: Fetches details related to a team.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -281,18 +310,16 @@ methods:
           type: string
           description: Team Id.
         - id: options
-          type: RequestOptionsBase
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
           description: The options object to be used in every request.
         - id: callback
-          type: ServiceCallback&lt;TeamDetails&gt;
-          description: |
-            The callback.
-  - name: 'fetchTeamDetails(string, ServiceCallback<TeamDetails>)'
+          type: <xref uid="@azure/core-http.ServiceCallback" />&lt;TeamDetails&gt;
+          description: The callback.
+  - name: fetchTeamDetails(string, ServiceCallback<TeamDetails>)
     uid: botframework-connector.Teams.fetchTeamDetails_1
     package: botframework-connector
     summary: Fetches details related to a team.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -303,6 +330,300 @@ methods:
           type: string
           description: Team Id.
         - id: callback
-          type: ServiceCallback&lt;TeamDetails&gt;
-          description: |
-            The callback.
+          type: <xref uid="@azure/core-http.ServiceCallback" />&lt;TeamDetails&gt;
+          description: The callback.
+  - name: >-
+      getOperationFailedEntries(string, RequestOptionsBase,
+      ServiceCallback<BatchFailedEntriesResponse>)
+    uid: botframework-connector.Teams.getOperationFailedEntries
+    package: botframework-connector
+    summary: Get the failed entries of an operation.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getOperationFailedEntries(operationId: string, options?:
+        RequestOptionsBase, callback?:
+        ServiceCallback<BatchFailedEntriesResponse>):
+        Promise<BatchBatchFailedEntriesResponse>
+      parameters:
+        - id: operationId
+          type: string
+          description: The operationId to get the failed entries of.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;BatchFailedEntriesResponse&gt;
+          description: The callback.
+      return:
+        description: Promise with BatchFailedEntriesResponse.
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.BatchBatchFailedEntriesResponse"
+          />&gt;
+  - name: >-
+      getOperationState(string, RequestOptionsBase,
+      ServiceCallback<BatchOperationStateResponse>)
+    uid: botframework-connector.Teams.getOperationState
+    package: botframework-connector
+    summary: Get the state of an operation.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function getOperationState(operationId: string, options?:
+        RequestOptionsBase, callback?:
+        ServiceCallback<BatchOperationStateResponse>):
+        Promise<BatchBatchOperationStateResponse>
+      parameters:
+        - id: operationId
+          type: string
+          description: The operationId to get the state of.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;BatchOperationStateResponse&gt;
+          description: The callback.
+      return:
+        description: Promise with BatchOperationStateResponse.
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.BatchBatchOperationStateResponse"
+          />&gt;
+  - name: >-
+      sendMeetingNotification(string, TargetedMeetingNotification,
+      RequestOptionsBase)
+    uid: botframework-connector.Teams.sendMeetingNotification
+    package: botframework-connector
+    summary: Send meeting notification.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendMeetingNotification(meetingId: string, notification:
+        TargetedMeetingNotification, options?: RequestOptionsBase):
+        Promise<TeamsMeetingNotificationResponse>
+      parameters:
+        - id: meetingId
+          type: string
+          description: Meeting Id.
+        - id: notification
+          type: TargetedMeetingNotification
+          description: The content and configuration for the notification to send.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+      return:
+        description: ''
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsMeetingNotificationResponse"
+          />&gt;
+  - name: >-
+      sendMeetingNotification(string, TargetedMeetingNotification,
+      RequestOptionsBase, ServiceCallback<MeetingNotificationResponse>)
+    uid: botframework-connector.Teams.sendMeetingNotification_2
+    package: botframework-connector
+    summary: ''
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendMeetingNotification(meetingId: string, notification:
+        TargetedMeetingNotification, options: RequestOptionsBase, callback:
+        ServiceCallback<MeetingNotificationResponse>)
+      parameters:
+        - id: meetingId
+          type: string
+          description: Meeting Id.
+        - id: notification
+          type: TargetedMeetingNotification
+          description: The content and configuration for the notification to send.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;MeetingNotificationResponse&gt;
+          description: The callback.
+  - name: >-
+      sendMeetingNotification(string, TargetedMeetingNotification,
+      ServiceCallback<MeetingNotificationResponse>)
+    uid: botframework-connector.Teams.sendMeetingNotification_1
+    package: botframework-connector
+    summary: ''
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendMeetingNotification(meetingId: string, notification:
+        TargetedMeetingNotification, callback:
+        ServiceCallback<MeetingNotificationResponse>)
+      parameters:
+        - id: meetingId
+          type: string
+          description: Meeting Id.
+        - id: notification
+          type: TargetedMeetingNotification
+          description: The content and configuration for the notification to send.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;MeetingNotificationResponse&gt;
+          description: The callback.
+  - name: >-
+      sendMessageToAllUsersInTeam(Activity, string, string, RequestOptionsBase,
+      ServiceCallback<BatchOperationResponse>)
+    uid: botframework-connector.Teams.sendMessageToAllUsersInTeam
+    package: botframework-connector
+    summary: Send message to all users belonging to a team.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendMessageToAllUsersInTeam(activity: Activity, tenantId:
+        string, teamId: string, options?: RequestOptionsBase, callback?:
+        ServiceCallback<BatchOperationResponse>):
+        Promise<TeamsBatchOperationResponse>
+      parameters:
+        - id: activity
+          type: Activity
+          description: The activity to send.
+        - id: tenantId
+          type: string
+          description: The tenant Id.
+        - id: teamId
+          type: string
+          description: The id of the recipient Team.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;BatchOperationResponse&gt;
+          description: The callback.
+      return:
+        description: Promise with TeamsBatchOperationResponse.
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsBatchOperationResponse"
+          />&gt;
+  - name: >-
+      sendMessageToAllUsersInTenant(Activity, string, RequestOptionsBase,
+      ServiceCallback<BatchOperationResponse>)
+    uid: botframework-connector.Teams.sendMessageToAllUsersInTenant
+    package: botframework-connector
+    summary: Send message to all users belonging to a tenant.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendMessageToAllUsersInTenant(activity: Activity, tenantId:
+        string, options?: RequestOptionsBase, callback?:
+        ServiceCallback<BatchOperationResponse>):
+        Promise<TeamsBatchOperationResponse>
+      parameters:
+        - id: activity
+          type: Activity
+          description: The activity to send.
+        - id: tenantId
+          type: string
+          description: The id of the recipient Tenant.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;BatchOperationResponse&gt;
+          description: The callback.
+      return:
+        description: Promise with TeamsBatchOperationResponse.
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsBatchOperationResponse"
+          />&gt;
+  - name: >-
+      sendMessageToListOfChannels(Activity, string, TeamsMember[],
+      RequestOptionsBase, ServiceCallback<BatchOperationResponse>)
+    uid: botframework-connector.Teams.sendMessageToListOfChannels
+    package: botframework-connector
+    summary: Send message to a list of channels.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendMessageToListOfChannels(activity: Activity, tenantId:
+        string, members: TeamsMember[], options?: RequestOptionsBase, callback?:
+        ServiceCallback<BatchOperationResponse>):
+        Promise<TeamsBatchOperationResponse>
+      parameters:
+        - id: activity
+          type: Activity
+          description: The activity to send.
+        - id: tenantId
+          type: string
+          description: The tenant Id.
+        - id: members
+          type: TeamsMember[]
+          description: The list of channels.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;BatchOperationResponse&gt;
+          description: The callback.
+      return:
+        description: Promise with TeamsBatchOperationResponse.
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsBatchOperationResponse"
+          />&gt;
+  - name: >-
+      sendMessageToListOfUsers(Activity, string, TeamsMember[],
+      RequestOptionsBase, ServiceCallback<BatchOperationResponse>)
+    uid: botframework-connector.Teams.sendMessageToListOfUsers
+    package: botframework-connector
+    summary: Send message to a list of users.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function sendMessageToListOfUsers(activity: Activity, tenantId: string,
+        members: TeamsMember[], options?: RequestOptionsBase, callback?:
+        ServiceCallback<BatchOperationResponse>):
+        Promise<TeamsBatchOperationResponse>
+      parameters:
+        - id: activity
+          type: Activity
+          description: The activity to send.
+        - id: tenantId
+          type: string
+          description: The tenant Id.
+        - id: members
+          type: TeamsMember[]
+          description: The list of members.
+        - id: options
+          type: <xref uid="@azure/core-http.RequestOptionsBase" />
+          description: The optional parameters.
+        - id: callback
+          type: >-
+            <xref uid="@azure/core-http.ServiceCallback"
+            />&lt;BatchOperationResponse&gt;
+          description: The callback.
+      return:
+        description: Promise with TeamsBatchOperationResponse.
+        type: >-
+          Promise&lt;<xref
+          uid="botframework-connector.TeamsConnectorModels.TeamsBatchOperationResponse"
+          />&gt;

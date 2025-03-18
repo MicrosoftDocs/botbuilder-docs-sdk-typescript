@@ -1,0 +1,77 @@
+### YamlMime:TSType
+name: SharePointSSOTokenExchangeMiddleware
+uid: botbuilder.SharePointSSOTokenExchangeMiddleware
+package: botbuilder
+summary: >-
+  If the activity name is cardExtension/token, this middleware will attempt to
+
+  exchange the token, and deduplicate the incoming call, ensuring only one
+
+  exchange request is processed.
+
+
+  If a user is signed into multiple devices, the Bot could receive a
+
+  "cardExtension/token" from each device. Each token exchange request for a
+
+  specific user login will have an identical activity.value.id.
+
+
+  Only one of these token exchange requests should be processed by the bot.
+
+  The others return
+  [StatusCodes.PRECONDITION_FAILED](xref:botframework-schema:StatusCodes.PRECONDITION_FAILED).
+
+  For a distributed bot in production, this requires distributed storage
+
+  ensuring only one token exchange is processed. This middleware supports
+
+  CosmosDb storage found in botbuilder-azure, or MemoryStorage for local
+  development.
+fullName: SharePointSSOTokenExchangeMiddleware
+remarks: ''
+isDeprecated: false
+type: class
+constructors:
+  - name: SharePointSSOTokenExchangeMiddleware(Storage, string)
+    uid: botbuilder.SharePointSSOTokenExchangeMiddleware.constructor
+    package: botbuilder
+    summary: >-
+      Initializes a new instance of the SharePointSSOTokenExchangeMiddleware
+      class.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        new SharePointSSOTokenExchangeMiddleware(storage: Storage,
+        oAuthConnectionName: string)
+      parameters:
+        - id: storage
+          type: <xref uid="botbuilder.Storage" />
+          description: The [Storage](xref:botbuilder-core.Storage) to use for deduplication
+        - id: oAuthConnectionName
+          type: string
+          description: The connection name to use for the single sign on token exchange
+methods:
+  - name: onTurn(TurnContext, () => Promise<void>)
+    uid: botbuilder.SharePointSSOTokenExchangeMiddleware.onTurn
+    package: botbuilder
+    summary: Called each time the bot receives a new request.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function onTurn(context: TurnContext, _next: () => Promise<void>):
+        Promise<void>
+      parameters:
+        - id: context
+          type: <xref uid="botbuilder.TurnContext" />
+          description: Context for current turn of conversation with the user.
+        - id: _next
+          type: () =&gt; Promise&lt;void&gt;
+          description: >-
+            Function to call to continue execution to the next step in the
+            middleware chain.
+      return:
+        description: ''
+        type: Promise&lt;void&gt;
