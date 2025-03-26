@@ -7,7 +7,7 @@ summary: >-
   Single Sign On (SSO)
 
   service.
-fullName: OAuthPrompt<O>
+fullName: OAuthPrompt
 remarks: >-
   The prompt will attempt to retrieve the users current token and if the user
   isn't signed in, it
@@ -117,16 +117,14 @@ remarks: >-
   ]));
 
   ```
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'OAuthPrompt(string, OAuthPromptSettings, PromptValidator<TokenResponse>)'
+  - name: OAuthPrompt(string, OAuthPromptSettings, PromptValidator<TokenResponse>)
     uid: botbuilder-dialogs.OAuthPrompt.constructor
     package: botbuilder-dialogs
     summary: Creates a new OAuthPrompt instance.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -145,19 +143,16 @@ constructors:
           type: >-
             <xref uid="botbuilder-dialogs.PromptValidator"
             />&lt;TokenResponse&gt;
-          description: >
+          description: >-
             (Optional) validator that will be called each time the user responds
             to the prompt.
 properties:
   - name: id
     uid: botbuilder-dialogs.OAuthPrompt.id
     package: botbuilder-dialogs
-    summary: |-
-      Unique ID of the dialog.
-      Sets the unique ID of the dialog.
+    summary: Unique ID of the dialog.
     fullName: id
-    remarks: This will be automatically generated if not specified.
-    isPreview: false
+    remarks: ''
     isDeprecated: false
     syntax:
       content: string id
@@ -167,12 +162,9 @@ properties:
   - name: telemetryClient
     uid: botbuilder-dialogs.OAuthPrompt.telemetryClient
     package: botbuilder-dialogs
-    summary: |-
-      Gets the telemetry client for this dialog.
-      Sets the telemetry client for this dialog.
+    summary: Gets the telemetry client for this dialog.
     fullName: telemetryClient
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: BotTelemetryClient telemetryClient
@@ -193,39 +185,37 @@ inheritedProperties:
 
       processing for the current turn, is still active, and is waiting for more
       input.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'static EndOfTurn: DialogTurnResult'
+      content: 'static EndOfTurn: DialogTurnResult<any>'
       return:
         description: ''
-        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />
+        type: <xref uid="botbuilder-dialogs.DialogTurnResult" />&lt;any&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.EndOfTurn](xref:botbuilder-dialogs.Dialog.EndOfTurn)
 inheritedMethods:
-  - name: 'configure(Record<string, unknown>)'
+  - name: configure(Record<string, unknown>)
     uid: botbuilder-dialogs.OAuthPrompt.configure
     package: botbuilder-dialogs
     summary: Fluent method for configuring the object.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Record<string, unknown>): this'
+      content: 'function configure(config: Record<string, unknown>): OAuthPrompt'
       parameters:
         - id: config
-          type: 'Record&lt;string, unknown&gt;'
+          type: Record&lt;string, unknown&gt;
           description: Configuration settings to apply.
       return:
         description: >-
           The [Configurable](xref:botbuilder-dialogs.Configurable) after the
           operation is complete.
-        type: this
+        type: <xref uid="botbuilder-dialogs.OAuthPrompt" />
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.configure](xref:botbuilder-dialogs.Configurable.configure)
-  - name: 'endDialog(TurnContext, DialogInstance, DialogReason)'
+      [Dialog.configure](xref:botbuilder-dialogs.Dialog.configure)
+  - name: endDialog(TurnContext, DialogInstance<any>, DialogReason)
     uid: botbuilder-dialogs.OAuthPrompt.endDialog
     package: botbuilder-dialogs
     summary: >-
@@ -254,23 +244,21 @@ inheritedMethods:
 
       -
       [DialogContext.replaceDialog](xref:botbuilder-dialogs.DialogContext.replaceDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function endDialog(_context: TurnContext, _instance: DialogInstance,
-        _reason: DialogReason): Promise<void>
+        function endDialog(_context: TurnContext, _instance:
+        DialogInstance<any>, _reason: DialogReason): Promise<void>
       parameters:
         - id: _context
           type: TurnContext
           description: The context object for the turn.
         - id: _instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
           description: Current state information for this dialog.
         - id: _reason
           type: <xref uid="botbuilder-dialogs.DialogReason" />
-          description: |
-            The reason the dialog is ending.
+          description: The reason the dialog is ending.
       return:
         description: ''
         type: Promise&lt;void&gt;
@@ -282,10 +270,11 @@ inheritedMethods:
     package: botbuilder-dialogs
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      content: >-
+        function getConverter(_property: string): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: _property
           type: string
@@ -293,11 +282,12 @@ inheritedMethods:
       return:
         description: The converter for the selector configuration.
         type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
+          <xref uid="botbuilder-dialogs.Converter" />&lt;unknown, unknown&gt; |
+          <xref uid="botbuilder-dialogs.ConverterFactory" />&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
+      [Dialog.getConverter](xref:botbuilder-dialogs.Dialog.getConverter)
   - name: getVersion()
     uid: botbuilder-dialogs.OAuthPrompt.getVersion
     package: botbuilder-dialogs
@@ -320,7 +310,6 @@ inheritedMethods:
 
       Returning an empty string will disable version tracking for the component
       all together.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function getVersion(): string'
@@ -332,14 +321,13 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.getVersion](xref:botbuilder-dialogs.Dialog.getVersion)
-  - name: 'onDialogEvent(DialogContext, DialogEvent)'
+  - name: onDialogEvent(DialogContext, DialogEvent)
     uid: botbuilder-dialogs.OAuthPrompt.onDialogEvent
     package: botbuilder-dialogs
     summary: >-
       Called when an event has been raised, using `DialogContext.emitEvent()`,
       by either the current dialog or a dialog that the current dialog started.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -360,10 +348,10 @@ inheritedMethods:
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.onDialogEvent](xref:botbuilder-dialogs.Dialog.onDialogEvent)
-  - name: 'repromptDialog(TurnContext, DialogInstance)'
+  - name: repromptDialog(TurnContext, DialogInstance<any>)
     uid: botbuilder-dialogs.OAuthPrompt.repromptDialog
     package: botbuilder-dialogs
-    summary: 'When overridden in a derived class, reprompts the user for input.'
+    summary: When overridden in a derived class, reprompts the user for input.
     remarks: >-
       Derived dialogs that support validation and re-prompt logic should
       override this method.
@@ -384,27 +372,25 @@ inheritedMethods:
       [DialogContext.repromptDialog](xref:botbuilder-dialogs.DialogContext.repromptDialog)
 
       - [Prompt](xref:botbuilder-dialogs.Prompt)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function repromptDialog(_context: TurnContext, _instance:
-        DialogInstance): Promise<void>
+        DialogInstance<any>): Promise<void>
       parameters:
         - id: _context
           type: TurnContext
           description: The context object for the turn.
         - id: _instance
-          type: <xref uid="botbuilder-dialogs.DialogInstance" />
-          description: |
-            Current state information for this dialog.
+          type: <xref uid="botbuilder-dialogs.DialogInstance" />&lt;any&gt;
+          description: Current state information for this dialog.
       return:
         description: ''
         type: Promise&lt;void&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.repromptDialog](xref:botbuilder-dialogs.Dialog.repromptDialog)
-  - name: 'resumeDialog(DialogContext, DialogReason, any)'
+  - name: resumeDialog(DialogContext, DialogReason, any)
     uid: botbuilder-dialogs.OAuthPrompt.resumeDialog
     package: botbuilder-dialogs
     summary: >-
@@ -444,12 +430,11 @@ inheritedMethods:
 
       -
       [DialogContext.endDialog](xref:botbuilder-dialogs.DialogContext.endDialog)
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function resumeDialog(dc: DialogContext, reason: DialogReason, result?:
-        any): Promise<DialogTurnResult>
+        any): Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -461,16 +446,17 @@ inheritedMethods:
                  [DialogReason.endCalled](xref:botbuilder-dialogs.DialogReason.endCalled)
         - id: result
           type: any
-          description: |
-            Optional. The return value, if any, from the dialog that ended.
+          description: Optional. The return value, if any, from the dialog that ended.
       return:
         description: A promise resolving to the dialog turn result.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Dialog.resumeDialog](xref:botbuilder-dialogs.Dialog.resumeDialog)
 methods:
-  - name: 'beginDialog(DialogContext, PromptOptions)'
+  - name: beginDialog(DialogContext, PromptOptions)
     uid: botbuilder-dialogs.OAuthPrompt.beginDialog
     package: botbuilder-dialogs
     summary: >-
@@ -481,12 +467,11 @@ methods:
       still
 
       active after the turn has been processed by the prompt.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function beginDialog(dc: DialogContext, options?: PromptOptions):
-        Promise<DialogTurnResult>
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -502,7 +487,9 @@ methods:
             additional information to pass to the prompt being started.
       return:
         description: A `Promise` representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
   - name: continueDialog(DialogContext)
     uid: botbuilder-dialogs.OAuthPrompt.continueDialog
     package: botbuilder-dialogs
@@ -519,10 +506,11 @@ methods:
       accepts the
 
       user's reply as valid input for the prompt.
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function continueDialog(dc: DialogContext): Promise<DialogTurnResult>'
+      content: >-
+        function continueDialog(dc: DialogContext):
+        Promise<DialogTurnResult<any>>
       parameters:
         - id: dc
           type: <xref uid="botbuilder-dialogs.DialogContext" />
@@ -533,18 +521,19 @@ methods:
             of the conversation.
       return:
         description: A `Promise` representing the asynchronous operation.
-        type: Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult" />&gt;
-  - name: 'getUserToken(TurnContext, string)'
+        type: >-
+          Promise&lt;<xref uid="botbuilder-dialogs.DialogTurnResult"
+          />&lt;any&gt;&gt;
+  - name: getUserToken(TurnContext, string)
     uid: botbuilder-dialogs.OAuthPrompt.getUserToken
     package: botbuilder-dialogs
     summary: Attempts to retrieve the stored token for the current user.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getUserToken(context: TurnContext, code?: string):
-        Promise<TokenResponse | undefined>
+        Promise<undefined | TokenResponse>
       parameters:
         - id: context
           type: TurnContext
@@ -554,7 +543,7 @@ methods:
           description: (Optional) login code received from the user.
       return:
         description: The token response.
-        type: Promise&lt;TokenResponse | undefined&gt;
+        type: Promise&lt;undefined | TokenResponse&gt;
   - name: recognizeToken(DialogContext)
     uid: botbuilder-dialogs.OAuthPrompt.recognizeToken
     package: botbuilder-dialogs
@@ -565,7 +554,6 @@ methods:
       the implementation of the OAuthPrompt and OAuthInput. Application logic
       should use those dialog classes.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -589,7 +577,6 @@ methods:
     package: botbuilder-dialogs
     summary: Sends an OAuth card.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -605,8 +592,7 @@ methods:
           description: Turn context.
         - id: prompt
           type: string | Partial&lt;Activity&gt;
-          description: |
-            Message activity.
+          description: Message activity.
       return:
         description: ''
         type: Promise&lt;void&gt;
@@ -629,7 +615,6 @@ methods:
       await prompt.signOutUser(context);
 
       ```
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function signOutUser(context: TurnContext): Promise<void>'

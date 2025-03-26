@@ -7,7 +7,6 @@ summary: >-
   different cloud environmens both public and private.
 fullName: CloudAdapter
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
@@ -18,7 +17,6 @@ constructors:
       Initializes a new instance of the
       [CloudAdapter](xref:botbuilder:CloudAdapter) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -27,10 +25,25 @@ constructors:
       parameters:
         - id: botFrameworkAuthentication
           type: BotFrameworkAuthentication
-          description: >
+          description: >-
             Optional
             [BotFrameworkAuthentication](xref:botframework-connector.BotFrameworkAuthentication)
             instance
+properties:
+  - name: onTurnError
+    uid: botbuilder.CloudAdapter.onTurnError
+    package: botbuilder
+    summary: >-
+      Gets or sets an error handler that can catch exceptions in the middleware
+      or application.
+    fullName: onTurnError
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: '(context: TurnContext, error: Error) => Promise<void> onTurnError'
+      return:
+        description: A promise representing the async operation.
+        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
 inheritedProperties:
   - name: BotIdentityKey
     uid: botbuilder.CloudAdapter.BotIdentityKey
@@ -38,95 +51,94 @@ inheritedProperties:
     summary: ''
     fullName: BotIdentityKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'BotIdentityKey: symbol'
       return:
         description: ''
         type: symbol
-    inheritanceDescription: <b>Inherited From</b> BotAdapter.BotIdentityKey
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.BotIdentityKey](xref:botbuilder.CloudAdapterBase.BotIdentityKey)
   - name: ConnectorClientKey
     uid: botbuilder.CloudAdapter.ConnectorClientKey
     package: botbuilder
     summary: ''
     fullName: ConnectorClientKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'ConnectorClientKey: symbol'
       return:
         description: ''
         type: symbol
-    inheritanceDescription: <b>Inherited From</b> BotAdapter.ConnectorClientKey
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.ConnectorClientKey](xref:botbuilder.CloudAdapterBase.ConnectorClientKey)
   - name: ConnectorFactoryKey
     uid: botbuilder.CloudAdapter.ConnectorFactoryKey
     package: botbuilder
     summary: ''
     fullName: ConnectorFactoryKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'ConnectorFactoryKey: symbol'
       return:
         description: ''
         type: symbol
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.ConnectorFactoryKey
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.ConnectorFactoryKey](xref:botbuilder.CloudAdapterBase.ConnectorFactoryKey)
   - name: OAuthScopeKey
     uid: botbuilder.CloudAdapter.OAuthScopeKey
     package: botbuilder
     summary: ''
     fullName: OAuthScopeKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'OAuthScopeKey: symbol'
       return:
         description: ''
         type: symbol
-    inheritanceDescription: <b>Inherited From</b> BotAdapter.OAuthScopeKey
-  - name: onTurnError
-    uid: botbuilder.CloudAdapter.onTurnError
-    package: botbuilder
-    summary: ''
-    fullName: onTurnError
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: 'onTurnError: (context: TurnContext, error: Error) => Promise<void>'
-      return:
-        description: ''
-        type: '(context: TurnContext, error: Error) =&gt; Promise&lt;void&gt;'
-    inheritanceDescription: <b>Inherited From</b> BotAdapter.onTurnError
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.OAuthScopeKey](xref:botbuilder.CloudAdapterBase.OAuthScopeKey)
   - name: UserTokenClientKey
     uid: botbuilder.CloudAdapter.UserTokenClientKey
     package: botbuilder
     summary: ''
     fullName: UserTokenClientKey
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'UserTokenClientKey: symbol'
       return:
         description: ''
         type: symbol
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.UserTokenClientKey
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.UserTokenClientKey](xref:botbuilder.CloudAdapterBase.UserTokenClientKey)
 inheritedMethods:
   - name: >-
       continueConversation(Partial<ConversationReference>, (context:
       TurnContext) => Promise<void>)
     uid: botbuilder.CloudAdapter.continueConversation
     package: botbuilder
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: true
-    customDeprecatedMessage: ''
+    summary: >-
+      Asynchronously resumes a conversation with a user, possibly after some
+      time has gone by.
+    remarks: >-
+      This is often referred to as a _proactive notification_, the bot can
+      proactively
+
+      send a message to a conversation or user without waiting for an incoming
+      message.
+
+      For example, a bot can use this method to send notifications or coupons to
+      a user.
+    isDeprecated: false
     syntax:
       content: >-
         function continueConversation(_reference:
@@ -134,56 +146,41 @@ inheritedMethods:
         Promise<void>): Promise<void>
       parameters:
         - id: _reference
-          type: Partial&lt;ConversationReference&gt;
-          description: ''
+          type: Partial&lt;<xref uid="botbuilder.ConversationReference" />&gt;
+          description: A reference to the conversation to continue.
         - id: _logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: ''
+          description: The asynchronous method to call after the adapter middleware runs.
       return:
         description: ''
         type: Promise&lt;void&gt;
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.continueConversation
-  - name: >-
-      continueConversationAsync(string | ClaimsIdentity,
-      Partial<ConversationReference>, (context: TurnContext) => Promise<void> |
-      string, (context: TurnContext) => Promise<void>)
-    uid: botbuilder.CloudAdapter.continueConversationAsync
-    package: botbuilder
-    summary: ''
-    remarks: ''
-    isPreview: false
-    isDeprecated: false
-    syntax:
-      content: >-
-        function continueConversationAsync(botAppIdOrClaimsIdentity: string |
-        ClaimsIdentity, reference: Partial<ConversationReference>,
-        logicOrAudience: (context: TurnContext) => Promise<void> | string,
-        maybeLogic?: (context: TurnContext) => Promise<void>): Promise<void>
-      parameters:
-        - id: botAppIdOrClaimsIdentity
-          type: string | ClaimsIdentity
-          description: ''
-        - id: reference
-          type: Partial&lt;ConversationReference&gt;
-          description: ''
-        - id: logicOrAudience
-          type: '(context: TurnContext) =&gt; Promise&lt;void&gt; | string'
-          description: ''
-        - id: maybeLogic
-          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: ''
-      return:
-        description: ''
-        type: Promise&lt;void&gt;
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.continueConversationAsync
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.continueConversation](xref:botbuilder.CloudAdapterBase.continueConversation)
   - name: >-
       createConversationAsync(string, string, string, string,
       ConversationParameters, (context: TurnContext) => Promise<void>)
     uid: botbuilder.CloudAdapter.createConversationAsync
     package: botbuilder
-    summary: ''
-    remarks: ''
-    isPreview: false
+    summary: Creates a conversation on the specified channel.
+    remarks: >-
+      To start a conversation, your bot must know its account information and
+      the user's account information on that
+
+      channel.  Most _channels only support initiating a direct message
+      (non-group) conversation.
+
+
+      The adapter attempts to create a new conversation on the channel, and then
+      sends a `conversationUpdate` activity
+
+      through its middleware pipeline to the logic method.
+
+
+      If the conversation is established with the specified users, the ID of the
+      activity's converstion will contain
+
+      the ID of the new conversation.
     isDeprecated: false
     syntax:
       content: >-
@@ -194,32 +191,48 @@ inheritedMethods:
       parameters:
         - id: botAppId
           type: string
-          description: ''
+          description: The application ID of the bot.
         - id: channelId
           type: string
-          description: ''
+          description: The ID for the channel.
         - id: serviceUrl
           type: string
-          description: ''
+          description: The ID for the channel.
         - id: audience
           type: string
-          description: ''
+          description: |-
+            The audience for the connector.
+            <param name="conversationParameters">
         - id: conversationParameters
-          type: ConversationParameters
-          description: ''
+          type: <xref uid="botbuilder.ConversationParameters" />
+          description: The conversation information to use to create the conversation
         - id: logic
           type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
-          description: ''
+          description: The method to call for the resulting bot turn.
       return:
-        description: ''
+        description: A promise that represents the asynchronous operation
         type: Promise&lt;void&gt;
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.createConversationAsync
-  - name: 'deleteActivity(TurnContext, Partial<ConversationReference>)'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.createConversationAsync](xref:botbuilder.CloudAdapterBase.createConversationAsync)
+  - name: deleteActivity(TurnContext, Partial<ConversationReference>)
     uid: botbuilder.CloudAdapter.deleteActivity
     package: botbuilder
-    summary: ''
-    remarks: ''
-    isPreview: false
+    summary: >-
+      Asynchronously deletes an existing activity.
+
+
+      This interface supports the framework and is not intended to be called
+      directly for your code.
+
+      Use
+      [TurnContext.deleteActivity](xref:botbuilder-core.TurnContext.deleteActivity)
+      to delete
+
+      an activity from your bot code.
+    remarks: >-
+      Not all channels support this operation. For channels that don't, this
+      call may throw an exception.
     isDeprecated: false
     syntax:
       content: >-
@@ -227,21 +240,40 @@ inheritedMethods:
         Partial<ConversationReference>): Promise<void>
       parameters:
         - id: context
-          type: TurnContext
-          description: ''
+          type: <xref uid="botbuilder.TurnContext" />
+          description: The context object for the turn.
         - id: reference
-          type: Partial&lt;ConversationReference&gt;
-          description: ''
+          type: Partial&lt;<xref uid="botbuilder.ConversationReference" />&gt;
+          description: Conversation reference information for the activity to delete.
       return:
         description: ''
         type: Promise&lt;void&gt;
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.deleteActivity
-  - name: 'sendActivities(TurnContext, Partial<Activity>[])'
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.deleteActivity](xref:botbuilder.CloudAdapterBase.deleteActivity)
+  - name: sendActivities(TurnContext, Partial<Activity>[])
     uid: botbuilder.CloudAdapter.sendActivities
     package: botbuilder
-    summary: ''
-    remarks: ''
-    isPreview: false
+    summary: >-
+      Asynchronously sends a set of outgoing activities to a channel server.
+
+
+      This method supports the framework and is not intended to be called
+      directly for your code.
+
+      Use the turn context's
+      [sendActivity](xref:botbuilder-core.TurnContext.sendActivity) or
+
+      [sendActivities](xref:botbuilder-core.TurnContext.sendActivities) method
+      from your bot code.
+    remarks: >-
+      The activities will be sent one after another in the order in which
+      they're received. A
+
+      response object will be returned for each sent activity. For `message`
+      activities this will
+
+      contain the ID of the delivered message.
     isDeprecated: false
     syntax:
       content: >-
@@ -249,40 +281,54 @@ inheritedMethods:
         Partial<Activity>[]): Promise<ResourceResponse[]>
       parameters:
         - id: context
-          type: TurnContext
-          description: ''
+          type: <xref uid="botbuilder.TurnContext" />
+          description: The context object for the turn.
         - id: activities
-          type: 'Partial&lt;Activity&gt;[]'
-          description: ''
+          type: Partial&lt;<xref uid="botbuilder.Activity" />&gt;[]
+          description: The activities to send.
       return:
-        description: ''
-        type: 'Promise&lt;ResourceResponse[]&gt;'
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.sendActivities
-  - name: 'updateActivity(TurnContext, Partial<Activity>)'
+        description: An array of [ResourceResponse](xref:botbuilder.Os)
+        type: Promise&lt;<xref uid="botbuilder.ResourceResponse" />[]&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.sendActivities](xref:botbuilder.CloudAdapterBase.sendActivities)
+  - name: updateActivity(TurnContext, Partial<Activity>)
     uid: botbuilder.CloudAdapter.updateActivity
     package: botbuilder
-    summary: ''
-    remarks: ''
-    isPreview: false
+    summary: >-
+      Asynchronously replaces a previous activity with an updated version.
+
+
+      This interface supports the framework and is not intended to be called
+      directly for your code.
+
+      Use
+      [TurnContext.updateActivity](xref:botbuilder-core.TurnContext.updateActivity)
+      to update
+
+      an activity from your bot code.
+    remarks: >-
+      Not all channels support this operation. For channels that don't, this
+      call may throw an exception.
     isDeprecated: false
     syntax:
       content: >-
         function updateActivity(context: TurnContext, activity:
-        Partial<Activity>): Promise<ResourceResponse | void>
+        Partial<Activity>): Promise<void | ResourceResponse>
       parameters:
         - id: context
-          type: TurnContext
-          description: ''
+          type: <xref uid="botbuilder.TurnContext" />
+          description: The context object for the turn.
         - id: activity
-          type: Partial&lt;Activity&gt;
-          description: ''
+          type: Partial&lt;<xref uid="botbuilder.Activity" />&gt;
+          description: The updated version of the activity to replace.
       return:
         description: ''
-        type: Promise&lt;ResourceResponse | void&gt;
-    inheritanceDescription: <b>Inherited From</b> CloudAdapterBase.updateActivity
-  - name: >-
-      use((context: TurnContext, next: () => Promise<void>) => Promise<void> |
-      Middleware[])
+        type: Promise&lt;void | <xref uid="botbuilder.ResourceResponse" />&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.updateActivity](xref:botbuilder.CloudAdapterBase.updateActivity)
+  - name: use((MiddlewareHandler | Middleware)[])
     uid: botbuilder.CloudAdapter.use
     package: botbuilder
     summary: Adds middleware to the adapter's pipeline.
@@ -291,22 +337,23 @@ inheritedMethods:
 
       Each turn, the adapter calls its middleware in the order in which you
       added it.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function use(middlewares: (context: TurnContext, next: () =>
-        Promise<void>) => Promise<void> | Middleware[]): this
+        function use(middlewares: (MiddlewareHandler | Middleware)[]):
+        CloudAdapter
       parameters:
         - id: middlewares
           type: >-
-            (context: TurnContext, next: () =&gt; Promise&lt;void&gt;) =&gt;
-            Promise&lt;void&gt; | Middleware[]
+            (<xref uid="botbuilder.MiddlewareHandler" /> | <xref
+            uid="botbuilder.Middleware" />)[]
           description: The middleware or middleware handlers to add.
       return:
         description: The updated adapter object.
-        type: this
-    inheritanceDescription: <b>Inherited From</b> BotAdapter.use
+        type: <xref uid="botbuilder.CloudAdapter" />
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [CloudAdapterBase.use](xref:botbuilder.CloudAdapterBase.use)
 methods:
   - name: >-
       connectNamedPipe(string, (context: TurnContext) => Promise<void>, string,
@@ -315,7 +362,6 @@ methods:
     package: botbuilder
     summary: Used to connect the adapter to a named pipe.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -341,17 +387,18 @@ methods:
             cloud environment.
         - id: callerId
           type: string
-          description: 'Optional, the caller ID'
+          description: Optional, the caller ID
         - id: retryCount
           type: number
-          description: >
+          description: >-
             Optional, the number of times to retry a failed connection (defaults
             to 7)
       return:
         description: ''
         type: Promise&lt;void&gt;
   - name: >-
-      process(Request, INodeSocket, INodeBuffer, (context: TurnContext) =>
+      process(Request<Record<string, unknown>, Record<string, undefined | string
+      | string[]>>, INodeSocket, INodeBuffer, (context: TurnContext) =>
       Promise<void>)
     uid: botbuilder.CloudAdapter.process_1
     package: botbuilder
@@ -359,16 +406,18 @@ methods:
       Handle a web socket connection by applying a logic function to
       each streaming request.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function process(req: Request, socket: INodeSocket, head: INodeBuffer,
+        function process(req: Request<Record<string, unknown>, Record<string,
+        undefined | string | string[]>>, socket: INodeSocket, head: INodeBuffer,
         logic: (context: TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
-          type: <xref uid="botbuilder.Request" />
-          description: 'An incoming HTTP [Request](xref:botbuilder.Request)'
+          type: >-
+            <xref uid="botbuilder.Request" />&lt;Record&lt;string, unknown&gt;,
+            Record&lt;string, undefined | string | string[]&gt;&gt;
+          description: An incoming HTTP [Request](xref:botbuilder.Request)
         - id: socket
           type: INodeSocket
           description: >-
@@ -385,21 +434,25 @@ methods:
       return:
         description: a promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
-  - name: 'process(Request, Response, (context: TurnContext) => Promise<void>)'
+  - name: >-
+      process(Request<Record<string, unknown>, Record<string, undefined | string
+      | string[]>>, Response, (context: TurnContext) => Promise<void>)
     uid: botbuilder.CloudAdapter.process
     package: botbuilder
     summary: Process a web request by applying a logic function.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
-        function process(req: Request, res: Response, logic: (context:
+        function process(req: Request<Record<string, unknown>, Record<string,
+        undefined | string | string[]>>, res: Response, logic: (context:
         TurnContext) => Promise<void>): Promise<void>
       parameters:
         - id: req
-          type: <xref uid="botbuilder.Request" />
-          description: 'The corresponding HTTP [Response](xref:botbuilder.Response)'
+          type: >-
+            <xref uid="botbuilder.Request" />&lt;Record&lt;string, unknown&gt;,
+            Record&lt;string, undefined | string | string[]&gt;&gt;
+          description: An incoming HTTP [Request](xref:botbuilder.Request)
         - id: res
           type: <xref uid="botbuilder.Response" />
           description: ''
@@ -409,4 +462,32 @@ methods:
       return:
         description: a promise representing the asynchronous operation.
         type: Promise&lt;void&gt;
-extends: CloudAdapterBase
+  - name: >-
+      processActivityDirect(string | AuthenticateRequestResult, Activity,
+      (context: TurnContext) => Promise<void>)
+    uid: botbuilder.CloudAdapter.processActivityDirect
+    package: botbuilder
+    summary: Asynchronously process an activity running the provided logic function.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: >-
+        function processActivityDirect(authorization: string |
+        AuthenticateRequestResult, activity: Activity, logic: (context:
+        TurnContext) => Promise<void>): Promise<void>
+      parameters:
+        - id: authorization
+          type: string | AuthenticateRequestResult
+          description: >-
+            The authorization header in the format: "Bearer [longString]" or the
+            AuthenticateRequestResult for this turn.
+        - id: activity
+          type: <xref uid="botbuilder.Activity" />
+          description: The activity to process.
+        - id: logic
+          type: '(context: TurnContext) =&gt; Promise&lt;void&gt;'
+          description: The logic function to apply.
+      return:
+        description: a promise representing the asynchronous operation.
+        type: Promise&lt;void&gt;
+extends: <xref uid="botbuilder.CloudAdapterBase" />

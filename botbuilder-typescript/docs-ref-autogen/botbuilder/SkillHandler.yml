@@ -5,7 +5,6 @@ package: botbuilder
 summary: ''
 fullName: SkillHandler
 remarks: ''
-isPreview: false
 isDeprecated: true
 customDeprecatedMessage: |-
   Use `CloudSkillHandler` instead.
@@ -20,7 +19,6 @@ constructors:
     package: botbuilder
     summary: Initializes a new instance of the SkillHandler class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -30,13 +28,13 @@ constructors:
         AuthenticationConfiguration, channelService?: string)
       parameters:
         - id: adapter
-          type: BotAdapter
+          type: <xref uid="botbuilder.BotAdapter" />
           description: An instance of the BotAdapter that will handle the request.
         - id: bot
-          type: ActivityHandlerBase
+          type: <xref uid="botbuilder.ActivityHandlerBase" />
           description: The ActivityHandlerBase instance.
         - id: conversationIdFactory
-          type: SkillConversationIdFactoryBase
+          type: <xref uid="botbuilder.SkillConversationIdFactoryBase" />
           description: >-
             A SkillConversationIdFactoryBase to unpack the conversation ID and
             map it to the calling bot.
@@ -48,7 +46,7 @@ constructors:
           description: The authentication configuration.
         - id: channelService
           type: string
-          description: >
+          description: >-
             The string indicating if the bot is working in Public Azure or in
             Azure Government (https://aka.ms/AzureGovDocs).
 properties:
@@ -62,7 +60,6 @@ properties:
     remarks: >-
       The value is the same as the SkillConversationReferenceKey exported from
       botbuilder-core.
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'SkillConversationReferenceKey: symbol'
@@ -70,12 +67,11 @@ properties:
         description: ''
         type: symbol
 inheritedMethods:
-  - name: 'handleCreateConversation(string, ConversationParameters)'
+  - name: handleCreateConversation(string, ConversationParameters)
     uid: botbuilder.SkillHandler.handleCreateConversation
     package: botbuilder
     summary: Creates a new Conversation.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -86,22 +82,21 @@ inheritedMethods:
           type: string
           description: The authentication header.
         - id: parameters
-          type: ConversationParameters
+          type: <xref uid="botbuilder.ConversationParameters" />
           description: >-
-            (xref:botbuilder-core.ConversationParameters) to create the
-            conversation from.
+            [ConversationParameters](xref:botbuilder-core.ConversationParameters)
+            to create the conversation from.
       return:
         description: A `Promise` representation for the operation.
-        type: Promise&lt;ConversationResourceResponse&gt;
+        type: Promise&lt;<xref uid="botbuilder.ConversationResourceResponse" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleCreateConversation](xref:botbuilder.ChannelServiceHandlerBase.handleCreateConversation)
-  - name: 'handleDeleteActivity(string, string, string)'
+      [ChannelServiceHandler.handleCreateConversation](xref:botbuilder.ChannelServiceHandler.handleCreateConversation)
+  - name: handleDeleteActivity(string, string, string)
     uid: botbuilder.SkillHandler.handleDeleteActivity
     package: botbuilder
-    summary: 'Deletes an existing [Activity](xref:botframework-schema.Activity).'
+    summary: Deletes an existing [Activity](xref:botframework-schema.Activity).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -116,20 +111,18 @@ inheritedMethods:
           description: The conversation Id.
         - id: activityId
           type: string
-          description: |
-            The activity Id to delete.
+          description: The activity Id to delete.
       return:
         description: ''
         type: Promise&lt;void&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleDeleteActivity](xref:botbuilder.ChannelServiceHandlerBase.handleDeleteActivity)
-  - name: 'handleDeleteConversationMember(string, string, string)'
+      [ChannelServiceHandler.handleDeleteActivity](xref:botbuilder.ChannelServiceHandler.handleDeleteActivity)
+  - name: handleDeleteConversationMember(string, string, string)
     uid: botbuilder.SkillHandler.handleDeleteConversationMember
     package: botbuilder
     summary: Deletes a member from a conversation.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -144,22 +137,20 @@ inheritedMethods:
           description: The conversation Id.
         - id: memberId
           type: string
-          description: |
-            Id of the member to delete from this conversation.
+          description: Id of the member to delete from this conversation.
       return:
         description: ''
         type: Promise&lt;void&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleDeleteConversationMember](xref:botbuilder.ChannelServiceHandlerBase.handleDeleteConversationMember)
-  - name: 'handleGetActivityMembers(string, string, string)'
+      [ChannelServiceHandler.handleDeleteConversationMember](xref:botbuilder.ChannelServiceHandler.handleDeleteConversationMember)
+  - name: handleGetActivityMembers(string, string, string)
     uid: botbuilder.SkillHandler.handleGetActivityMembers
     package: botbuilder
     summary: >-
       Enumerates the members of an
       [Activity](xref:botframework-schema.Activity).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -179,16 +170,15 @@ inheritedMethods:
         description: >-
           The enumerated
           [ChannelAccount](xref:botframework-schema.ChannelAccount) list.
-        type: 'Promise&lt;ChannelAccount[]&gt;'
+        type: Promise&lt;<xref uid="botbuilder.ChannelAccount" />[]&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleGetActivityMembers](xref:botbuilder.ChannelServiceHandlerBase.handleGetActivityMembers)
-  - name: 'handleGetConversationMember(string, string, string)'
+      [ChannelServiceHandler.handleGetActivityMembers](xref:botbuilder.ChannelServiceHandler.handleGetActivityMembers)
+  - name: handleGetConversationMember(string, string, string)
     uid: botbuilder.SkillHandler.handleGetConversationMember
     package: botbuilder
     summary: Gets the account of a single conversation member.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -208,16 +198,15 @@ inheritedMethods:
         description: >-
           The [ChannelAccount](xref:botframework-schema.ChannelAccount) for the
           provided user id.
-        type: Promise&lt;ChannelAccount&gt;
+        type: Promise&lt;<xref uid="botbuilder.ChannelAccount" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleGetConversationMember](xref:botbuilder.ChannelServiceHandlerBase.handleGetConversationMember)
-  - name: 'handleGetConversationMembers(string, string)'
+      [ChannelServiceHandler.handleGetConversationMember](xref:botbuilder.ChannelServiceHandler.handleGetConversationMember)
+  - name: handleGetConversationMembers(string, string)
     uid: botbuilder.SkillHandler.handleGetConversationMembers
     package: botbuilder
     summary: Enumerates the members of a conversation.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -234,16 +223,15 @@ inheritedMethods:
         description: >-
           The enumerated
           [ChannelAccount](xref:botframework-schema.ChannelAccount) list.
-        type: 'Promise&lt;ChannelAccount[]&gt;'
+        type: Promise&lt;<xref uid="botbuilder.ChannelAccount" />[]&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleGetConversationMembers](xref:botbuilder.ChannelServiceHandlerBase.handleGetConversationMembers)
-  - name: 'handleGetConversationPagedMembers(string, string, number, string)'
+      [ChannelServiceHandler.handleGetConversationMembers](xref:botbuilder.ChannelServiceHandler.handleGetConversationMembers)
+  - name: handleGetConversationPagedMembers(string, string, number, string)
     uid: botbuilder.SkillHandler.handleGetConversationPagedMembers
     package: botbuilder
     summary: Enumerates the members of a conversation one page at a time.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -268,16 +256,15 @@ inheritedMethods:
           A `Promise` representing the
           [PagedMembersResult](xref:botframework-schema.PagedMembersResult) for
           the operation.
-        type: Promise&lt;PagedMembersResult&gt;
+        type: Promise&lt;<xref uid="botbuilder.PagedMembersResult" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleGetConversationPagedMembers](xref:botbuilder.ChannelServiceHandlerBase.handleGetConversationPagedMembers)
-  - name: 'handleGetConversations(string, string, string)'
+      [ChannelServiceHandler.handleGetConversationPagedMembers](xref:botbuilder.ChannelServiceHandler.handleGetConversationPagedMembers)
+  - name: handleGetConversations(string, string, string)
     uid: botbuilder.SkillHandler.handleGetConversations
     package: botbuilder
     summary: Lists the Conversations in which the bot has participated.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -295,16 +282,15 @@ inheritedMethods:
           description: A skip or continuation token.
       return:
         description: A `Promise` representation for the operation.
-        type: Promise&lt;ConversationsResult&gt;
+        type: Promise&lt;<xref uid="botbuilder.ConversationsResult" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleGetConversations](xref:botbuilder.ChannelServiceHandlerBase.handleGetConversations)
-  - name: 'handleReplyToActivity(string, string, string, Activity)'
+      [ChannelServiceHandler.handleGetConversations](xref:botbuilder.ChannelServiceHandler.handleGetConversations)
+  - name: handleReplyToActivity(string, string, string, Activity)
     uid: botbuilder.SkillHandler.handleReplyToActivity
     package: botbuilder
-    summary: 'Sends a reply to an [Activity](xref:botframework-schema.Activity).'
+    summary: Sends a reply to an [Activity](xref:botframework-schema.Activity).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -322,23 +308,22 @@ inheritedMethods:
           type: string
           description: The activity Id the reply is to.
         - id: activity
-          type: Activity
-          description: 'The [Activity](xref:botframework-schema.Activity) to send.'
+          type: <xref uid="botbuilder.Activity" />
+          description: The [Activity](xref:botframework-schema.Activity) to send.
       return:
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
-        type: Promise&lt;ResourceResponse&gt;
+        type: Promise&lt;<xref uid="botbuilder.ResourceResponse" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleReplyToActivity](xref:botbuilder.ChannelServiceHandlerBase.handleReplyToActivity)
-  - name: 'handleSendConversationHistory(string, string, Transcript)'
+      [ChannelServiceHandler.handleReplyToActivity](xref:botbuilder.ChannelServiceHandler.handleReplyToActivity)
+  - name: handleSendConversationHistory(string, string, Transcript)
     uid: botbuilder.SkillHandler.handleSendConversationHistory
     package: botbuilder
     summary: Uploads the historic activities of the conversation.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -353,25 +338,24 @@ inheritedMethods:
           type: string
           description: The conversation Id.
         - id: transcript
-          type: Transcript
-          description: '(xref:botframework-schema.Transcript) of activities.'
+          type: <xref uid="botbuilder.Transcript" />
+          description: '[Transcript](xref:botframework-schema.Transcript) of activities.'
       return:
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
-        type: Promise&lt;ResourceResponse&gt;
+        type: Promise&lt;<xref uid="botbuilder.ResourceResponse" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleSendConversationHistory](xref:botbuilder.ChannelServiceHandlerBase.handleSendConversationHistory)
-  - name: 'handleSendToConversation(string, string, Activity)'
+      [ChannelServiceHandler.handleSendConversationHistory](xref:botbuilder.ChannelServiceHandler.handleSendConversationHistory)
+  - name: handleSendToConversation(string, string, Activity)
     uid: botbuilder.SkillHandler.handleSendToConversation
     package: botbuilder
     summary: >-
       Sends an [Activity](xref:botframework-schema.Activity) to the end of a
       conversation.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -385,25 +369,24 @@ inheritedMethods:
           type: string
           description: The conversation Id.
         - id: activity
-          type: Activity
-          description: 'The [Activity](xref:botframework-schema.Activity) to send.'
+          type: <xref uid="botbuilder.Activity" />
+          description: The [Activity](xref:botframework-schema.Activity) to send.
       return:
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
-        type: Promise&lt;ResourceResponse&gt;
+        type: Promise&lt;<xref uid="botbuilder.ResourceResponse" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleSendToConversation](xref:botbuilder.ChannelServiceHandlerBase.handleSendToConversation)
-  - name: 'handleUpdateActivity(string, string, string, Activity)'
+      [ChannelServiceHandler.handleSendToConversation](xref:botbuilder.ChannelServiceHandler.handleSendToConversation)
+  - name: handleUpdateActivity(string, string, string, Activity)
     uid: botbuilder.SkillHandler.handleUpdateActivity
     package: botbuilder
     summary: >-
       Edits a previously sent existing
       [Activity](xref:botframework-schema.Activity).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -421,23 +404,22 @@ inheritedMethods:
           type: string
           description: The activity Id to update.
         - id: activity
-          type: Activity
-          description: 'The replacement [Activity](xref:botframework-schema.Activity).'
+          type: <xref uid="botbuilder.Activity" />
+          description: The replacement [Activity](xref:botframework-schema.Activity).
       return:
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
-        type: Promise&lt;ResourceResponse&gt;
+        type: Promise&lt;<xref uid="botbuilder.ResourceResponse" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleUpdateActivity](xref:botbuilder.ChannelServiceHandlerBase.handleUpdateActivity)
-  - name: 'handleUploadAttachment(string, string, AttachmentData)'
+      [ChannelServiceHandler.handleUpdateActivity](xref:botbuilder.ChannelServiceHandler.handleUpdateActivity)
+  - name: handleUploadAttachment(string, string, AttachmentData)
     uid: botbuilder.SkillHandler.handleUploadAttachment
     package: botbuilder
     summary: Stores data in a compliant store when dealing with enterprises.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -451,15 +433,15 @@ inheritedMethods:
           type: string
           description: The conversation Id.
         - id: attachmentUpload
-          type: AttachmentData
-          description: '(xref:botframework-schema.AttachmentData).'
+          type: <xref uid="botbuilder.AttachmentData" />
+          description: '[AttachmentData](xref:botframework-schema.AttachmentData).'
       return:
         description: >-
           A `Promise` representing the
           [ResourceResponse](xref:botframework-schema.ResourceResponse) for the
           operation.
-        type: Promise&lt;ResourceResponse&gt;
+        type: Promise&lt;<xref uid="botbuilder.ResourceResponse" />&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
-      [ChannelServiceHandlerBase.handleUploadAttachment](xref:botbuilder.ChannelServiceHandlerBase.handleUploadAttachment)
+      [ChannelServiceHandler.handleUploadAttachment](xref:botbuilder.ChannelServiceHandler.handleUploadAttachment)
 extends: <xref uid="botbuilder.ChannelServiceHandler" />

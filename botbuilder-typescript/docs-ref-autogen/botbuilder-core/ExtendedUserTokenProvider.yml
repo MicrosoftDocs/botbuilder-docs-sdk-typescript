@@ -7,19 +7,17 @@ summary: >-
   BotAdapters
 fullName: ExtendedUserTokenProvider
 remarks: ''
-isPreview: false
 isDeprecated: true
 customDeprecatedMessage: Use `UserTokenClient` instead.
 type: interface
 inheritedMethods:
-  - name: 'getTokenStatus(TurnContext, string, string, any)'
+  - name: getTokenStatus(TurnContext, string, string, any)
     uid: botbuilder-core.ExtendedUserTokenProvider.getTokenStatus
     package: botbuilder-core
     summary: >-
       Retrieves the token status for each configured connection for the given
       user, using the bot's AppCredentials.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -39,21 +37,19 @@ inheritedMethods:
             token status for all configured connections.
         - id: oAuthAppCredentials
           type: any
-          description: |
-            The app credentials for OAuth.
+          description: The app credentials for OAuth.
       return:
         description: ''
-        type: 'Promise&lt;any[]&gt;'
+        type: Promise&lt;any[]&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [IUserTokenProvider.getTokenStatus](xref:botbuilder-core.IUserTokenProvider.getTokenStatus)
 methods:
-  - name: 'exchangeToken(TurnContext, string, string, TokenExchangeRequest)'
+  - name: exchangeToken(TurnContext, string, string, TokenExchangeRequest)
     uid: botbuilder-core.ExtendedUserTokenProvider.exchangeToken
     package: botbuilder-core
     summary: Performs a token exchange operation such as for single sign-on.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -71,13 +67,13 @@ methods:
           type: string
           description: The user id that will be associated with the token.
         - id: tokenExchangeRequest
-          type: TokenExchangeRequest
-          description: >
+          type: <xref uid="botbuilder-core.TokenExchangeRequest" />
+          description: >-
             The exchange request details, either a token to exchange or a uri to
             exchange.
       return:
         description: ''
-        type: Promise&lt;TokenResponse&gt;
+        type: Promise&lt;<xref uid="botbuilder-core.TokenResponse" />&gt;
   - name: >-
       exchangeToken(TurnContext, string, string, TokenExchangeRequest,
       CoreAppCredentials)
@@ -85,7 +81,6 @@ methods:
     package: botbuilder-core
     summary: Performs a token exchange operation such as for single sign-on.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -103,8 +98,8 @@ methods:
           type: string
           description: The user id that will be associated with the token.
         - id: tokenExchangeRequest
-          type: TokenExchangeRequest
-          description: >
+          type: <xref uid="botbuilder-core.TokenExchangeRequest" />
+          description: >-
             The exchange request details, either a token to exchange or a uri to
             exchange.
         - id: appCredentials
@@ -112,19 +107,18 @@ methods:
           description: ''
       return:
         description: ''
-        type: Promise&lt;TokenResponse&gt;
-  - name: 'getAadTokens(TurnContext, string, string[], CoreAppCredentials)'
+        type: Promise&lt;<xref uid="botbuilder-core.TokenResponse" />&gt;
+  - name: getAadTokens(TurnContext, string, string[], CoreAppCredentials)
     uid: botbuilder-core.ExtendedUserTokenProvider.getAadTokens
     package: botbuilder-core
     summary: Signs the user out with the token server.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
         function getAadTokens(context: TurnContext, connectionName: string,
         resourceUrls: string[], appCredentials?: CoreAppCredentials):
-        Promise<[key: string]: TokenResponse>
+        Promise<{[propertyName: string]: TokenResponse}>
       parameters:
         - id: context
           type: <xref uid="botbuilder-core.TurnContext" />
@@ -133,22 +127,23 @@ methods:
           type: string
           description: Name of the auth connection to use.
         - id: resourceUrls
-          type: 'string[]'
+          type: string[]
           description: ''
         - id: appCredentials
           type: <xref uid="botbuilder-core.CoreAppCredentials" />
           description: ''
       return:
         description: ''
-        type: 'Promise&lt;[key: string]: TokenResponse&gt;'
-  - name: 'getSignInLink(TurnContext, string, CoreAppCredentials)'
+        type: >-
+          Promise&lt;{[propertyName: string]: <xref
+          uid="botbuilder-core.TokenResponse" />}&gt;
+  - name: getSignInLink(TurnContext, string, CoreAppCredentials)
     uid: botbuilder-core.ExtendedUserTokenProvider.getSignInLink
     package: botbuilder-core
     summary: >-
       Gets a signin link from the token server that can be sent as part of a
       SigninCard.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -167,14 +162,13 @@ methods:
       return:
         description: ''
         type: Promise&lt;string&gt;
-  - name: 'getSignInResource(TurnContext, string)'
+  - name: getSignInResource(TurnContext, string)
     uid: botbuilder-core.ExtendedUserTokenProvider.getSignInResource
     package: botbuilder-core
     summary: >-
       Get the raw signin resource to be sent to the user for signin for a
       connection name.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -186,19 +180,17 @@ methods:
           description: Context for the current turn of conversation with the user.
         - id: connectionName
           type: string
-          description: |
-            Name of the auth connection to use.
+          description: Name of the auth connection to use.
       return:
         description: ''
-        type: Promise&lt;SignInUrlResponse&gt;
-  - name: 'getSignInResource(TurnContext, string, string, string)'
+        type: Promise&lt;<xref uid="botbuilder-core.SignInUrlResponse" />&gt;
+  - name: getSignInResource(TurnContext, string, string, string)
     uid: botbuilder-core.ExtendedUserTokenProvider.getSignInResource_1
     package: botbuilder-core
     summary: >-
       Get the raw signin resource to be sent to the user for signin for a
       connection name.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -216,19 +208,17 @@ methods:
           description: The user id that will be associated with the token.
         - id: finalRedirect
           type: string
-          description: |
-            The final URL that the OAuth flow will redirect to.
+          description: The final URL that the OAuth flow will redirect to.
       return:
         description: ''
-        type: Promise&lt;SignInUrlResponse&gt;
-  - name: 'getSignInResource(TurnContext, string, string, string, CoreAppCredentials)'
+        type: Promise&lt;<xref uid="botbuilder-core.SignInUrlResponse" />&gt;
+  - name: getSignInResource(TurnContext, string, string, string, CoreAppCredentials)
     uid: botbuilder-core.ExtendedUserTokenProvider.getSignInResource_2
     package: botbuilder-core
     summary: >-
       Get the raw signin resource to be sent to the user for signin for a
       connection name.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -247,20 +237,18 @@ methods:
           description: The user id that will be associated with the token.
         - id: finalRedirect
           type: string
-          description: |
-            The final URL that the OAuth flow will redirect to.
+          description: The final URL that the OAuth flow will redirect to.
         - id: appCredentials
           type: <xref uid="botbuilder-core.CoreAppCredentials" />
           description: ''
       return:
         description: ''
-        type: Promise&lt;SignInUrlResponse&gt;
-  - name: 'getUserToken(TurnContext, string, string, CoreAppCredentials)'
+        type: Promise&lt;<xref uid="botbuilder-core.SignInUrlResponse" />&gt;
+  - name: getUserToken(TurnContext, string, string, CoreAppCredentials)
     uid: botbuilder-core.ExtendedUserTokenProvider.getUserToken
     package: botbuilder-core
     summary: Retrieves the OAuth token for a user that is in a sign-in flow.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -276,20 +264,18 @@ methods:
           description: Name of the auth connection to use.
         - id: magicCode
           type: string
-          description: |
-            (Optional) Optional user entered code to validate.
+          description: (Optional) Optional user entered code to validate.
         - id: appCredentials
           type: <xref uid="botbuilder-core.CoreAppCredentials" />
           description: ''
       return:
         description: ''
-        type: Promise&lt;TokenResponse&gt;
-  - name: 'signOutUser(TurnContext, string, string, CoreAppCredentials)'
+        type: Promise&lt;<xref uid="botbuilder-core.TokenResponse" />&gt;
+  - name: signOutUser(TurnContext, string, string, CoreAppCredentials)
     uid: botbuilder-core.ExtendedUserTokenProvider.signOutUser
     package: botbuilder-core
     summary: Signs the user out with the token server.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-

@@ -5,29 +5,27 @@ package: botbuilder-dialogs
 summary: Class which runs the dialog system.
 fullName: DialogManager
 remarks: ''
-isPreview: false
 isDeprecated: true
 customDeprecatedMessage: This class will be deprecated.
 type: class
 constructors:
-  - name: 'DialogManager(Dialog, string)'
+  - name: DialogManager(Dialog<{}>, string)
     uid: botbuilder-dialogs.DialogManager.constructor
     package: botbuilder-dialogs
     summary: >-
       Creates an instance of the
       [DialogSet](xref:botbuilder-dialogs.DialogManager) class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'new DialogManager(rootDialog?: Dialog, dialogStateProperty?: string)'
+      content: 'new DialogManager(rootDialog?: Dialog<{}>, dialogStateProperty?: string)'
       parameters:
         - id: rootDialog
-          type: <xref uid="botbuilder-dialogs.Dialog" />
-          description: 'Optional, root [Dialog](xref:botbuilder-dialogs.Dialog) to use.'
+          type: <xref uid="botbuilder-dialogs.Dialog" />&lt;{}&gt;
+          description: Optional, root [Dialog](xref:botbuilder-dialogs.Dialog) to use.
         - id: dialogStateProperty
           type: string
-          description: >
+          description: >-
             Optional, alternate name for the dialogState property. (Default is
             "DialogStateProperty")
 properties:
@@ -37,7 +35,6 @@ properties:
     summary: Bots persisted conversation state.
     fullName: conversationState
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'conversationState: ConversationState'
@@ -50,7 +47,6 @@ properties:
     summary: Global dialogs that you want to have be callable.
     fullName: dialogs
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'dialogs: DialogSet'
@@ -65,7 +61,6 @@ properties:
       after.
     fullName: expireAfter
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'expireAfter?: number'
@@ -80,7 +75,6 @@ properties:
       of each turn.
     fullName: initialTurnState
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: TurnContextStateCollection initialTurnState
@@ -90,18 +84,15 @@ properties:
   - name: rootDialog
     uid: botbuilder-dialogs.DialogManager.rootDialog
     package: botbuilder-dialogs
-    summary: |-
-      Root dialog to start from [onTurn()](#onturn) method.
-      Gets the root [Dialog](xref:botbuilder-dialogs.Dialog) ID.
+    summary: Gets the root [Dialog](xref:botbuilder-dialogs.Dialog) ID.
     fullName: rootDialog
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: Dialog rootDialog
+      content: Dialog<{}> rootDialog
       return:
-        description: 'The root [Dialog](xref:botbuilder-dialogs.Dialog) ID.'
-        type: <xref uid="botbuilder-dialogs.Dialog" />
+        description: The root [Dialog](xref:botbuilder-dialogs.Dialog) ID.
+        type: <xref uid="botbuilder-dialogs.Dialog" />&lt;{}&gt;
   - name: stateConfiguration
     uid: botbuilder-dialogs.DialogManager.stateConfiguration
     package: botbuilder-dialogs
@@ -110,7 +101,6 @@ properties:
       bot.
     fullName: stateConfiguration
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'stateConfiguration?: DialogStateManagerConfiguration'
@@ -123,7 +113,6 @@ properties:
     summary: Optional. Bots persisted user state.
     fullName: userState
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'userState?: UserState'
@@ -136,10 +125,11 @@ inheritedMethods:
     package: botbuilder-dialogs
     summary: ''
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function getConverter(_property: string): Converter | ConverterFactory'
+      content: >-
+        function getConverter(_property: string): Converter<unknown, unknown> |
+        ConverterFactory<unknown, unknown>
       parameters:
         - id: _property
           type: string
@@ -147,8 +137,9 @@ inheritedMethods:
       return:
         description: The converter for the selector configuration.
         type: >-
-          <xref uid="botbuilder-dialogs.Converter" /> | <xref
-          uid="botbuilder-dialogs.ConverterFactory" />
+          <xref uid="botbuilder-dialogs.Converter" />&lt;unknown, unknown&gt; |
+          <xref uid="botbuilder-dialogs.ConverterFactory" />&lt;unknown,
+          unknown&gt;
     inheritanceDescription: >-
       <b>Inherited From</b>
       [Configurable.getConverter](xref:botbuilder-dialogs.Configurable.getConverter)
@@ -158,10 +149,11 @@ methods:
     package: botbuilder-dialogs
     summary: Set configuration settings.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
-      content: 'function configure(config: Partial<DialogManagerConfiguration>): this'
+      content: >-
+        function configure(config: Partial<DialogManagerConfiguration>):
+        DialogManager
       parameters:
         - id: config
           type: >-
@@ -172,7 +164,7 @@ methods:
         description: >-
           The cofigured [DialogManager](xref:botbuilder-dialogs.DialogManager)
           context.
-        type: this
+        type: <xref uid="botbuilder-dialogs.DialogManager" />
   - name: onTurn(TurnContext)
     uid: botbuilder-dialogs.DialogManager.onTurn
     package: botbuilder-dialogs
@@ -180,7 +172,6 @@ methods:
       Runs dialog system in the context of a
       [TurnContext](xref:botbuilder-core.TurnContext).
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'function onTurn(context: TurnContext): Promise<DialogManagerResult>'
@@ -188,8 +179,8 @@ methods:
         - id: context
           type: TurnContext
           description: >-
-            (xref:botbuilder-core.TurnContext) for the current turn of
-            conversation with the user.
+            [TurnContext](xref:botbuilder-core.TurnContext) for the current turn
+            of conversation with the user.
       return:
         description: Result of running the logic against the activity.
         type: Promise&lt;<xref uid="botbuilder-dialogs.DialogManagerResult" />&gt;

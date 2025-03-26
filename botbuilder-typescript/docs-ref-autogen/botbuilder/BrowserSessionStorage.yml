@@ -1,0 +1,103 @@
+### YamlMime:TSType
+name: BrowserSessionStorage
+uid: botbuilder.BrowserSessionStorage
+package: botbuilder
+summary: Storage provider that uses browser session storage.
+fullName: BrowserSessionStorage
+remarks: >-
+  Anything written to the store will only be persisted for the lifetime of a
+  single page within a
+
+  browser tab. The storage will survive page reloads but closing the tab will
+  delete anything
+
+  persisted by the store and opening a new browser tab will create a new
+  persistance store for the
+
+  page.
+
+
+  ```JavaScript
+
+  const { BrowserSessionStorage, ConversationState } = require('botbuilder');
+
+
+  const conversationState = new ConversationState(new BrowserSessionStorage());
+
+  ```
+isDeprecated: false
+type: class
+constructors:
+  - name: BrowserSessionStorage()
+    uid: botbuilder.BrowserSessionStorage.constructor
+    package: botbuilder
+    summary: >-
+      Creates a new
+      [BrowserSessionStorage](xref:botbuilder-core.BrowserSessionStorage)
+      instance.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: new BrowserSessionStorage()
+inheritedMethods:
+  - name: delete(string[])
+    uid: botbuilder.BrowserSessionStorage.delete
+    package: botbuilder
+    summary: Deletes storage items from storage.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function delete(keys: string[]): Promise<void>'
+      parameters:
+        - id: keys
+          type: string[]
+          description: >-
+            Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
+            delete.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [MemoryStorage.delete](xref:botbuilder.MemoryStorage.delete)
+  - name: read(string[])
+    uid: botbuilder.BrowserSessionStorage.read
+    package: botbuilder
+    summary: Reads storage items from storage.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function read(keys: string[]): Promise<StoreItems>'
+      parameters:
+        - id: keys
+          type: string[]
+          description: >-
+            Keys of the [StoreItems](xref:botbuilder-core.StoreItems) objects to
+            read.
+      return:
+        description: The read items.
+        type: Promise&lt;<xref uid="botbuilder.StoreItems" />&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [MemoryStorage.read](xref:botbuilder.MemoryStorage.read)
+  - name: write(StoreItems)
+    uid: botbuilder.BrowserSessionStorage.write
+    package: botbuilder
+    summary: Writes storage items to storage.
+    remarks: ''
+    isDeprecated: false
+    syntax:
+      content: 'function write(changes: StoreItems): Promise<void>'
+      parameters:
+        - id: changes
+          type: <xref uid="botbuilder.StoreItems" />
+          description: >-
+            The [StoreItems](xref:botbuilder-core.StoreItems) to write, indexed
+            by key.
+      return:
+        description: A promise representing the async operation.
+        type: Promise&lt;void&gt;
+    inheritanceDescription: >-
+      <b>Inherited From</b>
+      [MemoryStorage.write](xref:botbuilder.MemoryStorage.write)
+extends: <xref uid="botbuilder.MemoryStorage" />

@@ -5,16 +5,14 @@ package: botframework-connector
 summary: ''
 fullName: ConnectorClient
 remarks: ''
-isPreview: false
 isDeprecated: false
 type: class
 constructors:
-  - name: 'ConnectorClient(ServiceClientCredentials, ConnectorClientOptions)'
+  - name: ConnectorClient(ServiceClientCredentials, ConnectorClientOptions)
     uid: botframework-connector.ConnectorClient.constructor
     package: botframework-connector
     summary: Initializes a new instance of the ConnectorClient class.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -22,13 +20,13 @@ constructors:
         ConnectorClientOptions)
       parameters:
         - id: credentials
-          type: ServiceClientCredentials
+          type: <xref uid="botframework-connector.ServiceClientCredentials" />
           description: >-
             Subscription credentials which uniquely identify client
             subscription.
         - id: options
           type: <xref uid="botframework-connector.ConnectorClientOptions" />
-          description: ''
+          description: The parameter options
 properties:
   - name: attachments
     uid: botframework-connector.ConnectorClient.attachments
@@ -36,26 +34,24 @@ properties:
     summary: ''
     fullName: attachments
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'attachments: Attachments'
       return:
         description: ''
-        type: <xref uid="botframework-connector.Attachments" />
+        type: Attachments
   - name: conversations
     uid: botframework-connector.ConnectorClient.conversations
     package: botframework-connector
     summary: ''
     fullName: conversations
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'conversations: Conversations'
       return:
         description: ''
-        type: <xref uid="botframework-connector.Conversations" />
+        type: Conversations
 inheritedProperties:
   - name: credentials
     uid: botframework-connector.ConnectorClient.credentials
@@ -63,16 +59,13 @@ inheritedProperties:
     summary: ''
     fullName: credentials
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: 'credentials: ServiceClientCredentials'
       return:
         description: ''
-        type: ServiceClientCredentials
-    inheritanceDescription: >-
-      <b>Inherited From</b>
-      [ConnectorClientContext.credentials](xref:botframework-connector.ConnectorClientContext.credentials)
+        type: <xref uid="botframework-connector.ServiceClientCredentials" />
+    inheritanceDescription: <b>Inherited From</b> ConnectorClientContext.credentials
 inheritedMethods:
   - name: >-
       sendOperationRequest(OperationArguments, OperationSpec,
@@ -81,7 +74,6 @@ inheritedMethods:
     package: botframework-connector
     summary: Send an HTTP request that is populated using the provided OperationSpec.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -90,27 +82,25 @@ inheritedMethods:
         Promise<RestResponse>
       parameters:
         - id: operationArguments
-          type: OperationArguments
+          type: <xref uid="@azure/core-http.OperationArguments" />
           description: >-
             The arguments that the HTTP request's templated values will be
             populated from.
         - id: operationSpec
-          type: OperationSpec
+          type: <xref uid="@azure/core-http.OperationSpec" />
           description: The OperationSpec to use to populate the httpRequest.
         - id: callback
-          type: ServiceCallback&lt;any&gt;
-          description: |
-            The callback to call when the response is received.
+          type: <xref uid="@azure/core-http.ServiceCallback" />&lt;any&gt;
+          description: The callback to call when the response is received.
       return:
         description: ''
-        type: Promise&lt;RestResponse&gt;
-    inheritanceDescription: <b>Inherited From</b> ServiceClient.sendOperationRequest
+        type: Promise&lt;<xref uid="@azure/core-http.RestResponse" />&gt;
+    inheritanceDescription: <b>Inherited From</b> ConnectorClientContext.sendOperationRequest
   - name: sendRequest(RequestPrepareOptions | WebResourceLike)
     uid: botframework-connector.ConnectorClient.sendRequest
     package: botframework-connector
     summary: Send the provided httpRequest.
     remarks: ''
-    isPreview: false
     isDeprecated: false
     syntax:
       content: >-
@@ -118,10 +108,12 @@ inheritedMethods:
         Promise<HttpOperationResponse>
       parameters:
         - id: options
-          type: RequestPrepareOptions | WebResourceLike
+          type: >-
+            <xref uid="@azure/core-http.RequestPrepareOptions" /> | <xref
+            uid="@azure/core-http.WebResourceLike" />
           description: ''
       return:
         description: ''
-        type: Promise&lt;HttpOperationResponse&gt;
-    inheritanceDescription: <b>Inherited From</b> ServiceClient.sendRequest
-extends: <xref uid="botframework-connector.ConnectorClientContext" />
+        type: Promise&lt;<xref uid="@azure/core-http.HttpOperationResponse" />&gt;
+    inheritanceDescription: <b>Inherited From</b> ConnectorClientContext.sendRequest
+extends: ConnectorClientContext
